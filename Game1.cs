@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using GameSpace.Factories;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
 
@@ -11,6 +12,7 @@ namespace GameSpace
         private SpriteFont font;
         private List<ISprite> spriteList;
         private List<IController> controllers;
+        private Factories.BlockFactory blockFactory;
 
         public List<ISprite> SpriteList { get => spriteList; }
         public GraphicsDeviceManager Graphics { get => graphics; }
@@ -28,6 +30,8 @@ namespace GameSpace
                 new KeyboardInput(this), new ControllerInput(this)
             };
 
+            blockFactory = new BlockFactory();
+
             base.Initialize();
         }
 
@@ -36,6 +40,7 @@ namespace GameSpace
             spriteBatch = new SpriteBatch(GraphicsDevice);
             font = Content.Load<SpriteFont>("font");
             Texture2D staticTexture = Content.Load<Texture2D>("mariosheet");
+            blockFactory.LoadContent(Content);
 
             spriteList = new List<ISprite>()
             {
