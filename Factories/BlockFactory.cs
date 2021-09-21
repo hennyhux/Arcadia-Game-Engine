@@ -30,11 +30,16 @@ namespace GameSpace.Factories
         {
             QuestionBlock = content.Load<Texture2D>("Blocks/QuestionBlock");
             UsedBlock = content.Load<Texture2D>("Blocks/UsedBlock");
+            BrickBlock = content.Load<Texture2D>("Blocks/BrickBlock");
+            FloorBlock = content.Load<Texture2D>("Blocks/FloorBlock");
+            StairBlock = content.Load<Texture2D>("Blocks/StairBlock");
+            HiddenBlock = content.Load<Texture2D>("Blocks/HiddenBlock");
         }
 
-        public ISprite ReturnQuestionBlock()
+           //TODO fix sprite class 
+        public void ReturnQuestionBlock()
         {
-            return new QuestionBlockSprite(QuestionBlock);
+            //return new QuestionBlockSprite(QuestionBlock);
         }
 
         public ISprite ReturnUsedBlock()
@@ -42,7 +47,20 @@ namespace GameSpace.Factories
             return new UsedBlockSprite(UsedBlock);
         }
 
+        public ISprite ReturnBrickBlock()
+        {
+            return new BrickBlockSprite(BrickBlock);
+        }
         
+        public ISprite ReturnFloorBlock()
+        {
+            return new FloorBlockSprite(FloorBlock);
+        }
+
+        public ISprite ReturnStairBlock()
+        {
+            return new StairBlockSprite(StairBlock);
+        }
 
     }
 }

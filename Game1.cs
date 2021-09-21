@@ -12,7 +12,7 @@ namespace GameSpace
         private SpriteFont font;
         private List<ISprite> spriteList;
         private List<IController> controllers;
-        private Factories.BlockFactory blockFactory;
+        private BlockFactory blockFactory;
 
         public List<ISprite> SpriteList { get => spriteList; }
         public GraphicsDeviceManager Graphics { get => graphics; }

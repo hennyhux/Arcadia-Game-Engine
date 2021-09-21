@@ -17,20 +17,32 @@ namespace GameSpace.Sprites
         private protected int currentFrame;
         private Boolean isVisible;
 
-        public QuestionBlockSprite(Texture2D texture)
+        private protected int timeSinceLastFrame;
+        private protected int milliSecondsPerFrame;
+
+
+        public QuestionBlockSprite(Texture2D texture, GraphicsDevice screen, int rows, int columns, int totalFrames)
         {
             this.Texture = texture;
             isVisible = true;
-            rows = 1;
-            columns = totalFrames = 3;
+            this.rows = rows;
+            this.columns = columns;
             width = texture.Width / columns;
             height = texture.Height / rows;
             currentFrame = 0;
+            this.totalFrames = totalFrames;
+
+            timeSinceLastFrame = 0;
+            milliSecondsPerFrame = 260;
+
         }
 
         public void Draw(SpriteBatch spriteBatch, Vector2 location)
         {
-            throw new NotImplementedException();
+            if (isVisible)
+            {
+                Rectangle rectangle = new Rectangle();
+            }
         }
 
         public void Update(GameTime gametime)

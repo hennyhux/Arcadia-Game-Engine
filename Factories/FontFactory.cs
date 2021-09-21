@@ -4,7 +4,7 @@ using System.Text;
 
 namespace GameSpace.Factories
 {
-    public class BackgroundFactory
+    public class FontFactory
     {
 
     }
