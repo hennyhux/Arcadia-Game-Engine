@@ -8,25 +8,47 @@ namespace GameSpace.Sprites
 {
     class UsedBlockSprite : ISprite
     {
-        public Texture2D Texture { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public Texture2D Texture { get ; set ; }
+        private protected int frameWidth;
+        private protected int frameHeight;
+        private protected int rows;
+        private protected int columns;
+        private protected int totalFrames;
+        private protected int currentFrame;
+        private Boolean isVisible;
+        public void SetVisible() { isVisible = !isVisible; }
 
-        public UsedBlockSprite(Texture2D texture)
+        public UsedBlockSprite(Texture2D texture, int rows, int columns, int totalFrames)
         {
             this.Texture = texture;
-        }
-        public void Draw(SpriteBatch spriteBatch, Vector2 location)
-        {
-            throw new NotImplementedException();
+            isVisible = true;
+            this.rows = rows;
+            this.columns = columns;
+            frameWidth = columns;
+            frameHeight = rows;
+            currentFrame = 0;
+            this.totalFrames = totalFrames;
         }
 
-        public void SetVisible()
+        public void Draw(SpriteBatch spriteBatch, Vector2 location)
         {
-            throw new NotImplementedException();
+            if (isVisible)
+            {
+                int width = Texture.Width / frameWidth;
+                int height = Texture.Height / frameHeight;
+                int row = currentFrame / frameWidth;
+                int column = currentFrame % frameWidth;
+
+                Rectangle sourceRectangle = new Rectangle(width * column, height * row, width, height);
+                Rectangle destinationRectangle = new Rectangle(100, 150, width *2, height *2);
+
+                spriteBatch.Draw(Texture, destinationRectangle, sourceRectangle, Color.White);
+            }
         }
 
         public void Update(GameTime gametime)
         {
-            throw new NotImplementedException();
+            
         }
     }
 }

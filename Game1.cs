@@ -44,11 +44,8 @@ namespace GameSpace
 
             spriteList = new List<ISprite>()
             {
-                new StaticSprite(staticTexture, 4, 14, 1),
-                new AnimatedSprite(staticTexture, 4, 14, 4, 0, 0, GraphicsDevice),
-                new MovingStaticSprite(staticTexture, 4, 14, 1),
-                new MovingAnimatedSprite(staticTexture, 4, 14, 3, 0, 1, GraphicsDevice)
-
+                blockFactory.ReturnUsedBlock(), blockFactory.ReturnStairBlock(),
+                blockFactory.ReturnBrickBlock(), blockFactory.ReturnFloorBlock(),
             };
         }
 
@@ -71,18 +68,10 @@ namespace GameSpace
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
             spriteBatch.Begin(blendState: BlendState.AlphaBlend);
-            spriteBatch.DrawString(font,
-                "Press Q/Esc (START) to quit\n" +
-                "Press f (D-PAD DOWN) to toggle fullscreen mode\n" +
-                "Press w (A) to display a static sprite\n" +
-                "Press e (B) to display an animated sprite\n" +
-                "Press r (X) to display a moving, animated sprite\n" +
-                "Press t (Y) to display a moving, static sprite\n",
-                new Vector2(50.0f, 0.00f), Color.Indigo);
 
             foreach (ISprite sprite in spriteList)
             {
-                sprite.Draw(spriteBatch, new Vector2(300, 250));
+                sprite.Draw(spriteBatch, new Vector2(0, 0));
             }
 
             spriteBatch.End();

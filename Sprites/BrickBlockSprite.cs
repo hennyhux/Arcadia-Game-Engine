@@ -8,26 +8,47 @@ namespace GameSpace.Sprites
 {
     public class BrickBlockSprite : ISprite
     {
-        public Texture2D Texture { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public Texture2D Texture { get; set; }
+        private protected int frameWidth;
+        private protected int frameHeight;
+        private protected int rows;
+        private protected int columns;
+        private protected int totalFrames;
+        private protected int currentFrame;
+        private Boolean isVisible;
+        public void SetVisible(){ isVisible = !isVisible; }
 
-        public BrickBlockSprite(Texture2D texture)
+        public BrickBlockSprite(Texture2D texture, int rows, int columns, int totalFrames)
         {
-
+            this.Texture = texture;
+            isVisible = true;
+            this.rows = rows;
+            this.columns = columns;
+            frameWidth = columns;
+            frameHeight = rows;
+            currentFrame = 0;
+            this.totalFrames = totalFrames;
         }
 
         public void Draw(SpriteBatch spriteBatch, Vector2 location)
         {
-            throw new NotImplementedException();
-        }
+            if (isVisible)
+            {
+                int width = Texture.Width / frameWidth;
+                int height = Texture.Height / frameHeight;
+                int row = currentFrame / frameWidth;
+                int column = currentFrame % frameWidth;
 
-        public void SetVisible()
-        {
-            throw new NotImplementedException();
+                Rectangle sourceRectangle = new Rectangle(width * column, height * row, width, height);
+                Rectangle destinationRectangle = new Rectangle(300, 150, width *2, height *2);
+
+                spriteBatch.Draw(Texture, destinationRectangle, sourceRectangle, Color.White);
+            }
         }
 
         public void Update(GameTime gametime)
         {
-            throw new NotImplementedException();
+
         }
     }
 }

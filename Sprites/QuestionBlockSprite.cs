@@ -21,7 +21,7 @@ namespace GameSpace.Sprites
         private protected int milliSecondsPerFrame;
 
 
-        public QuestionBlockSprite(Texture2D texture, GraphicsDevice screen, int rows, int columns, int totalFrames)
+        public QuestionBlockSprite(Texture2D texture, int rows, int columns, int totalFrames)
         {
             this.Texture = texture;
             isVisible = true;
@@ -41,7 +41,7 @@ namespace GameSpace.Sprites
         {
             if (isVisible)
             {
-                Rectangle rectangle = new Rectangle();
+                
             }
         }
 

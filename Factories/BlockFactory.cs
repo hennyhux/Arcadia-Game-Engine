@@ -34,33 +34,35 @@ namespace GameSpace.Factories
             FloorBlock = content.Load<Texture2D>("Blocks/FloorBlock");
             StairBlock = content.Load<Texture2D>("Blocks/StairBlock");
             HiddenBlock = content.Load<Texture2D>("Blocks/HiddenBlock");
-        }
-
-           //TODO fix sprite class 
-        public void ReturnQuestionBlock()
+        } 
+        public ISprite ReturnQuestionBlock()
         {
-            //return new QuestionBlockSprite(QuestionBlock);
+            return new QuestionBlockSprite(QuestionBlock, 1, 3, 3);
         }
 
         public ISprite ReturnUsedBlock()
         {
-            return new UsedBlockSprite(UsedBlock);
+            return new UsedBlockSprite(UsedBlock, 1, 1, 1);
         }
 
         public ISprite ReturnBrickBlock()
         {
-            return new BrickBlockSprite(BrickBlock);
+            return new BrickBlockSprite(BrickBlock, 1, 1, 1);
         }
         
         public ISprite ReturnFloorBlock()
         {
-            return new FloorBlockSprite(FloorBlock);
+            return new FloorBlockSprite(FloorBlock, 1, 1, 1);
         }
 
         public ISprite ReturnStairBlock()
         {
-            return new StairBlockSprite(StairBlock);
+            return new StairBlockSprite(StairBlock, 1, 1, 1);
         }
 
+        public ISprite ReturnHiddenBlock()
+        {
+            return new HiddenBlockSprite(HiddenBlock);
+        }
     }
 }
