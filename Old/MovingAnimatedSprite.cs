@@ -111,5 +111,10 @@ namespace GameSpace
         {
             isVisible = !isVisible;
         }
+
+        public void UpdateLocation(int dx, int dy)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

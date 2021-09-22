@@ -64,5 +64,10 @@ namespace GameSpace
 
             else offsetY = 0;
         }
+
+        public void UpdateLocation(int dx, int dy)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

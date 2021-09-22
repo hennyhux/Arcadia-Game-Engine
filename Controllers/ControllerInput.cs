@@ -13,13 +13,13 @@ namespace GameSpace
     {
         private GamePadState previousState;
         private GamePadState emptyInput;
-        private protected BuildCommands commands;
+        private protected CommandList commands;
 
         public ControllerInput(Game1 game)
         {
             previousState = GamePad.GetState(PlayerIndex.One);
             emptyInput = new GamePadState();
-            commands = new BuildCommands(game);
+            commands = new CommandList(game);
         }
 
         public void Update()

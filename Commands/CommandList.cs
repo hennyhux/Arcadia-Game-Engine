@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework.Input;
+﻿using GameSpace.Commands;
+using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,22 +8,22 @@ using System.Threading.Tasks;
 
 namespace GameSpace
 {
-    public class BuildCommands
+    public class CommandList
     {
         private Dictionary<Keys, ICommand> keyboardCommands;
         private Dictionary<Buttons, ICommand> controllerCommands;
 
-        public BuildCommands(Game1 game)
+        public CommandList(Game1 game)
         {
             keyboardCommands = new Dictionary<Keys, ICommand>()
             {
                 {Keys.Q, new ExitCommand(game)},
                 {Keys.Escape, new ExitCommand(game)},
                 {Keys.F, new ToggleFullscreenCommand(game)},
-                {Keys.W, new DrawSpritesCommand(game, 0)},
-                {Keys.E, new DrawSpritesCommand(game, 1)},
-                {Keys.T, new DrawSpritesCommand(game, 2)},
-                {Keys.R, new DrawSpritesCommand(game, 3)}
+                {Keys.D, new MoveRightCommand(game)},
+                {Keys.A, new MoveLeftCommand(game)},
+                {Keys.W, new MoveUpCommand(game)},
+                {Keys.S, new MoveDownCommand(game)}
             };
 
             controllerCommands = new Dictionary<Buttons, ICommand>()

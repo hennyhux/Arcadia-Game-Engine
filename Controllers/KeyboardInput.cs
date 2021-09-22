@@ -11,12 +11,12 @@ namespace GameSpace
     {
 
         private KeyboardState previousState;
-        private protected BuildCommands commands;
+        private protected CommandList commands;
 
         public KeyboardInput(Game1 game)
         {
             previousState = new KeyboardState();
-            commands = new BuildCommands(game);
+            commands = new CommandList(game);
         }
 
         public void Update()

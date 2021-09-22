@@ -54,5 +54,10 @@ namespace GameSpace.Sprites
         {
             isVisible = !isVisible;
         }
+
+        public void UpdateLocation(int dx, int dy)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

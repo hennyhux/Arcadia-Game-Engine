@@ -9,5 +9,6 @@ namespace GameSpace
         void Draw(SpriteBatch spriteBatch, Vector2 location);
         void Update(GameTime gametime);
         void SetVisible();
+        void UpdateLocation(int dx, int dy);
     }
 }

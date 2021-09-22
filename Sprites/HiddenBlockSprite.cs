@@ -29,5 +29,10 @@ namespace GameSpace.Sprites
         {
             throw new NotImplementedException();
         }
+
+        public void UpdateLocation(int dx, int dy)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

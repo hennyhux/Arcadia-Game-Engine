@@ -13,9 +13,14 @@ namespace GameSpace
         private List<ISprite> spriteList;
         private List<IController> controllers;
         private BlockFactory blockFactory;
+        private MarioFactory marioFactory;
+
+        private ISprite MarioSprite;
 
         public List<ISprite> SpriteList { get => spriteList; }
+        public ISprite GetMarioSprite { get => MarioSprite; }
         public GraphicsDeviceManager Graphics { get => graphics; }
+        public SpriteBatch SpriteBatch { get => spriteBatch; }
 
         public Game1()
         {
@@ -31,6 +36,7 @@ namespace GameSpace
             };
 
             blockFactory = new BlockFactory();
+            marioFactory = new MarioFactory();
 
             base.Initialize();
         }
@@ -39,14 +45,16 @@ namespace GameSpace
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
             font = Content.Load<SpriteFont>("font");
-            Texture2D staticTexture = Content.Load<Texture2D>("mariosheet");
             blockFactory.LoadContent(Content);
+            marioFactory.LoadContent(Content);
 
             spriteList = new List<ISprite>()
             {
                 blockFactory.ReturnUsedBlock(), blockFactory.ReturnStairBlock(),
                 blockFactory.ReturnBrickBlock(), blockFactory.ReturnFloorBlock(),
             };
+
+            MarioSprite = marioFactory.ReturnMarioStandingLeftSprite();
         }
 
         protected override void Update(GameTime gameTime)
@@ -61,6 +69,8 @@ namespace GameSpace
                 sprite.Update(gameTime);
             }
 
+            MarioSprite.Update(gameTime);
+
             base.Update(gameTime);
         }
 
@@ -73,6 +83,9 @@ namespace GameSpace
             {
                 sprite.Draw(spriteBatch, new Vector2(0, 0));
             }
+
+            MarioSprite.Draw(spriteBatch, new Vector2(0, 0));
+            
 
             spriteBatch.End();
             base.Draw(gameTime);
