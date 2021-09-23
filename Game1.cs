@@ -14,6 +14,7 @@ namespace GameSpace
         private List<IController> controllers;
         private BlockFactory blockFactory;
         private MarioFactory marioFactory;
+        private EnemyFactory enemyFactory;
 
         private ISprite MarioSprite;
 
@@ -37,6 +38,7 @@ namespace GameSpace
 
             blockFactory = new BlockFactory();
             marioFactory = new MarioFactory();
+            enemyFactory = new EnemyFactory();
 
             base.Initialize();
         }
@@ -47,11 +49,13 @@ namespace GameSpace
             font = Content.Load<SpriteFont>("font");
             blockFactory.LoadContent(Content);
             marioFactory.LoadContent(Content);
+            enemyFactory.LoadContent(Content);
 
             spriteList = new List<ISprite>()
             {
                 blockFactory.ReturnUsedBlock(), blockFactory.ReturnStairBlock(),
                 blockFactory.ReturnBrickBlock(), blockFactory.ReturnFloorBlock(),
+                enemyFactory.ReturnGoomba(),
             };
 
             MarioSprite = marioFactory.ReturnMarioStandingLeftSprite();
