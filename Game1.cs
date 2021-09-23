@@ -52,6 +52,7 @@ namespace GameSpace
             {
                 blockFactory.ReturnUsedBlock(), blockFactory.ReturnStairBlock(),
                 blockFactory.ReturnBrickBlock(), blockFactory.ReturnFloorBlock(),
+                blockFactory.ReturnHiddenBlock(), blockFactory.ReturnQuestionBlock()
             };
 
             MarioSprite = marioFactory.ReturnMarioStandingLeftSprite();

@@ -18,22 +18,21 @@ namespace GameSpace
             keyboardCommands = new Dictionary<Keys, ICommand>()
             {
                 {Keys.Q, new ExitCommand(game)},
-                {Keys.Escape, new ExitCommand(game)},
+                {Keys.P, new PauseGameCommand(game)},
+                {Keys.M, new MuteCommand(game)},
                 {Keys.F, new ToggleFullscreenCommand(game)},
                 {Keys.D, new MoveRightCommand(game)},
                 {Keys.A, new MoveLeftCommand(game)},
                 {Keys.W, new MoveUpCommand(game)},
                 {Keys.S, new MoveDownCommand(game)}
+                // Jump, crouch and dash/throw fireball
             };
 
             controllerCommands = new Dictionary<Buttons, ICommand>()
             {
                 {Buttons.Start, new ExitCommand(game)},
                 {Buttons.DPadUp, new ToggleFullscreenCommand(game)},
-                {Buttons.A, new DrawSpritesCommand(game, 0)},
-                {Buttons.B, new DrawSpritesCommand(game, 1)},
-                {Buttons.Y, new DrawSpritesCommand(game, 2)},
-                {Buttons.X, new DrawSpritesCommand(game, 3)},
+                
             };
         }
 

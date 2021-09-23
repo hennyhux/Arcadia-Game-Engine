@@ -37,7 +37,7 @@ namespace GameSpace.Factories
         } 
         public ISprite ReturnQuestionBlock()
         {
-            return new QuestionBlockSprite(QuestionBlock, 1, 3, 3);
+            return new QuestionBlockSprite(QuestionBlock, 1, 3, 3, 0, 0);
         }
 
         public ISprite ReturnUsedBlock()
@@ -62,7 +62,7 @@ namespace GameSpace.Factories
 
         public ISprite ReturnHiddenBlock()
         {
-            return new HiddenBlockSprite(HiddenBlock);
+            return new HiddenBlockSprite(HiddenBlock, 1, 1, 1);
         }
     }
 }
