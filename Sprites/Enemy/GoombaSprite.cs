@@ -6,28 +6,33 @@ using System.Text;
 
 namespace GameSpace.Sprites
 {
-    public class BrickBlockSprite : ISprite
+	public class GoombaSprite : ISprite
     {
         public Texture2D Texture { get; set; }
         private protected int frameWidth;
         private protected int frameHeight;
-        private protected int rows;
-        private protected int columns;
-        private protected int totalFrames;
+        private protected int Rows;
+        private protected int Columns;
+        private protected int TotalFrames;
         private protected int currentFrame;
         private Boolean isVisible;
-        public void SetVisible(){ isVisible = !isVisible; }
+        public void SetVisible() { isVisible = !isVisible; }
 
-        public BrickBlockSprite(Texture2D texture, int rows, int columns, int totalFrames)
-        {
-            this.Texture = texture;
-            isVisible = true;
-            this.rows = rows;
-            this.columns = columns;
-            frameWidth = columns;
-            frameHeight = rows;
+        public GoombaSprite(Texture2D texture, int rows, int columns, int totalFrames)
+		{
+            Texture = texture;
+            Rows = rows;
+            Columns = columns;
+            TotalFrames = totalFrames;
+            frameWidth = Columns;
+            frameHeight = Rows;
             currentFrame = 0;
-            this.totalFrames = totalFrames;
+            isVisible = true;
+		}
+
+        public void Update(GameTime gametime)
+        {
+
         }
 
         public void Draw(SpriteBatch spriteBatch, Vector2 location)
@@ -40,15 +45,10 @@ namespace GameSpace.Sprites
                 int column = currentFrame % frameWidth;
 
                 Rectangle sourceRectangle = new Rectangle(width * column, height * row, width, height);
-                Rectangle destinationRectangle = new Rectangle(300, 150, width *2, height *2);
+                Rectangle destinationRectangle = new Rectangle(600, 150, width * 2, height * 2);
 
                 spriteBatch.Draw(Texture, destinationRectangle, sourceRectangle, Color.White);
             }
-        }
-
-        public void Update(GameTime gametime)
-        {
-
         }
 
         public void UpdateLocation(int dx, int dy)

@@ -31,7 +31,7 @@ namespace GameSpace.Factories
 
         public ISprite ReturnGoomba()
         {
-            return new GoombaSprite(Goomba, 1, 3, 3);
+            return new GoombaSprite(Goomba, 1, 1, 1);
         }
     }
 }

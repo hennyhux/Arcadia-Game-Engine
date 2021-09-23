@@ -25,7 +25,7 @@ namespace GameSpace.Factories
 
         public ISprite ReturnMarioStandingLeftSprite()
         {
-            return new StaticSprite(normalMarioSprite, 1, 1, 1, new Microsoft.Xna.Framework.Vector2(0,0));
+            return new StaticSprite(normalMarioSprite, 1, 1, 1, new Microsoft.Xna.Framework.Vector2(350,200));
         }
 
     }

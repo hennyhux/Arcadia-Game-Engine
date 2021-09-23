@@ -26,9 +26,7 @@ namespace GameSpace
             currentFrame = 0;
             totalFrames = frameCounts;
             IsVisible = true;
-
-            this.location = initialLocation;
-
+            location = initialLocation;
         }
 
         public void Update(GameTime gameTime)
@@ -52,7 +50,7 @@ namespace GameSpace
                 int column = currentFrame % frameWidth;
 
                 Rectangle sourceRectangle = new Rectangle(width * column, height * row, width, height);
-                Rectangle destinationRectangle = new Rectangle((int)location.X, (int)location.Y, width * 3, height * 3);
+                Rectangle destinationRectangle = new Rectangle((int)location.X, (int)location.Y, width * 2, height * 2);
 
                 spriteBatch.Draw(Texture, destinationRectangle, sourceRectangle, Color.White);
             }

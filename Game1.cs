@@ -56,7 +56,7 @@ namespace GameSpace
                 blockFactory.ReturnUsedBlock(), blockFactory.ReturnStairBlock(),
                 blockFactory.ReturnBrickBlock(), blockFactory.ReturnFloorBlock(),
                 blockFactory.ReturnHiddenBlock(), blockFactory.ReturnQuestionBlock(),
-                nemyFactory.ReturnGoomba()
+                enemyFactory.ReturnGoomba()
             };
 
             MarioSprite = marioFactory.ReturnMarioStandingLeftSprite();
@@ -89,7 +89,7 @@ namespace GameSpace
                 sprite.Draw(spriteBatch, new Vector2(0, 0));
             }
 
-            MarioSprite.Draw(spriteBatch, new Vector2(0, 0));
+            MarioSprite.Draw(spriteBatch, new Vector2(500, 200));
             
 
             spriteBatch.End();
