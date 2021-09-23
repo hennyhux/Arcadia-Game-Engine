@@ -8,31 +8,75 @@ namespace GameSpace.Sprites
 {
 	public class GoombaSprite : ISprite
     {
-        public Texture2D Texture { get; set; }
-        private protected int frameWidth;
-        private protected int frameHeight;
-        private protected int Rows;
-        private protected int Columns;
-        private protected int TotalFrames;
         private protected int currentFrame;
-        private Boolean isVisible;
+        private protected int totalFrames;
+        private protected int frameHeight;
+        private protected int frameWidth;
+        private int startingPointX;
+        private int startingPointY;
+        private int offsetX;
+
+        private protected int timeSinceLastFrame;
+        private protected int milliSecondsPerFrame;
+
+        private bool isVisible;
+
+        private Point frameOrigin;
+        private Point frameSize;
+        private Point atlasSize;
+        private Point currentFramePoint;
+
+        public Texture2D Texture { get; set; }
+
         public void SetVisible() { isVisible = !isVisible; }
 
-        public GoombaSprite(Texture2D texture, int rows, int columns, int totalFrames)
+        public GoombaSprite(Texture2D texture, int rows, int columns, int totalFrames, int startingPointX,
+            int startingPointY)
 		{
             Texture = texture;
-            Rows = rows;
-            Columns = columns;
-            TotalFrames = totalFrames;
-            frameWidth = Columns;
-            frameHeight = Rows;
-            currentFrame = 0;
             isVisible = true;
-		}
+            currentFrame = 1;
+            frameHeight = rows;
+            frameWidth = columns;
+            this.totalFrames = totalFrames;
+            this.startingPointX = startingPointX;
+            this.startingPointY = startingPointY;
+            offsetX = 0;
+
+            #region points
+            currentFramePoint = new Point(startingPointX, startingPointY);
+            frameOrigin = new Point(startingPointX, startingPointY);
+            atlasSize = new Point(columns, rows);
+            frameSize = new Point(Texture.Width / atlasSize.X, Texture.Height / atlasSize.Y);
+            #endregion
+
+            #region time
+            timeSinceLastFrame = 0;
+            milliSecondsPerFrame = 275;
+            #endregion
+        }
 
         public void Update(GameTime gametime)
         {
+            if (isVisible && totalFrames > 1)
+            {
+                timeSinceLastFrame += gametime.ElapsedGameTime.Milliseconds;
+                if (timeSinceLastFrame > milliSecondsPerFrame)
+                {
+                    timeSinceLastFrame -= milliSecondsPerFrame;
 
+                    currentFrame += 1;
+
+                    if (currentFrame >= totalFrames)
+                    {
+                        currentFrame = 0;
+                    }
+
+                    if (currentFramePoint.X < totalFrames) currentFramePoint.X++;
+
+                    if (currentFramePoint.X >= totalFrames) currentFramePoint.X = startingPointX;
+                }
+            }
         }
 
         public void Draw(SpriteBatch spriteBatch, Vector2 location)
@@ -45,7 +89,7 @@ namespace GameSpace.Sprites
                 int column = currentFrame % frameWidth;
 
                 Rectangle sourceRectangle = new Rectangle(width * column, height * row, width, height);
-                Rectangle destinationRectangle = new Rectangle(600, 150, width * 2, height * 2);
+                Rectangle destinationRectangle = new Rectangle(700, 150, width * 2, height * 2);
 
                 spriteBatch.Draw(Texture, destinationRectangle, sourceRectangle, Color.White);
             }

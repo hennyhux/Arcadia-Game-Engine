@@ -11,6 +11,7 @@ namespace GameSpace
         private SpriteBatch spriteBatch;
         private SpriteFont font;
         private List<ISprite> spriteList;
+        private List<ISprite> enemySpriteList;
         private List<IController> controllers;
         private BlockFactory blockFactory;
         private MarioFactory marioFactory;
@@ -21,7 +22,6 @@ namespace GameSpace
         public List<ISprite> SpriteList { get => spriteList; }
         public ISprite GetMarioSprite { get => MarioSprite; }
         public GraphicsDeviceManager Graphics { get => graphics; }
-        public SpriteBatch SpriteBatch { get => spriteBatch; }
 
         public Game1()
         {
@@ -56,6 +56,10 @@ namespace GameSpace
                 blockFactory.ReturnUsedBlock(), blockFactory.ReturnStairBlock(),
                 blockFactory.ReturnBrickBlock(), blockFactory.ReturnFloorBlock(),
                 blockFactory.ReturnHiddenBlock(), blockFactory.ReturnQuestionBlock(),
+            };
+
+            enemySpriteList = new List<ISprite>()
+            {
                 enemyFactory.ReturnGoomba()
             };
 
@@ -74,6 +78,11 @@ namespace GameSpace
                 sprite.Update(gameTime);
             }
 
+            foreach (ISprite sprite in enemySpriteList)
+            {
+                sprite.Update(gameTime);
+            }
+
             MarioSprite.Update(gameTime);
 
             base.Update(gameTime);
@@ -85,6 +94,11 @@ namespace GameSpace
             spriteBatch.Begin(blendState: BlendState.AlphaBlend);
 
             foreach (ISprite sprite in spriteList)
+            {
+                sprite.Draw(spriteBatch, new Vector2(0, 0));
+            }
+
+            foreach (ISprite sprite in enemySpriteList)
             {
                 sprite.Draw(spriteBatch, new Vector2(0, 0));
             }
