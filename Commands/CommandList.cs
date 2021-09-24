@@ -24,7 +24,8 @@ namespace GameSpace
                 {Keys.D, new MoveRightCommand(game)},
                 {Keys.A, new MoveLeftCommand(game)},
                 {Keys.W, new MoveUpCommand(game)},
-                {Keys.S, new MoveDownCommand(game)}
+                {Keys.S, new MoveDownCommand(game)},
+                {Keys.K, new ChangeBlockCommand(game)}
                 // Jump, crouch and dash/throw fireball
             };
 
