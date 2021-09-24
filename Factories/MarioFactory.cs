@@ -10,8 +10,8 @@ namespace GameSpace.Factories
     {
         private Texture2D normalMarioSprite;
 
-        private static BlockFactory instance = new BlockFactory();
-        public static BlockFactory Instance => instance;
+        private static BlockSpriteFactory instance = new BlockSpriteFactory();
+        public static BlockSpriteFactory Instance => instance;
 
         public MarioFactory()
         {

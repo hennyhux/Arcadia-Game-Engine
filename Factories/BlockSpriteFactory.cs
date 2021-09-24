@@ -7,7 +7,7 @@ using GameSpace.Sprites;
 
 namespace GameSpace.Factories
 {
-    public class BlockFactory
+    public class BlockSpriteFactory
     {
 
         #region sprites
@@ -19,9 +19,9 @@ namespace GameSpace.Factories
         private Texture2D HiddenBlock;
         #endregion
 
-        private static BlockFactory instance = new BlockFactory();
-        public static BlockFactory Instance => instance;
-        public BlockFactory()
+        private static BlockSpriteFactory instance = new BlockSpriteFactory();
+        public static BlockSpriteFactory Instance => instance;
+        public BlockSpriteFactory()
         {
 
         }

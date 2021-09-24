@@ -8,23 +8,17 @@ using System.Text;
 
 namespace GameSpace.GameObjects
 {
-    public class BrickBlock : IBlockObjects 
+    public class StairBlock : IBlockObjects
     {
         private IBlockStates state;
 
-        public BrickBlock(Game1 game)
+        public StairBlock(Game1 game)
         {
-            this.state = new BrickBlockStates(game);
+            this.state = new StairBlockState(game);
         }
-
         public void Draw(SpriteBatch spritebatch, Vector2 location)
         {
             state.Draw(spritebatch, location);
-        }
-
-        public void Update(GameTime gametime)
-        {
-            state.Update(gametime);
         }
 
         public void Trigger()
@@ -32,5 +26,9 @@ namespace GameSpace.GameObjects
             state.Initiate();
         }
 
+        public void Update(GameTime gametime)
+        {
+            state.Update(gametime);
+        }
     }
 }
