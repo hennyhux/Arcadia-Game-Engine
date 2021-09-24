@@ -75,7 +75,8 @@ namespace GameSpace
 
             enemySpriteList = new List<ISprite>()
             {
-                enemyFactory.ReturnGoomba()
+                enemyFactory.ReturnGoomba(), enemyFactory.ReturnRedKoopa(),
+                enemyFactory.ReturnGreenKoopa()
             };
 
             blocks = new List<IBlockObjects>()
@@ -96,15 +97,15 @@ namespace GameSpace
                 controller.Update();
             }
 
-            //foreach (ISprite sprite in spriteList)
-            //{
-            //    sprite.Update(gameTime);
-            //}
+            foreach (ISprite sprite in spriteList)
+            {
+                sprite.Update(gameTime);
+            }
 
-            //foreach (ISprite sprite in enemySpriteList)
-            //{
-            //    sprite.Update(gameTime);
-            //}
+            foreach (ISprite sprite in enemySpriteList)
+            {
+                sprite.Update(gameTime);
+            }
 
             //newBricks.Update(gameTime);
             MarioSprite.Update(gameTime);
@@ -122,15 +123,15 @@ namespace GameSpace
             GraphicsDevice.Clear(Color.CornflowerBlue);
             spriteBatch.Begin(blendState: BlendState.AlphaBlend);
 
-            //foreach (ISprite sprite in spriteList)
-            //{
-            //    sprite.Draw(spriteBatch, new Vector2(0, 0));
-            //}
+            foreach (ISprite sprite in spriteList)
+            {
+                sprite.Draw(spriteBatch, new Vector2(0, 0));
+            }
 
-            //foreach (ISprite sprite in enemySpriteList)
-            //{
-            //    sprite.Draw(spriteBatch, new Vector2(0, 0));
-            //}
+            foreach (ISprite sprite in enemySpriteList)
+            {
+                sprite.Draw(spriteBatch, new Vector2(0, 0));
+            }
 
             foreach (IBlockObjects block in blocks)
             {

@@ -27,11 +27,23 @@ namespace GameSpace.Factories
         public void LoadContent(ContentManager content)
         {
             Goomba = content.Load<Texture2D>("Enemies/Goombas");
+            RedKoopa = content.Load<Texture2D>("Enemies/RedKoopas");
+            GreenKoopa = content.Load<Texture2D>("Enemies/GreenKoopas");
         }
 
         public ISprite ReturnGoomba()
         {
             return new GoombaSprite(Goomba, 1, 2, 2, 0, 0);
+        }
+
+        public ISprite ReturnRedKoopa()
+        {
+            return new RedKoopaSprite(RedKoopa, 1, 2, 2, 0, 0);
+        }
+
+        public ISprite ReturnGreenKoopa()
+        {
+            return new GreenKoopaSprite(GreenKoopa, 1, 2, 2, 0, 0);
         }
     }
 }
