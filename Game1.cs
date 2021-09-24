@@ -1,5 +1,6 @@
 ﻿using GameSpace.Factories;
 using GameSpace.GameObjects;
+using GameSpace.Interfaces;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
@@ -8,28 +9,30 @@ namespace GameSpace
 {
     public class Game1 : Game
     {
-        private GraphicsDeviceManager graphics;
+        private protected readonly GraphicsDeviceManager graphics;
         private SpriteBatch spriteBatch;
         private SpriteFont font;
         private List<ISprite> spriteList;
         private List<ISprite> enemySpriteList;
         private List<IController> controllers;
-        private BlockFactory blockFactory;
+        private BlockSpriteFactory blockFactory;
         private MarioFactory marioFactory;
         private EnemyFactory enemyFactory;
         private BackgroundFactory backgroundFactory;
+        private BlockObjectFactory blockObjectFactory;
+
+        private List<IBlockObjects> blocks;
 
         private ISprite MarioSprite;
         private ISprite Background;
 
         private BrickBlock newBricks;
         public BrickBlock NewBricks { get => newBricks; }
-
         public List<ISprite> SpriteList { get => spriteList; }
         public ISprite GetMarioSprite { get => MarioSprite; }
         public GraphicsDeviceManager Graphics { get => graphics; }
 
-        public BlockFactory BlockFactory { get => blockFactory; }
+        public BlockSpriteFactory BlockFactory { get => blockFactory; }
 
         public Game1()
         {
@@ -44,10 +47,11 @@ namespace GameSpace
                 new KeyboardInput(this), new ControllerInput(this)
             };
 
-            blockFactory = new BlockFactory();
+            blockFactory = new BlockSpriteFactory();
             marioFactory = new MarioFactory();
             enemyFactory = new EnemyFactory();
             backgroundFactory = new BackgroundFactory();
+            blockObjectFactory = new BlockObjectFactory(this);
 
 
             base.Initialize();
@@ -74,10 +78,15 @@ namespace GameSpace
                 enemyFactory.ReturnGoomba()
             };
 
+            blocks = new List<IBlockObjects>()
+            {
+                blockObjectFactory.ReturnBrickBlockObject(), blockObjectFactory.ReturnStairBlockObject(),
+            };
+
             MarioSprite = marioFactory.ReturnMarioStandingLeftSprite();
             Background = backgroundFactory.ReturnRegularBackground();
 
-            newBricks = new BrickBlock(this);
+            //newBricks = new BrickBlock(this);
         }
 
         protected override void Update(GameTime gameTime)
@@ -97,8 +106,13 @@ namespace GameSpace
             //    sprite.Update(gameTime);
             //}
 
-            newBricks.Update(gameTime);
+            //newBricks.Update(gameTime);
             MarioSprite.Update(gameTime);
+
+            foreach (IBlockObjects block in blocks)
+            {
+                block.Update(gameTime);
+            }
 
             base.Update(gameTime);
         }
@@ -118,7 +132,12 @@ namespace GameSpace
             //    sprite.Draw(spriteBatch, new Vector2(0, 0));
             //}
 
-            newBricks.Draw(spriteBatch, new Vector2(150, 150));
+            foreach (IBlockObjects block in blocks)
+            {
+                block.Draw(spriteBatch, new Vector2(0, 0));
+            }
+
+            //newBricks.Draw(spriteBatch, new Vector2(150, 150));
             MarioSprite.Draw(spriteBatch, new Vector2(500, 200));
             
             spriteBatch.End();

@@ -2,23 +2,22 @@
 using GameSpace.Interfaces;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using GameSpace;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace GameSpace.States.BlockStates
 {
-    public class BrickBlockStates : IBlockStates
+    public class StairBlockState : IBlockStates
     {
         private ISprite sprite;
         private BlockSpriteFactory blockFactory;
         private bool triggered;
 
-        public BrickBlockStates(Game1 game)
+        public StairBlockState(Game1 game)
         {
             blockFactory = game.BlockFactory;
-            this.sprite = blockFactory.ReturnBrickBlock();
+            this.sprite = blockFactory.ReturnStairBlock();
             triggered = false;
         }
 
