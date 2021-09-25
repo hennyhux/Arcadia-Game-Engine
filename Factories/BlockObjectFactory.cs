@@ -1,4 +1,4 @@
-﻿using GameSpace.GameObjects;
+﻿using GameSpace.GameObjects.BlockObjects;
 using GameSpace.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -24,6 +24,16 @@ namespace GameSpace.Factories
         public IBlockObjects ReturnStairBlockObject()
         {
             return new StairBlock(game);
+        }
+
+        public IBlockObjects ReturnFloorBlockObject()
+        {
+            return new FloorBlock(game);
+        }
+
+        public IBlockObjects ReturnQuestionBlockObject()
+        {
+            return new QuestionBlock(game);
         }
 
     }

@@ -1,4 +1,5 @@
-﻿using GameSpace.Interfaces;
+﻿using GameSpace.Factories;
+using GameSpace.Interfaces;
 using GameSpace.States.BlockStates;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -6,24 +7,25 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace GameSpace.GameObjects
+namespace GameSpace.GameObjects.BlockObjects
 {
-    public class StairBlock : IBlockObjects
+    public class QuestionBlock : IBlockObjects
     {
         private IBlockStates state;
 
-        public StairBlock(Game1 game)
+        public QuestionBlock(Game1 game)
         {
-            this.state = new StairBlockState(game);
+           this.state = new QuestionBlockStates(game);
         }
-        public void Draw(SpriteBatch spritebatch, Vector2 location)
+
+        public void Draw(SpriteBatch spriteBatch, Vector2 Location)
         {
-            state.Draw(spritebatch, location);
+            state.Draw(spriteBatch, new Vector2(500, 150));
         }
 
         public void Trigger()
         {
-            state.Initiate();
+            state.Initiate();   
         }
 
         public void Update(GameTime gametime)

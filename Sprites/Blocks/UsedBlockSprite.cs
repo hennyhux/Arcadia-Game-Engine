@@ -16,9 +16,11 @@ namespace GameSpace.Sprites
         private protected int totalFrames;
         private protected int currentFrame;
         private Boolean isVisible;
+        private protected Vector2 location;
+
         public void SetVisible() { isVisible = !isVisible; }
 
-        public UsedBlockSprite(Texture2D texture, int rows, int columns, int totalFrames)
+        public UsedBlockSprite(Texture2D texture, int rows, int columns, int totalFrames, Vector2 location)
         {
             this.Texture = texture;
             isVisible = true;
@@ -28,6 +30,7 @@ namespace GameSpace.Sprites
             frameHeight = rows;
             currentFrame = 0;
             this.totalFrames = totalFrames;
+            this.location = location;
         }
 
         public void Draw(SpriteBatch spriteBatch, Vector2 location)
@@ -40,7 +43,7 @@ namespace GameSpace.Sprites
                 int column = currentFrame % frameWidth;
 
                 Rectangle sourceRectangle = new Rectangle(width * column, height * row, width, height);
-                Rectangle destinationRectangle = new Rectangle(100, 150, width *2, height *2);
+                Rectangle destinationRectangle = new Rectangle((int)location.X, (int)location.Y, width *2, height *2);
 
                 spriteBatch.Draw(Texture, destinationRectangle, sourceRectangle, Color.White);
             }

@@ -11,6 +11,11 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Remove="Enums\**" />
+    <EmbeddedResource Remove="Enums\**" />
+    <None Remove="Enums\**" />
+  </ItemGroup>
+  <ItemGroup>
     <None Remove="Content\Enemies\GreenKoopas.png" />
   </ItemGroup>
   <ItemGroup>
@@ -25,6 +30,5 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\Enemies\" />
-    <Folder Include="Enums\" />
   </ItemGroup>
 </Project>

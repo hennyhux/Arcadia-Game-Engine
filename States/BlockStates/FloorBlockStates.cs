@@ -8,17 +8,22 @@ using System.Text;
 
 namespace GameSpace.States.BlockStates
 {
-    public class StairBlockState : IBlockStates
+    public class FloorBlockStates : IBlockStates
     {
         private ISprite sprite;
         private BlockSpriteFactory blockFactory;
         private bool triggered;
 
-        public StairBlockState(Game1 game)
+        public FloorBlockStates(Game1 game)
         {
             blockFactory = game.BlockFactory;
-            this.sprite = blockFactory.ReturnStairBlock();
+            this.sprite = blockFactory.ReturnFloorBlock();
             triggered = false;
+        }
+
+        public void Draw(SpriteBatch spriteBatch, Vector2 Location)
+        {
+            sprite.Draw(spriteBatch, new Vector2(250, 150));
         }
 
         public void Initiate()
@@ -26,15 +31,9 @@ namespace GameSpace.States.BlockStates
             
         }
 
-        public void Draw(SpriteBatch spriteBatch, Vector2 Location)
-        {
-            sprite.Draw(spriteBatch, new Vector2(150, 150));
-        }
-
         public void Update(GameTime gametime)
         {
             sprite.Update(gametime);
         }
-
     }
 }

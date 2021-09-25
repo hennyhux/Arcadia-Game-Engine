@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using GameSpace.Sprites;
+using Microsoft.Xna.Framework;
 
 namespace GameSpace.Factories
 {
@@ -40,11 +41,6 @@ namespace GameSpace.Factories
             return new QuestionBlockSprite(QuestionBlock, 1, 3, 3, 0, 0);
         }
 
-        public ISprite ReturnUsedBlock()
-        {
-            return new UsedBlockSprite(UsedBlock, 1, 1, 1);
-        }
-
         public ISprite ReturnBrickBlock()
         {
             return new BrickBlockSprite(BrickBlock, 1, 1, 1);
@@ -63,6 +59,11 @@ namespace GameSpace.Factories
         public ISprite ReturnHiddenBlock()
         {
             return new HiddenBlockSprite(HiddenBlock, 1, 1, 1);
+        }
+
+        public ISprite ReturnUsedBlock(Vector2 location)
+        {
+            return new UsedBlockSprite(UsedBlock, 1, 1, 1, location);
         }
     }
 }
