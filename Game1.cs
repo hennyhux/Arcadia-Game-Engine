@@ -14,11 +14,12 @@ namespace GameSpace
         private List<IController> controllers;
         private BlockSpriteFactory blockFactory;
         private MarioFactory marioFactory;
-        private EnemyFactory enemyFactory;
+        private EnemySpriteFactory enemyFactory;
         private BackgroundFactory backgroundFactory;
         private BlockObjectFactory blockObjectFactory;
-
+        private EnemyObjectFactory enemyObjectFactory;
         private List<IBlockObjects> blocks;
+        private List<IEnemyObjects> enemies;
 
         private ISprite MarioSprite;
         private ISprite Background;
@@ -26,8 +27,8 @@ namespace GameSpace
         public ISprite GetMarioSprite { get => MarioSprite; }
         public GraphicsDeviceManager Graphics { get => graphics; }
         public BlockSpriteFactory BlockFactory { get => blockFactory; }
+        public EnemySpriteFactory EnemySpriteFactory { get => enemyFactory; }
         public List<IBlockObjects> Blocks { get => blocks; }
-        public SpriteBatch SpriteBatch { get => spriteBatch; }
 
         public Game1()
         {
@@ -44,7 +45,8 @@ namespace GameSpace
 
             blockFactory = new BlockSpriteFactory();
             marioFactory = new MarioFactory();
-            enemyFactory = new EnemyFactory();
+            enemyFactory = new EnemySpriteFactory();
+            enemyObjectFactory = new EnemyObjectFactory(this);
             backgroundFactory = new BackgroundFactory();
             blockObjectFactory = new BlockObjectFactory(this);
 
@@ -66,6 +68,11 @@ namespace GameSpace
                 blockObjectFactory.ReturnUsedBlockObject(), blockObjectFactory.ReturnHiddenBlockObject()
             };
 
+            enemies = new List<IEnemyObjects>()
+            {
+                enemyObjectFactory.ReturnGoombaObject(this)
+            };
+
             MarioSprite = marioFactory.ReturnMarioStandingLeftSprite();
             Background = backgroundFactory.ReturnRegularBackground();
 
@@ -83,6 +90,11 @@ namespace GameSpace
                 block.Update(gameTime);
             }
 
+            foreach (IEnemyObjects enemy in enemies)
+            {
+                enemy.Update(gameTime);
+            }
+
             base.Update(gameTime);
         }
 
@@ -94,6 +106,11 @@ namespace GameSpace
             foreach (IBlockObjects block in blocks)
             {
                 block.Draw(spriteBatch, new Vector2(0, 0));
+            }
+
+            foreach (IEnemyObjects enemy in enemies)
+            {
+                enemy.Draw(spriteBatch, new Vector2(300, 150));
             }
 
             MarioSprite.Draw(spriteBatch, new Vector2(500, 200));
