@@ -34,7 +34,7 @@ namespace GameSpace.Factories
             BrickBlock = content.Load<Texture2D>("Blocks/BrickBlock");
             FloorBlock = content.Load<Texture2D>("Blocks/FloorBlock");
             StairBlock = content.Load<Texture2D>("Blocks/StairBlock");
-            HiddenBlock = content.Load<Texture2D>("Blocks/HiddenBlock");
+            HiddenBlock = content.Load<Texture2D>("Blocks/UsedBlock");
         } 
         public ISprite ReturnQuestionBlock()
         {

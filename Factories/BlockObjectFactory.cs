@@ -36,5 +36,15 @@ namespace GameSpace.Factories
             return new QuestionBlock(game);
         }
 
+        public IBlockObjects ReturnHiddenBlockObject()
+        {
+            return new HiddenBlock(game);
+        }
+
+        public IBlockObjects ReturnUsedBlockObject()
+        {
+            return new UsedBlock(game);
+        }
+
     }
 }

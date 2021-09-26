@@ -54,7 +54,6 @@ namespace GameSpace
         protected override void LoadContent()
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            font = Content.Load<SpriteFont>("font");
             blockFactory.LoadContent(Content);
             marioFactory.LoadContent(Content);
             enemyFactory.LoadContent(Content);
@@ -63,7 +62,8 @@ namespace GameSpace
             blocks = new List<IBlockObjects>()
             {
                 blockObjectFactory.ReturnBrickBlockObject(), blockObjectFactory.ReturnStairBlockObject(),
-                blockObjectFactory.ReturnFloorBlockObject(), blockObjectFactory.ReturnQuestionBlockObject()
+                blockObjectFactory.ReturnFloorBlockObject(), blockObjectFactory.ReturnQuestionBlockObject(),
+                blockObjectFactory.ReturnUsedBlockObject(), blockObjectFactory.ReturnHiddenBlockObject()
             };
 
             MarioSprite = marioFactory.ReturnMarioStandingLeftSprite();
