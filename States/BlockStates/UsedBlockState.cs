@@ -17,7 +17,7 @@ namespace GameSpace.States.BlockStates
         public UsedBlockState(Game1 game)
         {
             blockFactory = game.BlockFactory;
-            this.sprite = blockFactory.ReturnUsedBlock(new Vector2(0, 0));
+            this.sprite = blockFactory.ReturnUsedBlock(new Vector2(400, 150));
             triggered = false;
         }
 
@@ -26,14 +26,14 @@ namespace GameSpace.States.BlockStates
 
         }
 
-        public void Draw(SpriteBatch spriteBatch, Vector2 Location)
+        public void Draw(SpriteBatch spriteBatch, Vector2 location)
         {
-            sprite.Draw(spriteBatch, new Vector2(150, 150));
+            sprite.Draw(spriteBatch, location);
         }
 
         public void Update(GameTime gametime)
         {
-            sprite.Update(gametime);
+            if(triggered)sprite.Update(gametime);
         }
     }
 }

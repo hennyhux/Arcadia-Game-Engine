@@ -21,9 +21,9 @@ namespace GameSpace.States.BlockStates
             triggered = false;
         }
 
-        public void Draw(SpriteBatch spriteBatch, Vector2 Location)
+        public void Draw(SpriteBatch spriteBatch, Vector2 location)
         {
-            sprite.Draw(spriteBatch, new Vector2(250, 150));
+            sprite.Draw(spriteBatch, location);
         }
 
         public void Initiate()

@@ -1,15 +1,17 @@
 ﻿using GameSpace.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 
-namespace GameSpace
+namespace GameSpace.Commands
 {
-    public class ChangeBlockCommand : ICommand
+    public class ShowHiddenBlockCommand : ICommand
     {
         private protected Game1 game;
         private List<IBlockObjects> blocks;
 
-        public ChangeBlockCommand(Game1 game)
+        public ShowHiddenBlockCommand(Game1 game)
         {
             this.game = game;
             this.blocks = game.Blocks;
@@ -17,7 +19,7 @@ namespace GameSpace
         }
         public void Execute()
         {
-            game.Blocks.ElementAt<IBlockObjects>(0).Trigger();
+            game.Blocks.ElementAt<IBlockObjects>(5).Trigger();
         }
 
         public void Unexecute()
@@ -26,3 +28,4 @@ namespace GameSpace
         }
     }
 }
+

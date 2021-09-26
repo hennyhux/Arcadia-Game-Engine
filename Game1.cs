@@ -10,8 +10,7 @@ namespace GameSpace
     public class Game1 : Game
     {
         private protected readonly GraphicsDeviceManager graphics;
-        private SpriteBatch spriteBatch;
-        private SpriteFont font;
+        private protected SpriteBatch spriteBatch;
         private List<IController> controllers;
         private BlockSpriteFactory blockFactory;
         private MarioFactory marioFactory;
@@ -28,6 +27,7 @@ namespace GameSpace
         public GraphicsDeviceManager Graphics { get => graphics; }
         public BlockSpriteFactory BlockFactory { get => blockFactory; }
         public List<IBlockObjects> Blocks { get => blocks; }
+        public SpriteBatch SpriteBatch { get => spriteBatch; }
 
         public Game1()
         {

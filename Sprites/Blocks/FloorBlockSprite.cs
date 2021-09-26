@@ -41,7 +41,7 @@ namespace GameSpace.Sprites
                 int column = currentFrame % frameWidth;
 
                 Rectangle sourceRectangle = new Rectangle(width * column, height * row, width, height);
-                Rectangle destinationRectangle = new Rectangle(390, 150, width * 2, height * 2);
+                Rectangle destinationRectangle = new Rectangle((int)location.X, (int)(location.Y), width * 2, height * 2);
 
                 spriteBatch.Draw(Texture, destinationRectangle, sourceRectangle, Color.White);
             }

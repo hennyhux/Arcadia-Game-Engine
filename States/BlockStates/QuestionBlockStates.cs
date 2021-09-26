@@ -27,7 +27,7 @@ namespace GameSpace.States.BlockStates
 
         public void Initiate()
         {
-            sprite = blockFactory.ReturnUsedBlock(new Vector2(900, 150));
+            this.sprite = blockFactory.ReturnUsedBlock(new Vector2(600, 150));
         }
 
         public void Update(GameTime gametime)
