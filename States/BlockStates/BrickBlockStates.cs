@@ -12,31 +12,33 @@ namespace GameSpace.States.BlockStates
     public class BrickBlockStates : IBlockStates
     {
         private ISprite sprite;
-        private BlockSpriteFactory blockFactory;
         private bool triggered;
+        private readonly Game1 game;
 
         public BrickBlockStates(Game1 game)
         {
-            blockFactory = game.BlockFactory;
-            this.sprite = blockFactory.ReturnBrickBlock();
+            this.game = game;
+            this.sprite = game.BlockFactory.ReturnBrickBlock();
             triggered = false;
         }
 
         public void Initiate()
         {
-            this.sprite = blockFactory.ReturnFloorBlock();
+            triggered = true;
+            this.sprite = game.BlockFactory.ReturnUsedBlock(new Vector2(100, 150));
         }
 
-        public void Draw(SpriteBatch spriteBatch, Vector2 Location)
+        public void Draw(SpriteBatch spriteBatch, Vector2 location)
         {
-            sprite.Draw(spriteBatch, new Microsoft.Xna.Framework.Vector2(150, 150));
+            if (!triggered) sprite.Draw(spriteBatch, new Vector2(100, 150));
+
+            else sprite.Draw(spriteBatch, location);
         }
 
         public void Update(GameTime gametime)
         {
-            sprite.Update(gametime);
+            if (triggered)sprite.Update(gametime);
         }
-
 
     }
 }

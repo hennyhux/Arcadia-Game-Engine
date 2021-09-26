@@ -15,8 +15,11 @@ namespace GameSpace.Sprites
         private protected int columns;
         private protected int totalFrames;
         private protected int currentFrame;
+
+        private protected int maxOffset;
+        private protected int currentOffset;
         private Boolean isVisible;
-        private protected Vector2 location;
+        private protected Vector2 initLocation;
 
         public void SetVisible() { isVisible = !isVisible; }
 
@@ -30,7 +33,9 @@ namespace GameSpace.Sprites
             frameHeight = rows;
             currentFrame = 0;
             this.totalFrames = totalFrames;
-            this.location = location;
+            this.initLocation = location;
+            maxOffset = 24;
+            currentOffset = 0;
         }
 
         public void Draw(SpriteBatch spriteBatch, Vector2 location)
@@ -43,7 +48,7 @@ namespace GameSpace.Sprites
                 int column = currentFrame % frameWidth;
 
                 Rectangle sourceRectangle = new Rectangle(width * column, height * row, width, height);
-                Rectangle destinationRectangle = new Rectangle((int)location.X, (int)location.Y, width *2, height *2);
+                Rectangle destinationRectangle = new Rectangle((int)initLocation.X, (int)initLocation.Y, width *2, height *2);
 
                 spriteBatch.Draw(Texture, destinationRectangle, sourceRectangle, Color.White);
             }
@@ -51,12 +56,23 @@ namespace GameSpace.Sprites
 
         public void Update(GameTime gametime)
         {
-            
+            if (currentOffset < maxOffset/2)
+            {
+                initLocation.Y -= 3;
+                currentOffset += 3;
+            }
+
+            if (currentOffset >= maxOffset/2 && currentOffset < maxOffset)
+            {
+                initLocation.Y += 3;
+                currentOffset += 3;
+            }
         }
 
         public void UpdateLocation(int dx, int dy)
         {
-            throw new NotImplementedException();
+            initLocation.X += dx;
+            initLocation.Y += dy;
         }
     }
 }

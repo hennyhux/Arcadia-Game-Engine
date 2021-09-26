@@ -6,29 +6,30 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace GameSpace.States.BlockStates
+namespace GameSpace.States.EnemyStates
 {
-    public class FloorBlockStates : IBlockStates
+    public class GoombaState : IEnemyStates
     {
         private ISprite sprite;
-        private BlockSpriteFactory blockFactory;
+        private EnemySpriteFactory blockFactory;
         private bool triggered;
 
-        public FloorBlockStates(Game1 game)
+        public GoombaState(Game1 game)
         {
-            blockFactory = game.BlockFactory;
-            this.sprite = blockFactory.ReturnFloorBlock();
+            blockFactory = game.EnemySpriteFactory;
+            this.sprite = blockFactory.ReturnGoomba();
             triggered = false;
         }
 
-        public void Draw(SpriteBatch spriteBatch, Vector2 location)
+
+        public void Draw(SpriteBatch spritebatch, Vector2 location)
         {
-            sprite.Draw(spriteBatch, location);
+            sprite.Draw(spritebatch, location);
         }
 
-        public void Initiate()
+        public void Trigger()
         {
-            
+            throw new NotImplementedException();
         }
 
         public void Update(GameTime gametime)

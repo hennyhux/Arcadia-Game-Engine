@@ -20,11 +20,13 @@ namespace GameSpace.Factories
         private Texture2D HiddenBlock;
         #endregion
 
+        private Vector2 blockInitalStart;
+
         private static BlockSpriteFactory instance = new BlockSpriteFactory();
         public static BlockSpriteFactory Instance => instance;
         public BlockSpriteFactory()
         {
-
+            blockInitalStart = new Vector2(0, 0);
         }
 
         public void LoadContent(ContentManager content)
@@ -43,7 +45,7 @@ namespace GameSpace.Factories
 
         public ISprite ReturnBrickBlock()
         {
-            return new BrickBlockSprite(BrickBlock, 1, 1, 1);
+            return new BrickBlockSprite(BrickBlock, 1, 1, 1, blockInitalStart);
         }
         
         public ISprite ReturnFloorBlock()

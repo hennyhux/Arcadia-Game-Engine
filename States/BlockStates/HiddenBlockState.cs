@@ -22,20 +22,19 @@ namespace GameSpace.States.BlockStates
 
         public void Draw(SpriteBatch spriteBatch, Vector2 Location)
         {
-            if (!triggered)
-            {
-                sprite.Draw(spriteBatch, new Vector2(650, 200));
-            }
+            sprite.Draw(spriteBatch, new Vector2(500, 150));
         }
 
         public void Initiate()
         {
-            triggered = !triggered;
+            triggered = true;
+            sprite.SetVisible();
+
         }
 
         public void Update(GameTime gametime)
         {
-            sprite.Update(gametime);
+            if(triggered)sprite.Update(gametime);
         }
     }
 }

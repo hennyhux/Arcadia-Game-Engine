@@ -26,9 +26,9 @@ namespace GameSpace.States.BlockStates
             
         }
 
-        public void Draw(SpriteBatch spriteBatch, Vector2 Location)
+        public void Draw(SpriteBatch spriteBatch, Vector2 location)
         {
-            sprite.Draw(spriteBatch, new Vector2(150, 150));
+            sprite.Draw(spriteBatch, location);
         }
 
         public void Update(GameTime gametime)

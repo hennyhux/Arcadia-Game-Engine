@@ -18,7 +18,7 @@ namespace GameSpace.GameObjects.BlockObjects
         }
         public void Draw(SpriteBatch spritebatch, Vector2 location)
         {
-            state.Draw(spritebatch, new Vector2(0, 0));
+            state.Draw(spritebatch, new Vector2(300, 150));
         }
 
         public void Trigger()
