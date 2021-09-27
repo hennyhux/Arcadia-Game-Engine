@@ -8,16 +8,36 @@ namespace GameSpace.Factories
 {
     public class EnemyObjectFactory
     {
-        private protected readonly Game1 game;
-
-        public EnemyObjectFactory(Game1 game)
+        private static EnemyObjectFactory instance;
+        public static EnemyObjectFactory GetInstance()
         {
-            this.game = game;
+            if (instance == null)
+            {
+                instance = new EnemyObjectFactory();
+            }
+
+            return instance;
         }
 
-        public IEnemyObjects ReturnGoombaObject(Game1 game)
+        private EnemyObjectFactory()
         {
-            return new Goomba(game);
+            
         }
+
+        public IEnemyObjects ReturnGoombaObject()
+        {
+            return new Goomba();
+        }
+
+        public IEnemyObjects ReturnGreenKoopaObject()
+        {
+            return new GreenKoopa();
+        }
+
+        public IEnemyObjects ReturnRedKoopaObject()
+        {
+            return new RedKoopa();
+        }
+
     }
 }

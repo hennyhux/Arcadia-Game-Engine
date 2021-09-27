@@ -15,7 +15,7 @@ namespace GameSpace.Commands
 
         public void Execute()
         {
-            game.GetMarioSprite.UpdateLocation(0, -20);
+            game.GetMario.Jump();
         }
 
         public void Unexecute()

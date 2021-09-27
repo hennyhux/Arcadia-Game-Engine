@@ -1,5 +1,6 @@
 ﻿using GameSpace.Factories;
 using GameSpace.GameObjects;
+using GameSpace.GameObjects.BlockObjects;
 using GameSpace.Interfaces;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -11,15 +12,24 @@ namespace GameSpace
     {
         private protected readonly GraphicsDeviceManager graphics;
         private protected SpriteBatch spriteBatch;
-        private List<IController> controllers;
+
+        #region Factories
         private BlockSpriteFactory blockFactory;
+        private BlockObjectFactory blockObjectFactory;
         private MarioFactory marioFactory;
         private EnemySpriteFactory enemyFactory;
-        private BackgroundFactory backgroundFactory;
-        private BlockObjectFactory blockObjectFactory;
         private EnemyObjectFactory enemyObjectFactory;
+        private BackgroundFactory backgroundFactory;
+        #endregion
+
+        #region Lists
         private List<IBlockObjects> blocks;
         private List<IEnemyObjects> enemies;
+        private List<IController> controllers;
+        #endregion
+
+        private Mario mario;
+        public Mario GetMario { get => mario; }
 
         private ISprite MarioSprite;
         private ISprite Background;
@@ -27,7 +37,7 @@ namespace GameSpace
         public ISprite GetMarioSprite { get => MarioSprite; }
         public GraphicsDeviceManager Graphics { get => graphics; }
         public BlockSpriteFactory BlockFactory { get => blockFactory; }
-        public EnemySpriteFactory EnemySpriteFactory { get => enemyFactory; }
+        public MarioFactory GetMarioFactory { get => marioFactory; }
         public List<IBlockObjects> Blocks { get => blocks; }
 
         public Game1()
@@ -44,9 +54,9 @@ namespace GameSpace
             };
 
             blockFactory = new BlockSpriteFactory();
-            marioFactory = new MarioFactory();
-            enemyFactory = new EnemySpriteFactory();
-            enemyObjectFactory = new EnemyObjectFactory(this);
+            marioFactory = new MarioFactory(this);
+            enemyFactory = EnemySpriteFactory.GetInstance();
+            enemyObjectFactory = EnemyObjectFactory.GetInstance();
             backgroundFactory = new BackgroundFactory();
             blockObjectFactory = new BlockObjectFactory(this);
 
@@ -70,9 +80,11 @@ namespace GameSpace
 
             enemies = new List<IEnemyObjects>()
             {
-                enemyObjectFactory.ReturnGoombaObject(this)
+                enemyObjectFactory.ReturnGoombaObject(), enemyObjectFactory.ReturnGreenKoopaObject(),
+                enemyObjectFactory.ReturnRedKoopaObject()
             };
 
+            mario = marioFactory.ReturnMario();
             MarioSprite = marioFactory.ReturnMarioStandingLeftSprite();
             Background = backgroundFactory.ReturnRegularBackground();
 
@@ -95,7 +107,9 @@ namespace GameSpace
                 enemy.Update(gameTime);
             }
 
+            mario.Update(gameTime);
             base.Update(gameTime);
+
         }
 
         protected override void Draw(GameTime gameTime)
@@ -110,11 +124,11 @@ namespace GameSpace
 
             foreach (IEnemyObjects enemy in enemies)
             {
-                enemy.Draw(spriteBatch, new Vector2(300, 150));
+                enemy.Draw(spriteBatch, new Vector2(0, 0));
             }
 
-            MarioSprite.Draw(spriteBatch, new Vector2(500, 200));
-              
+            mario.Draw(spriteBatch, new Vector2(500, 400));
+
             spriteBatch.End();
             base.Draw(gameTime);
         }

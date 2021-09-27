@@ -13,7 +13,9 @@ namespace GameSpace
 
         public void Execute()
         {
-            game.GetMarioSprite.UpdateLocation(20, 0);
+            game.GetMario.FaceRight();
+            game.GetMario.Run();
+
         }
 
         public void Unexecute()

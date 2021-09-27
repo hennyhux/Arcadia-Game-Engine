@@ -13,7 +13,8 @@ namespace GameSpace.Commands
         }
         public void Execute()
         {
-            game.GetMarioSprite.UpdateLocation(0, 20);
+            game.GetMario.Idle();
+            game.GetMario.Crouch();
         }
 
         public void Unexecute()
