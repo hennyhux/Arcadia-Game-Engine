@@ -10,7 +10,13 @@ namespace GameSpace.Factories
 {
     public class ItemSpriteFactory
     {
-
+        #region sprites
+        private Texture2D Star;
+        private Texture2D Coin;
+        private Texture2D OneUpShroom;
+        private Texture2D SuperShroom;
+        private Texture2D FireFlower;
+        #endregion
         private static ItemSpriteFactory instance = new ItemSpriteFactory();
         public static ItemSpriteFactory Instance => instance;
         public ItemSpriteFactory()
@@ -32,22 +38,22 @@ namespace GameSpace.Factories
 
         public ISprite ReturnSuperShrooom()
         {
-            return new SuperShroomSprite(SuperShrooom, 1, 1, 1, 0, 0);
+            return new SuperShroomSprite(SuperShroom, 1, 1, 1, 0, 0);
         }
 
         public ISprite ReturnOneUpShroom()
         {
-            return new OneUpShrromSprite(OneUpShroom, 1, 1, 1, 0, 0);
+            return new OneUpShroomSprite(OneUpShroom, 1, 1, 1, 0, 0);
         }
 
         public ISprite ReturnFireFlower()
         {
-            return new FireFLowerSprite(FireFlower, 1, 1, 1, 0, 0);
+            return new FireFlowerSprite(FireFlower, 1, 1, 1, 0, 0);
         }
 
         public ISprite ReturnCoin()
         {
-            return new CoinSprite(HiddenBlock, 1, 4, 4, 0, 0);
+            return new CoinSprite(Coin, 1, 4, 4, 0, 0);
         }
 
     }

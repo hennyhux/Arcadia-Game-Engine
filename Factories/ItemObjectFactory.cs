@@ -16,27 +16,27 @@ namespace GameSpace.Factories
             this.game = game;
         }
 
-        public IItemObject ReturnStarObject()
+        public IItemObjects ReturnStarObject()
         {
             return new Star(game);
         }
 
-        public IItemObject ReturnCoinObject()
+        public IItemObjects ReturnCoinObject()
         {
             return new Coin(game);
         }
 
-        public IItemObject ReturnFireFlowerObject()
+        public IItemObjects ReturnFireFlowerObject()
         {
             return new FireFlower(game);
         }
 
-        public IItemObject ReturnOneUpShroomObject()
+        public IItemObjects ReturnOneUpShroomObject()
         {
             return new OneUpShroom(game);
         }
 
-        public IItemObject ReturnSuperShroomObject()
+        public IItemObjects ReturnSuperShroomObject()
         {
             return new SuperShroom(game);
         }

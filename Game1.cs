@@ -15,6 +15,7 @@ namespace GameSpace
         private BlockSpriteFactory blockFactory;
         private MarioFactory marioFactory;
         private EnemySpriteFactory enemyFactory;
+        private ItemSpriteFactory itemFactory;
         private BackgroundFactory backgroundFactory;
         private BlockObjectFactory blockObjectFactory;
         private EnemyObjectFactory enemyObjectFactory;
@@ -28,6 +29,7 @@ namespace GameSpace
         public GraphicsDeviceManager Graphics { get => graphics; }
         public BlockSpriteFactory BlockFactory { get => blockFactory; }
         public EnemySpriteFactory EnemySpriteFactory { get => enemyFactory; }
+        public ItemSpriteFactory ItemSpriteFactory { get => itemFactory; }
         public List<IBlockObjects> Blocks { get => blocks; }
 
         public Game1()

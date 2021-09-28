@@ -6,7 +6,7 @@ using System.Text;
 
 namespace GameSpace.Sprites
 {
-    class FlowerSprite : ISprite
+    class StarSprite : ISprite
     {
         private protected int currentFrame;
         private protected int totalFrames;
@@ -29,7 +29,7 @@ namespace GameSpace.Sprites
 
         public Texture2D Texture { get; set; }
 
-        public FlowerSprite(Texture2D texture, int rows, int columns, int totalFrames, int startingPointX,
+        public StarSprite(Texture2D texture, int rows, int columns, int totalFrames, int startingPointX,
             int startingPointY)
         {
             Texture = texture;
@@ -60,7 +60,7 @@ namespace GameSpace.Sprites
                     frameOrigin.Y + currentFramePoint.Y * frameSize.Y,
                     frameSize.X,
                     frameSize.Y);
-                Rectangle destinationRectangle = new Rectangle(800, 147, width * 2, height * 2);
+                Rectangle destinationRectangle = new Rectangle(600, 147, width * 2, height * 2);
                 spriteBatch.Draw(Texture, destinationRectangle, sourceRectangle, Color.White);
             }
         }

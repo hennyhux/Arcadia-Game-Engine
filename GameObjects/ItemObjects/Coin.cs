@@ -8,13 +8,13 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace GameSpace.GameObjects.ItemObjects
 {
-    public class Star : IItemObjects
+    public class Coin : IItemObjects
     {
         private IItemStates state;
 
-        public Star(Game1 game)
+        public Coin(Game1 game)
         {
-            state = new StarState(game);
+            state = new CoinState(game);
         }
         public void Draw(SpriteBatch spritebatch, Vector2 location)
         {
