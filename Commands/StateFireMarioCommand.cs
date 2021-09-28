@@ -14,7 +14,7 @@ namespace GameSpace.Commands
         }
         public void Execute()
         {
-            
+            game.GetMario.Fire();
         }
 
         public void Unexecute()
