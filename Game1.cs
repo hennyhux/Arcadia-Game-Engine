@@ -20,9 +20,7 @@ namespace GameSpace
         private EnemySpriteFactory enemyFactory;
         private ItemSpriteFactory itemFactory;
         private BackgroundFactory backgroundFactory;
-        private BlockObjectFactory blockObjectFactory;
         private EnemyObjectFactory enemyObjectFactory;
-        private BackgroundFactory backgroundFactory;
         #endregion
 
         #region Lists
