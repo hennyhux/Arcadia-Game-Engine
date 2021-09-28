@@ -11,13 +11,11 @@ namespace GameSpace.States.ItemStates
     public class SuperShroomState : IItemStates
     {
         private ISprite sprite;
-        private ItemSpriteFactory itemFactory;
         private bool triggered;
 
         public SuperShroomState(Game1 game)
         {
-            itemFactory = game.ItemSpriteFactory;
-            this.sprite = itemFactory.ReturnSuperShrooom();
+            this.sprite = ItemSpriteFactory.GetInstance().ReturnSuperShrooom();
             triggered = false;
         }
 

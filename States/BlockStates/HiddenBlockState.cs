@@ -12,11 +12,10 @@ namespace GameSpace.States.BlockStates
     public class HiddenBlockState : IBlockStates
     {
         private ISprite sprite;
-        private BlockSpriteFactory blockFactory;
         private bool triggered;
         public HiddenBlockState(Game1 game)
         {
-            this.sprite = game.BlockFactory.ReturnHiddenBlock();
+            this.sprite = BlockSpriteFactory.GetInstance().ReturnHiddenBlock();
             triggered = false;
         }
 

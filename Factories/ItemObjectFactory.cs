@@ -9,36 +9,48 @@ namespace GameSpace.Factories
     public class ItemObjectFactory
     {
 
-        private protected readonly Game1 game;
+        private static protected Game1 instanceGame;
 
-        public ItemObjectFactory(Game1 game)
+        private static ItemObjectFactory instance;
+
+        public static ItemObjectFactory GetInstance(Game1 game)
         {
-            this.game = game;
+            if (instance == null)
+            {
+                instanceGame = game;
+                instance = new ItemObjectFactory();
+            }
+            return instance;
+
+        }
+        private ItemObjectFactory()
+        {
+
         }
 
         public IItemObjects ReturnStarObject()
         {
-            return new Star(game);
+            return new Star(instanceGame);
         }
 
         public IItemObjects ReturnCoinObject()
         {
-            return new Coin(game);
+            return new Coin(instanceGame);
         }
 
         public IItemObjects ReturnFireFlowerObject()
         {
-            return new FireFlower(game);
+            return new FireFlower(instanceGame);
         }
 
         public IItemObjects ReturnOneUpShroomObject()
         {
-            return new OneUpShroom(game);
+            return new OneUpShroom(instanceGame);
         }
 
         public IItemObjects ReturnSuperShroomObject()
         {
-            return new SuperShroom(game);
+            return new SuperShroom(instanceGame);
         }
 
     }

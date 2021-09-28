@@ -58,7 +58,7 @@ namespace GameSpace.States.BlockStates
             //marioFactory = game.GetMarioFactory.ReturnMario();
             Debug.WriteLine("IN STATE: ");
             //this.sprite = marioFactory.ReturnMarioStandingLeftSprite();
-            this.sprite = game.GetMarioFactory.ReturnMarioStandingLeftSprite();
+            this.sprite = MarioFactory.GetInstance(game).ReturnMarioStandingLeftSprite();
 
 
             facingRight = 0;

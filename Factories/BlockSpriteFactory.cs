@@ -23,8 +23,8 @@ namespace GameSpace.Factories
         private Vector2 blockInitalStart;
 
         private static BlockSpriteFactory instance = new BlockSpriteFactory();
-        public static BlockSpriteFactory Instance => instance;
-        public BlockSpriteFactory()
+        public static BlockSpriteFactory GetInstance() => instance;
+        private BlockSpriteFactory()
         {
             blockInitalStart = new Vector2(0, 0);
         }

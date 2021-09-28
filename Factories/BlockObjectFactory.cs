@@ -9,41 +9,54 @@ namespace GameSpace.Factories
     public class BlockObjectFactory
     {
 
-        private protected readonly Game1 game;
+        private static protected Game1 instanceGame;
 
-        public BlockObjectFactory(Game1 game)
+        private static BlockObjectFactory instance;
+
+        public static BlockObjectFactory GetInstance(Game1 game)
         {
-            this.game = game;
+            if (instance == null)
+            {
+                instanceGame = game;
+                instance = new BlockObjectFactory();
+            }
+            return instance;
+
+        }
+
+        private BlockObjectFactory()
+        {
+
         }
 
         public IBlockObjects ReturnBrickBlockObject()
         {
-            return new BrickBlock(game);
+            return new BrickBlock(instanceGame);
         }
 
         public IBlockObjects ReturnStairBlockObject()
         {
-            return new StairBlock(game);
+            return new StairBlock(instanceGame);
         }
 
         public IBlockObjects ReturnFloorBlockObject()
         {
-            return new FloorBlock(game);
+            return new FloorBlock(instanceGame);
         }
 
         public IBlockObjects ReturnQuestionBlockObject()
         {
-            return new QuestionBlock(game);
+            return new QuestionBlock(instanceGame);
         }
 
         public IBlockObjects ReturnHiddenBlockObject()
         {
-            return new HiddenBlock(game);
+            return new HiddenBlock(instanceGame);
         }
 
         public IBlockObjects ReturnUsedBlockObject()
         {
-            return new UsedBlock(game);
+            return new UsedBlock(instanceGame);
         }
 
     }

@@ -11,12 +11,24 @@ namespace GameSpace.Factories
 {
     public class MarioFactory
     {
-        private protected readonly Game1 game;
+        private static protected Game1 instanceGame;
         private Texture2D normalMarioSprite;
+        private static MarioFactory instance;
 
-        public MarioFactory(Game1 game)
+        public static MarioFactory GetInstance(Game1 game)
         {
-            this.game = game;
+            if (instance == null)
+            {
+                instance = new MarioFactory();
+                instanceGame = game;
+            }
+
+            return instance;
+
+        }
+        private MarioFactory()
+        {
+
         }
 
         public void LoadContent(ContentManager content)
@@ -27,7 +39,7 @@ namespace GameSpace.Factories
         public Mario ReturnMario()
         {
             //return new MarioStates(normalMarioSprite, 350, 200, 0, 2, 4);
-            return new Mario(game);//mario.
+            return new Mario(instanceGame);//mario.
             //return new Mario(game, normalMarioSprite);
             //return new MarioSprite(normalMarioSprite, 350, 200, 0, 2, 3);
         }
@@ -37,6 +49,5 @@ namespace GameSpace.Factories
             return new MarioSprite(normalMarioSprite, 350, 200, 0, 0, 0);
             //return new Mario(Game1);
         }
-
     }
 }

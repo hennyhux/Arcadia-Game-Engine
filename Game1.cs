@@ -14,14 +14,10 @@ namespace GameSpace
         private protected readonly GraphicsDeviceManager graphics;
         private protected SpriteBatch spriteBatch;
 
-        #region Factories
-        private BlockSpriteFactory blockSpriteFactory;
+        #region Object Factories
         private BlockObjectFactory blockObjectFactory;
         private MarioFactory marioFactory;
-        private EnemySpriteFactory enemySpriteFactory;
-        private ItemSpriteFactory itemSpriteFactory;
         private ItemObjectFactory itemObjectFactory;
-        private BackgroundFactory backgroundFactory;
         private EnemyObjectFactory enemyObjectFactory;
         #endregion
 
@@ -33,15 +29,9 @@ namespace GameSpace
         #endregion
 
         private Mario mario;
+
         public Mario GetMario { get => mario; }
-
-        private ISprite MarioSprite;
-        private ISprite Background;
-
         public GraphicsDeviceManager Graphics { get => graphics; }
-        public BlockSpriteFactory BlockFactory { get => blockSpriteFactory; }
-        public ItemSpriteFactory ItemSpriteFactory { get => itemSpriteFactory; }
-        public MarioFactory GetMarioFactory { get => marioFactory; }
         public List<IBlockObjects> Blocks { get => blocks; }
         public List<IItemObjects> Items { get => items; }
 
@@ -58,28 +48,27 @@ namespace GameSpace
                 new KeyboardInput(this), new ControllerInput(this)
             };
 
-            blockSpriteFactory = new BlockSpriteFactory();
-            marioFactory = new MarioFactory(this);
-            enemySpriteFactory = EnemySpriteFactory.GetInstance();
+            marioFactory = MarioFactory.GetInstance(this);
             enemyObjectFactory = EnemyObjectFactory.GetInstance();
-            backgroundFactory = BackgroundFactory.GetInstance();
-            blockObjectFactory = new BlockObjectFactory(this);
-            itemSpriteFactory = ItemSpriteFactory.GetInstance();
-            itemObjectFactory = new ItemObjectFactory(this);
-
+            blockObjectFactory = BlockObjectFactory.GetInstance(this);
+            itemObjectFactory = ItemObjectFactory.GetInstance(this);
             base.Initialize();
         }
 
         protected override void LoadContent()
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            blockSpriteFactory.LoadContent(Content);
-            marioFactory.LoadContent(Content);
-            enemySpriteFactory.LoadContent(Content);
-            backgroundFactory.LoadContent(Content);
-            itemSpriteFactory.LoadContent(Content);
-            backgroundFactory.LoadContent(Content);
 
+            #region Loading Factories
+            BlockSpriteFactory.GetInstance().LoadContent(Content);
+            MarioFactory.GetInstance(this).LoadContent(Content);
+            EnemySpriteFactory.GetInstance().LoadContent(Content);
+            BackgroundFactory.GetInstance().LoadContent(Content);
+            ItemSpriteFactory.GetInstance().LoadContent(Content);
+            BackgroundFactory.GetInstance().LoadContent(Content);
+            #endregion
+
+            #region Loading Lists
             blocks = new List<IBlockObjects>()
             {
                 blockObjectFactory.ReturnBrickBlockObject(), blockObjectFactory.ReturnStairBlockObject(),
@@ -99,11 +88,9 @@ namespace GameSpace
                 itemObjectFactory.ReturnStarObject(), itemObjectFactory.ReturnSuperShroomObject(),
                 itemObjectFactory.ReturnCoinObject()
             };
+            #endregion
 
             mario = marioFactory.ReturnMario();
-            MarioSprite = marioFactory.ReturnMarioStandingLeftSprite();
-            Background = backgroundFactory.ReturnRegularBackground();
-
         }
 
         protected override void Update(GameTime gameTime)
@@ -122,6 +109,7 @@ namespace GameSpace
             {
                 enemy.Update(gameTime);
             }
+
             foreach (IItemObjects item in items)
             {
                 item.Update(gameTime);
@@ -129,15 +117,12 @@ namespace GameSpace
 
             mario.Update(gameTime);
             base.Update(gameTime);
-
         }
 
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
             spriteBatch.Begin(blendState: BlendState.AlphaBlend);
-
-            //Background.Draw(spriteBatch, new Vector2(450, 450));
 
             foreach (IBlockObjects block in blocks)
             {

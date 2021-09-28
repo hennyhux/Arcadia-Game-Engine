@@ -16,8 +16,7 @@ namespace GameSpace.States.BlockStates
 
         public UsedBlockState(Game1 game)
         {
-            blockFactory = game.BlockFactory;
-            this.sprite = blockFactory.ReturnUsedBlock(new Vector2(400, 150));
+            this.sprite = BlockSpriteFactory.GetInstance().ReturnUsedBlock(new Vector2(400, 150));
             triggered = false;
         }
 

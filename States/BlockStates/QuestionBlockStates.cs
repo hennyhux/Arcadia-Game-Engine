@@ -11,13 +11,11 @@ namespace GameSpace.States.BlockStates
     public class QuestionBlockStates : IBlockStates
     {
         private ISprite sprite;
-        private BlockSpriteFactory blockFactory;
         private bool triggered;
 
         public QuestionBlockStates(Game1 game)
         {
-            blockFactory = game.BlockFactory;
-            sprite = blockFactory.ReturnQuestionBlock();
+            sprite = BlockSpriteFactory.GetInstance().ReturnQuestionBlock();
             triggered = false;
         }
         public void Draw(SpriteBatch spriteBatch, Vector2 Location)
@@ -27,7 +25,7 @@ namespace GameSpace.States.BlockStates
 
         public void Initiate()
         {
-            this.sprite = blockFactory.ReturnUsedBlock(new Vector2(600, 150));
+            this.sprite = BlockSpriteFactory.GetInstance().ReturnUsedBlock(new Vector2(600, 150));
         }
 
         public void Update(GameTime gametime)

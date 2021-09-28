@@ -11,13 +11,11 @@ namespace GameSpace.States.BlockStates
     public class FloorBlockStates : IBlockStates
     {
         private ISprite sprite;
-        private BlockSpriteFactory blockFactory;
         private bool triggered;
 
         public FloorBlockStates(Game1 game)
         {
-            blockFactory = game.BlockFactory;
-            this.sprite = blockFactory.ReturnFloorBlock();
+            this.sprite = BlockSpriteFactory.GetInstance().ReturnFloorBlock();
             triggered = false;
         }
 

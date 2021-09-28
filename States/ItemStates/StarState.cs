@@ -11,13 +11,11 @@ namespace GameSpace.States.ItemStates
     public class StarState : IItemStates
     {
         private ISprite sprite;
-        private ItemSpriteFactory itemFactory;
         private bool triggered;
 
         public StarState(Game1 game)
         {
-            itemFactory = game.ItemSpriteFactory;
-            this.sprite = itemFactory.ReturnStar();
+            this.sprite = ItemSpriteFactory.GetInstance().ReturnStar();
             triggered = false;
         }
 

@@ -18,14 +18,14 @@ namespace GameSpace.States.BlockStates
         public BrickBlockStates(Game1 game)
         {
             this.game = game;
-            this.sprite = game.BlockFactory.ReturnBrickBlock();
+            this.sprite = BlockSpriteFactory.GetInstance().ReturnBrickBlock();
             triggered = false;
         }
 
         public void Initiate()
         {
             triggered = true;
-            this.sprite = game.BlockFactory.ReturnUsedBlock(new Vector2(100, 150));
+            this.sprite = BlockSpriteFactory.GetInstance().ReturnUsedBlock(new Vector2(100, 150));
         }
 
         public void Draw(SpriteBatch spriteBatch, Vector2 location)

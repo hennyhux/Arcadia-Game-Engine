@@ -11,13 +11,11 @@ namespace GameSpace.States.ItemStates
     public class FireFlowerState : IItemStates
     {
         private ISprite sprite;
-        private ItemSpriteFactory itemFactory;
         private bool triggered;
 
         public FireFlowerState(Game1 game)
         {
-            itemFactory = game.ItemSpriteFactory;
-            this.sprite = itemFactory.ReturnFireFlower();
+            this.sprite = ItemSpriteFactory.GetInstance().ReturnFireFlower();
             triggered = false;
         }
 

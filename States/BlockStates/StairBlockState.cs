@@ -16,8 +16,7 @@ namespace GameSpace.States.BlockStates
 
         public StairBlockState(Game1 game)
         {
-            blockFactory = game.BlockFactory;
-            this.sprite = blockFactory.ReturnStairBlock();
+            this.sprite = BlockSpriteFactory.GetInstance().ReturnStairBlock();
             triggered = false;
         }
 
