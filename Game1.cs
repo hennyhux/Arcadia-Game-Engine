@@ -1,6 +1,7 @@
 ﻿using GameSpace.Factories;
 using GameSpace.GameObjects;
 using GameSpace.GameObjects.BlockObjects;
+using GameSpace.GameObjects.ItemObjects;
 using GameSpace.Interfaces;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -19,6 +20,7 @@ namespace GameSpace
         private MarioFactory marioFactory;
         private EnemySpriteFactory enemyFactory;
         private ItemSpriteFactory itemFactory;
+        private ItemObjectFactory itemObjectFactory;
         private BackgroundFactory backgroundFactory;
         private EnemyObjectFactory enemyObjectFactory;
         #endregion
@@ -27,6 +29,7 @@ namespace GameSpace
         private List<IBlockObjects> blocks;
         private List<IEnemyObjects> enemies;
         private List<IController> controllers;
+        private List<IItemObjects> items;
         #endregion
 
         private Mario mario;
@@ -42,6 +45,7 @@ namespace GameSpace
         public ItemSpriteFactory ItemSpriteFactory { get => itemFactory; }
         public MarioFactory GetMarioFactory { get => marioFactory; }
         public List<IBlockObjects> Blocks { get => blocks; }
+        public List<IItemObjects> Items { get => items; }
 
         public Game1()
         {
@@ -62,6 +66,8 @@ namespace GameSpace
             enemyObjectFactory = EnemyObjectFactory.GetInstance();
             backgroundFactory = new BackgroundFactory();
             blockObjectFactory = new BlockObjectFactory(this);
+            itemFactory = new ItemSpriteFactory();
+            itemObjectFactory = new ItemObjectFactory(this);
 
             base.Initialize();
         }
@@ -73,6 +79,7 @@ namespace GameSpace
             marioFactory.LoadContent(Content);
             enemyFactory.LoadContent(Content);
             backgroundFactory.LoadContent(Content);
+            itemFactory.LoadContent(Content);
 
             blocks = new List<IBlockObjects>()
             {
@@ -85,6 +92,13 @@ namespace GameSpace
             {
                 enemyObjectFactory.ReturnGoombaObject(), enemyObjectFactory.ReturnGreenKoopaObject(),
                 enemyObjectFactory.ReturnRedKoopaObject()
+            };
+
+            items = new List<IItemObjects>()
+            {
+                itemObjectFactory.ReturnFireFlowerObject(), itemObjectFactory.ReturnOneUpShroomObject(), 
+                itemObjectFactory.ReturnStarObject(), itemObjectFactory.ReturnSuperShroomObject(),
+                itemObjectFactory.ReturnCoinObject()
             };
 
             mario = marioFactory.ReturnMario();
@@ -109,6 +123,10 @@ namespace GameSpace
             {
                 enemy.Update(gameTime);
             }
+            foreach (IItemObjects item in items)
+            {
+               // items.Update(gameTime);
+            }
 
             mario.Update(gameTime);
             base.Update(gameTime);
@@ -128,6 +146,11 @@ namespace GameSpace
             foreach (IEnemyObjects enemy in enemies)
             {
                 enemy.Draw(spriteBatch, new Vector2(0, 0));
+            }
+
+            foreach (IItemObjects item in items)
+            {
+                item.Draw(spriteBatch, new Vector2(0, 0));
             }
 
             mario.Draw(spriteBatch, new Vector2(500, 400));

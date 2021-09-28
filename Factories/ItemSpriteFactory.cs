@@ -28,7 +28,7 @@ namespace GameSpace.Factories
             Star = content.Load<Texture2D>("Items/star");
             Coin = content.Load<Texture2D>("Items/coin");
             OneUpShroom = content.Load<Texture2D>("Items/1upshroom");
-            SuperShroom = content.Load<Texture2D>("Items/supershroom");
+            SuperShroom = content.Load<Texture2D>("Items/supermushroom");
             FireFlower = content.Load<Texture2D>("Items/flower");
         }
         public ISprite ReturnStar()
