@@ -33,17 +33,19 @@ namespace GameSpace
                 {Keys.U, new StateSuperMarioCommand(game)},
                 {Keys.I, new StateFireMarioCommand(game)},
                 {Keys.O, new StateDeadMarioCommand(game)},
-                {Keys.K, new ChangeBlockCommand(game)},
-                {Keys.L, new ShowHiddenBlockCommand(game)},
-                {Keys.J, new ChangeQuestionBlockCommand(game)}
+                {Keys.B, new ChangeBlockCommand(game)},
+                {Keys.H, new ShowHiddenBlockCommand(game)},
+                {Keys.OemQuestion, new ChangeQuestionBlockCommand(game)}
                 // Jump, crouch and dash/throw fireball
             };
 
             controllerCommands = new Dictionary<Buttons, ICommand>()
             {
                 {Buttons.Start, new ExitCommand(game)},
-                {Buttons.DPadUp, new ToggleFullscreenCommand(game)},
-                
+                {Buttons.DPadLeft, new MoveLeftCommand(game)},
+                {Buttons.DPadRight, new MoveRightCommand(game)},
+                {Buttons.A, new MoveUpCommand(game)},
+                {Buttons.DPadDown, new MoveDownCommand(game)},
             };
         }
 

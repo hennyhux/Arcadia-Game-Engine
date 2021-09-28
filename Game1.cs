@@ -15,11 +15,11 @@ namespace GameSpace
         private protected SpriteBatch spriteBatch;
 
         #region Factories
-        private BlockSpriteFactory blockFactory;
+        private BlockSpriteFactory blockSpriteFactory;
         private BlockObjectFactory blockObjectFactory;
         private MarioFactory marioFactory;
-        private EnemySpriteFactory enemyFactory;
-        private ItemSpriteFactory itemFactory;
+        private EnemySpriteFactory enemySpriteFactory;
+        private ItemSpriteFactory itemSpriteFactory;
         private ItemObjectFactory itemObjectFactory;
         private BackgroundFactory backgroundFactory;
         private EnemyObjectFactory enemyObjectFactory;
@@ -39,8 +39,8 @@ namespace GameSpace
         private ISprite Background;
 
         public GraphicsDeviceManager Graphics { get => graphics; }
-        public BlockSpriteFactory BlockFactory { get => blockFactory; }
-        public ItemSpriteFactory ItemSpriteFactory { get => itemFactory; }
+        public BlockSpriteFactory BlockFactory { get => blockSpriteFactory; }
+        public ItemSpriteFactory ItemSpriteFactory { get => itemSpriteFactory; }
         public MarioFactory GetMarioFactory { get => marioFactory; }
         public List<IBlockObjects> Blocks { get => blocks; }
         public List<IItemObjects> Items { get => items; }
@@ -58,13 +58,13 @@ namespace GameSpace
                 new KeyboardInput(this), new ControllerInput(this)
             };
 
-            blockFactory = new BlockSpriteFactory();
+            blockSpriteFactory = new BlockSpriteFactory();
             marioFactory = new MarioFactory(this);
-            enemyFactory = EnemySpriteFactory.GetInstance();
+            enemySpriteFactory = EnemySpriteFactory.GetInstance();
             enemyObjectFactory = EnemyObjectFactory.GetInstance();
             backgroundFactory = BackgroundFactory.GetInstance();
             blockObjectFactory = new BlockObjectFactory(this);
-            itemFactory = new ItemSpriteFactory();
+            itemSpriteFactory = ItemSpriteFactory.GetInstance();
             itemObjectFactory = new ItemObjectFactory(this);
 
             base.Initialize();
@@ -73,11 +73,12 @@ namespace GameSpace
         protected override void LoadContent()
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            blockFactory.LoadContent(Content);
+            blockSpriteFactory.LoadContent(Content);
             marioFactory.LoadContent(Content);
-            enemyFactory.LoadContent(Content);
+            enemySpriteFactory.LoadContent(Content);
             backgroundFactory.LoadContent(Content);
-            itemFactory.LoadContent(Content);
+            itemSpriteFactory.LoadContent(Content);
+            backgroundFactory.LoadContent(Content);
 
             blocks = new List<IBlockObjects>()
             {
@@ -135,7 +136,9 @@ namespace GameSpace
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
             spriteBatch.Begin(blendState: BlendState.AlphaBlend);
-            
+
+            //Background.Draw(spriteBatch, new Vector2(450, 450));
+
             foreach (IBlockObjects block in blocks)
             {
                 block.Draw(spriteBatch, new Vector2(0, 0));

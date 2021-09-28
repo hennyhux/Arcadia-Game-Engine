@@ -24,7 +24,7 @@ namespace GameSpace.Factories
 
         public void LoadContent(ContentManager content)
         {
-            content.Load<Texture2D>("Background/Background");
+            RegularBackground = content.Load<Texture2D>("Background/Background");
         }
 
         public ISprite ReturnRegularBackground()

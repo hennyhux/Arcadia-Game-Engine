@@ -18,9 +18,10 @@ namespace GameSpace.Factories
         private Texture2D FireFlower;
         #endregion
         private static ItemSpriteFactory instance = new ItemSpriteFactory();
-        public static ItemSpriteFactory Instance => instance;
-        public ItemSpriteFactory()
+        public static ItemSpriteFactory GetInstance() => instance;
+        private ItemSpriteFactory()
         {
+
         }
 
         public void LoadContent(ContentManager content)
