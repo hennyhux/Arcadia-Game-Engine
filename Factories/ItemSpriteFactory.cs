@@ -48,7 +48,7 @@ namespace GameSpace.Factories
 
         public ISprite ReturnFireFlower()
         {
-            return new FireFlowerSprite(FireFlower, 1, 1, 1, 0, 0);
+            return new FireFlowerSprite(FireFlower, 1, 4, 4, 0, 0);
         }
 
         public ISprite ReturnCoin()

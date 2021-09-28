@@ -125,7 +125,7 @@ namespace GameSpace
             }
             foreach (IItemObjects item in items)
             {
-               // items.Update(gameTime);
+                item.Update(gameTime);
             }
 
             mario.Update(gameTime);
