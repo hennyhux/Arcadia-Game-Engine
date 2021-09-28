@@ -11,18 +11,20 @@ namespace GameSpace.Factories
     {
         private Texture2D RegularBackground;
 
-        private BackgroundFactory instance;
-        public BackgroundFactory Instance => instance;
+        private static BackgroundFactory instance = new BackgroundFactory();
+        public static BackgroundFactory GetInstance ()
+        {
+            return instance;
+        }
 
-
-        public BackgroundFactory()
+        private BackgroundFactory()
         {
 
         }
 
         public void LoadContent(ContentManager content)
         {
-  
+            content.Load<Texture2D>("Background/Background");
         }
 
         public ISprite ReturnRegularBackground()

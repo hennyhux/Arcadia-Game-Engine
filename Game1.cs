@@ -38,10 +38,8 @@ namespace GameSpace
         private ISprite MarioSprite;
         private ISprite Background;
 
-        public ISprite GetMarioSprite { get => MarioSprite; }
         public GraphicsDeviceManager Graphics { get => graphics; }
         public BlockSpriteFactory BlockFactory { get => blockFactory; }
-        public EnemySpriteFactory EnemySpriteFactory { get => enemyFactory; }
         public ItemSpriteFactory ItemSpriteFactory { get => itemFactory; }
         public MarioFactory GetMarioFactory { get => marioFactory; }
         public List<IBlockObjects> Blocks { get => blocks; }
@@ -64,7 +62,7 @@ namespace GameSpace
             marioFactory = new MarioFactory(this);
             enemyFactory = EnemySpriteFactory.GetInstance();
             enemyObjectFactory = EnemyObjectFactory.GetInstance();
-            backgroundFactory = new BackgroundFactory();
+            backgroundFactory = BackgroundFactory.GetInstance();
             blockObjectFactory = new BlockObjectFactory(this);
             itemFactory = new ItemSpriteFactory();
             itemObjectFactory = new ItemObjectFactory(this);
