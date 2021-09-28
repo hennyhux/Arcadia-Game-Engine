@@ -16,10 +16,18 @@ namespace GameSpace.Factories
         private Texture2D RedKoopa;
         #endregion
 
-        private static EnemySpriteFactory instance = new EnemySpriteFactory();
-        public static EnemySpriteFactory Instance => instance;
+        private static EnemySpriteFactory instance;
+        public static EnemySpriteFactory GetInstance()
+        {
+            if (instance == null)
+            {
+                instance = new EnemySpriteFactory();
+            }
 
-        public EnemySpriteFactory()
+            return instance;
+        }
+
+        private EnemySpriteFactory()
         {
 
         }

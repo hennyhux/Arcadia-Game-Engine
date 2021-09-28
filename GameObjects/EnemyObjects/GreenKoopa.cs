@@ -1,24 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using GameSpace.Interfaces;
+﻿using GameSpace.Interfaces;
 using GameSpace.States.EnemyStates;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System;
+using System.Collections.Generic;
+using System.Text;
 
 namespace GameSpace.GameObjects.EnemyObjects
 {
-    public class Goomba : IEnemyObjects
+    public class GreenKoopa : IEnemyObjects
     {
         private IEnemyStates state;
-
-        public Goomba()
+        public GreenKoopa()
         {
-            state = new GoombaState();
+            state = new GreenKoopaState();
         }
+
         public void Draw(SpriteBatch spritebatch, Vector2 location)
         {
-            state.Draw(spritebatch, new Vector2(250, 240));
+            state.Draw(spritebatch, new Vector2(200, 230));
         }
 
         public void Trigger()

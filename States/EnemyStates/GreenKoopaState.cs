@@ -8,19 +8,18 @@ using System.Text;
 
 namespace GameSpace.States.EnemyStates
 {
-    public class GoombaState : IEnemyStates
+    public class GreenKoopaState : IEnemyStates
     {
         private ISprite sprite;
         private EnemySpriteFactory enemySpriteFactory;
         private bool triggered;
 
-        public GoombaState()
+        public GreenKoopaState()
         {
             enemySpriteFactory = EnemySpriteFactory.GetInstance();
-            this.sprite = enemySpriteFactory.ReturnGoomba();
+            this.sprite = enemySpriteFactory.ReturnGreenKoopa();
             triggered = false;
         }
-
 
         public void Draw(SpriteBatch spritebatch, Vector2 location)
         {
