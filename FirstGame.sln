@@ -8,6 +8,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CodeReviews", "CodeReviews", "{8A7AC7CD-67C4-4E2C-9EFD-DBF638A77C12}"
 	ProjectSection(SolutionItems) = preProject
 		CalebCodeReview.txt = CalebCodeReview.txt
+		HenryCodeReview.txt = HenryCodeReview.txt
 	EndProjectSection
 EndProject
 Global
