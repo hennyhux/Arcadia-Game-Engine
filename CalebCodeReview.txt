@@ -1,0 +1,21 @@
+Author of Review: Caleb Hernandez
+Date: 9/28/2021
+Sprint Number: Sprint 1
+Name of File: MarioState.cs
+Author of File: John Blaszczak
+Comments: 
+
+	I decided to write about MarioState.cs because it is a very critical part of the sprint along with the rest of the mario game as a whole.
+	This class inherits ISprite and uses a MarioFactory and a MarioSprite. MarioState.cs takes responsibilty for taking care of the state that
+	mario is in. It has methods for every state and takes advantage of the MarioSprite classes to make the actual change to the sprite.
+	The actual code that has not been commented out and makes a lot of sense. I think some cleaning up is in order because there are multiple
+	Update methods (one commented) and also multpile Draw methods (one commented). It looks like some of the code from the MarioSprite.cs 
+	class is still in there. 
+
+Time Taken to Complete: 35 Minutes
+Hypothetical Change: 
+
+	A hypothetical change to the game would be to allow the user to pick different main characters at the start of the game. The current 
+	implementation would easily support this change becasue you would just have to make another main character state (LuigiState.cs) and
+	follow all the logic provided in MarioState.cs
+
