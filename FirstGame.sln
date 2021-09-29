@@ -7,6 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GameSpace", "GameSpace.cspr
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CodeReviews", "CodeReviews", "{8A7AC7CD-67C4-4E2C-9EFD-DBF638A77C12}"
 	ProjectSection(SolutionItems) = preProject
+		BetoCodeReview.txt = BetoCodeReview.txt
 		CalebCodeReview.txt = CalebCodeReview.txt
 	EndProjectSection
 EndProject

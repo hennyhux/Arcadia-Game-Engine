@@ -1,0 +1,25 @@
+Author of Review: Beto Cruz
+Date: 9/28/2021
+Sprint Number: 1
+Name of File: QuestionBlockStates.cs
+Author of File: Henry Zhang
+Comments:
+	I decided to do my Code Review on Henry's implementation of QuestionBlockStates.cs because that was
+	one of the first things I looked at when I was trying to understand how Henry was able to implement
+	the Blocks. In my opinion, I think Henry did a really great job implementing this class which so 
+	happens to be a very similar way of how he wrote his other classes and Interfaces.
+	QuestionBlockStates.cs is a class used for implementing the states of the Question Block in the 
+	game (this can be seen when you press the "?" key). The class only inherits the interface 
+	IBlockStates and it uses ISprite, and it is called by QuestionBlockState only once. I would consider
+	this code to be pretty efficient since it is under the conditions of low coupling. It only has a few 
+	classes in which it is interconnected. The methods for the class also seem to be short and to the
+	point so it helps understand better what everything is doing. 
+Time Taken to Complete Code Review: 30 minutes
+Hypothetical Change:
+	I think that a good hypothetical change could be using this code for some other Block that may need 
+	to be added at some later time (even though that is kind of what it has been done for this sprint 
+	already since there are many types of blocks and some of the other blocks added to the code. But
+	this code serves as a nice layout for other kinds of similar classes.
+	
+
+
