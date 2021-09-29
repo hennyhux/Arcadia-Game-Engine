@@ -1,0 +1,18 @@
+Author of Review: Henry Zhang
+Date: 9/28/2021
+Sprint Number: Sprint 1
+Name of File: MarioSprite.cs
+Author of File: John Blaszczak
+Comments: 
+
+	MarioSprite.cs was ingeniously implemented. By representing the spreadsheet as several arrays, it makes traversing the original 
+	sprite sheet easy, as well as make Mario state animations more concise, as there does not need to
+	exist separate concrete class for each different possible Mario states (it is all within in class). Furthermore, the comments inside the 
+	class provided much needed clarity.
+	
+Time Taken to Complete: 35 Minutes
+Hypothetical Change: 
+
+	I would make some of the integer numbers that represent Mario states as Enums just for readability’s sake. Some private methods would 
+	also be helpful to reduce the cyclomatic complexity of the code. 
+

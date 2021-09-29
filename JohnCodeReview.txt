@@ -1,0 +1,12 @@
+Author of Review: John Blaszczak
+Date: 9/28/2021
+Sprint Number: Sprint 1
+Name of File: GoombaState.cs
+Author of File: Henry Zhang
+Comments: 
+	I decied to write about GoombaState.cs because the Goomba is the most common enemy in Mario and the states of the Goomba will be very improtant for your game to run properly.
+	The class inherits IEnemyStates and uses the enemySpritefactory and an ISprite in order to represent the states. The enemySpriteFactory allows the creation of the Goomba sprit.
+	The ISprite sprite takes a GoombaSprite and this sprite is used in the Draw and Update methods. The file is very organized, doesn't have much/if any unnecessary code.
+Time Taken to Complete: 15 Minutes
+Hypothetical Change: 
+	A hypothetical change to this class would be the removal of the bool triggered, as that variable is not needed for the code controlling goomba. 
