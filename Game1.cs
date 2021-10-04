@@ -26,6 +26,7 @@ namespace GameSpace
         private List<IEnemyObjects> enemies;
         private List<IController> controllers;
         private List<IItemObjects> items;
+        private List<IGameObjects> objects;
         #endregion
 
         private Mario mario;
@@ -33,7 +34,6 @@ namespace GameSpace
         public Mario GetMario { get => mario; }
         public GraphicsDeviceManager Graphics { get => graphics; }
         public List<IBlockObjects> Blocks { get => blocks; }
-        public List<IItemObjects> Items { get => items; }
 
         public Game1()
         {
@@ -88,6 +88,11 @@ namespace GameSpace
                 itemObjectFactory.ReturnStarObject(), itemObjectFactory.ReturnSuperShroomObject(),
                 itemObjectFactory.ReturnCoinObject()
             };
+
+            objects = new List<IGameObjects>()
+            {
+
+            }
             #endregion
 
             mario = marioFactory.ReturnMario();

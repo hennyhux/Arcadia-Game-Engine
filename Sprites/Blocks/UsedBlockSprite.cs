@@ -6,22 +6,12 @@ using System.Text;
 
 namespace GameSpace.Sprites
 {
-    class UsedBlockSprite : ISprite
+    class UsedBlockSprite : AbstractSprite
     {
-        public Texture2D Texture { get ; set ; }
-        private protected int frameWidth;
-        private protected int frameHeight;
-        private protected int rows;
-        private protected int columns;
-        private protected int totalFrames;
-        private protected int currentFrame;
 
         private protected int maxOffset;
         private protected int currentOffset;
-        private Boolean isVisible;
         private protected Vector2 initLocation;
-
-        public void SetVisible() { isVisible = !isVisible; }
 
         public UsedBlockSprite(Texture2D texture, int rows, int columns, int totalFrames, Vector2 location)
         {
@@ -38,7 +28,7 @@ namespace GameSpace.Sprites
             currentOffset = 0;
         }
 
-        public void Draw(SpriteBatch spriteBatch, Vector2 location)
+        public override void Draw(SpriteBatch spriteBatch, Vector2 location)
         {
             if (isVisible)
             {
@@ -54,7 +44,7 @@ namespace GameSpace.Sprites
             }
         }
 
-        public void Update(GameTime gametime)
+        public override void Update(GameTime gametime)
         {
             if (currentOffset < maxOffset/2)
             {
@@ -67,12 +57,6 @@ namespace GameSpace.Sprites
                 initLocation.Y += 3;
                 currentOffset += 3;
             }
-        }
-
-        public void UpdateLocation(int dx, int dy)
-        {
-            initLocation.X += dx;
-            initLocation.Y += dy;
         }
     }
 }

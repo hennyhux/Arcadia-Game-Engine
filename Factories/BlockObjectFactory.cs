@@ -29,35 +29,34 @@ namespace GameSpace.Factories
 
         }
 
-        public IBlockObjects ReturnBrickBlockObject()
+        public IGameObjects ReturnBrickBlockObject()
         {
             return new BrickBlock(instanceGame);
         }
 
-        public IBlockObjects ReturnStairBlockObject()
+        public IGameObjects ReturnStairBlockObject()
         {
             return new StairBlock(instanceGame);
         }
 
-        public IBlockObjects ReturnFloorBlockObject()
+        public IGameObjects ReturnFloorBlockObject()
         {
             return new FloorBlock(instanceGame);
         }
 
-        public IBlockObjects ReturnQuestionBlockObject()
+        public IGameObjects ReturnQuestionBlockObject()
         {
             return new QuestionBlock(instanceGame);
         }
 
-        public IBlockObjects ReturnHiddenBlockObject()
+        public IGameObjects ReturnHiddenBlockObject()
         {
             return new HiddenBlock(instanceGame);
         }
 
-        public IBlockObjects ReturnUsedBlockObject()
+        public IGameObjects ReturnUsedBlockObject()
         {
             return new UsedBlock(instanceGame);
         }
-
     }
 }

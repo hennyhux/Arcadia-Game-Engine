@@ -6,28 +6,8 @@ using System.Text;
 
 namespace GameSpace.Sprites
 {
-    class QuestionBlockSprite : ISprite
+    class QuestionBlockSprite : AbstractSprite
     {
-        private protected int currentFrame;
-        private protected int totalFrames;
-        private protected int frameHeight;
-        private protected int frameWidth;
-        private int startingPointX;
-        private int startingPointY;
-        private int offsetX;
-
-        private protected int timeSinceLastFrame;
-        private protected int milliSecondsPerFrame;
-
-        private bool isVisible;
-
-        private Point frameOrigin;
-        private Point frameSize;
-        private Point atlasSize;
-        private Point currentFramePoint;
-
-
-        public Texture2D Texture { get; set; }
 
         public QuestionBlockSprite(Texture2D texture, int rows, int columns, int totalFrames, int startingPointX,
             int startingPointY)
@@ -55,7 +35,7 @@ namespace GameSpace.Sprites
             #endregion
         }
 
-        public void Draw(SpriteBatch spriteBatch, Vector2 location)
+        public override void Draw(SpriteBatch spriteBatch, Vector2 location)
         {
             if (isVisible)
             {
@@ -71,7 +51,7 @@ namespace GameSpace.Sprites
             }
         }
 
-        public void Update(GameTime gameTime)
+        public override void Update(GameTime gameTime)
         {
             if (isVisible && totalFrames > 1)
             {
@@ -92,16 +72,6 @@ namespace GameSpace.Sprites
                     if (currentFramePoint.X >= totalFrames) currentFramePoint.X = startingPointX;
                 }
             }
-        }
-
-        public void SetVisible()
-        {
-            isVisible = !isVisible;
-        }
-
-        public void UpdateLocation(int dx, int dy)
-        {
-            throw new System.NotImplementedException();
         }
     }
 }
