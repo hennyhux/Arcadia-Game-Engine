@@ -29,7 +29,7 @@ namespace GameSpace.GameObjects.BlockObjects
         //private bool newState;
         private MarioStates state;
 
-        public MarioStates states { get; set; }
+        public static MarioStates states { get; set; }
 
         //public Mario(Game1 game, Texture2D texture)
         public Mario(Game1 game)
@@ -40,6 +40,12 @@ namespace GameSpace.GameObjects.BlockObjects
         public MarioStates getStates()
         {
             return this.state;
+        }
+
+        //testing method dont delete will break the whole program!!!!!
+        public static Boolean isSuper()
+        {
+            return true;
         }
 
         public void Draw(SpriteBatch spritebatch, Vector2 location)

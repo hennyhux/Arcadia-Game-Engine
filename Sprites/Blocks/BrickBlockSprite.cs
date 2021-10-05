@@ -8,7 +8,8 @@ namespace GameSpace.Sprites
 {
     public class BrickBlockSprite : AbstractSprite
     {
-        public BrickBlockSprite(Texture2D texture, int rows, int columns, int totalFrames, Vector2 initalPosition)
+
+        public BrickBlockSprite(Texture2D texture, int rows, int columns, int totalFrames)
         {
             this.Texture = texture;
             isVisible = true;
@@ -18,7 +19,6 @@ namespace GameSpace.Sprites
             frameHeight = rows;
             currentFrame = 0;
             this.totalFrames = totalFrames;
-            location = initalPosition;
         }
 
         public override void Update(GameTime gametime)

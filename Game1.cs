@@ -15,17 +15,12 @@ namespace GameSpace
         private protected SpriteBatch spriteBatch;
 
         #region Object Factories
-        private BlockObjectFactory blockObjectFactory;
+        private ObjectFactory objectFactory;
         private MarioFactory marioFactory;
-        private ItemObjectFactory itemObjectFactory;
-        private EnemyObjectFactory enemyObjectFactory;
         #endregion
 
         #region Lists
-        private List<IBlockObjects> blocks;
-        private List<IEnemyObjects> enemies;
         private List<IController> controllers;
-        private List<IItemObjects> items;
         private List<IGameObjects> objects;
         #endregion
 
@@ -33,7 +28,7 @@ namespace GameSpace
 
         public Mario GetMario { get => mario; }
         public GraphicsDeviceManager Graphics { get => graphics; }
-        public List<IBlockObjects> Blocks { get => blocks; }
+        public List<IGameObjects> Objects { get => objects; }
 
         public Game1()
         {
@@ -49,9 +44,7 @@ namespace GameSpace
             };
 
             marioFactory = MarioFactory.GetInstance(this);
-            enemyObjectFactory = EnemyObjectFactory.GetInstance();
-            blockObjectFactory = BlockObjectFactory.GetInstance(this);
-            itemObjectFactory = ItemObjectFactory.GetInstance(this);
+            objectFactory = ObjectFactory.GetInstance(this);
             base.Initialize();
         }
 
@@ -69,30 +62,16 @@ namespace GameSpace
             #endregion
 
             #region Loading Lists
-            blocks = new List<IBlockObjects>()
-            {
-                blockObjectFactory.ReturnBrickBlockObject(), blockObjectFactory.ReturnStairBlockObject(),
-                blockObjectFactory.ReturnFloorBlockObject(), blockObjectFactory.ReturnQuestionBlockObject(),
-                blockObjectFactory.ReturnUsedBlockObject(), blockObjectFactory.ReturnHiddenBlockObject()
-            };
-
-            enemies = new List<IEnemyObjects>()
-            {
-                enemyObjectFactory.ReturnGoombaObject(), enemyObjectFactory.ReturnGreenKoopaObject(),
-                enemyObjectFactory.ReturnRedKoopaObject()
-            };
-
-            items = new List<IItemObjects>()
-            {
-                itemObjectFactory.ReturnFireFlowerObject(), itemObjectFactory.ReturnOneUpShroomObject(), 
-                itemObjectFactory.ReturnStarObject(), itemObjectFactory.ReturnSuperShroomObject(),
-                itemObjectFactory.ReturnCoinObject()
-            };
-
             objects = new List<IGameObjects>()
             {
+                objectFactory.CreateBrickBlockObject(), objectFactory.CreateStairBlockObject(),
+                objectFactory.CreateFloorBlockObject(), objectFactory.CreateQuestionBlockObject(), 
+                objectFactory.CreateUsedBlockObject(), objectFactory.CreateHiddenBlockObject(),
 
-            }
+                objectFactory.CreateGoombaObject(), objectFactory.CreateGreenKoopaObject(),
+                objectFactory.CreateRedKoopaObject()
+    
+            };
             #endregion
 
             mario = marioFactory.ReturnMario();
@@ -100,27 +79,18 @@ namespace GameSpace
 
         protected override void Update(GameTime gameTime)
         {
+            mario.Update(gameTime);
+
             foreach (IController controller in controllers)
             {
                 controller.Update();
             }
 
-            foreach (IBlockObjects block in blocks)
+            foreach(IGameObjects gameObject in objects)
             {
-                block.Update(gameTime);
+                gameObject.Update(gameTime);
             }
 
-            foreach (IEnemyObjects enemy in enemies)
-            {
-                enemy.Update(gameTime);
-            }
-
-            foreach (IItemObjects item in items)
-            {
-                item.Update(gameTime);
-            }
-
-            mario.Update(gameTime);
             base.Update(gameTime);
         }
 
@@ -129,19 +99,9 @@ namespace GameSpace
             GraphicsDevice.Clear(Color.CornflowerBlue);
             spriteBatch.Begin(blendState: BlendState.AlphaBlend);
 
-            foreach (IBlockObjects block in blocks)
+            foreach (IGameObjects gameObject in objects)
             {
-                block.Draw(spriteBatch, new Vector2(0, 0));
-            }
-
-            foreach (IEnemyObjects enemy in enemies)
-            {
-                enemy.Draw(spriteBatch, new Vector2(0, 0));
-            }
-
-            foreach (IItemObjects item in items)
-            {
-                item.Draw(spriteBatch, new Vector2(0, 0));
+                gameObject.Draw(spriteBatch);
             }
 
             mario.Draw(spriteBatch, new Vector2(500, 400));

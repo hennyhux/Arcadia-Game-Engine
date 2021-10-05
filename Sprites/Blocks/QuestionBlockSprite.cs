@@ -46,7 +46,7 @@ namespace GameSpace.Sprites
                     frameOrigin.Y + currentFramePoint.Y * frameSize.Y,
                     frameSize.X,
                     frameSize.Y);
-                Rectangle destinationRectangle = new Rectangle(600, 147, width *2 , height *2);
+                Rectangle destinationRectangle = new Rectangle((int)location.X, (int)location.Y, width *2 , height *2);
                 spriteBatch.Draw(Texture, destinationRectangle, sourceRectangle, Color.White);
             }
         }

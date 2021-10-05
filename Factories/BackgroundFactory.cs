@@ -26,11 +26,6 @@ namespace GameSpace.Factories
         {
             RegularBackground = content.Load<Texture2D>("Background/Background");
         }
-
-        public ISprite ReturnRegularBackground()
-        {
-            return new BackgroundRegularSprite(RegularBackground);
-        }
         
     }
 }

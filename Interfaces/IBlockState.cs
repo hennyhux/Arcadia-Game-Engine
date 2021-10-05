@@ -6,11 +6,8 @@ using System.Text;
 
 namespace GameSpace.Interfaces
 {
-    public interface IBlockStates
+    public interface IBlockState
     {
-        public void Initiate();
-        public void Draw(SpriteBatch spriteBatch, Vector2 Location);
         public void Update(GameTime gametime);
-
     }
 }
