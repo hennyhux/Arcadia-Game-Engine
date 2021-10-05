@@ -39,6 +39,26 @@ namespace GameSpace.GameObjects.EnemyObjects
         {
             //death when triggered
         }
+
+        public void SetPosition(Rectangle destination)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void SetPosition(Vector2 location)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void HandleCollsion()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void HandleCollision(IGameObjects entity)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
 

@@ -1,11 +1,10 @@
 ﻿using GameSpace.Factories;
-using GameSpace.GameObjects;
 using GameSpace.GameObjects.BlockObjects;
-using GameSpace.GameObjects.ItemObjects;
 using GameSpace.Interfaces;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
+using GameSpace.EntitiesManager;
 
 namespace GameSpace
 {
@@ -70,9 +69,10 @@ namespace GameSpace
 
                 objectFactory.CreateGoombaObject(), objectFactory.CreateGreenKoopaObject(),
                 objectFactory.CreateRedKoopaObject()
-    
             };
             #endregion
+
+            EntityManager.CopyList(objects);
 
             mario = marioFactory.ReturnMario();
         }
@@ -86,11 +86,8 @@ namespace GameSpace
                 controller.Update();
             }
 
-            foreach(IGameObjects gameObject in objects)
-            {
-                gameObject.Update(gameTime);
-            }
-
+            EntityManager.Update(gameTime);
+            EntityManager.HandleCollisions();
             base.Update(gameTime);
         }
 
@@ -99,10 +96,7 @@ namespace GameSpace
             GraphicsDevice.Clear(Color.CornflowerBlue);
             spriteBatch.Begin(blendState: BlendState.AlphaBlend);
 
-            foreach (IGameObjects gameObject in objects)
-            {
-                gameObject.Draw(spriteBatch);
-            }
+           EntityManager.Draw(spriteBatch);
 
             mario.Draw(spriteBatch, new Vector2(500, 400));
 

@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 
 namespace GameSpace.GameObjects.EnemyObjects
@@ -38,6 +39,16 @@ namespace GameSpace.GameObjects.EnemyObjects
         public void Trigger()
         {
             //death when triggered
+        }
+
+        public void SetPosition(Vector2 location)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void HandleCollision(IGameObjects entity)
+        {
+            
         }
     }
 }

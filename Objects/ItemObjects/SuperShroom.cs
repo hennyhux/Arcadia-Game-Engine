@@ -29,6 +29,26 @@ namespace GameSpace.GameObjects.ItemObjects
             state.Draw(spritebatch, new Vector2(50, 250));
         }
 
+        public void HandleCollision(IGameObjects entity)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void HandleCollsion()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void SetPosition(Rectangle destination)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void SetPosition(Vector2 location)
+        {
+            throw new NotImplementedException();
+        }
+
         public void Trigger()
         {
             state.Trigger();

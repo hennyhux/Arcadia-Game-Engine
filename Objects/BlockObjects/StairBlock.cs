@@ -42,5 +42,20 @@ namespace GameSpace.GameObjects.BlockObjects
         {
             
         }
+
+        public void SetPosition(Vector2 location)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void HandleCollsion()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void HandleCollision(IGameObjects entity)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

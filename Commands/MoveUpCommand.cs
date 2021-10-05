@@ -1,4 +1,6 @@
-﻿using System;
+﻿using GameSpace.EntitiesManager;
+using Microsoft.Xna.Framework;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -15,7 +17,7 @@ namespace GameSpace.Commands
 
         public void Execute()
         {
-            game.GetMario.Jump();
+            EntityManager.AccessItem(0).SetPosition(new Vector2(0, 1));
         }
 
         public void Unexecute()

@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 
 namespace GameSpace.GameObjects.BlockObjects
@@ -19,13 +20,13 @@ namespace GameSpace.GameObjects.BlockObjects
         public Vector2 Velocity { get; set; }
         public Vector2 Acceleration { get; set; }
 
-        public Vector2 Location => throw new NotImplementedException();
+        public Vector2 Location { get; set; }
 
         public BrickBlock(Vector2 initalPosition)
         {
             this.state = new StateBlockIdle();
             this.Sprite = BlockSpriteFactory.GetInstance().ReturnBrickBlock();
-            this.Position = initalPosition; 
+            this.Position = initalPosition;
         }
 
         public void Draw(SpriteBatch spritebatch)
@@ -41,6 +42,18 @@ namespace GameSpace.GameObjects.BlockObjects
         public void Trigger()
         {
             state = new StateBlockBumped(this);
+        }
+
+        public void SetPosition(Vector2 newLocation)
+        {
+
+            Velocity = (float)8 * newLocation;
+            Position += Velocity;
+        }
+
+        public void HandleCollision(IGameObjects entity)
+        {
+            Debug.WriteLine("COLLLISON DETECTED");
         }
     }
 }

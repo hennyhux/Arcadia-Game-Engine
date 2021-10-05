@@ -24,7 +24,6 @@ namespace GameSpace.Factories
                 instance = new ObjectFactory();
             }
             return instance;
-
         }
 
         private ObjectFactory()
