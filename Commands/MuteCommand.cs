@@ -3,7 +3,7 @@
     //Future command 
     public class MuteCommand : ICommand
     {
-        public MuteCommand(Game1 game)
+        public MuteCommand(GameRoot game)
         {
 
         }

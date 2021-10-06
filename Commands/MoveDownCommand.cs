@@ -6,8 +6,8 @@ namespace GameSpace.Commands
 {
     public class MoveDownCommand : ICommand
     {
-        private Game1 game;
-        public MoveDownCommand(Game1 game)
+        private GameRoot game;
+        public MoveDownCommand(GameRoot game)
         {
             this.game = game;
         }

@@ -1,4 +1,6 @@
 ﻿using GameSpace.EntitiesManager;
+using GameSpace.Factories;
+using GameSpace.Interfaces;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
@@ -8,21 +10,21 @@ namespace GameSpace.Commands
 {
     public class MoveUpCommand : ICommand
     {
-        private protected Game1 game;
+        private IGameObjects reciever;
 
-        public MoveUpCommand(Game1 game)
+        public MoveUpCommand(IGameObjects block)
         {
-            this.game = game;
+            this.reciever = block;
         }
 
         public void Execute()
         {
-            EntityManager.AccessItem(0).SetPosition(new Vector2(0, 1));
+            EntityManager.MoveBlock(0, 1);
         }
 
         public void Unexecute()
         {
-
+            EntityManager.MoveBlock(0, -1);
         }
     }
 }

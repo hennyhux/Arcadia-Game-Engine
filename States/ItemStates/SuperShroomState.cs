@@ -13,7 +13,7 @@ namespace GameSpace.States.ItemStates
         private ISprite sprite;
         private bool triggered;
 
-        public SuperShroomState(Game1 game)
+        public SuperShroomState(GameRoot game)
         {
             this.sprite = ItemSpriteFactory.GetInstance().ReturnSuperShrooom();
             triggered = false;

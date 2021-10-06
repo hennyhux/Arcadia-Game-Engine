@@ -1,4 +1,5 @@
-﻿using GameSpace.Interfaces;
+﻿using GameSpace.EntitiesManager;
+using GameSpace.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -6,16 +7,16 @@ namespace GameSpace
 {
     public class ChangeBlockCommand : ICommand
     {
-        private protected Game1 game;
+        private static IGameObjects reciever;
 
-        public ChangeBlockCommand(Game1 game)
+        public ChangeBlockCommand(IGameObjects block)
         {
-            this.game = game;
-
+            reciever = block;
+            
         }
         public void Execute()
         {
-            game.Objects.ElementAt<IGameObjects>(0).Trigger();
+            reciever.Trigger();
         }
 
         public void Unexecute()

@@ -12,8 +12,10 @@ namespace GameSpace
 
         private KeyboardState previousState;
         private protected CommandList commands;
+        private ICommand executeCommand;
+        private Dictionary<Keys, ICommand> command;
 
-        public KeyboardInput(Game1 game)
+        public KeyboardInput(GameRoot game)
         {
             previousState = new KeyboardState();
             commands = new CommandList(game);

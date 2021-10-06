@@ -1,4 +1,6 @@
 ﻿using GameSpace.Commands;
+using GameSpace.EntitiesManager;
+using GameSpace.Enums;
 using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
@@ -13,7 +15,7 @@ namespace GameSpace
         private Dictionary<Keys, ICommand> keyboardCommands;
         private Dictionary<Buttons, ICommand> controllerCommands;
 
-        public CommandList(Game1 game)
+        public CommandList(GameRoot game)
         {
             keyboardCommands = new Dictionary<Keys, ICommand>()
             {
@@ -25,17 +27,16 @@ namespace GameSpace
                 {Keys.Right, new MoveRightCommand(game)},
                 {Keys.A, new MoveLeftCommand(game)},
                 {Keys.Left, new MoveLeftCommand(game)},
-                {Keys.W, new MoveUpCommand(game)},
-                {Keys.Up, new MoveUpCommand(game)},
+                {Keys.W, new MoveUpCommand(EntityManager.FindBlock((int)BLOCKID.BRICKBLOCK))},
                 {Keys.S, new MoveDownCommand(game)},
                 {Keys.Down, new MoveDownCommand(game)},
                 {Keys.Y, new StateStandardMarioCommand(game)},
                 {Keys.U, new StateSuperMarioCommand(game)},
                 {Keys.I, new StateFireMarioCommand(game)},
                 {Keys.O, new StateDeadMarioCommand(game)},
-                {Keys.B, new ChangeBlockCommand(game)},
-                {Keys.H, new ShowHiddenBlockCommand(game)},
-                {Keys.OemQuestion, new ChangeQuestionBlockCommand(game)}
+                {Keys.B, new ChangeBlockCommand(EntityManager.FindBlock((int)BLOCKID.BRICKBLOCK))},
+                {Keys.H, new ShowHiddenBlockCommand(EntityManager.FindBlock((int)BLOCKID.HIDDENBLOCK))},
+                {Keys.OemQuestion, new ChangeQuestionBlockCommand(EntityManager.FindBlock((int)BLOCKID.QUESTIONBLOCK))}
                 // Jump, crouch and dash/throw fireball
             };
 
@@ -44,7 +45,6 @@ namespace GameSpace
                 {Buttons.Start, new ExitCommand(game)},
                 {Buttons.DPadLeft, new MoveLeftCommand(game)},
                 {Buttons.DPadRight, new MoveRightCommand(game)},
-                {Buttons.A, new MoveUpCommand(game)},
                 {Buttons.DPadDown, new MoveDownCommand(game)},
             };
         }

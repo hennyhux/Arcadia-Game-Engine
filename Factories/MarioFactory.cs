@@ -11,11 +11,11 @@ namespace GameSpace.Factories
 {
     public class MarioFactory
     {
-        private static protected Game1 instanceGame;
+        private static protected GameRoot instanceGame;
         private Texture2D normalMarioSprite;
         private static MarioFactory instance;
 
-        public static MarioFactory GetInstance(Game1 game)
+        public static MarioFactory GetInstance(GameRoot game)
         {
             if (instance == null)
             {

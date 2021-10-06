@@ -13,7 +13,7 @@ namespace GameSpace.States.ItemStates
         private ISprite sprite;
         private bool triggered;
 
-        public FireFlowerState(Game1 game)
+        public FireFlowerState(GameRoot game)
         {
             this.sprite = ItemSpriteFactory.GetInstance().ReturnFireFlower();
             triggered = false;

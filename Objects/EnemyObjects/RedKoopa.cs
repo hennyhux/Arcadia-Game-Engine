@@ -18,6 +18,10 @@ namespace GameSpace.GameObjects.EnemyObjects
 
         public Vector2 Location => throw new NotImplementedException();
 
+        public Rectangle Rect { get; set; }
+
+        public int ObjectID => throw new NotImplementedException();
+
         public RedKoopa(Vector2 initalPosition)
         {
             //some initial state 

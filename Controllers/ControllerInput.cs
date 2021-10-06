@@ -15,7 +15,7 @@ namespace GameSpace
         private GamePadState emptyInput;
         private protected CommandList commands;
 
-        public ControllerInput(Game1 game)
+        public ControllerInput(GameRoot game)
         {
             previousState = GamePad.GetState(PlayerIndex.One);
             emptyInput = new GamePadState();

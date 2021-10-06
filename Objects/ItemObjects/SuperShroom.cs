@@ -12,7 +12,7 @@ namespace GameSpace.GameObjects.ItemObjects
     {
         private IItemStates state;
 
-        public SuperShroom(Game1 game)
+        public SuperShroom(GameRoot game)
         {
             state = new SuperShroomState(game);
         }
@@ -23,6 +23,9 @@ namespace GameSpace.GameObjects.ItemObjects
         public Vector2 Position { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
         public Vector2 Velocity { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
         public Vector2 Acceleration { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public Rectangle Rect { get; set; }
+
+        public int ObjectID => throw new NotImplementedException();
 
         public void Draw(SpriteBatch spritebatch)
         {

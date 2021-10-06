@@ -8,7 +8,7 @@ using GameSpace.EntitiesManager;
 
 namespace GameSpace
 {
-    public class Game1 : Game
+    public class GameRoot : Game
     {
         private protected readonly GraphicsDeviceManager graphics;
         private protected SpriteBatch spriteBatch;
@@ -29,7 +29,7 @@ namespace GameSpace
         public GraphicsDeviceManager Graphics { get => graphics; }
         public List<IGameObjects> Objects { get => objects; }
 
-        public Game1()
+        public GameRoot()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
@@ -37,13 +37,9 @@ namespace GameSpace
 
         protected override void Initialize()
         {
-            controllers = new List<IController>()
-            {
-                new KeyboardInput(this), new ControllerInput(this)
-            };
 
             marioFactory = MarioFactory.GetInstance(this);
-            objectFactory = ObjectFactory.GetInstance(this);
+            objectFactory = ObjectFactory.GetInstance();
             base.Initialize();
         }
 
@@ -74,6 +70,11 @@ namespace GameSpace
 
             EntityManager.CopyList(objects);
 
+            controllers = new List<IController>()
+            {
+                new KeyboardInput(this), new ControllerInput(this)
+            };
+
             mario = marioFactory.ReturnMario();
         }
 
@@ -96,7 +97,7 @@ namespace GameSpace
             GraphicsDevice.Clear(Color.CornflowerBlue);
             spriteBatch.Begin(blendState: BlendState.AlphaBlend);
 
-           EntityManager.Draw(spriteBatch);
+            EntityManager.Draw(spriteBatch);
 
             mario.Draw(spriteBatch, new Vector2(500, 400));
 

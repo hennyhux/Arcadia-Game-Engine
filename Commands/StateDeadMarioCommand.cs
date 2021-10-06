@@ -6,9 +6,9 @@ namespace GameSpace.Commands
 {
     public class StateDeadMarioCommand : ICommand
     {
-        private protected Game1 game;
+        private protected GameRoot game;
 
-        public StateDeadMarioCommand(Game1 game)
+        public StateDeadMarioCommand(GameRoot game)
         {
             this.game = game;
         }

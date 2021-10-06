@@ -1,8 +1,11 @@
-﻿using GameSpace.Interfaces;
+﻿using GameSpace.Enums;
+using GameSpace.Factories;
+using GameSpace.Interfaces;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 
@@ -11,8 +14,9 @@ using System.Text;
 namespace GameSpace.EntitiesManager
 {
     /*If a list is modified while it is being iterated over it will cause an exception*/
-    static class EntityManager
+    public static class EntityManager
     {
+
         private static List<IGameObjects> gameObjects = new List<IGameObjects>();
 
         public static int Count { get { return gameObjects.Count; } }
@@ -27,11 +31,6 @@ namespace GameSpace.EntitiesManager
             gameObjects = objectList;
         }
 
-        public static IGameObjects AccessItem(int index)
-        {
-            return gameObjects.ElementAt<IGameObjects>(index);
-        }
-
         public static void Draw(SpriteBatch spriteBatch)
         {
             foreach (IGameObjects entity in gameObjects)
@@ -39,7 +38,7 @@ namespace GameSpace.EntitiesManager
                 entity.Draw(spriteBatch);
             }
         }
-        
+
         public static void Update(GameTime gametime)
         {
             foreach (IGameObjects entity in gameObjects)
@@ -48,14 +47,41 @@ namespace GameSpace.EntitiesManager
             }
         }
 
+        public static void MoveBlock(int blockID, int direction)
+        {
+            IGameObjects temp;
+            for (int i = 0; i < gameObjects.Count; i++)
+            {
+                if (i == blockID)
+                {
+                    temp = gameObjects.ElementAt<IGameObjects>(i);
+                    temp.SetPosition(new Vector2(-1, 0));
+                }
+            }
+        }
+
+        public static IGameObjects FindBlock(int blockID)
+        {
+            foreach (IGameObjects entity in gameObjects)
+            {
+                if (entity.ObjectID == blockID)
+                {
+                    return entity;
+                }
+            }
+            return null; //null bad 
+        }
+
+        #region Collisions
         private static bool IsColliding(IGameObjects a, IGameObjects b)
         {
-            if (a.Position.Y > b.Position.Y && a.Position.X == b.Position.X)
-            {
-                return true;
-            }
 
-            return false;
+            return a.Rect.Intersects(b.Rect);
+        }
+
+        private static bool IsOutOfBounds(IGameObjects a)
+        {
+            return a.Position.X < -1;
         }
 
         public static void HandleCollisions()
@@ -69,6 +95,17 @@ namespace GameSpace.EntitiesManager
                         gameObjects[j].HandleCollision(gameObjects[i]);
                     }
                 }
+
+            foreach (IGameObjects entity in gameObjects)
+            {
+                if (IsOutOfBounds(entity))
+                {
+                    entity.HandleCollision(entity);
+                }
+            }
         }
+        #endregion
     }
 }
+
+

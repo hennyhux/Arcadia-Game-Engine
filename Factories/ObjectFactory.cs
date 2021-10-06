@@ -12,15 +12,14 @@ namespace GameSpace.Factories
     public class ObjectFactory
     {
 
-        private static protected Game1 instanceGame;
+        private static protected GameRoot instanceGame;
 
         private static ObjectFactory instance;
 
-        public static ObjectFactory GetInstance(Game1 game)
+        public static ObjectFactory GetInstance()
         {
             if (instance == null)
             {
-                instanceGame = game;
                 instance = new ObjectFactory();
             }
             return instance;
@@ -82,30 +81,31 @@ namespace GameSpace.Factories
         #endregion
 
 
-        public IGameObjects CreateStarObject()
-        {
-            return new Star(instanceGame);
-        }
+        //    public IGameObjects CreateStarObject()
+        //    {
+        //        return new Star(instanceGame);
+        //    }
 
-        public IGameObjects CreateCoinObject()
-        {
-            return new Coin(instanceGame);
-        }
+        //    public IGameObjects CreateCoinObject()
+        //    {
+        //        return new Coin(instanceGame);
+        //    }
 
-        public IGameObjects CreateFireFlowerObject()
-        {
-            return new FireFlower(instanceGame);
-        }
+        //    public IGameObjects CreateFireFlowerObject()
+        //    {
+        //        return new FireFlower(instanceGame);
+        //    }
 
-        public IGameObjects CreateOneUpShroomObject()
-        {
-            return new OneUpShroom(instanceGame);
-        }
+        //    public IGameObjects CreateOneUpShroomObject()
+        //    {
+        //        return new OneUpShroom(instanceGame);
+        //    }
 
-        public IGameObjects CreateSuperShroomObject()
-        {
-            return new SuperShroom(instanceGame);
-        }
+        //    public IGameObjects CreateSuperShroomObject()
+        //    {
+        //        return new SuperShroom(instanceGame);
+        //    }
 
+        //}
     }
 }

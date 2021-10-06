@@ -8,16 +8,16 @@ namespace GameSpace.Commands
 {
     public class ShowHiddenBlockCommand : ICommand
     {
-        private protected Game1 game;
+        private static IGameObjects reciever;
 
-        public ShowHiddenBlockCommand(Game1 game)
+        public ShowHiddenBlockCommand(IGameObjects block)
         {
-            this.game = game;
+            reciever = block;
 
         }
         public void Execute()
         {
-            game.Objects.ElementAt<IGameObjects>(5).Trigger();
+            reciever.Trigger();
         }
 
         public void Unexecute()

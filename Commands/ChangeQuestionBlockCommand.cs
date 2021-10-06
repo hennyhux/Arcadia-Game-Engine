@@ -6,16 +6,16 @@ namespace GameSpace
 {
     public class ChangeQuestionBlockCommand : ICommand
     {
-        private protected Game1 game;
+        private static IGameObjects reciever;
 
-        public ChangeQuestionBlockCommand(Game1 game)
+        public ChangeQuestionBlockCommand(IGameObjects block)
         {
-            this.game = game;
+            reciever = block;
 
         }
         public void Execute()
         {
-            game.Objects.ElementAt<IGameObjects>(3).Trigger();
+            reciever.Trigger();
         }
 
         public void Unexecute()

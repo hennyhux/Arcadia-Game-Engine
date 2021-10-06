@@ -1,4 +1,5 @@
-﻿using GameSpace.Factories;
+﻿using GameSpace.Enums;
+using GameSpace.Factories;
 using GameSpace.Interfaces;
 using GameSpace.States;
 using GameSpace.States.BlockStates;
@@ -21,8 +22,13 @@ namespace GameSpace.GameObjects.BlockObjects
 
         public Vector2 Location => throw new NotImplementedException();
 
+        public Rectangle Rect { get; set; }
+
+        public int ObjectID { get; set; }
+
         public UsedBlock(Vector2 initalPosition)
         {
+            this.ObjectID = (int)BLOCKID.USEDBLOCK;
             this.state = new StateBlockIdle();
             this.Sprite = BlockSpriteFactory.GetInstance().ReturnUsedBlock();
             this.Position = initalPosition;
@@ -43,21 +49,10 @@ namespace GameSpace.GameObjects.BlockObjects
             state = new StateBlockBumped(this);
         }
 
-        public void SetPosition(Rectangle destination)
-        {
-            throw new NotImplementedException();
-        }
-
         public void SetPosition(Vector2 location)
         {
             throw new NotImplementedException();
         }
-
-        public void HandleCollsion()
-        {
-            throw new NotImplementedException();
-        }
-
         public void HandleCollision(IGameObjects entity)
         {
             throw new NotImplementedException();

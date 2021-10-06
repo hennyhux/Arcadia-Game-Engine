@@ -13,7 +13,7 @@ namespace GameSpace.States.ItemStates
         private ISprite sprite;
         private bool triggered;
 
-        public StarState(Game1 game)
+        public StarState(GameRoot game)
         {
             this.sprite = ItemSpriteFactory.GetInstance().ReturnStar();
             triggered = false;

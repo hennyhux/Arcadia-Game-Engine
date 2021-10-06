@@ -13,7 +13,7 @@ namespace GameSpace.States.ItemStates
         private ISprite sprite;
         private bool triggered;
 
-        public OneUpShroomState(Game1 game)
+        public OneUpShroomState(GameRoot game)
         {
             this.sprite = ItemSpriteFactory.GetInstance().ReturnOneUpShroom();
             triggered = false;

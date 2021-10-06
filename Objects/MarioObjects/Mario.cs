@@ -32,7 +32,7 @@ namespace GameSpace.GameObjects.BlockObjects
         public static MarioStates states { get; set; }
 
         //public Mario(Game1 game, Texture2D texture)
-        public Mario(Game1 game)
+        public Mario(GameRoot game)
         {
             this.state = new MarioStates(game);
         }

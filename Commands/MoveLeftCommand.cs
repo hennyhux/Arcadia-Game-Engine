@@ -5,9 +5,9 @@ namespace GameSpace
 {
     public class MoveLeftCommand : ICommand
     {
-        private protected Game1 game;
+        private protected GameRoot game;
 
-        public MoveLeftCommand(Game1 game)
+        public MoveLeftCommand(GameRoot game)
         {
             this.game = game;
         }

@@ -52,7 +52,7 @@ namespace GameSpace.States.BlockStates
         private int[] YHeight = new int[] { 14, 0, 16, 16, 0, 15, 16, 15, 16, 16, 15, 16, 15, 0, 16, 16, 0, 14, 16, 15, 0, 0, 15, 15, 15, 15, 15, 15, 15, 15, 0, 0, 15, 16, 0, 22, 32, 32, 0, 30, 31, 32, 32, 32, 32, 31, 30, 0, 32, 32, 22, 0, 30, 27, 13, 30, 30, 29, 29, 29, 29, 29, 29, 30, 30, 30, 27, 30, 0, 22, 32, 32, 30, 30, 31, 32, 32, 32, 32, 31, 30, 30, 32, 32, 22, 0, 30, 27, 13, 30, 30, 29, 29, 29, 29, 29, 29, 30, 30, 30, 27, 30 };
         private int[] totalFramesAnimation = new int[] { 1, 1, 1, 1, 1, 3, 3, 3, 1, 1, 3, 3, 3, 1, 1, 1, 1, 1, 2, 2, 0, 0, 3, 3, 3, 1, 1, 3, 3, 3, 0, 0, 2, 2, 0, 1, 1, 1, 0, 3, 3, 3, 1, 1, 3, 3, 3, 0, 1, 1, 1, 0, 2, 2, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 2, 2, 0, 1, 1, 1, 2, 3, 3, 3, 1, 1, 3, 3, 3, 1, 1, 1, 1, 0, 2, 2, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 2, 2 };
 
-        public MarioStates(Game1 game)
+        public MarioStates(GameRoot game)
         //public MarioStates(Texture2D texture, int x, int y, int isFacingRight, int powerup, int action)
         {
             //marioFactory = game.GetMarioFactory.ReturnMario();
@@ -83,7 +83,7 @@ namespace GameSpace.States.BlockStates
             facing = SpriteEffects.None;*/
         }
 
-        public MarioStates getState(Game1 game)
+        public MarioStates getState(GameRoot game)
         //public MarioStates(Texture2D texture, int x, int y, int isFacingRight, int powerup, int action)
         {
             return this;

@@ -4,7 +4,7 @@
     {
 
         //future command
-        public PauseGameCommand(Game1 game)
+        public PauseGameCommand(GameRoot game)
         {
 
         }

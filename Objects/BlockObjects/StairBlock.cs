@@ -21,6 +21,10 @@ namespace GameSpace.GameObjects.BlockObjects
 
         public Vector2 Location => throw new NotImplementedException();
 
+        public Rectangle Rect { get; set; }
+
+        public int ObjectID { get; set; }
+
         public StairBlock(Vector2 initalPosition)
         {
             this.state = new StateBlockIdle();

@@ -10,9 +10,9 @@ namespace GameSpace
 {
     public class ToggleFullscreenCommand : ICommand
     {
-        private Game1 game;
+        private GameRoot game;
 
-        public ToggleFullscreenCommand(Game1 game)
+        public ToggleFullscreenCommand(GameRoot game)
         {
             this.game = game;
         }
