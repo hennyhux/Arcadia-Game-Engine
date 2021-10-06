@@ -27,7 +27,6 @@ namespace GameSpace
 
         public Mario GetMario { get => mario; }
         public GraphicsDeviceManager Graphics { get => graphics; }
-        public List<IGameObjects> Objects { get => objects; }
 
         public GameRoot()
         {
@@ -48,11 +47,11 @@ namespace GameSpace
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             #region Loading Factories
-            BlockSpriteFactory.GetInstance().LoadContent(Content);
+            SpriteBlockFactory.GetInstance().LoadContent(Content);
             MarioFactory.GetInstance(this).LoadContent(Content);
-            EnemySpriteFactory.GetInstance().LoadContent(Content);
+            SpriteEnemyFactory.GetInstance().LoadContent(Content);
             BackgroundFactory.GetInstance().LoadContent(Content);
-            ItemSpriteFactory.GetInstance().LoadContent(Content);
+            SpriteItemFactory.GetInstance().LoadContent(Content);
             BackgroundFactory.GetInstance().LoadContent(Content);
             #endregion
 
@@ -70,10 +69,12 @@ namespace GameSpace
 
             EntityManager.CopyList(objects);
 
+            #region Loading Controllers
             controllers = new List<IController>()
             {
                 new KeyboardInput(this), new ControllerInput(this)
             };
+            #endregion
 
             mario = marioFactory.ReturnMario();
         }
@@ -88,7 +89,7 @@ namespace GameSpace
             }
 
             EntityManager.Update(gameTime);
-            EntityManager.HandleCollisions();
+
             base.Update(gameTime);
         }
 

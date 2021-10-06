@@ -13,4 +13,14 @@ namespace GameSpace.Enums
         STAIRBLOCK = 4,
         USEDBLOCK = 5,
     };
+
+    public enum ITEMID
+    {
+
+    };
+
+    public enum ENEMYID
+    {
+
+    };
 }

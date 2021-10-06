@@ -30,7 +30,7 @@ namespace GameSpace.GameObjects.BlockObjects
         {
             this.ObjectID = (int)BLOCKID.FlOORBLOCK;
             this.state = new StateBlockIdle();
-            this.Sprite = BlockSpriteFactory.GetInstance().ReturnFloorBlock();
+            this.Sprite = SpriteBlockFactory.GetInstance().ReturnFloorBlock();
             this.Position = initalPosition;
             this.Rect = new Rectangle((int)Position.X, (int)Position.Y, Sprite.Texture.Width * 2, Sprite.Texture.Height * 2);
             Debug.WriteLine("FLOOR BLOCK AT " + "(" + this.Position.X + ", " + this.Position.Y + ")");

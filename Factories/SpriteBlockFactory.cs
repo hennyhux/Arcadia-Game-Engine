@@ -8,7 +8,7 @@ using Microsoft.Xna.Framework;
 
 namespace GameSpace.Factories
 {
-    public class BlockSpriteFactory
+    public class SpriteBlockFactory
     {
 
         #region sprites
@@ -22,9 +22,9 @@ namespace GameSpace.Factories
 
         private Vector2 blockInitalStart;
 
-        private static BlockSpriteFactory instance = new BlockSpriteFactory();
-        public static BlockSpriteFactory GetInstance() => instance;
-        private BlockSpriteFactory()
+        private static SpriteBlockFactory instance = new SpriteBlockFactory();
+        public static SpriteBlockFactory GetInstance() => instance;
+        private SpriteBlockFactory()
         {
             blockInitalStart = new Vector2(0, 0);
         }

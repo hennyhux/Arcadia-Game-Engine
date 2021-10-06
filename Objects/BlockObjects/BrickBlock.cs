@@ -31,7 +31,7 @@ namespace GameSpace.GameObjects.BlockObjects
         {
             this.ObjectID = (int)BLOCKID.BRICKBLOCK;
             this.state = new StateBlockIdle();
-            this.Sprite = BlockSpriteFactory.GetInstance().ReturnBrickBlock();
+            this.Sprite = SpriteBlockFactory.GetInstance().ReturnBrickBlock();
             this.Position = initalPosition;
             this.Rect = new Rectangle((int)Position.X, (int)Position.Y, Sprite.Texture.Width, Sprite.Texture.Height);
             Debug.WriteLine("BRICK BLOCK AT " + "(" + this.Position.X + ", " + this.Position.Y + ")");

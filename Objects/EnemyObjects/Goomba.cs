@@ -26,7 +26,7 @@ namespace GameSpace.GameObjects.EnemyObjects
         public Goomba(Vector2 initalPosition)
         {
             //some initial state 
-            this.Sprite = EnemySpriteFactory.GetInstance().ReturnGoomba();
+            this.Sprite = SpriteEnemyFactory.GetInstance().ReturnGoomba();
             this.Position = initalPosition;
         }
 

@@ -25,7 +25,7 @@ namespace GameSpace.GameObjects.EnemyObjects
         public RedKoopa(Vector2 initalPosition)
         {
             //some initial state 
-            this.Sprite = EnemySpriteFactory.GetInstance().ReturnRedKoopa();
+            this.Sprite = SpriteEnemyFactory.GetInstance().ReturnRedKoopa();
             this.Position = initalPosition;
         }
 

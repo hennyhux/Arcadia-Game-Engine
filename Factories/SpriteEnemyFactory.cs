@@ -7,7 +7,7 @@ using GameSpace.Sprites;
 
 namespace GameSpace.Factories
 {
-    public class EnemySpriteFactory
+    public class SpriteEnemyFactory
     {
 
         #region sprites
@@ -16,18 +16,18 @@ namespace GameSpace.Factories
         private Texture2D RedKoopa;
         #endregion
 
-        private static EnemySpriteFactory instance;
-        public static EnemySpriteFactory GetInstance()
+        private static SpriteEnemyFactory instance;
+        public static SpriteEnemyFactory GetInstance()
         {
             if (instance == null)
             {
-                instance = new EnemySpriteFactory();
+                instance = new SpriteEnemyFactory();
             }
 
             return instance;
         }
 
-        private EnemySpriteFactory()
+        private SpriteEnemyFactory()
         {
 
         }

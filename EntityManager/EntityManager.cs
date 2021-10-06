@@ -45,6 +45,8 @@ namespace GameSpace.EntitiesManager
             {
                 entity.Update(gametime);
             }
+
+            HandleAllCollisions();
         }
 
         public static void MoveBlock(int blockID, int direction)
@@ -72,19 +74,20 @@ namespace GameSpace.EntitiesManager
             return null; //null bad 
         }
 
-        #region Collisions
+        #region Collision Detection
         private static bool IsColliding(IGameObjects a, IGameObjects b)
         {
 
-            return a.Rect.Intersects(b.Rect);
+            return a.Rect.Intersects(b.Rect); //sweep aabb
         }
 
         private static bool IsOutOfBounds(IGameObjects a)
         {
-            return a.Position.X < -1;
+            return a.Position.X < -1 || a.Position.Y < -1;
         }
 
-        public static void HandleCollisions()
+        //Super inefficent method of detection, will change for future sprints 
+        private static void HandleAllCollisions()
         {
             for (int i = 0; i < gameObjects.Count; i++)
                 for (int j = i + 1; j < gameObjects.Count; j++)

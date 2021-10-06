@@ -16,7 +16,7 @@ namespace GameSpace.States
             this.block = block;
             if (block.Sprite.Texture.Name.Equals("Blocks/QuestionBlock"))
             {
-                block.Sprite = new BumpAnimation(BlockSpriteFactory.GetInstance().ReturnUsedBlock().Texture, (int)block.Position.X, (int)block.Position.Y);
+                block.Sprite = new BumpAnimation(SpriteBlockFactory.GetInstance().ReturnUsedBlock().Texture, (int)block.Position.X, (int)block.Position.Y);
             }
 
             else

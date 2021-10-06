@@ -28,7 +28,7 @@ namespace GameSpace.GameObjects.BlockObjects
         public StairBlock(Vector2 initalPosition)
         {
             this.state = new StateBlockIdle();
-            this.Sprite = BlockSpriteFactory.GetInstance().ReturnStairBlock();
+            this.Sprite = SpriteBlockFactory.GetInstance().ReturnStairBlock();
             this.Position = initalPosition;
         }
 

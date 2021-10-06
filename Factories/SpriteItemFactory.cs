@@ -8,7 +8,7 @@ using Microsoft.Xna.Framework;
 
 namespace GameSpace.Factories
 {
-    public class ItemSpriteFactory
+    public class SpriteItemFactory
     {
         #region sprites
         private Texture2D Star;
@@ -17,9 +17,9 @@ namespace GameSpace.Factories
         private Texture2D SuperShroom;
         private Texture2D FireFlower;
         #endregion
-        private static ItemSpriteFactory instance = new ItemSpriteFactory();
-        public static ItemSpriteFactory GetInstance() => instance;
-        private ItemSpriteFactory()
+        private static SpriteItemFactory instance = new SpriteItemFactory();
+        public static SpriteItemFactory GetInstance() => instance;
+        private SpriteItemFactory()
         {
 
         }

@@ -30,7 +30,7 @@ namespace GameSpace.GameObjects.BlockObjects
         {
             this.ObjectID = (int)BLOCKID.USEDBLOCK;
             this.state = new StateBlockIdle();
-            this.Sprite = BlockSpriteFactory.GetInstance().ReturnUsedBlock();
+            this.Sprite = SpriteBlockFactory.GetInstance().ReturnUsedBlock();
             this.Position = initalPosition;
         }
 

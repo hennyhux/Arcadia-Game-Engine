@@ -15,7 +15,7 @@ namespace GameSpace.States.ItemStates
 
         public StarState(GameRoot game)
         {
-            this.sprite = ItemSpriteFactory.GetInstance().ReturnStar();
+            this.sprite = SpriteItemFactory.GetInstance().ReturnStar();
             triggered = false;
         }
 
