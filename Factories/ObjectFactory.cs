@@ -70,12 +70,12 @@ namespace GameSpace.Factories
 
         public IGameObjects CreateGreenKoopaObject()
         {
-            return new GreenKoopa(new Vector2(100, 300));
+            return new GreenKoopa(new Vector2(100, 320));
         }
 
         public IGameObjects CreateRedKoopaObject()
         {
-            return new RedKoopa(new Vector2(100, 350));
+            return new RedKoopa(new Vector2(100, 400));
         }
 
         #endregion

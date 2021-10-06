@@ -324,5 +324,9 @@ namespace GameSpace.States.BlockStates
             Y += dy;
         }
 
+        public void DrawBoundary(SpriteBatch spriteBatch, Rectangle destination)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

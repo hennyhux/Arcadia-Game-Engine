@@ -19,20 +19,26 @@ namespace GameSpace.GameObjects.EnemyObjects
 
         public Vector2 Location => throw new NotImplementedException();
 
-        public Rectangle Rect { get; set; }
+        public Rectangle CollisionBox { get; set; }
 
         public int ObjectID => throw new NotImplementedException();
+        private Boolean hasCollided;
+        private Boolean drawBox;
 
         public Goomba(Vector2 initalPosition)
         {
             //some initial state 
             this.Sprite = SpriteEnemyFactory.GetInstance().ReturnGoomba();
             this.Position = initalPosition;
+            //magic numbers to offset the weird texture atlas resoultion 
+            this.CollisionBox = new Rectangle((int)Position.X + Sprite.Texture.Width / 4, (int)Position.Y, Sprite.Texture.Width / 2, Sprite.Texture.Height * 2);
+            drawBox = true;
         }
 
         public void Draw(SpriteBatch spritebatch)
         {
             Sprite.Draw(spritebatch, Position); //this shouldnt be hardcoded anymore 
+            if (drawBox) Sprite.DrawBoundary(spritebatch, CollisionBox);
         }
 
         public void Update(GameTime gametime)
@@ -52,7 +58,12 @@ namespace GameSpace.GameObjects.EnemyObjects
 
         public void HandleCollision(IGameObjects entity)
         {
-            
+            hasCollided = true;
+        }
+
+        public void ToggleCollisionBoxes()
+        {
+            drawBox = true;
         }
     }
 }

@@ -22,9 +22,12 @@ namespace GameSpace.GameObjects.BlockObjects
 
         public Vector2 Location => throw new NotImplementedException();
 
-        public Rectangle Rect { get; set; }
+        public Rectangle CollisionBox { get; set; }
 
         public int ObjectID { get; set; }
+
+        private Boolean hasCollided;
+        private Boolean drawBox;
 
         public QuestionBlock(Vector2 initalPosition)
         {
@@ -32,11 +35,14 @@ namespace GameSpace.GameObjects.BlockObjects
             this.state = new StateBlockIdle();
             this.Sprite = SpriteBlockFactory.GetInstance().ReturnQuestionBlock();
             this.Position = initalPosition;
+            this.CollisionBox = new Rectangle((int)Position.X, (int)Position.Y, (Sprite.Texture.Width * 2) / 3, Sprite.Texture.Height * 2);
+            drawBox = true;
         }
 
         public void Draw(SpriteBatch spritebatch)
         {
             Sprite.Draw(spritebatch, Position); //this shouldnt be hardcoded anymore 
+            if (drawBox) Sprite.DrawBoundary(spritebatch, CollisionBox);
         }
 
         public void Update(GameTime gametime)
@@ -49,24 +55,19 @@ namespace GameSpace.GameObjects.BlockObjects
             state = new StateBlockBumped(this);
         }
 
-        public void SetPosition(Rectangle destination)
-        {
-            throw new NotImplementedException();
-        }
-
         public void SetPosition(Vector2 location)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void HandleCollsion()
         {
             throw new NotImplementedException();
         }
 
         public void HandleCollision(IGameObjects entity)
         {
-            throw new NotImplementedException();
+            hasCollided = true;
+        }
+
+        public void ToggleCollisionBoxes()
+        {
+            drawBox = true;
         }
     }
 }

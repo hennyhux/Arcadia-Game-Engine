@@ -1,4 +1,5 @@
 ﻿using GameSpace.Enums;
+using GameSpace.Factories;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -30,6 +31,8 @@ namespace GameSpace.Sprites
         protected Point frameSize;
         protected Point atlasSize;
         protected Point currentFramePoint;
+
+        protected Texture2D WhiteRect = SpriteBlockFactory.GetInstance().CreateBoundingBoxTexture();
 
         public virtual Texture2D Texture { get; set; }
         public virtual void SetVisible() { isVisible = !isVisible; }
@@ -69,7 +72,6 @@ namespace GameSpace.Sprites
 
                 Rectangle sourceRectangle = new Rectangle(width * column, height * row, width, height);
                 Rectangle destinationRectangle = new Rectangle((int)location.X, (int)location.Y, width * 2, height *2);
-
                 spriteBatch.Draw(Texture, destinationRectangle, sourceRectangle, Color.White);
             }
         }
@@ -77,6 +79,11 @@ namespace GameSpace.Sprites
         public virtual void UpdateLocation(int dx, int dy)
         {
             
+        }
+
+        public virtual void DrawBoundary(SpriteBatch spriteBatch, Rectangle destination)
+        {
+            spriteBatch.Draw(WhiteRect, destination, Color.Blue *0.4f);
         }
     }
 }

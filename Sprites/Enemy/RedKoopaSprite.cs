@@ -33,5 +33,10 @@ namespace GameSpace.Sprites
             milliSecondsPerFrame = 275; 
             #endregion
         }
+
+        public override void DrawBoundary(SpriteBatch spriteBatch, Rectangle destination)
+        {
+            spriteBatch.Draw(WhiteRect, destination, Color.Red * 0.4f);
+        }
     }
 }
