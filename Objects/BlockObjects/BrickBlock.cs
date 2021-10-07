@@ -67,9 +67,24 @@ namespace GameSpace.GameObjects.BlockObjects
         {
             if (!hasCollided)hasCollided = true;
             //find the direction of collision...
-
+            
             //after finding the direction of collision, play animation 
-            this.Trigger();
+            if (FindCollisionDetection(entity) == (int)CollisionDirection.DOWN)
+            {
+                this.Trigger();
+            }
+        }
+
+        private int FindCollisionDetection(IGameObjects entity)
+        {
+            Rectangle overlap = Rectangle.Intersect(this.CollisionBox, entity.CollisionBox);
+            int direction = 0;
+            if (overlap.Width > overlap.Height)
+            {
+                direction = (int)CollisionDirection.DOWN; // or up! need to find a way to determine it 
+            }
+
+            return direction;
         }
 
         public void ToggleCollisionBoxes()

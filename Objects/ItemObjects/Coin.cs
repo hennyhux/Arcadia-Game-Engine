@@ -29,6 +29,7 @@ namespace GameSpace.GameObjects.ItemObjects
             this.Sprite = SpriteItemFactory.GetInstance().CreateCoin();
             this.Position = initalPosition;
             this.CollisionBox = new Rectangle((int)Position.X, (int)Position.Y, Sprite.Texture.Width * 2 / 4, Sprite.Texture.Height * 2);
+            hasCollided = false;
             drawBox = false;
         }
 
@@ -50,7 +51,8 @@ namespace GameSpace.GameObjects.ItemObjects
 
         public void HandleCollision(IGameObjects entity)
         {
-            throw new NotImplementedException();
+            if (!hasCollided) Sprite.SetVisible();
+            hasCollided = true;
         }
         public void SetPosition(Vector2 location)
         {

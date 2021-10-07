@@ -81,7 +81,7 @@ namespace GameSpace.EntitiesManager
         private static bool IsColliding(IGameObjects a, IGameObjects b)
         {
             Rectangle overLappedRectangle = Rectangle.Intersect(a.CollisionBox, b.CollisionBox);
-            return a.CollisionBox.Intersects(b.CollisionBox); //sweep aabb
+            return a.CollisionBox.Intersects(b.CollisionBox); //TODO: take in consideration ghosting 
         }
 
         private static bool IsOutOfBounds(IGameObjects a)

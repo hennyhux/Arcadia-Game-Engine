@@ -61,10 +61,47 @@ namespace GameSpace.GameObjects.EnemyObjects
         public void HandleCollision(IGameObjects entity)
         {
             if (!hasCollided) hasCollided = true;
-            this.CollisionBox = new Rectangle((int)Position.X + Sprite.Texture.Width / 4, (int)Position.Y + 10, Sprite.Texture.Width / 2, Sprite.Texture.Height * 2);
-            this.Position = new Vector2(this.Position.X, (int)this.Position.Y + 6);
 
+            switch (entity.ObjectID)
+            {
+                //smelly code? lots of conditional statements 
+                case (int)BlockID.BRICKBLOCK:
+                    
+                    if (FindCollisionDetection(entity) == (int)CollisionDirection.LEFT)
+                    {
+                        this.Position = new Vector2(this.Position.X - 10, (int)this.Position.Y);
+                        this.CollisionBox = new Rectangle((int)Position.X - 10 + Sprite.Texture.Width / 4,
+                        (int)Position.Y + 5, Sprite.Texture.Width / 2, Sprite.Texture.Height * 2);
+
+                    }
+
+                    else
+                    {
+                        this.CollisionBox = new Rectangle((int)Position.X + Sprite.Texture.Width / 4,
+                        (int)Position.Y + 5, Sprite.Texture.Width / 2, Sprite.Texture.Height * 2);
+                        this.Position = new Vector2(this.Position.X, (int)this.Position.Y + 6);
+                    }
+                    break;
+
+                case (int)ItemID.COIN:
+                    
+                    break;
+            }
         }
+
+        private int FindCollisionDetection(IGameObjects entity)
+        {
+            Rectangle overlap = Rectangle.Intersect(this.CollisionBox, entity.CollisionBox);
+            int direction = 0;
+            if (overlap.Width < overlap.Height)
+            {
+                Debug.WriteLine("DETECTED");
+                direction = (int)CollisionDirection.LEFT; // or right! need to find a way to determine it 
+            }
+
+            return direction;
+        }
+
 
         public void ToggleCollisionBoxes()
         {

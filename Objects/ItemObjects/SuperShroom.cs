@@ -50,7 +50,7 @@ namespace GameSpace.GameObjects.ItemObjects
 
         public void HandleCollision(IGameObjects entity)
         {
-            throw new NotImplementedException();
+            
         }
 
         public void SetPosition(Vector2 location)
