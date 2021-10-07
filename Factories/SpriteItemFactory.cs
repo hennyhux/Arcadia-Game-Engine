@@ -32,27 +32,27 @@ namespace GameSpace.Factories
             SuperShroom = content.Load<Texture2D>("Items/supermushroom");
             FireFlower = content.Load<Texture2D>("Items/flower");
         }
-        public ISprite ReturnStar()
+        public ISprite CreateStar()
         {
             return new StarSprite(Star, 1, 4, 4, 0, 0);
         }
 
-        public ISprite ReturnSuperShrooom()
+        public ISprite CreateSuperShroom()
         {
             return new SuperShroomSprite(SuperShroom, 1, 1, 1, 0, 0);
         }
 
-        public ISprite ReturnOneUpShroom()
+        public ISprite CreateOneUpShroom()
         {
             return new OneUpShroomSprite(OneUpShroom, 1, 1, 1, 0, 0);
         }
 
-        public ISprite ReturnFireFlower()
+        public ISprite CreateFireFlower()
         {
             return new FireFlowerSprite(FireFlower, 1, 4, 4, 0, 0);
         }
 
-        public ISprite ReturnCoin()
+        public ISprite CreateCoin()
         {
             return new CoinSprite(Coin, 1, 4, 4, 0, 0);
         }

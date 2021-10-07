@@ -17,23 +17,23 @@ namespace GameSpace.EntitiesManager
     public static class EntityManager
     {
 
-        private static List<IGameObjects> gameObjects = new List<IGameObjects>();
+        private static List<IGameObjects> gameEntities = new List<IGameObjects>();
 
-        public static int Count { get { return gameObjects.Count; } }
+        public static int Count { get { return gameEntities.Count; } }
 
         public static void AddEntity(IGameObjects gameObject)
         {
-            gameObjects.Add(gameObject);
+            gameEntities.Add(gameObject);
         }
 
-        public static void CopyList(List<IGameObjects> objectList)
+        public static void LoadList(List<IGameObjects> objectList)
         {
-            gameObjects = objectList;
+            gameEntities = objectList;
         }
 
         public static void Draw(SpriteBatch spriteBatch)
         {
-            foreach (IGameObjects entity in gameObjects)
+            foreach (IGameObjects entity in gameEntities)
             {
                 entity.Draw(spriteBatch);
             }
@@ -41,7 +41,7 @@ namespace GameSpace.EntitiesManager
 
         public static void Update(GameTime gametime)
         {
-            foreach (IGameObjects entity in gameObjects)
+            foreach (IGameObjects entity in gameEntities)
             {
                 entity.Update(gametime);
             }
@@ -51,12 +51,13 @@ namespace GameSpace.EntitiesManager
 
         public static void MoveBlock(int blockID, int direction)
         {
+
             IGameObjects temp;
-            for (int i = 0; i < gameObjects.Count; i++)
+            for (int i = 0; i < gameEntities.Count; i++)
             {
                 if (i == blockID)
                 {
-                    temp = gameObjects.ElementAt<IGameObjects>(i);
+                    temp = gameEntities.ElementAt<IGameObjects>(i);
                     temp.SetPosition(new Vector2(0, 2));
                 }
             }
@@ -64,7 +65,7 @@ namespace GameSpace.EntitiesManager
 
         public static IGameObjects FindBlock(int blockID)
         {
-            foreach (IGameObjects entity in gameObjects)
+            foreach (IGameObjects entity in gameEntities)
             {
                 if (entity.ObjectID == blockID)
                 {
@@ -76,7 +77,7 @@ namespace GameSpace.EntitiesManager
 
         public static void ToggleCollisionBox()
         {
-            foreach(IGameObjects entity in gameObjects)
+            foreach(IGameObjects entity in gameEntities)
             {
                 entity.ToggleCollisionBoxes();
             }
@@ -97,17 +98,17 @@ namespace GameSpace.EntitiesManager
         //Super inefficent method of detection, will change for future sprints 
         private static void HandleAllCollisions()
         {
-            for (int i = 0; i < gameObjects.Count; i++)
-                for (int j = i + 1; j < gameObjects.Count; j++)
+            for (int i = 0; i < gameEntities.Count; i++)
+                for (int j = i + 1; j < gameEntities.Count; j++)
                 {
-                    if (IsColliding(gameObjects[i], gameObjects[j]))
+                    if (IsColliding(gameEntities[i], gameEntities[j]))
                     {
-                        gameObjects[i].HandleCollision(gameObjects[j]);
-                        gameObjects[j].HandleCollision(gameObjects[i]);
+                        gameEntities[i].HandleCollision(gameEntities[j]);
+                        gameEntities[j].HandleCollision(gameEntities[i]);
                     }
                 }
 
-            foreach (IGameObjects entity in gameObjects)
+            foreach (IGameObjects entity in gameEntities)
             {
                 if (IsOutOfBounds(entity))
                 {

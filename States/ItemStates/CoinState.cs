@@ -15,7 +15,7 @@ namespace GameSpace.States.ItemStates
 
         public CoinState(GameRoot game)
         {
-            this.sprite = SpriteItemFactory.GetInstance().ReturnCoin();
+            this.sprite = SpriteItemFactory.GetInstance().CreateCoin();
             triggered = false;
         }
 

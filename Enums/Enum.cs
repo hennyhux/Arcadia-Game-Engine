@@ -4,22 +4,26 @@ using System.Text;
 
 namespace GameSpace.Enums
 {
-    public enum BLOCKID
+    public enum BlockID
     {
-        BRICKBLOCK = 0,
-        QUESTIONBLOCK = 1,
-        FlOORBLOCK = 2,
-        HIDDENBLOCK = 3,
-        STAIRBLOCK = 4,
-        USEDBLOCK = 5,
+        BRICKBLOCK,
+        QUESTIONBLOCK,
+        FlOORBLOCK,
+        HIDDENBLOCK,
+        STAIRBLOCK,
+        USEDBLOCK,
     };
 
-    public enum ITEMID
+    public enum ItemID
     {
-
+        SUPERSHROOM,
+        STAR,
+        ONEUPSHROOM,
+        FIREFLOWER,
+        COIN,
     };
 
-    public enum ENEMYID
+    public enum EnemyID
     {
 
     };

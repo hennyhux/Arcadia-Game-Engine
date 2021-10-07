@@ -37,7 +37,6 @@ namespace GameSpace
 
         protected override void Initialize()
         {
-
             marioFactory = MarioFactory.GetInstance(this);
             objectFactory = ObjectFactory.GetInstance();
             base.Initialize();
@@ -64,12 +63,16 @@ namespace GameSpace
                 objectFactory.CreateUsedBlockObject(new Vector2(500, 100)), objectFactory.CreateHiddenBlockObject(new Vector2(600, 100)),
 
                 objectFactory.CreateGoombaObject(new Vector2(200, 300)), objectFactory.CreateGreenKoopaObject(new Vector2(300, 300)),
-                objectFactory.CreateRedKoopaObject(new Vector2(400, 300))
+                objectFactory.CreateRedKoopaObject(new Vector2(400, 300)),
+
+                objectFactory.CreateCoinObject(new Vector2(100, 200)), objectFactory.CreateStarObject(new Vector2(100, 250)),
+                objectFactory.CreateFireFlowerObject(new Vector2(100, 300)), objectFactory.CreateSuperShroomObject(new Vector2(100, 350)),
+                objectFactory.CreateOneUpShroomObject(new Vector2(100, 400))
             };
             #endregion
 
             #region Load EntityManager 
-            EntityManager.CopyList(objects);
+            EntityManager.LoadList(objects);
             #endregion
 
             #region Loading Controllers
@@ -101,7 +104,6 @@ namespace GameSpace
 
             EntityManager.Draw(spriteBatch);
 
-            
             mario.Draw(spriteBatch, new Vector2(500, 400));
             
             //mario.sprite.Update(gameTime);

@@ -31,7 +31,7 @@ namespace GameSpace.GameObjects.BlockObjects
 
         public QuestionBlock(Vector2 initalPosition)
         {
-            this.ObjectID = (int)BLOCKID.QUESTIONBLOCK;
+            this.ObjectID = (int)BlockID.QUESTIONBLOCK;
             this.state = new StateBlockIdle();
             this.Sprite = SpriteBlockFactory.GetInstance().ReturnQuestionBlock();
             this.Position = initalPosition;

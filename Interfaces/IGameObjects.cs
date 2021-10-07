@@ -11,8 +11,7 @@ namespace GameSpace.Interfaces
         public ISprite Sprite { get; set; }
         public Vector2 Position { get; set; }
         public Vector2 Velocity { get; set; }
-        public Vector2 Acceleration { get; set; } //later use 
-        public Vector2 Location { get;} //later use 
+        public Vector2 Acceleration { get; set; } //later possible use 
         public Rectangle CollisionBox { get; set; }
         public int ObjectID { get; }
 

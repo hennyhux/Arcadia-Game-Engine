@@ -81,31 +81,30 @@ namespace GameSpace.Factories
         #endregion
 
 
-        //    public IGameObjects CreateStarObject()
-        //    {
-        //        return new Star(instanceGame);
-        //    }
+        public IGameObjects CreateCoinObject(Vector2 location)
+        {
+            return new Coin(location);
+        }
 
-        //    public IGameObjects CreateCoinObject()
-        //    {
-        //        return new Coin(instanceGame);
-        //    }
+        public IGameObjects CreateStarObject(Vector2 location)
+        {
+            return new Star(location);
+        }
 
-        //    public IGameObjects CreateFireFlowerObject()
-        //    {
-        //        return new FireFlower(instanceGame);
-        //    }
+        public IGameObjects CreateFireFlowerObject(Vector2 location)
+        {
+            return new FireFlower(location);
+        }
 
-        //    public IGameObjects CreateOneUpShroomObject()
-        //    {
-        //        return new OneUpShroom(instanceGame);
-        //    }
+        public IGameObjects CreateOneUpShroomObject(Vector2 location)
+        {
+            return new OneUpShroom(location);
+        }
 
-        //    public IGameObjects CreateSuperShroomObject()
-        //    {
-        //        return new SuperShroom(instanceGame);
-        //    }
+        public IGameObjects CreateSuperShroomObject(Vector2 location)
+        {
+            return new SuperShroom(location);
+        }
 
-        //}
     }
 }

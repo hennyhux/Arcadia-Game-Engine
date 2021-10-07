@@ -30,7 +30,7 @@ namespace GameSpace.GameObjects.BlockObjects
 
         public FloorBlock(Vector2 initalPosition)
         {
-            this.ObjectID = (int)BLOCKID.FlOORBLOCK;
+            this.ObjectID = (int)BlockID.FlOORBLOCK;
             this.state = new StateBlockIdle();
             this.Sprite = SpriteBlockFactory.GetInstance().ReturnFloorBlock();
             this.Position = initalPosition;

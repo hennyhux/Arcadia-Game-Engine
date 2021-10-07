@@ -30,7 +30,7 @@ namespace GameSpace.GameObjects.BlockObjects
 
         public UsedBlock(Vector2 initalPosition)
         {
-            this.ObjectID = (int)BLOCKID.USEDBLOCK;
+            this.ObjectID = (int)BlockID.USEDBLOCK;
             this.state = new StateBlockIdle();
             this.Sprite = SpriteBlockFactory.GetInstance().ReturnUsedBlock();
             this.Position = initalPosition;

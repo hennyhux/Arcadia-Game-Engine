@@ -15,7 +15,7 @@ namespace GameSpace.States.ItemStates
 
         public SuperShroomState(GameRoot game)
         {
-            this.sprite = SpriteItemFactory.GetInstance().ReturnSuperShrooom();
+            this.sprite = SpriteItemFactory.GetInstance().CreateSuperShroom();
             triggered = false;
         }
 

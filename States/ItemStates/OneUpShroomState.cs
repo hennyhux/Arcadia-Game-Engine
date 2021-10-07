@@ -15,7 +15,7 @@ namespace GameSpace.States.ItemStates
 
         public OneUpShroomState(GameRoot game)
         {
-            this.sprite = SpriteItemFactory.GetInstance().ReturnOneUpShroom();
+            this.sprite = SpriteItemFactory.GetInstance().CreateOneUpShroom();
             triggered = false;
         }
 

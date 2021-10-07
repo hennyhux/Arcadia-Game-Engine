@@ -15,7 +15,7 @@ namespace GameSpace.States.ItemStates
 
         public FireFlowerState(GameRoot game)
         {
-            this.sprite = SpriteItemFactory.GetInstance().ReturnFireFlower();
+            this.sprite = SpriteItemFactory.GetInstance().CreateFireFlower();
             triggered = false;
         }
 

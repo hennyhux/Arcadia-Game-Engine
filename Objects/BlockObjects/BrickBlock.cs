@@ -21,7 +21,6 @@ namespace GameSpace.GameObjects.BlockObjects
         public Vector2 Velocity { get; set; }
         public Vector2 Acceleration { get; set; }
         public Rectangle CollisionBox { get; set; }
-        public Vector2 Location { get; set; }
 
         public int ObjectID { get; set; }
 
@@ -30,7 +29,7 @@ namespace GameSpace.GameObjects.BlockObjects
 
         public BrickBlock(Vector2 initalPosition)
         {
-            this.ObjectID = (int)BLOCKID.BRICKBLOCK;
+            this.ObjectID = (int)BlockID.BRICKBLOCK;
             this.state = new StateBlockIdle();
             this.Sprite = SpriteBlockFactory.GetInstance().ReturnBrickBlock();
             this.Position = initalPosition;

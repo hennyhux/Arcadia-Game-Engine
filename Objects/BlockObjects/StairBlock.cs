@@ -1,4 +1,5 @@
-﻿using GameSpace.Factories;
+﻿using GameSpace.Enums;
+using GameSpace.Factories;
 using GameSpace.Interfaces;
 using GameSpace.States;
 using GameSpace.States.BlockStates;
@@ -29,6 +30,7 @@ namespace GameSpace.GameObjects.BlockObjects
 
         public StairBlock(Vector2 initalPosition)
         {
+            ObjectID = (int)BlockID.STAIRBLOCK;
             this.state = new StateBlockIdle();
             this.Sprite = SpriteBlockFactory.GetInstance().ReturnStairBlock();
             this.Position = initalPosition;

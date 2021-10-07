@@ -31,7 +31,7 @@ namespace GameSpace.GameObjects.BlockObjects
 
         public HiddenBlock(Vector2 initalPosition)
         {
-            this.ObjectID = (int)BLOCKID.HIDDENBLOCK;
+            this.ObjectID = (int)BlockID.HIDDENBLOCK;
             this.state = new StateBlockIdle();
             this.Sprite = SpriteBlockFactory.GetInstance().ReturnHiddenBlock();
             this.Position = initalPosition;
