@@ -56,7 +56,7 @@ namespace GameSpace.GameObjects.EnemyObjects
 
         public void HandleCollision(IGameObjects entity)
         {
-            throw new NotImplementedException();
+          
         }
 
         public void ToggleCollisionBoxes()

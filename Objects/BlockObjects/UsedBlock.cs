@@ -60,7 +60,7 @@ namespace GameSpace.GameObjects.BlockObjects
         }
         public void HandleCollision(IGameObjects entity)
         {
-            throw new NotImplementedException();
+            
         }
 
         public void ToggleCollisionBoxes()
