@@ -52,7 +52,7 @@ namespace GameSpace.Enums
         Right = 1,
     };
 
-    public enum Avatar
+    public enum AvatarID
     {
         Mario = 0,
     };
