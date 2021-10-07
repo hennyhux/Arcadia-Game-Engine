@@ -14,7 +14,7 @@ namespace GameSpace.Commands
         }
         public void Execute()
         {
-            game.GetMario.Dead();
+            //game.GetMario.Dead();
         }
 
         public void Unexecute()

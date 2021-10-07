@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
 using GameSpace.EntitiesManager;
+using System.Diagnostics;
 
 namespace GameSpace
 {
@@ -77,6 +78,7 @@ namespace GameSpace
             #endregion
 
             mario = marioFactory.ReturnMario();
+
         }
 
         protected override void Update(GameTime gameTime)
@@ -100,9 +102,14 @@ namespace GameSpace
 
             EntityManager.Draw(spriteBatch);
 
+            
             mario.Draw(spriteBatch, new Vector2(500, 400));
-
+            
+            //mario.sprite.Update(gameTime);
+            //mario.sprite.Draw(spriteBatch, new Vector2(500, 400));
+            //Debug.WriteLine("mario sprite address \n", *mario.sprite);
             spriteBatch.End();
+
             base.Draw(gameTime);
         }
     }

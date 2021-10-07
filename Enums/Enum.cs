@@ -23,4 +23,12 @@ namespace GameSpace.Enums
     {
 
     };
+
+    public enum eFacing
+    {
+        Left = 0,
+        Right = 1,
+    };
+
+
 }

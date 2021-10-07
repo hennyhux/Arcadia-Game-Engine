@@ -4,6 +4,8 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using GameSpace.GameObjects.BlockObjects;
+using System.Diagnostics;
+
 
 namespace GameSpace.Sprites
 {
@@ -30,8 +32,8 @@ namespace GameSpace.Sprites
 
         private int actionState; //[Idling, Crouching, Walking, Running, Jumping, Falling, Dying]
         private int marioPower;// [Small, Big, Fire, Star, Dead]
-        private int facingRight;// left = 0, right = 1
-        private SpriteEffects facing;
+        public int facingRight { get; set; }// left = 0, right = 1
+        public SpriteEffects facing { get; set; }
         private bool newState;
 
         /* Array Format is
@@ -74,6 +76,27 @@ namespace GameSpace.Sprites
             #endregion
         }
 
+        public MarioSprite()
+        {
+            //Texture = texture;
+            IsVisible = true;
+            X = 0;
+            Y = 0;
+            currentFrame = 0;
+            totalFrames = 0;
+            facingRight = 0;
+            marioPower = 1;
+            actionState = 1;
+            newState = true;
+            facing = SpriteEffects.None;
+
+            #region time
+            timeSinceLastFrame = 0;
+            milliSecondsPerFrame = 275;
+            #endregion
+        }
+
+
         public void setDirection(int direction)
         {
             facingRight = direction;
@@ -95,13 +118,18 @@ namespace GameSpace.Sprites
 
         public void Update(GameTime gametime)
         {
+            //Debug.WriteLine("marioPower: ", marioPower);
+            //Debug.WriteLine("actionState: ", actionState);
+            
             if (IsVisible)
             {
                 int startingFrame = 0;
 
-                //facingRight = 1;
-                //marioPower = 1;// [Small, Big, Fire, Star, Dead]
-                //actionState = 3;//[Idling, Crouching, Walking, Running, Jumping, Falling, Dying]
+                if(facingRight==1) Debug.WriteLine("spriteActionState {1}, \nfacingRight: {0}", facingRight, actionState);
+
+                //facingRight = 0;
+                //marioPower = 1;// [Small, Big, Fire, Star, Dead]1
+                //actionState = 3;//[Idling, Crouching, Walking, Running, Jumping, Falling, Dying]0
                 //newState = false;
                 totalFrames = totalFramesAnimation[currentFrame]; // gets previous frame's total frames in animation
 
@@ -149,7 +177,7 @@ namespace GameSpace.Sprites
                     if (timeSinceLastFrame > milliSecondsPerFrame)
                     {
                         timeSinceLastFrame -= milliSecondsPerFrame;
-                        // Debug.WriteLine("milliSecondsPerFrame: " + milliSecondsPerFrame);
+                        //Debug.WriteLine("milliSecondsPerFrame: " + milliSecondsPerFrame);
                         if (facingRight == 0)
                         {
                             currentFrame = currentFrame - 1;
@@ -180,6 +208,7 @@ namespace GameSpace.Sprites
 
         public void Draw(SpriteBatch spriteBatch, Vector2 location)
         {
+            //Debug.WriteLine("mario drawK \n");
             if (IsVisible)
             {
                 int width = XWidth[currentFrame];

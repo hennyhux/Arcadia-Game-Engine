@@ -6,125 +6,138 @@ using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using GameSpace.Sprites;
+using System.Diagnostics;
+using GameSpace.States.MarioStates;
+using GameSpace.Enums;
 
 namespace GameSpace.GameObjects.BlockObjects
 {
-    public class Mario
+    public class Mario : IMario
     {
-        public Texture2D Texture { get; set; }
-        private int X;
-        private int Y;
-        private protected int currentFrame;
 
-        private protected int totalFrames;
-        private bool IsVisible;
+        //actionStateMachine
+        //powerupStateMachine
+        //
+        //public Texture2D Texture { get; set; }
+        private int x;
+        private int y;
+        public static int X { get; set; }
+        public static int Y { get; set; }
 
-        private protected int timeSinceLastFrame;
-        private protected int milliSecondsPerFrame;
 
         //private int actionState; //[Idling, Crouching, Walking, Running, Jumping, Falling, Dying]
         //private int marioPower;// [Small, Big, Fire, Star, Dead]
         // private int facingRight;// left = 0, right = 1
-        //private SpriteEffects facing;
-        //private bool newState;
-        private MarioStates state;
 
-        public static MarioStates states { get; set; }
+        //private static MarioPowerUpStates actionState;
+        
+
+        //private MarioSprite sprite;
+        public MarioSprite sprite { get; set; }
+        public eFacing Facing { get; set; }
+        //private IMarioActionState marioPowerUpState;
+       // private MarioPowerUpStates marioPowerUpState;
+
+        public IMarioPowerUpStates marioPowerUpState { get ; set; }
+
+        public IMarioActionStates marioActionState { get; set; }
+
+        //public IMarioPowerUpStates marioPowerUpState { get; set; }
+
+        //private MarioPowerUpStates previousMarioActionState { get; set; }
+        // private MarioPowerUpStates previousMarioPowerUpState;
+
+
 
         //public Mario(Game1 game, Texture2D texture)
         public Mario(GameRoot game)
         {
-            this.state = new MarioStates(game);
-        }
+            Debug.WriteLine("Mario.cs(50) CREATED MARIO \n");
+            // this.state = new MarioStates(game);
+            // this.sprite = MarioFactory.GetInstance().ReturnMarioS1tandingLeftSprite();
+            //this.marioPowerUpState = new SmallMarioState(this);
+            int big =0;
+           if(big == 0)
+            {
+                this.sprite = MarioFactory.GetInstance().CreateSprite(1);
+                this.marioPowerUpState = new SmallMarioState(this);
+                this.marioActionState = new SmallMarioStandingState(this);
+            }
+           /*else if(big == 1)
+            {
+                this.sprite = MarioFactory.GetInstance().CreateSprite(16);
+                this.marioPowerUpState = new BigMarioState(this);
+                this.marioActionState = new BigMarioStandingState(this);
 
-        public MarioStates getStates()
-        {
-            return this.state;
-        }
+            }
+            else
+            {
 
-        //testing method dont delete will break the whole program!!!!!
-        public static Boolean isSuper()
-        {
-            return true;
+                this.sprite = MarioFactory.GetInstance().CreateSprite(32);
+                this.marioPowerUpState = new FireMarioState(this);
+                this.marioActionState = new FireMarioStandingState(this);
+                ///*////this.marioPowerUpState = new FireMarioState(this);
+               // this.marioActionState = new FireMarioStandingState(this);
+               // this.sprite = MarioFactory.GetInstance().CreateSprite(MarioFactory.MarioSpriteType(marioActionState, this.marioPowerUpState));
+                //this.sprite = MarioFactory.GetInstance().CreateSprite(10);*/*/
+            //}
+
         }
 
         public void Draw(SpriteBatch spritebatch, Vector2 location)
         {
-            this.state.Draw(spritebatch, new Vector2(500, 400));
+            if (Facing == eFacing.Left)
+                //sprite.facingRight = 0;
+                sprite.facing = SpriteEffects.None;// swap if
+            else
+                //sprite.facingRight = 0;
+                sprite.facing = SpriteEffects.FlipHorizontally;// swap if base facing direction of sprite is right
+            this.sprite.Draw(spritebatch, new Vector2(500, 400));
         }
         public void Update(GameTime gametime)
         {
-            this.state.Update(gametime);
+            
+            this.marioPowerUpState.Update(gametime);
+            this.marioActionState.Update(gametime);
+            this.sprite.Update(gametime);
+
         }
 
-        public void Idle()
-        {
-            state.Idle();
-        }
+        public  void Exit() { }
 
-        public void Crouch()
+        public  void StandingTransition()
         {
-            state.Crouch();
+            //Debug.WriteLine("MARIO STAND");
+            // Debug.WriteLine("Super Stand Trans");
+            marioActionState.StandingTransition();
         }
+        public  void CrouchingTransition() { marioActionState.CrouchingTransition();  }
+        public  void WalkingTransition() { marioActionState.WalkingTransition(); }
+        public  void RunningTransition() { marioActionState.RunningTransition(); } //Longer you hold running you increase velocity and speed of animation
+        public  void JumpingTransition() { marioActionState.JumpingTransition(); }
+        public  void FallingTransition() { marioActionState.FallingTransition(); }
 
-        public void Walk()
-        {
-            state.Walk();
-        }
+        public  void FaceLeftTransition() { marioActionState.FaceLeftTransition(); }
+        public  void FaceRightTransition() { marioActionState.FaceRightTransition(); }
 
-        public void Run()
-        {
-            state.Run();
-        }
+        public  void CrouchingDiscontinueTransition() { marioActionState.CrouchingDiscontinueTransition(); }//when you exit crouch, release down key
+        public  void FaceLeftDiscontinueTransition() { marioActionState.FaceLeftDiscontinueTransition(); }//generic entering walk and run, face left then start walking, then start running
+        public  void FaceRightDiscontinueTransition() { marioActionState.FaceRightDiscontinueTransition(); }
+        public  void WalkingDiscontinueTransition() { marioActionState.WalkingDiscontinueTransition(); }//decelerata and go to standing
+        public  void RunningDiscontinueTransition() { marioActionState.RunningDiscontinueTransition(); }//decelerate and go to walking dis
+        public  void JumpingDiscontinueTransition() { marioActionState.JumpingDiscontinueTransition(); }//abort jump or force jump to disc bc you reached apex of jump
 
-        public void Jump()
-        {
-            state.Jump();
-        }
+        public  void Enter(IMarioPowerUpStates previousPowerUpState) { }
+        //ublic  void Exit() { }
 
-        public void Fall()
-        {
-            state.Fall();
-        }
+        public void smallMarioTransformation() { marioPowerUpState.smallMarioTransformation(); }
 
-        public void Die()
-        {
-            state.Die();
-        }
+        public  void bigMarioTransformation() { marioPowerUpState.bigMarioTransformation(); }
 
-        public void Small()
-        {
-            state.Small();
-        }
+        public  void fireMarioTransformation() { marioPowerUpState.fireMarioTransformation(); }
 
-        public void Big()
-        {
-            state.Big();
-        }
-
-        public void Fire()
-        {
-            state.Fire();
-        }
-
-        public void Star()
-        {
-            state.Star();
-        }
-
-        public void Dead()
-        {
-            state.Dead();
-        }
-
-        public void FaceLeft()
-        {
-            state.FaceLeft(); ;
-        }
-
-        public void FaceRight()
-        {
-            state.FaceRight();
-        }
+        public  void DeadTransition() { marioPowerUpState.DeadTransition(); }
+       
     }
 }
