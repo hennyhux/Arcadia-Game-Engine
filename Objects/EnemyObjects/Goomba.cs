@@ -1,4 +1,5 @@
-﻿using GameSpace.Factories;
+﻿using GameSpace.Enums;
+using GameSpace.Factories;
 using GameSpace.Interfaces;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -17,22 +18,21 @@ namespace GameSpace.GameObjects.EnemyObjects
         public Vector2 Velocity { get; set; }
         public Vector2 Acceleration { get; set; }
 
-        public Vector2 Location => throw new NotImplementedException();
-
         public Rectangle CollisionBox { get; set; }
 
-        public int ObjectID => throw new NotImplementedException();
+        public int ObjectID { get; set; }
         private Boolean hasCollided;
         private Boolean drawBox;
 
         public Goomba(Vector2 initalPosition)
         {
             //some initial state 
+            ObjectID = (int)EnemyID.GOOMBA;
             this.Sprite = SpriteEnemyFactory.GetInstance().ReturnGoomba();
             this.Position = initalPosition;
             //magic numbers to offset the weird texture atlas resoultion 
             this.CollisionBox = new Rectangle((int)Position.X + Sprite.Texture.Width / 4, (int)Position.Y, Sprite.Texture.Width / 2, Sprite.Texture.Height * 2);
-            drawBox = true;
+            drawBox = false;
         }
 
         public void Draw(SpriteBatch spritebatch)
@@ -53,17 +53,22 @@ namespace GameSpace.GameObjects.EnemyObjects
 
         public void SetPosition(Vector2 location)
         {
-            throw new NotImplementedException();
+            Velocity = (float)5 * location;
+            Position += Velocity;
+            CollisionBox = new Rectangle((int)Position.X + Sprite.Texture.Width / 4, (int)Position.Y, Sprite.Texture.Width / 2, Sprite.Texture.Height * 2);
         }
 
         public void HandleCollision(IGameObjects entity)
         {
-            hasCollided = true;
+            if (!hasCollided) hasCollided = true;
+            this.CollisionBox = new Rectangle((int)Position.X + Sprite.Texture.Width / 4, (int)Position.Y + 10, Sprite.Texture.Width / 2, Sprite.Texture.Height * 2);
+            this.Position = new Vector2(this.Position.X, (int)this.Position.Y + 6);
+
         }
 
         public void ToggleCollisionBoxes()
         {
-            drawBox = true;
+            drawBox = !drawBox;
         }
     }
 }

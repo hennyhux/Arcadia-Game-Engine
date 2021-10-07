@@ -35,7 +35,7 @@ namespace GameSpace.GameObjects.BlockObjects
             this.Sprite = SpriteBlockFactory.GetInstance().ReturnFloorBlock();
             this.Position = initalPosition;
             this.CollisionBox = new Rectangle((int)Position.X, (int)Position.Y, Sprite.Texture.Width * 2, Sprite.Texture.Height * 2);
-            drawBox = true;
+            drawBox = false;
             Debug.WriteLine("FLOOR BLOCK AT " + "(" + this.Position.X + ", " + this.Position.Y + ")");
         }
 
@@ -67,7 +67,7 @@ namespace GameSpace.GameObjects.BlockObjects
 
         public void ToggleCollisionBoxes()
         {
-            drawBox = true;
+            drawBox = !drawBox;
         }
     }
 }

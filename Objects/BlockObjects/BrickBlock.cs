@@ -34,7 +34,7 @@ namespace GameSpace.GameObjects.BlockObjects
             this.Sprite = SpriteBlockFactory.GetInstance().ReturnBrickBlock();
             this.Position = initalPosition;
             this.CollisionBox = new Rectangle((int)Position.X, (int)Position.Y, Sprite.Texture.Width * 2, Sprite.Texture.Height * 2);
-            drawBox = true;
+            drawBox = false;
             //Debug.WriteLine("BRICK BLOCK AT " + "(" + this.Position.X + ", " + this.Position.Y + ")");
         }
 
@@ -56,29 +56,25 @@ namespace GameSpace.GameObjects.BlockObjects
 
         public void SetPosition(Vector2 newLocation)
         {
-            if (!hasCollided)
-            {
-                Velocity = (float)4 * newLocation;
-                Position += Velocity;
-                CollisionBox = new Rectangle((int)Position.X, (int)Position.Y, Sprite.Texture.Width * 2, Sprite.Texture.Height * 2);
-            }
+           Velocity = (float)4 * newLocation;
+           Position += Velocity;
+           CollisionBox = new Rectangle((int)Position.X, (int)Position.Y, Sprite.Texture.Width * 2, Sprite.Texture.Height * 2);
 
-            else
-            {
-                this.Trigger();
-                Debug.WriteLine("BRICK BLOCK AT " + "(" + this.Position.X + ", " + this.Position.Y + ")");
-            }
         }
 
         //SWEPT DETECTION
         public void HandleCollision(IGameObjects entity)
         {
-            hasCollided = true;
+            if (!hasCollided)hasCollided = true;
+            //find the direction of collision...
+
+            //after finding the direction of collision, play animation 
+            this.Trigger();
         }
 
         public void ToggleCollisionBoxes()
         {
-            drawBox = true;
+            drawBox = !drawBox;
         }
     }
 }

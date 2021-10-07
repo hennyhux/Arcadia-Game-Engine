@@ -16,28 +16,39 @@ namespace GameSpace.Enums
 
     public enum ItemID
     {
-        SUPERSHROOM,
-        STAR,
-        ONEUPSHROOM,
-        FIREFLOWER,
-        COIN,
+        SUPERSHROOM = 6,
+        STAR = 7,
+        ONEUPSHROOM = 8,
+        FIREFLOWER = 9,
+        COIN = 10,
     };
 
     public enum EnemyID
     {
+        GOOMBA = 11,
+        GREENKOOPA = 12,
+        REDKOOPA = 13
+    };
 
+    public enum ControlDirection
+    {
+        UP,
+        DOWN,
+        LEFT,
+        RIGHT
+    };
+
+    public enum CollisionDirection
+    {
+        UP,
+        DOWN,
+        LEFT,
+        RIGHT
     };
 
     public enum eFacing
     {
         Left = 0,
         Right = 1,
-    };
-
-
-
-    public enum DEVICEPORTSIZE
-    {
-        YRES = 600
     };
 }

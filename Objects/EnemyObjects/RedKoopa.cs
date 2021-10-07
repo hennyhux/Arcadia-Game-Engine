@@ -1,4 +1,5 @@
-﻿using GameSpace.Factories;
+﻿using GameSpace.Enums;
+using GameSpace.Factories;
 using GameSpace.Interfaces;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -15,22 +16,20 @@ namespace GameSpace.GameObjects.EnemyObjects
         public Vector2 Position { get; set; }
         public Vector2 Velocity { get; set; }
         public Vector2 Acceleration { get; set; }
-
-        public Vector2 Location => throw new NotImplementedException();
-
         public Rectangle CollisionBox { get; set; }
 
-        public int ObjectID => throw new NotImplementedException();
+        public int ObjectID { get; set; }
         private Boolean hasCollided;
         private Boolean drawBox;
 
         public RedKoopa(Vector2 initalPosition)
         {
             //some initial state 
+            ObjectID = (int)EnemyID.REDKOOPA;
             this.Sprite = SpriteEnemyFactory.GetInstance().ReturnRedKoopa();
             this.Position = initalPosition;
             this.CollisionBox = new Rectangle((int)Position.X + Sprite.Texture.Width / 4 + 2, (int)Position.Y, Sprite.Texture.Width / 2, Sprite.Texture.Height * 2);
-            drawBox = true;
+            drawBox = false;
         }
 
         public void Draw(SpriteBatch spritebatch)
@@ -51,7 +50,7 @@ namespace GameSpace.GameObjects.EnemyObjects
 
         public void SetPosition(Vector2 location)
         {
-            throw new NotImplementedException();
+ 
         }
 
         public void HandleCollision(IGameObjects entity)
@@ -61,7 +60,7 @@ namespace GameSpace.GameObjects.EnemyObjects
 
         public void ToggleCollisionBoxes()
         {
-            throw new NotImplementedException();
+            drawBox = !drawBox;
         }
     }
 }

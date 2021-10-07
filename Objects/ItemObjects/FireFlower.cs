@@ -25,11 +25,11 @@ namespace GameSpace.GameObjects.ItemObjects
 
         public FireFlower(Vector2 initialPosition)
         {
-            this.ObjectID = (int)ItemID.COIN;
+            this.ObjectID = (int)ItemID.FIREFLOWER;
             this.Sprite = SpriteItemFactory.GetInstance().CreateFireFlower();
             this.Position = initialPosition;
             this.CollisionBox = new Rectangle((int)Position.X, (int)Position.Y, Sprite.Texture.Width * 2 / 4, Sprite.Texture.Height * 2);
-            drawBox = true;
+            drawBox = false;
         }
 
         public void Draw(SpriteBatch spritebatch)
@@ -60,7 +60,7 @@ namespace GameSpace.GameObjects.ItemObjects
 
         public void ToggleCollisionBoxes()
         {
-            throw new NotImplementedException();
+            drawBox = !drawBox;
         }
 
     }

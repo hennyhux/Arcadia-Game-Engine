@@ -35,7 +35,7 @@ namespace GameSpace.GameObjects.BlockObjects
             this.Sprite = SpriteBlockFactory.GetInstance().ReturnStairBlock();
             this.Position = initalPosition;
             this.CollisionBox = new Rectangle((int)Position.X, (int)Position.Y, Sprite.Texture.Width * 2, Sprite.Texture.Height * 2);
-            drawBox = true;
+            drawBox = false;
         }
 
         public void Draw(SpriteBatch spritebatch)
@@ -66,7 +66,7 @@ namespace GameSpace.GameObjects.BlockObjects
 
         public void ToggleCollisionBoxes()
         {
-            drawBox = true;
+            drawBox = !drawBox;
         }
     }
 }

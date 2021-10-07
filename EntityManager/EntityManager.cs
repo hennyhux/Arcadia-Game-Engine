@@ -37,6 +37,8 @@ namespace GameSpace.EntitiesManager
             {
                 entity.Draw(spriteBatch);
             }
+
+            HandleAllCollisions();
         }
 
         public static void Update(GameTime gametime)
@@ -45,34 +47,26 @@ namespace GameSpace.EntitiesManager
             {
                 entity.Update(gametime);
             }
-
-            HandleAllCollisions();
         }
 
-        public static void MoveBlock(int blockID, int direction)
+        public static void MoveItem(int blockID, int direction)
         {
-
-            IGameObjects temp;
-            for (int i = 0; i < gameEntities.Count; i++)
-            {
-                if (i == blockID)
-                {
-                    temp = gameEntities.ElementAt<IGameObjects>(i);
-                    temp.SetPosition(new Vector2(0, 2));
-                }
-            }
+            if (direction == (int)ControlDirection.UP) FindItem(blockID).SetPosition(new Vector2(0 , -1));
+            if (direction == (int)ControlDirection.DOWN) FindItem(blockID).SetPosition(new Vector2(0, 1));
+            if (direction == (int)ControlDirection.RIGHT) FindItem(blockID).SetPosition(new Vector2(1, 0));
+            if (direction == (int)ControlDirection.LEFT) FindItem(blockID).SetPosition(new Vector2(-1, 0));
         }
 
-        public static IGameObjects FindBlock(int blockID)
+        public static IGameObjects FindItem(int ItemID)
         {
             foreach (IGameObjects entity in gameEntities)
             {
-                if (entity.ObjectID == blockID)
+                if (entity.ObjectID == ItemID)
                 {
                     return entity;
                 }
             }
-            return null; //null bad 
+            return null; //lets try not to return null
         }
 
         public static void ToggleCollisionBox()
@@ -86,16 +80,19 @@ namespace GameSpace.EntitiesManager
         #region Collision Detection
         private static bool IsColliding(IGameObjects a, IGameObjects b)
         {
-
+            Rectangle overLappedRectangle = Rectangle.Intersect(a.CollisionBox, b.CollisionBox);
             return a.CollisionBox.Intersects(b.CollisionBox); //sweep aabb
         }
 
         private static bool IsOutOfBounds(IGameObjects a)
         {
-            return a.Position.X < -1 || a.Position.Y < -1;
+            return a.Position.X < -1 || a.Position.Y > 500;
         }
 
         //Super inefficent method of detection, will change for future sprints 
+        //need to also take in consideration the DIRECTION of collision...
+        //if the overlapped rectange has a longer width than height, then it has either collided on top or bottom
+        //if the overlapped rectangle has a taller height than width, then it has either collided on left or right 
         private static void HandleAllCollisions()
         {
             for (int i = 0; i < gameEntities.Count; i++)
