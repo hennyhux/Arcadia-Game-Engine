@@ -51,4 +51,9 @@ namespace GameSpace.Enums
         Left = 0,
         Right = 1,
     };
+
+    public enum Avatar
+    {
+        Mario = 0,
+    };
 }

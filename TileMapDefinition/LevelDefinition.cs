@@ -25,5 +25,11 @@ namespace GameSpace.TileMapDefinition
             public int x;
             public int y;
         }
+        public class Avatar
+        {
+            public AvatarID avatar;
+            public int x;
+            public int y;
+        }
     }
 }
