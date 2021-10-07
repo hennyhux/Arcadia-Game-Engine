@@ -227,5 +227,10 @@ namespace GameSpace.Sprites
         {
             throw new NotImplementedException();
         }
+
+        public void DrawBoundary(SpriteBatch spriteBatch, Rectangle destination)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

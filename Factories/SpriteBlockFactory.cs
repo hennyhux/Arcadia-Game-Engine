@@ -18,15 +18,23 @@ namespace GameSpace.Factories
         private Texture2D FloorBlock;
         private Texture2D StairBlock;
         private Texture2D HiddenBlock;
+        private Texture2D WhiteRectangle;
         #endregion
 
-        private Vector2 blockInitalStart;
 
-        private static SpriteBlockFactory instance = new SpriteBlockFactory();
-        public static SpriteBlockFactory GetInstance() => instance;
+        private static SpriteBlockFactory instance;
+        public static SpriteBlockFactory GetInstance()
+        {
+            if (instance == null)
+            {
+                instance = new SpriteBlockFactory();
+            }
+
+            return instance;
+        }
+
         private SpriteBlockFactory()
         {
-            blockInitalStart = new Vector2(0, 0);
         }
 
         public void LoadContent(ContentManager content)
@@ -37,6 +45,7 @@ namespace GameSpace.Factories
             FloorBlock = content.Load<Texture2D>("Blocks/FloorBlock");
             StairBlock = content.Load<Texture2D>("Blocks/StairBlock");
             HiddenBlock = content.Load<Texture2D>("Blocks/UsedBlock");
+            WhiteRectangle = content.Load<Texture2D>("WhiteTexture");
         } 
         public ISprite ReturnQuestionBlock()
         {
@@ -66,6 +75,11 @@ namespace GameSpace.Factories
         public ISprite ReturnUsedBlock()
         {
             return new UsedBlockSprite(UsedBlock, 1, 1, 1);
+        }
+
+        public Texture2D CreateBoundingBoxTexture()
+        {
+            return WhiteRectangle;
         }
     }
 }

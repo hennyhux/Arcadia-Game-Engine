@@ -20,12 +20,13 @@ namespace GameSpace.GameObjects.BlockObjects
         public Vector2 Position { get; set; }
         public Vector2 Velocity { get; set; }
         public Vector2 Acceleration { get; set; }
-        public Rectangle Rect { get; set; }
+        public Rectangle CollisionBox { get; set; }
         public Vector2 Location { get; set; }
 
         public int ObjectID { get; set; }
 
         private Boolean hasCollided;
+        private Boolean drawBox;
 
         public BrickBlock(Vector2 initalPosition)
         {
@@ -33,13 +34,15 @@ namespace GameSpace.GameObjects.BlockObjects
             this.state = new StateBlockIdle();
             this.Sprite = SpriteBlockFactory.GetInstance().ReturnBrickBlock();
             this.Position = initalPosition;
-            this.Rect = new Rectangle((int)Position.X, (int)Position.Y, Sprite.Texture.Width, Sprite.Texture.Height);
-            Debug.WriteLine("BRICK BLOCK AT " + "(" + this.Position.X + ", " + this.Position.Y + ")");
+            this.CollisionBox = new Rectangle((int)Position.X, (int)Position.Y, Sprite.Texture.Width * 2, Sprite.Texture.Height * 2);
+            drawBox = true;
+            //Debug.WriteLine("BRICK BLOCK AT " + "(" + this.Position.X + ", " + this.Position.Y + ")");
         }
 
         public void Draw(SpriteBatch spritebatch)
         {
             Sprite.Draw(spritebatch, Position); //this shouldnt be hardcoded anymore 
+            if (drawBox) Sprite.DrawBoundary(spritebatch, CollisionBox);
         }
 
         public void Update(GameTime gametime)
@@ -58,7 +61,7 @@ namespace GameSpace.GameObjects.BlockObjects
             {
                 Velocity = (float)4 * newLocation;
                 Position += Velocity;
-                Rect = new Rectangle((int)Position.X, (int)Position.Y, Sprite.Texture.Width * 2, Sprite.Texture.Height * 2);
+                CollisionBox = new Rectangle((int)Position.X, (int)Position.Y, Sprite.Texture.Width * 2, Sprite.Texture.Height * 2);
             }
 
             else
@@ -67,10 +70,16 @@ namespace GameSpace.GameObjects.BlockObjects
                 Debug.WriteLine("BRICK BLOCK AT " + "(" + this.Position.X + ", " + this.Position.Y + ")");
             }
         }
+
         //SWEPT DETECTION
         public void HandleCollision(IGameObjects entity)
         {
             hasCollided = true;
+        }
+
+        public void ToggleCollisionBoxes()
+        {
+            drawBox = true;
         }
     }
 }

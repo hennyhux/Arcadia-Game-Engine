@@ -31,4 +31,9 @@ namespace GameSpace.Enums
     };
 
 
+
+    public enum DEVICEPORTSIZE
+    {
+        YRES = 600
+    };
 }

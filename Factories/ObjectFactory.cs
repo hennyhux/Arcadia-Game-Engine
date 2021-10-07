@@ -31,51 +31,51 @@ namespace GameSpace.Factories
         }
 
         #region Blocks
-        public IGameObjects CreateBrickBlockObject()
+        public IGameObjects CreateBrickBlockObject(Vector2 location)
         {
-            return new BrickBlock(new Vector2(100, 150));
+            return new BrickBlock(location);
         }
 
-        public IGameObjects CreateStairBlockObject()
+        public IGameObjects CreateStairBlockObject(Vector2 location)
         {
-            return new StairBlock(new Vector2(300, 150));
+            return new StairBlock(location);
         }
 
-        public IGameObjects CreateFloorBlockObject()
+        public IGameObjects CreateFloorBlockObject(Vector2 location)
         {
-            return new FloorBlock(new Vector2(200, 150));
+            return new FloorBlock(location);
         }
 
-        public IGameObjects CreateQuestionBlockObject()
+        public IGameObjects CreateQuestionBlockObject(Vector2 location)
         {
-            return new QuestionBlock(new Vector2(400, 150));
+            return new QuestionBlock(location);
         }
 
-        public IGameObjects CreateHiddenBlockObject()
+        public IGameObjects CreateHiddenBlockObject(Vector2 location)
         {
-            return new HiddenBlock(new Vector2(500, 150));
+            return new HiddenBlock(location);
         }
 
-        public IGameObjects CreateUsedBlockObject()
+        public IGameObjects CreateUsedBlockObject(Vector2 location)
         {
-            return new UsedBlock(new Vector2(600, 150));
+            return new UsedBlock(location);
         }
         #endregion
 
         #region Enemies 
-        public IGameObjects CreateGoombaObject()
+        public IGameObjects CreateGoombaObject(Vector2 location)
         {
-            return new Goomba(new Vector2(100, 250));
+            return new Goomba(location);
         }
 
-        public IGameObjects CreateGreenKoopaObject()
+        public IGameObjects CreateGreenKoopaObject(Vector2 location)
         {
-            return new GreenKoopa(new Vector2(100, 300));
+            return new GreenKoopa(location);
         }
 
-        public IGameObjects CreateRedKoopaObject()
+        public IGameObjects CreateRedKoopaObject(Vector2 location)
         {
-            return new RedKoopa(new Vector2(100, 350));
+            return new RedKoopa(location);
         }
 
         #endregion

@@ -39,7 +39,9 @@ namespace GameSpace
                 {Keys.O, new StateDeadMarioCommand(game)},
                 {Keys.B, new ChangeBlockCommand(EntityManager.FindBlock((int)BLOCKID.BRICKBLOCK))},
                 {Keys.H, new ShowHiddenBlockCommand(EntityManager.FindBlock((int)BLOCKID.HIDDENBLOCK))},
-                {Keys.OemQuestion, new ChangeQuestionBlockCommand(EntityManager.FindBlock((int)BLOCKID.QUESTIONBLOCK))}
+                {Keys.OemQuestion, new ChangeQuestionBlockCommand(EntityManager.FindBlock((int)BLOCKID.QUESTIONBLOCK))},
+                {Keys.C, new ToggleCollisionBoxes()}
+
                 // Jump, crouch and dash/throw fireball
             };
 

@@ -35,5 +35,10 @@ namespace GameSpace.Sprites
             #endregion
 
         }
+
+        public override void DrawBoundary(SpriteBatch spriteBatch, Rectangle destination)
+        {
+            spriteBatch.Draw(WhiteRect, destination, Color.Red * 0.4f);
+        }
     }
 }

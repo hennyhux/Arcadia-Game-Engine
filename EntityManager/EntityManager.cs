@@ -57,7 +57,7 @@ namespace GameSpace.EntitiesManager
                 if (i == blockID)
                 {
                     temp = gameObjects.ElementAt<IGameObjects>(i);
-                    temp.SetPosition(new Vector2(-1, 0));
+                    temp.SetPosition(new Vector2(0, 2));
                 }
             }
         }
@@ -74,11 +74,19 @@ namespace GameSpace.EntitiesManager
             return null; //null bad 
         }
 
+        public static void ToggleCollisionBox()
+        {
+            foreach(IGameObjects entity in gameObjects)
+            {
+                entity.ToggleCollisionBoxes();
+            }
+        }
+
         #region Collision Detection
         private static bool IsColliding(IGameObjects a, IGameObjects b)
         {
 
-            return a.Rect.Intersects(b.Rect); //sweep aabb
+            return a.CollisionBox.Intersects(b.CollisionBox); //sweep aabb
         }
 
         private static bool IsOutOfBounds(IGameObjects a)

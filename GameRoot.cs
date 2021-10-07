@@ -59,16 +59,18 @@ namespace GameSpace
             #region Loading Lists
             objects = new List<IGameObjects>()
             {
-                objectFactory.CreateBrickBlockObject(), objectFactory.CreateStairBlockObject(),
-                objectFactory.CreateFloorBlockObject(), objectFactory.CreateQuestionBlockObject(), 
-                objectFactory.CreateUsedBlockObject(), objectFactory.CreateHiddenBlockObject(),
+                objectFactory.CreateBrickBlockObject(new Vector2(100, 100)), objectFactory.CreateStairBlockObject(new Vector2(200, 100)),
+                objectFactory.CreateFloorBlockObject(new Vector2(300, 100)), objectFactory.CreateQuestionBlockObject(new Vector2(400, 100)), 
+                objectFactory.CreateUsedBlockObject(new Vector2(500, 100)), objectFactory.CreateHiddenBlockObject(new Vector2(600, 100)),
 
-                objectFactory.CreateGoombaObject(), objectFactory.CreateGreenKoopaObject(),
-                objectFactory.CreateRedKoopaObject()
+                objectFactory.CreateGoombaObject(new Vector2(200, 300)), objectFactory.CreateGreenKoopaObject(new Vector2(300, 300)),
+                objectFactory.CreateRedKoopaObject(new Vector2(400, 300))
             };
             #endregion
 
+            #region Load EntityManager 
             EntityManager.CopyList(objects);
+            #endregion
 
             #region Loading Controllers
             controllers = new List<IController>()
@@ -85,10 +87,7 @@ namespace GameSpace
         {
             mario.Update(gameTime);
 
-            foreach (IController controller in controllers)
-            {
-                controller.Update();
-            }
+            foreach (IController controller in controllers) controller.Update();
 
             EntityManager.Update(gameTime);
 

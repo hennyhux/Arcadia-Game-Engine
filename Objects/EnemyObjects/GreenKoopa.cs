@@ -18,20 +18,25 @@ namespace GameSpace.GameObjects.EnemyObjects
 
         public Vector2 Location => throw new NotImplementedException();
 
-        public Rectangle Rect { get; set; }
+        public Rectangle CollisionBox { get; set; }
 
         public int ObjectID => throw new NotImplementedException();
+        private Boolean hasCollided;
+        private Boolean drawBox;
 
         public GreenKoopa(Vector2 initalPosition)
         {
             //some initial state 
             this.Sprite = SpriteEnemyFactory.GetInstance().ReturnGreenKoopa();
             this.Position = initalPosition;
+            this.CollisionBox = new Rectangle((int)Position.X + Sprite.Texture.Width / 4 + 2, (int)Position.Y, Sprite.Texture.Width / 2, Sprite.Texture.Height * 2);
+            drawBox = true;
         }
 
         public void Draw(SpriteBatch spritebatch)
         {
             Sprite.Draw(spritebatch, Position); //this shouldnt be hardcoded anymore 
+            if (drawBox) Sprite.DrawBoundary(spritebatch, CollisionBox);
         }
 
         public void Update(GameTime gametime)
@@ -44,22 +49,17 @@ namespace GameSpace.GameObjects.EnemyObjects
             //death when triggered
         }
 
-        public void SetPosition(Rectangle destination)
-        {
-            throw new NotImplementedException();
-        }
-
         public void SetPosition(Vector2 location)
         {
             throw new NotImplementedException();
         }
 
-        public void HandleCollsion()
+        public void HandleCollision(IGameObjects entity)
         {
-            throw new NotImplementedException();
+          
         }
 
-        public void HandleCollision(IGameObjects entity)
+        public void ToggleCollisionBoxes()
         {
             throw new NotImplementedException();
         }
