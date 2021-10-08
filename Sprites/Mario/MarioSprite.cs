@@ -232,5 +232,10 @@ namespace GameSpace.Sprites
         {
             throw new NotImplementedException();
         }
+
+        public bool GetVisibleStatus()
+        {
+            return IsVisible;
+        }
     }
 }

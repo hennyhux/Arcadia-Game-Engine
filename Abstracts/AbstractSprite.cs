@@ -36,6 +36,7 @@ namespace GameSpace.Sprites
 
         public virtual Texture2D Texture { get; set; }
         public virtual void SetVisible() { isVisible = !isVisible; }
+        public bool GetVisibleStatus() { return isVisible; }
 
 
         public virtual void Update(GameTime gametime)

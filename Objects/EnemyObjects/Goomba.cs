@@ -1,4 +1,5 @@
-﻿using GameSpace.Enums;
+﻿using GameSpace.EntitiesManager;
+using GameSpace.Enums;
 using GameSpace.Factories;
 using GameSpace.Interfaces;
 using Microsoft.Xna.Framework;
@@ -67,7 +68,7 @@ namespace GameSpace.GameObjects.EnemyObjects
                 //smelly code? lots of conditional statements 
                 case (int)BlockID.BRICKBLOCK:
                     
-                    if (FindCollisionDetection(entity) == (int)CollisionDirection.LEFT)
+                    if (EntityManager.DetectCollisionDirection(this,entity) == (int)CollisionDirection.LEFT)
                     {
                         this.Position = new Vector2(this.Position.X - 10, (int)this.Position.Y);
                         this.CollisionBox = new Rectangle((int)Position.X - 10 + Sprite.Texture.Width / 4,
@@ -88,20 +89,6 @@ namespace GameSpace.GameObjects.EnemyObjects
                     break;
             }
         }
-
-        private int FindCollisionDetection(IGameObjects entity)
-        {
-            Rectangle overlap = Rectangle.Intersect(this.CollisionBox, entity.CollisionBox);
-            int direction = 0;
-            if (overlap.Width < overlap.Height)
-            {
-                Debug.WriteLine("DETECTED");
-                direction = (int)CollisionDirection.LEFT; // or right! need to find a way to determine it 
-            }
-
-            return direction;
-        }
-
 
         public void ToggleCollisionBoxes()
         {

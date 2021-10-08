@@ -21,7 +21,7 @@ namespace GameSpace.TileMapDefinition
         {
             List<Obstacles> obstacles = new List<Obstacles>();
             XmlSerializer serializer = new XmlSerializer(typeof(List<Obstacles>), new XmlRootAttribute("Level"));
-            /*using (XmlReader reader = XmlReader.Create("TileMapDefinition/Level.xml"))
+            /*using (XmlReader reader = XmlReader.Create("../TileMapDefinition/Level.xml"))
             {
                 obstacles = (List<Obstacles>)serializer.Deserialize(reader);
             } */

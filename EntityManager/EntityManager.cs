@@ -81,15 +81,32 @@ namespace GameSpace.EntitiesManager
         private static bool IsColliding(IGameObjects a, IGameObjects b)
         {
             Rectangle overLappedRectangle = Rectangle.Intersect(a.CollisionBox, b.CollisionBox);
-            return a.CollisionBox.Intersects(b.CollisionBox); //TODO: take in consideration ghosting 
+            return a.CollisionBox.Intersects(b.CollisionBox); //TODO: take in consideration ghosting (swept shape)
         }
+        
+        public static int DetectCollisionDirection(IGameObjects a, IGameObjects b)
+        {
+            Rectangle overLappedRectangle = Rectangle.Intersect(a.CollisionBox, b.CollisionBox);
+            int direction = 0;
+            if (overLappedRectangle.Width > overLappedRectangle.Height)
+            {
+                direction = (int)CollisionDirection.DOWN;
+            }
 
+            if (overLappedRectangle.Width < overLappedRectangle.Height)
+            {
+                direction = (int)CollisionDirection.LEFT;
+            }
+
+            return direction;
+        }
         private static bool IsOutOfBounds(IGameObjects a)
         {
             return a.Position.X < -1 || a.Position.Y > 500;
         }
 
-        //Super inefficent method of detection, will change for future sprints 
+        //Super inefficent method of detection, if the amount of entites in the list is huge, it will take a lot of resources 
+        //will change for future sprints  
         //need to also take in consideration the DIRECTION of collision...
         //if the overlapped rectange has a longer width than height, then it has either collided on top or bottom
         //if the overlapped rectangle has a taller height than width, then it has either collided on left or right 
