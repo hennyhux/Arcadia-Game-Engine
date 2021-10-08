@@ -30,6 +30,8 @@ namespace GameSpace
         public Mario GetMario { get => mario; }
         public GraphicsDeviceManager Graphics { get => graphics; }
 
+        string xmlFileName = "Level.xml";
+
         public GameRoot()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -71,7 +73,7 @@ namespace GameSpace
                 objectFactory.CreateOneUpShroomObject(new Vector2(100, 400))
             };
 
-            Loader.Load();
+            Loader.Load(xmlFileName);
 
             #endregion
 
