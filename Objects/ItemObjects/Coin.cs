@@ -36,7 +36,7 @@ namespace GameSpace.GameObjects.ItemObjects
         public void Draw(SpriteBatch spritebatch)
         {
             Sprite.Draw(spritebatch, Position); //this shouldnt be hardcoded anymore 
-            if (drawBox) Sprite.DrawBoundary(spritebatch, CollisionBox);
+            if (drawBox && Sprite.GetVisibleStatus()) Sprite.DrawBoundary(spritebatch, CollisionBox);
         }
 
         public void Update(GameTime gametime)
@@ -46,12 +46,12 @@ namespace GameSpace.GameObjects.ItemObjects
 
         public void Trigger()
         {
-
+            Sprite.SetVisible();
         }
 
         public void HandleCollision(IGameObjects entity)
         {
-            if (!hasCollided) Sprite.SetVisible();
+            if (!hasCollided) this.Trigger();
             hasCollided = true;
         }
         public void SetPosition(Vector2 location)
