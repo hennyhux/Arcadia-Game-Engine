@@ -6,12 +6,12 @@ namespace GameSpace.Enums
 {
     public enum BlockID
     {
-        BRICKBLOCK,
-        QUESTIONBLOCK,
-        FlOORBLOCK,
-        HIDDENBLOCK,
-        STAIRBLOCK,
-        USEDBLOCK,
+        BRICKBLOCK = 0,
+        QUESTIONBLOCK = 1,
+        FlOORBLOCK = 2,
+        HIDDENBLOCK = 3,
+        STAIRBLOCK = 4,
+        USEDBLOCK = 5,
     };
 
     public enum ItemID
@@ -21,13 +21,14 @@ namespace GameSpace.Enums
         ONEUPSHROOM = 8,
         FIREFLOWER = 9,
         COIN = 10,
+        NULL = 11,
     };
 
     public enum EnemyID
     {
-        GOOMBA = 11,
-        GREENKOOPA = 12,
-        REDKOOPA = 13
+        GOOMBA = 12,
+        GREENKOOPA = 13,
+        REDKOOPA = 14
     };
 
     public enum ControlDirection

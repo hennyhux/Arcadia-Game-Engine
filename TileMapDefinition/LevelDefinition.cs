@@ -5,11 +5,12 @@ using GameSpace.Enums;
 
 namespace GameSpace.TileMapDefinition
 {
-    class LevelDefinition
+    public class LevelDefinition
     {
         public class Obstacles
         {
             public BlockID block;
+            public ItemID item;
             public int x;
             public int y;
         }
@@ -28,6 +29,7 @@ namespace GameSpace.TileMapDefinition
         public class Avatar
         {
             public AvatarID avatar;
+            public eFacing facing;
             public int x;
             public int y;
         }

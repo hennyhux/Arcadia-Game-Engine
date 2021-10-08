@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
 using GameSpace.EntitiesManager;
+using GameSpace.TileMapDefinition;
 using System.Diagnostics;
 
 namespace GameSpace
@@ -69,6 +70,9 @@ namespace GameSpace
                 objectFactory.CreateFireFlowerObject(new Vector2(100, 300)), objectFactory.CreateSuperShroomObject(new Vector2(100, 350)),
                 objectFactory.CreateOneUpShroomObject(new Vector2(100, 400))
             };
+
+            Loader.Load();
+
             #endregion
 
             #region Load EntityManager 
