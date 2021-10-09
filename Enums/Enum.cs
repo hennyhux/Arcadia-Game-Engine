@@ -4,17 +4,17 @@ using System.Text;
 
 namespace GameSpace.Enums
 {
-    public enum BlockID
+    public enum BlockID: int
     {
         BRICKBLOCK = 0,
         QUESTIONBLOCK = 1,
-        FlOORBLOCK = 2,
+        FLOORBLOCK = 2,
         HIDDENBLOCK = 3,
         STAIRBLOCK = 4,
         USEDBLOCK = 5,
     };
 
-    public enum ItemID
+    public enum ItemID: int
     {
         SUPERSHROOM = 6,
         STAR = 7,
@@ -24,7 +24,7 @@ namespace GameSpace.Enums
         NULL = 11,
     };
 
-    public enum EnemyID
+    public enum EnemyID: int
     {
         GOOMBA = 12,
         GREENKOOPA = 13,
@@ -49,12 +49,12 @@ namespace GameSpace.Enums
 
     public enum eFacing
     {
-        Left = 0,
-        Right = 1,
+        LEFT = 0,
+        RIGHT = 1,
     };
 
     public enum AvatarID
     {
-        Mario = 0,
+        MARIO = 0,
     };
 }

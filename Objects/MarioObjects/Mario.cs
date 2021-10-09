@@ -87,7 +87,7 @@ namespace GameSpace.GameObjects.BlockObjects
 
         public void Draw(SpriteBatch spritebatch, Vector2 location)
         {
-            if (Facing == eFacing.Left)
+            if (Facing == eFacing.LEFT)
                 //sprite.facingRight = 0;
                 sprite.facing = SpriteEffects.None;// swap if
             else

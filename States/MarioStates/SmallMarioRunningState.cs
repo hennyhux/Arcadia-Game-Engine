@@ -103,7 +103,7 @@ namespace GameSpace.States.MarioStates
 
         public override void FaceLeftTransition()
         {
-            if (Mario.Facing == eFacing.Left)//running, want left, if we face left, increase velocity
+            if (Mario.Facing == eFacing.LEFT)//running, want left, if we face left, increase velocity
             {//Increase Velocity
                 Debug.WriteLine("SmallRunning(107) Run/Face Left, Increase(-) Velocity");
             }
@@ -115,7 +115,7 @@ namespace GameSpace.States.MarioStates
         }
         public override void FaceRightTransition()
         {
-            if (Mario.Facing == eFacing.Right)
+            if (Mario.Facing == eFacing.RIGHT)
             {//incease Velocity
                 Debug.WriteLine("SmallRunning(107) Run/Face Right, Increase(+) Velocity");
             }
