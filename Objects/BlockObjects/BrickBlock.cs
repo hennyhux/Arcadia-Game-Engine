@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text;
 using GameSpace.Enums;
+using GameSpace.EntitiesManager;
 
 namespace GameSpace.GameObjects.BlockObjects
 {
@@ -56,9 +57,6 @@ namespace GameSpace.GameObjects.BlockObjects
 
         public void SetPosition(Vector2 newLocation)
         {
-           Velocity = (float)4 * newLocation;
-           Position += Velocity;
-           CollisionBox = new Rectangle((int)Position.X, (int)Position.Y, Sprite.Texture.Width * 2, Sprite.Texture.Height * 2);
 
         }
 
@@ -69,22 +67,10 @@ namespace GameSpace.GameObjects.BlockObjects
             //find the direction of collision...
             
             //after finding the direction of collision, play animation 
-            if (FindCollisionDetection(entity) == (int)CollisionDirection.DOWN)
+            if (EntityManager.DetectCollisionDirection(this, entity) == (int)CollisionDirection.DOWN)
             {
                 this.Trigger();
-            }
-        }
-
-        private int FindCollisionDetection(IGameObjects entity)
-        {
-            Rectangle overlap = Rectangle.Intersect(this.CollisionBox, entity.CollisionBox);
-            int direction = 0;
-            if (overlap.Width > overlap.Height)
-            {
-                direction = (int)CollisionDirection.DOWN; // or up! need to find a way to determine it 
-            }
-
-            return direction;
+            } 
         }
 
         public void ToggleCollisionBoxes()

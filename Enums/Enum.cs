@@ -47,6 +47,11 @@ namespace GameSpace.Enums
         RIGHT
     };
 
+    public enum Velocity
+    {
+        VELOCITYGOOMBA
+    };
+
     public enum eFacing
     {
         Left = 0,

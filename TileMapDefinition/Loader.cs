@@ -39,7 +39,8 @@ namespace GameSpace.TileMapDefinition
                 }
             }
 
-            objectFactory.CreateFloorBlockObject(new Vector2(268, 68));
+            IGameObjects item = objectFactory.CreateFloorBlockObject(new Vector2(268, 68));
+
             //*/
                 
             /*

@@ -21,6 +21,7 @@ namespace GameSpace.EntitiesManager
 
         public static int Count { get { return gameEntities.Count; } }
 
+        #region Draw and Sprite Managing
         public static void AddEntity(IGameObjects gameObject)
         {
             gameEntities.Add(gameObject);
@@ -48,7 +49,16 @@ namespace GameSpace.EntitiesManager
                 entity.Update(gametime);
             }
         }
+        public static void ToggleCollisionBox()
+        {
+            foreach (IGameObjects entity in gameEntities)
+            {
+                entity.ToggleCollisionBoxes();
+            }
+        }
+        #endregion
 
+        #region Testing Methods
         public static void MoveItem(int blockID, int direction)
         {
             if (direction == (int)ControlDirection.UP) FindItem(blockID).SetPosition(new Vector2(0 , -1));
@@ -69,33 +79,51 @@ namespace GameSpace.EntitiesManager
             return null; //lets try not to return null
         }
 
-        public static void ToggleCollisionBox()
-        {
-            foreach(IGameObjects entity in gameEntities)
-            {
-                entity.ToggleCollisionBoxes();
-            }
-        }
+        #endregion
 
         #region Collision Detection
         private static bool IsColliding(IGameObjects a, IGameObjects b)
         {
-            Rectangle overLappedRectangle = Rectangle.Intersect(a.CollisionBox, b.CollisionBox);
-            return a.CollisionBox.Intersects(b.CollisionBox); //TODO: take in consideration ghosting (swept shape)
+            if (a.Position.X + 5 >= b.Position.X || a.Position.X + 5 <= b.Position.X ||
+                a.Position.Y + 5 >= b.Position.Y || a.Position.Y - 5 <= b.Position.Y)
+            {
+                return a.CollisionBox.Intersects(b.CollisionBox);
+            }
+
+            else { return false; } 
+        }
+
+        public static float SweeptAABB(IGameObjects a, IGameObjects b)
+        {
+            return 0f;
         }
         
         public static int DetectCollisionDirection(IGameObjects a, IGameObjects b)
         {
             Rectangle overLappedRectangle = Rectangle.Intersect(a.CollisionBox, b.CollisionBox);
             int direction = 0;
-            if (overLappedRectangle.Width > overLappedRectangle.Height)
-            {
-                direction = (int)CollisionDirection.DOWN;
-            }
 
-            if (overLappedRectangle.Width < overLappedRectangle.Height)
+            if (!overLappedRectangle.IsEmpty)
             {
-                direction = (int)CollisionDirection.LEFT;
+                if (overLappedRectangle.Width > overLappedRectangle.Height && a.Position.Y < b.Position.Y)
+                {
+                    direction = (int)CollisionDirection.DOWN;
+                }
+
+                if (overLappedRectangle.Width > overLappedRectangle.Height && a.Position.Y > b.Position.Y)
+                {
+                    direction = (int)CollisionDirection.UP;
+                }
+
+                if (overLappedRectangle.Height > overLappedRectangle.Width && a.Position.X > b.Position.X)
+                {
+                    direction = (int)CollisionDirection.RIGHT;
+                }
+
+                if (overLappedRectangle.Height > overLappedRectangle.Width && a.Position.X < b.Position.X)
+                {
+                    direction = (int)CollisionDirection.LEFT;
+                }
             }
 
             return direction;
@@ -130,6 +158,7 @@ namespace GameSpace.EntitiesManager
                 }
             }
         }
+
         #endregion
     }
 }
