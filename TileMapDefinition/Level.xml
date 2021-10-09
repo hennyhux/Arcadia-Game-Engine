@@ -1,609 +1,356 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Level>
 	<Obstacle>
-		<block>2</block>
-		<item>11</item>
+		<block>FLOORBLOCK</block>
+		<item>NULL</item>
 		<x>0</x>
 		<y>450</y>
 	</Obstacle>
 	<Obstacle>
-		<block>2</block>
-		<item>11</item>
+		<block>FLOORBLOCK</block>
+		<item>NULL</item>
 		<x>32</x>
 		<y>450</y>
 	</Obstacle>
 	<Obstacle>
-		<block>2</block>
-		<item>11</item>
+		<block>FLOORBLOCK</block>
+		<item>NULL</item>
 		<x>64</x>
 		<y>450</y>
 	</Obstacle>
 	<Obstacle>
-		<block>2</block>
-		<item>11</item>
+		<block>FLOORBLOCK</block>
+		<item>NULL</item>
 		<x>96</x>
 		<y>450</y>
 	</Obstacle>
 	<Obstacle>
-		<block>2</block>
-		<item>11</item>
+		<block>FLOORBLOCK</block>
+		<item>NULL</item>
 		<x>128</x>
 		<y>450</y>
 	</Obstacle>
 	<Obstacle>
-		<block>2</block>
-		<item>11</item>
+		<block>FLOORBLOCK</block>
+		<item>NULL</item>
 		<x>160</x>
 		<y>450</y>
 	</Obstacle>
 	<Obstacle>
-		<block>2</block>
-		<item>11</item>
+		<block>FLOORBLOCK</block>
+		<item>NULL</item>
 		<x>192</x>
 		<y>450</y>
 	</Obstacle>
 	<Obstacle>
-		<block>2</block>
-		<item>11</item>
+		<block>FLOORBLOCK</block>
+		<item>NULL</item>
 		<x>224</x>
 		<y>450</y>
 	</Obstacle>
 	<Obstacle>
-		<block>2</block>
-		<item>11</item>
+		<block>FLOORBLOCK</block>
+		<item>NULL</item>
 		<x>256</x>
 		<y>450</y>
 	</Obstacle>
 	<Obstacle>
-		<block>2</block>
-		<item>11</item>
+		<block>FLOORBLOCK</block>
+		<item>NULL</item>
 		<x>288</x>
 		<y>450</y>
 	</Obstacle>
 	<Obstacle>
-		<block>2</block>
-		<item>11</item>
+		<block>FLOORBLOCK</block>
+		<item>NULL</item>
 		<x>320</x>
 		<y>450</y>
 	</Obstacle>
 	<Obstacle>
-		<block>2</block>
-		<item>11</item>
+		<block>FLOORBLOCK</block>
+		<item>NULL</item>
 		<x>352</x>
 		<y>450</y>
 	</Obstacle>
 	<Obstacle>
-		<block>2</block>
-		<item>11</item>
+		<block>FLOORBLOCK</block>
+		<item>NULL</item>
 		<x>384</x>
 		<y>450</y>
 	</Obstacle>
 	<Obstacle>
-		<block>2</block>
-		<item>11</item>
+		<block>FLOORBLOCK</block>
+		<item>NULL</item>
 		<x>416</x>
 		<y>450</y>
 	</Obstacle>
 	<Obstacle>
-		<block>2</block>
-		<item>11</item>
+		<block>FLOORBLOCK</block>
+		<item>NULL</item>
 		<x>448</x>
 		<y>450</y>
 	</Obstacle>
 	<Obstacle>
-		<block>2</block>
-		<item>11</item>
+		<block>FLOORBLOCK</block>
+		<item>NULL</item>
 		<x>480</x>
 		<y>450</y>
 	</Obstacle>
 	<Obstacle>
-		<block>2</block>
-		<item>11</item>
+		<block>FLOORBLOCK</block>
+		<item>NULL</item>
 		<x>512</x>
 		<y>450</y>
 	</Obstacle>
 	<Obstacle>
-		<block>2</block>
-		<item>11</item>
+		<block>FLOORBLOCK</block>
+		<item>NULL</item>
 		<x>544</x>
 		<y>450</y>
 	</Obstacle>
 	<Obstacle>
-		<block>2</block>
-		<item>11</item>
+		<block>FLOORBLOCK</block>
+		<item>NULL</item>
 		<x>576</x>
 		<y>450</y>
 	</Obstacle>
 	<Obstacle>
-		<block>2</block>
-		<item>11</item>
+		<block>FLOORBLOCK</block>
+		<item>NULL</item>
 		<x>608</x>
 		<y>450</y>
 	</Obstacle>
 	<Obstacle>
-		<block>2</block>
-		<item>11</item>
+		<block>FLOORBLOCK</block>
+		<item>NULL</item>
 		<x>640</x>
 		<y>450</y>
 	</Obstacle>
 	<Obstacle>
-		<block>2</block>
-		<item>11</item>
+		<block>FLOORBLOCK</block>
+		<item>NULL</item>
 		<x>672</x>
 		<y>450</y>
 	</Obstacle>
 	<Obstacle>
-		<block>2</block>
-		<item>11</item>
+		<block>FLOORBLOCK</block>
+		<item>NULL</item>
 		<x>704</x>
 		<y>450</y>
 	</Obstacle>
 	<Obstacle>
-		<block>2</block>
-		<item>11</item>
+		<block>FLOORBLOCK</block>
+		<item>NULL</item>
 		<x>736</x>
 		<y>450</y>
 	</Obstacle>
 	<Obstacle>
-		<block>2</block>
-		<item>11</item>
+		<block>FLOORBLOCK</block>
+		<item>NULL</item>
 		<x>768</x>
 		<y>450</y>
 	</Obstacle>
 	<Obstacle>
-		<block>2</block>
-		<item>11</item>
+		<block>FLOORBLOCK</block>
+		<item>NULL</item>
 		<x>0</x>
 		<y>418</y>
 	</Obstacle>
 	<Obstacle>
-		<block>2</block>
-		<item>11</item>
+		<block>FLOORBLOCK</block>
+		<item>NULL</item>
 		<x>32</x>
 		<y>418</y>
 	</Obstacle>
 	<Obstacle>
-		<block>2</block>
-		<item>11</item>
+		<block>FLOORBLOCK</block>
+		<item>NULL</item>
 		<x>64</x>
 		<y>418</y>
 	</Obstacle>
 	<Obstacle>
-		<block>2</block>
-		<item>11</item>
+		<block>FLOORBLOCK</block>
+		<item>NULL</item>
 		<x>96</x>
 		<y>418</y>
 	</Obstacle>
 	<Obstacle>
-		<block>2</block>
-		<item>11</item>
+		<block>FLOORBLOCK</block>
+		<item>NULL</item>
 		<x>128</x>
 		<y>418</y>
 	</Obstacle>
 	<Obstacle>
-		<block>2</block>
-		<item>11</item>
+		<block>FLOORBLOCK</block>
+		<item>NULL</item>
 		<x>160</x>
 		<y>418</y>
 	</Obstacle>
 	<Obstacle>
-		<block>2</block>
-		<item>11</item>
+		<block>FLOORBLOCK</block>
+		<item>NULL</item>
 		<x>192</x>
 		<y>418</y>
 	</Obstacle>
 	<Obstacle>
-		<block>2</block>
-		<item>11</item>
+		<block>FLOORBLOCK</block>
+		<item>NULL</item>
 		<x>224</x>
 		<y>418</y>
 	</Obstacle>
 	<Obstacle>
-		<block>2</block>
-		<item>11</item>
+		<block>FLOORBLOCK</block>
+		<item>NULL</item>
 		<x>256</x>
 		<y>418</y>
 	</Obstacle>
 	<Obstacle>
-		<block>2</block>
-		<item>11</item>
+		<block>FLOORBLOCK</block>
+		<item>NULL</item>
 		<x>288</x>
 		<y>418</y>
 	</Obstacle>
 	<Obstacle>
-		<block>2</block>
-		<item>11</item>
+		<block>FLOORBLOCK</block>
+		<item>NULL</item>
 		<x>320</x>
 		<y>418</y>
 	</Obstacle>
 	<Obstacle>
-		<block>2</block>
-		<item>11</item>
+		<block>FLOORBLOCK</block>
+		<item>NULL</item>
 		<x>352</x>
 		<y>418</y>
 	</Obstacle>
 	<Obstacle>
-		<block>2</block>
-		<item>11</item>
+		<block>FLOORBLOCK</block>
+		<item>NULL</item>
 		<x>384</x>
 		<y>418</y>
 	</Obstacle>
 	<Obstacle>
-		<block>2</block>
-		<item>11</item>
+		<block>FLOORBLOCK</block>
+		<item>NULL</item>
 		<x>416</x>
 		<y>418</y>
 	</Obstacle>
 	<Obstacle>
-		<block>2</block>
-		<item>11</item>
+		<block>FLOORBLOCK</block>
+		<item>NULL</item>
 		<x>448</x>
 		<y>418</y>
 	</Obstacle>
 	<Obstacle>
-		<block>2</block>
-		<item>11</item>
+		<block>FLOORBLOCK</block>
+		<item>NULL</item>
 		<x>480</x>
 		<y>418</y>
 	</Obstacle>
 	<Obstacle>
-		<block>2</block>
-		<item>11</item>
+		<block>FLOORBLOCK</block>
+		<item>NULL</item>
 		<x>512</x>
 		<y>418</y>
 	</Obstacle>
 	<Obstacle>
-		<block>2</block>
-		<item>11</item>
+		<block>FLOORBLOCK</block>
+		<item>NULL</item>
 		<x>544</x>
 		<y>418</y>
 	</Obstacle>
 	<Obstacle>
-		<block>2</block>
-		<item>11</item>
+		<block>FLOORBLOCK</block>
+		<item>NULL</item>
 		<x>576</x>
 		<y>418</y>
 	</Obstacle>
 	<Obstacle>
-		<block>2</block>
-		<item>11</item>
+		<block>FLOORBLOCK</block>
+		<item>NULL</item>
 		<x>608</x>
 		<y>418</y>
 	</Obstacle>
 	<Obstacle>
-		<block>2</block>
-		<item>11</item>
+		<block>FLOORBLOCK</block>
+		<item>NULL</item>
 		<x>640</x>
 		<y>418</y>
 	</Obstacle>
 	<Obstacle>
-		<block>2</block>
-		<item>11</item>
+		<block>FLOORBLOCK</block>
+		<item>NULL</item>
 		<x>672</x>
 		<y>418</y>
 	</Obstacle>
 	<Obstacle>
-		<block>2</block>
-		<item>11</item>
+		<block>FLOORBLOCK</block>
+		<item>NULL</item>
 		<x>704</x>
 		<y>418</y>
 	</Obstacle>
 	<Obstacle>
-		<block>2</block>
-		<item>11</item>
+		<block>FLOORBLOCK</block>
+		<item>NULL</item>
 		<x>736</x>
 		<y>418</y>
 	</Obstacle>
 	<Obstacle>
-		<block>2</block>
-		<item>11</item>
+		<block>FLOORBLOCK</block>
+		<item>NULL</item>
 		<x>768</x>
 		<y>418</y>
 	</Obstacle>
 
-
-
-
-	<Obstacle>
-		<block>2</block>
-		<item>11</item>
-		<x>0</x>
-		<y>386</y>
-	</Obstacle>
-	<Obstacle>
-		<block>2</block>
-		<item>11</item>
-		<x>32</x>
-		<y>386</y>
-	</Obstacle>
-	<Obstacle>
-		<block>2</block>
-		<item>11</item>
-		<x>64</x>
-		<y>386</y>
-	</Obstacle>
-	<Obstacle>
-		<block>2</block>
-		<item>11</item>
-		<x>96</x>
-		<y>386</y>
-	</Obstacle>
-	<Obstacle>
-		<block>2</block>
-		<item>11</item>
-		<x>128</x>
-		<y>386</y>
-	</Obstacle>
-	<Obstacle>
-		<block>2</block>
-		<item>11</item>
-		<x>160</x>
-		<y>386</y>
-	</Obstacle>
-	<Obstacle>
-		<block>2</block>
-		<item>11</item>
-		<x>192</x>
-		<y>386</y>
-	</Obstacle>
-	<Obstacle>
-		<block>2</block>
-		<item>11</item>
-		<x>224</x>
-		<y>386</y>
-	</Obstacle>
-	<Obstacle>
-		<block>2</block>
-		<item>11</item>
-		<x>256</x>
-		<y>386</y>
-	</Obstacle>
-	<Obstacle>
-		<block>2</block>
-		<item>11</item>
-		<x>288</x>
-		<y>386</y>
-	</Obstacle>
-	<Obstacle>
-		<block>2</block>
-		<item>11</item>
-		<x>320</x>
-		<y>386</y>
-	</Obstacle>
-	<Obstacle>
-		<block>2</block>
-		<item>11</item>
-		<x>352</x>
-		<y>386</y>
-	</Obstacle>
-	<Obstacle>
-		<block>2</block>
-		<item>11</item>
-		<x>384</x>
-		<y>386</y>
-	</Obstacle>
-	<Obstacle>
-		<block>2</block>
-		<item>11</item>
-		<x>416</x>
-		<y>386</y>
-	</Obstacle>
-	<Obstacle>
-		<block>2</block>
-		<item>11</item>
-		<x>448</x>
-		<y>386</y>
-	</Obstacle>
-	<Obstacle>
-		<block>2</block>
-		<item>11</item>
-		<x>480</x>
-		<y>386</y>
-	</Obstacle>
-	<Obstacle>
-		<block>2</block>
-		<item>11</item>
-		<x>512</x>
-		<y>386</y>
-	</Obstacle>
-	<Obstacle>
-		<block>2</block>
-		<item>11</item>
-		<x>544</x>
-		<y>386</y>
-	</Obstacle>
-	<Obstacle>
-		<block>2</block>
-		<item>11</item>
-		<x>576</x>
-		<y>386</y>
-	</Obstacle>
-	<Obstacle>
-		<block>2</block>
-		<item>11</item>
-		<x>608</x>
-		<y>386</y>
-	</Obstacle>
-	<Obstacle>
-		<block>2</block>
-		<item>11</item>
-		<x>640</x>
-		<y>386</y>
-	</Obstacle>
-	<Obstacle>
-		<block>2</block>
-		<item>11</item>
-		<x>672</x>
-		<y>386</y>
-	</Obstacle>
-	<Obstacle>
-		<block>2</block>
-		<item>11</item>
-		<x>704</x>
-		<y>386</y>
-	</Obstacle>
-	<Obstacle>
-		<block>2</block>
-		<item>11</item>
-		<x>736</x>
-		<y>386</y>
-	</Obstacle>
-	<Obstacle>
-		<block>2</block>
-		<item>11</item>
-		<x>768</x>
-		<y>386</y>
-	</Obstacle>
-	<Obstacle>
-		<block>2</block>
-		<item>11</item>
-		<x>0</x>
-		<y>354</y>
-	</Obstacle>
-	<Obstacle>
-		<block>2</block>
-		<item>11</item>
-		<x>32</x>
-		<y>354</y>
-	</Obstacle>
-	<Obstacle>
-		<block>2</block>
-		<item>11</item>
-		<x>64</x>
-		<y>354</y>
-	</Obstacle>
-	<Obstacle>
-		<block>2</block>
-		<item>11</item>
-		<x>96</x>
-		<y>354</y>
-	</Obstacle>
-	<Obstacle>
-		<block>2</block>
-		<item>11</item>
-		<x>128</x>
-		<y>354</y>
-	</Obstacle>
-	<Obstacle>
-		<block>2</block>
-		<item>11</item>
-		<x>160</x>
-		<y>354</y>
-	</Obstacle>
-	<Obstacle>
-		<block>2</block>
-		<item>11</item>
-		<x>192</x>
-		<y>354</y>
-	</Obstacle>
-	<Obstacle>
-		<block>2</block>
-		<item>11</item>
-		<x>224</x>
-		<y>354</y>
-	</Obstacle>
-	<Obstacle>
-		<block>2</block>
-		<item>11</item>
-		<x>256</x>
-		<y>354</y>
-	</Obstacle>
-	<Obstacle>
-		<block>2</block>
-		<item>11</item>
-		<x>288</x>
-		<y>354</y>
-	</Obstacle>
-	<Obstacle>
-		<block>2</block>
-		<item>11</item>
-		<x>320</x>
-		<y>354</y>
-	</Obstacle>
-	<Obstacle>
-		<block>2</block>
-		<item>11</item>
-		<x>352</x>
-		<y>354</y>
-	</Obstacle>
-	<Obstacle>
-		<block>2</block>
-		<item>11</item>
-		<x>384</x>
-		<y>354</y>
-	</Obstacle>
-	<Obstacle>
-		<block>2</block>
-		<item>11</item>
-		<x>416</x>
-		<y>354</y>
-	</Obstacle>
-	<Obstacle>
-		<block>2</block>
-		<item>11</item>
-		<x>448</x>
-		<y>354</y>
-	</Obstacle>
-	<Obstacle>
-		<block>2</block>
-		<item>11</item>
-		<x>480</x>
-		<y>354</y>
-	</Obstacle>
-	<Obstacle>
-		<block>2</block>
-		<item>11</item>
-		<x>512</x>
-		<y>354</y>
-	</Obstacle>
-	<Obstacle>
-		<block>2</block>
-		<item>11</item>
-		<x>544</x>
-		<y>354</y>
-	</Obstacle>
-	<Obstacle>
-		<block>2</block>
-		<item>11</item>
-		<x>576</x>
-		<y>354</y>
-	</Obstacle>
-	<Obstacle>
-		<block>2</block>
-		<item>11</item>
-		<x>608</x>
-		<y>354</y>
-	</Obstacle>
-	<Obstacle>
-		<block>2</block>
-		<item>11</item>
-		<x>640</x>
-		<y>354</y>
-	</Obstacle>
-	<Obstacle>
-		<block>2</block>
-		<item>11</item>
-		<x>672</x>
-		<y>354</y>
-	</Obstacle>
-	<Obstacle>
-		<block>2</block>
-		<item>11</item>
-		<x>704</x>
-		<y>354</y>
-	</Obstacle>
-	<Obstacle>
-		<block>2</block>
-		<item>11</item>
-		<x>736</x>
-		<y>354</y>
-	</Obstacle>
-	<Obstacle>
-		<block>2</block>
-		<item>11</item>
-		<x>768</x>
-		<y>354</y>
-	</Obstacle>
 	
+	<Obstacle>
+		<block>QUESTIONBLOCK</block>
+		<item>NULL</item>
+		<x>384</x>
+		<y>290</y>
+	</Obstacle>
+	<Obstacle>
+		<block>BRICKBLOCK</block>
+		<item>NULL</item>
+		<x>512</x>
+		<y>290</y>
+	</Obstacle>
+	<Obstacle>
+		<block>QUESTIONBLOCK</block>
+		<item>NULL</item>
+		<x>544</x>
+		<y>290</y>
+	</Obstacle>
+	<Obstacle>
+		<block>BRICKBLOCK</block>
+		<item>NULL</item>
+		<x>576</x>
+		<y>290</y>
+	</Obstacle>
+	<Obstacle>
+		<block>QUESTIONBLOCK</block>
+		<item>NULL</item>
+		<x>608</x>
+		<y>290</y>
+	</Obstacle>
+	<Obstacle>
+		<block>BRICKBLOCK</block>
+		<item>NULL</item>
+		<x>640</x>
+		<y>290</y>
+	</Obstacle>
+	<Obstacle>
+		<block>QUESTIONBLOCK</block>
+		<item>NULL</item>
+		<x>576</x>
+		<y>162</y>
+	</Obstacle>
+
+
+
+	<Enemy>
+		<enemy>GOOMBA</enemy>
+		<x>576</x>
+		<y>386</y>
+	</Enemy>
 	
 </Level>

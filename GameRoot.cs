@@ -23,6 +23,7 @@ namespace GameSpace
         #region Lists
         private List<IController> controllers;
         private List<IGameObjects> objects;
+        private List<IGameObjects> obj;
         #endregion
 
         private Mario mario;
@@ -30,8 +31,10 @@ namespace GameSpace
         public Mario GetMario { get => mario; }
         public GraphicsDeviceManager Graphics { get => graphics; }
 
-        string xmlFileName = "Level.xml";
-
+        //IF RUNNING IT WITH TILE MAP DEFINITION, copy the full path of Level.xml and paste it in the next line
+        //YOU MIGHT HAVE TO SWITCH THE '\' CHARACHTERS TO  '/'
+        string xmlFileName = "C:/Users/alber/Source/Repos/Team_Arcadia/TileMapDefinition/Level.xml";
+        //BETO'S PATH: C:/Users/alber/Source/Repos/Team_Arcadia/TileMapDefinition/Level.xml
         public GameRoot()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -62,23 +65,29 @@ namespace GameSpace
             objects = new List<IGameObjects>()
             {
                 objectFactory.CreateBrickBlockObject(new Vector2(100, 100)), objectFactory.CreateStairBlockObject(new Vector2(200, 100)),
-                objectFactory.CreateFloorBlockObject(new Vector2(300, 100)), objectFactory.CreateQuestionBlockObject(new Vector2(400, 100)), 
+                objectFactory.CreateFloorBlockObject(new Vector2(300, 100)), objectFactory.CreateQuestionBlockObject(new Vector2(400, 100)),
                 objectFactory.CreateUsedBlockObject(new Vector2(500, 100)), objectFactory.CreateHiddenBlockObject(new Vector2(600, 100)),
-
+             
                 objectFactory.CreateGoombaObject(new Vector2(200, 300)), objectFactory.CreateGreenKoopaObject(new Vector2(300, 300)),
                 objectFactory.CreateRedKoopaObject(new Vector2(400, 300)),
 
                 objectFactory.CreateCoinObject(new Vector2(100, 200)), objectFactory.CreateStarObject(new Vector2(100, 250)),
                 objectFactory.CreateFireFlowerObject(new Vector2(100, 300)), objectFactory.CreateSuperShroomObject(new Vector2(100, 350)),
                 objectFactory.CreateOneUpShroomObject(new Vector2(100, 400))
+
             };
 
-            Loader.Load(xmlFileName);
+
+            obj = Loader.Load(xmlFileName);
 
             #endregion
 
-            #region Load EntityManager 
+            #region Load EntityManager
             EntityManager.LoadList(objects);
+            //IF RUNNING IT WITH TILE MAP DEFINITION, UNCOMMENT THE NEXT LINE
+            //EntityManager.LoadList(obj);
+
+
             #endregion
 
             #region Loading Controllers
@@ -99,6 +108,7 @@ namespace GameSpace
             foreach (IController controller in controllers) controller.Update();
 
             EntityManager.Update(gameTime);
+
 
             base.Update(gameTime);
         }

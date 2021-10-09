@@ -80,17 +80,17 @@ namespace GameSpace.States.MarioStates
 
         public override void FaceLeftTransition()
         {
-            if (Mario.Facing == eFacing.Left)
+            if (Mario.Facing == eFacing.LEFT)
                 WalkingTransition();
             else
-                Mario.Facing = eFacing.Left;
+                Mario.Facing = eFacing.LEFT;
         }
         public override void FaceRightTransition()
         {
-            if (Mario.Facing == eFacing.Right)
+            if (Mario.Facing == eFacing.RIGHT)
                 WalkingTransition();
             else
-                Mario.Facing = eFacing.Right;
+                Mario.Facing = eFacing.RIGHT;
         }
 
         public override void SmallPowerUp() { }

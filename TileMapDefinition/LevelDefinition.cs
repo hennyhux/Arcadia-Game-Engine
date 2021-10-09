@@ -14,13 +14,13 @@ namespace GameSpace.TileMapDefinition
             public int x;
             public int y;
         }
-        public class Enemies
+        public class Enemy
         {
             public EnemyID enemy;
             public int x;
             public int y;
         }
-        public class Items
+        public class Item
         {
             public ItemID item;
             public int x;

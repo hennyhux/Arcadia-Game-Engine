@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Level>
+	<Obstacle>
+		<block>FLOORBLOCK</block>
+		<item>NULL</item>
+		<x>0</x>
+		<y>450</y>
+	</Obstacle>
+</Level>
