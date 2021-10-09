@@ -7,7 +7,7 @@ using System.Text;
 
 namespace GameSpace.States
 {
-    public class StateBlockBumped : IBlockState
+    public class StateBlockBumped : IObjectState
     {
         private IGameObjects block;
 

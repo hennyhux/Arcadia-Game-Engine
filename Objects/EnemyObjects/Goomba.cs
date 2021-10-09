@@ -13,7 +13,7 @@ namespace GameSpace.GameObjects.EnemyObjects
 {
     public class Goomba : IGameObjects
     {
-        private IBlockState state;
+        private IObjectState state;
         public ISprite Sprite { get; set; }
         public Vector2 Position { get; set; }
         public Vector2 Velocity { get; set; }
@@ -29,7 +29,7 @@ namespace GameSpace.GameObjects.EnemyObjects
         {
             //some initial state 
             ObjectID = (int)EnemyID.GOOMBA;
-            this.Sprite = SpriteEnemyFactory.GetInstance().ReturnGoomba();
+            this.Sprite = SpriteEnemyFactory.GetInstance().CreateGoombaSprite();
             this.Position = initalPosition;
             //magic numbers to offset the weird texture atlas resoultion 
             this.CollisionBox = new Rectangle((int)Position.X + Sprite.Texture.Width / 4, (int)Position.Y, Sprite.Texture.Width / 2, Sprite.Texture.Height * 2);
@@ -49,7 +49,7 @@ namespace GameSpace.GameObjects.EnemyObjects
 
         public void Trigger()
         {
-            //death when triggered
+            
         }
 
         public void SetPosition(Vector2 location)
@@ -75,6 +75,10 @@ namespace GameSpace.GameObjects.EnemyObjects
 
                 case (int)ItemID.COIN:
                     //change internal state to include one coin...
+                    break;
+
+                case (int)EnemyID.GOOMBA:
+                    //goomba dead state...
                     break;
             }
         }

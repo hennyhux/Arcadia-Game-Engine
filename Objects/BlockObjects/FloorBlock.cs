@@ -15,7 +15,7 @@ namespace GameSpace.GameObjects.BlockObjects
     public class FloorBlock : IGameObjects
     {
 
-        private IBlockState state;
+        private IObjectState state;
         public ISprite Sprite { get; set; }
         public Vector2 Position { get; set; }
         public Vector2 Velocity { get; set; }

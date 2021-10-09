@@ -6,7 +6,7 @@ using System.Text;
 
 namespace GameSpace.Interfaces
 {
-    public interface IBlockState
+    public interface IObjectState
     {
         public void Update(GameTime gametime);
     }

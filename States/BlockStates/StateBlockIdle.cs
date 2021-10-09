@@ -6,7 +6,7 @@ using System.Text;
 
 namespace GameSpace.States
 {
-    public class StateBlockIdle : IBlockState
+    public class StateBlockIdle : IObjectState
     {
         public StateBlockIdle()
         {

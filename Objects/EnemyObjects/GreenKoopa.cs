@@ -11,7 +11,7 @@ namespace GameSpace.GameObjects.EnemyObjects
 {
     public class GreenKoopa : IGameObjects
     {
-        private IBlockState state;
+        private IObjectState state;
         public ISprite Sprite { get; set; }
         public Vector2 Position { get; set; }
         public Vector2 Velocity { get; set; }
@@ -27,7 +27,7 @@ namespace GameSpace.GameObjects.EnemyObjects
         {
             //some initial state 
             ObjectID = (int)EnemyID.GREENKOOPA;
-            this.Sprite = SpriteEnemyFactory.GetInstance().ReturnGreenKoopa();
+            this.Sprite = SpriteEnemyFactory.GetInstance().CreateGreenKoopaSprite();
             this.Position = initalPosition;
             this.CollisionBox = new Rectangle((int)Position.X + Sprite.Texture.Width / 4 + 2, (int)Position.Y, Sprite.Texture.Width / 2, Sprite.Texture.Height * 2);
             drawBox = false;
