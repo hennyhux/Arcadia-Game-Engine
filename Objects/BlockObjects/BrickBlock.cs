@@ -60,13 +60,9 @@ namespace GameSpace.GameObjects.BlockObjects
 
         }
 
-        //SWEPT DETECTION
         public void HandleCollision(IGameObjects entity)
         {
-            if (!hasCollided)hasCollided = true;
-            //find the direction of collision...
-            
-            //after finding the direction of collision, play animation 
+            hasCollided = true;
             if (EntityManager.DetectCollisionDirection(this, entity) == (int)CollisionDirection.DOWN)
             {
                 this.Trigger();

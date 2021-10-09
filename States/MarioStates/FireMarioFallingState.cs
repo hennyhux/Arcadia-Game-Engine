@@ -15,10 +15,12 @@ namespace GameSpace.States.MarioStates
 {
     class FireMarioFallingState : MarioActionStates//MarioPowerUpStates
     {
+        private Vector2 initLocation;
+
         public FireMarioFallingState(Mario mario)
             : base(mario)
         {
-
+            
         }
 
         public override void Enter(IMarioActionStates previousActionState)

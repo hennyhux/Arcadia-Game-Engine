@@ -97,7 +97,8 @@ namespace GameSpace
             };
             #endregion
 
-            mario = marioFactory.ReturnMario(new Vector2(400, 400));
+            mario = marioFactory.ReturnMario(new Vector2(350, 200));
+            EntityManager.AddEntity(mario);
 
         }
 

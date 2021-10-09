@@ -65,31 +65,42 @@ namespace GameSpace.GameObjects.EnemyObjects
 
             switch (entity.ObjectID)
             {
-                //smelly code? lots of conditional statements 
                 case (int)BlockID.BRICKBLOCK:
-                    
-                    if (EntityManager.DetectCollisionDirection(this,entity) == (int)CollisionDirection.LEFT)
-                    {
-                        this.Position = new Vector2(this.Position.X - 10, (int)this.Position.Y);
-                        this.CollisionBox = new Rectangle((int)Position.X - 10 + Sprite.Texture.Width / 4,
-                        (int)Position.Y + 5, Sprite.Texture.Width / 2, Sprite.Texture.Height * 2);
+                    CollisionWithBumpBlock(entity);
+                    break;
 
-                    }
-
-                    else
-                    {
-                        this.CollisionBox = new Rectangle((int)Position.X + Sprite.Texture.Width / 4,
-                        (int)Position.Y + 5, Sprite.Texture.Width / 2, Sprite.Texture.Height * 2);
-                        this.Position = new Vector2(this.Position.X, (int)this.Position.Y + 6);
-                    }
+                case (int)BlockID.QUESTIONBLOCK:
+                    CollisionWithBumpBlock(entity);
                     break;
 
                 case (int)ItemID.COIN:
-                    
+                    //change internal state to include one coin...
                     break;
             }
         }
 
+        #region Testing Methods
+        private void MoveObject(int offsetX, int offsetY)
+        {
+            this.Position = new Vector2((int)(Position.X - offsetX), (int)(Position.Y - offsetY ));
+            this.CollisionBox = new Rectangle((int)(Position.X - offsetX) + Sprite.Texture.Width / 4,
+                (int)(Position.Y - offsetY), Sprite.Texture.Width / 2, Sprite.Texture.Height * 2);
+        }
+
+        private void CollisionWithBumpBlock(IGameObjects entity)
+        {
+            //the offsetY SHOULD be 0, but I believe due to some issues with the sprite res, a fudge factor of 6
+            //is required to ensure proper allignment after collision
+            if (EntityManager.DetectCollisionDirection(this, entity) == (int)CollisionDirection.LEFT) { MoveObject(1, 0); }
+
+            if (EntityManager.DetectCollisionDirection(this, entity) == (int)CollisionDirection.RIGHT) { MoveObject(-1, 0); }
+
+            if (EntityManager.DetectCollisionDirection(this, entity) == (int)CollisionDirection.UP) { MoveObject(0, -1); }
+
+            if (EntityManager.DetectCollisionDirection(this, entity) == (int)CollisionDirection.DOWN){ MoveObject(0, 1); }
+        }
+
+        #endregion
         public void ToggleCollisionBoxes()
         {
             drawBox = !drawBox;

@@ -24,6 +24,8 @@ namespace GameSpace.GameObjects.BlockObjects
         private int y;
         public static int X { get; set; }
         public static int Y { get; set; }
+        private Boolean hasCollided;
+        private Boolean drawBox;
 
 
         //private int actionState; //[Idling, Crouching, Walking, Running, Jumping, Falling, Dying]
@@ -31,7 +33,7 @@ namespace GameSpace.GameObjects.BlockObjects
         // private int facingRight;// left = 0, right = 1
 
         //private static MarioPowerUpStates actionState;
-        
+
 
         //private MarioSprite sprite;
         public MarioSprite sprite { get; set; }
@@ -61,6 +63,9 @@ namespace GameSpace.GameObjects.BlockObjects
         public Mario(Vector2 initLocation)
         {
             Debug.WriteLine("Mario.cs(50) CREATED MARIO \n");
+            drawBox = false;
+            this.CollisionBox = new Rectangle((int)initLocation.X, (int)initLocation.Y, 16, 16);
+            drawBox = false;
             // this.state = new MarioStates(game);
             // this.sprite = MarioFactory.GetInstance().ReturnMarioS1tandingLeftSprite();
             //this.marioPowerUpState = new SmallMarioState(this);
@@ -94,6 +99,7 @@ namespace GameSpace.GameObjects.BlockObjects
 
         public void Draw(SpriteBatch spritebatch)
         {
+            if (drawBox) sprite.DrawBoundary(spritebatch, CollisionBox);
             if (Facing == eFacing.LEFT)
                 //sprite.facingRight = 0;
                 sprite.facing = SpriteEffects.None;// swap if
@@ -163,7 +169,7 @@ namespace GameSpace.GameObjects.BlockObjects
 
         public void ToggleCollisionBoxes()
         {
-            throw new NotImplementedException();
+            drawBox = !drawBox;
         }
     }
 }

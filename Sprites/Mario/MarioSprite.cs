@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Text;
 using GameSpace.GameObjects.BlockObjects;
 using System.Diagnostics;
-
+using GameSpace.Factories;
 
 namespace GameSpace.Sprites
 {
@@ -27,6 +27,7 @@ namespace GameSpace.Sprites
         public Texture2D Texture { get; set; }
         private int X;
         private int Y;
+        protected Texture2D WhiteRect = SpriteBlockFactory.GetInstance().CreateBoundingBoxTexture();
 
 
 
@@ -230,7 +231,7 @@ namespace GameSpace.Sprites
 
         public void DrawBoundary(SpriteBatch spriteBatch, Rectangle destination)
         {
-            throw new NotImplementedException();
+            spriteBatch.Draw(WhiteRect, destination, Color.Blue * 0.4f);
         }
 
         public bool GetVisibleStatus()
