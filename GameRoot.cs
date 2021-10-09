@@ -33,7 +33,7 @@ namespace GameSpace
 
         //IF RUNNING IT WITH TILE MAP DEFINITION, copy the full path of Level.xml and paste it in the next line
         //YOU MIGHT HAVE TO SWITCH THE '\' CHARACHTERS TO  '/'
-        string xmlFileName = "C:/Users/alber/Source/Repos/Team_Arcadia/TileMapDefinition/Level.xml";
+        string xmlFileName = "C:/Users/Henry/Source/Repos/Team_Arcadia/TileMapDefinition/Level.xml";
         //BETO'S PATH: C:/Users/alber/Source/Repos/Team_Arcadia/TileMapDefinition/Level.xml
         public GameRoot()
         {
@@ -97,7 +97,7 @@ namespace GameSpace
             };
             #endregion
 
-            mario = marioFactory.ReturnMario();
+            mario = marioFactory.ReturnMario(new Vector2(400, 400));
 
         }
 
@@ -120,7 +120,7 @@ namespace GameSpace
 
             EntityManager.Draw(spriteBatch);
 
-            mario.Draw(spriteBatch, new Vector2(500, 400));
+            mario.Draw(spriteBatch);
             
             //mario.sprite.Update(gameTime);
             //mario.sprite.Draw(spriteBatch, new Vector2(500, 400));

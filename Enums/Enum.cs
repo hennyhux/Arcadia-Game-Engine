@@ -4,7 +4,7 @@ using System.Text;
 
 namespace GameSpace.Enums
 {
-    public enum BlockID: int
+    public enum BlockID
     {
         BRICKBLOCK = 0,
         QUESTIONBLOCK = 1,

@@ -13,7 +13,7 @@ using GameSpace.Enums;
 
 namespace GameSpace.GameObjects.BlockObjects
 {
-    public class Mario : IMario
+    public class Mario : IGameObjects
     {
 
         //actionStateMachine
@@ -42,6 +42,13 @@ namespace GameSpace.GameObjects.BlockObjects
         public IMarioPowerUpStates marioPowerUpState { get ; set; }
 
         public IMarioActionStates marioActionState { get; set; }
+        public ISprite Sprite { get; set; }
+        public Vector2 Position { get; set; }
+        public Vector2 Velocity { get; set; }
+        public Vector2 Acceleration { get; set; }
+        public Rectangle CollisionBox { get; set; }
+
+        public int ObjectID => throw new NotImplementedException();
 
         //public IMarioPowerUpStates marioPowerUpState { get; set; }
 
@@ -51,7 +58,7 @@ namespace GameSpace.GameObjects.BlockObjects
 
 
         //public Mario(Game1 game, Texture2D texture)
-        public Mario(GameRoot game)
+        public Mario(Vector2 initLocation)
         {
             Debug.WriteLine("Mario.cs(50) CREATED MARIO \n");
             // this.state = new MarioStates(game);
@@ -85,7 +92,7 @@ namespace GameSpace.GameObjects.BlockObjects
 
         }
 
-        public void Draw(SpriteBatch spritebatch, Vector2 location)
+        public void Draw(SpriteBatch spritebatch)
         {
             if (Facing == eFacing.LEFT)
                 //sprite.facingRight = 0;
@@ -93,7 +100,7 @@ namespace GameSpace.GameObjects.BlockObjects
             else
                 //sprite.facingRight = 0;
                 sprite.facing = SpriteEffects.FlipHorizontally;// swap if base facing direction of sprite is right
-            this.sprite.Draw(spritebatch, new Vector2(500, 400));
+            this.sprite.Draw(spritebatch, Position);
         }
         public void Update(GameTime gametime)
         {
@@ -138,6 +145,25 @@ namespace GameSpace.GameObjects.BlockObjects
         public  void fireMarioTransformation() { marioPowerUpState.fireMarioTransformation(); }
 
         public  void DeadTransition() { marioPowerUpState.DeadTransition(); }
-       
+
+        public void Trigger()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void SetPosition(Vector2 location)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void HandleCollision(IGameObjects entity)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void ToggleCollisionBoxes()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -42,23 +42,23 @@ namespace GameSpace.TileMapDefinition
                 Vector2 location = new Vector2(obstacleObject.x, obstacleObject.y);
                 switch (obstacleObject.block)
                 {
-                    case BlockID.BRICKBLOCK:
+                    case (int)BlockID.BRICKBLOCK:
                         objectsList.Add(objectFactory.CreateBrickBlockObject(location));
                         break;
 
-                    case BlockID.QUESTIONBLOCK:
+                    case (int)BlockID.QUESTIONBLOCK:
                         objectsList.Add(objectFactory.CreateQuestionBlockObject(location));
                         break;
-                    case BlockID.FLOORBLOCK:
+                    case (int)BlockID.FLOORBLOCK:
                         objectsList.Add(objectFactory.CreateFloorBlockObject(location));
                         break;
-                    case BlockID.HIDDENBLOCK:
+                    case (int)BlockID.HIDDENBLOCK:
                         objectsList.Add(objectFactory.CreateHiddenBlockObject(location));
                         break;
-                    case BlockID.STAIRBLOCK:
+                    case (int)BlockID.STAIRBLOCK:
                         objectsList.Add(objectFactory.CreateStairBlockObject(location));
                         break;
-                    case BlockID.USEDBLOCK:
+                    case (int)BlockID.USEDBLOCK:
                         objectsList.Add(objectFactory.CreateUsedBlockObject(location));
                         break;
                 }
@@ -131,15 +131,6 @@ namespace GameSpace.TileMapDefinition
             return objectsList;
         }
 
-            objectFactory.CreateFloorBlockObject(new Vector2(268, 68));
-            //*/
-                
-            /*
-            using (XmlReader reader = XmlReader.Create("/TileMapDefinition/Level.xml"))
-            {
-                Obstacle = (List<Obstacle>)serializer.Deserialize(reader);
-            }
-            return objectsList;
         }
     }
-}
+
