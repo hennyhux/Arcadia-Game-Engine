@@ -24,6 +24,7 @@ namespace GameSpace
         private List<IController> controllers;
         private List<IGameObjects> objects;
         private List<IGameObjects> obj;
+        private List<IGameObjects> avatars;
         #endregion
 
         private Mario mario;
@@ -34,8 +35,10 @@ namespace GameSpace
         //IF RUNNING IT WITH TILE MAP DEFINITION, copy the full path of Level.xml and paste it in the next line
         //YOU MIGHT HAVE TO SWITCH THE '\' CHARACHTERS TO  '/'
         //string xmlFileName = "C:/Users/Henry/Source/Repos/Team_Arcadia/TileMapDefinition/Level.xml";
-        string xmlFileName = "C:/Users/18473/source/repos/Team_Arcadia_Sprint1 - Copy/TileMapDefinition/Level.xml";//JOHN's PATH
+
+        string xmlFileName = "C:/Users/alber/Source/Repos/Team_Arcadia/TileMapDefinition/Level.xml";
         //BETO'S PATH: C:/Users/alber/Source/Repos/Team_Arcadia/TileMapDefinition/Level.xml
+        //JOHN's PATH: C:/Users/18473/source/repos/Team_Arcadia_Sprint1 - Copy/TileMapDefinition/Level.xml
         public GameRoot()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -86,7 +89,8 @@ namespace GameSpace
             #region Load EntityManager
             EntityManager.LoadList(objects);
             //IF RUNNING IT WITH TILE MAP DEFINITION, UNCOMMENT THE NEXT LINE
-            //EntityManager.LoadList(obj);
+            EntityManager.LoadList(obj);
+            
 
 
             #endregion
@@ -98,14 +102,23 @@ namespace GameSpace
             };
             #endregion
 
-            mario = marioFactory.ReturnMario(new Vector2(350, 200));
-            EntityManager.AddEntity(mario);
+            avatars = Loader.LoadAvatars(xmlFileName);
+            foreach(IGameObjects avatar in avatars)
+            {
+                EntityManager.AddEntity(avatar);
+            }
+            //mario = marioFactory.ReturnMario(new Vector2(350, 200));
+            //EntityManager.AddEntity(mario);
 
         }
 
         protected override void Update(GameTime gameTime)
         {
-            mario.Update(gameTime);
+            foreach (IGameObjects avatar in avatars)
+            {
+                avatar.Update(gameTime);
+            }
+            //mario.Update(gameTime);
 
             foreach (IController controller in controllers) controller.Update();
 
@@ -122,8 +135,12 @@ namespace GameSpace
 
             EntityManager.Draw(spriteBatch);
 
-            mario.Draw(spriteBatch);
-            
+            foreach (IGameObjects avatar in avatars)
+            {
+                avatar.Draw(spriteBatch);
+            }
+            //mario.Draw(spriteBatch);
+
             //mario.sprite.Update(gameTime);
             //mario.sprite.Draw(spriteBatch, new Vector2(500, 400));
             //Debug.WriteLine("mario sprite address \n", *mario.sprite);

@@ -23,7 +23,6 @@ namespace GameSpace.TileMapDefinition
             fullList.AddRange(itemsList);
             List<IGameObjects> enemiesList = LoadEnemies(xmlFile);
             fullList.AddRange(enemiesList);
-            //LoadAvatar(xmlFile);
             return fullList;
         }
 
@@ -131,6 +130,24 @@ namespace GameSpace.TileMapDefinition
             return objectsList;
         }
 
+        public static List<IGameObjects> LoadAvatars(string xmlFile)
+        {
+            List<IGameObjects> avatarsList = new List<IGameObjects>();
+            MarioFactory marioFactory = MarioFactory.GetInstance();
+            Mario avatar;
+            List<Avatar> avatarList = new List<Avatar>();
+            XmlSerializer serializer = new XmlSerializer(typeof(List<Avatar>), new XmlRootAttribute("Level"));
+            using (XmlReader reader = XmlReader.Create(xmlFile))
+            {
+                avatarList = (List<Avatar>)serializer.Deserialize(reader);
+            }
+            foreach (Avatar avatarObject in avatarList)
+            {
+                Vector2 location = new Vector2(avatarObject.x, avatarObject.y);
+                avatarsList.Add(marioFactory.ReturnMario(location));
+            }
+            return avatarsList;
         }
     }
+}
 

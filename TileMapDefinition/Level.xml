@@ -309,7 +309,7 @@
 		<y>290</y>
 	</Obstacle>
 	<Obstacle>
-		<block>0</block>
+		<block>1</block>
 		<item>NULL</item>
 		<x>512</x>
 		<y>290</y>
@@ -321,7 +321,7 @@
 		<y>290</y>
 	</Obstacle>
 	<Obstacle>
-		<block>0</block>
+		<block>1</block>
 		<item>NULL</item>
 		<x>576</x>
 		<y>290</y>
@@ -333,7 +333,7 @@
 		<y>290</y>
 	</Obstacle>
 	<Obstacle>
-		<block>0</block>
+		<block>1</block>
 		<item>NULL</item>
 		<x>640</x>
 		<y>290</y>
@@ -352,5 +352,12 @@
 		<x>576</x>
 		<y>386</y>
 	</Enemy>
+
+	<Avatar>
+		<avatar>MARIO</avatar>
+		<facing>LEFT</facing>
+		<x>32</x>
+		<y>386</y>
+	</Avatar>
 	
 </Level>
