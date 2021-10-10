@@ -109,8 +109,6 @@ namespace GameSpace
             {
                 EntityManager.AddEntity(avatar);
             }
-            //mario = marioFactory.ReturnMario(new Vector2(350, 200));
-            //EntityManager.AddEntity(mario);
 
         }
 
@@ -131,9 +129,6 @@ namespace GameSpace
 
             EntityManager.Draw(spriteBatch);
 
-            //mario.sprite.Update(gameTime);
-            //mario.sprite.Draw(spriteBatch, new Vector2(500, 400));
-            //Debug.WriteLine("mario sprite address \n", *mario.sprite);
             spriteBatch.End();
 
             base.Draw(gameTime);
