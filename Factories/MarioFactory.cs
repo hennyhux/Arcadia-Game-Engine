@@ -349,7 +349,7 @@ namespace GameSpace.Factories
 
         public MarioSprite ReturnMarioStandingLeftSprite()
         {
-            return new MarioSprite(normalMarioSprite, 350, 200, 0, 0, 0);
+            return new MarioSprite(normalMarioSprite, 200, 200, 0, 0, 0);
         }
 
         public MarioSprite DeadMarioSprite()
@@ -359,7 +359,8 @@ namespace GameSpace.Factories
 
         public MarioSprite SmallMarioStandingSprite()
         {
-            return new MarioSprite(normalMarioSprite, 350, 200, 0, 0, 0);
+            Debug.WriteLine("SmallMarioStandingSprite\n");
+            return new MarioSprite(normalMarioSprite, 999, 999, 0, 0, 0);
         }
 
         public MarioSprite SmallMarioWalkingSprite()//mario.SmallMarioWalkingSprite

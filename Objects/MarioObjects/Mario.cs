@@ -50,7 +50,8 @@ namespace GameSpace.GameObjects.BlockObjects
         public Vector2 Acceleration { get; set; }
         public Rectangle CollisionBox { get; set; }
 
-        public int ObjectID => throw new NotImplementedException();
+        //public int ObjectID => throw new NotImplementedException();
+        public int ObjectID { get; set; }
 
         //public IMarioPowerUpStates marioPowerUpState { get; set; }
 
