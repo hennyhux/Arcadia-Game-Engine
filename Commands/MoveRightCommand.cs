@@ -32,7 +32,7 @@ namespace GameSpace
                 game.GetMario.FaceRightTransition();
                 if (eFacing.LEFT != game.GetMario.Facing)
                 {
-                    EntityManager.MoveItem((int)AvatarID.MARIO, (int)ControlDirection.RIGHT);
+                    //EntityManager.MoveItem((int)AvatarID.MARIO, (int)ControlDirection.RIGHT);
                     game.GetMario.Position = new Vector2(game.GetMario.Position.X + 10, game.GetMario.Position.Y);
                 }
             }
