@@ -24,32 +24,31 @@ namespace GameSpace.Commands
         {
             //EntityManager.MoveBlock(0, 1);
             //How to change mario's position
-            IMarioPowerUpStates currentPowerUpState = game.GetMario.marioPowerUpState;
+            IMarioActionStates currentState = game.GetMario.marioActionState;
             
-            if ((!(currentPowerUpState is GameSpace.States.MarioStates.SmallMarioFallingState) &&
-                !(currentPowerUpState is GameSpace.States.MarioStates.SmallMarioJumpingState) &&
-                !(currentPowerUpState is GameSpace.States.MarioStates.SmallMarioRunningState) &&
-                !(currentPowerUpState is GameSpace.States.MarioStates.SmallMarioStandingState) &&
-                !(currentPowerUpState is GameSpace.States.MarioStates.SmallMarioWalkingState)) && 
-                (currentPowerUpState is GameSpace.States.MarioStates.BigMarioStandingState ||
-                currentPowerUpState is GameSpace.States.MarioStates.FireMarioStandingState))
+            if ((!(currentState is GameSpace.States.MarioStates.SmallMarioFallingState) &&
+                !(currentState is GameSpace.States.MarioStates.SmallMarioJumpingState) &&
+                !(currentState is GameSpace.States.MarioStates.SmallMarioRunningState) &&
+                !(currentState is GameSpace.States.MarioStates.SmallMarioStandingState) &&
+                !(currentState is GameSpace.States.MarioStates.SmallMarioWalkingState)) && 
+                (currentState is GameSpace.States.MarioStates.BigMarioStandingState ||
+                currentState is GameSpace.States.MarioStates.FireMarioStandingState))
             {//IF previously standing, then crouch
                 game.GetMario.CrouchingTransition();
-            }//IF previously Jumping, then stand
-            else if (currentPowerUpState is GameSpace.States.MarioStates.BigMarioJumpingState ||
-                    currentPowerUpState is GameSpace.States.MarioStates.FireMarioJumpingState)
+            }//IF previously Jumping, then stand and move
+            else if (currentState is GameSpace.States.MarioStates.BigMarioJumpingState ||
+                    currentState is GameSpace.States.MarioStates.FireMarioJumpingState)
             {
-                game.GetMario.JumpingDiscontinueTransition();
                 game.GetMario.StandingTransition();
+                game.GetMario.Position = new Vector2(game.GetMario.Position.X, game.GetMario.Position.Y + 10);
+
             }
             else
             {// Just move down
-                //game.GetMario.JumpingDiscontinueTransition();
-                game.GetMario.StandingTransition();
                 game.GetMario.Position = new Vector2(game.GetMario.Position.X, game.GetMario.Position.Y + 10);
             }
         
-                game.GetMario.CrouchingTransition();
+               //game.GetMario.CrouchingTransition();
             //}
            // game.GetMario.Position = new Vector2(game.GetMario.Position.X, game.GetMario.Position.Y + 10);
 

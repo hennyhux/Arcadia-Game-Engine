@@ -198,17 +198,24 @@ namespace GameSpace.GameObjects.BlockObjects
                 EntityManager.DetectCollisionDirection(this, enemy) == (int)CollisionDirection.RIGHT || 
                 EntityManager.DetectCollisionDirection(this, enemy) == (int)CollisionDirection.DOWN)
             {
-                this.marioActionState.DeadPowerUp();
+                this.DeadTransition(); // For Caleb: dead state is not working
+            }
+
+            else
+            {
+                //launch mario up like in the real game 
+                Debug.WriteLine("HELLO");
+                MoveObjectOffset(0, 10);
             }
         }
 
         private void CollisionWithBumpBlock(IGameObjects entity)
         {
-            if (EntityManager.DetectCollisionDirection(this, entity) == (int)CollisionDirection.LEFT) { MoveObjectOffset(1, 0); }
+            if (EntityManager.DetectCollisionDirection(this, entity) == (int)CollisionDirection.LEFT) { MoveObjectOffset(3, 0); }
 
-            if (EntityManager.DetectCollisionDirection(this, entity) == (int)CollisionDirection.RIGHT) { MoveObjectOffset(-1, 0); }
+            if (EntityManager.DetectCollisionDirection(this, entity) == (int)CollisionDirection.RIGHT) { MoveObjectOffset(-3, 0); }
 
-            if (EntityManager.DetectCollisionDirection(this, entity) == (int)CollisionDirection.UP) { MoveObjectOffset(0, -1); }
+            if (EntityManager.DetectCollisionDirection(this, entity) == (int)CollisionDirection.UP) { MoveObjectOffset(0, -3); }
 
             if (EntityManager.DetectCollisionDirection(this, entity) == (int)CollisionDirection.DOWN) { MoveObjectOffset(0, 1); }
         }
