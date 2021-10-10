@@ -9,7 +9,7 @@ namespace GameSpace.TileMapDefinition
     {
         public class Obstacle
         {
-            public int block;
+            public BlockID block;
             public ItemID item;
             public int x;
             public int y;

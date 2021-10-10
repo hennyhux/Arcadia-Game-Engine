@@ -130,7 +130,7 @@ namespace GameSpace.EntitiesManager
         }
         private static bool IsOutOfBounds(IGameObjects a)
         {
-            return a.Position.X < -1 || a.Position.Y > 500;
+            return a.Position.X < 0 || a.Position.Y > 600;
         }
 
         //Super inefficent method of detection, if the amount of entites in the list is huge, it will take a lot of resources 

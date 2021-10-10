@@ -231,7 +231,7 @@ namespace GameSpace.Sprites
 
         public void DrawBoundary(SpriteBatch spriteBatch, Rectangle destination)
         {
-            spriteBatch.Draw(WhiteRect, destination, Color.Blue * 0.4f);
+            spriteBatch.Draw(WhiteRect, destination, Color.Yellow * 0.4f);
         }
 
         public bool GetVisibleStatus()
