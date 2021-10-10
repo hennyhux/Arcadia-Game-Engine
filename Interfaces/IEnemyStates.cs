@@ -8,8 +8,7 @@ namespace GameSpace.Interfaces
 {
     public interface IEnemyStates
     {
-        public void Draw(SpriteBatch spritebatch, Vector2 location);
+        public void Draw(SpriteBatch spritebatch, Texture2D texture);
         public void Update(GameTime gametime);
-        public void Trigger();
     }
 }

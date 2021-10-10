@@ -39,5 +39,6 @@ namespace GameSpace.Sprites
             spriteBatch.Draw(WhiteRect, destination, Color.Red * 0.4f);
         }
 
+
     }
 }

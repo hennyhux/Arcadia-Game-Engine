@@ -8,35 +8,37 @@ namespace GameSpace.Sprites.Enemy
 {
     public class GoombasDeadSprite : AbstractSprite
     {
-        public GoombasDeadSprite(Texture2D texture, int rows, int columns, int totalFrames, int startingPointX,
-            int startingPointY)
+        public GoombasDeadSprite(Texture2D texture, int rows, int columns, int totalFrames)
         {
-            Texture = texture;
+            this.Texture = texture;
             isVisible = true;
-            currentFrame = 1;
-            frameHeight = rows;
+            this.rows = rows;
+            this.columns = columns;
             frameWidth = columns;
+            frameHeight = rows;
+            currentFrame = 0;
             this.totalFrames = totalFrames;
-            this.startingPointX = startingPointX;
-            this.startingPointY = startingPointY;
-            offsetX = 0;
 
-            #region points
-            currentFramePoint = new Point(startingPointX, startingPointY);
-            frameOrigin = new Point(startingPointX, startingPointY);
-            atlasSize = new Point(columns, rows);
-            frameSize = new Point(Texture.Width / atlasSize.X, Texture.Height / atlasSize.Y);
-            #endregion
-
-            #region time
-            timeSinceLastFrame = 0;
-            milliSecondsPerFrame = 275;
-            #endregion
         }
 
-        public override void DrawBoundary(SpriteBatch spriteBatch, Rectangle destination)
+        public override void Draw(SpriteBatch spriteBatch, Vector2 location)
         {
-            spriteBatch.Draw(WhiteRect, destination, Color.Red * 0.4f);
+            if (isVisible)
+            {
+                int width = Texture.Width / frameWidth;
+                int height = Texture.Height / frameHeight;
+                int row = currentFrame / frameWidth;
+                int column = currentFrame % frameWidth;
+
+                Rectangle sourceRectangle = new Rectangle(width * column, height * row, width, height);
+                Rectangle destinationRectangle = new Rectangle((int)location.X, (int)location.Y, width * 2, height * 2);
+                spriteBatch.Draw(Texture, destinationRectangle, sourceRectangle, Color.White);
+            }
+        }
+
+        public override void Update(GameTime gametime)
+        {
+
         }
 
     }

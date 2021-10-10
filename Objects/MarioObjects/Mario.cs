@@ -64,7 +64,8 @@ namespace GameSpace.GameObjects.BlockObjects
         {
             Debug.WriteLine("Mario.cs(50) CREATED MARIO \n");
             drawBox = false;
-            this.CollisionBox = new Rectangle((int)initLocation.X, (int)initLocation.Y, 16, 16);
+            this.Position = new Vector2((int)initLocation.X, (int)initLocation.Y);
+            this.CollisionBox = new Rectangle((int)initLocation.X - 3, (int)initLocation.Y, 32, 32);
             drawBox = false;
             // this.state = new MarioStates(game);
             // this.sprite = MarioFactory.GetInstance().ReturnMarioS1tandingLeftSprite();
@@ -146,7 +147,11 @@ namespace GameSpace.GameObjects.BlockObjects
 
         public void smallMarioTransformation() { marioPowerUpState.smallMarioTransformation(); }
 
-        public  void bigMarioTransformation() { marioPowerUpState.bigMarioTransformation(); }
+        public  void bigMarioTransformation() 
+        {
+            marioPowerUpState.bigMarioTransformation();
+            this.CollisionBox = new Rectangle((int)Position.X, (int)Position.Y, 32, 64);
+        }
 
         public  void fireMarioTransformation() { marioPowerUpState.fireMarioTransformation(); }
 

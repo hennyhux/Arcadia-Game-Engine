@@ -50,7 +50,7 @@ namespace GameSpace.Factories
 
         public ISprite CreateDeadGoombaSprite()
         {
-            return new GoombaSprite(DeadGoomba, 1, 1, 1, 0, 0);
+            return new GoombasDeadSprite(DeadGoomba, 1, 1, 1);
         }
 
         public ISprite CreateRedKoopaSprite()
