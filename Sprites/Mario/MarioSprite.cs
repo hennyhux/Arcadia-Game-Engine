@@ -216,7 +216,7 @@ namespace GameSpace.Sprites
                 int height = YHeight[currentFrame];
 
                 Rectangle sourceRectangle = new Rectangle(XFrame[currentFrame], YFrame[currentFrame], width, height);
-                Rectangle destinationRectangle = new Rectangle(X, Y, width * 2, height * 2);
+                Rectangle destinationRectangle = new Rectangle((int)location.X, (int)location.Y, width * 2, height * 2);
 
                 //spriteBatch.Draw(Texture, destinationRectangle, sourceRectangle, Color.White);
                 spriteBatch.Draw(Texture, destinationRectangle, sourceRectangle, Color.White, 0, new Vector2(0, 0), facing, 0);

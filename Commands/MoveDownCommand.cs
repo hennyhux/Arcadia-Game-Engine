@@ -23,6 +23,8 @@ namespace GameSpace.Commands
         public void Execute()
         {
             //EntityManager.MoveBlock(0, 1);
+            //How to change mario's position
+            game.GetMario.Position = new Vector2(game.GetMario.Position.X, game.GetMario.Position.Y + 10);
 
             //game.GetMario.CrouchingTransition();//Use these seperatly, alongside the same one from the MoveDown class
             game.GetMario.StandingTransition();// 1 pair alloys jumping other crouching

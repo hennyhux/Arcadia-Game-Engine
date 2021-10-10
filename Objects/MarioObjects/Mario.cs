@@ -111,7 +111,7 @@ namespace GameSpace.GameObjects.BlockObjects
         }
         public void Update(GameTime gametime)
         {
-            
+            this.CollisionBox = new Rectangle((int)Position.X, (int)Position.Y, CollisionBox.Width, CollisionBox.Height);
             this.marioPowerUpState.Update(gametime);
             this.marioActionState.Update(gametime);
             this.sprite.Update(gametime);
@@ -164,7 +164,8 @@ namespace GameSpace.GameObjects.BlockObjects
 
         public void SetPosition(Vector2 location)
         {
-            throw new NotImplementedException();
+            this.Position = location;
+            //throw new NotImplementedException();
         }
 
         public void HandleCollision(IGameObjects entity)

@@ -17,6 +17,8 @@ namespace GameSpace
         {
             
             game.GetMario.FaceLeftTransition();
+            //How to change mario's position
+            game.GetMario.Position = new Vector2(game.GetMario.Position.X - 10, game.GetMario.Position.Y);
             //game.GetMario.WalkingTransition();
             Debug.WriteLine("LeftCommand, facing {0}\n AState {1}\n", game.GetMario.Facing, game.GetMario.marioActionState);
         }

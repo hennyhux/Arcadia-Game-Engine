@@ -33,7 +33,7 @@ namespace GameSpace.TileMapDefinition
             List<Obstacle> obstacleList = new List<Obstacle>();
             ObjectFactory objectFactory = ObjectFactory.GetInstance();
             XmlSerializer serializer = new XmlSerializer(typeof(List<Obstacle>), new XmlRootAttribute("Level"));
-            using (XmlReader reader = XmlReader.Create(xmlFile))
+            using (XmlReader reader = XmlReader.Create(xmlFile))// IF YOU GET AN ERROR HERE, GO TO GameRoot.cs and change the xmlFILE path to your PATH to the Level File(on YOUR PC)
             {
                 obstacleList = (List<Obstacle>)serializer.Deserialize(reader);
             }
