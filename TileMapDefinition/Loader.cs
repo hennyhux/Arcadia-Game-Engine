@@ -41,23 +41,23 @@ namespace GameSpace.TileMapDefinition
                 Vector2 location = new Vector2(obstacleObject.x, obstacleObject.y);
                 switch (obstacleObject.block)
                 {
-                    case (int)BlockID.BRICKBLOCK:
+                    case BlockID.BRICKBLOCK:
                         objectsList.Add(objectFactory.CreateBrickBlockObject(location));
                         break;
 
-                    case (int)BlockID.QUESTIONBLOCK:
+                    case BlockID.QUESTIONBLOCK:
                         objectsList.Add(objectFactory.CreateQuestionBlockObject(location));
                         break;
-                    case (int)BlockID.FLOORBLOCK:
+                    case BlockID.FLOORBLOCK:
                         objectsList.Add(objectFactory.CreateFloorBlockObject(location));
                         break;
-                    case (int)BlockID.HIDDENBLOCK:
+                    case BlockID.HIDDENBLOCK:
                         objectsList.Add(objectFactory.CreateHiddenBlockObject(location));
                         break;
-                    case (int)BlockID.STAIRBLOCK:
+                    case BlockID.STAIRBLOCK:
                         objectsList.Add(objectFactory.CreateStairBlockObject(location));
                         break;
-                    case (int)BlockID.USEDBLOCK:
+                    case BlockID.USEDBLOCK:
                         objectsList.Add(objectFactory.CreateUsedBlockObject(location));
                         break;
                 }

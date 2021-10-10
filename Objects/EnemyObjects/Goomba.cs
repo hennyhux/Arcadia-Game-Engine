@@ -24,7 +24,7 @@ namespace GameSpace.GameObjects.EnemyObjects
         public Rectangle CollisionBox { get; set; }
 
         public int ObjectID { get; set; }
-        private Boolean hasCollided;
+        private Boolean hasCollidedOnTop;
         private Boolean drawBox;
         private int countDown;
 
@@ -44,8 +44,8 @@ namespace GameSpace.GameObjects.EnemyObjects
         public void Draw(SpriteBatch spritebatch)
         {
             Sprite.Draw(spritebatch, Position); //this shouldnt be hardcoded anymore 
-            if (drawBox && !hasCollided) Sprite.DrawBoundary(spritebatch, CollisionBox);
-            if (hasCollided)countDown++;
+            if (drawBox && !hasCollidedOnTop) Sprite.DrawBoundary(spritebatch, CollisionBox);
+            if (hasCollidedOnTop)countDown++;
             
         }
 
@@ -70,26 +70,21 @@ namespace GameSpace.GameObjects.EnemyObjects
 
         public void HandleCollision(IGameObjects entity)
         {
-            if (!hasCollided) hasCollided = true;
-
             switch (entity.ObjectID)
             {
-                case (int)BlockID.BRICKBLOCK:
-                    CollisionWithBumpBlock(entity);
-                    Trigger();
+                case (int)AvatarID.MARIO:
+                    CollisionWithMario(entity);
                     break;
+            }
+        }
 
-                case (int)BlockID.QUESTIONBLOCK:
-                    CollisionWithBumpBlock(entity);
-                    break;
-
-                case (int)ItemID.COIN:
-                    //change internal state to include one coin...
-                    break;
-
-                case (int)EnemyID.GOOMBA:
-                    //goomba dead state...
-                    break;
+        private void CollisionWithMario(IGameObjects mario)
+        {
+            if (EntityManager.DetectCollisionDirection(this, mario) == (int)CollisionDirection.UP)
+            {
+                this.Trigger();
+                this.CollisionBox = new Rectangle(1, 1, 1, 1);
+                if (!hasCollidedOnTop) hasCollidedOnTop = true;
             }
         }
 

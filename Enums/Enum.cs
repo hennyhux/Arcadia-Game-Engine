@@ -60,6 +60,6 @@ namespace GameSpace.Enums
 
     public enum AvatarID
     {
-        MARIO = 0,
+        MARIO = 16,
     };
 }
