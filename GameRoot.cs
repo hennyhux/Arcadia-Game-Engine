@@ -87,7 +87,7 @@ namespace GameSpace
             #endregion
 
             #region Load EntityManager
-            EntityManager.LoadList(objects);
+            //EntityManager.LoadList(objects);
             //IF RUNNING IT WITH TILE MAP DEFINITION, UNCOMMENT THE NEXT LINE
             EntityManager.LoadList(obj);
             
@@ -114,16 +114,10 @@ namespace GameSpace
 
         protected override void Update(GameTime gameTime)
         {
-            foreach (IGameObjects avatar in avatars)
-            {
-                avatar.Update(gameTime);
-            }
-            //mario.Update(gameTime);
 
             foreach (IController controller in controllers) controller.Update();
 
             EntityManager.Update(gameTime);
-
 
             base.Update(gameTime);
         }
@@ -134,12 +128,6 @@ namespace GameSpace
             spriteBatch.Begin(blendState: BlendState.AlphaBlend);
 
             EntityManager.Draw(spriteBatch);
-
-            foreach (IGameObjects avatar in avatars)
-            {
-                avatar.Draw(spriteBatch);
-            }
-            //mario.Draw(spriteBatch);
 
             //mario.sprite.Update(gameTime);
             //mario.sprite.Draw(spriteBatch, new Vector2(500, 400));
