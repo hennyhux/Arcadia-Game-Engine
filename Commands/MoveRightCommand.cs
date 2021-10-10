@@ -23,7 +23,10 @@ namespace GameSpace
             //How to change mario's position
             IMarioActionStates currentActionState = game.GetMario.marioActionState;
             
-            if (currentActionState is GameSpace.States.MarioStates.SmallMarioStandingState && eFacing.LEFT == game.GetMario.Facing)
+            if ((currentActionState is GameSpace.States.MarioStates.SmallMarioStandingState ||
+                currentActionState is GameSpace.States.MarioStates.BigMarioStandingState ||
+                currentActionState is GameSpace.States.MarioStates.FireMarioStandingState) 
+                && eFacing.LEFT == game.GetMario.Facing)
             {
                     game.GetMario.FaceRightTransition();
             }

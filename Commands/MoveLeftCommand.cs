@@ -24,7 +24,10 @@ namespace GameSpace
 
             IMarioActionStates currentActionState = game.GetMario.marioActionState;
 
-            if (currentActionState is GameSpace.States.MarioStates.SmallMarioStandingState && eFacing.RIGHT == game.GetMario.Facing)
+            if ((currentActionState is GameSpace.States.MarioStates.SmallMarioStandingState ||
+                currentActionState is GameSpace.States.MarioStates.BigMarioStandingState ||
+                currentActionState is GameSpace.States.MarioStates.FireMarioStandingState)
+                && eFacing.RIGHT == game.GetMario.Facing)
             {
                     game.GetMario.FaceLeftTransition();
             }
