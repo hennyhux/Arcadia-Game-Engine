@@ -37,7 +37,7 @@ namespace GameSpace
         //YOU MIGHT HAVE TO SWITCH THE '\' CHARACHTERS TO  '/'
         //string xmlFileName = "C:/Users/Henry/Source/Repos/Team_Arcadia/TileMapDefinition/Level.xml";
 
-        string xmlFileName = " C:/Users/18473/source/repos/Team_Arcadia_Sprint1 - Copy/TileMapDefinition/Level.xml";
+        string xmlFileName = "C:/Users/alber/Source/Repos/Team_Arcadia/TileMapDefinition/Level.xml";
         //BETO'S PATH: C:/Users/alber/Source/Repos/Team_Arcadia/TileMapDefinition/Level.xml
         //JOHN's PATH: C:/Users/18473/source/repos/Team_Arcadia_Sprint1 - Copy/TileMapDefinition/Level.xml
         public GameRoot()

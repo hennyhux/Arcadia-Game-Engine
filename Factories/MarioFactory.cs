@@ -17,6 +17,7 @@ namespace GameSpace.Factories
         private static protected GameRoot instanceGame;
         private Texture2D normalMarioSprite;
         private static MarioFactory instance = new MarioFactory();
+        //private int currentState = SmallMarioStanding;
 
         //private static SpriteBlockFactory instance = new SpriteBlockFactory();
         public static MarioFactory GetInstance() => instance;
@@ -33,7 +34,7 @@ namespace GameSpace.Factories
 
             //SmallMask 0x0F
             SmallMarioStanding = 0x01,
-            SmallMarioCrouching = 0x02,
+            SmallMarioCrouching = 2,
             SmallMarioWalking = 0x03,//0x03, < - Dont Use
             SmallMarioRunning = 0x04,//0x04
             SmallMarioJumping = 0x05,//0x05
@@ -93,6 +94,7 @@ namespace GameSpace.Factories
             int type = (int)eMarioSprite.SmallMarioStanding;
 
             if (currentActionState is GameSpace.States.MarioStates.SmallMarioStandingState)
+                //currentState = (int)eMarioSprite.SmallMarioStanding;
                 type = (int)eMarioSprite.SmallMarioStanding;
             else
             if (currentActionState is GameSpace.States.MarioStates.SmallMarioWalkingState)
