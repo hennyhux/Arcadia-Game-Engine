@@ -144,7 +144,16 @@ namespace GameSpace.TileMapDefinition
             foreach (Avatar avatarObject in avatarList)
             {
                 Vector2 location = new Vector2(avatarObject.x, avatarObject.y);
-                avatarsList.Add(marioFactory.ReturnMario(location));
+                //avatarsList.Add(marioFactory.ReturnMario(location));
+                switch (avatarObject.facing)
+                {
+                    case eFacing.LEFT:
+                        avatarsList.Add(marioFactory.ReturnMario(location));
+                        break;
+                    case eFacing.RIGHT:
+                        avatarsList.Add(marioFactory.ReturnMario(location));
+                        break;
+                }
             }
             return avatarsList;
         }

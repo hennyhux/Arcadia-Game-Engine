@@ -1,6 +1,8 @@
 ﻿using Microsoft.Xna.Framework;
 using System.Diagnostics;
 using GameSpace.Enums;
+using GameSpace.Interfaces;
+using GameSpace.EntitiesManager;
 
 namespace GameSpace
 {
@@ -19,8 +21,25 @@ namespace GameSpace
 
             //game.GetMario.Facing = Enums.eFacing.Right;
             //How to change mario's position
-            game.GetMario.Position = new Vector2(game.GetMario.Position.X + 10, game.GetMario.Position.Y);
-            game.GetMario.FaceRightTransition();
+            IMarioActionStates currentActionState = game.GetMario.marioActionState;
+            
+            if (currentActionState is GameSpace.States.MarioStates.SmallMarioStandingState && eFacing.LEFT == game.GetMario.Facing)
+            {
+                    game.GetMario.FaceRightTransition();
+            }
+            else
+            {
+                game.GetMario.FaceRightTransition();
+                if (eFacing.LEFT != game.GetMario.Facing)
+                {
+                    //EntityManager.MoveItem((int)AvatarID.MARIO, (int)ControlDirection.RIGHT);
+                    game.GetMario.Position = new Vector2(game.GetMario.Position.X + 10, game.GetMario.Position.Y);
+                }
+            }
+
+            
+            //game.GetMario.Position = new Vector2(game.GetMario.Position.X + 10, game.GetMario.Position.Y);
+            //game.GetMario.FaceRightTransition();
             Debug.WriteLine("RightCommand, facing {0}\n AState {1}\n", game.GetMario.Facing, game.GetMario.marioActionState);
             //game.GetMario.WalkingTransition();
         }
