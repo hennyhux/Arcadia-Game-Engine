@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using GameSpace.EntitiesManager;
 using GameSpace.Enums;
 using GameSpace.Factories;
 using GameSpace.Interfaces;
@@ -45,12 +46,18 @@ namespace GameSpace.GameObjects.ItemObjects
 
         public void Trigger()
         {
-
+            this.Sprite.SetVisible();
+            this.CollisionBox = new Rectangle(0, 0, 0, 0);
         }
 
         public void HandleCollision(IGameObjects entity)
         {
-            
+            switch (entity.ObjectID)
+            {
+                case (int)AvatarID.MARIO:
+                    this.Trigger();
+                    break;
+            }
         }
 
         public void SetPosition(Vector2 location)

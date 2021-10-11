@@ -83,36 +83,11 @@ namespace GameSpace.GameObjects.EnemyObjects
             if (EntityManager.DetectCollisionDirection(this, mario) == (int)CollisionDirection.UP)
             {
                 this.Trigger();
-                this.CollisionBox = new Rectangle(1, 1, 1, 1);
+                this.CollisionBox = new Rectangle(1, 1, 0, 0);
                 if (!hasCollidedOnTop) hasCollidedOnTop = true;
             }
         }
 
-        #region Testing Methods
-        //GameSpace.States.EnemyStates.EnemyDeadState
-        private void MoveObjectOffset(int offsetX, int offsetY)
-        {
-
-            this.CollisionBox = new Rectangle((int)(Position.X - offsetX) + Sprite.Texture.Width / 4,
-            (int)(Position.Y - offsetY), Sprite.Texture.Width / 2, Sprite.Texture.Height * 2);
-            this.Position = new Vector2((int)(Position.X - offsetX), (int)(Position.Y - offsetY));
-            
-        }
-
-        private void CollisionWithBumpBlock(IGameObjects entity)
-        {
-            //the offsetY SHOULD be 0, but I believe due to some issues with the sprite res, a fudge factor of 6
-            //is required to ensure proper allignment after collision
-            if (EntityManager.DetectCollisionDirection(this, entity) == (int)CollisionDirection.LEFT) { MoveObjectOffset(1, 0); }
-
-            if (EntityManager.DetectCollisionDirection(this, entity) == (int)CollisionDirection.RIGHT) { MoveObjectOffset(-1, 0); }
-
-            if (EntityManager.DetectCollisionDirection(this, entity) == (int)CollisionDirection.UP) { MoveObjectOffset(0, -1); }
-
-            if (EntityManager.DetectCollisionDirection(this, entity) == (int)CollisionDirection.DOWN){ MoveObjectOffset(0, 1); }
-        }
-
-        #endregion
         public void ToggleCollisionBoxes()
         {
             drawBox = !drawBox;

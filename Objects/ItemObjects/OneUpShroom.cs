@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using GameSpace.EntitiesManager;
 using GameSpace.Enums;
 using GameSpace.Factories;
 using GameSpace.Interfaces;
@@ -45,7 +46,7 @@ namespace GameSpace.GameObjects.ItemObjects
 
         public void Trigger()
         {
-
+            
         }
 
         public void HandleCollision(IGameObjects entity)
@@ -55,7 +56,7 @@ namespace GameSpace.GameObjects.ItemObjects
 
         public void SetPosition(Vector2 location)
         {
-            throw new NotImplementedException();
+            
         }
 
         public void ToggleCollisionBoxes()

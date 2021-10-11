@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using GameSpace.EntitiesManager;
 using GameSpace.Enums;
 using GameSpace.Factories;
 using GameSpace.Interfaces;
@@ -46,7 +47,7 @@ namespace GameSpace.GameObjects.ItemObjects
 
         public void Trigger()
         {
-            Sprite.SetVisible();
+            
         }
 
         public void HandleCollision(IGameObjects entity)
