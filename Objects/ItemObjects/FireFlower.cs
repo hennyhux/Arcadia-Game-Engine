@@ -29,13 +29,14 @@ namespace GameSpace.GameObjects.ItemObjects
             this.Sprite = SpriteItemFactory.GetInstance().CreateFireFlower();
             this.Position = initialPosition;
             this.CollisionBox = new Rectangle((int)Position.X, (int)Position.Y, Sprite.Texture.Width * 2 / 4, Sprite.Texture.Height * 2);
+            hasCollided = false;
             drawBox = false;
         }
 
         public void Draw(SpriteBatch spritebatch)
         {
             Sprite.Draw(spritebatch, Position);
-            if (drawBox) Sprite.DrawBoundary(spritebatch, CollisionBox);
+            if (drawBox && Sprite.GetVisibleStatus()) Sprite.DrawBoundary(spritebatch, CollisionBox);
         }
 
         public void Update(GameTime gametime)
@@ -45,12 +46,16 @@ namespace GameSpace.GameObjects.ItemObjects
 
         public void Trigger()
         {
-
+            Sprite.SetVisible();
         }
 
         public void HandleCollision(IGameObjects entity)
         {
-            
+            if (entity.ObjectID == 16)
+            {
+                if (!hasCollided) this.Trigger();
+                hasCollided = true;
+            }
         }
 
         public void SetPosition(Vector2 location)
