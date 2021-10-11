@@ -30,13 +30,14 @@ namespace GameSpace.GameObjects.ItemObjects
             this.Sprite = SpriteItemFactory.GetInstance().CreateFireFlower();
             this.Position = initialPosition;
             this.CollisionBox = new Rectangle((int)Position.X, (int)Position.Y, Sprite.Texture.Width * 2 / 4, Sprite.Texture.Height * 2);
+            hasCollided = false;
             drawBox = false;
         }
 
         public void Draw(SpriteBatch spritebatch)
         {
             Sprite.Draw(spritebatch, Position);
-            if (drawBox) Sprite.DrawBoundary(spritebatch, CollisionBox);
+            if (drawBox && Sprite.GetVisibleStatus()) Sprite.DrawBoundary(spritebatch, CollisionBox);
         }
 
         public void Update(GameTime gametime)
@@ -46,18 +47,12 @@ namespace GameSpace.GameObjects.ItemObjects
 
         public void Trigger()
         {
-            this.Sprite.SetVisible();
-            this.CollisionBox = new Rectangle(0, 0, 0, 0);
+
         }
 
         public void HandleCollision(IGameObjects entity)
         {
-            switch (entity.ObjectID)
-            {
-                case (int)AvatarID.MARIO:
-                    this.Trigger();
-                    break;
-            }
+            
         }
 
         public void SetPosition(Vector2 location)
