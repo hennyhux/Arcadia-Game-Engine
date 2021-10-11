@@ -152,6 +152,7 @@ namespace GameSpace.GameObjects.BlockObjects
         public void smallMarioTransformation() 
         {
             marioPowerUpState.smallMarioTransformation();
+            //this.Position = new Vector2((int)Position.X, (int)Position.Y - sprite.Height);
             this.CollisionBox = new Rectangle((int)(Position.X + Sprite.Texture.Width / 16), (int)Position.Y, Sprite.Texture.Width / 12, Sprite.Texture.Height / 6);
         }
 
@@ -163,12 +164,14 @@ namespace GameSpace.GameObjects.BlockObjects
         public void bigMarioTransformation()
         {
             marioPowerUpState.bigMarioTransformation();
+            //this.Position = new Vector2((int)Position.X, (int)Position.Y + sprite.Height);
             this.CollisionBox = new Rectangle((int)Position.X, (int)Position.Y, 32, 64);
         }
 
         public void fireMarioTransformation() 
         { 
             marioPowerUpState.fireMarioTransformation();
+            //this.Position = new Vector2((int)Position.X, (int)Position.Y + sprite.Height);
             this.CollisionBox = new Rectangle((int)Position.X, (int)Position.Y, 32, 64);
         }
 

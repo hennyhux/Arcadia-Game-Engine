@@ -69,8 +69,10 @@ namespace GameSpace.States.BlockStates
             {
                // Exit();
                 Mario.marioPowerUpState = new BigMarioState(Mario);
-                //Mario.marioPowerUpState.Enter(this);
-                Mario.marioActionState.BigPowerUp();
+
+                //Mario.Position = new Vector2((int)Mario.Position.X - Mario.sprite, (int)Mario.Position.Y  -Mario.Sprite.Texture.Height);
+            //Mario.marioPowerUpState.Enter(this);
+            Mario.marioActionState.BigPowerUp();
             
             }
 
@@ -80,7 +82,12 @@ namespace GameSpace.States.BlockStates
                 Mario.marioActionState.FirePowerUp();
             }
 
-            public override void DeadTransition() { Mario.marioPowerUpState = new DeadMarioState(Mario); }
+            public override void DeadTransition() 
+            { 
+                Mario.marioPowerUpState = new DeadMarioState(Mario);
+                Mario.marioActionState.DeadPowerUp();
+
+            }
 
             public override void Update(GameTime gametime) { } 
         
@@ -168,11 +175,11 @@ namespace GameSpace.States.BlockStates
         public override void Enter(IMarioPowerUpStates previousPowerUpState) { }
         public override void Exit() { }
 
-        public override void smallMarioTransformation() { Mario.marioPowerUpState = new DeadMarioState(Mario); }
+        public override void smallMarioTransformation() { Mario.marioPowerUpState = new DeadMarioState(Mario); Mario.marioActionState.DeadPowerUp(); }
 
-        public override void bigMarioTransformation() { Mario.marioPowerUpState = new DeadMarioState(Mario); }
+        public override void bigMarioTransformation() { Mario.marioPowerUpState = new DeadMarioState(Mario); Mario.marioActionState.DeadPowerUp(); }
 
-        public override void fireMarioTransformation() { Mario.marioPowerUpState = new DeadMarioState(Mario); }
+        public override void fireMarioTransformation() { Mario.marioPowerUpState = new DeadMarioState(Mario); Mario.marioActionState.DeadPowerUp(); }
 
         public override void DeadTransition() {  }
 

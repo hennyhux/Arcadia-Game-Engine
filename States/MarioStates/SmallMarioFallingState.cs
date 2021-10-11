@@ -108,7 +108,9 @@ namespace GameSpace.States.MarioStates
         }
         public override void DeadPowerUp()
         {
-
+            Exit();
+            Mario.marioActionState = new DeadMarioState(Mario);
+            Mario.marioActionState.Enter(this);
         }
 
         public override void CrouchingDiscontinueTransition() { }//when you exit crouch, release down key

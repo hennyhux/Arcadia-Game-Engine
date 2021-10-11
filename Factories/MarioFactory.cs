@@ -27,7 +27,7 @@ namespace GameSpace.Factories
 
         public enum eMarioSprite
         {
-            DeadMario = 0x00,
+            DeadMario = 0,
             //StandingMario = 0x001,
             //SuperStandingMario = 0x002,
             //BigMarioStanding = 0x002,
@@ -92,8 +92,12 @@ namespace GameSpace.Factories
             Debug.WriteLine("MSTypeFactory(90) currentActionState, {0}", currentActionState);
             Debug.WriteLine("MSTypeFactory(90) currentPowerUpState, {0}", currentPowerUpState);
             int type = (int)eMarioSprite.SmallMarioStanding;
+            if (currentActionState is GameSpace.States.MarioStates.DeadMarioState)
+                //currentState = (int)eMarioSprite.SmallMarioStanding;
+                type = (int)eMarioSprite.DeadMario;
+            
 
-            if (currentActionState is GameSpace.States.MarioStates.SmallMarioStandingState)
+           if (currentActionState is GameSpace.States.MarioStates.SmallMarioStandingState)
                 //currentState = (int)eMarioSprite.SmallMarioStanding;
                 type = (int)eMarioSprite.SmallMarioStanding;
             else
@@ -356,7 +360,8 @@ namespace GameSpace.Factories
 
         public MarioSprite DeadMarioSprite()
         {
-            return new MarioSprite(normalMarioSprite, 350, 200, 0, 5, 0);
+            Debug.WriteLine("DEAD MARIO\n");
+            return new MarioSprite(normalMarioSprite, 350, 200, 0, 4, 0);
         }
 
         public MarioSprite SmallMarioStandingSprite()

@@ -25,9 +25,9 @@ namespace GameSpace.Sprites
         //private Point currentFramePoint;
 
         public Texture2D Texture { get; set; }
-        private int X;
-        private int Y;
-        protected Texture2D WhiteRect = SpriteBlockFactory.GetInstance().CreateBoundingBoxTexture();
+        public int Height { get; set; }
+        public int Width { get; set; }
+protected Texture2D WhiteRect = SpriteBlockFactory.GetInstance().CreateBoundingBoxTexture();
 
 
 
@@ -61,8 +61,6 @@ namespace GameSpace.Sprites
         {
             Texture = texture;
             IsVisible = true;
-            X = x;
-            Y = y;
             currentFrame = 0;
             totalFrames = 0;
             facingRight = isFacingRight;
@@ -81,8 +79,6 @@ namespace GameSpace.Sprites
         {
             //Texture = texture;
             IsVisible = true;
-            X = 0;
-            Y = 0;
             currentFrame = 0;
             totalFrames = 0;
             facingRight = 0;
@@ -212,11 +208,11 @@ namespace GameSpace.Sprites
             //Debug.WriteLine("mario drawK \n");
             if (IsVisible)
             {
-                int width = XWidth[currentFrame];
-                int height = YHeight[currentFrame];
+                 Width = XWidth[currentFrame];
+                 Height = YHeight[currentFrame];
 
-                Rectangle sourceRectangle = new Rectangle(XFrame[currentFrame], YFrame[currentFrame], width, height);
-                Rectangle destinationRectangle = new Rectangle((int)location.X, (int)location.Y, width * 2, height * 2);
+                Rectangle sourceRectangle = new Rectangle(XFrame[currentFrame], YFrame[currentFrame], Width, Height);
+                Rectangle destinationRectangle = new Rectangle((int)location.X, (int)location.Y, Width * 2, Height * 2);
 
                 //spriteBatch.Draw(Texture, destinationRectangle, sourceRectangle, Color.White);
                 spriteBatch.Draw(Texture, destinationRectangle, sourceRectangle, Color.White, 0, new Vector2(0, 0), facing, 0);
