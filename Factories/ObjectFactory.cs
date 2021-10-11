@@ -80,7 +80,7 @@ namespace GameSpace.Factories
 
         #endregion
 
-
+        #region Items
         public IGameObjects CreateCoinObject(Vector2 location)
         {
             return new Coin(location);
@@ -105,6 +105,6 @@ namespace GameSpace.Factories
         {
             return new SuperShroom(location);
         }
-
+        #endregion
     }
 }

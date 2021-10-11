@@ -21,7 +21,7 @@ namespace GameSpace.Enums
         ONEUPSHROOM = 8,
         FIREFLOWER = 9,
         COIN = 10,
-        NULL = 11,
+        NOITEM = 11,
     };
 
     public enum EnemyID: int
