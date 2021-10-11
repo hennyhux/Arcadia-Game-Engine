@@ -186,9 +186,22 @@ namespace GameSpace.GameObjects.BlockObjects
                     this.FallingTransition();
                     break;
 
+                case (int)ItemID.FIREFLOWER:
+                    CollisionWithFireFlower(entity);
+                    break;
+
+                case (int)ItemID.SUPERSHROOM:
+                    CollisionWithSuperShroom(entity);
+                    break;
+
+                    //All enemy encounters use same method. 
                 case (int)EnemyID.GOOMBA:
+                case (int)EnemyID.GREENKOOPA:
+                case (int)EnemyID.REDKOOPA:
                     CollisionWithEnemy(entity);
                     break;
+
+                
             } 
         }
 
@@ -199,6 +212,7 @@ namespace GameSpace.GameObjects.BlockObjects
                 EntityManager.DetectCollisionDirection(this, enemy) == (int)CollisionDirection.DOWN)
             {
                 this.DeadTransition(); // For Caleb: dead state is not working
+                
             }
 
             else
@@ -218,6 +232,18 @@ namespace GameSpace.GameObjects.BlockObjects
             if (EntityManager.DetectCollisionDirection(this, entity) == (int)CollisionDirection.UP) { MoveObjectOffset(0, -3); }
 
             if (EntityManager.DetectCollisionDirection(this, entity) == (int)CollisionDirection.DOWN) { MoveObjectOffset(0, 1); }
+        }
+
+        private void CollisionWithFireFlower(IGameObjects entity)
+        {
+            //Direction doesn't matter for FireFlower Collision, going to change Power-Up either way
+            this.fireMarioTransformation();
+        }
+
+        private void CollisionWithSuperShroom(IGameObjects entity)
+        {
+            //Direction doesn't matter for SUPERSHROOM Collision, going to change Power-Up either way
+            this.bigMarioTransformation();
         }
 
         private void MoveObjectOffset(int offsetX, int offsetY)
