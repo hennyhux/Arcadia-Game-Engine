@@ -200,27 +200,24 @@ namespace GameSpace.GameObjects.BlockObjects
         {
             switch (entity.ObjectID)
             {
-                case (int)BlockID.QUESTIONBLOCK:
-                    CollisionWithBumpBlock(entity);
-                    this.FallingTransition();
-                    break;
-
-                case (int)BlockID.BRICKBLOCK:
-                    CollisionWithBumpBlock(entity);
-                    this.FallingTransition();
-                    break;
-
-                case (int)BlockID.FLOORBLOCK:
-                    CollisionWithFloorBlock(entity);
-                    break;
-
-
                 case (int)ItemID.FIREFLOWER:
                     CollisionWithFireFlower(entity);
                     break;
 
                 case (int)ItemID.SUPERSHROOM:
                     CollisionWithSuperShroom(entity);
+                    break;
+
+                case (int)BlockID.QUESTIONBLOCK:
+                    CollisionWithBumpBlock(entity);
+                    break;
+
+                case (int)BlockID.BRICKBLOCK:
+                    CollisionWithBumpBlock(entity);
+                    break;
+
+                case (int)BlockID.FLOORBLOCK:
+                    CollisionWithFloorBlock(entity);
                     break;
 
                     //All enemy encounters use same method. 
@@ -253,23 +250,19 @@ namespace GameSpace.GameObjects.BlockObjects
                 EntityManager.DetectCollisionDirection(this, enemy) == (int)CollisionDirection.RIGHT || 
                 EntityManager.DetectCollisionDirection(this, enemy) == (int)CollisionDirection.DOWN)
             {
-                this.DeadTransition(); // For Caleb: dead state is not working
+                     // For Caleb: dead state is not working
                 
             }
 
             else
             {
-                this.JumpingDiscontinueTransition();
                 MoveObjectOffset(0, 10);
             }
         }
 
         private void CollisionWithBumpBlock(IGameObjects entity)
         {
-            if (EntityManager.DetectCollisionDirection(this, entity) == (int)CollisionDirection.LEFT) 
-            {
-                MoveObjectOffset((int)Velocity.X, 0); 
-            }
+            if (EntityManager.DetectCollisionDirection(this, entity) == (int)CollisionDirection.LEFT)  { MoveObjectOffset((int)Velocity.X, 0); }
 
             if (EntityManager.DetectCollisionDirection(this, entity) == (int)CollisionDirection.RIGHT) { MoveObjectOffset((int)Velocity.X, 0); }
 
@@ -292,7 +285,6 @@ namespace GameSpace.GameObjects.BlockObjects
 
         private void MoveObjectOffset(int offsetX, int offsetY)
         {
-
             this.CollisionBox = new Rectangle((int)(Position.X - offsetX) + Sprite.Texture.Width / 2,
             (int)(Position.Y - offsetY), Sprite.Texture.Width / 12, Sprite.Texture.Height / 6);
             this.Position = new Vector2((int)(Position.X - offsetX), (int)(Position.Y - offsetY));
