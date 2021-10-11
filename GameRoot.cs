@@ -36,7 +36,7 @@ namespace GameSpace
 
         //IF RUNNING IT WITH TILE MAP DEFINITION, copy the full path of Level.xml and paste it in the next line
         //YOU MIGHT HAVE TO SWITCH THE '\' CHARACHTERS TO  '/'
-        string xmlFileName = "C:/Users/Henry/Source/Repos/Team_Arcadia/TileMapDefinition/Level.xml";
+        string xmlFileName = "C:/Users/alber/Source/Repos/Team_Arcadia/TileMapDefinition/Level.xml";
 
         //HENRY'S PATH: "C:/Users/Henry/Source/Repos/Team_Arcadia/TileMapDefinition/Level.xml"
         //BETO'S PATH: "C:/Users/alber/Source/Repos/Team_Arcadia/TileMapDefinition/Level.xml"
@@ -69,7 +69,7 @@ namespace GameSpace
             #endregion
 
             #region Loading Lists
-            objects = new List<IGameObjects>()
+            /*objects = new List<IGameObjects>()
             {
                 objectFactory.CreateBrickBlockObject(new Vector2(100, 100)), objectFactory.CreateStairBlockObject(new Vector2(200, 100)),
                 objectFactory.CreateFloorBlockObject(new Vector2(300, 100)), objectFactory.CreateQuestionBlockObject(new Vector2(400, 100)),
@@ -82,17 +82,13 @@ namespace GameSpace
                 objectFactory.CreateFireFlowerObject(new Vector2(100, 300)), objectFactory.CreateSuperShroomObject(new Vector2(100, 350)),
                 objectFactory.CreateOneUpShroomObject(new Vector2(100, 400))
 
-            };
-
-
-            obj = Loader.Load(xmlFileName);
-
+            };*/
+            objects = Loader.Load(xmlFileName);
             #endregion
 
             #region Load EntityManager
             //EntityManager.LoadList(objects);
-            //IF RUNNING IT WITH TILE MAP DEFINITION, UNCOMMENT THE NEXT LINE
-            EntityManager.LoadList(obj);
+            EntityManager.LoadList(objects);
             
 
 

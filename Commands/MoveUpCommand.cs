@@ -23,14 +23,28 @@ namespace GameSpace.Commands
 
         public void Execute()
         {
-            //EntityManager.MoveBlock(0, 1);
-            //How to change mario's position
-            //game.GetMario.Position = new Vector2(game.GetMario.Position.X, game.GetMario.Position.Y - 10);
-            EntitiesManager.EntityManager.MoveItem((int)AvatarID.MARIO, (int)ControlDirection.UP);
-
-            //game.GetMario.StandingTransition();//Use these seperatly, alongside the same one from the MoveDown class
-            game.GetMario.JumpingTransition();// 1 pair alloys jumping other crouching
-
+            IMarioActionStates currentState = game.GetMario.marioActionState;
+            if ((!(currentState is GameSpace.States.MarioStates.SmallMarioFallingState) &&
+                !(currentState is GameSpace.States.MarioStates.SmallMarioJumpingState) &&
+                !(currentState is GameSpace.States.MarioStates.SmallMarioRunningState) &&
+                !(currentState is GameSpace.States.MarioStates.SmallMarioStandingState) &&
+                !(currentState is GameSpace.States.MarioStates.SmallMarioWalkingState) &&
+                (currentState is GameSpace.States.MarioStates.BigMarioCrouchingState ||
+                currentState is GameSpace.States.MarioStates.FireMarioCrouchingState)))
+            { //IF previously Crouching, then stand
+                game.GetMario.StandingTransition();
+            }
+            else if (currentState is GameSpace.States.MarioStates.BigMarioStandingState ||
+                    currentState is GameSpace.States.MarioStates.FireMarioStandingState)
+            { //IF previously Standing, then jump and move
+                game.GetMario.JumpingTransition();
+                EntitiesManager.EntityManager.MoveItem((int)AvatarID.MARIO, (int)ControlDirection.UP);
+            }
+            else
+            { //Just move up
+                game.GetMario.JumpingTransition();
+                EntitiesManager.EntityManager.MoveItem((int)AvatarID.MARIO, (int)ControlDirection.UP);
+            }
             Debug.WriteLine("UpCommand, facing {0}\n AState {1}\n", game.GetMario.Facing, game.GetMario.marioActionState);
         }
 

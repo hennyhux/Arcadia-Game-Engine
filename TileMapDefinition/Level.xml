@@ -357,6 +357,19 @@
 		<x>576</x>
 		<y>386</y>
 	</Enemy>
+
+	<Item>
+		<item>SUPERSHROOM</item>
+		<x>540</x>
+		<y>258</y>
+	</Item>
+
+	<Item>
+		<item>FIREFLOWER</item>
+		<x>604</x>
+		<y>258</y>
+	</Item>
+	
 	<Avatar>
 		<avatar>MARIO</avatar>
 		<facing>LEFT</facing>
