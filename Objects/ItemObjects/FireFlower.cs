@@ -47,12 +47,18 @@ namespace GameSpace.GameObjects.ItemObjects
 
         public void Trigger()
         {
-
+            this.Sprite.SetVisible();
+            this.CollisionBox = new Rectangle(1, 1, 0, 0);
         }
 
         public void HandleCollision(IGameObjects entity)
         {
-            
+            switch (entity.ObjectID)
+            {
+                case (int)AvatarID.MARIO:
+                    this.Trigger();
+                    break;
+            }
         }
 
         public void SetPosition(Vector2 location)
@@ -64,6 +70,5 @@ namespace GameSpace.GameObjects.ItemObjects
         {
             drawBox = !drawBox;
         }
-
     }
 }

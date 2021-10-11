@@ -235,7 +235,7 @@ namespace GameSpace.GameObjects.BlockObjects
         private bool IsGoingToBeOutOfBounds(Vector2 Velocity)
         {
             if (Position.X + Velocity.X <= 0) return true;
-            if (Position.X + (CollisionBox.Width - Velocity.X) + Velocity.X >= 790) return true;
+            if (Position.X + (CollisionBox.Width) + Velocity.X > 800) return true;
             if (Position.Y + Velocity.Y <= 0) return true;
             if (Position.Y + Velocity.Y >= 450) return true;
             return false;
@@ -296,7 +296,6 @@ namespace GameSpace.GameObjects.BlockObjects
             this.CollisionBox = new Rectangle((int)(Position.X - offsetX) + Sprite.Texture.Width / 2,
             (int)(Position.Y - offsetY), Sprite.Texture.Width / 12, Sprite.Texture.Height / 6);
             this.Position = new Vector2((int)(Position.X - offsetX), (int)(Position.Y - offsetY));
-
         }
 
         public void ToggleCollisionBoxes()

@@ -67,8 +67,6 @@ namespace GameSpace.EntitiesManager
             if (direction == (int)ControlDirection.DOWN) FindItem(ID).SetPosition(new Vector2(0, 1));
             if (direction == (int)ControlDirection.RIGHT) FindItem(ID).SetPosition(new Vector2(1, 0));
             if (direction == (int)ControlDirection.LEFT) FindItem(ID).SetPosition(new Vector2(-1, 0));
-
-
         }
 
         private static bool SweeptAABBLeft(int ID)
@@ -179,9 +177,6 @@ namespace GameSpace.EntitiesManager
 
             return direction;
         }
-
-
-       
 
         //Super inefficent method of detection, if the amount of entites in the list is huge, it will take a lot of resources 
         //will change for future sprints  
