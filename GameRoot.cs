@@ -34,14 +34,7 @@ namespace GameSpace
         public Mario GetMario { get => (Mario)EntityManager.FindItem((int)AvatarID.MARIO); }
         public GraphicsDeviceManager Graphics { get => graphics; }
 
-        //IF RUNNING IT WITH TILE MAP DEFINITION, copy the full path of Level.xml and paste it in the next line
-        //YOU MIGHT HAVE TO SWITCH THE '\' CHARACHTERS TO  '/'
-        string xmlFileName = "C:/Users/alber/Source/Repos/Team_Arcadia/TileMapDefinition/Level.xml";
-
-        //HENRY'S PATH: "C:/Users/Henry/Source/Repos/Team_Arcadia/TileMapDefinition/Level.xml"
-        //BETO'S PATH: "C:/Users/alber/Source/Repos/Team_Arcadia/TileMapDefinition/Level.xml"
-        //JOHN's PATH: "C:/Users/18473/source/repos/Team_Arcadia_Sprint1 - Copy/TileMapDefinition/Level.xml"
-        //CALEB'S PATH: "C:/Users/CalebHernandez/source/repos/Team_Arcadia/TileMapDefinition/Level.xml"
+        string xmlFileName = "../../../TileMapDefinition/Level.xml";
         public GameRoot()
         {
             graphics = new GraphicsDeviceManager(this);
