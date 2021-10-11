@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using GameSpace.Interfaces;
 using GameSpace.Enums;
+using GameSpace.EntitiesManager;
 
 namespace GameSpace
 {
@@ -22,9 +23,12 @@ namespace GameSpace
             //How to change mario's position
 
 
-            IMarioActionStates currentActionState = game.GetMario.marioActionState;
+            IMarioActionStates currentState = game.GetMario.marioActionState;
 
-            if (currentActionState is GameSpace.States.MarioStates.SmallMarioStandingState && eFacing.RIGHT == game.GetMario.Facing)
+            if ((currentState is GameSpace.States.MarioStates.SmallMarioStandingState ||
+                currentState is GameSpace.States.MarioStates.BigMarioStandingState ||
+                currentState is GameSpace.States.MarioStates.FireMarioStandingState)
+                && eFacing.RIGHT == game.GetMario.Facing)
             {
                     game.GetMario.FaceLeftTransition();
             }
@@ -33,7 +37,9 @@ namespace GameSpace
                 game.GetMario.FaceLeftTransition();
                 if (eFacing.RIGHT != game.GetMario.Facing)
                 {
-                    game.GetMario.Position = new Vector2(game.GetMario.Position.X - 10, game.GetMario.Position.Y);
+                    EntityManager.MoveItem((int)AvatarID.MARIO, (int)ControlDirection.LEFT);
+                    //game.GetMario.Position = new Vector2(game.GetMario.Position.X - 10, game.GetMario.Position.Y);
+                    //game.GetMario.SetPosition(new Vector2(game.GetMario.Position.X, game.GetMario.Position.Y));
                 }
             }
             //game.GetMario.Position = new Vector2(game.GetMario.Position.X - 10, game.GetMario.Position.Y);

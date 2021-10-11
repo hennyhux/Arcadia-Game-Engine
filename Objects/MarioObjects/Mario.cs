@@ -163,13 +163,15 @@ namespace GameSpace.GameObjects.BlockObjects
 
         public void Trigger()
         {
-            throw new NotImplementedException();
+            
         }
 
         public void SetPosition(Vector2 location)
         {
-            this.Position = location;
-            //throw new NotImplementedException();
+            Velocity = (float)10 * location;
+            if (!IsGoingToBeOutOfBounds(Velocity)) Position += Velocity;
+
+            CollisionBox = new Rectangle((int)(Position.X + Sprite.Texture.Width / 16), (int)Position.Y, Sprite.Texture.Width / 12, Sprite.Texture.Height / 6);
         }
 
         public void HandleCollision(IGameObjects entity)
@@ -200,9 +202,16 @@ namespace GameSpace.GameObjects.BlockObjects
                 case (int)EnemyID.REDKOOPA:
                     CollisionWithEnemy(entity);
                     break;
-
-                
             } 
+        }
+
+        private bool IsGoingToBeOutOfBounds(Vector2 Velocity)
+        {
+            if (Position.X + Velocity.X <= 0) return true;
+            if (Position.X + (CollisionBox.Width - Velocity.X) + Velocity.X >= 790) return true;
+            if (Position.Y + Velocity.Y <= 0) return true;
+            if (Position.Y + Velocity.Y >= 450) return true;
+            return false;
         }
 
         private void CollisionWithEnemy(IGameObjects enemy)
@@ -217,21 +226,20 @@ namespace GameSpace.GameObjects.BlockObjects
 
             else
             {
-                //launch mario up like in the real game 
-                Debug.WriteLine("HELLO");
+                this.JumpingDiscontinueTransition();
                 MoveObjectOffset(0, 10);
             }
         }
 
         private void CollisionWithBumpBlock(IGameObjects entity)
         {
-            if (EntityManager.DetectCollisionDirection(this, entity) == (int)CollisionDirection.LEFT) { MoveObjectOffset(3, 0); }
+            if (EntityManager.DetectCollisionDirection(this, entity) == (int)CollisionDirection.LEFT) { MoveObjectOffset((int)Velocity.X, 0); }
 
-            if (EntityManager.DetectCollisionDirection(this, entity) == (int)CollisionDirection.RIGHT) { MoveObjectOffset(-3, 0); }
+            if (EntityManager.DetectCollisionDirection(this, entity) == (int)CollisionDirection.RIGHT) { MoveObjectOffset(-(int)Velocity.X, 0); }
 
-            if (EntityManager.DetectCollisionDirection(this, entity) == (int)CollisionDirection.UP) { MoveObjectOffset(0, -3); }
+            if (EntityManager.DetectCollisionDirection(this, entity) == (int)CollisionDirection.UP) { MoveObjectOffset(0, (int)Velocity.Y); }
 
-            if (EntityManager.DetectCollisionDirection(this, entity) == (int)CollisionDirection.DOWN) { MoveObjectOffset(0, 1); }
+            if (EntityManager.DetectCollisionDirection(this, entity) == (int)CollisionDirection.DOWN) { MoveObjectOffset(0, -(int)Velocity.Y); }
         }
 
         private void CollisionWithFireFlower(IGameObjects entity)

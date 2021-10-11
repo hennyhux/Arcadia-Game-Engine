@@ -36,7 +36,7 @@ namespace GameSpace
 
         //IF RUNNING IT WITH TILE MAP DEFINITION, copy the full path of Level.xml and paste it in the next line
         //YOU MIGHT HAVE TO SWITCH THE '\' CHARACHTERS TO  '/'
-        string xmlFileName = "C:/Users/CalebHernandez/source/repos/Team_Arcadia/TileMapDefinition/Level.xml";
+        string xmlFileName = "C:/Users/Henry/Source/Repos/Team_Arcadia/TileMapDefinition/Level.xml";
 
         //HENRY'S PATH: "C:/Users/Henry/Source/Repos/Team_Arcadia/TileMapDefinition/Level.xml"
         //BETO'S PATH: "C:/Users/alber/Source/Repos/Team_Arcadia/TileMapDefinition/Level.xml"
