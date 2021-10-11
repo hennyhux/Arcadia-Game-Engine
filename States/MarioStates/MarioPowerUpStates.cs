@@ -113,7 +113,12 @@ namespace GameSpace.States.BlockStates
             Mario.marioActionState.FirePowerUp();
         }
 
-        public override void DeadTransition() { Mario.marioPowerUpState = new DeadMarioState(Mario); }
+        public override void DeadTransition() 
+        { 
+            Mario.marioPowerUpState = new SmallMarioState(Mario);
+            Mario.marioActionState.SmallPowerUp();
+        
+        }
 
         public override void Update(GameTime gametime) { }
 
@@ -143,7 +148,11 @@ namespace GameSpace.States.BlockStates
 
         public override void fireMarioTransformation() { }
 
-        public override void DeadTransition() { Mario.marioPowerUpState = new DeadMarioState(Mario); }
+        public override void DeadTransition() 
+        {
+            Mario.marioPowerUpState = new SmallMarioState(Mario);
+            Mario.marioActionState.SmallPowerUp();
+        }
 
         public override void Update(GameTime gametime) { }
 

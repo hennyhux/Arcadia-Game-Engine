@@ -13,7 +13,7 @@ namespace GameSpace.Interfaces
         //Kinematics PreviousKinematics { get; set; }
         public IMarioPowerUpStates previousPowerUpState { get; set; }
 
-        void Enter(IMarioPowerUpStates previousActionState);
+        void Enter(IMarioPowerUpStates previousPowerUpState);
         void Exit();
 
         void smallMarioTransformation();

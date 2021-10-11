@@ -250,8 +250,8 @@ namespace GameSpace.GameObjects.BlockObjects
                 EntityManager.DetectCollisionDirection(this, enemy) == (int)CollisionDirection.RIGHT || 
                 EntityManager.DetectCollisionDirection(this, enemy) == (int)CollisionDirection.DOWN)
             {
-                     // For Caleb: dead state is not working
-                
+                // For Caleb: dead state is not working
+                this.DeadTransition();
             }
 
             else
