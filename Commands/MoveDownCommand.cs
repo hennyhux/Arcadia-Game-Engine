@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Diagnostics;
+using GameSpace.Enums;
 
 namespace GameSpace.Commands
 {
@@ -24,11 +25,12 @@ namespace GameSpace.Commands
         {
             //EntityManager.MoveBlock(0, 1);
             //How to change mario's position
-            game.GetMario.Position = new Vector2(game.GetMario.Position.X, game.GetMario.Position.Y + 10);
+            //game.GetMario.Position = new Vector2(game.GetMario.Position.X, game.GetMario.Position.Y + 10);
+            EntitiesManager.EntityManager.MoveItem((int)AvatarID.MARIO, (int)ControlDirection.DOWN);
 
             //game.GetMario.CrouchingTransition();//Use these seperatly, alongside the same one from the MoveDown class
             game.GetMario.StandingTransition();// 1 pair alloys jumping other crouching
-        
+            
 
             Debug.WriteLine("UpCommand, facing {0}\n AState {1}\n", game.GetMario.Facing, game.GetMario.marioActionState);
         }

@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using GameSpace.Interfaces;
 using GameSpace.Enums;
+using GameSpace.EntitiesManager;
 
 namespace GameSpace
 {
@@ -33,7 +34,9 @@ namespace GameSpace
                 game.GetMario.FaceLeftTransition();
                 if (eFacing.RIGHT != game.GetMario.Facing)
                 {
-                    game.GetMario.Position = new Vector2(game.GetMario.Position.X - 10, game.GetMario.Position.Y);
+                    EntityManager.MoveItem((int)AvatarID.MARIO, (int)ControlDirection.LEFT);
+                    //game.GetMario.Position = new Vector2(game.GetMario.Position.X - 10, game.GetMario.Position.Y);
+                    //game.GetMario.SetPosition(new Vector2(game.GetMario.Position.X, game.GetMario.Position.Y));
                 }
             }
             //game.GetMario.Position = new Vector2(game.GetMario.Position.X - 10, game.GetMario.Position.Y);

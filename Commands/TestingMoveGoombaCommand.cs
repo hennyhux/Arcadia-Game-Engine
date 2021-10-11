@@ -15,7 +15,7 @@ namespace GameSpace.Commands
 
         public void Execute()
         {
-            EntitiesManager.EntityManager.MoveItem((int)EnemyID.GOOMBA, (int)direction);
+            EntitiesManager.EntityManager.MoveItem((int)AvatarID.MARIO, (int)direction);
         }
 
         public void Unexecute()

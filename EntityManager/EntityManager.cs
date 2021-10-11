@@ -59,12 +59,12 @@ namespace GameSpace.EntitiesManager
         #endregion
 
         #region Testing Methods
-        public static void MoveItem(int blockID, int direction)
+        public static void MoveItem(int ID, int direction)
         {
-            if (direction == (int)ControlDirection.UP) FindItem(blockID).SetPosition(new Vector2(0 , -1));
-            if (direction == (int)ControlDirection.DOWN) FindItem(blockID).SetPosition(new Vector2(0, 1));
-            if (direction == (int)ControlDirection.RIGHT) FindItem(blockID).SetPosition(new Vector2(1, 0));
-            if (direction == (int)ControlDirection.LEFT) FindItem(blockID).SetPosition(new Vector2(-1, 0));
+            if (direction == (int)ControlDirection.UP) FindItem(ID).SetPosition(new Vector2(0 , -1));
+            if (direction == (int)ControlDirection.DOWN) FindItem(ID).SetPosition(new Vector2(0, 1));
+            if (direction == (int)ControlDirection.RIGHT) FindItem(ID).SetPosition(new Vector2(1, 0));
+            if (direction == (int)ControlDirection.LEFT) FindItem(ID).SetPosition(new Vector2(-1, 0));
         }
 
         public static IGameObjects FindItem(int ItemID)
@@ -82,20 +82,29 @@ namespace GameSpace.EntitiesManager
         #endregion
 
         #region Collision Detection
-        private static bool IsColliding(IGameObjects a, IGameObjects b)
+        private static bool IntersectAABB(IGameObjects a, IGameObjects b)
         {
-            if (a.Position.X + 5 >= b.Position.X || a.Position.X + 5 <= b.Position.X ||
-                a.Position.Y + 5 >= b.Position.Y || a.Position.Y - 5 <= b.Position.Y)
+
+            if (a.CollisionBox.X + a.CollisionBox.Width < b.CollisionBox.X || a.CollisionBox.X > b.CollisionBox.X + b.CollisionBox.Width)
             {
-                return a.CollisionBox.Intersects(b.CollisionBox);
+                return false;
             }
 
-            else { return false; } 
+            if (a.CollisionBox.Y + a.CollisionBox.Height < b.CollisionBox.Y || a.CollisionBox.Y > b.CollisionBox.Y + b.CollisionBox.Height)
+            {
+                return false; 
+            }
+
+
+            else { return a.CollisionBox.Intersects(b.CollisionBox);  } 
         }
 
-        public static float SweeptAABB(IGameObjects a, IGameObjects b)
+        public static bool SweeptAABB(IGameObjects a, IGameObjects b)
         {
-            return 0f;
+            return a.CollisionBox.X + a.CollisionBox.Width + 10 >= b.CollisionBox.X 
+                || a.CollisionBox.X - 10 <= b.CollisionBox.X + b.CollisionBox.Width
+                || a.CollisionBox.Y + a.CollisionBox.Height + 10 >= b.CollisionBox.Y
+                || a.CollisionBox.Y - 10 <= b.CollisionBox.Y + b.CollisionBox.Height;
         }
         
         public static int DetectCollisionDirection(IGameObjects a, IGameObjects b)
@@ -143,10 +152,15 @@ namespace GameSpace.EntitiesManager
             for (int i = 0; i < gameEntities.Count; i++)
                 for (int j = i + 1; j < gameEntities.Count; j++)
                 {
-                    if (IsColliding(gameEntities[i], gameEntities[j]))
+                    if (IntersectAABB(gameEntities[i], gameEntities[j]))
                     {
                         gameEntities[i].HandleCollision(gameEntities[j]);
                         gameEntities[j].HandleCollision(gameEntities[i]);
+                    }
+
+                    if(SweeptAABB(gameEntities[i], gameEntities[j]))
+                    {
+
                     }
                 }
 
