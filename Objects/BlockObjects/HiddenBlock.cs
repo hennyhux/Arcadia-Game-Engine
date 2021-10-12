@@ -8,6 +8,7 @@ using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using GameSpace.EntitiesManager;
 
 namespace GameSpace.GameObjects.BlockObjects
 {
@@ -63,6 +64,11 @@ namespace GameSpace.GameObjects.BlockObjects
         public void HandleCollision(IGameObjects entity)
         {
             hasCollided = true;
+
+            if (EntityManager.DetectCollisionDirection(this, entity) == (int)CollisionDirection.DOWN)
+            {
+                this.Trigger();
+            }
         }
 
         public void ToggleCollisionBoxes()

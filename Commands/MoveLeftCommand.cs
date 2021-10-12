@@ -24,7 +24,7 @@ namespace GameSpace
 
 
             IMarioActionStates currentState = game.GetMario.marioActionState;
-
+            EntityManager.FindItem((int)AvatarID.MARIO).Velocity = new Vector2((float)0, EntityManager.FindItem((int)AvatarID.MARIO).Velocity.Y + 40);
             if ((currentState is GameSpace.States.MarioStates.SmallMarioStandingState ||
                 currentState is GameSpace.States.MarioStates.BigMarioStandingState ||
                 currentState is GameSpace.States.MarioStates.FireMarioStandingState)
