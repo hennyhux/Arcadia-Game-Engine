@@ -252,7 +252,6 @@ namespace GameSpace.GameObjects.BlockObjects
                     break;
 
                 case (int)BlockID.HIDDENBLOCK:
-                    //HandleCollision(entity);
                     CollisionWithHiddenBlock(entity);
                     break;
 
@@ -282,6 +281,17 @@ namespace GameSpace.GameObjects.BlockObjects
             return false;
         }
 
+        private void changeStateUponCollision(IGameObjects entity)
+        {
+            if (EntityManager.DetectCollisionDirection(this, entity) == (int)CollisionDirection.LEFT) { StandingTransition(); }
+
+            else if (EntityManager.DetectCollisionDirection(this, entity) == (int)CollisionDirection.RIGHT) { StandingTransition(); }
+
+            else if (EntityManager.DetectCollisionDirection(this, entity) == (int)CollisionDirection.UP) { StandingTransition(); }
+
+            else if (EntityManager.DetectCollisionDirection(this, entity) == (int)CollisionDirection.DOWN) { StandingTransition(); }
+        }
+
 
         private void CollisionWithFloorBlock(IGameObjects entity)
         {
@@ -289,7 +299,12 @@ namespace GameSpace.GameObjects.BlockObjects
             if (EntityManager.DetectCollisionDirection(this, entity) == (int)CollisionDirection.UP) { this.Position = new Vector2(this.Position.X, (int)entity.Position.Y + (int)entity.CollisionBox.Height); }
 
             else if (EntityManager.DetectCollisionDirection(this, entity) == (int)CollisionDirection.DOWN) { this.Position = new Vector2(this.Position.X, (int)entity.Position.Y - (int)this.CollisionBox.Height); }
+
+            changeStateUponCollision(entity);//Change state upon collision
+
             this.CollisionBox = new Rectangle((int)Position.X, (int)Position.Y, CollisionBox.Width, CollisionBox.Height);
+
+            //changeStateUponCollision(entity);//Change state upon collision
         }
 
         private void CollisionWithEnemy(IGameObjects enemy)
@@ -321,13 +336,8 @@ namespace GameSpace.GameObjects.BlockObjects
 
             else if (EntityManager.DetectCollisionDirection(this, entity) == (int)CollisionDirection.DOWN) { this.Position = new Vector2(this.Position.X, (int)entity.Position.Y - (int)this.CollisionBox.Height); }
             this.CollisionBox = new Rectangle((int)Position.X, (int)Position.Y, CollisionBox.Width, CollisionBox.Height);
-            /*if (EntityManager.DetectCollisionDirection(this, entity) == (int)CollisionDirection.LEFT) { MoveObjectOffset((int)Velocity.X, 0); }
 
-            if (EntityManager.DetectCollisionDirection(this, entity) == (int)CollisionDirection.RIGHT) { MoveObjectOffset((int)Velocity.X, 0); }
-
-            if (EntityManager.DetectCollisionDirection(this, entity) == (int)CollisionDirection.UP) { MoveObjectOffset(0, (int)Velocity.Y); }
-
-            if (EntityManager.DetectCollisionDirection(this, entity) == (int)CollisionDirection.DOWN) { MoveObjectOffset(0, (int)Velocity.Y); }*/
+            changeStateUponCollision(entity);//Change state upon collision
         }
 
         private void CollisionWithUsedBlock(IGameObjects entity)
@@ -341,6 +351,8 @@ namespace GameSpace.GameObjects.BlockObjects
 
             else if (EntityManager.DetectCollisionDirection(this, entity) == (int)CollisionDirection.DOWN) { this.Position = new Vector2(this.Position.X, (int)entity.Position.Y - (int)this.CollisionBox.Height); }
             this.CollisionBox = new Rectangle((int)Position.X, (int)Position.Y, CollisionBox.Width, CollisionBox.Height);
+
+            changeStateUponCollision(entity);//Change state upon collision
 
         }
 
