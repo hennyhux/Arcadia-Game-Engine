@@ -157,8 +157,8 @@ namespace GameSpace.States.BlockStates
 
         public override void DeadTransition() 
         {
-            Mario.marioPowerUpState = new SmallMarioState(Mario);
-            Mario.marioActionState.SmallPowerUp();
+            Mario.marioPowerUpState = new BigMarioState(Mario);
+            Mario.marioActionState.BigPowerUp();
         }
 
         public override void Update(GameTime gametime) { }
