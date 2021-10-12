@@ -22,7 +22,8 @@ namespace GameSpace
             //game.GetMario.Facing = Enums.eFacing.Right;
             //How to change mario's position
             IMarioActionStates currentState = game.GetMario.marioActionState;
-            
+
+            EntityManager.FindItem((int)AvatarID.MARIO).Velocity = new Vector2(EntityManager.FindItem((int)AvatarID.MARIO).Velocity.X + 40, (float)0);
             if ((currentState is GameSpace.States.MarioStates.SmallMarioStandingState ||
                 currentState is GameSpace.States.MarioStates.BigMarioStandingState ||
                 currentState is GameSpace.States.MarioStates.FireMarioStandingState) 
