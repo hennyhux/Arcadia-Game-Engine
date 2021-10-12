@@ -206,13 +206,28 @@ protected Texture2D WhiteRect = SpriteBlockFactory.GetInstance().CreateBoundingB
         public void Draw(SpriteBatch spriteBatch, Vector2 location)
         {
             //Debug.WriteLine("mario drawK \n");
-            if (IsVisible)
+            if (IsVisible && (this.marioPower == 0 || this.marioPower == 4))
             {
                  Width = XWidth[currentFrame];
                  Height = YHeight[currentFrame];
                 
                 Rectangle sourceRectangle = new Rectangle(XFrame[currentFrame], YFrame[currentFrame], Width, Height);
                 Rectangle destinationRectangle = new Rectangle((int)location.X, (int)location.Y, Width * 2, Height * 2);
+
+                //spriteBatch.Draw(Texture, destinationRectangle, sourceRectangle, Color.White);
+                spriteBatch.Draw(Texture, destinationRectangle, sourceRectangle, Color.White, 0, new Vector2(0, 0), facing, 0);
+
+            }
+
+            //Did this so big and fire mario were on the same level as small and dead mario
+            
+            if(IsVisible && (this.marioPower >= 1 && this.marioPower <= 3))
+            {
+                Width = XWidth[currentFrame];
+                Height = YHeight[currentFrame];
+
+                Rectangle sourceRectangle = new Rectangle(XFrame[currentFrame], YFrame[currentFrame], Width, Height);
+                Rectangle destinationRectangle = new Rectangle((int)location.X, (int)location.Y - 32, Width * 2, Height * 2);
 
                 //spriteBatch.Draw(Texture, destinationRectangle, sourceRectangle, Color.White);
                 spriteBatch.Draw(Texture, destinationRectangle, sourceRectangle, Color.White, 0, new Vector2(0, 0), facing, 0);
