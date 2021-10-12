@@ -25,7 +25,7 @@ namespace GameSpace
 
             IMarioActionStates currentState = game.GetMario.marioActionState;
 
-            EntityManager.FindItem((int)AvatarID.MARIO).Velocity = new Vector2(EntityManager.FindItem((int)AvatarID.MARIO).Velocity.X - 40, (float)0);
+            //EntityManager.FindItem((int)AvatarID.MARIO).Velocity = new Vector2(EntityManager.FindItem((int)AvatarID.MARIO).Velocity.X - 40, (float)0);
             if ((currentState is GameSpace.States.MarioStates.SmallMarioStandingState ||
                 currentState is GameSpace.States.MarioStates.BigMarioStandingState ||
                 currentState is GameSpace.States.MarioStates.FireMarioStandingState)
@@ -38,8 +38,8 @@ namespace GameSpace
                 game.GetMario.FaceLeftTransition();
                 if (eFacing.RIGHT != game.GetMario.Facing)
                 {
-                    
-                    EntityManager.MoveItem((int)AvatarID.MARIO, (int)ControlDirection.LEFT);
+
+                    EntityManager.FindItem((int)AvatarID.MARIO).Velocity = new Vector2(EntityManager.FindItem((int)AvatarID.MARIO).Velocity.X - 40, (float)0);
                     //game.GetMario.Position = new Vector2(game.GetMario.Position.X - 10, game.GetMario.Position.Y);
                     //game.GetMario.SetPosition(new Vector2(game.GetMario.Position.X, game.GetMario.Position.Y));
                 }
