@@ -210,7 +210,7 @@ protected Texture2D WhiteRect = SpriteBlockFactory.GetInstance().CreateBoundingB
             {
                  Width = XWidth[currentFrame];
                  Height = YHeight[currentFrame];
-
+                
                 Rectangle sourceRectangle = new Rectangle(XFrame[currentFrame], YFrame[currentFrame], Width, Height);
                 Rectangle destinationRectangle = new Rectangle((int)location.X, (int)location.Y, Width * 2, Height * 2);
 
