@@ -26,7 +26,7 @@ namespace GameSpace.GameObjects.BlockObjects
         public Rectangle CollisionBox { get; set; }
 
         public int ObjectID { get; set; }
-        private Boolean hasCollided;
+        public Boolean hasCollided { get; set; }
         private Boolean drawBox;
 
 

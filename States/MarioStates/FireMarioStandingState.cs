@@ -25,6 +25,7 @@ namespace GameSpace.States.MarioStates
         {
             Mario.marioActionState = this;
             this.previousActionState = previousActionState;
+            Mario.Velocity = new Vector2((float)0, (float)0);
             //Mario.marioPowerUpState = new FireMarioState(Mario);
             Debug.WriteLine("FireMarioStandState(25) Enter, {0}", Mario.marioActionState);
             Debug.WriteLine("FireMarioStandState(25) facing:, {0}", Mario.marioPowerUpState);

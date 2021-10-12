@@ -47,6 +47,7 @@ namespace GameSpace.GameObjects.BlockObjects
 
         public void Update(GameTime gametime)
         {
+
             Sprite.Update(gametime);
         }
 
@@ -73,5 +74,7 @@ namespace GameSpace.GameObjects.BlockObjects
         {
             drawBox = !drawBox;
         }
+
+        
     }
 }
