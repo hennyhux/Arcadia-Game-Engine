@@ -197,15 +197,7 @@ protected Texture2D WhiteRect = SpriteBlockFactory.GetInstance().CreateBoundingB
 
         public void Draw(SpriteBatch spriteBatch, Vector2 location)
         {
-            //Fixes locaton issues if sprite is big vs small and bigStanding vs bigCrouched
-            if(this.marioPower >= 1 && this.marioPower <= 3 && actionState != 1) 
-            {
-                location.Y -= 32;
-            } 
-            else if (this.marioPower >= 1 && this.marioPower <= 3 && actionState == 1)
-            {
-                location.Y -= 12;
-            }
+
 
             //Debug.WriteLine("mario drawK \n");
             if (IsVisible)
