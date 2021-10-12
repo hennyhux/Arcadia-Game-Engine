@@ -325,9 +325,9 @@ namespace GameSpace.GameObjects.BlockObjects
 
             else
             {
-                ///MoveObjectOffset(0, 10);//perform bounce?
-                PreformBounce(0, 10);
-                //changeStateUponCollision(enemy);
+                MoveObjectOffset(0, 10);//perform bounce?
+                //PreformBounce(0, 10);
+                changeStateUponCollision(enemy);
             }
         }
 
@@ -412,6 +412,16 @@ namespace GameSpace.GameObjects.BlockObjects
         {
             //Direction doesn't matter for SUPERSHROOM Collision, going to change Power-Up either way
             this.bigMarioTransformation();
+        }
+
+        private void MoveObjectOffset(int offsetX, int offsetY)
+        {
+            //this.CollisionBox = new Rectangle((int)(Position.X - offsetX) + Sprite.Texture.Width / 2,
+            //(int)(Position.Y - offsetY), Sprite.Texture.Width / 12, Sprite.Texture.Height / 6);
+            //this.CollisionBox = new Rectangle((int)(CollisionBox.X - offsetX), (int)CollisionBox.Y - offsetY, CollisionBox.Width, CollisionBox.Height);
+            //(int)(Position.Y - offsetY), Sprite.Texture.Width / 12, Sprite.Texture.Height / 6);
+            this.Position = new Vector2((int)(Position.X - offsetX), (int)(Position.Y - offsetY));
+            this.CollisionBox = new Rectangle((int)Position.X, (int)Position.Y, CollisionBox.Width, CollisionBox.Height);
         }
 
         private void PreformBounce(int offsetX, int offsetY)
