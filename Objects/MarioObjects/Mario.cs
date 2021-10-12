@@ -115,7 +115,8 @@ namespace GameSpace.GameObjects.BlockObjects
         }
         public void Update(GameTime gametime)
         {
-            Position += Velocity * (float)gametime.ElapsedGameTime.TotalSeconds;
+            Vector2 newLocation = Velocity * (float)gametime.ElapsedGameTime.TotalSeconds;
+            if (!IsGoingToBeOutOfBounds(newLocation)) Position += newLocation;
             this.CollisionBox = new Rectangle((int)Position.X, (int)Position.Y, CollisionBox.Width, CollisionBox.Height);
             this.marioPowerUpState.Update(gametime);
             this.marioActionState.Update(gametime);
@@ -169,11 +170,6 @@ namespace GameSpace.GameObjects.BlockObjects
             this.CollisionBox = new Rectangle((int)(Position.X + Sprite.Texture.Width / 16), (int)Position.Y, Sprite.Texture.Width / 12, Sprite.Texture.Height / 6);
         }
 
-        public void ChangeVelocity()
-        {
-
-        }
-
         public void bigMarioTransformation()
         {
             marioPowerUpState.bigMarioTransformation();
@@ -195,10 +191,9 @@ namespace GameSpace.GameObjects.BlockObjects
             
         }
 
+        //unused testing method 
         public void SetPosition(Vector2 location)
         {
-            Velocity = (float)10 * location;
-            if (!IsGoingToBeOutOfBounds(Velocity)) Position += Velocity;
 
             if (EntityManager.IsCurrentlyBigMario())
             {
@@ -263,12 +258,12 @@ namespace GameSpace.GameObjects.BlockObjects
             } 
         }
 
-        private bool IsGoingToBeOutOfBounds(Vector2 Velocity)
+        private bool IsGoingToBeOutOfBounds(Vector2 newLocation)
         {
-            if (Position.X + Velocity.X <= 0) return true;
-            if (Position.X + (CollisionBox.Width) + Velocity.X > 800) return true;
-            if (Position.Y + Velocity.Y <= 0) return true;
-            if (Position.Y + Velocity.Y >= 450) return true;
+            if (Position.X + newLocation.X <= 0) return true;
+            if (Position.X + (CollisionBox.Width) + newLocation.X > 800) return true;
+            if (Position.Y + newLocation.Y <= 0) return true;
+            if (Position.Y + newLocation.Y >= 450) return true;
             return false;
         }
 
