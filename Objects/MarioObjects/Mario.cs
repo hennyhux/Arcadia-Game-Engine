@@ -243,7 +243,7 @@ namespace GameSpace.GameObjects.BlockObjects
                     break;
 
                 case (int)BlockID.BRICKBLOCK:
-                    CollisionWithBumpBlock(entity);
+                    CollisionWithBrickBlock(entity);
                     break;
 
                 case (int)BlockID.FLOORBLOCK:
@@ -357,6 +357,31 @@ namespace GameSpace.GameObjects.BlockObjects
             }
 
             
+
+            changeStateUponCollision(entity);//Change state upon collision
+            this.CollisionBox = new Rectangle((int)Position.X, (int)Position.Y, CollisionBox.Width, CollisionBox.Height);
+        }
+
+        private void CollisionWithBrickBlock(IGameObjects entity)
+        {
+
+            if (EntityManager.DetectCollisionDirection(this, entity) == (int)CollisionDirection.LEFT) { this.Position = new Vector2((int)entity.Position.X - (int)this.CollisionBox.Width, (int)this.Position.Y); }
+
+            else if (EntityManager.DetectCollisionDirection(this, entity) == (int)CollisionDirection.RIGHT) { this.Position = new Vector2((int)entity.Position.X + (int)entity.CollisionBox.Width, (int)this.Position.Y); }
+
+            else if (EntityManager.DetectCollisionDirection(this, entity) == (int)CollisionDirection.UP)
+            {
+                this.Velocity = new Vector2(this.Velocity.X, this.Velocity.Y - this.Velocity.Y);
+                this.FallingTransition(); // broken 
+
+            }
+
+            else if (EntityManager.DetectCollisionDirection(this, entity) == (int)CollisionDirection.DOWN)
+            {
+                this.Position = new Vector2(this.Position.X, (int)entity.Position.Y - (int)this.CollisionBox.Height);
+            }
+
+
 
             changeStateUponCollision(entity);//Change state upon collision
             this.CollisionBox = new Rectangle((int)Position.X, (int)Position.Y, CollisionBox.Width, CollisionBox.Height);
