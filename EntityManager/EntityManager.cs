@@ -176,8 +176,6 @@ namespace GameSpace.EntitiesManager
                 {
                     direction = (int)CollisionDirection.LEFT;
                 }
-
-
             }
 
             return direction;
