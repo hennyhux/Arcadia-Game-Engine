@@ -197,7 +197,7 @@ namespace GameSpace.GameObjects.BlockObjects
 
         public void SetPosition(Vector2 location)
         {
-            Velocity = (float)10 * location;
+            //Velocity = (float)10 * location;
             if (!IsGoingToBeOutOfBounds(Velocity)) Position += Velocity;
 
             if (EntityManager.IsCurrentlyBigMario())

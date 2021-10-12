@@ -23,7 +23,11 @@ namespace GameSpace.Commands
 
         public void Execute()
         {
+            //EntityManager.FindItem((int)AvatarID.MARIO).Velocity = new Vector2((float)0, EntityManager.FindItem((int)AvatarID.MARIO).Velocity.Y + 40);
+
             IMarioActionStates currentState = game.GetMario.marioActionState;
+            IMarioPowerUpStates currentstate2 = game.GetMario.marioPowerUpState;
+            // if (currentstate2 is GameSpace.States.MarioStates.)
             if ((!(currentState is GameSpace.States.MarioStates.SmallMarioFallingState) &&
                 !(currentState is GameSpace.States.MarioStates.SmallMarioJumpingState) &&
                 !(currentState is GameSpace.States.MarioStates.SmallMarioRunningState) &&
@@ -38,11 +42,17 @@ namespace GameSpace.Commands
                     currentState is GameSpace.States.MarioStates.FireMarioJumpingState)
             {
                 game.GetMario.StandingTransition();
-                EntitiesManager.EntityManager.MoveItem((int)AvatarID.MARIO, (int)ControlDirection.DOWN);
+                EntityManager.FindItem((int)AvatarID.MARIO).Velocity = new Vector2((float)0, EntityManager.FindItem((int)AvatarID.MARIO).Velocity.Y + 40);
+            }
+            else if ((currentState is GameSpace.States.MarioStates.BigMarioCrouchingState ||
+                    currentState is GameSpace.States.MarioStates.FireMarioCrouchingState))
+            {
+                EntityManager.FindItem((int)AvatarID.MARIO).Velocity = new Vector2((float)0, EntityManager.FindItem((int)AvatarID.MARIO).Velocity.Y + 40);
             }
             else
-            {// Just move down
-                EntitiesManager.EntityManager.MoveItem((int)AvatarID.MARIO, (int)ControlDirection.DOWN);
+            {
+                game.GetMario.StandingTransition();
+                EntityManager.FindItem((int)AvatarID.MARIO).Velocity = new Vector2((float)0, EntityManager.FindItem((int)AvatarID.MARIO).Velocity.Y + 40);
             }
 
             Debug.WriteLine("UpCommand, facing {0}\n AState {1}\n", game.GetMario.Facing, game.GetMario.marioActionState);

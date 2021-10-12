@@ -38,12 +38,12 @@ namespace GameSpace.Commands
                     currentState is GameSpace.States.MarioStates.FireMarioStandingState)
             { //IF previously Standing, then jump and move
                 game.GetMario.JumpingTransition();
-                EntitiesManager.EntityManager.MoveItem((int)AvatarID.MARIO, (int)ControlDirection.UP);
+                EntityManager.FindItem((int)AvatarID.MARIO).Velocity = new Vector2((float)0, EntityManager.FindItem((int)AvatarID.MARIO).Velocity.Y - 40);
             }
             else
             { //Just move up
                 game.GetMario.JumpingTransition();
-                EntitiesManager.EntityManager.MoveItem((int)AvatarID.MARIO, (int)ControlDirection.UP);
+                EntityManager.FindItem((int)AvatarID.MARIO).Velocity = new Vector2((float)0, EntityManager.FindItem((int)AvatarID.MARIO).Velocity.Y - 40);
             }
             Debug.WriteLine("UpCommand, facing {0}\n AState {1}\n", game.GetMario.Facing, game.GetMario.marioActionState);
         }

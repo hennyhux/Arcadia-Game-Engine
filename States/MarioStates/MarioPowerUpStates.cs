@@ -175,11 +175,27 @@ namespace GameSpace.States.BlockStates
         public override void Enter(IMarioPowerUpStates previousPowerUpState) { }
         public override void Exit() { }
 
-        public override void smallMarioTransformation() { Mario.marioPowerUpState = new DeadMarioState(Mario); Mario.marioActionState.DeadPowerUp(); }
+        public override void smallMarioTransformation() 
+        { 
+            Mario.marioPowerUpState = new SmallMarioState(Mario); 
+            Mario.marioActionState = new BigMarioStandingState(Mario); //Make it big mario State so I can call SmallPowerUp to get it small.
+            Mario.marioActionState.SmallPowerUp();
+        
+        }
 
-        public override void bigMarioTransformation() { Mario.marioPowerUpState = new DeadMarioState(Mario); Mario.marioActionState.DeadPowerUp(); }
+        public override void bigMarioTransformation() 
+        {
+            Mario.marioPowerUpState = new BigMarioState(Mario);
+            Mario.marioActionState = new SmallMarioStandingState(Mario); //Make it small mario State so I can call BigPowerUp to get it big.
+            Mario.marioActionState.BigPowerUp();
+        }
 
-        public override void fireMarioTransformation() { Mario.marioPowerUpState = new DeadMarioState(Mario); Mario.marioActionState.DeadPowerUp(); }
+        public override void fireMarioTransformation() 
+        {
+            Mario.marioPowerUpState = new FireMarioState(Mario);
+            Mario.marioActionState = new SmallMarioStandingState(Mario); //Make it small mario State so I can call FirePowerUp to get it fire.
+            Mario.marioActionState.FirePowerUp();
+        }
 
         public override void DeadTransition() {  }
 

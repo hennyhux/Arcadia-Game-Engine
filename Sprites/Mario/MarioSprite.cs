@@ -19,11 +19,6 @@ namespace GameSpace.Sprites
 
         private bool IsVisible;
 
-        //private Point frameOrigin;
-        //private Point frameSize;
-        //private Point atlasSize;
-        //private Point currentFramePoint;
-
         public Texture2D Texture { get; set; }
         public int Height { get; set; }
         public int Width { get; set; }
@@ -124,10 +119,9 @@ protected Texture2D WhiteRect = SpriteBlockFactory.GetInstance().CreateBoundingB
 
                 if(facingRight==1) Debug.WriteLine("spriteActionState {1}, \nfacingRight: {0}", facingRight, actionState);
 
-                //facingRight = 0;
-                //marioPower = 1;// [Small, Big, Fire, Star, Dead]1
-                //actionState = 3;//[Idling, Crouching, Walking, Running, Jumping, Falling, Dying]0
-                //newState = false;
+                /*marioPower = [Small, Big, Fire, Star, Dead]1
+                  actionState = [Idling, Crouching, Walking, Running, Jumping, Falling, Dying]*/
+
                 totalFrames = totalFramesAnimation[currentFrame]; // gets previous frame's total frames in animation
 
                 facing = SpriteEffects.None;
@@ -157,10 +151,8 @@ protected Texture2D WhiteRect = SpriteBlockFactory.GetInstance().CreateBoundingB
                 }
                 else if (actionState == 5)//Falling
                 {
-                    //startingFrame = (15 - 13 * (facingRight) + (34 * (marioPower)));
                     startingFrame = (2 + 13 * (facingRight) + (34 * (marioPower)));
                     facing = SpriteEffects.FlipVertically;
-                    // Debug.WriteLine("facing: " + facing);
                 }
                 else if (actionState == 6)//Dying
                 {
@@ -205,19 +197,29 @@ protected Texture2D WhiteRect = SpriteBlockFactory.GetInstance().CreateBoundingB
 
         public void Draw(SpriteBatch spriteBatch, Vector2 location)
         {
+            //Fixes locaton issues if sprite is big vs small and bigStanding vs bigCrouched
+            if(this.marioPower >= 1 && this.marioPower <= 3 && actionState != 1) 
+            {
+                location.Y -= 32;
+            } 
+            else if (this.marioPower >= 1 && this.marioPower <= 3 && actionState == 1)
+            {
+                location.Y -= 12;
+            }
+
             //Debug.WriteLine("mario drawK \n");
             if (IsVisible)
             {
                  Width = XWidth[currentFrame];
                  Height = YHeight[currentFrame];
-
+                
                 Rectangle sourceRectangle = new Rectangle(XFrame[currentFrame], YFrame[currentFrame], Width, Height);
                 Rectangle destinationRectangle = new Rectangle((int)location.X, (int)location.Y, Width * 2, Height * 2);
 
-                //spriteBatch.Draw(Texture, destinationRectangle, sourceRectangle, Color.White);
                 spriteBatch.Draw(Texture, destinationRectangle, sourceRectangle, Color.White, 0, new Vector2(0, 0), facing, 0);
 
             }
+            
         }
 
         public void UpdateLocation(int dx, int dy)

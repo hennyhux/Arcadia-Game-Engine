@@ -63,10 +63,13 @@ namespace GameSpace.EntitiesManager
         #region Moving and Finding Entities
         public static void MoveItem(int ID, int direction)
         {
-            if (direction == (int)ControlDirection.UP) FindItem(ID).SetPosition(new Vector2(0, -1));
-            if (direction == (int)ControlDirection.DOWN) FindItem(ID).SetPosition(new Vector2(0, 1));
-            if (direction == (int)ControlDirection.RIGHT) FindItem(ID).SetPosition(new Vector2(1, 0));
-            if (direction == (int)ControlDirection.LEFT) FindItem(ID).SetPosition(new Vector2(-1, 0));
+           
+            {
+                if (direction == (int)ControlDirection.UP) FindItem(ID).SetPosition(new Vector2(0, -1));
+                if (direction == (int)ControlDirection.DOWN) FindItem(ID).SetPosition(new Vector2(0, 1));
+                if (direction == (int)ControlDirection.RIGHT) FindItem(ID).SetPosition(new Vector2(1, 0));
+                if (direction == (int)ControlDirection.LEFT) FindItem(ID).SetPosition(new Vector2(-1, 0));
+            }
         }
 
         private static bool SweeptAABBLeft(int ID)
