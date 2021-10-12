@@ -115,6 +115,7 @@ namespace GameSpace.GameObjects.BlockObjects
         }
         public void Update(GameTime gametime)
         {
+            Position += Velocity * (float)gametime.ElapsedGameTime.TotalSeconds;
             this.CollisionBox = new Rectangle((int)Position.X, (int)Position.Y, CollisionBox.Width, CollisionBox.Height);
             this.marioPowerUpState.Update(gametime);
             this.marioActionState.Update(gametime);
@@ -184,7 +185,7 @@ namespace GameSpace.GameObjects.BlockObjects
 
         public void SetPosition(Vector2 location)
         {
-            Velocity = (float)10 * location;
+            //Velocity = (float)10 * location;
             if (!IsGoingToBeOutOfBounds(Velocity)) Position += Velocity;
 
             if (EntityManager.IsCurrentlyBigMario())

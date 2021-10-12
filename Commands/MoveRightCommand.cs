@@ -29,7 +29,9 @@ namespace GameSpace
                 currentState is GameSpace.States.MarioStates.FireMarioStandingState) 
                 && eFacing.LEFT == game.GetMario.Facing)
             {
-                    game.GetMario.FaceRightTransition();
+               
+                game.GetMario.FaceRightTransition();
+               
             }
             else
             {

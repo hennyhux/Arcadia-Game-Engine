@@ -27,7 +27,7 @@ namespace GameSpace.Commands
 
             IMarioActionStates currentState = game.GetMario.marioActionState;
             IMarioPowerUpStates currentstate2 = game.GetMario.marioPowerUpState;
-           // if (currentstate2 is GameSpace.States.MarioStates.)
+            // if (currentstate2 is GameSpace.States.MarioStates.)
             if ((!(currentState is GameSpace.States.MarioStates.SmallMarioFallingState) &&
                 !(currentState is GameSpace.States.MarioStates.SmallMarioJumpingState) &&
                 !(currentState is GameSpace.States.MarioStates.SmallMarioRunningState) &&
