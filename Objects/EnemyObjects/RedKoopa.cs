@@ -29,7 +29,7 @@ namespace GameSpace.GameObjects.EnemyObjects
             this.Sprite = SpriteEnemyFactory.GetInstance().CreateRedKoopaSprite();
             this.Position = initalPosition;
             this.CollisionBox = new Rectangle((int)Position.X + Sprite.Texture.Width / 4 + 2, (int)Position.Y, Sprite.Texture.Width / 2, Sprite.Texture.Height * 2);
-            drawBox = true;
+            drawBox = false;
         }
 
         public void Draw(SpriteBatch spritebatch)
