@@ -18,14 +18,15 @@ namespace GameSpace
 
         public void Execute()
         {
-
+            game.GetMario.FaceLeftTransition();
+            //EntityManager.FindItem((int)AvatarID.MARIO).Velocity = new Vector2(EntityManager.FindItem((int)AvatarID.MARIO).Velocity.X - 40, (float)0);
             //game.GetMario.FaceLeftTransition();
             //How to change mario's position
 
             //game.GetMario.SprintingTransition();
             /*IMarioActionStates currentState = game.GetMario.marioActionState;
 
-           // EntityManager.FindItem((int)AvatarID.MARIO).Velocity = new Vector2(EntityManager.FindItem((int)AvatarID.MARIO).Velocity.X - 40, (float)0);
+           // 
             if ((currentState is GameSpace.States.MarioStates.SmallMarioStandingState ||
                 currentState is GameSpace.States.MarioStates.BigMarioStandingState ||
                 currentState is GameSpace.States.MarioStates.FireMarioStandingState)

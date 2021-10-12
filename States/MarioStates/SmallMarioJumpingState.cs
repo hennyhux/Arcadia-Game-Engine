@@ -27,6 +27,10 @@ namespace GameSpace.States.MarioStates
             this.previousActionState = previousActionState;
             Debug.WriteLine("MarioJumpingtate(25) Enter, {0}", Mario.marioActionState);
             Debug.WriteLine("MarioWalkingState(25) facing:, {0}", Mario.Facing);
+            
+            //Set Proper velocity upon entering state
+            Mario.Velocity = new Vector2((float)0, (float)-50);
+
 
             //AABB aabb = Mario.AABB;
             //eFacing Facing = MarioStandingState.Facing;
@@ -41,6 +45,7 @@ namespace GameSpace.States.MarioStates
         public override void Exit()
         {
             //Velocity == 0;
+            Mario.Velocity = new Vector2(Mario.Velocity.X, (float)0);
         }
 
         public override void StandingTransition()

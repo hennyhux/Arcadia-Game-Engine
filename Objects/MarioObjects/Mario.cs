@@ -115,6 +115,7 @@ namespace GameSpace.GameObjects.BlockObjects
         }
         public void Update(GameTime gametime)
         {
+            Position += Velocity * (float)gametime.ElapsedGameTime.TotalSeconds;
             this.CollisionBox = new Rectangle((int)Position.X, (int)Position.Y, CollisionBox.Width, CollisionBox.Height);
             this.marioPowerUpState.Update(gametime);
             this.marioActionState.Update(gametime);
@@ -136,8 +137,20 @@ namespace GameSpace.GameObjects.BlockObjects
         public void JumpingTransition() { marioActionState.JumpingTransition(); }
         public void FallingTransition() { marioActionState.FallingTransition(); }
 
-        public void FaceLeftTransition() { marioActionState.FaceLeftTransition(); }
-        public void FaceRightTransition() { marioActionState.FaceRightTransition(); }
+        public void FaceLeftTransition() {
+            if (this.Facing == eFacing.RIGHT)
+            {
+                //this.Velocity = new Vector2((float)0, (float)0);//
+            }
+
+                marioActionState.FaceLeftTransition(); }
+        public void FaceRightTransition() 
+        {
+            if (this.Facing == eFacing.LEFT)
+            {
+                //this.Velocity = new Vector2((float)0, (float)0);//
+            }
+            marioActionState.FaceRightTransition(); }
 
         public void CrouchingDiscontinueTransition() { marioActionState.CrouchingDiscontinueTransition(); }//when you exit crouch, release down key
         public void FaceLeftDiscontinueTransition() { marioActionState.FaceLeftDiscontinueTransition(); }//generic entering walk and run, face left then start walking, then start running

@@ -26,7 +26,7 @@ namespace GameSpace.States.MarioStates
             Mario.marioActionState = this;
             this.previousActionState = previousActionState;
             Mario.marioPowerUpState = new SmallMarioState(Mario);
-            Mario.Velocity = new Vector2((float)0, (float)0);
+            Mario.Velocity = new Vector2((float)0, Mario.Velocity.Y);
             Debug.WriteLine("MarioStandState(25) Enter, {0}", Mario.marioActionState);
             Debug.WriteLine("MarioWalkingState(25) facing:, {0}", Mario.Facing);
 
@@ -84,8 +84,10 @@ namespace GameSpace.States.MarioStates
         public override void FaceLeftTransition()
         {
             if (Mario.Facing == eFacing.LEFT)
+            {
                 RunningTransition();
-            // WalkingTransition(); bc no walking
+                // WalkingTransition(); bc no walking
+            }
             else
                 Mario.Facing = eFacing.LEFT;
         }
@@ -93,7 +95,11 @@ namespace GameSpace.States.MarioStates
         {
 
             if (Mario.Facing == eFacing.RIGHT)
+            {
                 RunningTransition();
+            }
+
+                
             // WalkingTransition();
             else
                 Mario.Facing = eFacing.RIGHT;

@@ -23,8 +23,9 @@ namespace GameSpace.Commands
 
         public void Execute()
         {
-            //EntityManager.FindItem((int)AvatarID.MARIO).Velocity = new Vector2((float)0, EntityManager.FindItem((int)AvatarID.MARIO).Velocity.Y + 40);
+           // EntityManager.FindItem((int)AvatarID.MARIO).Velocity = new Vector2((float)0, EntityManager.FindItem((int)AvatarID.MARIO).Velocity.Y + 40);
             game.GetMario.StandingTransition();
+            
             /*IMarioActionStates currentState = game.GetMario.marioActionState;
             if ((!(currentState is GameSpace.States.MarioStates.SmallMarioFallingState) &&
                 !(currentState is GameSpace.States.MarioStates.SmallMarioJumpingState) &&
