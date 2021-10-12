@@ -287,7 +287,7 @@ namespace GameSpace.GameObjects.BlockObjects
 
             else if (EntityManager.DetectCollisionDirection(this, entity) == (int)CollisionDirection.RIGHT) { StandingTransition(); }
 
-            else if (EntityManager.DetectCollisionDirection(this, entity) == (int)CollisionDirection.UP) { StandingTransition(); }
+            else if (EntityManager.DetectCollisionDirection(this, entity) == (int)CollisionDirection.UP) { FallingTransition(); }
 
             else if (EntityManager.DetectCollisionDirection(this, entity) == (int)CollisionDirection.DOWN) { StandingTransition(); }
         }
