@@ -8,6 +8,7 @@ using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using GameSpace.EntitiesManager;
 
 namespace GameSpace.GameObjects.BlockObjects
 {
@@ -25,7 +26,7 @@ namespace GameSpace.GameObjects.BlockObjects
         public Rectangle CollisionBox { get; set; }
 
         public int ObjectID { get; set; }
-        private Boolean hasCollided;
+        public Boolean hasCollided { get; set; }
         private Boolean drawBox;
 
 
@@ -62,7 +63,11 @@ namespace GameSpace.GameObjects.BlockObjects
 
         public void HandleCollision(IGameObjects entity)
         {
-            hasCollided = true;
+            if (EntityManager.DetectCollisionDirection(this, entity) == (int)CollisionDirection.DOWN && hasCollided == false)
+            {
+                this.Trigger();
+                hasCollided = true;
+            }
         }
 
         public void ToggleCollisionBoxes()

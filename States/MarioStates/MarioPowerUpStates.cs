@@ -172,7 +172,9 @@ namespace GameSpace.States.BlockStates
         {
 
         }
-        public override void Enter(IMarioPowerUpStates previousPowerUpState) { }
+        public override void Enter(IMarioPowerUpStates previousPowerUpState) {
+            Mario.Velocity = new Vector2((float)0, (float)0);
+        }
         public override void Exit() { }
 
         public override void smallMarioTransformation() 

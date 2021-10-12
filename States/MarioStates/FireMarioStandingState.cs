@@ -25,6 +25,7 @@ namespace GameSpace.States.MarioStates
         {
             Mario.marioActionState = this;
             this.previousActionState = previousActionState;
+            Mario.Velocity = new Vector2((float)0, (float)0);
             //Mario.marioPowerUpState = new FireMarioState(Mario);
             Debug.WriteLine("FireMarioStandState(25) Enter, {0}", Mario.marioActionState);
             Debug.WriteLine("FireMarioStandState(25) facing:, {0}", Mario.marioPowerUpState);
@@ -44,6 +45,7 @@ namespace GameSpace.States.MarioStates
 
         public override void StandingTransition()
         {
+            Mario.Velocity = new Vector2((float)0, (float)50);//Responsible for mario going down upon pressing down for fire mario
         }
         public override void CrouchingTransition()
         {
@@ -67,11 +69,18 @@ namespace GameSpace.States.MarioStates
         } //Longer you hold running you increase velocity and speed of animation
         public override void JumpingTransition()
         {
-            Exit();
-            Mario.marioActionState = new FireMarioJumpingState(Mario);
-            //Debug.WriteLine("MarioStandState(39) currentAState, {0}", Mario.marioActionState);
-            //Mario.sprite = MarioFactory.GetInstance().CreateSprite(5);
-            Mario.marioActionState.Enter(this); // Changing states
+            if (Mario.Velocity.Y > (float)0)//MOVE THIS TO UpTransition()
+            {
+                Mario.Velocity = new Vector2((float)0, (float)0);
+            }
+            else
+            {
+                Exit();
+                Mario.marioActionState = new FireMarioJumpingState(Mario);
+                //Debug.WriteLine("MarioStandState(39) currentAState, {0}", Mario.marioActionState);
+                //Mario.sprite = MarioFactory.GetInstance().CreateSprite(5);
+                Mario.marioActionState.Enter(this); // Changing states
+            }
         }
         public override void FallingTransition()
         {

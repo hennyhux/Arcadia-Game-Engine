@@ -28,7 +28,14 @@ namespace GameSpace.States.MarioStates
             //Mario.marioPowerUpState = new BigMarioState(Mario);
             Debug.WriteLine("MarioStandState(25) Enter, {0}", Mario.marioActionState);
             Debug.WriteLine("MarioWalkingState(25) facing:, {0}", Mario.Facing);
-
+            if (Mario.Facing == eFacing.LEFT)//Set Proper velocity upon entering state
+            {
+                Mario.Velocity = new Vector2((float)-50, (float)0);
+            }
+            else if (Mario.Facing == eFacing.RIGHT)
+            {
+                Mario.Velocity = new Vector2((float)50, (float)0);
+            }
             //AABB aabb = Mario.AABB;
             //eFacing Facing = MarioStandingState.Facing;
             eFacing Facing = Mario.Facing;
@@ -95,6 +102,7 @@ namespace GameSpace.States.MarioStates
         {
             if (Mario.Facing == eFacing.LEFT)//running, want left, if we face left, increase velocity
             {//Increase Velocity
+                //Mario.Velocity = new Vector2((int)Mario.Velocity.X - 10, Mario.Velocity.Y);
                 Debug.WriteLine("SmallRunning(107) Run/Face Left, Increase(-) Velocity");
             }
             else
@@ -108,6 +116,7 @@ namespace GameSpace.States.MarioStates
 
             if (Mario.Facing == eFacing.RIGHT)
             {//incease Velocity
+                //Mario.Velocity = new Vector2((int)Mario.Velocity.X + 10, Mario.Velocity.Y);
                 Debug.WriteLine("SmallRunning(107) Run/Face Right, Increase(+) Velocity");
             }
             //WalkingTransition();

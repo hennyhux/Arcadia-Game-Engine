@@ -18,14 +18,15 @@ namespace GameSpace
 
         public void Execute()
         {
-            
+            game.GetMario.FaceLeftTransition();
+            //EntityManager.FindItem((int)AvatarID.MARIO).Velocity = new Vector2(EntityManager.FindItem((int)AvatarID.MARIO).Velocity.X - 40, (float)0);
             //game.GetMario.FaceLeftTransition();
             //How to change mario's position
 
+            //game.GetMario.SprintingTransition();
+            /*IMarioActionStates currentState = game.GetMario.marioActionState;
 
-            IMarioActionStates currentState = game.GetMario.marioActionState;
-
-            //EntityManager.FindItem((int)AvatarID.MARIO).Velocity = new Vector2(EntityManager.FindItem((int)AvatarID.MARIO).Velocity.X - 40, (float)0);
+           // 
             if ((currentState is GameSpace.States.MarioStates.SmallMarioStandingState ||
                 currentState is GameSpace.States.MarioStates.BigMarioStandingState ||
                 currentState is GameSpace.States.MarioStates.FireMarioStandingState)
@@ -38,14 +39,13 @@ namespace GameSpace
                 game.GetMario.FaceLeftTransition();
                 if (eFacing.RIGHT != game.GetMario.Facing)
                 {
-
-                    EntityManager.FindItem((int)AvatarID.MARIO).Velocity = new Vector2(EntityManager.FindItem((int)AvatarID.MARIO).Velocity.X - 40, (float)0);
+                    EntityManager.MoveItem((int)AvatarID.MARIO, (int)ControlDirection.LEFT);
                     //game.GetMario.Position = new Vector2(game.GetMario.Position.X - 10, game.GetMario.Position.Y);
                     //game.GetMario.SetPosition(new Vector2(game.GetMario.Position.X, game.GetMario.Position.Y));
                 }
             }
             //game.GetMario.Position = new Vector2(game.GetMario.Position.X - 10, game.GetMario.Position.Y);
-            //game.GetMario.WalkingTransition();
+            //game.GetMario.WalkingTransition();*/
             Debug.WriteLine("LeftCommand, facing {0}\n AState {1}\n", game.GetMario.Facing, game.GetMario.marioActionState);
         }
 

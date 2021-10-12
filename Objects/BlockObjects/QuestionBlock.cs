@@ -9,6 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using GameSpace.EntitiesManager;
+using System.Diagnostics;
 
 namespace GameSpace.GameObjects.BlockObjects
 {
@@ -63,11 +64,11 @@ namespace GameSpace.GameObjects.BlockObjects
 
         public void HandleCollision(IGameObjects entity)
         {
-            hasCollided = true;
 
-            if (EntityManager.DetectCollisionDirection(this, entity) == (int)CollisionDirection.DOWN)
+            if (EntityManager.DetectCollisionDirection(this, entity) == (int)CollisionDirection.DOWN && hasCollided == false)
             {
                 this.Trigger();
+                hasCollided = true;
             }
         }
 

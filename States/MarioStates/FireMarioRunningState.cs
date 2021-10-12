@@ -28,7 +28,14 @@ namespace GameSpace.States.MarioStates
             //Mario.marioPowerUpState = new FireMarioState(Mario);
             Debug.WriteLine("MarioStandState(25) Enter, {0}", Mario.marioActionState);
             Debug.WriteLine("MarioWalkingState(25) facing:, {0}", Mario.Facing);
-
+            if (Mario.Facing == eFacing.LEFT)//Set Proper velocity upon entering state
+            {
+                Mario.Velocity = new Vector2((float)-50, (float)0);
+            }
+            else if (Mario.Facing == eFacing.RIGHT)
+            {
+                Mario.Velocity = new Vector2((float)50, (float)0);
+            }
             //AABB aabb = Mario.AABB;
             //eFacing Facing = MarioStandingState.Facing;
             eFacing Facing = Mario.Facing;
