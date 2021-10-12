@@ -137,17 +137,7 @@ namespace GameSpace.EntitiesManager
                 return false; 
             }
 
-
             else { return a.CollisionBox.Intersects(b.CollisionBox);  } 
-        }
-
-        public static bool SweeptAABB(IGameObjects a, IGameObjects b)
-        {
-            return
-                (a.CollisionBox.X + a.CollisionBox.Width + 10 >= b.CollisionBox.X
-                || a.CollisionBox.X - 10 <= b.CollisionBox.X + b.CollisionBox.Width
-                || a.CollisionBox.Y + a.CollisionBox.Height + 10 >= b.CollisionBox.Y
-                || a.CollisionBox.Y - 10 <= b.CollisionBox.Y + b.CollisionBox.Height);
         }
         
         public static int DetectCollisionDirection(IGameObjects a, IGameObjects b)
