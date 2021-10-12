@@ -26,6 +26,9 @@ namespace GameSpace.Interfaces
         void FaceLeftTransition();
         void FaceRightTransition();
 
+        public abstract void UpTransition();
+        public abstract void DownTransition();
+
         void SmallPowerUp();
         void BigPowerUp();
         void FirePowerUp();

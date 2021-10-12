@@ -46,7 +46,7 @@ namespace GameSpace.States.MarioStates
         public override void StandingTransition()
         {//going to crouch for now(going to superstand
 
-            Mario.Velocity = new Vector2((float)0, (float)50);//Responsible for mario going down upon pressing down for big mario
+            
 
 
         }
@@ -112,6 +112,15 @@ namespace GameSpace.States.MarioStates
             // WalkingTransition();
             else
                 Mario.Facing = eFacing.RIGHT;
+        }
+
+        public override void UpTransition()
+        {
+            JumpingTransition();
+        }
+        public override void DownTransition()
+        {
+            CrouchingTransition();
         }
         public override void SmallPowerUp()
         {

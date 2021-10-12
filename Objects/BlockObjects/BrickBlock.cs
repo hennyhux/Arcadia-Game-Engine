@@ -53,7 +53,11 @@ namespace GameSpace.GameObjects.BlockObjects
 
         public void Trigger()
         {
-            state = new StateBlockBumped(this);
+            if(state is StateBlockIdle)
+            {
+                state = new StateBlockBumped(this);
+            }
+            
         }
 
         public void SetPosition(Vector2 newLocation)

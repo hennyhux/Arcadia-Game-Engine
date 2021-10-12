@@ -66,12 +66,12 @@ namespace GameSpace.States.MarioStates
         } //Longer you hold running you increase velocity and speed of animation
         public override void JumpingTransition()
         {
-            if (Mario.Velocity.Y > (float)0)//MOVE THIS TO UpTransition()
+           /* if (Mario.Velocity.Y > (float)0)//MOVE THIS TO UpTransition()
             {
                 Mario.Velocity = new Vector2((float)0, (float)0);
             }
             else
-            {
+            {*/
                 //JumpingTransition();
 
                 Exit();
@@ -79,7 +79,7 @@ namespace GameSpace.States.MarioStates
                 //Debug.WriteLine("MarioStandState(39) currentAState, {0}", Mario.marioActionState);
                 //Mario.sprite = MarioFactory.GetInstance().CreateSprite(5);
                 Mario.marioActionState.Enter(this); // Changing states
-            }
+           // }
         }
         public override void FallingTransition()
         {
@@ -90,10 +90,25 @@ namespace GameSpace.States.MarioStates
             Mario.marioActionState.Enter(this); // Changing states
         }
 
-       /* public override void UpTransition()
+        /* public override void UpTransition()
+         {
+
+         }*/
+        public override void UpTransition()
         {
-            
-        }*/
+            if (Mario.Velocity.Y > (float)0)//MOVE THIS TO UpTransition()
+            {
+                Mario.Velocity = new Vector2((float)0, (float)0);
+            }
+            else
+            {
+                JumpingTransition();
+            }
+        }
+        public override void DownTransition() 
+        {
+            Mario.Velocity = new Vector2((float)0, (float)50);//Responsible for mario going down upon pressing down for small mario
+        }
 
         public override void FaceLeftTransition()
         {

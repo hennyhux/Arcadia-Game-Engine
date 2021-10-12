@@ -96,6 +96,15 @@ namespace GameSpace.States.MarioStates
                 Mario.Facing = eFacing.RIGHT;
         }
 
+        public override void UpTransition()
+        {
+
+        }
+        public override void DownTransition()
+        {
+
+        }
+
         public override void SmallPowerUp()
         {
             Exit();

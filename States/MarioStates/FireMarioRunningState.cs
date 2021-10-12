@@ -120,6 +120,15 @@ namespace GameSpace.States.MarioStates
             }
         }
 
+        public override void UpTransition()
+        {
+
+        }
+        public override void DownTransition()
+        {
+
+        }
+
         public override void SmallPowerUp()
         {
             Exit();
