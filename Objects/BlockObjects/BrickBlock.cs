@@ -53,10 +53,10 @@ namespace GameSpace.GameObjects.BlockObjects
 
         public void Trigger()
         {
-            if(state is StateBlockIdle)
-            {
+            //if(state is StateBlockIdle)
+            //{
                 state = new StateBlockBumped(this);
-            }
+            //}
             
         }
 
@@ -67,7 +67,7 @@ namespace GameSpace.GameObjects.BlockObjects
 
         public void HandleCollision(IGameObjects entity)
         {
-            hasCollided = true;
+            //hasCollided = true;
             if (EntityManager.DetectCollisionDirection(this, entity) == (int)CollisionDirection.DOWN)
             {
                 this.Trigger();
