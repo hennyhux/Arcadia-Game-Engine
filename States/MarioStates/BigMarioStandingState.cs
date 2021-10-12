@@ -45,17 +45,15 @@ namespace GameSpace.States.MarioStates
 
         public override void StandingTransition()
         {//going to crouch for now(going to superstand
-         //currentActionState.Exit();
-            /// Debug.WriteLine("Big Standtrans");
 
-            /*Mario.marioActionState = new BigMarioStandingState(Mario);
-            Debug.WriteLine("MarioStandState(39) currentAState, {0}", Mario.marioActionState);
-            //Mario.sprite = MarioFactory.GetInstance().CreateSprite(2);
-            Mario.marioActionState.Enter(this); // Changing states*/
+            Mario.Velocity = new Vector2((float)0, (float)50);//Responsible for mario going down upon pressing down for big mario
+
 
         }
         public override void CrouchingTransition() 
         {
+            
+
             Exit();
             Mario.marioActionState = new BigMarioCrouchingState(Mario);
             //Debug.WriteLine("MarioStandState(39) currentAState, {0}", Mario.marioActionState);
@@ -76,11 +74,18 @@ namespace GameSpace.States.MarioStates
         } //Longer you hold running you increase velocity and speed of animation
         public override void JumpingTransition()
         {
-            Exit();
-            Mario.marioActionState = new BigMarioJumpingState(Mario);
-            //Debug.WriteLine("MarioStandState(39) currentAState, {0}", Mario.marioActionState);
-            //Mario.sprite = MarioFactory.GetInstance().CreateSprite(5);
-            Mario.marioActionState.Enter(this); // Changing states
+            if (Mario.Velocity.Y > (float)0)//MOVE THIS TO UpTransition()
+            {
+                Mario.Velocity = new Vector2((float)0, (float)0);
+            }
+            else
+            {
+                Exit();
+                Mario.marioActionState = new BigMarioJumpingState(Mario);
+                //Debug.WriteLine("MarioStandState(39) currentAState, {0}", Mario.marioActionState);
+                //Mario.sprite = MarioFactory.GetInstance().CreateSprite(5);
+                Mario.marioActionState.Enter(this); // Changing states
+            }
         }
         public override void FallingTransition()
         {
