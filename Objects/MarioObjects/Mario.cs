@@ -153,6 +153,16 @@ namespace GameSpace.GameObjects.BlockObjects
             }
             marioActionState.FaceRightTransition(); }
 
+        public void UpTransition()
+        {
+            marioActionState.UpTransition();
+        }
+    
+        public void DownTransition()
+        {
+            marioActionState.DownTransition();
+        }
+
         public void CrouchingDiscontinueTransition() { marioActionState.CrouchingDiscontinueTransition(); }//when you exit crouch, release down key
         public void FaceLeftDiscontinueTransition() { marioActionState.FaceLeftDiscontinueTransition(); }//generic entering walk and run, face left then start walking, then start running
         public void FaceRightDiscontinueTransition() { marioActionState.FaceRightDiscontinueTransition(); }

@@ -53,6 +53,9 @@ namespace GameSpace.States.MarioStates
         public abstract void FaceLeftTransition();
         public abstract void FaceRightTransition();
 
+        public abstract void UpTransition();
+        public abstract void DownTransition();
+
         public abstract void CrouchingDiscontinueTransition();//when you exit crouch, release down key
         public abstract void FaceLeftDiscontinueTransition();//generic entering walk and run, face left then start walking, then start running
         public abstract void FaceRightDiscontinueTransition();

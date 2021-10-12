@@ -24,7 +24,8 @@ namespace GameSpace.Commands
         public void Execute()
         {
             //EntityManager.FindItem((int)AvatarID.MARIO).Velocity = new Vector2((float)0, EntityManager.FindItem((int)AvatarID.MARIO).Velocity.Y - 40);
-            game.GetMario.JumpingTransition();
+            //game.GetMario.JumpingTransition();
+            game.GetMario.UpTransition();
 
             /*EntityManager.FindItem((int)AvatarID.MARIO).Velocity = new Vector2((float)0, EntityManager.FindItem((int)AvatarID.MARIO).Velocity.Y - 40);
             IMarioActionStates currentState = game.GetMario.marioActionState;
