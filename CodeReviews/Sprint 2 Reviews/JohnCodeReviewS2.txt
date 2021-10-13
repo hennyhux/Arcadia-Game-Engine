@@ -1,0 +1,15 @@
+﻿Author of Review: John Blaszczak
+Date: 10/12/2021
+Sprint Number: 2
+Name of File: QuestionBlock.cs
+Author of File: Henry Zhang
+Comments:
+	This file does not follow the state design pattern completely, this is no Block context file and there is no way to 
+	transform this Block into a different Block. The file does not update itself, it updates its sprite which is not following the state design pattern.
+	This file does not have a QuestionBlockState file but acts somewhat like both the block context and questionBlock State file.
+	It has a state and a sprite but the state is not questionBlockState its the state of the BumpBlock.
+	
+Hypothetical Change:
+	Make this file either the context for all the blocks or make this a block state for the question block. Add methods that would allow this block to changes states such that
+	it would become a different type of block. By changing this to a questionBlockState file, remove all unnecessary variables that would be stored in the Block.cs file
+ 	and remove the state and sprite variables for this file and move them into Block.cs. Add the necessary commands like Enter() and Exit() for this state.
