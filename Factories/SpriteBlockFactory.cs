@@ -13,6 +13,7 @@ namespace GameSpace.Factories
 
         #region sprites
         private Texture2D QuestionBlock;
+        private Texture2D ShatterBlock;
         private Texture2D UsedBlock;
         private Texture2D BrickBlock;
         private Texture2D FloorBlock;
@@ -40,6 +41,7 @@ namespace GameSpace.Factories
         public void LoadContent(ContentManager content)
         {
             QuestionBlock = content.Load<Texture2D>("Blocks/QuestionBlock");
+            ShatterBlock = content.Load<Texture2D>("Blocks/ShatterBrickBlock");
             UsedBlock = content.Load<Texture2D>("Blocks/UsedBlock");
             BrickBlock = content.Load<Texture2D>("Blocks/BrickBlock");
             FloorBlock = content.Load<Texture2D>("Blocks/FloorBlock");
@@ -70,6 +72,11 @@ namespace GameSpace.Factories
         public ISprite ReturnHiddenBlock()
         {
             return new HiddenBlockSprite(HiddenBlock, 1, 1, 1);
+        }
+
+        public ISprite ReturnShatterBlock()
+        {
+            return new ShatterBlockSprite(ShatterBlock, 1, 1, 1);
         }
 
         public ISprite ReturnUsedBlock()

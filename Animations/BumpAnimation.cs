@@ -1,6 +1,7 @@
 ﻿using GameSpace.Sprites;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System.Diagnostics;
 
 namespace GameSpace.States
 {
@@ -11,8 +12,9 @@ namespace GameSpace.States
         private protected int maxOffset;
         private protected int currentOffset;
         private protected Vector2 initLocation;
+        public bool animationFinished;
 
-        public BumpAnimation(Texture2D texture, int x, int y, int rows = 1, int columns = 1, int totalFrames = 1)
+        public BumpAnimation(Texture2D texture, int x, int y, int MaxOffset, int rows = 1, int columns = 1, int totalFrames = 1 )
         {
             this.Texture = texture;
             isVisible = true;
@@ -23,10 +25,11 @@ namespace GameSpace.States
             currentFrame = 0;
             this.totalFrames = totalFrames;
             this.initLocation = location;
-            maxOffset = 24;
+            this.maxOffset = MaxOffset;
             currentOffset = 0;
             initLocation.X = x;
             initLocation.Y = y;
+            animationFinished = false;
         }
 
         public override void Draw(SpriteBatch spriteBatch, Vector2 location)
@@ -53,10 +56,15 @@ namespace GameSpace.States
                 currentOffset += 3;
             }
 
-            if (currentOffset >= maxOffset / 2 && currentOffset < maxOffset)
+            else if (currentOffset >= maxOffset / 2 && currentOffset < maxOffset)
             {
                 initLocation.Y += 3;
                 currentOffset += 3;
+            }
+            else
+            {
+                animationFinished = true;
+                //Debug.WriteLine("animationFinished {0}", animationFinished);
             }
         }
     }

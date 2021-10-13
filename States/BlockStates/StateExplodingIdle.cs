@@ -7,11 +7,11 @@ using System.Text;
 
 namespace GameSpace.States
 {
-    public class StateExplodingBlock : IObjectState
+    public class StateExplodingIdleBlock : IObjectState
     {
         private IGameObjects block;
 
-        public StateExplodingBlock(IGameObjects block)
+        public StateExplodingIdleBlock(IGameObjects block)
         {
             this.block = block;
             if (block.Sprite.Texture.Name.Equals("Blocks/BrickBlock"))
