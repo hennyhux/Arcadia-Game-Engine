@@ -445,13 +445,13 @@ namespace GameSpace.GameObjects.BlockObjects
 
                 else if (EntityManager.DetectCollisionDirection(this, entity) == (int)CollisionDirection.RIGHT) 
                 {
-                    this.Velocity = new Vector2(this.Velocity.X, this.Velocity.Y - this.Velocity.Y);
-
+                    //this.Velocity = new Vector2(this.Velocity.X, this.Velocity.Y - this.Velocity.Y);
+                    this.Position = new Vector2((int)entity.Position.X + (int)entity.CollisionBox.Width, (int)this.Position.Y);
                 }
 
                 else if (EntityManager.DetectCollisionDirection(this, entity) == (int)CollisionDirection.UP) {
 
-                    this.Velocity = new Vector2(this.Velocity.X, this.Velocity.Y - this.Velocity.Y); 
+                    //this.Velocity = new Vector2(this.Velocity.X, this.Velocity.Y - this.Velocity.Y); 
                     this.Position = new Vector2(this.Position.X, (int)entity.Position.Y + (int)entity.CollisionBox.Height); 
                 
                 }
