@@ -65,6 +65,7 @@ namespace GameSpace.GameObjects.BlockObjects
             Debug.WriteLine("Mario.cs(50) CREATED MARIO \n");
             this.ObjectID = (int)AvatarID.MARIO;
             drawBox = false;
+            hasCollided = false;
             this.Position = new Vector2((int)initLocation.X, (int)initLocation.Y);
             this.CollisionBox = new Rectangle((int)initLocation.X - 3, (int)initLocation.Y, 32, 32);
 
@@ -213,14 +214,9 @@ namespace GameSpace.GameObjects.BlockObjects
             else
             {
                 this.CollisionBox = new Rectangle((int)(Position.X + sprite.Texture.Width / 16), (int)Position.Y, sprite.Texture.Width / 12, sprite.Texture.Height / 6);
-            }
-                       
+            }             
         }
 
-        private void VisualCue()
-        {
-            
-        }
 
         //BRICKBLOCK = 0,
         //QUESTIONBLOCK = 1,
@@ -230,6 +226,7 @@ namespace GameSpace.GameObjects.BlockObjects
         //USEDBLOCK = 5,
         public void HandleCollision(IGameObjects entity)
         {
+            hasCollided = true;
             switch (entity.ObjectID)
             {
                 case (int)ItemID.FIREFLOWER:
@@ -270,7 +267,8 @@ namespace GameSpace.GameObjects.BlockObjects
                 case (int)EnemyID.REDKOOPA:
                     CollisionWithEnemy(entity);
                     break;
-            } 
+            }
+            
         }
 
         private bool IsGoingToBeOutOfBounds(Vector2 newLocation)
@@ -324,6 +322,8 @@ namespace GameSpace.GameObjects.BlockObjects
                 
                 changeStateUponCollision(enemy);
                 this.CollisionBox = new Rectangle((int)Position.X, (int)Position.Y, CollisionBox.Width, CollisionBox.Height);
+
+                hasCollided = false; 
             }
 
             else
@@ -343,14 +343,20 @@ namespace GameSpace.GameObjects.BlockObjects
         private void CollisionWithBumpBlock(IGameObjects entity)
         {
 
-            if (EntityManager.DetectCollisionDirection(this, entity) == (int)CollisionDirection.LEFT) { this.Position = new Vector2((int)entity.Position.X - (int)this.CollisionBox.Width, (int)this.Position.Y); }
+            if (EntityManager.DetectCollisionDirection(this, entity) == (int)CollisionDirection.LEFT) 
+            {
+                this.Position = new Vector2((int)entity.Position.X - (int)this.CollisionBox.Width, (int)this.Position.Y); 
+            }
 
-            else if (EntityManager.DetectCollisionDirection(this, entity) == (int)CollisionDirection.RIGHT) { this.Position = new Vector2((int)entity.Position.X + (int)entity.CollisionBox.Width, (int)this.Position.Y); }
+            else if (EntityManager.DetectCollisionDirection(this, entity) == (int)CollisionDirection.RIGHT) 
+            { 
+                this.Position = new Vector2((int)entity.Position.X + (int)entity.CollisionBox.Width, (int)this.Position.Y); 
+            }
 
             else if (EntityManager.DetectCollisionDirection(this, entity) == (int)CollisionDirection.UP) 
             {
-                this.Velocity = new Vector2(this.Velocity.X, this.Velocity.Y - this.Velocity.Y);
-                this.FallingTransition(); // broken 
+                StopAnyMotion();
+                this.FallingTransition();
             }
 
             else if (EntityManager.DetectCollisionDirection(this, entity) == (int)CollisionDirection.DOWN) 
@@ -473,6 +479,11 @@ namespace GameSpace.GameObjects.BlockObjects
         public void ToggleCollisionBoxes()
         {
             drawBox = !drawBox;
+        }
+
+        public bool IsCurrentlyColliding()
+        {
+            return hasCollided;
         }
     }
 }

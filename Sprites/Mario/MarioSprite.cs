@@ -223,17 +223,9 @@ namespace GameSpace.Sprites
 
         public void DrawBoundary(SpriteBatch spriteBatch, Rectangle destination)
         {
-            if (!EntityManager.FindItem((int)AvatarID.MARIO).IsCurrentlyColliding())
-            {
-                spriteBatch.Draw(WhiteRect, destination, Color.Yellow * 0.4f);
-            }
+            spriteBatch.Draw(WhiteRect, destination, Color.Yellow * 0.4f);
 
-            else 
-            { 
-               spriteBatch.Draw(WhiteRect, destination, Color.Pink * 0.4f); 
-            }
         }
-
         public bool GetVisibleStatus()
         {
             return IsVisible;
