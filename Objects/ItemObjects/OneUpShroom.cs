@@ -64,5 +64,9 @@ namespace GameSpace.GameObjects.ItemObjects
             drawBox = !drawBox;
         }
 
+        public bool IsCurrentlyColliding()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

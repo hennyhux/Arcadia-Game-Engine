@@ -6,6 +6,8 @@ using System.Text;
 using GameSpace.GameObjects.BlockObjects;
 using System.Diagnostics;
 using GameSpace.Factories;
+using GameSpace.Enums;
+using GameSpace.EntitiesManager;
 
 namespace GameSpace.Sprites
 {
@@ -22,7 +24,7 @@ namespace GameSpace.Sprites
         public Texture2D Texture { get; set; }
         public int Height { get; set; }
         public int Width { get; set; }
-protected Texture2D WhiteRect = SpriteBlockFactory.GetInstance().CreateBoundingBoxTexture();
+        protected Texture2D WhiteRect = SpriteBlockFactory.GetInstance().CreateBoundingBoxTexture();
 
 
 
@@ -221,7 +223,15 @@ protected Texture2D WhiteRect = SpriteBlockFactory.GetInstance().CreateBoundingB
 
         public void DrawBoundary(SpriteBatch spriteBatch, Rectangle destination)
         {
-            spriteBatch.Draw(WhiteRect, destination, Color.Yellow * 0.4f);
+            if (!EntityManager.FindItem((int)AvatarID.MARIO).IsCurrentlyColliding())
+            {
+                spriteBatch.Draw(WhiteRect, destination, Color.Yellow * 0.4f);
+            }
+
+            else 
+            { 
+               spriteBatch.Draw(WhiteRect, destination, Color.Pink * 0.4f); 
+            }
         }
 
         public bool GetVisibleStatus()

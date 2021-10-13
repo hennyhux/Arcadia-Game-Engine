@@ -65,6 +65,7 @@ namespace GameSpace.GameObjects.BlockObjects
             Debug.WriteLine("Mario.cs(50) CREATED MARIO \n");
             this.ObjectID = (int)AvatarID.MARIO;
             drawBox = false;
+            hasCollided = false; 
             this.Position = new Vector2((int)initLocation.X, (int)initLocation.Y);
             this.CollisionBox = new Rectangle((int)initLocation.X - 3, (int)initLocation.Y, 32, 32);
 
@@ -119,7 +120,6 @@ namespace GameSpace.GameObjects.BlockObjects
             this.marioPowerUpState.Update(gametime);
             this.marioActionState.Update(gametime);
             this.sprite.Update(gametime);
-
         }
 
         public void Exit() { }
@@ -180,15 +180,15 @@ namespace GameSpace.GameObjects.BlockObjects
 
         public void bigMarioTransformation()
         {
-            this.CollisionBox = new Rectangle((int)Position.X, (int)Position.Y, 32, 64);
+            this.Position = new Vector2((int)Position.X, (int)Position.Y - Position.Y);
             marioPowerUpState.bigMarioTransformation();
-            //this.Position = new Vector2((int)Position.X, (int)Position.Y + sprite.Height);
+            this.CollisionBox = new Rectangle((int)Position.X, (int)Position.Y, 32, 64);
         }
 
         public void fireMarioTransformation() 
-        { 
+        {
+            this.Position = new Vector2((int)Position.X, (int)Position.Y - Position.Y);
             marioPowerUpState.fireMarioTransformation();
-            //this.Position = new Vector2((int)Position.X, (int)Position.Y + sprite.Height);
             this.CollisionBox = new Rectangle((int)Position.X, (int)Position.Y + 32, 32, 64);
         }
 
@@ -215,10 +215,6 @@ namespace GameSpace.GameObjects.BlockObjects
                        
         }
 
-        private void VisualCue()
-        {
-            
-        }
 
         //BRICKBLOCK = 0,
         //QUESTIONBLOCK = 1,
@@ -228,47 +224,44 @@ namespace GameSpace.GameObjects.BlockObjects
         //USEDBLOCK = 5,
         public void HandleCollision(IGameObjects entity)
         {
+            hasCollided = true;
             switch (entity.ObjectID)
             {
                 case (int)ItemID.FIREFLOWER:
-                    CollisionWithFireFlower(entity);
-                    break;
+                CollisionWithFireFlower(entity);
+                break;
 
                 case (int)ItemID.SUPERSHROOM:
-                    CollisionWithSuperShroom(entity);
-                    break;
+                CollisionWithSuperShroom(entity);
+                break;
 
                 case (int)BlockID.QUESTIONBLOCK:
                     CollisionWithBumpBlock(entity);
-                    break;
+                break;
 
                 case (int)BlockID.BRICKBLOCK:
                     CollisionWithBumpBlock(entity);
-                    break;
+                break;
 
                 case (int)BlockID.FLOORBLOCK:
                     CollisionWithFloorBlock(entity);
-                    break;
+                break;
 
                 case (int)BlockID.HIDDENBLOCK:
                     CollisionWithHiddenBlock(entity);
-                    break;
+                break;
 
                 case (int)BlockID.STAIRBLOCK:
                     CollisionWithBumpBlock(entity);
-                    break;
+                break;
 
                 case (int)BlockID.USEDBLOCK:
                     CollisionWithUsedBlock(entity);
-                    break;
+                break;
 
-                //All enemy encounters use same method. 
-                case (int)EnemyID.GOOMBA:
-                case (int)EnemyID.GREENKOOPA:
-                case (int)EnemyID.REDKOOPA:
-                    CollisionWithEnemy(entity);
-                    break;
-            } 
+                case (int)ItemID.COIN:
+                break;
+            }
         }
 
         private bool IsGoingToBeOutOfBounds(Vector2 newLocation)
@@ -325,7 +318,6 @@ namespace GameSpace.GameObjects.BlockObjects
 
             else
             {
-                ///MoveObjectOffset(0, 10);//perform bounce?
                 PreformBounce(0, 10);
                 //changeStateUponCollision(enemy);
             }
@@ -408,9 +400,6 @@ namespace GameSpace.GameObjects.BlockObjects
                 changeStateUponCollision(entity);
             }
 
-
-
-
                 this.CollisionBox = new Rectangle((int)Position.X, (int)Position.Y, CollisionBox.Width, CollisionBox.Height);
 
         }
@@ -419,6 +408,7 @@ namespace GameSpace.GameObjects.BlockObjects
         {
             //Direction doesn't matter for FireFlower Collision, going to change Power-Up either way
             this.fireMarioTransformation();
+            hasCollided = false;
         }
 
         private void CollisionWithSuperShroom(IGameObjects entity)
@@ -436,6 +426,11 @@ namespace GameSpace.GameObjects.BlockObjects
         public void ToggleCollisionBoxes()
         {
             drawBox = !drawBox;
+        }
+
+        public bool IsCurrentlyColliding()
+        {
+            return hasCollided;
         }
     }
 }
