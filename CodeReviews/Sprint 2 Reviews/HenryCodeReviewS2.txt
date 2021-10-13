@@ -1,0 +1,16 @@
+﻿Author of Review: Henry Zhang
+Date: 10/12/2021
+Sprint Number: 2
+Name of File: Loader.cs
+Author of File: Beto Cruz 
+Comments:
+	Upon first glace, there are seperate methods for loading all different game objects into a list that is used
+	by entitymanager to create a working game. XML was the format that the team decided to use to load a certain level. Upon first glance, there doesnt 
+	appear to be anything too complex in the code, and a relative path was used for the XML path so it will work on everyone's machines 
+	
+Hypothetical Change:
+	Due to the nature of the clas (it really only has one task), there isnt much that I would change. The code does not exactly "smell" in the sense that 
+	there is a really high complexity (too many if loops, etc), the ENUMS all use very clear names that indicate what exactly is being detected in
+	the XML file. 
+
+
