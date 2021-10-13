@@ -329,9 +329,11 @@ namespace GameSpace.GameObjects.BlockObjects
             else
             {
                 MoveObjectOffset(0, 10);//perform bounce?
-                StopAnyMotion();
+                StandingTransition();
+
+                //StopAnyMotion();
                 //PreformBounce(0, 10);
-                //changeStateUponCollision(enemy);
+                //
 
             }
         }
