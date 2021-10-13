@@ -4,12 +4,12 @@ Sprint Number: 2
 Name of File: EntityManager.cs
 Author of File: Henry Zhang
 Comments:
-	The collsion detection uses three classes which are defined in the Entity manager and is used to handle the collsion with the Goomba. 
+	The collsion detection uses three classes which are defined in the Entity manager and is used to handle the collsion with the Goomba, Blocks and mario. 
 	The format of the code is easy to read and can be reutilized for future collsions. Henry used swept AABB collision detection and response in
 	his implemention for collsion detection.
 	
 Hypothetical Change:
 	Currently the method that handles all collisions is not very efficient as we are looping throught all the gameEntities 
-	this is something that we discussed in our scheduled meeting and will be fixed in the future sprites. 
+	this is something that we discussed in our scheduled meeting and will be fixed in the future sprints. 
 
 
