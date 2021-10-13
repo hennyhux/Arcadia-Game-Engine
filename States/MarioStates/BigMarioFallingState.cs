@@ -116,7 +116,7 @@ namespace GameSpace.States.MarioStates
         }
         public override void DownTransition()
         {
-
+            StandingTransition();
         }
         public override void SmallPowerUp()
         {

@@ -263,8 +263,8 @@ namespace GameSpace.GameObjects.BlockObjects
 
                 //All enemy encounters use same method. 
                 case (int)EnemyID.GOOMBA:
-                case (int)EnemyID.GREENKOOPA:
-                case (int)EnemyID.REDKOOPA:
+                //case (int)EnemyID.GREENKOOPA:
+                //case (int)EnemyID.REDKOOPA:
                     CollisionWithEnemy(entity);
                     break;
             }
@@ -314,9 +314,9 @@ namespace GameSpace.GameObjects.BlockObjects
             {
                 this.DeadTransition();
 
-                if (EntityManager.DetectCollisionDirection(this, enemy) == (int)CollisionDirection.LEFT) { this.Position = new Vector2((int)enemy.Position.X - (int)this.CollisionBox.Width, (int)this.Position.Y); }
+                if (EntityManager.DetectCollisionDirection(this, enemy) == (int)CollisionDirection.LEFT) { this.Position = new Vector2((int)enemy.Position.X - (int)this.CollisionBox.Width - 5, (int)this.Position.Y); }
 
-                else if (EntityManager.DetectCollisionDirection(this, enemy) == (int)CollisionDirection.RIGHT) { this.Position = new Vector2((int)enemy.Position.X + (int)enemy.CollisionBox.Width, (int)this.Position.Y); }
+                else if (EntityManager.DetectCollisionDirection(this, enemy) == (int)CollisionDirection.RIGHT) { this.Position = new Vector2((int)enemy.Position.X + (int)enemy.CollisionBox.Width + 5, (int)this.Position.Y); }
 
                 else if (EntityManager.DetectCollisionDirection(this, enemy) == (int)CollisionDirection.DOWN) { this.Position = new Vector2(this.Position.X, (int)enemy.Position.Y - (int)this.CollisionBox.Height); }
                 
@@ -329,8 +329,9 @@ namespace GameSpace.GameObjects.BlockObjects
             else
             {
                 MoveObjectOffset(0, 10);//perform bounce?
+                StopAnyMotion();
                 //PreformBounce(0, 10);
-                changeStateUponCollision(enemy);
+                //changeStateUponCollision(enemy);
 
             }
         }

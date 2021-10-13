@@ -57,13 +57,13 @@ namespace GameSpace.GameObjects.BlockObjects
                 if (sprite.animationFinished)
                 {
                     this.CollisionBox = new Rectangle((int)Position.X, (int)Position.Y, 0, 0);
-
+                    this.Position = new Vector2((float)0, (float)0);
                     if (Sprite.GetVisibleStatus() == true)
                     {
                         Sprite.SetVisible();
                     }
 
-                    this.CollisionBox = new Rectangle((int)Position.X, (int)Position.Y, 0, 0);
+                    //this.CollisionBox = new Rectangle((int)Position.X, (int)Position.Y, 0, 0);
                 }
 
             }

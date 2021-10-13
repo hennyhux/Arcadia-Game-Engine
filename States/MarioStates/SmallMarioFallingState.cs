@@ -98,7 +98,7 @@ namespace GameSpace.States.MarioStates
 
         public override void UpTransition()
         {
-
+            StandingTransition();
         }
         public override void DownTransition()
         {
