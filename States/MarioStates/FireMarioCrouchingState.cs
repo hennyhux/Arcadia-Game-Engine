@@ -29,6 +29,7 @@ namespace GameSpace.States.MarioStates
             Debug.WriteLine("MarioStandState(25) Enter, {0}", Mario.marioActionState);
             Debug.WriteLine("MarioWalkingState(25) facing:, {0}", Mario.Facing);
 
+           // Mario.Position = new Vector2(Mario.Position.X, Mario.Position.Y + 32);
             Mario.Velocity = new Vector2((float)0, (float)100);
 
             //AABB aabb = Mario.AABB;
@@ -49,7 +50,7 @@ namespace GameSpace.States.MarioStates
         {//going to crouch for now(going to superstand
          //currentActionState.Exit();
             /// Debug.WriteLine("Fire Standtrans");
-
+            Exit();
             Mario.marioActionState = new FireMarioStandingState(Mario);
             Debug.WriteLine("MarioStandState(39) currentAState, {0}", Mario.marioActionState);
             //Mario.sprite = MarioFactory.GetInstance().CreateSprite(2);
@@ -96,6 +97,7 @@ namespace GameSpace.States.MarioStates
 
         public override void FaceLeftTransition()
         {
+            
             if (Mario.Facing == eFacing.LEFT)
                 RunningTransition();
             // WalkingTransition(); bc no walking
