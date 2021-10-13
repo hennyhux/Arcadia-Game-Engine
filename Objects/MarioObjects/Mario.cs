@@ -466,13 +466,25 @@ namespace GameSpace.GameObjects.BlockObjects
         private void CollisionWithFireFlower(IGameObjects entity)
         {
             //Direction doesn't matter for FireFlower Collision, going to change Power-Up either way
-            this.fireMarioTransformation();
+            if (marioPowerUpState is SmallMarioState)
+            {
+                this.bigMarioTransformation();
+            }
+            else if (marioPowerUpState is BigMarioState)
+            {
+                this.fireMarioTransformation();
+            }
+            
         }
 
         private void CollisionWithSuperShroom(IGameObjects entity)
         {
             //Direction doesn't matter for SUPERSHROOM Collision, going to change Power-Up either way
-            this.bigMarioTransformation();
+            if(!(marioPowerUpState is FireMarioState))
+            {
+                this.bigMarioTransformation();
+            }
+            
         }
 
         private void MoveObjectOffset(int offsetX, int offsetY)
