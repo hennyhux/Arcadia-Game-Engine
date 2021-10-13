@@ -28,9 +28,9 @@ namespace GameSpace.States.MarioStates
             this.previousActionState = previousActionState;
             Debug.WriteLine("MarioFallingState(25) Enter, {0}", Mario.marioActionState);
             Debug.WriteLine("MarioWalkingState(25) facing:, {0}", Mario.Facing);
-            Mario.Velocity = new Vector2((float)0, (float)50);
+            Mario.Velocity = new Vector2((float)0, (float)100);
             //Set Proper velocity upon entering state
-            Mario.Velocity = new Vector2((float)0, (float)50);
+
 
             //AABB aabb = Mario.AABB;
             //eFacing Facing = MarioStandingState.Facing;

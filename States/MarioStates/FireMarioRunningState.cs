@@ -30,11 +30,11 @@ namespace GameSpace.States.MarioStates
             Debug.WriteLine("MarioWalkingState(25) facing:, {0}", Mario.Facing);
             if (Mario.Facing == eFacing.LEFT)//Set Proper velocity upon entering state
             {
-                Mario.Velocity = new Vector2((float)-50, (float)0);
+                Mario.Velocity = new Vector2((float)-100, (float)0);
             }
             else if (Mario.Facing == eFacing.RIGHT)
             {
-                Mario.Velocity = new Vector2((float)50, (float)0);
+                Mario.Velocity = new Vector2((float)100, (float)0);
             }
             //AABB aabb = Mario.AABB;
             //eFacing Facing = MarioStandingState.Facing;

@@ -26,7 +26,7 @@ namespace GameSpace.States.MarioStates
             Mario.marioActionState = this;
             this.previousActionState = previousActionState;
             Mario.marioPowerUpState = new SmallMarioState(Mario);
-            Mario.Velocity = new Vector2((float)0, Mario.Velocity.Y);
+            Mario.Velocity = new Vector2((float)0, (float)0);
             Debug.WriteLine("MarioStandState(25) Enter, {0}", Mario.marioActionState);
             Debug.WriteLine("MarioWalkingState(25) facing:, {0}", Mario.Facing);
 
@@ -107,7 +107,8 @@ namespace GameSpace.States.MarioStates
         }
         public override void DownTransition() 
         {
-            Mario.Velocity = new Vector2((float)0, (float)50);//Responsible for mario going down upon pressing down for small mario
+            //Mario.Velocity = new Vector2((float)0, (float)50);//Responsible for mario going down upon pressing down for small mario
+            FallingTransition();
         }
 
         public override void FaceLeftTransition()

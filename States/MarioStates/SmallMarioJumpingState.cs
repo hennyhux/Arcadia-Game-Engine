@@ -29,7 +29,7 @@ namespace GameSpace.States.MarioStates
             Debug.WriteLine("MarioWalkingState(25) facing:, {0}", Mario.Facing);
             
             //Set Proper velocity upon entering state
-            Mario.Velocity = new Vector2((float)0, (float)-50);
+            Mario.Velocity = new Vector2((float)0, (float)-100);
 
 
             //AABB aabb = Mario.AABB;
@@ -88,14 +88,14 @@ namespace GameSpace.States.MarioStates
         public override void FaceLeftTransition()
         {
             if (Mario.Facing == eFacing.LEFT)
-                WalkingTransition();
+                RunningTransition();
             else
                 Mario.Facing = eFacing.LEFT;
         }
         public override void FaceRightTransition()
         {
             if (Mario.Facing == eFacing.RIGHT)
-                WalkingTransition();
+                RunningTransition();
             else
                 Mario.Facing = eFacing.RIGHT;
         }

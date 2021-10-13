@@ -29,6 +29,7 @@ namespace GameSpace.States.MarioStates
             Debug.WriteLine("MarioDeadState(25) ed, {0}", Mario.marioActionState);
             Debug.WriteLine("MarioDeadState(25) ded:, {0}", Mario.marioPowerUpState);
 
+            Mario.Velocity = new Vector2((float)0, (float)0);
             //AABB aabb = Mario.AABB;
             //eFacing Facing = MarioStandingState.Facing;
             eFacing Facing = Mario.Facing;
