@@ -296,7 +296,14 @@ namespace GameSpace.GameObjects.BlockObjects
 
             else if (EntityManager.DetectCollisionDirection(this, entity) == (int)CollisionDirection.UP) { FallingTransition(); }
 
-            else if (EntityManager.DetectCollisionDirection(this, entity) == (int)CollisionDirection.DOWN) { StopAnyMotion(); }
+            else if (EntityManager.DetectCollisionDirection(this, entity) == (int)CollisionDirection.DOWN) 
+            { 
+                if(marioActionState is SmallMarioFallingState || marioActionState is BigMarioFallingState || marioActionState is FireMarioFallingState)
+                {
+                    StandingTransition();
+                }
+                StopAnyMotion(); 
+            }
         }
 
 
