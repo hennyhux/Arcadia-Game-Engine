@@ -100,7 +100,7 @@ namespace GameSpace.GameObjects.BlockObjects
                     }
                     else
                     {
-                        Debug.WriteLine("BUMP BLOCK, mario PowerUp {0}", mario.marioPowerUpState);
+                        //Debug.WriteLine("BUMP BLOCK, mario PowerUp {0}", mario.marioPowerUpState);
                         this.Trigger();
                     }
                 }

@@ -63,7 +63,7 @@ namespace GameSpace.GameObjects.BlockObjects
 
         public void HandleCollision(IGameObjects entity)
         {
-            if (EntityManager.DetectCollisionDirection(this, entity) == (int)CollisionDirection.DOWN && hasCollided == false)
+            if (EntityManager.DetectCollisionDirection(this, entity) == (int)CollisionDirection.DOWN && hasCollided == false && entity.Velocity.Y < 0)
             {
                 this.Trigger();
                 hasCollided = true;
