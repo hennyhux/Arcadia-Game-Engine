@@ -21,5 +21,3 @@ Hypothetical Change:
 	already since there are many types of blocks and some of the other blocks added to the code. But
 	this code serves as a nice layout for other kinds of similar classes.
 	
-
-

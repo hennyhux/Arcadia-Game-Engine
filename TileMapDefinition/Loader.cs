@@ -61,6 +61,27 @@ namespace GameSpace.TileMapDefinition
                         objectsList.Add(objectFactory.CreateUsedBlockObject(location));
                         break;
                 }
+
+                //Not part of sprint 1: Add some kind of method that makes these items non-visible to start with.
+                Vector2 itemLocation = new Vector2(obstacleObject.x, obstacleObject.y-32);
+                switch (obstacleObject.item)
+                {
+                    case ItemID.SUPERSHROOM:
+                        objectsList.Add(objectFactory.CreateSuperShroomObject(new Vector2(obstacleObject.x - 4, obstacleObject.y - 36)));
+                        break;
+                    case ItemID.STAR:
+                        objectsList.Add(objectFactory.CreateStarObject(new Vector2(obstacleObject.x - 4, obstacleObject.y - 36)));
+                        break;
+                    case ItemID.ONEUPSHROOM:
+                        objectsList.Add(objectFactory.CreateOneUpShroomObject(new Vector2(obstacleObject.x - 4, obstacleObject.y - 36)));
+                        break;
+                    case ItemID.FIREFLOWER:
+                        objectsList.Add(objectFactory.CreateFireFlowerObject(new Vector2(obstacleObject.x - 4, obstacleObject.y - 36)));
+                        break;
+                    case ItemID.COIN:
+                        objectsList.Add(objectFactory.CreateCoinObject(new Vector2(obstacleObject.x + 6, obstacleObject.y - 29)));
+                        break;
+                }
             }
             return objectsList;
         }
@@ -75,7 +96,6 @@ namespace GameSpace.TileMapDefinition
             {
                 itemList = (List<Item>)serializer.Deserialize(reader);
             }
-
             foreach (Item itemObject in itemList)
             {
                 Vector2 location = new Vector2(itemObject.x, itemObject.y);
