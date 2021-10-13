@@ -24,7 +24,6 @@
     <MonoGameContentReference Include="Content\Content.mgcb" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="CodeReviews\Sprint 2 Reviews\" />
     <Folder Include="Content\Enemies\" />
     <Folder Include="Objects\TestingObjects\" />
   </ItemGroup>
