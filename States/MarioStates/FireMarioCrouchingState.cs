@@ -29,7 +29,7 @@ namespace GameSpace.States.MarioStates
             Debug.WriteLine("MarioStandState(25) Enter, {0}", Mario.marioActionState);
             Debug.WriteLine("MarioWalkingState(25) facing:, {0}", Mario.Facing);
 
-            Mario.Position = new Vector2(Mario.Position.X, Mario.Position.Y + 22);
+            Mario.Position = new Vector2(Mario.Position.X, Mario.Position.Y + 20);
             Mario.Velocity = new Vector2((float)0, (float)100);
 
             //AABB aabb = Mario.AABB;
@@ -43,7 +43,7 @@ namespace GameSpace.States.MarioStates
 
         }
 
-        public override void Exit() { Mario.Position = new Vector2(Mario.Position.X, Mario.Position.Y - 22); }
+        public override void Exit() { Mario.Position = new Vector2(Mario.Position.X, Mario.Position.Y - 20); }
 
 
         public override void StandingTransition()
