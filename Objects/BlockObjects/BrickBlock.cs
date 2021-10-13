@@ -49,14 +49,32 @@ namespace GameSpace.GameObjects.BlockObjects
         {
 
             Sprite.Update(gametime);
+            if((state is StateExplodingBlock))
+            {
+                //this.Position = new Vector2((float)-50, (float)50);
+                BumpAnimation sprite = (BumpAnimation)Sprite;
+
+                if (sprite.animationFinished)
+                {
+                    this.CollisionBox = new Rectangle((int)Position.X, (int)Position.Y, 0, 0);
+
+                    if (Sprite.GetVisibleStatus() == true)
+                    {
+                        Sprite.SetVisible();
+                    }
+
+                    this.CollisionBox = new Rectangle((int)Position.X, (int)Position.Y, 0, 0);
+                }
+
+            }
         }
 
         public void Trigger()
         {
-            //if(state is StateBlockIdle)
-            //{
-                state = new StateBlockBumped(this);
-            //}
+
+
+            state = new StateBlockBumped(this);
+
             
         }
 
@@ -68,9 +86,25 @@ namespace GameSpace.GameObjects.BlockObjects
         public void HandleCollision(IGameObjects entity)
         {
             //hasCollided = true;
+            
+            
             if (EntityManager.DetectCollisionDirection(this, entity) == (int)CollisionDirection.DOWN)
             {
-                this.Trigger();
+                if (entity is Mario)
+                {
+                    Mario mario = (Mario)entity;
+                    if (mario.marioPowerUpState is BigMarioState || mario.marioPowerUpState is FireMarioState)
+                    {
+                        Debug.WriteLine("SHATTER BLOCK, mario PowerUp {0}", mario.marioPowerUpState);
+                        state = new StateExplodingBlock(this);
+                    }
+                    else
+                    {
+                        Debug.WriteLine("BUMP BLOCK, mario PowerUp {0}", mario.marioPowerUpState);
+                        this.Trigger();
+                    }
+                }
+                
             } 
         }
 
