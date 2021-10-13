@@ -63,6 +63,11 @@ namespace GameSpace.GameObjects.EnemyObjects
         {
             drawBox = !drawBox;
         }
+
+        public bool IsCurrentlyColliding()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
 

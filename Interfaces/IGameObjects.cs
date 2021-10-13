@@ -14,12 +14,12 @@ namespace GameSpace.Interfaces
         public Vector2 Acceleration { get; set; } //later possible use 
         public Rectangle CollisionBox { get; set; }
         public int ObjectID { get; }
-
         public void Draw(SpriteBatch spritebatch);
         public void Update(GameTime gametime);
         public void Trigger();
         public void SetPosition(Vector2 location);
         public void HandleCollision(IGameObjects entity);
         public void ToggleCollisionBoxes();
+        public bool IsCurrentlyColliding();
     }
 }
