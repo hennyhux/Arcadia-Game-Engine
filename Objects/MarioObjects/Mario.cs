@@ -21,10 +21,7 @@ namespace GameSpace.GameObjects.BlockObjects
         //powerupStateMachine
         //
         //public Texture2D Texture { get; set; }
-        private int x;
-        private int y;
-        public static int X { get; set; }
-        public static int Y { get; set; }
+
         private Boolean hasCollided;
         private Boolean drawBox;
 
