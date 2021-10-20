@@ -20,6 +20,7 @@ namespace GameSpace.EntitiesManager
     {
 
         private static List<IGameObjects> gameEntities = new List<IGameObjects>();
+        private static IGameObjects[,] gameSpace = new IGameObjects[25, 15];
 
         public static int Count { get { return gameEntities.Count; } }
 
@@ -32,6 +33,7 @@ namespace GameSpace.EntitiesManager
         public static void LoadList(List<IGameObjects> objectList)
         {
             gameEntities = objectList;
+
         }
 
         public static void Draw(SpriteBatch spriteBatch)
@@ -124,6 +126,13 @@ namespace GameSpace.EntitiesManager
         #endregion
 
         #region Collision Detection
+
+
+        public static void SweepAndPrune()
+        {
+            
+        }
+
         private static bool IntersectAABB(IGameObjects a, IGameObjects b)
         {
 
@@ -171,11 +180,6 @@ namespace GameSpace.EntitiesManager
             return direction;
         }
 
-        //Super inefficent method of detection, if the amount of entites in the list is huge, it will take a lot of resources 
-        //will change for future sprints  
-        //need to also take in consideration the DIRECTION of collision...
-        //if the overlapped rectange has a longer width than height, then it has either collided on top or bottom
-        //if the overlapped rectangle has a taller height than width, then it has either collided on left or right 
         private static void HandleAllCollisions()
         {
             for (int i = 0; i < gameEntities.Count; i++)
