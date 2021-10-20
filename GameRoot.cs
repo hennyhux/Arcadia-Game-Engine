@@ -19,7 +19,6 @@ namespace GameSpace
         #region Lists
         private List<IController> controllers;
         private List<IGameObjects> objects;
-        private List<IGameObjects> obj;
         private List<IGameObjects> avatars;
         #endregion
 
@@ -52,28 +51,12 @@ namespace GameSpace
             #endregion
 
             #region Loading Lists
-            /*objects = new List<IGameObjects>()
-            {
-                objectFactory.CreateBrickBlockObject(new Vector2(100, 100)), objectFactory.CreateStairBlockObject(new Vector2(200, 100)),
-                objectFactory.CreateFloorBlockObject(new Vector2(300, 100)), objectFactory.CreateQuestionBlockObject(new Vector2(400, 100)),
-                objectFactory.CreateUsedBlockObject(new Vector2(500, 100)), objectFactory.CreateHiddenBlockObject(new Vector2(600, 100)),
-             
-                objectFactory.CreateGoombaObject(new Vector2(200, 300)), objectFactory.CreateGreenKoopaObject(new Vector2(300, 300)),
-                objectFactory.CreateRedKoopaObject(new Vector2(400, 300)),
-
-                objectFactory.CreateCoinObject(new Vector2(100, 200)), objectFactory.CreateStarObject(new Vector2(100, 250)),
-                objectFactory.CreateFireFlowerObject(new Vector2(100, 300)), objectFactory.CreateSuperShroomObject(new Vector2(100, 350)),
-                objectFactory.CreateOneUpShroomObject(new Vector2(100, 400))
-
-            };*/
             objects = Loader.Load(xmlFileName);
             #endregion
 
             #region Load EntityManager
             //EntityManager.LoadList(objects);
             EntityManager.LoadList(objects);
-            
-
 
             #endregion
 
