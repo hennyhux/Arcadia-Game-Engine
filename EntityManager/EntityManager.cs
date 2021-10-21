@@ -11,11 +11,8 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 
-/*Currently, this method of checking every element in the list is an ineffective and inefficent way of collision detection,
- in the future, will use quadtrees, sweep and prune, or BSP trees. */
 namespace GameSpace.EntitiesManager
 {
-    /*If a list is modified while it is being iterated over it will cause an exception*/
     public static class EntityManager
     {
 
@@ -73,24 +70,6 @@ namespace GameSpace.EntitiesManager
                 if (direction == (int)ControlDirection.RIGHT) FindItem(ID).SetPosition(new Vector2(1, 0));
                 if (direction == (int)ControlDirection.LEFT) FindItem(ID).SetPosition(new Vector2(-1, 0));
             }
-        }
-
-        private static bool SweeptAABBLeft(int ID)
-        {
-            for (int i = 0; i < EntityManager.Count; i++)
-            {
-                if (FindItem((int)ID).Position.X - 1 >= gameEntities[i].Position.X)
-                {
-                    FindItem((int)ID).Position = (new Vector2(FindItem((int)ID).Position.X - 1, FindItem((int)ID).Position.Y));
-                }
-
-                else
-                {
-                    FindItem(ID).SetPosition(new Vector2(-1, 0));
-                }
-            }
-
-            return true;
         }
 
         public static IGameObjects FindItem(int ItemID)
@@ -181,10 +160,13 @@ namespace GameSpace.EntitiesManager
             Debug.WriteLine("MARIO POSITION " + mario.Position.X + "   " + mario.Position.Y);
             foreach (IGameObjects entity in gameEntities)
             {
-                if (marioCurrentLocation.X + 250 >= entity.Position.X && marioCurrentLocation.Y - 250 <= entity.Position.Y) prunedList.Add(entity);
-                else if (marioCurrentLocation.X + 250 >= entity.Position.X && marioCurrentLocation.Y + 250 >= entity.Position.Y) prunedList.Add(entity);
-                else if (marioCurrentLocation.X - 250 <= entity.Position.X && marioCurrentLocation.Y - 250 >= entity.Position.Y) prunedList.Add(entity);
-                else if (marioCurrentLocation.X - 250 <= entity.Position.X && marioCurrentLocation.Y + 250 <= entity.Position.Y) prunedList.Add(entity);
+                if (marioCurrentLocation.X + 250 >= entity.Position.X && marioCurrentLocation.Y - 250 <= entity.Position.Y ||
+                    marioCurrentLocation.X + 250 >= entity.Position.X && marioCurrentLocation.Y + 250 >= entity.Position.Y ||
+                    marioCurrentLocation.X - 250 <= entity.Position.X && marioCurrentLocation.Y - 250 >= entity.Position.Y ||
+                    marioCurrentLocation.X - 250 <= entity.Position.X && marioCurrentLocation.Y + 250 <= entity.Position.Y)
+                {
+                    prunedList.Add(entity);
+                }
             }
 
             for (int i = 0; i < prunedList.Count; i++)
@@ -197,6 +179,7 @@ namespace GameSpace.EntitiesManager
                     }
                 }
             Debug.WriteLine("SIZE OF PRUNED LIST " + prunedList.Count);
+            Debug.WriteLine("SIZE OF OG LIST: " + gameEntities.Count);
             prunedList.Clear();
         }
 

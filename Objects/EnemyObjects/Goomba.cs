@@ -37,7 +37,7 @@ namespace GameSpace.GameObjects.EnemyObjects
             //magic numbers to offset the weird texture atlas resoultion and upscaling
             this.CollisionBox = new Rectangle((int)(Position.X + Sprite.Texture.Width / 32), (int)Position.Y, Sprite.Texture.Width, Sprite.Texture.Height * 2);
             drawBox = false;
-            CurrentState = new EnemyAliveState(this);
+            CurrentState = new GoombaAliveState(this);
 
         }
 
@@ -57,7 +57,7 @@ namespace GameSpace.GameObjects.EnemyObjects
 
         public void Trigger()
         {
-            CurrentState = new EnemyDeadState(this);
+            CurrentState = new GoombaDeadState(this);
             countDown = 0;
         }
 

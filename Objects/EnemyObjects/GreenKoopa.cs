@@ -1,6 +1,8 @@
-﻿using GameSpace.Enums;
+﻿using GameSpace.EntitiesManager;
+using GameSpace.Enums;
 using GameSpace.Factories;
 using GameSpace.Interfaces;
+using GameSpace.States.EnemyStates;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -11,7 +13,7 @@ namespace GameSpace.GameObjects.EnemyObjects
 {
     public class GreenKoopa : IGameObjects
     {
-        private IObjectState state;
+        private IEnemyStates state;
         public ISprite Sprite { get; set; }
         public Vector2 Position { get; set; }
         public Vector2 Velocity { get; set; }
@@ -20,33 +22,34 @@ namespace GameSpace.GameObjects.EnemyObjects
         public Rectangle CollisionBox { get; set; }
 
         public int ObjectID { get; set; }
+
         private Boolean hasCollided;
         private Boolean drawBox;
 
         public GreenKoopa(Vector2 initalPosition)
         {
-            //some initial state 
             ObjectID = (int)EnemyID.GREENKOOPA;
-            this.Sprite = SpriteEnemyFactory.GetInstance().CreateGreenKoopaSprite();
             this.Position = initalPosition;
-            this.CollisionBox = new Rectangle((int)Position.X + Sprite.Texture.Width / 4 + 2, (int)Position.Y, Sprite.Texture.Width / 2, Sprite.Texture.Height * 2);
+            this.state = new KoopaAliveState();
+            this.CollisionBox = new Rectangle((int)Position.X + state.StateSprite.Texture.Width / 4 + 2, (int)Position.Y,
+                state.StateSprite.Texture.Width / 2, state.StateSprite.Texture.Height * 2);
             drawBox = false;
         }
 
         public void Draw(SpriteBatch spritebatch)
         {
-            Sprite.Draw(spritebatch, Position); //this shouldnt be hardcoded anymore 
-            if (drawBox) Sprite.DrawBoundary(spritebatch, CollisionBox);
+            state.Draw(spritebatch, Position);
+            if (drawBox) state.StateSprite.DrawBoundary(spritebatch, CollisionBox);;
         }
 
         public void Update(GameTime gametime)
         {
-            Sprite.Update(gametime);
+            state.Update(gametime);
         }
 
         public void Trigger()
         {
-            //death when triggered
+            state = new KoopaShelledState();
         }
 
         public void SetPosition(Vector2 location)
@@ -56,7 +59,7 @@ namespace GameSpace.GameObjects.EnemyObjects
 
         public void HandleCollision(IGameObjects entity)
         {
-          
+            if (EntityManager.DetectCollisionDirection(this, entity) == (int)CollisionDirection.UP) this.Trigger();
         }
 
         public void ToggleCollisionBoxes()

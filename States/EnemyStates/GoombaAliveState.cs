@@ -8,15 +8,19 @@ using System.Text;
 
 namespace GameSpace.States.EnemyStates
 {
-    public class EnemyAliveState : IEnemyStates
+    public class GoombaAliveState : IEnemyStates
     {
         private IGameObjects enemy;
+        
 
-        public EnemyAliveState(IGameObjects enemy)
+        public GoombaAliveState(IGameObjects enemy)
         {
             this.enemy = enemy;
         }
-        public void Draw(SpriteBatch spritebatch, Texture2D texture)
+
+        public ISprite StateSprite { get; set; }
+
+        public void Draw(SpriteBatch spritebatch, Vector2 location)
         {
             enemy.Sprite.Texture = SpriteEnemyFactory.GetInstance().CreateGoombaSprite().Texture;
         }
