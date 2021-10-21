@@ -119,13 +119,13 @@ namespace GameSpace.EntitiesManager
         {
             mario = EntityManager.FindItem((int)AvatarID.MARIO);
             marioCurrentLocation = mario.Position;
-            Debug.WriteLine("SIZE OF DEEZ  " + mario.Position.X + "   "+ mario.Position.Y);
+            Debug.WriteLine("MARIO POSITION " + mario.Position.X + "   "+ mario.Position.Y);
             foreach (IGameObjects entity in gameEntities)
             {
-                if (entity.Position.X - 100 >= marioCurrentLocation.X ||
-                    entity.Position.X + 100 >= marioCurrentLocation.X ||
-                    entity.Position.Y - 100 >= marioCurrentLocation.Y ||
-                    entity.Position.Y + 100 >= marioCurrentLocation.Y) prunedList.Add(entity);
+                if (entity.Position.X - 5 >= marioCurrentLocation.X ||
+                    entity.Position.X + 5 >= marioCurrentLocation.X ||
+                    entity.Position.Y - 5 >= marioCurrentLocation.Y ||
+                    entity.Position.Y + 5 >= marioCurrentLocation.Y) prunedList.Add(entity);
             }
 
             for (int i = 0; i < prunedList.Count; i++)
@@ -137,7 +137,7 @@ namespace GameSpace.EntitiesManager
                         prunedList[j].HandleCollision(prunedList[i]);
                     }
                 }
-            Debug.WriteLine("SIZE OF DEEZ NUTS " + prunedList.Count);
+            Debug.WriteLine("SIZE OF PRUNED LIST " + prunedList.Count);
             prunedList.Clear();
 
         }
