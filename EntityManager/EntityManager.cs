@@ -20,6 +20,9 @@ namespace GameSpace.EntitiesManager
     {
 
         private static List<IGameObjects> gameEntities = new List<IGameObjects>();
+        private static List<IGameObjects> prunedList = new List<IGameObjects>();
+        private static IGameObjects mario;
+        private static Vector2 marioCurrentLocation;
 
         public static int Count { get { return gameEntities.Count; } }
 
@@ -41,7 +44,7 @@ namespace GameSpace.EntitiesManager
                 entity.Draw(spriteBatch);
             }
 
-            HandleAllCollisions();
+            SweepAndPrune();
         }
 
         public static void Update(GameTime gametime)
@@ -171,23 +174,32 @@ namespace GameSpace.EntitiesManager
             return direction;
         }
 
-        //Super inefficent method of detection, if the amount of entites in the list is huge, it will take a lot of resources 
-        //will change for future sprints  
-        //need to also take in consideration the DIRECTION of collision...
-        //if the overlapped rectange has a longer width than height, then it has either collided on top or bottom
-        //if the overlapped rectangle has a taller height than width, then it has either collided on left or right 
-        private static void HandleAllCollisions()
+        private static void SweepAndPrune()
         {
-            for (int i = 0; i < gameEntities.Count; i++)
-                for (int j = i + 1; j < gameEntities.Count; j++)
+            mario = EntityManager.FindItem((int)AvatarID.MARIO);
+            marioCurrentLocation = mario.Position;
+            Debug.WriteLine("MARIO POSITION " + mario.Position.X + "   " + mario.Position.Y);
+            foreach (IGameObjects entity in gameEntities)
+            {
+                if (marioCurrentLocation.X + 250 >= entity.Position.X && marioCurrentLocation.Y - 250 <= entity.Position.Y) prunedList.Add(entity);
+                else if (marioCurrentLocation.X + 250 >= entity.Position.X && marioCurrentLocation.Y + 250 >= entity.Position.Y) prunedList.Add(entity);
+                else if (marioCurrentLocation.X - 250 <= entity.Position.X && marioCurrentLocation.Y - 250 >= entity.Position.Y) prunedList.Add(entity);
+                else if (marioCurrentLocation.X - 250 <= entity.Position.X && marioCurrentLocation.Y + 250 <= entity.Position.Y) prunedList.Add(entity);
+            }
+
+            for (int i = 0; i < prunedList.Count; i++)
+                for (int j = i + 1; j < prunedList.Count; j++)
                 {
-                        if (IntersectAABB(gameEntities[i], gameEntities[j]))
-                        {
-                            gameEntities[i].HandleCollision(gameEntities[j]);
-                            gameEntities[j].HandleCollision(gameEntities[i]);
-                        }
+                    if (IntersectAABB(prunedList[i], prunedList[j]))
+                    {
+                        prunedList[i].HandleCollision(prunedList[j]);
+                        prunedList[j].HandleCollision(prunedList[i]);
+                    }
                 }
+            Debug.WriteLine("SIZE OF PRUNED LIST " + prunedList.Count);
+            prunedList.Clear();
         }
+
         #endregion
     }
 }
