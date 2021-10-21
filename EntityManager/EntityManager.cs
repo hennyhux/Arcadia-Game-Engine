@@ -132,10 +132,25 @@ namespace GameSpace.EntitiesManager
                 return false;
             }
 
+<<<<<<< Updated upstream
             if (a.CollisionBox.Y + a.CollisionBox.Height < b.CollisionBox.Y || a.CollisionBox.Y > b.CollisionBox.Y + b.CollisionBox.Height)
             {
                 return false; 
             }
+=======
+            for (int i = 0; i < prunedList.Count; i++)
+                for (int j = i + 1; j < prunedList.Count; j++)
+                {
+                    if (IntersectAABB(prunedList[i], prunedList[j]))
+                    {
+                        prunedList[i].HandleCollision(prunedList[j]);
+                        prunedList[j].HandleCollision(prunedList[i]);
+                    }
+                }
+            Debug.WriteLine("SIZE OF PRUNED LIST " + prunedList.Count);
+            Debug.WriteLine("SIZE OF OG LIST: " + gameEntities.Count)
+            prunedList.Clear();
+>>>>>>> Stashed changes
 
             else { return a.CollisionBox.Intersects(b.CollisionBox);  } 
         }
@@ -171,6 +186,7 @@ namespace GameSpace.EntitiesManager
             return direction;
         }
 
+<<<<<<< Updated upstream
         //Super inefficent method of detection, if the amount of entites in the list is huge, it will take a lot of resources 
         //will change for future sprints  
         //need to also take in consideration the DIRECTION of collision...
@@ -188,6 +204,39 @@ namespace GameSpace.EntitiesManager
                         }
                 }
         }
+=======
+        private static bool IntersectAABB(IGameObjects a, IGameObjects b)
+        {
+
+            if (a.CollisionBox.X + a.CollisionBox.Width < b.CollisionBox.X || a.CollisionBox.X > b.CollisionBox.X + b.CollisionBox.Width)
+            {
+                return false;
+            }
+
+            if (a.CollisionBox.Y + a.CollisionBox.Height < b.CollisionBox.Y || a.CollisionBox.Y > b.CollisionBox.Y + b.CollisionBox.Height)
+            {
+                return false;
+            }
+
+            else { return a.CollisionBox.Intersects(b.CollisionBox); }
+        }
+
+
+        ////O(n^2)
+        //private static void HandleAllCollisions()
+        //{
+        //    for (int i = 0; i < gameEntities.Count; i++)
+        //        for (int j = i + 1; j < gameEntities.Count; j++)
+        //        {
+        //            if (IntersectAABB(gameEntities[i], gameEntities[j]))
+        //            {
+        //                gameEntities[i].HandleCollision(gameEntities[j]);
+        //                gameEntities[j].HandleCollision(gameEntities[i]);
+        //            }
+        //        }
+        //}
+
+>>>>>>> Stashed changes
         #endregion
     }
 }
