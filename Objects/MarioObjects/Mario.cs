@@ -18,6 +18,9 @@ namespace GameSpace.GameObjects.BlockObjects
     {
         public static int X { get; set; }
         public static int Y { get; set; }
+        private int y;
+        public static int X { get; set; }
+        public static int Y { get; set; }
         private Boolean hasCollided;
         private Boolean drawBox;
         public MarioSprite sprite { get; set; }

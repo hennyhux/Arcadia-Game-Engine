@@ -30,11 +30,9 @@ namespace GameSpace.GameObjects.EnemyObjects
 
         public Goomba(Vector2 initalPosition)
         {
-            //some initial state 
             ObjectID = (int)EnemyID.GOOMBA;
             this.Sprite = SpriteEnemyFactory.GetInstance().CreateGoombaSprite();
             this.Position = initalPosition;
-            //magic numbers to offset the weird texture atlas resoultion and upscaling
             this.CollisionBox = new Rectangle((int)(Position.X + Sprite.Texture.Width / 32), (int)Position.Y, Sprite.Texture.Width, Sprite.Texture.Height * 2);
             drawBox = false;
             CurrentState = new EnemyAliveState(this);
@@ -43,7 +41,7 @@ namespace GameSpace.GameObjects.EnemyObjects
 
         public void Draw(SpriteBatch spritebatch)
         {
-            Sprite.Draw(spritebatch, Position); //this shouldnt be hardcoded anymore 
+            Sprite.Draw(spritebatch, Position);
             if (drawBox && !hasCollidedOnTop) Sprite.DrawBoundary(spritebatch, CollisionBox);
             if (hasCollidedOnTop)countDown++;
             
@@ -63,9 +61,7 @@ namespace GameSpace.GameObjects.EnemyObjects
 
         public void SetPosition(Vector2 location)
         {
-            Velocity = (float)6 * location;
-            Position += Velocity;
-            CollisionBox = new Rectangle((int)(Position.X + Sprite.Texture.Width / 32), (int)Position.Y, Sprite.Texture.Width, Sprite.Texture.Height * 2);
+
         }
 
         public void HandleCollision(IGameObjects entity)
