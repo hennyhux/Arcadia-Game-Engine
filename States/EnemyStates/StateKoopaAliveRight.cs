@@ -8,22 +8,22 @@ using System.Text;
 
 namespace GameSpace.States.StateMachines
 {
-    public class StateKoopaAlive : IEnemyState
+    public class StateKoopaAliveRight : IEnemyState
     {
         public ISprite StateSprite { get; set; }
-        public Boolean Collided { get; set; }
+        public Boolean CollidedWithMario { get; set; }
         private int countDown;
 
-        public StateKoopaAlive()
+        public StateKoopaAliveRight()
         {
             StateSprite = SpriteEnemyFactory.GetInstance().CreateGreenKoopaSprite();
-            Collided = false;
+            CollidedWithMario = false;
         }
 
         public void Draw(SpriteBatch spritebatch, Vector2 location)
         {
             StateSprite.Draw(spritebatch, location);
-            if (Collided) countDown++;
+            if (CollidedWithMario) countDown++;
         }
 
         public void Update(GameTime gametime)
@@ -36,14 +36,14 @@ namespace GameSpace.States.StateMachines
             {
                 StateSprite = SpriteEnemyFactory.GetInstance().CreateGreenKoopaSprite();
                 countDown = 0;
-                Collided = false;
+                CollidedWithMario = false;
             }
         }
 
         public void Trigger()
         {
             StateSprite = SpriteEnemyFactory.GetInstance().CreateGreenKoopaShellSprite();
-            Collided = true;
+            CollidedWithMario = true;
         }
 
         public void DrawBoundaries(SpriteBatch spritebatch, Rectangle destination)

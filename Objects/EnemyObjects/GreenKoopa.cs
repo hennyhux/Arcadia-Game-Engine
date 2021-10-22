@@ -35,7 +35,7 @@ namespace GameSpace.GameObjects.EnemyObjects
             drawBox = false;
             inFrame = true;
             this.Position = initalPosition;
-            this.state = new StateKoopaAlive();
+            this.state = new StateKoopaAliveRight();
             UpdateCollisionBox(Position);
         }
 
@@ -58,14 +58,14 @@ namespace GameSpace.GameObjects.EnemyObjects
 
         public void SetPosition(Vector2 location)
         {
-            if (!state.Collided && direction == (int)eFacing.LEFT)
+            if (!state.CollidedWithMario && direction == (int)eFacing.LEFT)
             {
-                this.Position = new Vector2(location.X - .5f, Position.Y);
+                this.Position = new Vector2(location.X - .8f, Position.Y);
             }
 
-            if (!state.Collided && direction == (int)eFacing.RIGHT)
+            if (!state.CollidedWithMario && direction == (int)eFacing.RIGHT)
             {
-                this.Position = new Vector2(location.X + .5f, Position.Y);
+                this.Position = new Vector2(location.X + .8f, Position.Y);
             }
 
             UpdateCollisionBox(location);
@@ -90,9 +90,15 @@ namespace GameSpace.GameObjects.EnemyObjects
         #region Collision Handling
         private void CollisionWithBlock(IGameObjects block)
         {
-            if (EntityManager.DetectCollisionDirection(this, block) == (int)CollisionDirection.LEFT ||
-                EntityManager.DetectCollisionDirection(this, block) == (int)CollisionDirection.RIGHT)
+            if (EntityManager.DetectCollisionDirection(this, block) == (int)CollisionDirection.LEFT)
             {
+                state = new StateKoopaAliveRight();
+                direction = (int)eFacing.LEFT;
+            }
+
+            if (EntityManager.DetectCollisionDirection(this, block) == (int)CollisionDirection.RIGHT)
+            {
+                state = new StateKoopaAliveLeft();
                 direction = (int)eFacing.RIGHT;
             }
         }
@@ -124,7 +130,6 @@ namespace GameSpace.GameObjects.EnemyObjects
             this.CollisionBox = new Rectangle((int)location.X + state.StateSprite.Texture.Width / 4 + 2, (int)Position.Y,
                 state.StateSprite.Texture.Width / 2, state.StateSprite.Texture.Height * 2);
         }
-
         #endregion
     }
 }

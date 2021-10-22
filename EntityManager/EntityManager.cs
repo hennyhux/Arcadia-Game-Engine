@@ -132,10 +132,8 @@ namespace GameSpace.EntitiesManager
             Debug.WriteLine("MARIO POSITION " + mario.Position.X + "   "+ mario.Position.Y);
             foreach (IGameObjects entity in gameEntities)
             {
-                if (marioCurrentLocation.X + 100 >= entity.Position.X && marioCurrentLocation.Y - 100 <= entity.Position.Y ||
-                    marioCurrentLocation.X + 100 >= entity.Position.X && marioCurrentLocation.Y + 100 >= entity.Position.Y ||
-                    marioCurrentLocation.X - 100 <= entity.Position.X && marioCurrentLocation.Y - 100 >= entity.Position.Y ||
-                    marioCurrentLocation.X - 100 <= entity.Position.X && marioCurrentLocation.Y + 100 <= entity.Position.Y)
+                if (marioCurrentLocation.X + 400 >= entity.Position.X ||
+                    marioCurrentLocation.Y - 400 <= entity.Position.X)
                 {
                     prunedList.Add(entity);
                 }
@@ -175,8 +173,8 @@ namespace GameSpace.EntitiesManager
         }
 
 
-            public static int DetectCollisionDirection(IGameObjects a, IGameObjects b)
-            {
+       public static int DetectCollisionDirection(IGameObjects a, IGameObjects b)
+       {
             Rectangle overLappedRectangle = Rectangle.Intersect(a.CollisionBox, b.CollisionBox);
             int direction = 0;
 
