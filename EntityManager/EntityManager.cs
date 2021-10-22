@@ -132,12 +132,10 @@ namespace GameSpace.EntitiesManager
             Debug.WriteLine("MARIO POSITION " + mario.Position.X + "   "+ mario.Position.Y);
             foreach (IGameObjects entity in gameEntities)
             {
-                if (marioCurrentLocation.X + 400 >= entity.Position.X ||
-                    marioCurrentLocation.Y - 400 <= entity.Position.X)
+                if (marioCurrentLocation.X + 800 >= entity.Position.X && entity.Position.X - 800 < marioCurrentLocation.X)
                 {
                     prunedList.Add(entity);
                 }
-
             }
 
             for (int i = 0; i < prunedList.Count; i++)

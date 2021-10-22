@@ -8,7 +8,7 @@
 	</Avatar>
 
 	<Enemy>
-		<enemy>GREENKOOPA</enemy>
+		<enemy>REDKOOPA</enemy>
 		<x>550</x>
 		<y>372</y>
 	</Enemy>

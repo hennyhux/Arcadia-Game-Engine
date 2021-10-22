@@ -35,7 +35,7 @@ namespace GameSpace.GameObjects.EnemyObjects
             drawBox = false;
             inFrame = true;
             this.Position = initalPosition;
-            this.state = new StateKoopaAliveRight();
+            this.state = new StateGreenKoopaAliveRight();
             UpdateCollisionBox(Position);
         }
 
@@ -92,13 +92,13 @@ namespace GameSpace.GameObjects.EnemyObjects
         {
             if (EntityManager.DetectCollisionDirection(this, block) == (int)CollisionDirection.LEFT)
             {
-                state = new StateKoopaAliveRight();
+                state = new StateGreenKoopaAliveRight();
                 direction = (int)eFacing.LEFT;
             }
 
             if (EntityManager.DetectCollisionDirection(this, block) == (int)CollisionDirection.RIGHT)
             {
-                state = new StateKoopaAliveLeft();
+                state = new StateGreenKoopaAliveLeft();
                 direction = (int)eFacing.RIGHT;
             }
         }

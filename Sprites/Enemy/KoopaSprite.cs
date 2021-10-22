@@ -7,9 +7,9 @@ using System.Text;
 
 namespace GameSpace.Sprites
 {
-    public class GreenKoopaSprite : AbstractSprite
+    public class KoopaSprite : AbstractSprite
     {
-        public GreenKoopaSprite(Texture2D texture, int rows, int columns, int totalFrames, int startingPointX,
+        public KoopaSprite(Texture2D texture, int rows, int columns, int totalFrames, int startingPointX,
                 int startingPointY)
         {
             Texture = texture;

@@ -3,20 +3,18 @@ using GameSpace.Interfaces;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace GameSpace.States.StateMachines
 {
-    public class StateKoopaAliveRight : IEnemyState
+    public class StateRedKoopaAliveRight: IEnemyState
     {
         public ISprite StateSprite { get; set; }
         public Boolean CollidedWithMario { get; set; }
         private int countDown;
 
-        public StateKoopaAliveRight()
+        public StateRedKoopaAliveRight()
         {
-            StateSprite = SpriteEnemyFactory.GetInstance().CreateGreenKoopaSprite();
+            StateSprite = SpriteEnemyFactory.GetInstance().CreateRedKoopaRightSprite();
             CollidedWithMario = false;
         }
 
@@ -34,7 +32,7 @@ namespace GameSpace.States.StateMachines
 
             if (countDown == 550)
             {
-                StateSprite = SpriteEnemyFactory.GetInstance().CreateGreenKoopaSprite();
+                StateSprite = SpriteEnemyFactory.GetInstance().CreateRedKoopaRightSprite();
                 countDown = 0;
                 CollidedWithMario = false;
             }

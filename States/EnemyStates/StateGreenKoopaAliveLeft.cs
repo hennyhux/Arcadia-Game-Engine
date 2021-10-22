@@ -8,13 +8,13 @@ using System.Text;
 
 namespace GameSpace.States.StateMachines
 {
-    public class StateKoopaAliveLeft: IEnemyState
+    public class StateGreenKoopaAliveLeft: IEnemyState
     {
         public ISprite StateSprite { get; set; }
         public Boolean CollidedWithMario { get; set; }
         private int countDown;
 
-        public StateKoopaAliveLeft()
+        public StateGreenKoopaAliveLeft()
         {
             StateSprite = SpriteEnemyFactory.GetInstance().CreateGreenKoopaRightSprite();
             CollidedWithMario = false;

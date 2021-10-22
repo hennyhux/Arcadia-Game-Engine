@@ -19,6 +19,7 @@ namespace GameSpace.Factories
         private Texture2D GreenKoopaRight;
         private Texture2D GreenKoopaShelled;
         private Texture2D RedKoopa;
+        private Texture2D RedKoopaRight;
         #endregion
 
         private static SpriteEnemyFactory instance;
@@ -45,6 +46,7 @@ namespace GameSpace.Factories
             GreenKoopa = content.Load<Texture2D>("Enemies/GreenKoopas");
             GreenKoopaRight = content.Load<Texture2D>("Enemies/GreenKoopaRight");
             GreenKoopaShelled = content.Load<Texture2D>("Enemies/GreenKoopaShelled");
+            RedKoopaRight = content.Load<Texture2D>("Enemies/RedKoopaRight");
 
         }
 
@@ -60,27 +62,32 @@ namespace GameSpace.Factories
 
         public ISprite CreateRedKoopaSprite()
         {
-            return new RedKoopaSprite(RedKoopa, 1, 2, 2, 0, 0); // RED KOOPA IS THE SAME AS GREEN KOOPA CAN USE THE SAME CLASS 
+            return new KoopaSprite(RedKoopa, 1, 2, 2, 0, 0); 
         }
 
         public ISprite CreateGreenKoopaSprite()
         {
-            return new GreenKoopaSprite(GreenKoopa, 1, 2, 2, 0, 0);
+            return new KoopaSprite(GreenKoopa, 1, 2, 2, 0, 0);
+        }
+
+        public ISprite CreateRedKoopaRightSprite()
+        {
+            return new KoopaSprite(RedKoopaRight, 1, 2, 2, 0, 0); 
         }
 
         public ISprite CreateGreenKoopaRightSprite()
         {
-            return new GreenKoopaSprite(GreenKoopaRight, 1, 2, 2, 0, 0);
+            return new KoopaSprite(GreenKoopaRight, 1, 2, 2, 0, 0);
         }
 
         public ISprite CreateGreenKoopaShellSprite()
         {
-            return new GreenKoopaSprite(GreenKoopaShelled, 1, 2, 1, 1, 0);
+            return new KoopaSprite(GreenKoopaShelled, 1, 2, 1, 1, 0);
         }
 
         public ISprite CreateGreenKoopaShellAndLegsSprite()
         {
-            return new GreenKoopaSprite(GreenKoopaShelled, 1, 2, 2, 0, 0);
+            return new KoopaSprite(GreenKoopaShelled, 1, 2, 2, 0, 0);
         }
     }
 }
