@@ -2,6 +2,7 @@
 using GameSpace.Enums;
 using GameSpace.Factories;
 using GameSpace.Interfaces;
+using GameSpace.States.EnemyStates;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -12,7 +13,7 @@ namespace GameSpace.GameObjects.EnemyObjects
 {
     public class GreenKoopa : IGameObjects
     {
-        private IObjectState state;
+        private IEnemyStates state;
         public ISprite Sprite { get; set; }
         public Vector2 Position { get; set; }
         public Vector2 Velocity { get; set; }
@@ -30,9 +31,10 @@ namespace GameSpace.GameObjects.EnemyObjects
         public GreenKoopa(Vector2 initalPosition)
         {
             ObjectID = (int)EnemyID.GREENKOOPA;
-            this.Sprite = SpriteEnemyFactory.GetInstance().CreateGreenKoopaSprite();
             this.Position = initalPosition;
-            this.CollisionBox = new Rectangle((int)Position.X + Sprite.Texture.Width / 4 + 2, (int)Position.Y, Sprite.Texture.Width / 2, Sprite.Texture.Height * 2);
+            this.state = new KoopaAliveState();
+            this.CollisionBox = new Rectangle((int)Position.X + state.StateSprite.Texture.Width / 4 + 2, (int)Position.Y,
+                state.StateSprite.Texture.Width / 2, state.StateSprite.Texture.Height * 2);
             drawBox = false;
             hasCollided = false;
         }

@@ -8,14 +8,17 @@ using System.Text;
 
 namespace GameSpace.States.EnemyStates
 {
-    public class EnemyDeadState : IEnemyStates
+    public class GoombaDeadState : IEnemyStates
     {
 
-        public EnemyDeadState(IGameObjects enemy)
+        public GoombaDeadState(IGameObjects enemy)
         {
             enemy.Sprite = SpriteEnemyFactory.GetInstance().CreateDeadGoombaSprite();
         }
-        public void Draw(SpriteBatch spritebatch, Texture2D texture)
+
+        public ISprite StateSprite { get; set; }
+
+        public void Draw(SpriteBatch spritebatch, Vector2 location)
         {
             
         }

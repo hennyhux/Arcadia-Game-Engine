@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework.Graphics;
+﻿
+using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Content;
 using System;
 using System.Collections.Generic;
@@ -63,6 +64,11 @@ namespace GameSpace.Factories
         public ISprite CreateGreenKoopaSprite()
         {
             return new GreenKoopaSprite(GreenKoopa, 1, 2, 2, 0, 0);
+        }
+
+        public ISprite CreateGreenKoopaShellSprite()
+        {
+            return new GoombasDeadSprite(GreenKoopaShelled, 1, 1, 1);
         }
 
         public ISprite CreateShelledGreenKoopaSprite()
