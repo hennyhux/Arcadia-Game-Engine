@@ -3,6 +3,7 @@ using GameSpace.Enums;
 using GameSpace.Factories;
 using GameSpace.Interfaces;
 using GameSpace.States.EnemyStates;
+using GameSpace.States.StateMachines;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -13,7 +14,7 @@ namespace GameSpace.GameObjects.EnemyObjects
 {
     public class GreenKoopa : IGameObjects
     {
-        private IEnemyStates state;
+        private IEnemyState state;
         public ISprite Sprite { get; set; }
         public Vector2 Position { get; set; }
         public Vector2 Velocity { get; set; }
@@ -21,49 +22,35 @@ namespace GameSpace.GameObjects.EnemyObjects
         public Rectangle CollisionBox { get; set; }
         public int ObjectID { get; set; }
 
-        private Boolean hasCollided;
         private Boolean drawBox;
-
-        private int countDown;
         private Boolean inFrame; //is the current enemy inside of the viewport? 
 
 
         public GreenKoopa(Vector2 initalPosition)
         {
             ObjectID = (int)EnemyID.GREENKOOPA;
+            drawBox = false;
+            inFrame = true;
             this.Position = initalPosition;
-            this.state = new KoopaAliveState();
+            this.state = new StateMachineMKoopa();
             this.CollisionBox = new Rectangle((int)Position.X + state.StateSprite.Texture.Width / 4 + 2, (int)Position.Y,
                 state.StateSprite.Texture.Width / 2, state.StateSprite.Texture.Height * 2);
-            drawBox = false;
-            hasCollided = false;
         }
 
         public void Draw(SpriteBatch spritebatch)
         {
-            Sprite.Draw(spritebatch, Position);
-            if (drawBox) Sprite.DrawBoundary(spritebatch, CollisionBox);
-            if (hasCollided) countDown++;
+            state.Draw(spritebatch, Position);
+            if (drawBox) state.DrawBoundaries(spritebatch, CollisionBox);
         }
 
         public void Update(GameTime gametime)
         {
-            Sprite.Update(gametime);
-            if (countDown == 225) this.Sprite = SpriteEnemyFactory.GetInstance().CreateShelledWithLegsGreenKoopaSprite();
-
-            if (countDown == 550) 
-            {
-                this.Sprite = SpriteEnemyFactory.GetInstance().CreateGreenKoopaSprite();
-                countDown = 0;
-                hasCollided = false; 
-            }
-            
+            state.Update(gametime);   
         }
 
         public void Trigger()
         {
-            this.Sprite = SpriteEnemyFactory.GetInstance().CreateShelledGreenKoopaSprite();
-            countDown = 0;
+            state.Trigger();
         }
 
         public void SetPosition(Vector2 location)
@@ -86,11 +73,8 @@ namespace GameSpace.GameObjects.EnemyObjects
             if (EntityManager.DetectCollisionDirection(this, mario) == (int)CollisionDirection.UP)
             {
                 this.Trigger();
-                this.CollisionBox = new Rectangle(1, 1, 0, 0);
-                if (!hasCollided) hasCollided = true;
             }
         }
-
 
         public void ToggleCollisionBoxes()
         {

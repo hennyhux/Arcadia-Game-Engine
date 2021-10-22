@@ -2,6 +2,7 @@
 using GameSpace.GameObjects.EnemyObjects;
 using GameSpace.GameObjects.ItemObjects;
 using GameSpace.Interfaces;
+using GameSpace.Objects.BlockObjects;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
@@ -60,6 +61,12 @@ namespace GameSpace.Factories
         {
             return new UsedBlock(location);
         }
+
+        public IGameObjects CreateCoinBrickBlock(Vector2 location)
+        {
+            return new CoinBrickBlock(location);
+        }
+
         #endregion
 
         #region Enemies 

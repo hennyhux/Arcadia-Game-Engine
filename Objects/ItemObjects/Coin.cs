@@ -57,7 +57,7 @@ namespace GameSpace.GameObjects.ItemObjects
         }
         public void SetPosition(Vector2 location)
         {
-            throw new NotImplementedException();
+            this.Position = location;
         }
 
         public void ToggleCollisionBoxes()
