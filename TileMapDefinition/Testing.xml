@@ -13,6 +13,12 @@
 		<y>372</y>
 	</Enemy>
 
-
+	<Obstacle>
+		<block>BRICKBLOCK</block>
+		<item>NOITEM</item>
+		<x>400</x>
+		<y>372</y>
+	</Obstacle>
+	
 
 </Level>

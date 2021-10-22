@@ -63,4 +63,5 @@ namespace GameSpace.Enums
     {
         MARIO = 16,
     };
+
 }
