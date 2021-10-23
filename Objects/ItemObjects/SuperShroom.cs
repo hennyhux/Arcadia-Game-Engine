@@ -8,6 +8,7 @@ using GameSpace.Interfaces;
 using GameSpace.States.ItemStates;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using GameSpace.GameObjects.BlockObjects;
 using GameSpace.States.StateMachines;
 
 namespace GameSpace.GameObjects.ItemObjects
@@ -20,6 +21,8 @@ namespace GameSpace.GameObjects.ItemObjects
         public Vector2 Velocity { get; set; }
         public Vector2 Acceleration { get; set; }
         public Rectangle CollisionBox { get; set; }
+
+        public Mario mario;
         public int ObjectID { get; set; }
 
         private Boolean hasCollided;
@@ -32,8 +35,11 @@ namespace GameSpace.GameObjects.ItemObjects
             this.Position = initialPosition;
             this.CollisionBox = new Rectangle((int)Position.X, (int)Position.Y, Sprite.Texture.Width * 2, Sprite.Texture.Height * 2);
             drawBox = false;
-
+            this.hasCollided = false;
             // Change Based on mario position
+
+            
+
             this.state = new StateSuperShroomLeft(this);
         }
 
@@ -51,19 +57,27 @@ namespace GameSpace.GameObjects.ItemObjects
 
         public void Trigger()
         {
-            this.Sprite.SetVisible();
-            this.CollisionBox = new Rectangle(1, 1, 0, 0);
+            if (!hasCollided)
+            {
+                this.Sprite.SetVisible();
+                this.CollisionBox = new Rectangle();
+            }
+            this.hasCollided = true;
         }
 
         public void HandleCollision(IGameObjects entity) //add collision so stays in boxes
         {
-            hasCollided = true;
             switch (entity.ObjectID)
             {
-                case (int) AvatarID.MARIO:
+                case (int)AvatarID.MARIO:
                     this.Trigger();
                     break;
 
+                case (int)BlockID.USEDBLOCK:
+                case (int)BlockID.QUESTIONBLOCK:
+                case (int)BlockID.FLOORBLOCK:
+                case (int)BlockID.STAIRBLOCK:
+                case (int)BlockID.COINBRICKBLOCK:
                 case (int)BlockID.BRICKBLOCK:
                     CollisionWithBlock(entity);
                     break;

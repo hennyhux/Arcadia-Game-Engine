@@ -11,18 +11,18 @@ using GameSpace.Enums;
 
 namespace GameSpace.States.ItemStates
 {
-    public class StateSuperShroomLeft : IItemStates
+    public class StateOneUpShroomRight : IItemStates
     {
         public ISprite StateSprite { get; set; }
         public Boolean CollidedWithMario { get; set; }
-        public SuperShroom SuperShroom;
+        public OneUpShroom OneUpShroom;
 
-        public StateSuperShroomLeft(SuperShroom superShroom)
+        public StateOneUpShroomRight(OneUpShroom oneUpShroom)
         {
-            StateSprite = SpriteItemFactory.GetInstance().CreateSuperShroom();
+            StateSprite = SpriteItemFactory.GetInstance().CreateOneUpShroom();
             CollidedWithMario = false;
-            this.SuperShroom = superShroom;
-            this.SuperShroom.Velocity = new Vector2((float)- 1, (float)0); 
+            this.OneUpShroom = oneUpShroom;
+            this.OneUpShroom.Velocity = new Vector2((float)+1, (float)0);
         }
 
         public void Draw(SpriteBatch spritebatch, Vector2 location)
@@ -32,7 +32,7 @@ namespace GameSpace.States.ItemStates
 
         public void Trigger()
         {
-           // throw new NotImplementedException();
+            //throw new NotImplementedException();
         }
 
         public void Update(GameTime gametime)

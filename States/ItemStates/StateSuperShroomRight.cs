@@ -27,17 +27,17 @@ namespace GameSpace.States.ItemStates
 
         public void Draw(SpriteBatch spritebatch, Vector2 location)
         {
-            StateSprite.Draw(spritebatch, location);
+            //StateSprite.Draw(spritebatch, location);
         }
 
         public void Trigger()
         {
-            throw new NotImplementedException();
+           // throw new NotImplementedException();
         }
 
         public void Update(GameTime gametime)
         {
-            StateSprite.Update(gametime);
+           // StateSprite.Update(gametime);
         }
     }
 }
