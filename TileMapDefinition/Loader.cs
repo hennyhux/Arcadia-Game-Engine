@@ -183,6 +183,9 @@ namespace GameSpace.TileMapDefinition
                     case BlockID.USEDBLOCK:
                         objectsList.Add(objectFactory.CreateUsedBlockObject(location));
                         break;
+                    case BlockID.COINBRICKBLOCK:
+                        objectsList.Add(objectFactory.CreateCoinBrickBlock(location));
+                        break;
                 }
 
                 //Not part of sprint 1: Add some kind of method that makes these items non-visible to start with.

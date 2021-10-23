@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Level>
+	<Avatar>
+		<avatar>MARIO</avatar>
+		<facing>LEFT</facing>
+		<x>350</x>
+		<y>200</y>
+	</Avatar>
+
+	<Enemy>
+		<enemy>REDKOOPA</enemy>
+		<x>550</x>
+		<y>372</y>
+	</Enemy>
+
+	<Obstacle>
+		<block>BRICKBLOCK</block>
+		<item>NOITEM</item>
+		<x>400</x>
+		<y>372</y>
+	</Obstacle>
+
+	<Obstacle>
+		<block>BRICKBLOCK</block>
+		<item>NOITEM</item>
+		<x>700</x>
+		<y>372</y>
+	</Obstacle>
+
+	<Obstacle>
+		<block>BRICKBLOCK</block>
+		<item>NOITEM</item>
+		<x>300</x>
+		<y>254</y>
+	</Obstacle>
+	
+	<Obstacle>
+		<block>BRICKBLOCK</block>
+		<item>NOITEM</item>
+		<x>600</x>
+		<y>254</y>
+	</Obstacle>
+
+	<Obstacle>
+		<block>BRICKBLOCK</block>
+		<item>NOITEM</item>
+		<x>300</x>
+		<y>154</y>
+	</Obstacle>
+
+	<Obstacle>
+		<block>BRICKBLOCK</block>
+		<item>NOITEM</item>
+		<x>600</x>
+		<y>154</y>
+	</Obstacle>
+
+	<Item>
+		<item>SUPERSHROOM</item>
+		<x>540</x>
+		<y>154</y>
+	</Item>
+	<Item>
+		<item>ONEUPSHROOM</item>
+		<x>380</x>
+		<y>254</y>
+	</Item>
+	
+
+</Level>

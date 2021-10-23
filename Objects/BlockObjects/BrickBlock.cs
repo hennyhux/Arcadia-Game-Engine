@@ -71,11 +71,7 @@ namespace GameSpace.GameObjects.BlockObjects
 
         public void Trigger()
         {
-
-
             state = new StateBlockBumped(this);
-
-            
         }
 
         public void SetPosition(Vector2 newLocation)
@@ -86,8 +82,7 @@ namespace GameSpace.GameObjects.BlockObjects
         public void HandleCollision(IGameObjects entity)
         {
             //hasCollided = true;
-            
-            
+
             if (EntityManager.DetectCollisionDirection(this, entity) == (int)CollisionDirection.DOWN)
             {
                 if (entity is Mario)

@@ -157,6 +157,18 @@
 /processorParam:TextureFormat=Color
 /build:Enemies/GoombasDead.png
 
+#begin Enemies/GreenKoopaRight.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Enemies/GreenKoopaRight.png
+
 #begin Enemies/GreenKoopas.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -169,6 +181,18 @@
 /processorParam:TextureFormat=Color
 /build:Enemies/GreenKoopas.png
 
+#begin Enemies/GreenKoopaShelled.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Enemies/GreenKoopaShelled.png
+
 #begin Enemies/GreenShell.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -180,6 +204,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Enemies/GreenShell.png
+
+#begin Enemies/RedKoopaRight.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Enemies/RedKoopaRight.png
 
 #begin Enemies/RedKoopas.png
 /importer:TextureImporter

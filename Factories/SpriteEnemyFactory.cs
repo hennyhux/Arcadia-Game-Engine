@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework.Graphics;
+﻿
+using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Content;
 using System;
 using System.Collections.Generic;
@@ -15,7 +16,11 @@ namespace GameSpace.Factories
         private Texture2D Goomba;
         private Texture2D DeadGoomba;
         private Texture2D GreenKoopa;
+        private Texture2D GreenKoopaRight;
+        private Texture2D GreenKoopaShelled;
         private Texture2D RedKoopa;
+        private Texture2D RedKoopaRight;
+        private Texture2D RedKoopaShelled;
         #endregion
 
         private static SpriteEnemyFactory instance;
@@ -40,6 +45,10 @@ namespace GameSpace.Factories
             DeadGoomba = content.Load<Texture2D>("Enemies/GoombasDead");
             RedKoopa = content.Load<Texture2D>("Enemies/RedKoopas");
             GreenKoopa = content.Load<Texture2D>("Enemies/GreenKoopas");
+            GreenKoopaRight = content.Load<Texture2D>("Enemies/GreenKoopaRight");
+            GreenKoopaShelled = content.Load<Texture2D>("Enemies/GreenKoopaShelled");
+            RedKoopaShelled = content.Load<Texture2D>("Enemies/RedShell");
+            RedKoopaRight = content.Load<Texture2D>("Enemies/RedKoopaRight");
 
         }
 
@@ -50,17 +59,41 @@ namespace GameSpace.Factories
 
         public ISprite CreateDeadGoombaSprite()
         {
-            return new GoombasDeadSprite(DeadGoomba, 1, 1, 1);
+            return new EnemyDeadSprite(DeadGoomba, 1, 1, 1);
         }
 
         public ISprite CreateRedKoopaSprite()
         {
-            return new RedKoopaSprite(RedKoopa, 1, 2, 2, 0, 0);
+            return new KoopaSprite(RedKoopa, 1, 2, 2, 0, 0); 
         }
 
         public ISprite CreateGreenKoopaSprite()
         {
-            return new GreenKoopaSprite(GreenKoopa, 1, 2, 2, 0, 0);
+            return new KoopaSprite(GreenKoopa, 1, 2, 2, 0, 0);
+        }
+
+        public ISprite CreateRedKoopaRightSprite()
+        {
+            return new KoopaSprite(RedKoopaRight, 1, 2, 2, 0, 0); 
+        }
+
+        public ISprite CreateGreenKoopaRightSprite()
+        {
+            return new KoopaSprite(GreenKoopaRight, 1, 2, 2, 0, 0);
+        }
+
+        public ISprite CreateGreenKoopaShellSprite()
+        {
+            return new KoopaSprite(GreenKoopaShelled, 1, 2, 1, 1, 0);
+        }
+        public ISprite CreateRedKoopaShellSprite()
+        {
+            return new KoopaSprite(RedKoopaShelled, 1, 2, 1, 1, 0);
+        }
+
+        public ISprite CreateGreenKoopaShellAndLegsSprite()
+        {
+            return new KoopaSprite(GreenKoopaShelled, 1, 2, 2, 0, 0);
         }
     }
 }

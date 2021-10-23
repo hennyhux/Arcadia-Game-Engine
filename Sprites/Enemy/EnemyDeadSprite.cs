@@ -6,9 +6,9 @@ using System.Text;
 
 namespace GameSpace.Sprites.Enemy
 {
-    public class GoombasDeadSprite : AbstractSprite
+    public class EnemyDeadSprite : AbstractSprite
     {
-        public GoombasDeadSprite(Texture2D texture, int rows, int columns, int totalFrames)
+        public EnemyDeadSprite(Texture2D texture, int rows, int columns, int totalFrames)
         {
             this.Texture = texture;
             isVisible = true;

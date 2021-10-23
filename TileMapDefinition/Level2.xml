@@ -1,1 +1,27 @@
-﻿
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Level>
+	<Avatar>
+		<avatar>MARIO</avatar>
+		<facing>LEFT</facing>
+		<x>350</x>
+		<y>200</y>
+	</Avatar>
+
+	<Enemy>
+		<enemy>GOOMBA</enemy>
+		<x>448</x>
+		<y>386</y>
+	</Enemy>
+	<Enemy>
+		<enemy>GREENKOOPA</enemy>
+		<x>32</x>
+		<y>372</y>
+	</Enemy>
+	<Enemy>
+		<enemy>REDKOOPA</enemy>
+		<x>288</x>
+		<y>372</y>
+	</Enemy>
+
+
+</Level>

@@ -11,17 +11,16 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 
-/*Currently, this method of checking every element in the list is an ineffective and inefficent way of collision detection,
- in the future, will use quadtrees, sweep and prune, or BSP trees. */
 namespace GameSpace.EntitiesManager
 {
-    /*If a list is modified while it is being iterated over it will cause an exception*/
     public static class EntityManager
     {
-
         private static List<IGameObjects> gameEntities = new List<IGameObjects>();
+        private static List<IGameObjects> prunedList = new List<IGameObjects>();
+        private static List<IObjectAnimation> animationList = new List<IObjectAnimation>(); 
+        private static IGameObjects mario;
+        private static Vector2 marioCurrentLocation;
 
-        public static int Count { get { return gameEntities.Count; } }
 
         #region Entity Managing
         public static void AddEntity(IGameObjects gameObject)
@@ -32,6 +31,12 @@ namespace GameSpace.EntitiesManager
         public static void LoadList(List<IGameObjects> objectList)
         {
             gameEntities = objectList;
+            
+        }
+
+        public static List<IGameObjects> GetEntityList()
+        {
+            return gameEntities;
         }
 
         public static void Draw(SpriteBatch spriteBatch)
@@ -41,11 +46,16 @@ namespace GameSpace.EntitiesManager
                 entity.Draw(spriteBatch);
             }
 
-            HandleAllCollisions();
+            SweepAndPrune();
         }
 
         public static void Update(GameTime gametime)
         {
+            foreach (IObjectAnimation animation in animationList)
+            {
+                animation.PlayAnimation();
+            }
+
             foreach (IGameObjects entity in gameEntities)
             {
                 entity.Update(gametime);
@@ -63,31 +73,13 @@ namespace GameSpace.EntitiesManager
         #region Moving and Finding Entities
         public static void MoveItem(int ID, int direction)
         {
-           
+
             {
                 if (direction == (int)ControlDirection.UP) FindItem(ID).SetPosition(new Vector2(0, -1));
                 if (direction == (int)ControlDirection.DOWN) FindItem(ID).SetPosition(new Vector2(0, 1));
                 if (direction == (int)ControlDirection.RIGHT) FindItem(ID).SetPosition(new Vector2(1, 0));
                 if (direction == (int)ControlDirection.LEFT) FindItem(ID).SetPosition(new Vector2(-1, 0));
             }
-        }
-
-        private static bool SweeptAABBLeft(int ID)
-        {
-            for (int i = 0; i < EntityManager.Count; i++)
-            {
-                if (FindItem((int)ID).Position.X - 1 >= gameEntities[i].Position.X)
-                {
-                    FindItem((int)ID).Position = (new Vector2(FindItem((int)ID).Position.X - 1, FindItem((int)ID).Position.Y));
-                }
-
-                else
-                {
-                    FindItem(ID).SetPosition(new Vector2(-1, 0));
-                }
-            }
-
-            return true;
         }
 
         public static IGameObjects FindItem(int ItemID)
@@ -123,7 +115,44 @@ namespace GameSpace.EntitiesManager
 
         #endregion
 
+        #region AnimationManager
+        public static void AddAnimation(IObjectAnimation animation)
+        {
+            animationList.Add(animation);
+        }
+
+
+        #endregion
+
         #region Collision Detection
+        public static void SweepAndPrune()
+        {
+            mario = EntityManager.FindItem((int)AvatarID.MARIO);
+            marioCurrentLocation = mario.Position;
+            Debug.WriteLine("MARIO POSITION " + mario.Position.X + "   "+ mario.Position.Y);
+            foreach (IGameObjects entity in gameEntities)
+            {
+                if (marioCurrentLocation.X + 800 >= entity.Position.X && entity.Position.X - 800 < marioCurrentLocation.X)
+                {
+                    prunedList.Add(entity);
+                }
+            }
+
+            for (int i = 0; i < prunedList.Count; i++)
+                for (int j = i + 1; j < prunedList.Count; j++)
+                {
+                    if (IntersectAABB(prunedList[i], prunedList[j]))
+                    {
+                        prunedList[i].HandleCollision(prunedList[j]);
+                        prunedList[j].HandleCollision(prunedList[i]);
+                    }
+                }
+            Debug.WriteLine("SIZE OF PRUNED LIST " + prunedList.Count);
+            Debug.WriteLine("SIZE OF OG LIST " + gameEntities.Count);
+            prunedList.Clear();
+
+        }
+
         private static bool IntersectAABB(IGameObjects a, IGameObjects b)
         {
 
@@ -134,14 +163,16 @@ namespace GameSpace.EntitiesManager
 
             if (a.CollisionBox.Y + a.CollisionBox.Height < b.CollisionBox.Y || a.CollisionBox.Y > b.CollisionBox.Y + b.CollisionBox.Height)
             {
-                return false; 
+                return false;
             }
 
-            else { return a.CollisionBox.Intersects(b.CollisionBox);  } 
+            else { return a.CollisionBox.Intersects(b.CollisionBox); }
+
         }
-        
-        public static int DetectCollisionDirection(IGameObjects a, IGameObjects b)
-        {
+
+
+       public static int DetectCollisionDirection(IGameObjects a, IGameObjects b)
+       {
             Rectangle overLappedRectangle = Rectangle.Intersect(a.CollisionBox, b.CollisionBox);
             int direction = 0;
 
@@ -171,25 +202,30 @@ namespace GameSpace.EntitiesManager
             return direction;
         }
 
-        //Super inefficent method of detection, if the amount of entites in the list is huge, it will take a lot of resources 
-        //will change for future sprints  
-        //need to also take in consideration the DIRECTION of collision...
-        //if the overlapped rectange has a longer width than height, then it has either collided on top or bottom
-        //if the overlapped rectangle has a taller height than width, then it has either collided on left or right 
-        private static void HandleAllCollisions()
-        {
-            for (int i = 0; i < gameEntities.Count; i++)
-                for (int j = i + 1; j < gameEntities.Count; j++)
-                {
-                        if (IntersectAABB(gameEntities[i], gameEntities[j]))
-                        {
-                            gameEntities[i].HandleCollision(gameEntities[j]);
-                            gameEntities[j].HandleCollision(gameEntities[i]);
-                        }
-                }
-        }
         #endregion
     }
+
+
+    public class EntityFinder
+    {
+        private static readonly EntityFinder Instance = new EntityFinder();
+        public static EntityFinder GetInstance()
+        {
+            return Instance;
+        }
+
+        private EntityFinder()
+        {
+            
+        }
+
+        public IGameObjects FindItem(int ItemID)
+        {
+            return null;
+        }
+
+    }
 }
+
 
 
