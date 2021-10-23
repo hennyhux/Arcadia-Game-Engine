@@ -18,12 +18,12 @@ namespace GameSpace.TileMapDefinition
 
         public static List<IGameObjects> Load(String xmlFile)
         {
-            List<IGameObjects> fullList = LoadEverything(xmlFile);
-            /*List<IGameObjects> fullList = LoadBlocks(xmlFile);
+           // List<IGameObjects> fullList = LoadEverything(xmlFile);
+            List<IGameObjects> fullList = LoadBlocks(xmlFile);
             List<IGameObjects> itemsList = LoadItems(xmlFile);
             fullList.AddRange(itemsList);
             List<IGameObjects> enemiesList = LoadEnemies(xmlFile);
-            fullList.AddRange(enemiesList);*/
+            fullList.AddRange(enemiesList);
             return fullList;
         }
         public static List<IGameObjects> LoadEverything(string xmlFile)

@@ -52,6 +52,7 @@ namespace GameSpace
 
             #region Loading Lists
             objects = Loader.Load(xmlFileName);
+            //objects = Loader.LoadEverything("../../../TileMapDefinition/Level1.xml");
             #endregion
 
             #region Load EntityManager
