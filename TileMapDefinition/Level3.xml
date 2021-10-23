@@ -1,0 +1,157 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Level>
+	<Obstacles>
+		<x>0</x>
+		<y>466</y>
+		<block>FLOORBLOCK</block>
+		<blockRow>100</blockRow>
+	</Obstacles>
+	<Obstacles>
+		<x>0</x>
+		<y>434</y>
+		<block>FLOORBLOCK</block>
+		<blockRow>100</blockRow>
+	</Obstacles>
+
+	<Obstacles>
+		<x>512</x>
+		<y>306</y>
+		<block>QUESTIONBLOCK</block>
+	</Obstacles>
+
+	<Obstacles>
+		<x>640</x>
+		<y>306</y>
+		<block>BRICKBLOCK</block>
+		<blockRow>1</blockRow>
+	</Obstacles>
+	<Obstacles>
+		<x>672</x>
+		<y>306</y>
+		<block>QUESTIONBLOCK</block>
+	</Obstacles>
+	<Obstacles>
+		<x>704</x>
+		<y>306</y>
+		<block>BRICKBLOCK</block>
+		<blockRow>1</blockRow>
+	</Obstacles>
+	<Obstacles>
+		<x>736</x>
+		<y>306</y>
+		<block>QUESTIONBLOCK</block>
+	</Obstacles>
+	<Obstacles>
+		<x>768</x>
+		<y>306</y>
+		<block>BRICKBLOCK</block>
+		<blockRow>1</blockRow>
+	</Obstacles>
+
+	<Obstacles>
+		<x>704 </x>
+		<y>162</y>
+		<block>QUESTIONBLOCK</block>
+	</Obstacles>
+
+	<Obstacles>
+		<x>32</x>
+		<y>162</y>
+		<block>QUESTIONBLOCK</block>
+	</Obstacles>
+
+
+	<Obstacles>
+		<x>672</x>
+		<y>386</y>
+		<block>STAIRBLOCK</block>
+		<blockRow>4</blockRow>
+	</Obstacles>
+	<Obstacles>
+		<x>704</x>
+		<y>354</y>
+		<block>STAIRBLOCK</block>
+		<blockRow>3</blockRow>
+	</Obstacles>
+	<Obstacles>
+		<x>736</x>
+		<y>322</y>
+		<block>STAIRBLOCK</block>
+		<blockRow>2</blockRow>
+	</Obstacles>
+	<Obstacles>
+		<x>768</x>
+		<y>290</y>
+		<block>STAIRBLOCK</block>
+		<blockRow>1</blockRow>
+	</Obstacles>
+
+	<Obstacles>
+		<x>160</x>
+		<y>290</y>
+		<block>USEDBLOCK</block>
+	</Obstacles>
+	<Obstacles>
+		<x>224</x>
+		<y>290</y>
+		<block>HIDDENBLOCK</block>
+	</Obstacles>
+
+
+
+	<Obstacles>
+		<x>448</x>
+		<y>386</y>
+		<enemy>GOOMBA</enemy>
+	</Obstacles>
+	<Obstacles>
+		<x>32</x>
+		<y>372</y>
+		<enemy>GREENKOOPA</enemy>
+	</Obstacles>
+	<Obstacles>
+		<x>288</x>
+		<y>372</y>
+		<enemy>REDKOOPA</enemy>
+	</Obstacles>
+
+
+
+	<Obstacles>
+		<x>540</x>
+		<y>254</y>
+		<item>SUPERSHROOM</item>
+		<hidden>TRUE</hidden>
+	</Obstacles>
+	<Obstacles>
+		<x>380</x>
+		<y>254</y>
+		<item>ONEUPSHROOM</item>
+		<hidden>TRUE</hidden>
+	</Obstacles>
+	<Obstacles>
+		<x>604</x>
+		<y>254</y>
+		<item>FIREFLOWER</item>
+		<hidden>TRUE</hidden>
+	</Obstacles>
+	<Obstacles>
+		<x>28</x>
+		<y>126</y>
+		<item>STAR</item>
+		<hidden>TRUE</hidden>
+	</Obstacles>
+	<Obstacles>
+		<x>582</x>
+		<y>133</y>
+		<item>COIN</item>
+		<hidden>TRUE</hidden>
+	</Obstacles>
+
+	<Obstacles>
+		<x>64</x>
+		<y>386</y>
+		<avatar>MARIO</avatar>
+		<facing>RIGHT</facing>
+	</Obstacles>
+</Level>

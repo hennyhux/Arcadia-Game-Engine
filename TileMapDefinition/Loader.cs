@@ -18,12 +18,135 @@ namespace GameSpace.TileMapDefinition
 
         public static List<IGameObjects> Load(String xmlFile)
         {
-            List<IGameObjects> fullList = LoadBlocks(xmlFile);
+            List<IGameObjects> fullList = LoadEverything(xmlFile);
+            /*List<IGameObjects> fullList = LoadBlocks(xmlFile);
             List<IGameObjects> itemsList = LoadItems(xmlFile);
             fullList.AddRange(itemsList);
             List<IGameObjects> enemiesList = LoadEnemies(xmlFile);
-            fullList.AddRange(enemiesList);
+            fullList.AddRange(enemiesList);*/
             return fullList;
+        }
+        public static List<IGameObjects> LoadEverything(string xmlFile)
+        {
+            List<IGameObjects> objectsList = new List<IGameObjects>();
+            List<Obstacles> obstaclesList = new List<Obstacles>();
+            List<Obstacles> fullList = new List<Obstacles>();
+            MarioFactory marioFactory = MarioFactory.GetInstance();
+            Mario avatar;
+            List<Avatar> avatarList = new List<Avatar>();
+            ObjectFactory objectFactory = ObjectFactory.GetInstance();
+            XmlSerializer serializer = new XmlSerializer(typeof(List<Obstacles>), new XmlRootAttribute("Level"));
+            using (XmlReader reader = XmlReader.Create(xmlFile))
+            {
+                fullList = (List<Obstacles>)serializer.Deserialize(reader);
+            }
+            foreach(Obstacles obstacles in fullList)
+            {
+                Vector2 location = new Vector2(obstacles.x, obstacles.y);
+                switch (obstacles.block)
+                {
+                    case BlockID.BRICKBLOCK:
+                        for (int i = 0; i < obstacles.blockRow; i++)
+                        {
+                            objectsList.Add(objectFactory.CreateBrickBlockObject(new Vector2(obstacles.x + (32 * i), obstacles.y)));
+                        }
+                        break;
+                    case BlockID.QUESTIONBLOCK:
+                        objectsList.Add(objectFactory.CreateQuestionBlockObject(location));
+                        break;
+                    case BlockID.FLOORBLOCK:
+                        for (int i = 0; i < obstacles.blockRow; i++)
+                        {
+                            objectsList.Add(objectFactory.CreateFloorBlockObject(new Vector2(obstacles.x + (32 * i), obstacles.y)));
+                        }
+                        break;
+                    case BlockID.HIDDENBLOCK:
+                        objectsList.Add(objectFactory.CreateHiddenBlockObject(location));
+                        break;
+                    case BlockID.STAIRBLOCK:
+                        for (int i = 0; i < obstacles.blockRow; i++)
+                        {
+                            objectsList.Add(objectFactory.CreateStairBlockObject(new Vector2(obstacles.x + (32 * i), obstacles.y)));
+                        }
+                        break;
+                    case BlockID.USEDBLOCK:
+                        objectsList.Add(objectFactory.CreateUsedBlockObject(location));
+                        break;
+                }
+                switch (obstacles.enemy)
+                {
+                    case EnemyID.GOOMBA:
+                        objectsList.Add(objectFactory.CreateGoombaObject(location));
+                        break;
+                    case EnemyID.GREENKOOPA:
+                        objectsList.Add(objectFactory.CreateGreenKoopaObject(location));
+                        break;
+                    case EnemyID.REDKOOPA:
+                        objectsList.Add(objectFactory.CreateRedKoopaObject(location));
+                        break;
+                }
+                switch (obstacles.avatar)
+                {
+                    case AvatarID.MARIO:
+                        if (obstacles.facing == eFacing.LEFT)
+                        {
+                            objectsList.Add(marioFactory.ReturnMario(location));
+                        }
+                        else if (obstacles.facing == eFacing.RIGHT)
+                        {
+                            avatar = marioFactory.ReturnMario(location);
+                            avatar.FaceRightTransition();
+                            objectsList.Add(avatar);
+                        }
+                        break;
+                }
+                
+    
+                if (obstacles.hiddenItem)
+                {
+                    switch (obstacles.item)
+                    {
+                        case ItemID.SUPERSHROOM:
+                            objectsList.Add(objectFactory.CreateSuperShroomObject(location));
+                            break;
+                        case ItemID.STAR:
+                            objectsList.Add(objectFactory.CreateStarObject(location));
+                            break;
+                        case ItemID.ONEUPSHROOM:
+                            objectsList.Add(objectFactory.CreateOneUpShroomObject(location));
+                            break;
+                        case ItemID.FIREFLOWER:
+                            objectsList.Add(objectFactory.CreateFireFlowerObject(location));
+                            break;
+                        case ItemID.COIN:
+                            objectsList.Add(objectFactory.CreateCoinObject(location));
+                            break;
+                    }
+                }
+                else if (!obstacles.hiddenItem)
+                {
+                    switch (obstacles.item)
+                    {
+                        case ItemID.SUPERSHROOM:
+                            objectsList.Add(objectFactory.CreateSuperShroomObject(location));
+                            break;
+                        case ItemID.STAR:
+                            objectsList.Add(objectFactory.CreateStarObject(location));
+                            break;
+                        case ItemID.ONEUPSHROOM:
+                            objectsList.Add(objectFactory.CreateOneUpShroomObject(location));
+                            break;
+                        case ItemID.FIREFLOWER:
+                            objectsList.Add(objectFactory.CreateFireFlowerObject(location));
+                            break;
+                        case ItemID.COIN:
+                            objectsList.Add(objectFactory.CreateCoinObject(location));
+                            break;
+                    }
+                }
+            }
+
+            return objectsList;
         }
 
         public static List<IGameObjects> LoadBlocks(string xmlFile)
@@ -32,7 +155,7 @@ namespace GameSpace.TileMapDefinition
             List<Obstacle> obstacleList = new List<Obstacle>();
             ObjectFactory objectFactory = ObjectFactory.GetInstance();
             XmlSerializer serializer = new XmlSerializer(typeof(List<Obstacle>), new XmlRootAttribute("Level"));
-            using (XmlReader reader = XmlReader.Create(xmlFile))// IF YOU GET AN ERROR HERE, GO TO GameRoot.cs and change the xmlFILE path to your PATH to the Level File(on YOUR PC)
+            using (XmlReader reader = XmlReader.Create(xmlFile))
             {
                 obstacleList = (List<Obstacle>)serializer.Deserialize(reader);
             }

@@ -1,0 +1,133 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<Level>
+	<Obstacles>
+		<x>0</x>
+		<y>466</y>
+		<block>FLOORBLOCK</block>
+		<blockRow>69</blockRow>
+	</Obstacles>
+	<Obstacles>
+		<x>0</x>
+		<y>434</y>
+		<block>FLOORBLOCK</block>
+		<blockRow>69</blockRow>
+	</Obstacles>
+
+	<Obstacles>
+		<x>2240</x>
+		<y>466</y>
+		<block>FLOORBLOCK</block>
+		<blockRow>15</blockRow>
+	</Obstacles>
+	<Obstacles>
+		<x>2240</x>
+		<y>434</y>
+		<block>FLOORBLOCK</block>
+		<blockRow>15</blockRow>
+	</Obstacles>
+
+	<Obstacles>
+		<x>2816</x>
+		<y>466</y>
+		<block>FLOORBLOCK</block>
+		<blockRow>64</blockRow>
+	</Obstacles>
+	<Obstacles>
+		<x>2816</x>
+		<y>434</y>
+		<block>FLOORBLOCK</block>
+		<blockRow>64</blockRow>
+	</Obstacles>
+
+	<Obstacles>
+		<x>4928</x>
+		<y>466</y>
+		<block>FLOORBLOCK</block>
+		<blockRow>64</blockRow>
+	</Obstacles>
+	<Obstacles>
+		<x>4928</x>
+		<y>434</y>
+		<block>FLOORBLOCK</block>
+		<blockRow>64</blockRow>
+	</Obstacles>
+
+	<Obstacles>
+		<x>512</x>
+		<y>306</y>
+		<block>QUESTIONBLOCK</block>
+	</Obstacles>
+	<Obstacles>
+		<x>517</x>
+		<y>268</y>
+		<item>COIN</item>
+		<hidden>TRUE</hidden>
+	</Obstacles>
+
+	<Obstacles>
+		<x>640</x>
+		<y>306</y>
+		<block>BRICKBLOCK</block>
+		<blockRow>1</blockRow>
+	</Obstacles>
+	<Obstacles>
+		<x>672</x>
+		<y>306</y>
+		<block>QUESTIONBLOCK</block>
+	</Obstacles>
+	<Obstacles>
+		<x>668</x>
+		<y>272</y>
+		<item>SUPERSHROOM</item>
+		<hidden>TRUE</hidden>
+	</Obstacles>
+	<Obstacles>
+		<x>704</x>
+		<y>306</y>
+		<block>BRICKBLOCK</block>
+		<blockRow>1</blockRow>
+	</Obstacles>
+	<Obstacles>
+		<x>736</x>
+		<y>306</y>
+		<block>QUESTIONBLOCK</block>
+	</Obstacles>
+	<Obstacles>
+		<x>740</x>
+		<y>268</y>
+		<item>COIN</item>
+		<hidden>TRUE</hidden>
+	</Obstacles>
+	<Obstacles>
+		<x>768</x>
+		<y>306</y>
+		<block>BRICKBLOCK</block>
+		<blockRow>1</blockRow>
+	</Obstacles>
+
+	<Obstacles>
+		<x>704 </x>
+		<y>162</y>
+		<block>QUESTIONBLOCK</block>
+	</Obstacles>
+	<Obstacles>
+		<x>709</x>
+		<y>124</y>
+		<item>COIN</item>
+		<hidden>TRUE</hidden>
+	</Obstacles>
+
+	<Obstacles>
+		<x>704</x>
+		<y>402</y>
+		<enemy>GOOMBA</enemy>
+	</Obstacles>
+
+	<Obstacles>
+		<x>64</x>
+		<y>402</y>
+		<avatar>MARIO</avatar>
+		<facing>RIGHT</facing>
+	</Obstacles>
+</Level>
