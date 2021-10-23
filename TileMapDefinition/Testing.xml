@@ -26,6 +26,45 @@
 		<x>700</x>
 		<y>372</y>
 	</Obstacle>
+
+	<Obstacle>
+		<block>BRICKBLOCK</block>
+		<item>NOITEM</item>
+		<x>300</x>
+		<y>254</y>
+	</Obstacle>
+	
+	<Obstacle>
+		<block>BRICKBLOCK</block>
+		<item>NOITEM</item>
+		<x>600</x>
+		<y>254</y>
+	</Obstacle>
+
+	<Obstacle>
+		<block>BRICKBLOCK</block>
+		<item>NOITEM</item>
+		<x>300</x>
+		<y>154</y>
+	</Obstacle>
+
+	<Obstacle>
+		<block>BRICKBLOCK</block>
+		<item>NOITEM</item>
+		<x>600</x>
+		<y>154</y>
+	</Obstacle>
+
+	<Item>
+		<item>SUPERSHROOM</item>
+		<x>540</x>
+		<y>154</y>
+	</Item>
+	<Item>
+		<item>ONEUPSHROOM</item>
+		<x>380</x>
+		<y>254</y>
+	</Item>
 	
 
 </Level>

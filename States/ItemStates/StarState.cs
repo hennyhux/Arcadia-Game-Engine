@@ -12,6 +12,7 @@ namespace GameSpace.States.ItemStates
     {
         private ISprite sprite;
         private bool triggered;
+        public ISprite StateSprite { get; set; }
 
         public StarState(GameRoot game)
         {

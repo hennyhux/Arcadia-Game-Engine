@@ -13,6 +13,8 @@ namespace GameSpace.States.ItemStates
         private ISprite sprite;
         private bool triggered;
 
+        public ISprite StateSprite { get; set; }
+
         public CoinState(GameRoot game)
         {
             this.sprite = SpriteItemFactory.GetInstance().CreateCoin();

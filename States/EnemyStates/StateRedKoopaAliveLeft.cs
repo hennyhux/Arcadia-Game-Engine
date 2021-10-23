@@ -40,7 +40,7 @@ namespace GameSpace.States.StateMachines
 
         public void Trigger()
         {
-            StateSprite = SpriteEnemyFactory.GetInstance().CreateGreenKoopaShellSprite();
+            StateSprite = SpriteEnemyFactory.GetInstance().CreateRedKoopaShellSprite();
             CollidedWithMario = true;
         }
 

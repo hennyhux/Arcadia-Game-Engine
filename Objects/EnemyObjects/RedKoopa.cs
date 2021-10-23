@@ -30,7 +30,7 @@ namespace GameSpace.GameObjects.EnemyObjects
 
         public RedKoopa(Vector2 initalPosition)
         {
-            ObjectID = (int)EnemyID.GREENKOOPA;
+            ObjectID = (int)EnemyID.REDKOOPA;
             direction = (int)eFacing.LEFT;
             drawBox = false;
             inFrame = true;
