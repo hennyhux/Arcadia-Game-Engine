@@ -88,13 +88,13 @@ namespace GameSpace.GameObjects.ItemObjects
 
         public void CollisionWithBlock(IGameObjects entity)
         {
-            if (EntityManager.DetectCollisionDirection(this, entity) == (int)CollisionDirection.LEFT)
+            if (EntityManager.DetectCollisionDirection(this, entity) == (int)CollisionDirection.RIGHT)
             {
                 this.Velocity = new Vector2(0, 0);
                 this.state = new StateSuperShroomRight(this);
             }
 
-            else if (EntityManager.DetectCollisionDirection(this, entity) == (int)CollisionDirection.RIGHT)
+            else if (EntityManager.DetectCollisionDirection(this, entity) == (int)CollisionDirection.LEFT)
             {
                 this.Velocity = new Vector2(0, 0);
                 this.state = new StateSuperShroomLeft(this);
