@@ -15,7 +15,7 @@ namespace GameSpace.States.ItemStates
     {
         public ISprite StateSprite { get; set; }
         public Boolean CollidedWithMario { get; set; }
-        public SuperShroom SuperShroom;
+        private SuperShroom SuperShroom;
 
         public StateSuperShroomLeft(SuperShroom superShroom)
         {

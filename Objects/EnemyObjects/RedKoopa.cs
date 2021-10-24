@@ -15,7 +15,7 @@ namespace GameSpace.GameObjects.EnemyObjects
 {
     public class RedKoopa : IGameObjects
     {
-        private IEnemyState state;
+        public IEnemyState state;
         public ISprite Sprite { get; set; }
         public Vector2 Position { get; set; }
         public Vector2 Velocity { get; set; }
@@ -25,7 +25,7 @@ namespace GameSpace.GameObjects.EnemyObjects
 
         private Boolean drawBox;
         private Boolean inFrame; //is the current enemy inside of the viewport? 
-        private int direction;
+        public int direction;
 
 
         public RedKoopa(Vector2 initalPosition)
@@ -35,7 +35,7 @@ namespace GameSpace.GameObjects.EnemyObjects
             drawBox = false;
             inFrame = true;
             this.Position = initalPosition;
-            this.state = new StateRedKoopaAliveLeft();
+            this.state = new StateRedKoopaAliveLeft(this);
             UpdateCollisionBox(Position);
         }
 
@@ -53,22 +53,12 @@ namespace GameSpace.GameObjects.EnemyObjects
 
         public void Trigger()
         {
-            state.Trigger();
         }
 
-        public void SetPosition(Vector2 location)
+        public void SetPosition(Vector2 location) //use velocity
         {
-            if (!state.CollidedWithMario && direction == (int)eFacing.LEFT)
-            {
-                this.Position = new Vector2(location.X - .8f, Position.Y);
-            }
-
-            if (!state.CollidedWithMario && direction == (int)eFacing.RIGHT)
-            {
-                this.Position = new Vector2(location.X + .8f, Position.Y);
-            }
-
-            UpdateCollisionBox(location);
+            this.Position = new Vector2(location.X + this.Velocity.X, location.Y);
+            UpdateCollisionBox(this.Position);
         }
 
         public void HandleCollision(IGameObjects entity)
@@ -79,6 +69,11 @@ namespace GameSpace.GameObjects.EnemyObjects
                     CollisionWithMario(entity);
                     break;
 
+                case (int)BlockID.USEDBLOCK:
+                case (int)BlockID.QUESTIONBLOCK:
+                case (int)BlockID.FLOORBLOCK:
+                case (int)BlockID.STAIRBLOCK:
+                case (int)BlockID.COINBRICKBLOCK:
                 case (int)BlockID.BRICKBLOCK:
                     CollisionWithBlock(entity);
                     break;
@@ -90,29 +85,59 @@ namespace GameSpace.GameObjects.EnemyObjects
         #region Collision Handling
         private void CollisionWithBlock(IGameObjects block)
         {
-            if (EntityManager.DetectCollisionDirection(this, block) == (int)CollisionDirection.LEFT)
+            //If alive and hits block stays alive
+            if (this.state is StateRedKoopaAliveLeft || this.state is StateRedKoopaAliveRight)
             {
-                state = new StateRedKoopaAliveLeft();
-                direction = (int)eFacing.LEFT;
-            }
+                if (EntityManager.DetectCollisionDirection(this, block) == (int)CollisionDirection.LEFT)
+                {
+                    state = new StateRedKoopaAliveLeft(this);
+                    direction = (int)eFacing.LEFT;
+                }
 
-            if (EntityManager.DetectCollisionDirection(this, block) == (int)CollisionDirection.RIGHT)
-            {
-                state = new StateRedKoopaAliveRight();
-                direction = (int)eFacing.RIGHT;
+                if (EntityManager.DetectCollisionDirection(this, block) == (int)CollisionDirection.RIGHT)
+                {
+                    state = new StateRedKoopaAliveRight(this);
+                    direction = (int)eFacing.RIGHT;
+                }
             }
+            //If Dead and hits block stays dead
+            else if (this.state is StateRedKoopaDeadLeft || this.state is StateRedKoopaDeadRight)
+            {
+                if (EntityManager.DetectCollisionDirection(this, block) == (int)CollisionDirection.LEFT)
+                {
+                    state = new StateRedKoopaDeadLeft(this);
+                    direction = (int)eFacing.LEFT;
+                }
+
+                if (EntityManager.DetectCollisionDirection(this, block) == (int)CollisionDirection.RIGHT)
+                {
+                    state = new StateRedKoopaDeadRight(this);
+                    direction = (int)eFacing.RIGHT;
+                }
+            }    
         }
 
         private void CollisionWithMario(IGameObjects mario)
         {
             if (EntityManager.DetectCollisionDirection(this, mario) == (int)CollisionDirection.UP)
             {
-                this.Trigger();
+                    this.state = new StateRedKoopaDead(this);
             }
-
-            //if the current state is shelled: (state.StateSprite is GreenKoopaShelled)
-            //then stop the countdown and launch the object (green koopa)
-            //also need to change the behavior 
+            if (this.state is StateRedKoopaDead)
+            {
+                if (EntityManager.DetectCollisionDirection(this, mario) == (int)CollisionDirection.UP)
+                {
+                    this.state = new StateRedKoopaDead(this);
+                }
+                else if (EntityManager.DetectCollisionDirection(this, mario) == (int)CollisionDirection.RIGHT)
+                {
+                    this.state = new StateRedKoopaDeadRight(this);
+                }
+                else if (EntityManager.DetectCollisionDirection(this, mario) == (int)CollisionDirection.LEFT)
+                {
+                    this.state = new StateRedKoopaDeadLeft(this);
+                }
+            }
         }
 
         public void ToggleCollisionBoxes()

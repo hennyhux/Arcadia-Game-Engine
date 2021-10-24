@@ -5,22 +5,22 @@ using Microsoft.Xna.Framework.Graphics;
 using System;
 using GameSpace.GameObjects.EnemyObjects;
 
-namespace GameSpace.States.StateMachines
+namespace GameSpace.States.EnemyStates
 {
-    public class StateGreenKoopaAliveRight : IEnemyState
+    public class StateGreenKoopaDeadRight : IEnemyState
     {
         public ISprite StateSprite { get; set; }
         public Boolean CollidedWithMario { get; set; }
         private GreenKoopa GreenKoopa;
 
-
-        public StateGreenKoopaAliveRight(GreenKoopa greenKoopa)
+        public StateGreenKoopaDeadRight(GreenKoopa greenKoopa)
         {
-            StateSprite = SpriteEnemyFactory.GetInstance().CreateGreenKoopaRightSprite();
+            StateSprite = SpriteEnemyFactory.GetInstance().CreateGreenKoopaShellSprite();
             CollidedWithMario = false;
             this.GreenKoopa = greenKoopa;
             this.GreenKoopa.state = this;
             this.GreenKoopa.Velocity = new Vector2((float)+1, (float)0);
+
         }
 
         public void Draw(SpriteBatch spritebatch, Vector2 location)

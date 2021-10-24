@@ -3,6 +3,7 @@ using GameSpace.Interfaces;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
+using GameSpace.GameObjects.EnemyObjects;
 
 namespace GameSpace.States.StateMachines
 {
@@ -10,38 +11,31 @@ namespace GameSpace.States.StateMachines
     {
         public ISprite StateSprite { get; set; }
         public Boolean CollidedWithMario { get; set; }
-        private int countDown;
+        private RedKoopa RedKoopa;
 
-        public StateRedKoopaAliveLeft()
+
+        public StateRedKoopaAliveLeft(RedKoopa redKoopa)
         {
             StateSprite = SpriteEnemyFactory.GetInstance().CreateRedKoopaSprite();
             CollidedWithMario = false;
+            this.RedKoopa = redKoopa;
+            this.RedKoopa.state = this;
+            this.RedKoopa.Velocity = new Vector2((float)-1, (float)0);
+
         }
 
         public void Draw(SpriteBatch spritebatch, Vector2 location)
         {
             StateSprite.Draw(spritebatch, location);
-            if (CollidedWithMario) countDown++;
         }
 
         public void Update(GameTime gametime)
         {
             StateSprite.Update(gametime);
-
-            if (countDown == 225) StateSprite = SpriteEnemyFactory.GetInstance().CreateGreenKoopaShellAndLegsSprite();
-
-            if (countDown == 550)
-            {
-                StateSprite = SpriteEnemyFactory.GetInstance().CreateRedKoopaSprite();
-                countDown = 0;
-                CollidedWithMario = false;
-            }
         }
 
         public void Trigger()
         {
-            StateSprite = SpriteEnemyFactory.GetInstance().CreateRedKoopaShellSprite();
-            CollidedWithMario = true;
         }
 
         public void DrawBoundaries(SpriteBatch spritebatch, Rectangle destination)
