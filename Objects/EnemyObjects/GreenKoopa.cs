@@ -34,6 +34,8 @@ namespace GameSpace.GameObjects.EnemyObjects
             direction = (int)eFacing.LEFT;
             drawBox = false;
             inFrame = true;
+            Velocity = new Vector2(0.8f, 0);
+            
             this.Position = initalPosition;
             this.state = new StateGreenKoopaAliveRight();
             UpdateCollisionBox(Position);
@@ -65,7 +67,7 @@ namespace GameSpace.GameObjects.EnemyObjects
 
             if (!state.CollidedWithMario && direction == (int)eFacing.RIGHT)
             {
-                this.Position = new Vector2(location.X + .8f, Position.Y);
+                this.Position *= Velocity;
             }
 
             UpdateCollisionBox(location);

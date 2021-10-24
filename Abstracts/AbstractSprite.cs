@@ -77,7 +77,7 @@ namespace GameSpace.Sprites
             }
         }
 
-        public virtual void UpdateLocation(int dx, int dy)
+        public virtual void UpdateLocation(Vector2 location)
         {
             
         }

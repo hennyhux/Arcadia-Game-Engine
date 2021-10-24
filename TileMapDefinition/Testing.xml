@@ -55,12 +55,12 @@
 		<y>154</y>
 	</Obstacle>
 
-	<Item>
-		<item>SUPERSHROOM</item>
-		<x>540</x>
-		<y>154</y>
-	</Item>
 
-	
+	<Obstacle>
+		<block>COINBRICKBLOCK</block>
+		<item>NOITEM</item>
+		<x>400</x>
+		<y>154</y>
+	</Obstacle>
 
 </Level>

@@ -11,6 +11,6 @@ namespace GameSpace
         void SetVisible();
         bool GetVisibleStatus();
         void DrawBoundary(SpriteBatch spriteBatch, Rectangle destination);
-        void UpdateLocation(int dx, int dy);
+        void UpdateLocation(Vector2 location);
     }
 }

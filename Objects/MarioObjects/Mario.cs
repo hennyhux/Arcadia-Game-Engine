@@ -242,27 +242,16 @@ namespace GameSpace.GameObjects.BlockObjects
                     break;
 
                 case (int)BlockID.QUESTIONBLOCK:
-                    CollisionWithBumpBlock(entity);
-                    break;
-
                 case (int)BlockID.BRICKBLOCK:
-                    CollisionWithBrickBlock(entity);
-                    break;
-
                 case (int)BlockID.FLOORBLOCK:
-                    CollisionWithFloorBlock(entity);
+                case (int)BlockID.STAIRBLOCK:
+                case (int)BlockID.USEDBLOCK:
+                case (int)BlockID.COINBRICKBLOCK:
+                    CollisionWithBumpBlock(entity);
                     break;
 
                 case (int)BlockID.HIDDENBLOCK:
                     CollisionWithHiddenBlock(entity);
-                    break;
-
-                case (int)BlockID.STAIRBLOCK:
-                    CollisionWithBumpBlock(entity);
-                    break;
-
-                case (int)BlockID.USEDBLOCK:
-                    CollisionWithUsedBlock(entity);
                     break;
 
                 //All enemy encounters use same method. 
