@@ -121,6 +121,9 @@ namespace GameSpace.TileMapDefinition
                         case ItemID.COIN:
                             objectsList.Add(objectFactory.CreateCoinObject(location));
                             break;
+                        case ItemID.NOITEM:
+                            objectsList.Add(objectFactory.CreateBigPipeObject(location));
+                            break;
                     }
                 }
                 else if (!obstacles.hiddenItem)
@@ -142,10 +145,12 @@ namespace GameSpace.TileMapDefinition
                         case ItemID.COIN:
                             objectsList.Add(objectFactory.CreateCoinObject(location));
                             break;
+                        case ItemID.NOITEM:
+                            objectsList.Add(objectFactory.CreateBigPipeObject(location));
+                            break;
                     }
                 }
             }
-
             return objectsList;
         }
 

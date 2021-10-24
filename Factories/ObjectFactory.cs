@@ -3,6 +3,7 @@ using GameSpace.GameObjects.EnemyObjects;
 using GameSpace.GameObjects.ItemObjects;
 using GameSpace.Interfaces;
 using GameSpace.Objects.BlockObjects;
+using GameSpace.Objects.ExtraItemsObjects;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
@@ -111,6 +112,13 @@ namespace GameSpace.Factories
         public IGameObjects CreateSuperShroomObject(Vector2 location)
         {
             return new SuperShroom(location);
+        }
+        #endregion
+
+        #region Items
+        public IGameObjects CreateBigPipeObject(Vector2 location)
+        {
+            return new BigPipe(location);
         }
         #endregion
     }

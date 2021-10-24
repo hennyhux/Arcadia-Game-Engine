@@ -78,7 +78,7 @@
 	</Obstacles>
 	<Obstacles>
 		<x>668</x>
-		<y>272</y>
+		<y>267</y>
 		<item>SUPERSHROOM</item>
 		<hidden>TRUE</hidden>
 	</Obstacles>
@@ -122,6 +122,12 @@
 		<x>704</x>
 		<y>402</y>
 		<enemy>GOOMBA</enemy>
+	</Obstacles>
+	
+	<Obstacles>
+		<x>0</x>
+		<y>306</y>
+		<item>NOITEM</item>
 	</Obstacles>
 
 	<Obstacles>
