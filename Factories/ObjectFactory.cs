@@ -116,9 +116,29 @@ namespace GameSpace.Factories
         #endregion
 
         #region Items
+        public IGameObjects CreateSmallPipeObject(Vector2 location)
+        {
+            return new SmallPipe(location);
+        }
+
+        public IGameObjects CreateMediumPipeObject(Vector2 location)
+        {
+            return new MediumPipe(location);
+        }
+
         public IGameObjects CreateBigPipeObject(Vector2 location)
         {
             return new BigPipe(location);
+        }
+
+        public IGameObjects CreateFlagPoleObject(Vector2 location)
+        {
+            return new FlagPole(location);
+        }
+
+        public IGameObjects CreateCastleObject(Vector2 location)
+        {
+            return new Castle(location);
         }
         #endregion
     }

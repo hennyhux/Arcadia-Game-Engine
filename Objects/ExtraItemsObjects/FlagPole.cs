@@ -12,7 +12,7 @@ using System.Text;
 
 namespace GameSpace.GameObjects.ExtraItemsObjects
 {
-    public class BigPipe : IGameObjects
+    public class FlagPole : IGameObjects
     {
         public ISprite Sprite { get; set; }
         public Vector2 Position { get; set; }
@@ -22,16 +22,16 @@ namespace GameSpace.GameObjects.ExtraItemsObjects
 
         public Vector2 Location => throw new NotImplementedException();
 
-        public int ObjectID {get; set; }
+        public int ObjectID { get; set; }
         private Boolean hasCollided;
         private Boolean drawBox;
 
-        public BigPipe(Vector2 initalPosition)
+        public FlagPole(Vector2 initalPosition)
         {
-            this.ObjectID = (int)ItemID.BIGPIPE;
-            this.Sprite = SpriteExtraItemsFactory.GetInstance().ReturnBigPipe();
+            this.ObjectID = (int)ItemID.FLAGPOLE;
+            this.Sprite = SpriteExtraItemsFactory.GetInstance().ReturnFlagPole();
             this.Position = initalPosition;
-            this.CollisionBox = new Rectangle((int)Position.X, (int)Position.Y, Sprite.Texture.Width * 2, Sprite.Texture.Height * 2);
+            this.CollisionBox = new Rectangle((int)Position.X, (int)Position.Y, Sprite.Texture.Width * 2/5, Sprite.Texture.Height * 2);
             drawBox = false;
             Debug.WriteLine("EXTRA ITEM AT " + "(" + this.Position.X + ", " + this.Position.Y + ")");
         }

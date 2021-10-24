@@ -14,6 +14,9 @@ namespace GameSpace.Factories
         private Texture2D BigPipe;
         private Texture2D MediumPipe;
         private Texture2D SmallPipe;
+        private Texture2D FlagPole;
+        private Texture2D Castle;
+
         #endregion
 
         private static SpriteExtraItemsFactory instance;
@@ -32,9 +35,11 @@ namespace GameSpace.Factories
         }
         public void LoadContent(ContentManager content)
         {
-            BigPipe = content.Load<Texture2D>("ExtraItems/Error");
-            //MediumPipe = content.Load<Texture2D>("ExtraItems/MediumPipe");
-            //SmallPipe = content.Load<Texture2D>("ExtraItems/SmallPipe");
+            BigPipe = content.Load<Texture2D>("ExtraItems/BigPipe");
+            MediumPipe = content.Load<Texture2D>("ExtraItems/MediumPipe");
+            SmallPipe = content.Load<Texture2D>("ExtraItems/SmallPipe");
+            FlagPole = content.Load<Texture2D>("ExtraItems/FlagPole");
+            Castle = content.Load<Texture2D>("ExtraItems/Castle");
         }
 
         public ISprite ReturnBigPipe()
@@ -42,14 +47,24 @@ namespace GameSpace.Factories
             return new BigPipeSprite(BigPipe, 1, 1, 1);
         }
 
-       /* public ISprite ReturnMediumPipe()
+        public ISprite ReturnMediumPipe()
         {
-            return new MediumPipeSprite(BigPipe, 1, 1, 1);
+            return new MediumPipeSprite(MediumPipe, 1, 1, 1);
         }
 
         public ISprite ReturnSmallPipe()
         {
-            return new SmallPipeSprite(BigPipe, 1, 1, 1);
-        }*/
+            return new SmallPipeSprite(SmallPipe, 1, 1, 1);
+        }
+
+        public ISprite ReturnFlagPole()
+        {
+            return new FlagPoleSprite(FlagPole, 1, 5, 5, 0, 0);
+        }
+
+        public ISprite ReturnCastle()
+        {
+            return new CastleSprite(Castle, 1, 1, 1);
+        }
     }
 }

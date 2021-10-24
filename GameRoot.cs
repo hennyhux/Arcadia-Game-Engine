@@ -45,13 +45,14 @@ namespace GameSpace
             SpriteBlockFactory.GetInstance().LoadContent(Content);
             MarioFactory.GetInstance(this).LoadContent(Content);
             SpriteEnemyFactory.GetInstance().LoadContent(Content);
+            SpriteExtraItemsFactory.GetInstance().LoadContent(Content);
             BackgroundFactory.GetInstance().LoadContent(Content);
             SpriteItemFactory.GetInstance().LoadContent(Content);
             BackgroundFactory.GetInstance().LoadContent(Content);
             #endregion
 
             #region Loading Lists
-            //objects = Loader.Load(xmlFileName);
+            objects = Loader.Load(xmlFileName);
             objects = Loader.LoadEverything("../../../TileMapDefinition/Level1.xml");
             #endregion
 
@@ -66,7 +67,7 @@ namespace GameSpace
                 new KeyboardInput(this), new ControllerInput(this)
             };
             #endregion
-
+            
             avatars = Loader.LoadAvatars(xmlFileName);
             foreach(IGameObjects avatar in avatars)
             {

@@ -12,7 +12,7 @@ using System.Text;
 
 namespace GameSpace.GameObjects.ExtraItemsObjects
 {
-    public class BigPipe : IGameObjects
+    public class Castle : IGameObjects
     {
         public ISprite Sprite { get; set; }
         public Vector2 Position { get; set; }
@@ -26,10 +26,10 @@ namespace GameSpace.GameObjects.ExtraItemsObjects
         private Boolean hasCollided;
         private Boolean drawBox;
 
-        public BigPipe(Vector2 initalPosition)
+        public Castle(Vector2 initalPosition)
         {
-            this.ObjectID = (int)ItemID.BIGPIPE;
-            this.Sprite = SpriteExtraItemsFactory.GetInstance().ReturnBigPipe();
+            this.ObjectID = (int)ItemID.CASTLE;
+            this.Sprite = SpriteExtraItemsFactory.GetInstance().ReturnCastle();
             this.Position = initalPosition;
             this.CollisionBox = new Rectangle((int)Position.X, (int)Position.Y, Sprite.Texture.Width * 2, Sprite.Texture.Height * 2);
             drawBox = false;

@@ -25,7 +25,7 @@ namespace GameSpace.Enums
         NOITEM = 11,
         BIGPIPE = 12,
         MEDIUMPIPE = 13,
-        LARGEPIPE = 14,
+        SMALLPIPE = 14,
         FLAGPOLE = 15,
         CASTLE = 16,
     };
