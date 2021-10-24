@@ -46,21 +46,28 @@ namespace GameSpace.EntitiesManager
                 entity.Draw(spriteBatch);
             }
 
+            foreach (IObjectAnimation animation in animationList)
+            {
+                animation.Draw(spriteBatch);
+            }
+
             SweepAndPrune();
         }
 
         public static void Update(GameTime gametime)
         {
-            foreach (IObjectAnimation animation in animationList)
-            {
-                animation.PlayAnimation();
-            }
 
             foreach (IGameObjects entity in gameEntities)
             {
                 entity.Update(gametime);
             }
+
+            foreach (IObjectAnimation animation in animationList)
+            {
+                animation.Update(gametime);
+            }
         }
+
         public static void ToggleCollisionBox()
         {
             foreach (IGameObjects entity in gameEntities)
@@ -120,6 +127,7 @@ namespace GameSpace.EntitiesManager
         {
             animationList.Add(animation);
         }
+
 
 
         #endregion

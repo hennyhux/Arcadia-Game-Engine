@@ -1,6 +1,7 @@
 ﻿using GameSpace.GameObjects.BlockObjects;
 using GameSpace.GameObjects.EnemyObjects;
 using GameSpace.GameObjects.ItemObjects;
+using GameSpace.GameObjects.ExtraItemsObjects;
 using GameSpace.Interfaces;
 using GameSpace.Objects.BlockObjects;
 using Microsoft.Xna.Framework;
@@ -111,6 +112,33 @@ namespace GameSpace.Factories
         public IGameObjects CreateSuperShroomObject(Vector2 location)
         {
             return new SuperShroom(location);
+        }
+        #endregion
+
+        #region Items
+        public IGameObjects CreateSmallPipeObject(Vector2 location)
+        {
+            return new SmallPipe(location);
+        }
+
+        public IGameObjects CreateMediumPipeObject(Vector2 location)
+        {
+            return new MediumPipe(location);
+        }
+
+        public IGameObjects CreateBigPipeObject(Vector2 location)
+        {
+            return new BigPipe(location);
+        }
+
+        public IGameObjects CreateFlagPoleObject(Vector2 location)
+        {
+            return new FlagPole(location);
+        }
+
+        public IGameObjects CreateCastleObject(Vector2 location)
+        {
+            return new Castle(location);
         }
         #endregion
     }

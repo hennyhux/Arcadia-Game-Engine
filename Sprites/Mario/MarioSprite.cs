@@ -216,7 +216,7 @@ namespace GameSpace.Sprites
             
         }
 
-        public void UpdateLocation(int dx, int dy)
+        public void UpdateLocation(Vector2 location)
         {
             throw new NotImplementedException();
         }

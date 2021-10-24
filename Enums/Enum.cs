@@ -23,6 +23,11 @@ namespace GameSpace.Enums
         FIREFLOWER = 9,
         COIN = 10,
         NOITEM = 11,
+        BIGPIPE = 12,
+        MEDIUMPIPE = 13,
+        SMALLPIPE = 14,
+        FLAGPOLE = 15,
+        CASTLE = 16,
     };
 
     public enum EnemyID: int

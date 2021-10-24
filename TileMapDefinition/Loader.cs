@@ -29,11 +29,9 @@ namespace GameSpace.TileMapDefinition
         public static List<IGameObjects> LoadEverything(string xmlFile)
         {
             List<IGameObjects> objectsList = new List<IGameObjects>();
-            List<Obstacles> obstaclesList = new List<Obstacles>();
             List<Obstacles> fullList = new List<Obstacles>();
             MarioFactory marioFactory = MarioFactory.GetInstance();
             Mario avatar;
-            List<Avatar> avatarList = new List<Avatar>();
             ObjectFactory objectFactory = ObjectFactory.GetInstance();
             XmlSerializer serializer = new XmlSerializer(typeof(List<Obstacles>), new XmlRootAttribute("Level"));
             using (XmlReader reader = XmlReader.Create(xmlFile))
@@ -43,6 +41,21 @@ namespace GameSpace.TileMapDefinition
             foreach(Obstacles obstacles in fullList)
             {
                 Vector2 location = new Vector2(obstacles.x, obstacles.y);
+                switch (obstacles.avatar)
+                {
+                    case AvatarID.MARIO:
+                        if (obstacles.facing == eFacing.LEFT)
+                        {
+                            objectsList.Add(marioFactory.ReturnMario(location));
+                        }
+                        else if (obstacles.facing == eFacing.RIGHT)
+                        {
+                            avatar = marioFactory.ReturnMario(location);
+                            avatar.FaceRightTransition();
+                            objectsList.Add(avatar);
+                        }
+                        break;
+                }
                 switch (obstacles.block)
                 {
                     case BlockID.BRICKBLOCK:
@@ -85,23 +98,7 @@ namespace GameSpace.TileMapDefinition
                         objectsList.Add(objectFactory.CreateRedKoopaObject(location));
                         break;
                 }
-                switch (obstacles.avatar)
-                {
-                    case AvatarID.MARIO:
-                        if (obstacles.facing == eFacing.LEFT)
-                        {
-                            objectsList.Add(marioFactory.ReturnMario(location));
-                        }
-                        else if (obstacles.facing == eFacing.RIGHT)
-                        {
-                            avatar = marioFactory.ReturnMario(location);
-                            avatar.FaceRightTransition();
-                            objectsList.Add(avatar);
-                        }
-                        break;
-                }
                 
-    
                 if (obstacles.hiddenItem)
                 {
                     switch (obstacles.item)
@@ -120,6 +117,21 @@ namespace GameSpace.TileMapDefinition
                             break;
                         case ItemID.COIN:
                             objectsList.Add(objectFactory.CreateCoinObject(location));
+                            break;
+                        case ItemID.SMALLPIPE:
+                            objectsList.Add(objectFactory.CreateSmallPipeObject(location));
+                            break;
+                        case ItemID.MEDIUMPIPE:
+                            objectsList.Add(objectFactory.CreateMediumPipeObject(location));
+                            break;
+                        case ItemID.BIGPIPE:
+                            objectsList.Add(objectFactory.CreateBigPipeObject(location));
+                            break;
+                        case ItemID.CASTLE:
+                            objectsList.Add(objectFactory.CreateCastleObject(location));
+                            break;
+                        case ItemID.FLAGPOLE:
+                            objectsList.Add(objectFactory.CreateFlagPoleObject(location));
                             break;
                     }
                 }
@@ -142,10 +154,24 @@ namespace GameSpace.TileMapDefinition
                         case ItemID.COIN:
                             objectsList.Add(objectFactory.CreateCoinObject(location));
                             break;
+                        case ItemID.SMALLPIPE:
+                            objectsList.Add(objectFactory.CreateSmallPipeObject(location));
+                            break;
+                        case ItemID.MEDIUMPIPE:
+                            objectsList.Add(objectFactory.CreateMediumPipeObject(location));
+                            break;
+                        case ItemID.BIGPIPE:
+                            objectsList.Add(objectFactory.CreateBigPipeObject(location));
+                            break;
+                        case ItemID.CASTLE:
+                            objectsList.Add(objectFactory.CreateCastleObject(location));
+                            break;
+                        case ItemID.FLAGPOLE:
+                            objectsList.Add(objectFactory.CreateFlagPoleObject(location));
+                            break;
                     }
                 }
             }
-
             return objectsList;
         }
 

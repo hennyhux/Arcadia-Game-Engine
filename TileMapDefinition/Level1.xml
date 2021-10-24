@@ -78,7 +78,7 @@
 	</Obstacles>
 	<Obstacles>
 		<x>668</x>
-		<y>272</y>
+		<y>267</y>
 		<item>SUPERSHROOM</item>
 		<hidden>TRUE</hidden>
 	</Obstacles>
@@ -123,7 +123,44 @@
 		<y>402</y>
 		<enemy>GOOMBA</enemy>
 	</Obstacles>
+	
+	<Obstacles>
+		<x>1000</x>
+		<y>390</y>
+		<enemy>REDKOOPA</enemy>
+	</Obstacles>
+	
+	<Obstacles>
+		<x>896</x>
+		<y>370</y>
+		<item>SMALLPIPE</item>
+	</Obstacles>
+	<Obstacles>
+		<x>1216</x>
+		<y>338</y>
+		<item>MEDIUMPIPE</item>
+	</Obstacles>
+	<Obstacles>
+		<x>1472</x>
+		<y>306</y>
+		<item>BIGPIPE</item>
+	</Obstacles>
+	<Obstacles>
+		<x>1824</x>
+		<y>306</y>
+		<item>BIGPIPE</item>
+	</Obstacles>
 
+
+
+	<Obstacles>
+		<x>20000</x>
+		<y>97</y>
+		<item>FLAGPOLE</item>
+	</Obstacles>
+
+	
+	
 	<Obstacles>
 		<x>64</x>
 		<y>402</y>

@@ -36,7 +36,7 @@ namespace GameSpace.GameObjects.ItemObjects
 
         public void Draw(SpriteBatch spritebatch)
         {
-            Sprite.Draw(spritebatch, Position); //this shouldnt be hardcoded anymore 
+            Sprite.Draw(spritebatch, Position); 
             if (drawBox && Sprite.GetVisibleStatus()) Sprite.DrawBoundary(spritebatch, CollisionBox);
         }
 

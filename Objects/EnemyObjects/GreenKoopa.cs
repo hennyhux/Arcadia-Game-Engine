@@ -34,6 +34,8 @@ namespace GameSpace.GameObjects.EnemyObjects
             direction = (int)eFacing.LEFT;
             drawBox = false;
             inFrame = true;
+            Velocity = new Vector2(0.8f, 0);
+            
             this.Position = initalPosition;
             this.state = new StateGreenKoopaAliveRight(this);
             UpdateCollisionBox(Position);
