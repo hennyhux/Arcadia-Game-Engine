@@ -1,18 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using GameSpace.Enums;
+﻿using GameSpace.Enums;
 using GameSpace.Factories;
 using GameSpace.Interfaces;
 using GameSpace.States;
-using System.Diagnostics;
+using GameSpace.States.BlockStates;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Text;
 
-namespace GameSpace.Objects.ExtraItemsObjects
+namespace GameSpace.GameObjects.ExtraItemsObjects
 {
     public class BigPipe : IGameObjects
     {
+
         private IObjectState state;
         public ISprite Sprite { get; set; }
         public Vector2 Position { get; set; }
@@ -22,20 +24,21 @@ namespace GameSpace.Objects.ExtraItemsObjects
 
         public Vector2 Location => throw new NotImplementedException();
 
-        public int ObjectID { get; set; }
+        public int ObjectID {get; set; }
         private Boolean hasCollided;
         private Boolean drawBox;
 
         public BigPipe(Vector2 initalPosition)
         {
             this.ObjectID = (int)ItemID.BIGPIPE;
-            this.Sprite = SpriteExtraItemsFactory.GetInstance().ReturnBigPipe();
+            this.state = new StateBlockIdle();
+            this.Sprite = SpriteExtraItemsFactory.GetInstance().ReturnBigPipe(); //This line is causing the error
             this.Position = initalPosition;
-            //this.CollisionBox = new Rectangle((int)Position.X, (int)Position.Y, Sprite.Texture.Width * 2, Sprite.Texture.Height * 2);
+            this.CollisionBox = new Rectangle((int)Position.X, (int)Position.Y, Sprite.Texture.Width * 2, Sprite.Texture.Height * 2);
             drawBox = false;
-            Debug.WriteLine(Sprite.Texture.Width + " " + Sprite.Texture.Height);
-            Debug.WriteLine("ExtraItem AT " + "(" + this.Position.X + ", " + this.Position.Y + ")");
+            Debug.WriteLine("EXTRA ITEM AT " + "(" + this.Position.X + ", " + this.Position.Y + ")");
         }
+
         public void Draw(SpriteBatch spritebatch)
         {
             Sprite.Draw(spritebatch, Position); //this shouldnt be hardcoded anymore 
@@ -47,27 +50,27 @@ namespace GameSpace.Objects.ExtraItemsObjects
             Sprite.Update(gametime);
         }
 
-        void IGameObjects.Trigger()
+        public void Trigger()
         {
             //Pipe does nothing.
         }
 
-        void IGameObjects.SetPosition(Vector2 location)
+        public void SetPosition(Vector2 location)
         {
             //Pipe doesn't move.
         }
 
-        void IGameObjects.HandleCollision(IGameObjects entity)
+        public void HandleCollision(IGameObjects entity)
         {
             hasCollided = true;
         }
 
-        void IGameObjects.ToggleCollisionBoxes()
+        public void ToggleCollisionBoxes()
         {
             drawBox = !drawBox;
         }
 
-        bool IGameObjects.IsCurrentlyColliding()
+        public bool IsCurrentlyColliding()
         {
             throw new NotImplementedException();
         }

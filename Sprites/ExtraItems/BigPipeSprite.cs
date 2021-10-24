@@ -20,5 +20,10 @@ namespace GameSpace.Sprites
             currentFrame = 0;
             this.totalFrames = totalFrames;
         }
+
+        public override void Update(GameTime gametime)
+        {
+
+        }
     }
 }

@@ -1,8 +1,8 @@
-﻿using System;
+﻿using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Content;
+using System;
 using System.Collections.Generic;
 using System.Text;
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Content;
 using GameSpace.Sprites;
 using Microsoft.Xna.Framework;
 
@@ -32,7 +32,7 @@ namespace GameSpace.Factories
         }
         public void LoadContent(ContentManager content)
         {
-            BigPipe = content.Load<Texture2D>("ExtraItems/BigPipe");
+            BigPipe = content.Load<Texture2D>("ExtraItems/Error");
             //MediumPipe = content.Load<Texture2D>("ExtraItems/MediumPipe");
             //SmallPipe = content.Load<Texture2D>("ExtraItems/SmallPipe");
         }
