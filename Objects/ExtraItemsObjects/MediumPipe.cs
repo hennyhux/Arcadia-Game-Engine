@@ -52,7 +52,7 @@ namespace GameSpace.GameObjects.ExtraItemsObjects
             //Pipe does nothing.
         }
 
-        public void SetPosition(Vector2 location)
+        public void UpdatePosition(Vector2 location, GameTime gameTime)
         {
             //Pipe doesn't move.
         }

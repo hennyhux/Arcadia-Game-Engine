@@ -61,7 +61,7 @@ namespace GameSpace.GameObjects.ItemObjects
             }
         }
 
-        public void SetPosition(Vector2 location)
+        public void UpdatePosition(Vector2 location, GameTime gameTime)
         {
             throw new NotImplementedException();
         }

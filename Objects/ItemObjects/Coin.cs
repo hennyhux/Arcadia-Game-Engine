@@ -55,7 +55,7 @@ namespace GameSpace.GameObjects.ItemObjects
             if (!hasCollided) this.Trigger();
             hasCollided = true;
         }
-        public void SetPosition(Vector2 location)
+        public void UpdatePosition(Vector2 location, GameTime gameTime)
         {
             this.Position = location;
         }

@@ -51,7 +51,7 @@ namespace GameSpace.GameObjects.ItemObjects
 
         public void Update(GameTime gametime)
         {
-            SetPosition(Position);
+            UpdatePosition(Position, gametime);
             Sprite.Update(gametime);
         }
 
@@ -84,7 +84,7 @@ namespace GameSpace.GameObjects.ItemObjects
             }
         }
 
-        public void SetPosition(Vector2 location)
+        public void UpdatePosition(Vector2 location, GameTime gameTime)
         {
             this.Position = new Vector2(location.X + this.Velocity.X, location.Y);
             UpdateCollisionBox(this.Position);

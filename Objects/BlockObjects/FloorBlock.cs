@@ -55,7 +55,7 @@ namespace GameSpace.GameObjects.BlockObjects
             //block does nothing 
         }
 
-        public void SetPosition(Vector2 location)
+        public void UpdatePosition(Vector2 location, GameTime gameTime)
         {
             //block doesnt move 
         }

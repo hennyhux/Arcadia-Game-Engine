@@ -17,7 +17,7 @@ namespace GameSpace.Interfaces
         public void Draw(SpriteBatch spritebatch);
         public void Update(GameTime gametime);
         public void Trigger();
-        public void SetPosition(Vector2 location);
+        public void UpdatePosition(Vector2 location, GameTime gametime);
         public void HandleCollision(IGameObjects entity);
         public void ToggleCollisionBoxes();
         public bool IsCurrentlyColliding();
