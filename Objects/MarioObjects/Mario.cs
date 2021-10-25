@@ -1,6 +1,7 @@
 ﻿using GameSpace.Factories;
 using GameSpace.Interfaces;
 using GameSpace.States.BlockStates;
+using GameSpace.States.ItemStates;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -11,6 +12,7 @@ using System.Diagnostics;
 using GameSpace.States.MarioStates;
 using GameSpace.Enums;
 using GameSpace.EntitiesManager;
+using GameSpace.GameObjects.EnemyObjects;
 
 namespace GameSpace.GameObjects.BlockObjects
 {
@@ -234,11 +236,12 @@ namespace GameSpace.GameObjects.BlockObjects
                     CollisionWithHiddenBlock(entity);
                     break;
 
-                //All enemy encounters use same method. 
                 case (int)EnemyID.GOOMBA:
-                //case (int)EnemyID.GREENKOOPA:
-                //case (int)EnemyID.REDKOOPA:
-                    CollisionWithEnemy(entity);
+                    CollisionWithGoomba(entity);
+                    break;
+                case (int)EnemyID.GREENKOOPA:
+                case (int)EnemyID.REDKOOPA:
+                    CollisionWithKoopa(entity);
                     break;
             }
             
@@ -286,7 +289,7 @@ namespace GameSpace.GameObjects.BlockObjects
         //    //changeStateUponCollision(entity);//Change state upon collision
         //}
 
-        private void CollisionWithEnemy(IGameObjects enemy)
+        private void CollisionWithGoomba(IGameObjects enemy)
         {
             if (EntityManager.DetectCollisionDirection(this, enemy) == (int)CollisionDirection.LEFT ||
                 EntityManager.DetectCollisionDirection(this, enemy) == (int)CollisionDirection.RIGHT || 
@@ -312,6 +315,69 @@ namespace GameSpace.GameObjects.BlockObjects
                 PrefromBounce(0, 10);
                 StandingTransition();
             }
+        }
+
+        private void CollisionWithKoopa(IGameObjects koopa)
+        {
+            if(EntityManager.DetectCollisionDirection(this, koopa) == (int)CollisionDirection.DOWN)
+            {
+                koopa.Velocity = new Vector2(0, 0);
+                PrefromBounce(0, 10);
+                StandingTransition();
+            }
+
+            if (EntityManager.DetectCollisionDirection(this, koopa) == (int)CollisionDirection.UP)
+            {
+                this.Position = new Vector2(this.Position.X, (int)koopa.Position.Y - (int)this.CollisionBox.Height);
+            }
+
+
+            //Left or right response
+            //if koopa is alive mario takes damage
+            if (EntityManager.DetectCollisionDirection(this, koopa) == (int)CollisionDirection.LEFT ||
+                EntityManager.DetectCollisionDirection(this, koopa) == (int)CollisionDirection.RIGHT)
+            {
+                this.DeadTransition();
+                this.CollisionBox = new Rectangle(1, 1, 0, 0);
+
+                if (EntityManager.DetectCollisionDirection(this, koopa) == (int)CollisionDirection.LEFT) { this.Position = new Vector2((int)koopa.Position.X - (int)this.CollisionBox.Width - 5, (int)this.Position.Y); }
+
+                else if (EntityManager.DetectCollisionDirection(this, koopa) == (int)CollisionDirection.RIGHT) { this.Position = new Vector2((int)koopa.Position.X + (int)koopa.CollisionBox.Width + 5, (int)this.Position.Y); }
+
+            }
+
+            //if koopa is projectile mario stops
+
+
+
+
+
+
+            /*
+            if (EntityManager.DetectCollisionDirection(this, enemy) == (int)CollisionDirection.LEFT ||
+                EntityManager.DetectCollisionDirection(this, enemy) == (int)CollisionDirection.RIGHT ||
+                EntityManager.DetectCollisionDirection(this, enemy) == (int)CollisionDirection.DOWN)
+            {
+                this.DeadTransition();
+                this.CollisionBox = new Rectangle(1, 1, 0, 0);
+
+                if (EntityManager.DetectCollisionDirection(this, enemy) == (int)CollisionDirection.LEFT) { this.Position = new Vector2((int)enemy.Position.X - (int)this.CollisionBox.Width - 5, (int)this.Position.Y); }
+
+                else if (EntityManager.DetectCollisionDirection(this, enemy) == (int)CollisionDirection.RIGHT) { this.Position = new Vector2((int)enemy.Position.X + (int)enemy.CollisionBox.Width + 5, (int)this.Position.Y); }
+
+                else if (EntityManager.DetectCollisionDirection(this, enemy) == (int)CollisionDirection.DOWN) { this.Position = new Vector2(this.Position.X, (int)enemy.Position.Y - (int)this.CollisionBox.Height); }
+
+                changeStateUponCollision(enemy);
+                this.CollisionBox = new Rectangle(1, 1, 0, 0);
+
+                hasCollided = false;
+            }
+
+            else
+            {
+                PrefromBounce(0, 10);
+                StandingTransition();
+            }*/
         }
 
         private void StopAnyMotion()

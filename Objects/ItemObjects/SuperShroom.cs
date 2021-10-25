@@ -40,7 +40,7 @@ namespace GameSpace.GameObjects.ItemObjects
 
             
 
-            //this.state = new StateSuperShroomLeft(this);
+            this.state = new StateSuperShroomLeft(this);
         }
 
         public void Draw(SpriteBatch spritebatch)
@@ -52,9 +52,6 @@ namespace GameSpace.GameObjects.ItemObjects
         public void Update(GameTime gametime)
         {
             UpdatePosition(Position, gametime);
-            Sprite.Update(gametime);
-
-            SetPosition(Position);
             Sprite.Update(gametime);
         }
 
