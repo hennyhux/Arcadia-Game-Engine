@@ -11,7 +11,7 @@
 	<Enemy>
 		<enemy>GOOMBA</enemy>
 		<x>400</x>
-		<y>140</y>
+		<y>100</y>
 	</Enemy>
 
 	<Obstacle>
@@ -64,32 +64,42 @@
 	</Obstacle>
 	
 	
+
 	<Obstacle>
 		<block>BRICKBLOCK</block>
 		<item>NOITEM</item>
 		<x>700</x>
-		<y>172</y>
+		<y>350</y>
 	</Obstacle>
 
 	<Obstacle>
 		<block>BRICKBLOCK</block>
 		<item>NOITEM</item>
 		<x>732</x>
-		<y>172</y>
-	</Obstacle>
+		<y>350</y>
 
+	</Obstacle>
+	
 	<Obstacle>
 		<block>BRICKBLOCK</block>
 		<item>NOITEM</item>
 		<x>764</x>
-		<y>172</y>
+		<y>350</y>
+
+	</Obstacle>
+	
+	<Obstacle>
+		<block>BRICKBLOCK</block>
+		<item>NOITEM</item>
+		<x>796</x>
+		<y>350</y>
 	</Obstacle>
 
 	<Obstacle>
 		<block>BRICKBLOCK</block>
 		<item>NOITEM</item>
-		<x>796</x>
-		<y>172</y>
+		<x>700</x>
+		<y>350</y>
 	</Obstacle>
 	
 	

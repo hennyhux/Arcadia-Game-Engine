@@ -63,4 +63,12 @@
 		<y>154</y>
 	</Obstacle>
 
+	<Obstacle>
+		<block>COINBRICKBLOCK</block>
+		<item>NOITEM</item>
+		<x>400</x>
+		<y>350</y>
+	</Obstacle>
+	
+
 </Level>

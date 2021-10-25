@@ -1,6 +1,7 @@
 ﻿using GameSpace.Enums;
 using GameSpace.Factories;
 using GameSpace.GameObjects.BlockObjects;
+using GameSpace.GameObjects.EnemyObjects;
 using GameSpace.Interfaces;
 using GameSpace.States.MarioStates;
 using Microsoft.Xna.Framework;
@@ -17,6 +18,7 @@ namespace GameSpace.EntitiesManager
     {
         private static List<IGameObjects> gameEntities = new List<IGameObjects>();
         private static List<IGameObjects> prunedList = new List<IGameObjects>();
+        private static List<IGameObjects> copyPrunedList = new List<IGameObjects>();
         private static List<IObjectAnimation> animationList = new List<IObjectAnimation>(); 
         private static IGameObjects mario;
         private static Vector2 marioCurrentLocation;
@@ -93,17 +95,27 @@ namespace GameSpace.EntitiesManager
 
         public static Boolean IsGoingToFall(IGameObjects enemy)
         {
-            Boolean gonnaFall = false;
-            foreach (IGameObjects entity in prunedList)
+            Boolean gonnaFall = true;
+            
+            if (enemy is Goomba)
             {
-                if (enemy.Position.Y + 60 >= entity.Position.Y)
+                Goomba copy = (Goomba)enemy;
+                foreach (IGameObjects entity in gameEntities)
                 {
-                    gonnaFall = true;
-                    break;
+                    if (copy.ExpandedCollisionBox.Intersects(entity.CollisionBox) && entity.ObjectID != copy.ObjectID)
+                    {
+                        gonnaFall = false;
+                        break;
+                    }
                 }
             }
 
             return gonnaFall;
+        }
+
+        private static Boolean IntersectAABBExpanded(IGameObjects b, Goomba a)
+        {
+            return a.ExpandedCollisionBox.Intersects(b.CollisionBox);
         }
 
         public static IMarioActionStates GetCurrentMarioState()
@@ -160,8 +172,9 @@ namespace GameSpace.EntitiesManager
                 }
             Debug.WriteLine("SIZE OF PRUNED LIST " + prunedList.Count);
             Debug.WriteLine("SIZE OF OG LIST " + gameEntities.Count);
+            copyPrunedList = prunedList.ToList();
             prunedList.Clear();
-
+            Debug.WriteLine("SIZE OF PRUNED CLIST " + copyPrunedList.Count);
         }
 
         private static bool IntersectAABB(IGameObjects a, IGameObjects b)
@@ -180,6 +193,8 @@ namespace GameSpace.EntitiesManager
             else { return a.CollisionBox.Intersects(b.CollisionBox); }
 
         }
+
+
 
 
        public static int DetectCollisionDirection(IGameObjects a, IGameObjects b)

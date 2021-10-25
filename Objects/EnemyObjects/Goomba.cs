@@ -27,27 +27,28 @@ namespace GameSpace.GameObjects.EnemyObjects
         private Boolean drawBox;
         private int countDown;
         private int direction;
+        public Rectangle ExpandedCollisionBox { get; set; }
 
         public Goomba(Vector2 initalPosition)
         {
             ObjectID = (int)EnemyID.GOOMBA;
             direction = (int)eFacing.LEFT;
             Velocity = new Vector2(0, 0);
-            Acceleration = new Vector2(0, 120f);
+            Acceleration = new Vector2(0, 0);
 
             this.Sprite = SpriteEnemyFactory.GetInstance().CreateGoombaSprite();
             this.Position = initalPosition;
             this.CollisionBox = new Rectangle((int)(Position.X + Sprite.Texture.Width / 32), (int)Position.Y, Sprite.Texture.Width, Sprite.Texture.Height * 2);
+            ExpandedCollisionBox = new Rectangle((int)(Position.X + Sprite.Texture.Width / 32), (int)Position.Y, Sprite.Texture.Width, Sprite.Texture.Height * 3);
 
-
-            drawBox = false;
+        drawBox = false;
             state = new StateGoombaAlive();
         }
 
         public void Draw(SpriteBatch spritebatch)
         {
             state.Draw(spritebatch, Position);
-            if (drawBox && !hasCollidedOnTop) Sprite.DrawBoundary(spritebatch, CollisionBox);
+            if (drawBox && !hasCollidedOnTop) Sprite.DrawBoundary(spritebatch, CollisionBox); Sprite.DrawBoundary(spritebatch, ExpandedCollisionBox);
             if (hasCollidedOnTop)countDown++;
         }
 
@@ -69,7 +70,12 @@ namespace GameSpace.GameObjects.EnemyObjects
 
             if (EntityManager.IsGoingToFall(this))
             {
-                Acceleration = new Vector2(0f, 120f);
+                Acceleration = new Vector2(0, 140f);
+            }
+
+            else if (EntityManager.IsGoingToFall(this)!)
+            {
+                Acceleration = new Vector2(0, 0);
             }
 
             Velocity += Acceleration * (float)gameTime.ElapsedGameTime.TotalSeconds;
@@ -119,7 +125,7 @@ namespace GameSpace.GameObjects.EnemyObjects
             else if (EntityManager.DetectCollisionDirection(this, block) == (int)CollisionDirection.UP)
             {
                 HaltAllMotion();
-                Velocity = new Vector2(50f, 0);
+                Velocity = new Vector2(55f, 0);
             }
         }
 
@@ -148,13 +154,16 @@ namespace GameSpace.GameObjects.EnemyObjects
         {
             this.CollisionBox = new Rectangle((int)location.X + state.StateSprite.Texture.Width / 4 - 6 , (int)Position.Y,
                 state.StateSprite.Texture.Width, state.StateSprite.Texture.Height * 2);
+
+            this.ExpandedCollisionBox = new Rectangle((int)location.X + state.StateSprite.Texture.Width / 4 - 6, (int)Position.Y,
+                state.StateSprite.Texture.Width, state.StateSprite.Texture.Height * 3);
         }
 
         private void HaltAllMotion()
         {
+            Position = new Vector2(Position.X, Position.Y - 1);
             Velocity = new Vector2(0, 0);
             Acceleration = new Vector2(0, 0);
-            Position = new Vector2(Position.X, Position.Y - 1);
         }
     }
 }
