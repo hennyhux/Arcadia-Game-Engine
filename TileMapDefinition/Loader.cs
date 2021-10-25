@@ -191,7 +191,11 @@ namespace GameSpace.TileMapDefinition
                 switch (obstacleObject.block)
                 {
                     case BlockID.BRICKBLOCK:
-                        objectsList.Add(objectFactory.CreateBrickBlockObject(location));
+                        if (obstacleObject.item == ItemID.NOITEM) objectsList.Add(objectFactory.CreateBrickBlockObject(location));
+                        if (obstacleObject.item == ItemID.COIN) objectsList.Add(objectFactory.CreateCoinBrickBlock(location));
+                        if (obstacleObject.item == ItemID.STAR) objectsList.Add(objectFactory.CreateStarBrickBlock(location));
+                        if (obstacleObject.item == ItemID.ONEUPSHROOM) objectsList.Add(objectFactory.CreateOneUpShroomBrickBlock(location));
+                        if (obstacleObject.item == ItemID.SUPERSHROOM) objectsList.Add(objectFactory.CreateSuperShroomBrickBlock(location));
                         break;
 
                     case BlockID.QUESTIONBLOCK:
@@ -212,28 +216,29 @@ namespace GameSpace.TileMapDefinition
                     case BlockID.COINBRICKBLOCK:
                         objectsList.Add(objectFactory.CreateCoinBrickBlock(location));
                         break;
+
                 }
 
                 //Not part of sprint 1: Add some kind of method that makes these items non-visible to start with.
-                Vector2 itemLocation = new Vector2(obstacleObject.x, obstacleObject.y-32);
-                switch (obstacleObject.item)
-                {
-                    case ItemID.SUPERSHROOM:
-                        objectsList.Add(objectFactory.CreateSuperShroomObject(new Vector2(obstacleObject.x - 4, obstacleObject.y - 36)));
-                        break;
-                    case ItemID.STAR:
-                        objectsList.Add(objectFactory.CreateStarObject(new Vector2(obstacleObject.x - 4, obstacleObject.y - 36)));
-                        break;
-                    case ItemID.ONEUPSHROOM:
-                        objectsList.Add(objectFactory.CreateOneUpShroomObject(new Vector2(obstacleObject.x - 4, obstacleObject.y - 36)));
-                        break;
-                    case ItemID.FIREFLOWER:
-                        objectsList.Add(objectFactory.CreateFireFlowerObject(new Vector2(obstacleObject.x - 4, obstacleObject.y - 36)));
-                        break;
-                    case ItemID.COIN:
-                        objectsList.Add(objectFactory.CreateCoinObject(new Vector2(obstacleObject.x + 6, obstacleObject.y - 29)));
-                        break;
-                }
+                //Vector2 itemLocation = new Vector2(obstacleObject.x, obstacleObject.y-32);
+                //switch (obstacleObject.item)
+                //{
+                //    case ItemID.SUPERSHROOM:
+                //        objectsList.Add(objectFactory.CreateSuperShroomObject(new Vector2(obstacleObject.x - 4, obstacleObject.y - 36)));
+                //        break;
+                //    case ItemID.STAR:
+                //        objectsList.Add(objectFactory.CreateStarObject(new Vector2(obstacleObject.x - 4, obstacleObject.y - 36)));
+                //        break;
+                //    case ItemID.ONEUPSHROOM:
+                //        objectsList.Add(objectFactory.CreateOneUpShroomObject(new Vector2(obstacleObject.x - 4, obstacleObject.y - 36)));
+                //        break;
+                //    case ItemID.FIREFLOWER:
+                //        objectsList.Add(objectFactory.CreateFireFlowerObject(new Vector2(obstacleObject.x - 4, obstacleObject.y - 36)));
+                //        break;
+                //    case ItemID.COIN:
+                //        objectsList.Add(objectFactory.CreateCoinObject(new Vector2(obstacleObject.x + 6, obstacleObject.y - 29)));
+                //        break;
+                //}
             }
             return objectsList;
         }

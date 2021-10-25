@@ -8,139 +8,32 @@
 	</Avatar>
 
 
-	<Enemy>
-		<enemy>GOOMBA</enemy>
+	<Obstacle>
+		<block>BRICKBLOCK</block>
+		<item>COIN</item>
+		<x>400</x>
+		<y>140</y>
+	</Obstacle>
+
+	<Obstacle>
+		<block>BRICKBLOCK</block>
+		<item>STAR</item>
 		<x>450</x>
-		<y>100</y>
-	</Enemy>
-
-	<Obstacle>
-		<block>BRICKBLOCK</block>
-		<item>NOITEM</item>
-		<x>400</x>
 		<y>140</y>
 	</Obstacle>
 
 	<Obstacle>
 		<block>BRICKBLOCK</block>
-		<item>NOITEM</item>
-		<x>400</x>
-		<y>204</y>
-	</Obstacle>
-
-	<Obstacle>
-		<block>BRICKBLOCK</block>
-		<item>NOITEM</item>
-		<x>592</x>
+		<item>ONEUPSHROOM</item>
+		<x>500</x>
 		<y>140</y>
 	</Obstacle>
 
-
 	<Obstacle>
 		<block>BRICKBLOCK</block>
-		<item>NOITEM</item>
-		<x>432</x>
-		<y>172</y>
+		<item>SUPERSHROOM</item>
+		<x>550</x>
+		<y>140</y>
 	</Obstacle>
-
-	<Obstacle>
-		<block>BRICKBLOCK</block>
-		<item>NOITEM</item>
-		<x>464</x>
-		<y>172</y>
-	</Obstacle>
-
-	<Obstacle>
-		<block>BRICKBLOCK</block>
-		<item>NOITEM</item>
-		<x>496</x>
-		<y>172</y>
-	</Obstacle>
-
-	<Obstacle>
-		<block>BRICKBLOCK</block>
-		<item>NOITEM</item>
-		<x>528</x>
-		<y>172</y>
-	</Obstacle>
-
-	<Obstacle>
-		<block>BRICKBLOCK</block>
-		<item>NOITEM</item>
-		<x>560</x>
-		<y>172</y>
-	</Obstacle>
-
-	<Obstacle>
-		<block>BRICKBLOCK</block>
-		<item>NOITEM</item>
-		<x>592</x>
-		<y>172</y>
-	</Obstacle>
-
-
-	<Obstacle>
-		<block>BRICKBLOCK</block>
-		<item>NOITEM</item>
-		<x>400</x>
-		<y>400</y>
-	</Obstacle>
-
-	<Obstacle>
-		<block>BRICKBLOCK</block>
-		<item>NOITEM</item>
-		<x>432</x>
-		<y>400</y>
-	</Obstacle>
-
-	<Obstacle>
-		<block>BRICKBLOCK</block>
-		<item>NOITEM</item>
-		<x>464</x>
-		<y>400</y>
-	</Obstacle>
-
-	<Obstacle>
-		<block>BRICKBLOCK</block>
-		<item>NOITEM</item>
-		<x>496</x>
-		<y>400</y>
-	</Obstacle>
-
-	<Obstacle>
-		<block>BRICKBLOCK</block>
-		<item>NOITEM</item>
-		<x>528</x>
-		<y>400</y>
-	</Obstacle>
-
-	<Obstacle>
-		<block>BRICKBLOCK</block>
-		<item>NOITEM</item>
-		<x>560</x>
-		<y>400</y>
-	</Obstacle>
-
-	<Obstacle>
-		<block>BRICKBLOCK</block>
-		<item>NOITEM</item>
-		<x>592</x>
-		<y>400</y>
-	</Obstacle>
-
-	<Obstacle>
-		<block>BRICKBLOCK</block>
-		<item>NOITEM</item>
-		<x>624</x>
-		<y>400</y>
-	</Obstacle>
-
-	<Obstacle>
-		<block>BRICKBLOCK</block>
-		<item>NOITEM</item>
-		<x>656</x>
-		<y>400</y>
-	</Obstacle>
-	
 
 </Level>

@@ -12,7 +12,8 @@ namespace GameSpace.Enums
         HIDDENBLOCK = 3,
         STAIRBLOCK = 4,
         USEDBLOCK = 5,
-        COINBRICKBLOCK = 17
+        COINBRICKBLOCK = 17,
+        BRICKBLOCKSTAR = 18
     };
 
     public enum ItemID: int

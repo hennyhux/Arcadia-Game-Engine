@@ -37,6 +37,7 @@ namespace GameSpace.GameObjects.ItemObjects
             //Doesn't need collision box until revealed
             //this.CollisionBox = new Rectangle((int)Position.X, (int)Position.Y, Sprite.Texture.Width * 2, Sprite.Texture.Height * 2);
             drawBox = false;
+            isVisible = true;
             this.hasCollided = false;
             this.state = new StateSuperShroomHidden(this);
         }
