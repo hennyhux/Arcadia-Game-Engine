@@ -5,7 +5,7 @@ using Microsoft.Xna.Framework.Graphics;
 using System;
 using GameSpace.GameObjects.EnemyObjects;
 
-namespace GameSpace.States.StateMachines
+namespace GameSpace.States
 {
     public class StateRedKoopaAliveLeft: IEnemyState
     {

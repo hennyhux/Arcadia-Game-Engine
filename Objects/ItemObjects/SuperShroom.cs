@@ -58,6 +58,11 @@ namespace GameSpace.GameObjects.ItemObjects
             Sprite.Update(gametime);
         }
 
+        private void SetPosition(Vector2 position)
+        {
+            throw new NotImplementedException();
+        }
+
         public void Trigger()
         {
             if (!hasCollided)

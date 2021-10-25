@@ -41,14 +41,18 @@ namespace GameSpace.GameObjects.EnemyObjects
             this.CollisionBox = new Rectangle((int)(Position.X + Sprite.Texture.Width / 32), (int)Position.Y, Sprite.Texture.Width, Sprite.Texture.Height * 2);
             ExpandedCollisionBox = new Rectangle((int)(Position.X + Sprite.Texture.Width / 32), (int)Position.Y, Sprite.Texture.Width, Sprite.Texture.Height * 3);
 
-        drawBox = false;
+            drawBox = false;
             state = new StateGoombaAlive();
         }
 
         public void Draw(SpriteBatch spritebatch)
         {
             state.Draw(spritebatch, Position);
-            if (drawBox && !hasCollidedOnTop) Sprite.DrawBoundary(spritebatch, CollisionBox); Sprite.DrawBoundary(spritebatch, ExpandedCollisionBox);
+            if (drawBox && !hasCollidedOnTop)
+            {
+                Sprite.DrawBoundary(spritebatch, CollisionBox);
+                Sprite.DrawBoundary(spritebatch, ExpandedCollisionBox);
+            }
             if (hasCollidedOnTop)countDown++;
         }
 
@@ -70,25 +74,21 @@ namespace GameSpace.GameObjects.EnemyObjects
 
             if (EntityManager.IsGoingToFall(this))
             {
-                Acceleration = new Vector2(0, 140f);
+
+                Velocity = new Vector2(0, Velocity.Y);
+                Acceleration = new Vector2(0, 400);
             }
 
-            else if (EntityManager.IsGoingToFall(this)!)
+            else if (!EntityManager.IsGoingToFall(this))
             {
                 Acceleration = new Vector2(0, 0);
+                if (direction == (int)eFacing.RIGHT)Velocity = new Vector2(85, 0);
+                if (direction == (int)eFacing.LEFT) Velocity = new Vector2(-85, 0);
             }
 
             Velocity += Acceleration * (float)gameTime.ElapsedGameTime.TotalSeconds;
+            Position += Velocity * (float)gameTime.ElapsedGameTime.TotalSeconds;
 
-            if (direction == (int)eFacing.LEFT)
-            {
-                this.Position += Velocity * (float)gameTime.ElapsedGameTime.TotalSeconds;
-            }
-
-            else if (direction == (int)eFacing.RIGHT)
-            {
-                this.Position -= Velocity * (float)gameTime.ElapsedGameTime.TotalSeconds;
-            }
             UpdateCollisionBox(Position);
         }
 
@@ -124,8 +124,8 @@ namespace GameSpace.GameObjects.EnemyObjects
 
             else if (EntityManager.DetectCollisionDirection(this, block) == (int)CollisionDirection.UP)
             {
+                PreformBounce();
                 HaltAllMotion();
-                Velocity = new Vector2(55f, 0);
             }
         }
 
@@ -156,14 +156,18 @@ namespace GameSpace.GameObjects.EnemyObjects
                 state.StateSprite.Texture.Width, state.StateSprite.Texture.Height * 2);
 
             this.ExpandedCollisionBox = new Rectangle((int)location.X + state.StateSprite.Texture.Width / 4 - 6, (int)Position.Y,
-                state.StateSprite.Texture.Width, state.StateSprite.Texture.Height * 3);
+                state.StateSprite.Texture.Width, (state.StateSprite.Texture.Height * 2) + 3);
         }
 
         private void HaltAllMotion()
         {
-            Position = new Vector2(Position.X, Position.Y - 1);
             Velocity = new Vector2(0, 0);
             Acceleration = new Vector2(0, 0);
+        }
+
+        private void PreformBounce()
+        {
+            Position = new Vector2(Position.X, Position.Y - 4);
         }
     }
 }

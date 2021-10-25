@@ -100,7 +100,7 @@ namespace GameSpace.EntitiesManager
             if (enemy is Goomba)
             {
                 Goomba copy = (Goomba)enemy;
-                foreach (IGameObjects entity in gameEntities)
+                foreach (IGameObjects entity in copyPrunedList)
                 {
                     if (copy.ExpandedCollisionBox.Intersects(entity.CollisionBox) && entity.ObjectID != copy.ObjectID)
                     {
@@ -111,11 +111,6 @@ namespace GameSpace.EntitiesManager
             }
 
             return gonnaFall;
-        }
-
-        private static Boolean IntersectAABBExpanded(IGameObjects b, Goomba a)
-        {
-            return a.ExpandedCollisionBox.Intersects(b.CollisionBox);
         }
 
         public static IMarioActionStates GetCurrentMarioState()
@@ -174,7 +169,7 @@ namespace GameSpace.EntitiesManager
             Debug.WriteLine("SIZE OF OG LIST " + gameEntities.Count);
             copyPrunedList = prunedList.ToList();
             prunedList.Clear();
-            Debug.WriteLine("SIZE OF PRUNED CLIST " + copyPrunedList.Count);
+            Debug.WriteLine("SIZE OF PRUNED COPY LIST " + copyPrunedList.Count);
         }
 
         private static bool IntersectAABB(IGameObjects a, IGameObjects b)
