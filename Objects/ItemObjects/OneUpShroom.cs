@@ -23,18 +23,19 @@ namespace GameSpace.GameObjects.ItemObjects
 
         private Boolean hasCollided;
         private Boolean drawBox;
+        public Boolean isVisible; //set true when item is revealed
 
         public OneUpShroom(Vector2 initialPosition)
         {
             this.ObjectID = (int)ItemID.ONEUPSHROOM;
             this.Sprite = SpriteItemFactory.GetInstance().CreateOneUpShroom();
             this.Position = initialPosition;
-            this.CollisionBox = new Rectangle((int)Position.X, (int)Position.Y, Sprite.Texture.Width * 2, Sprite.Texture.Height * 2);
+            //Doesnt need collision box until revealed
+            //this.CollisionBox = new Rectangle((int)Position.X, (int)Position.Y, Sprite.Texture.Width * 2, Sprite.Texture.Height * 2);
             drawBox = false;
             this.hasCollided = false;
-
-            //Change based on Mario's position
-            this.state = new StateOneUpShroomLeft(this);
+            this.isVisible = false;
+            this.state = new StateOneUpShroomHidden(this);
         }
 
         public void Draw(SpriteBatch spritebatch)

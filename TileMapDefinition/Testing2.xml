@@ -3,35 +3,81 @@
 	<Avatar>
 		<avatar>MARIO</avatar>
 		<facing>LEFT</facing>
-		<x>350</x>
+		<x>150</x>
 		<y>200</y>
 	</Avatar>
 
-	<Enemy>
-		<enemy>GREENKOOPA</enemy>
-		<x>550</x>
-		<y>372</y>
-	</Enemy>
-
-	<Obstacle>
-		<block>BRICKBLOCK</block>
-		<item>NOITEM</item>
-		<x>400</x>
-		<y>372</y>
-	</Obstacle>
-
-	<Obstacle>
-		<block>BRICKBLOCK</block>
-		<item>NOITEM</item>
-		<x>700</x>
-		<y>372</y>
-	</Obstacle>
-
 	<Obstacle>
 		<block>BRICKBLOCK</block>
 		<item>NOITEM</item>
 		<x>300</x>
 		<y>254</y>
+	</Obstacle>
+	<Obstacle>
+		<block>BRICKBLOCK</block>
+		<item>NOITEM</item>
+		<x>300</x>
+		<y>295</y>
+	</Obstacle>
+	<Obstacle>
+		<block>BRICKBLOCK</block>
+		<item>NOITEM</item>
+		<x>332</x>
+		<y>295</y>
+	</Obstacle>
+	<Obstacle>
+		<block>BRICKBLOCK</block>
+		<item>NOITEM</item>
+		<x>364</x>
+		<y>295</y>
+	</Obstacle>
+	<Obstacle>
+		<block>BRICKBLOCK</block>
+		<item>NOITEM</item>
+		<x>396</x>
+		<y>295</y>
+	</Obstacle>
+	<Obstacle>
+		<block>BRICKBLOCK</block>
+		<item>NOITEM</item>
+		<x>428</x>
+		<y>295</y>
+	</Obstacle>
+	<Obstacle>
+		<block>BRICKBLOCK</block>
+		<item>NOITEM</item>
+		<x>460</x>
+		<y>295</y>
+	</Obstacle>
+	<Obstacle>
+		<block>BRICKBLOCK</block>
+		<item>NOITEM</item>
+		<x>492</x>
+		<y>295</y>
+	</Obstacle>
+	<Obstacle>
+		<block>BRICKBLOCK</block>
+		<item>NOITEM</item>
+		<x>524</x>
+		<y>295</y>
+	</Obstacle>
+	<Obstacle>
+		<block>BRICKBLOCK</block>
+		<item>NOITEM</item>
+		<x>556</x>
+		<y>295</y>
+	</Obstacle>
+	<Obstacle>
+		<block>BRICKBLOCK</block>
+		<item>NOITEM</item>
+		<x>588</x>
+		<y>295</y>
+	</Obstacle>
+	<Obstacle>
+		<block>BRICKBLOCK</block>
+		<item>NOITEM</item>
+		<x>620</x>
+		<y>295</y>
 	</Obstacle>
 
 	<Obstacle>
@@ -41,30 +87,98 @@
 		<y>254</y>
 	</Obstacle>
 
+	
+		
 	<Obstacle>
 		<block>BRICKBLOCK</block>
 		<item>NOITEM</item>
 		<x>300</x>
-		<y>154</y>
+		<y>54</y>
 	</Obstacle>
 
 	<Obstacle>
 		<block>BRICKBLOCK</block>
 		<item>NOITEM</item>
 		<x>600</x>
-		<y>154</y>
+		<y>54</y>
 	</Obstacle>
-
+	<Obstacle>
+		<block>BRICKBLOCK</block>
+		<item>NOITEM</item>
+		<x>600</x>
+		<y>95</y>
+	</Obstacle>
+	<Obstacle>
+		<block>BRICKBLOCK</block>
+		<item>NOITEM</item>
+		<x>568</x>
+		<y>95</y>
+	</Obstacle>
+	<Obstacle>
+		<block>BRICKBLOCK</block>
+		<item>NOITEM</item>
+		<x>536</x>
+		<y>95</y>
+	</Obstacle>
+	<Obstacle>
+		<block>BRICKBLOCK</block>
+		<item>NOITEM</item>
+		<x>504</x>
+		<y>95</y>
+	</Obstacle>
+	<Obstacle>
+		<block>BRICKBLOCK</block>
+		<item>NOITEM</item>
+		<x>472</x>
+		<y>95</y>
+	</Obstacle>
+	<Obstacle>
+		<block>BRICKBLOCK</block>
+		<item>NOITEM</item>
+		<x>440</x>
+		<y>95</y>
+	</Obstacle>
+	<Obstacle>
+		<block>BRICKBLOCK</block>
+		<item>NOITEM</item>
+		<x>408</x>
+		<y>95</y>
+	</Obstacle>
+	<Obstacle>
+		<block>BRICKBLOCK</block>
+		<item>NOITEM</item>
+		<x>376</x>
+		<y>95</y>
+	</Obstacle>
+	<Obstacle>
+		<block>BRICKBLOCK</block>
+		<item>NOITEM</item>
+		<x>344</x>
+		<y>95</y>
+	</Obstacle>
+	<Obstacle>
+		<block>BRICKBLOCK</block>
+		<item>NOITEM</item>
+		<x>312</x>
+		<y>95</y>
+	</Obstacle>
+	<Obstacle>
+		<block>BRICKBLOCK</block>
+		<item>NOITEM</item>
+		<x>280</x>
+		<y>95</y>
+	</Obstacle>
+	
 
 	<Item>
 		<item>ONEUPSHROOM</item>
 		<x>400</x>
-		<y>154</y>
+		<y>30</y>
 	</Item>
 	<Item>
 		<item>SUPERSHROOM</item>
 		<x>400</x>
-		<y>254</y>
+		<y>224</y>
 	</Item>
 
 </Level>

@@ -27,32 +27,36 @@ namespace GameSpace.GameObjects.ItemObjects
 
         private Boolean hasCollided;
         private Boolean drawBox;
+        public Boolean isVisible; 
 
         public SuperShroom(Vector2 initialPosition)
         {
             this.ObjectID = (int)ItemID.SUPERSHROOM;
             this.Sprite = SpriteItemFactory.GetInstance().CreateSuperShroom();
             this.Position = initialPosition;
-            this.CollisionBox = new Rectangle((int)Position.X, (int)Position.Y, Sprite.Texture.Width * 2, Sprite.Texture.Height * 2);
+            //Doesn't need collision box until revealed
+            //this.CollisionBox = new Rectangle((int)Position.X, (int)Position.Y, Sprite.Texture.Width * 2, Sprite.Texture.Height * 2);
             drawBox = false;
             this.hasCollided = false;
-            // Change Based on mario position
-
-            
-
-            this.state = new StateSuperShroomLeft(this);
+            this.state = new StateSuperShroomHidden(this);
         }
 
         public void Draw(SpriteBatch spritebatch)
         {
-            Sprite.Draw(spritebatch, Position);
-            if (drawBox) Sprite.DrawBoundary(spritebatch, CollisionBox);
+            if (isVisible)
+            {
+                Sprite.Draw(spritebatch, Position);
+                if (drawBox) Sprite.DrawBoundary(spritebatch, CollisionBox);
+            }
         }
 
         public void Update(GameTime gametime)
         {
-            UpdatePosition(Position, gametime);
-            Sprite.Update(gametime);
+            if (isVisible)
+            {
+                UpdatePosition(Position, gametime);
+                Sprite.Update(gametime);
+            }
         }
 
         private void SetPosition(Vector2 position)
