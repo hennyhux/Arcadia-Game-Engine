@@ -48,14 +48,14 @@ namespace GameSpace.GameObjects.EnemyObjects
         public void Update(GameTime gametime)
         {
             state.Update(gametime);
-            SetPosition(Position);
+            UpdatePosition(Position, gametime);
         }
 
         public void Trigger()
         {
         }
 
-        public void SetPosition(Vector2 location) //use velocity
+        public void UpdatePosition(Vector2 location, GameTime gameTime) //use velocity
         {
             this.Position = new Vector2(location.X + this.Velocity.X, location.Y);
             UpdateCollisionBox(this.Position);

@@ -25,7 +25,7 @@ namespace GameSpace
         public Mario GetMario { get => (Mario)EntityManager.FindItem((int)AvatarID.MARIO);  }
         public GraphicsDeviceManager Graphics { get => graphics; }
 
-        string xmlFileName = "../../../TileMapDefinition/Testing.xml";
+        string xmlFileName = "../../../TileMapDefinition/HenryTestingDontEdit.xml";
         public GameRoot()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -53,12 +53,10 @@ namespace GameSpace
 
             #region Loading Lists
             objects = Loader.Load(xmlFileName);
-            objects = Loader.LoadEverything("../../../TileMapDefinition/Level1.xml");
             #endregion
 
             #region Load EntityManager
             EntityManager.LoadList(objects);
-
             #endregion
 
             #region Loading Controllers
@@ -73,7 +71,6 @@ namespace GameSpace
             {
                 EntityManager.AddEntity(avatar);
             }
-
         }
 
         protected override void Update(GameTime gameTime)

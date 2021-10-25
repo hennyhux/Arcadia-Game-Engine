@@ -56,7 +56,7 @@ namespace GameSpace.GameObjects.BlockObjects
             state = new StateBlockBumped(this);
         }
 
-        public void SetPosition(Vector2 location)
+        public void UpdatePosition(Vector2 location , GameTime gameTime)
         {
             throw new NotImplementedException();
         }

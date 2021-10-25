@@ -78,16 +78,6 @@ namespace GameSpace.EntitiesManager
         #endregion
 
         #region Moving and Finding Entities
-        public static void MoveItem(int ID, int direction)
-        {
-
-            {
-                if (direction == (int)ControlDirection.UP) FindItem(ID).SetPosition(new Vector2(0, -1));
-                if (direction == (int)ControlDirection.DOWN) FindItem(ID).SetPosition(new Vector2(0, 1));
-                if (direction == (int)ControlDirection.RIGHT) FindItem(ID).SetPosition(new Vector2(1, 0));
-                if (direction == (int)ControlDirection.LEFT) FindItem(ID).SetPosition(new Vector2(-1, 0));
-            }
-        }
 
         public static IGameObjects FindItem(int ItemID)
         {
@@ -99,6 +89,21 @@ namespace GameSpace.EntitiesManager
                 }
             }
             return null; //lets try not to return null
+        }
+
+        public static Boolean IsGoingToFall(IGameObjects enemy)
+        {
+            Boolean gonnaFall = false;
+            foreach (IGameObjects entity in prunedList)
+            {
+                if (enemy.Position.Y + 60 >= entity.Position.Y)
+                {
+                    gonnaFall = true;
+                    break;
+                }
+            }
+
+            return gonnaFall;
         }
 
         public static IMarioActionStates GetCurrentMarioState()
@@ -127,8 +132,6 @@ namespace GameSpace.EntitiesManager
         {
             animationList.Add(animation);
         }
-
-
 
         #endregion
 

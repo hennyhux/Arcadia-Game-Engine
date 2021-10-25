@@ -14,54 +14,76 @@ namespace GameSpace.GameObjects.EnemyObjects
 {
     public class Goomba : IGameObjects
     {
-        private IEnemyStates CurrentState;
+        private IEnemyState state;
 
         public ISprite Sprite { get; set; }
         public Vector2 Position { get; set; }
         public Vector2 Velocity { get; set; }
         public Vector2 Acceleration { get; set; }
-
         public Rectangle CollisionBox { get; set; }
 
         public int ObjectID { get; set; }
         private Boolean hasCollidedOnTop;
         private Boolean drawBox;
         private int countDown;
+        private int direction;
 
         public Goomba(Vector2 initalPosition)
         {
             ObjectID = (int)EnemyID.GOOMBA;
+            direction = (int)eFacing.LEFT;
+            Velocity = new Vector2(0, 0);
+            Acceleration = new Vector2(0, 120f);
+
             this.Sprite = SpriteEnemyFactory.GetInstance().CreateGoombaSprite();
             this.Position = initalPosition;
             this.CollisionBox = new Rectangle((int)(Position.X + Sprite.Texture.Width / 32), (int)Position.Y, Sprite.Texture.Width, Sprite.Texture.Height * 2);
-            drawBox = false;
-            CurrentState = new GoombaAliveState(this);
 
+
+            drawBox = false;
+            state = new StateGoombaAlive();
         }
 
         public void Draw(SpriteBatch spritebatch)
         {
-            Sprite.Draw(spritebatch, Position);
+            state.Draw(spritebatch, Position);
             if (drawBox && !hasCollidedOnTop) Sprite.DrawBoundary(spritebatch, CollisionBox);
             if (hasCollidedOnTop)countDown++;
-            
         }
 
         public void Update(GameTime gametime)
         {
-            Sprite.Update(gametime);
-            if (countDown == 90) this.Sprite.SetVisible();
+            state.Update(gametime);
+            if (!hasCollidedOnTop) UpdatePosition(Position, gametime);
+            if (countDown == 90) state.StateSprite.SetVisible();
         }
 
         public void Trigger()
         {
-            CurrentState = new GoombaDeadState(this);
+            state = new StateGoombaDead();
             countDown = 0;
         }
 
-        public void SetPosition(Vector2 location)
+        public void UpdatePosition(Vector2 location, GameTime gameTime)
         {
 
+            if (EntityManager.IsGoingToFall(this))
+            {
+                Acceleration = new Vector2(0f, 120f);
+            }
+
+            Velocity += Acceleration * (float)gameTime.ElapsedGameTime.TotalSeconds;
+
+            if (direction == (int)eFacing.LEFT)
+            {
+                this.Position += Velocity * (float)gameTime.ElapsedGameTime.TotalSeconds;
+            }
+
+            else if (direction == (int)eFacing.RIGHT)
+            {
+                this.Position -= Velocity * (float)gameTime.ElapsedGameTime.TotalSeconds;
+            }
+            UpdateCollisionBox(Position);
         }
 
         public void HandleCollision(IGameObjects entity)
@@ -71,8 +93,36 @@ namespace GameSpace.GameObjects.EnemyObjects
                 case (int)AvatarID.MARIO:
                     CollisionWithMario(entity);
                     break;
+
+                case (int)BlockID.USEDBLOCK:
+                case (int)BlockID.QUESTIONBLOCK:
+                case (int)BlockID.FLOORBLOCK:
+                case (int)BlockID.STAIRBLOCK:
+                case (int)BlockID.COINBRICKBLOCK:
+                case (int)BlockID.BRICKBLOCK:
+                    CollisionWithBlock(entity);
+                    break;
             }
         }
+        private void CollisionWithBlock(IGameObjects block)
+        {
+            if (EntityManager.DetectCollisionDirection(this, block) == (int)CollisionDirection.LEFT)
+            {
+                direction = (int)eFacing.RIGHT;
+            }
+
+            else if (EntityManager.DetectCollisionDirection(this, block) == (int)CollisionDirection.RIGHT)
+            {
+                direction = (int)eFacing.LEFT;
+            }
+
+            else if (EntityManager.DetectCollisionDirection(this, block) == (int)CollisionDirection.UP)
+            {
+                HaltAllMotion();
+                Velocity = new Vector2(50f, 0);
+            }
+        }
+
 
         private void CollisionWithMario(IGameObjects mario)
         {
@@ -92,6 +142,19 @@ namespace GameSpace.GameObjects.EnemyObjects
         public bool IsCurrentlyColliding()
         {
             throw new NotImplementedException();
+        }
+
+        private void UpdateCollisionBox(Vector2 location)
+        {
+            this.CollisionBox = new Rectangle((int)location.X + state.StateSprite.Texture.Width / 4 - 6 , (int)Position.Y,
+                state.StateSprite.Texture.Width, state.StateSprite.Texture.Height * 2);
+        }
+
+        private void HaltAllMotion()
+        {
+            Velocity = new Vector2(0, 0);
+            Acceleration = new Vector2(0, 0);
+            Position = new Vector2(Position.X, Position.Y - 1);
         }
     }
 }

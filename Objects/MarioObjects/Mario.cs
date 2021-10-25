@@ -17,27 +17,11 @@ namespace GameSpace.GameObjects.BlockObjects
     public class Mario : IGameObjects
     {
 
-        //actionStateMachine
-        //powerupStateMachine
-        //
-        //public Texture2D Texture { get; set; }
         private Boolean hasCollided;
         private Boolean drawBox;
 
-
-        //private int actionState; //[Idling, Crouching, Walking, Running, Jumping, Falling, Dying]
-        //private int marioPower;// [Small, Big, Fire, Star, Dead]
-        // private int facingRight;// left = 0, right = 1
-
-        //private static MarioPowerUpStates actionState;
-
-
-        //private MarioSprite sprite;
         public MarioSprite sprite { get; set; }
         public eFacing Facing { get; set; }
-        //private IMarioActionState marioPowerUpState;
-        // private MarioPowerUpStates marioPowerUpState;
-
         public IMarioPowerUpStates marioPowerUpState { get; set; }
 
         public IMarioActionStates marioActionState { get; set; }
@@ -48,14 +32,6 @@ namespace GameSpace.GameObjects.BlockObjects
         public Rectangle CollisionBox { get; set; }
         public int ObjectID { get; set; }
 
-        //public IMarioPowerUpStates marioPowerUpState { get; set; }
-
-        //private MarioPowerUpStates previousMarioActionState { get; set; }
-        // private MarioPowerUpStates previousMarioPowerUpState;
-
-
-
-        //public Mario(Game1 game, Texture2D texture)
         public Mario(Vector2 initLocation)
         {
             Debug.WriteLine("Mario.cs(50) CREATED MARIO \n");
@@ -199,7 +175,11 @@ namespace GameSpace.GameObjects.BlockObjects
             this.CollisionBox = new Rectangle((int)Position.X, (int)Position.Y + 32, 32, 64);
         }
 
-        public void DeadTransition() { marioPowerUpState.DeadTransition(); }
+        public void DeadTransition() 
+        { 
+            marioPowerUpState.DeadTransition();
+           
+        }
 
         public void Trigger()
         {
@@ -207,7 +187,7 @@ namespace GameSpace.GameObjects.BlockObjects
         }
 
         //unused testing method 
-        public void SetPosition(Vector2 location)
+        public void UpdatePosition(Vector2 location, GameTime gameTime)
         {
 
             if (EntityManager.IsCurrentlyBigMario())
@@ -247,7 +227,7 @@ namespace GameSpace.GameObjects.BlockObjects
                 case (int)BlockID.STAIRBLOCK:
                 case (int)BlockID.USEDBLOCK:
                 case (int)BlockID.COINBRICKBLOCK:
-                    CollisionWithBumpBlock(entity);
+                    CollisionWithBlock(entity);
                     break;
 
                 case (int)BlockID.HIDDENBLOCK:
@@ -292,19 +272,19 @@ namespace GameSpace.GameObjects.BlockObjects
         }
 
 
-        private void CollisionWithFloorBlock(IGameObjects entity)
-        {
-            //if (EntityManager.DetectCollisionDirection(this, entity) == (int)CollisionDirection.UP) { this.SetPosition(new Vector2(this.Position.X * 0, this.Position.Y * 0)); }
-            //if (EntityManager.DetectCollisionDirection(this, entity) == (int)CollisionDirection.UP) { this.Position = new Vector2(this.Position.X, (int)entity.Position.Y +  (int)entity.CollisionBox.Height); }
+        //private void CollisionWithFloorBlock(IGameObjects entity)
+        //{
+        //    //if (EntityManager.DetectCollisionDirection(this, entity) == (int)CollisionDirection.UP) { this.SetPosition(new Vector2(this.Position.X * 0, this.Position.Y * 0)); }
+        //    //if (EntityManager.DetectCollisionDirection(this, entity) == (int)CollisionDirection.UP) { this.Position = new Vector2(this.Position.X, (int)entity.Position.Y +  (int)entity.CollisionBox.Height); }
 
-            if (EntityManager.DetectCollisionDirection(this, entity) == (int)CollisionDirection.DOWN) { this.Position = new Vector2(this.Position.X, (int)entity.Position.Y - (int)this.CollisionBox.Height); }
+        //    if (EntityManager.DetectCollisionDirection(this, entity) == (int)CollisionDirection.DOWN) { this.Position = new Vector2(this.Position.X, (int)entity.Position.Y - (int)this.CollisionBox.Height); }
 
-            changeStateUponCollision(entity);//Change state upon collision
+        //    changeStateUponCollision(entity);//Change state upon collision
 
-            this.CollisionBox = new Rectangle((int)Position.X, (int)Position.Y, CollisionBox.Width, CollisionBox.Height);
+        //    this.CollisionBox = new Rectangle((int)Position.X, (int)Position.Y, CollisionBox.Width, CollisionBox.Height);
 
-            //changeStateUponCollision(entity);//Change state upon collision
-        }
+        //    //changeStateUponCollision(entity);//Change state upon collision
+        //}
 
         private void CollisionWithEnemy(IGameObjects enemy)
         {
@@ -313,6 +293,7 @@ namespace GameSpace.GameObjects.BlockObjects
                 EntityManager.DetectCollisionDirection(this, enemy) == (int)CollisionDirection.DOWN)
             {
                 this.DeadTransition();
+                this.CollisionBox = new Rectangle(1, 1, 0, 0);
 
                 if (EntityManager.DetectCollisionDirection(this, enemy) == (int)CollisionDirection.LEFT) { this.Position = new Vector2((int)enemy.Position.X - (int)this.CollisionBox.Width - 5, (int)this.Position.Y); }
 
@@ -321,20 +302,15 @@ namespace GameSpace.GameObjects.BlockObjects
                 else if (EntityManager.DetectCollisionDirection(this, enemy) == (int)CollisionDirection.DOWN) { this.Position = new Vector2(this.Position.X, (int)enemy.Position.Y - (int)this.CollisionBox.Height); }
                 
                 changeStateUponCollision(enemy);
-                this.CollisionBox = new Rectangle((int)Position.X, (int)Position.Y, CollisionBox.Width, CollisionBox.Height);
+                this.CollisionBox = new Rectangle(1, 1, 0, 0);
 
                 hasCollided = false; 
             }
 
             else
             {
-                MoveObjectOffset(0, 10);//perform bounce?
+                PrefromBounce(0, 10);
                 StandingTransition();
-
-                //StopAnyMotion();
-                //PreformBounce(0, 10);
-                //
-
             }
         }
 
@@ -343,7 +319,7 @@ namespace GameSpace.GameObjects.BlockObjects
             this.Velocity = new Vector2(0, 0);
         }
 
-        private void CollisionWithBumpBlock(IGameObjects entity)
+        private void CollisionWithBlock(IGameObjects entity)
         {
 
             if (EntityManager.DetectCollisionDirection(this, entity) == (int)CollisionDirection.LEFT) 
@@ -359,7 +335,6 @@ namespace GameSpace.GameObjects.BlockObjects
             else if (EntityManager.DetectCollisionDirection(this, entity) == (int)CollisionDirection.UP) 
             {
                 this.Position = new Vector2(this.Position.X, (int)entity.Position.Y + (int)entity.CollisionBox.Height);
-                //this.FallingTransition(); // broken 
             }
 
             else if (EntityManager.DetectCollisionDirection(this, entity) == (int)CollisionDirection.DOWN) 
@@ -367,86 +342,150 @@ namespace GameSpace.GameObjects.BlockObjects
                 this.Position = new Vector2(this.Position.X, (int)entity.Position.Y - (int)this.CollisionBox.Height);
             }
 
-            
-
             changeStateUponCollision(entity);//Change state upon collision
             this.CollisionBox = new Rectangle((int)Position.X, (int)Position.Y, CollisionBox.Width, CollisionBox.Height);
         }
 
-        private void CollisionWithBrickBlock(IGameObjects entity)
-        {
+        //private void CollisionWithHiddenBlock(IGameObjects entity)
+        //{
+        //    HiddenBlock hBlock = (HiddenBlock)entity;
+        //    if(hBlock.hasCollided == false)
+        //    {
+        //        //if (EntityManager.DetectCollisionDirection(this, entity) == (int)CollisionDirection.UP) { this.Position = new Vector2(this.Position.X, (int)entity.Position.Y + (int)entity.CollisionBox.Height); FallingTransition(); }
 
-            if (EntityManager.DetectCollisionDirection(this, entity) == (int)CollisionDirection.LEFT) { this.Position = new Vector2((int)entity.Position.X - (int)this.CollisionBox.Width, (int)this.Position.Y); }
+        //    }
+        //    else if(hBlock.hasCollided == true)
+        //    {
+        //        if (EntityManager.DetectCollisionDirection(this, entity) == (int)CollisionDirection.LEFT) { this.Position = new Vector2((int)entity.Position.X - (int)this.CollisionBox.Width, (int)this.Position.Y); }
 
-            else if (EntityManager.DetectCollisionDirection(this, entity) == (int)CollisionDirection.RIGHT) { this.Position = new Vector2((int)entity.Position.X + (int)entity.CollisionBox.Width, (int)this.Position.Y); }
+        //        else if (EntityManager.DetectCollisionDirection(this, entity) == (int)CollisionDirection.RIGHT) 
+        //        {
+        //            //this.Velocity = new Vector2(this.Velocity.X, this.Velocity.Y - this.Velocity.Y);
+        //            this.Position = new Vector2((int)entity.Position.X + (int)entity.CollisionBox.Width, (int)this.Position.Y);
+        //        }
 
-            else if (EntityManager.DetectCollisionDirection(this, entity) == (int)CollisionDirection.UP)
-            {
-                this.Position = new Vector2(this.Position.X, (int)entity.Position.Y + (int)entity.CollisionBox.Height);
-                //this.FallingTransition(); // broken 
+        //        else if (EntityManager.DetectCollisionDirection(this, entity) == (int)CollisionDirection.UP) {
 
-            }
+        //            //this.Velocity = new Vector2(this.Velocity.X, this.Velocity.Y - this.Velocity.Y); 
+        //            this.Position = new Vector2(this.Position.X, (int)entity.Position.Y + (int)entity.CollisionBox.Height); 
 
-            else if (EntityManager.DetectCollisionDirection(this, entity) == (int)CollisionDirection.DOWN)
-            {
-                this.Position = new Vector2(this.Position.X, (int)entity.Position.Y - (int)this.CollisionBox.Height);
-            }
+        //        }
 
+        //        else if (EntityManager.DetectCollisionDirection(this, entity) == (int)CollisionDirection.DOWN) { this.Position = new Vector2(this.Position.X, (int)entity.Position.Y - (int)this.CollisionBox.Height); }
+        //        changeStateUponCollision(entity);
+        //    }
 
+        //        this.CollisionBox = new Rectangle((int)Position.X, (int)Position.Y, CollisionBox.Width, CollisionBox.Height);
+        //}
 
-            changeStateUponCollision(entity);//Change state upon collision
-            this.CollisionBox = new Rectangle((int)Position.X, (int)Position.Y, CollisionBox.Width, CollisionBox.Height);
-        }
-
-        private void CollisionWithUsedBlock(IGameObjects entity)
-        {
-
-            if (EntityManager.DetectCollisionDirection(this, entity) == (int)CollisionDirection.LEFT) { this.Position = new Vector2((int)entity.Position.X - (int)this.CollisionBox.Width, (int)this.Position.Y); }
-
-            else if (EntityManager.DetectCollisionDirection(this, entity) == (int)CollisionDirection.RIGHT) { this.Position = new Vector2((int)entity.Position.X + (int)entity.CollisionBox.Width, (int)this.Position.Y); }
-
-            else if (EntityManager.DetectCollisionDirection(this, entity) == (int)CollisionDirection.UP) { this.Position = new Vector2(this.Position.X, (int)entity.Position.Y + (int)entity.CollisionBox.Height); }
-
-            else if (EntityManager.DetectCollisionDirection(this, entity) == (int)CollisionDirection.DOWN) { this.Position = new Vector2(this.Position.X, (int)entity.Position.Y - (int)this.CollisionBox.Height); }
-            
-
-            changeStateUponCollision(entity);//Change state upon collision
-            this.CollisionBox = new Rectangle((int)Position.X, (int)Position.Y, CollisionBox.Width, CollisionBox.Height);
-
-        }
 
         private void CollisionWithHiddenBlock(IGameObjects entity)
         {
             HiddenBlock hBlock = (HiddenBlock)entity;
-            if(hBlock.hasCollided == false)
+            if (hBlock.hasCollided)
             {
-                //if (EntityManager.DetectCollisionDirection(this, entity) == (int)CollisionDirection.UP) { this.Position = new Vector2(this.Position.X, (int)entity.Position.Y + (int)entity.CollisionBox.Height); FallingTransition(); }
-                
-            }
-            else if(hBlock.hasCollided == true)
-            {
-                if (EntityManager.DetectCollisionDirection(this, entity) == (int)CollisionDirection.LEFT) { this.Position = new Vector2((int)entity.Position.X - (int)this.CollisionBox.Width, (int)this.Position.Y); }
+                if (EntityManager.DetectCollisionDirection(this, entity) == (int)CollisionDirection.LEFT) 
+                {        
+                    this.Position = new Vector2((int)entity.Position.X - (int)this.CollisionBox.Width, (int)this.Position.Y); 
+                }
 
-                else if (EntityManager.DetectCollisionDirection(this, entity) == (int)CollisionDirection.RIGHT) 
+                else if (EntityManager.DetectCollisionDirection(this, entity) == (int)CollisionDirection.RIGHT)
                 {
-                    //this.Velocity = new Vector2(this.Velocity.X, this.Velocity.Y - this.Velocity.Y);
                     this.Position = new Vector2((int)entity.Position.X + (int)entity.CollisionBox.Width, (int)this.Position.Y);
                 }
 
-                else if (EntityManager.DetectCollisionDirection(this, entity) == (int)CollisionDirection.UP) {
-
-                    //this.Velocity = new Vector2(this.Velocity.X, this.Velocity.Y - this.Velocity.Y); 
-                    this.Position = new Vector2(this.Position.X, (int)entity.Position.Y + (int)entity.CollisionBox.Height); 
-                
+                else if (EntityManager.DetectCollisionDirection(this, entity) == (int)CollisionDirection.UP)
+                {
+                    this.Position = new Vector2(this.Position.X, (int)entity.Position.Y + (int)entity.CollisionBox.Height);
                 }
 
-                else if (EntityManager.DetectCollisionDirection(this, entity) == (int)CollisionDirection.DOWN) { this.Position = new Vector2(this.Position.X, (int)entity.Position.Y - (int)this.CollisionBox.Height); }
+                else if (EntityManager.DetectCollisionDirection(this, entity) == (int)CollisionDirection.DOWN)
+                
+                { 
+                    this.Position = new Vector2(this.Position.X, (int)entity.Position.Y - (int)this.CollisionBox.Height); 
+                }
+
                 changeStateUponCollision(entity);
             }
 
-                this.CollisionBox = new Rectangle((int)Position.X, (int)Position.Y, CollisionBox.Width, CollisionBox.Height);
-
+            this.CollisionBox = new Rectangle((int)Position.X, (int)Position.Y, CollisionBox.Width, CollisionBox.Height);
         }
+
+
+        //private void CollisionWithBrickBlock(IGameObjects entity)
+        //{
+
+        //    if (EntityManager.DetectCollisionDirection(this, entity) == (int)CollisionDirection.LEFT) { this.Position = new Vector2((int)entity.Position.X - (int)this.CollisionBox.Width, (int)this.Position.Y); }
+
+        //    else if (EntityManager.DetectCollisionDirection(this, entity) == (int)CollisionDirection.RIGHT) { this.Position = new Vector2((int)entity.Position.X + (int)entity.CollisionBox.Width, (int)this.Position.Y); }
+
+        //    else if (EntityManager.DetectCollisionDirection(this, entity) == (int)CollisionDirection.UP)
+        //    {
+        //        this.Position = new Vector2(this.Position.X, (int)entity.Position.Y + (int)entity.CollisionBox.Height);
+        //        //this.FallingTransition(); // broken 
+
+        //    }
+
+        //    else if (EntityManager.DetectCollisionDirection(this, entity) == (int)CollisionDirection.DOWN)
+        //    {
+        //        this.Position = new Vector2(this.Position.X, (int)entity.Position.Y - (int)this.CollisionBox.Height);
+        //    }
+
+
+
+        //    changeStateUponCollision(entity);//Change state upon collision
+        //    this.CollisionBox = new Rectangle((int)Position.X, (int)Position.Y, CollisionBox.Width, CollisionBox.Height);
+        //}
+
+        //private void CollisionWithUsedBlock(IGameObjects entity)
+        //{
+
+        //    if (EntityManager.DetectCollisionDirection(this, entity) == (int)CollisionDirection.LEFT) { this.Position = new Vector2((int)entity.Position.X - (int)this.CollisionBox.Width, (int)this.Position.Y); }
+
+        //    else if (EntityManager.DetectCollisionDirection(this, entity) == (int)CollisionDirection.RIGHT) { this.Position = new Vector2((int)entity.Position.X + (int)entity.CollisionBox.Width, (int)this.Position.Y); }
+
+        //    else if (EntityManager.DetectCollisionDirection(this, entity) == (int)CollisionDirection.UP) { this.Position = new Vector2(this.Position.X, (int)entity.Position.Y + (int)entity.CollisionBox.Height); }
+
+        //    else if (EntityManager.DetectCollisionDirection(this, entity) == (int)CollisionDirection.DOWN) { this.Position = new Vector2(this.Position.X, (int)entity.Position.Y - (int)this.CollisionBox.Height); }
+
+
+        //    changeStateUponCollision(entity);//Change state upon collision
+        //    this.CollisionBox = new Rectangle((int)Position.X, (int)Position.Y, CollisionBox.Width, CollisionBox.Height);
+
+        //}
+
+        //private void CollisionWithHiddenBlock(IGameObjects entity)
+        //{
+        //    HiddenBlock hBlock = (HiddenBlock)entity;
+        //    if(hBlock.hasCollided == false)
+        //    {
+        //        //if (EntityManager.DetectCollisionDirection(this, entity) == (int)CollisionDirection.UP) { this.Position = new Vector2(this.Position.X, (int)entity.Position.Y + (int)entity.CollisionBox.Height); FallingTransition(); }
+
+        //    }
+        //    else if(hBlock.hasCollided == true)
+        //    {
+        //        if (EntityManager.DetectCollisionDirection(this, entity) == (int)CollisionDirection.LEFT) { this.Position = new Vector2((int)entity.Position.X - (int)this.CollisionBox.Width, (int)this.Position.Y); }
+
+        //        else if (EntityManager.DetectCollisionDirection(this, entity) == (int)CollisionDirection.RIGHT) 
+        //        {
+        //            //this.Velocity = new Vector2(this.Velocity.X, this.Velocity.Y - this.Velocity.Y);
+        //            this.Position = new Vector2((int)entity.Position.X + (int)entity.CollisionBox.Width, (int)this.Position.Y);
+        //        }
+
+        //        else if (EntityManager.DetectCollisionDirection(this, entity) == (int)CollisionDirection.UP) {
+
+        //            //this.Velocity = new Vector2(this.Velocity.X, this.Velocity.Y - this.Velocity.Y); 
+        //            this.Position = new Vector2(this.Position.X, (int)entity.Position.Y + (int)entity.CollisionBox.Height); 
+
+        //        }
+
+        //        else if (EntityManager.DetectCollisionDirection(this, entity) == (int)CollisionDirection.DOWN) { this.Position = new Vector2(this.Position.X, (int)entity.Position.Y - (int)this.CollisionBox.Height); }
+        //        changeStateUponCollision(entity);
+        //    }
+
+        //        this.CollisionBox = new Rectangle((int)Position.X, (int)Position.Y, CollisionBox.Width, CollisionBox.Height);
+
+        //}
 
         private void CollisionWithFireFlower(IGameObjects entity)
         {
@@ -472,17 +511,7 @@ namespace GameSpace.GameObjects.BlockObjects
             
         }
 
-        private void MoveObjectOffset(int offsetX, int offsetY)
-        {
-            //this.CollisionBox = new Rectangle((int)(Position.X - offsetX) + Sprite.Texture.Width / 2,
-            //(int)(Position.Y - offsetY), Sprite.Texture.Width / 12, Sprite.Texture.Height / 6);
-            //this.CollisionBox = new Rectangle((int)(CollisionBox.X - offsetX), (int)CollisionBox.Y - offsetY, CollisionBox.Width, CollisionBox.Height);
-            //(int)(Position.Y - offsetY), Sprite.Texture.Width / 12, Sprite.Texture.Height / 6);
-            this.Position = new Vector2((int)(Position.X - offsetX), (int)(Position.Y - offsetY));
-            this.CollisionBox = new Rectangle((int)Position.X, (int)Position.Y, CollisionBox.Width, CollisionBox.Height);
-        }
-
-        private void PreformBounce(int offsetX, int offsetY)
+        private void PrefromBounce(int offsetX, int offsetY)
         {
             this.Position = new Vector2((int)(Position.X - offsetX), (int)(Position.Y - offsetY));
             this.CollisionBox = new Rectangle((int)Position.X, (int)Position.Y, CollisionBox.Width, CollisionBox.Height);

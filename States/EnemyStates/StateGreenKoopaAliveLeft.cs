@@ -21,7 +21,6 @@ namespace GameSpace.States.StateMachines
             this.GreenKoopa = greenKoopa;
             this.GreenKoopa.state = this;
             this.GreenKoopa.Velocity = new Vector2((float)-1, (float)0);
-
         }
 
         public void Draw(SpriteBatch spritebatch, Vector2 location)
