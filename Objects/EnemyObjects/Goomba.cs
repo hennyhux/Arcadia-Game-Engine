@@ -114,12 +114,12 @@ namespace GameSpace.GameObjects.EnemyObjects
         {
             if (EntityManager.DetectCollisionDirection(this, block) == (int)CollisionDirection.LEFT)
             {
-                direction = (int)eFacing.RIGHT;
+                direction = (int)eFacing.LEFT;
             }
 
             else if (EntityManager.DetectCollisionDirection(this, block) == (int)CollisionDirection.RIGHT)
             {
-                direction = (int)eFacing.LEFT;
+                direction = (int)eFacing.RIGHT;
             }
 
             else if (EntityManager.DetectCollisionDirection(this, block) == (int)CollisionDirection.UP)
