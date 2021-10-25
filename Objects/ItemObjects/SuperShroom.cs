@@ -40,7 +40,7 @@ namespace GameSpace.GameObjects.ItemObjects
 
             
 
-            this.state = new StateSuperShroomLeft(this);
+            //this.state = new StateSuperShroomLeft(this);
         }
 
         public void Draw(SpriteBatch spritebatch)
@@ -52,6 +52,9 @@ namespace GameSpace.GameObjects.ItemObjects
         public void Update(GameTime gametime)
         {
             UpdatePosition(Position, gametime);
+            Sprite.Update(gametime);
+
+            SetPosition(Position);
             Sprite.Update(gametime);
         }
 
@@ -120,6 +123,5 @@ namespace GameSpace.GameObjects.ItemObjects
             this.CollisionBox = new Rectangle((int)location.X + state.StateSprite.Texture.Width / 2 -10, (int)Position.Y,
                 state.StateSprite.Texture.Width *2 , state.StateSprite.Texture.Height *2);
         }
-
     }
 }
