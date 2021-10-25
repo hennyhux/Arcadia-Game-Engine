@@ -49,14 +49,14 @@ namespace GameSpace.GameObjects.EnemyObjects
         public void Update(GameTime gametime)
         {
             state.Update(gametime);
-            UpdatePosition(Position, gametime);
+            UpdatePosition(Position);
         }
 
         public void Trigger()
         {
         }
 
-        public void UpdatePosition(Vector2 location, GameTime gameTime) //use velocity
+        public void UpdatePosition(Vector2 location) //use velocity
         {
             this.Position = new Vector2(location.X + this.Velocity.X, location.Y);
             UpdateCollisionBox(this.Position);
@@ -155,6 +155,11 @@ namespace GameSpace.GameObjects.EnemyObjects
         {
             this.CollisionBox = new Rectangle((int)location.X + state.StateSprite.Texture.Width / 4 + 2, (int)Position.Y,
                 state.StateSprite.Texture.Width / 2, state.StateSprite.Texture.Height * 2);
+        }
+
+        public void UpdatePosition(Vector2 location, GameTime gametime)
+        {
+            throw new NotImplementedException();
         }
         #endregion
     }

@@ -33,7 +33,6 @@ namespace GameSpace.Objects.BlockObjects
         public BrickBlockOneShroom(Vector2 initialPosition)
         {
             state = new StateBrickBlockIdle();
-            ObjectID = (int)BlockID.COINBRICKBLOCK;
             Position = initialPosition;
             Sprite = SpriteBlockFactory.GetInstance().ReturnBrickBlock(); // we could delete this line to save memory but i believe the garbage collector will get it 
             this.CollisionBox = new Rectangle((int)Position.X, (int)Position.Y, Sprite.Texture.Width * 2, Sprite.Texture.Height * 2);

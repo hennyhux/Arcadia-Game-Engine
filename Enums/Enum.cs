@@ -29,7 +29,7 @@ namespace GameSpace.Enums
         SMALLPIPE = 14,
         FLAGPOLE = 15,
         CASTLE = 16,
-        FIREBALL = 17;
+        FIREBALL = 17
     };
 
     public enum EnemyID: int
