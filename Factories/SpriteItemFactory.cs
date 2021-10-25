@@ -16,6 +16,7 @@ namespace GameSpace.Factories
         private Texture2D OneUpShroom;
         private Texture2D SuperShroom;
         private Texture2D FireFlower;
+        private Texture2D FireBall;
         #endregion
         private static SpriteItemFactory instance = new SpriteItemFactory();
         public static SpriteItemFactory GetInstance() => instance;
@@ -31,6 +32,7 @@ namespace GameSpace.Factories
             OneUpShroom = content.Load<Texture2D>("Items/1upshroom");
             SuperShroom = content.Load<Texture2D>("Items/supermushroom");
             FireFlower = content.Load<Texture2D>("Items/flower");
+            FireBall = content.Load<Texture2D>("Items/FireBalls");
         }
         public ISprite CreateStar()
         {
@@ -53,6 +55,11 @@ namespace GameSpace.Factories
         }
 
         public ISprite CreateCoin()
+        {
+            return new CoinSprite(Coin, 1, 4, 4, 0, 0);
+        }
+
+        public ISprite CreateFireBall()
         {
             return new CoinSprite(Coin, 1, 4, 4, 0, 0);
         }
