@@ -41,8 +41,8 @@ namespace GameSpace
         public Mario GetMario { get => (Mario)EntityManager.FindItem((int)AvatarID.MARIO); }
         public GraphicsDeviceManager Graphics { get => graphics; }
 
-        //string xmlFileName = "../../../TileMapDefinition/HenryTestingDontEdit2.xml";
-        string xmlFileName = "../../../TileMapDefinition/Testing2.xml";
+        string xmlFileName = "../../../TileMapDefinition/HenryTestingDontEdit2.xml";
+        //string xmlFileName = "../../../TileMapDefinition/Testing2.xml";
         //string xmlFileName;
         public GameRoot()
         {
@@ -77,7 +77,7 @@ namespace GameSpace
 
             #region Loading Lists
             objects = Loader.Load(xmlFileName);
-            objects = Loader.LoadEverything("../../../TileMapDefinition/Level1.xml");
+            //objects = Loader.LoadEverything("../../../TileMapDefinition/Level1.xml");
             #endregion
 
             #region Load EntityManager
@@ -139,8 +139,6 @@ namespace GameSpace
             EntityManager.Draw(spriteBatch);
             spriteBatch.End();
             base.Draw(gameTime);
-
-
         }
     }
 }

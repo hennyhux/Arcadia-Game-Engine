@@ -60,7 +60,7 @@
 
 	<Obstacle>
 		<block>BRICKBLOCK</block>
-		<item>NOITEM</item>
+		<item>FIREFLOWER</item>
 		<x>560</x>
 		<y>172</y>
 	</Obstacle>
@@ -68,20 +68,16 @@
 
 
 
-
-
-
-
 	<Obstacle>
 		<block>BRICKBLOCK</block>
-		<item>NOITEM</item>
+		<item>FIREFLOWER</item>
 		<x>272</x>
 		<y>368</y>
 	</Obstacle>
 
 	<Obstacle>
-		<block>BRICKBLOCK</block>
-		<item>NOITEM</item>
+		<block>QUESTIONBLOCK</block>
+		<item>FIREFLOWER</item>
 		<x>272</x>
 		<y>400</y>
 	</Obstacle>

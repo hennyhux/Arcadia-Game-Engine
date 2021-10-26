@@ -200,6 +200,7 @@ namespace GameSpace.TileMapDefinition
                         if (obstacleObject.item == ItemID.STAR) objectsList.Add(objectFactory.CreateStarBrickBlock(location));
                         if (obstacleObject.item == ItemID.ONEUPSHROOM) objectsList.Add(objectFactory.CreateOneUpShroomBrickBlock(location));
                         if (obstacleObject.item == ItemID.SUPERSHROOM) objectsList.Add(objectFactory.CreateSuperShroomBrickBlock(location));
+                        if (obstacleObject.item == ItemID.FIREFLOWER) objectsList.Add(objectFactory.CreateFireBrickBlock(location));
                         break;
 
                     case BlockID.QUESTIONBLOCK:
@@ -207,6 +208,7 @@ namespace GameSpace.TileMapDefinition
                         if (obstacleObject.item == ItemID.STAR) objectsList.Add(objectFactory.CreateQuestionBlockStar(location));
                         if (obstacleObject.item == ItemID.ONEUPSHROOM) objectsList.Add(objectFactory.CreateQuestionBlockOneUpShroom(location));
                         if (obstacleObject.item == ItemID.SUPERSHROOM) objectsList.Add(objectFactory.CreateQuestionBlockShroom(location));
+                        if (obstacleObject.item == ItemID.FIREFLOWER) objectsList.Add(objectFactory.CreateQuestionBlockFire(location));
                         break;
                     case BlockID.FLOORBLOCK:
                         objectsList.Add(objectFactory.CreateFloorBlockObject(location));
