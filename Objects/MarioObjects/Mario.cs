@@ -184,7 +184,7 @@ namespace GameSpace.GameObjects.BlockObjects
 
         public void DeadTransition() 
         {
-            this.CollisionBox = new Rectangle((int)Position.X, (int)Position.Y + 32, 0, 0);
+            this.CollisionBox = new Rectangle(0, 0, 0, 0);
             marioPowerUpState.DeadTransition();
         }
 
@@ -300,6 +300,7 @@ namespace GameSpace.GameObjects.BlockObjects
                 EntityManager.DetectCollisionDirection(this, enemy) == (int)CollisionDirection.RIGHT || 
                 EntityManager.DetectCollisionDirection(this, enemy) == (int)CollisionDirection.DOWN)
             {
+                this.CollisionBox = new Rectangle(1, 1, 0, 0);
                 this.DeadTransition();
                 this.CollisionBox = new Rectangle(1, 1, 0, 0);
 

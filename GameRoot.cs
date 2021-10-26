@@ -135,7 +135,6 @@ namespace GameSpace
             //Camera Stuff- Centered Mario
             camera.LookAt(new Vector2(GetMario.Position.X + GetMario.CollisionBox.Width / 2, GraphicsDevice.Viewport.Height / 2));
 
-
         }
 
         protected override void Draw(GameTime gameTime)
