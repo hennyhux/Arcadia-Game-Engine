@@ -76,6 +76,7 @@ namespace GameSpace
 
             #region Loading Lists
             objects = Loader.Load(xmlFileName);
+            //objects = Loader.LoadEverything("../../../TileMapDefinition/Level1.xml");
             #endregion
 
             #region Load EntityManager
@@ -96,7 +97,7 @@ namespace GameSpace
             }
 
             //Camera Stuff
-            camera = new Camera(GraphicsDevice.Viewport) { Limits = new Rectangle(0, 0, 1100, 600) };//Should be set to level's max X and Y
+            camera = new Camera(GraphicsDevice.Viewport) { Limits = new Rectangle(0, 0, 100000, 600) };//Should be set to level's max X and Y
 
             EntityManager.AddCamera(camera);
 
