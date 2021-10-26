@@ -50,8 +50,8 @@ namespace GameSpace
         public Mario GetMario { get => (Mario)EntityManager.FindItem((int)AvatarID.MARIO);  }
         public GraphicsDeviceManager Graphics { get => graphics; }
         
-        //string xmlFileName = "../../../TileMapDefinition/HenryTestingDontEdit.xml";
-        string xmlFileName = "../../../TileMapDefinition/JohnTestingDontEdit.xml";
+        string xmlFileName = "../../../TileMapDefinition/HenryTestingDontEdit2.xml";
+        //string xmlFileName = "../../../TileMapDefinition/JohnTestingDontEdit.xml";
         public GameRoot()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -117,7 +117,7 @@ namespace GameSpace
             //bg = Content.Load<Texture2D>("Background/Temp_BG");
             bg = Content.Load<Texture2D>("Background/small_BG");
             background = new BackgroundSprite(bg);
-
+            EntityManager.AddCamera(camera);
             //MANUAL Stuff/ WILL BE CHANGED
             // Create 9 layers with parallax ranging from 0% to 100% (only horizontal)
             layers = new List<Layer>
@@ -198,8 +198,6 @@ namespace GameSpace
             EntityManager.Draw(spriteBatch);
             spriteBatch.End();
             base.Draw(gameTime);
-
-
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using GameSpace.EntitiesManager;
+﻿using GameSpace.Camera2D;
+using GameSpace.EntitiesManager;
 using GameSpace.Enums;
 using GameSpace.Factories;
 using GameSpace.Interfaces;
@@ -59,10 +60,16 @@ namespace GameSpace.GameObjects.EnemyObjects
         public void Update(GameTime gametime)
         {
             state.Update(gametime);
-            if (!hasCollidedOnTop) UpdatePosition(Position, gametime);
+            if (!hasCollidedOnTop && IsInview()) UpdatePosition(Position, gametime);
             if (countDown == 90) state.StateSprite.SetVisible();
         }
 
+        private bool IsInview()
+        {
+            Camera copyCam = EntityManager.Camera;
+            Debug.WriteLine(copyCam.Position.X);
+            return (Position.X > copyCam.Position.X && Position.X < copyCam.Position.X + 800);
+        }
         public void Trigger()
         {
             state = new StateGoombaDead();
@@ -74,7 +81,6 @@ namespace GameSpace.GameObjects.EnemyObjects
 
             if (EntityManager.IsGoingToFall(this))
             {
-
                 //Velocity = new Vector2(0, Velocity.Y);
                 Acceleration = new Vector2(0, 400);
             }
