@@ -27,7 +27,7 @@ namespace GameSpace.GameObjects.EnemyObjects
         private Boolean drawBox;
         private Boolean inFrame; //is the current enemy inside of the viewport? 
         public int direction;
-
+        public Rectangle ExpandedCollisionBox { get; set; }
 
         public RedKoopa(Vector2 initalPosition)
         {
@@ -37,6 +37,8 @@ namespace GameSpace.GameObjects.EnemyObjects
             inFrame = true;
             this.Position = initalPosition;
             this.state = new StateRedKoopaAliveLeft(this);
+            Sprite = SpriteEnemyFactory.GetInstance().CreateRedKoopaSprite();
+            ExpandedCollisionBox = new Rectangle((int)(Position.X + Sprite.Texture.Width / 32), (int)Position.Y, Sprite.Texture.Width, Sprite.Texture.Height * 3);
             UpdateCollisionBox(Position);
         }
 
@@ -49,17 +51,34 @@ namespace GameSpace.GameObjects.EnemyObjects
         public void Update(GameTime gametime)
         {
             state.Update(gametime);
-            UpdatePosition(Position);
+            UpdatePosition(Position, gametime);
         }
 
         public void Trigger()
         {
+
         }
 
-        public void UpdatePosition(Vector2 location) //use velocity
+        public void UpdatePosition(Vector2 location, GameTime gameTime) //use velocity
         {
-            this.Position = new Vector2(location.X + this.Velocity.X, location.Y);
-            UpdateCollisionBox(this.Position);
+            if (EntityManager.IsGoingToFall(this))
+            {
+
+                Velocity = new Vector2(0, Velocity.Y);
+                Acceleration = new Vector2(0, 400);
+            }
+
+            else if (!EntityManager.IsGoingToFall(this))
+            {
+                Acceleration = new Vector2(0, 0);
+                if (direction == (int)eFacing.RIGHT && !(state is StateRedKoopaDead)) Velocity = new Vector2(85, 0);
+                if (direction == (int)eFacing.LEFT && !(state is StateRedKoopaDead)) Velocity = new Vector2(-85, 0);
+            }
+
+            Velocity += Acceleration * (float)gameTime.ElapsedGameTime.TotalSeconds;
+            Position += Velocity * (float)gameTime.ElapsedGameTime.TotalSeconds;
+
+            UpdateCollisionBox(Position);
         }
 
         public void HandleCollision(IGameObjects entity)
@@ -155,11 +174,10 @@ namespace GameSpace.GameObjects.EnemyObjects
         {
             this.CollisionBox = new Rectangle((int)location.X + state.StateSprite.Texture.Width / 4 + 2, (int)Position.Y,
                 state.StateSprite.Texture.Width / 2, state.StateSprite.Texture.Height * 2);
-        }
 
-        public void UpdatePosition(Vector2 location, GameTime gametime)
-        {
-            throw new NotImplementedException();
+            this.ExpandedCollisionBox = new Rectangle((int)location.X + state.StateSprite.Texture.Width / 4 - 6, (int)Position.Y,
+             state.StateSprite.Texture.Width, (state.StateSprite.Texture.Height * 2) + 3);
+
         }
         #endregion
     }

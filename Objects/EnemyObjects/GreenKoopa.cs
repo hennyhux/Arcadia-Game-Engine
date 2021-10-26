@@ -28,15 +28,19 @@ namespace GameSpace.GameObjects.EnemyObjects
         private Boolean inFrame; //is the current enemy inside of the viewport? 
         public int direction;
 
+        public Rectangle ExpandedCollisionBox { get; set; }
+
 
         public GreenKoopa(Vector2 initalPosition)
         {
             ObjectID = (int)EnemyID.GREENKOOPA;
-            direction = (int)eFacing.LEFT;
+            direction = (int)eFacing.RIGHT;
             drawBox = false;
             inFrame = true;
-            Velocity = new Vector2(0.8f, 0);
-            
+            Velocity = new Vector2(0, 0);
+            Acceleration = new Vector2(0, 0);
+            Sprite = SpriteEnemyFactory.GetInstance().CreateGreenKoopaSprite();
+            ExpandedCollisionBox = new Rectangle((int)(Position.X + Sprite.Texture.Width / 32), (int)Position.Y, Sprite.Texture.Width, Sprite.Texture.Height * 3);
             this.Position = initalPosition;
             this.state = new StateGreenKoopaAliveRight(this);
             UpdateCollisionBox(Position);
@@ -61,8 +65,24 @@ namespace GameSpace.GameObjects.EnemyObjects
 
         public void UpdatePosition(Vector2 location , GameTime gameTime)
         {
-            this.Position = new Vector2(location.X + this.Velocity.X, location.Y);
-            UpdateCollisionBox(this.Position);
+            if (EntityManager.IsGoingToFall(this))
+            {
+
+                Velocity = new Vector2(0, Velocity.Y);
+                Acceleration = new Vector2(0, 400);
+            }
+
+            else if (!EntityManager.IsGoingToFall(this))
+            {
+                Acceleration = new Vector2(0, 0);
+                if (direction == (int)eFacing.RIGHT && !(state is StateGreenKoopaDead)) Velocity = new Vector2(85, 0);
+                if (direction == (int)eFacing.LEFT && !(state is StateGreenKoopaDead)) Velocity = new Vector2(-85, 0);
+            }
+
+            Velocity += Acceleration * (float)gameTime.ElapsedGameTime.TotalSeconds;
+            Position += Velocity * (float)gameTime.ElapsedGameTime.TotalSeconds;
+
+            UpdateCollisionBox(Position);
         }
 
         public void HandleCollision(IGameObjects entity)
@@ -160,6 +180,10 @@ namespace GameSpace.GameObjects.EnemyObjects
         {
             this.CollisionBox = new Rectangle((int)location.X + state.StateSprite.Texture.Width / 4 + 2, (int)Position.Y,
                 state.StateSprite.Texture.Width / 2, state.StateSprite.Texture.Height * 2);
+
+            this.ExpandedCollisionBox = new Rectangle((int)location.X + state.StateSprite.Texture.Width / 4 - 6, (int)Position.Y,
+               state.StateSprite.Texture.Width, (state.StateSprite.Texture.Height * 2) + 3);
+
         }
         #endregion
     }

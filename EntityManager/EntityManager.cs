@@ -110,6 +110,32 @@ namespace GameSpace.EntitiesManager
                 }
             }
 
+            if (enemy is GreenKoopa)
+            {
+                GreenKoopa copy = (GreenKoopa)enemy;
+                foreach (IGameObjects entity in copyPrunedList)
+                {
+                    if (copy.ExpandedCollisionBox.Intersects(entity.CollisionBox) && entity.ObjectID != copy.ObjectID)
+                    {
+                        gonnaFall = false;
+                        break;
+                    }
+                }
+            }
+
+            if (enemy is RedKoopa)
+            {
+                RedKoopa copy = (RedKoopa)enemy;
+                foreach (IGameObjects entity in copyPrunedList)
+                {
+                    if (copy.ExpandedCollisionBox.Intersects(entity.CollisionBox) && entity.ObjectID != copy.ObjectID)
+                    {
+                        gonnaFall = false;
+                        break;
+                    }
+                }
+            }
+
             return gonnaFall;
         }
 
@@ -189,9 +215,6 @@ namespace GameSpace.EntitiesManager
 
         }
 
-
-
-
        public static int DetectCollisionDirection(IGameObjects a, IGameObjects b)
        {
             Rectangle overLappedRectangle = Rectangle.Intersect(a.CollisionBox, b.CollisionBox);
@@ -224,27 +247,6 @@ namespace GameSpace.EntitiesManager
         }
 
         #endregion
-    }
-
-
-    public class EntityFinder
-    {
-        private static readonly EntityFinder Instance = new EntityFinder();
-        public static EntityFinder GetInstance()
-        {
-            return Instance;
-        }
-
-        private EntityFinder()
-        {
-            
-        }
-
-        public IGameObjects FindItem(int ItemID)
-        {
-            return null;
-        }
-
     }
 }
 

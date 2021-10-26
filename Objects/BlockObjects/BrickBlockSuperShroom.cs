@@ -25,6 +25,7 @@ namespace GameSpace.Objects.BlockObjects
         public int ObjectID { get; set; }
 
         private bool drawBox;
+        private bool revealedItem;
         private IBlockStates state;
         private IGameObjects shroom;
         private GameTime internalGameTime;
@@ -38,6 +39,7 @@ namespace GameSpace.Objects.BlockObjects
             Sprite = SpriteBlockFactory.GetInstance().ReturnBrickBlock(); // we could delete this line to save memory but i believe the garbage collector will get it 
             this.CollisionBox = new Rectangle((int)Position.X, (int)Position.Y, Sprite.Texture.Width * 2, Sprite.Texture.Height * 2);
             drawBox = false;
+            revealedItem = false;
         }
 
         public void Draw(SpriteBatch spritebatch)
@@ -57,10 +59,17 @@ namespace GameSpace.Objects.BlockObjects
             switch (entity.ObjectID)
             {
                 case (int)AvatarID.MARIO:
-                    this.Trigger();
+                    CollisionWithMario(entity);
                     break;
             }
 
+        }
+        private void CollisionWithMario(IGameObjects entity)
+        {
+            if (EntityManager.DetectCollisionDirection(this, entity) == (int)CollisionDirection.DOWN)
+            {
+                if (!revealedItem) this.Trigger();
+            }
         }
 
         public void ToggleCollisionBoxes()
@@ -73,6 +82,7 @@ namespace GameSpace.Objects.BlockObjects
             state = new StateBrickBlockBumped(this);
             shroom = ObjectFactory.GetInstance().CreateSuperShroomObject(new Vector2(Position.X - 4, Position.Y - Sprite.Texture.Height * 2 - 4));
             EntityManager.AddEntity(shroom);
+            revealedItem = true;
         }
 
         public bool IsCurrentlyColliding()

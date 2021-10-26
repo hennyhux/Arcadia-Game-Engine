@@ -65,7 +65,7 @@ namespace GameSpace.Factories
 
         public IGameObjects CreateCoinBrickBlock(Vector2 location)
         {
-            return new CoinBrickBlock(location);
+            return new BrickBlockCoin(location);
         }
 
         public IGameObjects CreateStarBrickBlock(Vector2 location)

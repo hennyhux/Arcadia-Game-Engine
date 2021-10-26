@@ -13,7 +13,7 @@ using System.Text;
 
 namespace GameSpace.Objects.BlockObjects
 {
-    public class CoinBrickBlock : IGameObjects
+    public class BrickBlockCoin : IGameObjects
     {
         public ISprite Sprite { get; set; }
         public Vector2 Position { get ; set ; }
@@ -28,7 +28,7 @@ namespace GameSpace.Objects.BlockObjects
         private GameTime internalGameTime;
         private SpriteBatch internalSpritebatch;
 
-        public CoinBrickBlock (Vector2 initialPosition)
+        public BrickBlockCoin (Vector2 initialPosition)
         {
             state = new SMCoinBrickBlock();
             ObjectID = (int)BlockID.COINBRICKBLOCK;
