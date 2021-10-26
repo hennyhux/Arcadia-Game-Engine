@@ -26,8 +26,8 @@ namespace GameSpace.States.MarioStates
             Mario.marioActionState = this;
             this.previousActionState = previousActionState;
            // Mario.marioPowerUpState = new FireMarioState(Mario);
-            Debug.WriteLine("MarioStandState(25) Enter, {0}", Mario.marioActionState);
-            Debug.WriteLine("MarioWalkingState(25) facing:, {0}", Mario.Facing);
+            //Debug.WriteLine("MarioStandState(25) Enter, {0}", Mario.marioActionState);
+            //Debug.WriteLine("MarioWalkingState(25) facing:, {0}", Mario.Facing);
 
             //Mario.Position = new Vector2(Mario.Position.X, Mario.Position.Y + 20);
             Mario.Velocity = new Vector2((float)0, (float)100);
@@ -38,7 +38,7 @@ namespace GameSpace.States.MarioStates
             Mario.Facing = Facing;
             //Mario.Sprite = MarioStandingState.SpriteFactory.CreateSprite(MarioSpriteFactory.MarioSpriteType(this, currentPowerUpState));
             Mario.sprite = MarioFactory.GetInstance().CreateSprite(MarioFactory.MarioSpriteType(this, Mario.marioPowerUpState));
-
+            Mario.Position = new Vector2(Mario.Position.X, Mario.Position.Y + 20);
             //Mario.sprite = MarioFactory.GetInstance().CreateSprite(1);
 
         }
