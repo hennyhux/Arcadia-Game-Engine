@@ -28,7 +28,10 @@ namespace GameSpace.States.MarioStates
             //Mario.marioPowerUpState = new BigMarioState(Mario);
             Debug.WriteLine("MarioStandState(25) Enter, {0}", Mario.marioActionState);
             Debug.WriteLine("MarioWalkingState(25) facing:, {0}", Mario.Facing);
-            Mario.Position = new Vector2(Mario.Position.X, Mario.Position.Y + 20);
+            //Mario.Position = new Vector2(Mario.Position.X, Mario.Position.Y + 20);
+            Debug.WriteLine("Y before(25) facing:, {0}", Mario.Position.Y);
+            
+
             Mario.Velocity = new Vector2((float)0, (float)100);
 
             //AABB aabb = Mario.AABB;
@@ -38,7 +41,9 @@ namespace GameSpace.States.MarioStates
             //Mario.Sprite = MarioStandingState.SpriteFactory.CreateSprite(MarioSpriteFactory.MarioSpriteType(this, currentPowerUpState));
             Mario.sprite = MarioFactory.GetInstance().CreateSprite(MarioFactory.MarioSpriteType(this, Mario.marioPowerUpState));
 
-            //Mario.sprite = MarioFactory.GetInstance().CreateSprite(1);
+            Debug.WriteLine("DIFF :, {0}", (64 - Mario.sprite.Height));
+            //Mario.Position = new Vector2(Mario.Position.X, Mario.Position.Y + (64 - Mario.sprite.Height));
+            Debug.WriteLine("Y after(25) facing:, {0}", Mario.Position.Y);
 
         }
 

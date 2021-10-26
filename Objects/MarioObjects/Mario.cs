@@ -96,19 +96,20 @@ namespace GameSpace.GameObjects.BlockObjects
                 
                 Position += newLocation;
             }
-            else
-            {
-
-            }
             //this.CollisionBox = new Rectangle((int)Position.X, (int)Position.Y, CollisionBox.Width, CollisionBox.Height);
             if(!(marioPowerUpState is GameSpace.States.BlockStates.DeadMarioState)){
                 if (marioPowerUpState is SmallMarioState)
                 {
                     this.CollisionBox = new Rectangle((int)Position.X, (int)Position.Y, 32, 32);
                 }
-                else
+                else if(marioActionState is FireMarioCrouchingState || marioActionState is BigMarioCrouchingState)
                 {
                     this.CollisionBox = new Rectangle((int)Position.X, (int)Position.Y, this.sprite.Width * 2, this.sprite.Height * 2);
+                }
+                else
+                {
+                    //this.CollisionBox = new Rectangle((int)Position.X, (int)Position.Y, this.sprite.Width * 2, this.sprite.Height * 2);
+                    this.CollisionBox = new Rectangle((int)Position.X, (int)Position.Y, 32, 64);
                 }
             }
            
