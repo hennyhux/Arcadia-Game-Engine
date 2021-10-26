@@ -21,6 +21,16 @@ namespace GameSpace.Camera2D
             Sprites = new List<BackgroundSprite>();
         }
 
+        public Layer(Camera camera, BackgroundSprite Sprite, Vector2 parallax)
+        {
+            _camera = camera;
+            Parallax = parallax;
+            //Sprites = new List<ISprite>();
+            Sprites = new List<BackgroundSprite>();
+            //Sprites.Add((BackgroundSprite)Sprite);
+            Sprites.Add(Sprite);
+        }
+
         public Vector2 Parallax { get; set; }
 
         //public List<ISprite> Sprites { get; private set; }
