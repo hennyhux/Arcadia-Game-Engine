@@ -35,6 +35,11 @@ namespace GameSpace
         protected override void Initialize()
         {
             base.Initialize();
+            LoadContent();
+        }
+        public void Reset()
+        {
+            Initialize();
         }
 
         protected override void LoadContent()
