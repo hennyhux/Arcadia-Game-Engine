@@ -119,34 +119,26 @@ namespace GameSpace
             background = new BackgroundSprite(bg);
 
             //MANUAL Stuff/ WILL BE CHANGED
-            // Create 9 layers with parallax ranging from 0% to 100% (only horizontal)
             layers = new List<Layer>
             {
-                new Layer(camera) { Parallax = new Vector2(1.8f, 1.0f) },
-                new Layer(camera) { Parallax = new Vector2(0.5f, 1.0f) },
+                new Layer(camera) { Parallax = new Vector2(2.0f, 1.0f) },
+                new Layer(camera) { Parallax = new Vector2(1.5f, 1.0f) },
+                new Layer(camera) { Parallax = new Vector2(1.0f, 1.0f) },
                 //new Layer(camera) { Parallax = new Vector2(0.5f, 1.0f) },
-                /*new Layer(camera) { Parallax = new Vector2(0.3f, 1.0f) },
-                new Layer(camera) { Parallax = new Vector2(0.4f, 1.0f) },
-                new Layer(camera) { Parallax = new Vector2(0.5f, 1.0f) },
-                new Layer(camera) { Parallax = new Vector2(0.6f, 1.0f) },
-                new Layer(camera) { Parallax = new Vector2(0.8f, 1.0f) },
-                new Layer(camera) { Parallax = new Vector2(1.0f, 1.0f) }*/
             };
 
             // Add one sprite to each layer
             layers[0].Sprites.Add(new BackgroundSprite { Texture = Content.Load<Texture2D>("Background/cloudsmall") });
-            layers[1].Sprites.Add(new BackgroundSprite { Texture = Content.Load<Texture2D>("Background/cloudbig2") });
-            /*layers[2].Sprites.Add(new BackgroundSprite { Texture = Content.Load<Texture2D>("Layer3") });
-            layers[3].Sprites.Add(new BackgroundSprite { Texture = Content.Load<Texture2D>("Layer4") });
-            layers[4].Sprites.Add(new BackgroundSprite { Texture = Content.Load<Texture2D>("Layer5") });
-            layers[5].Sprites.Add(new BackgroundSprite { Texture = Content.Load<Texture2D>("Layer6") });
-            layers[6].Sprites.Add(new BackgroundSprite { Texture = Content.Load<Texture2D>("Layer7") });
-            layers[7].Sprites.Add(new BackgroundSprite { Texture = Content.Load<Texture2D>("Layer8") });
-            layers[8].Sprites.Add(new BackgroundSprite { Texture = Content.Load<Texture2D>("Layer9") });*/
+            layers[1].Sprites.Add(BackgroundFactory.GetInstance().CreateBGMountainSprite());
+            layers[2].Sprites.Add(BackgroundFactory.GetInstance().CreateRegularBackground());
+            
+            
+           /* //layers[0].Sprites.Add(new BackgroundSprite { Texture = Content.Load<Texture2D>("Background/small_BG") });
+            layers[0].Sprites.Add(BackgroundFactory.GetInstance().CreateRegularBackground());
+            layers[1].Sprites.Add(BackgroundFactory.GetInstance().CreateBGMountainSprite());
+            layers[2].Sprites.Add(new BackgroundSprite { Texture = Content.Load<Texture2D>("Background/cloudsmall") });
+            //layers[1].Sprites.Add(new BackgroundSprite { Texture = Content.Load<Texture2D>("Background/mountain") });*/
 
-            // Add a few duplicates in different positions
-            //layers[7].Sprites.Add(new BackgroundSprite { Texture = Content.Load<Texture2D>("Layer8"), Position = new Vector2(900, 0) });
-            //layers[8].Sprites.Add(new BackgroundSprite { Texture = Content.Load<Texture2D>("Layer9"), Position = new Vector2(1600, 0) });
 
         }
 
@@ -162,13 +154,7 @@ namespace GameSpace
             //Debug.WriteLine("Mario.Position {0}", GetMario.Position);
 
             //Scrolling Background, Manually Setting
-            // Scroll layer 1
-            _scrollX1 += 0.5f;
-            _scrollY1 += 0.5f;
 
-            // Scroll layer 2
-            _scrollX2 += 1.0f;
-            _scrollY2 += 0.8f;
 
         }
 
@@ -184,9 +170,9 @@ namespace GameSpace
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             //Draw background
-            spriteBatch.Begin(SpriteSortMode.Deferred, null,samplerState: SamplerState.LinearWrap, null, null, null, camera.GetViewMatrix(parallax2));//moves 1.3 faster
-            background.Draw(spriteBatch, camera.Position);
-            spriteBatch.End();
+            //spriteBatch.Begin(SpriteSortMode.Deferred, null,samplerState: SamplerState.LinearWrap, null, null, null, camera.GetViewMatrix(parallax2));//moves 1.3 faster
+            //background.Draw(spriteBatch, camera.Position);
+            //spriteBatch.End();
 
             //Background/Scrolling Stuff
             foreach (Layer layer in layers)

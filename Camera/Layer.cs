@@ -17,29 +17,21 @@ namespace GameSpace.Camera2D
         {
             _camera = camera;
             Parallax = Vector2.One;
+            //Sprites = new List<ISprite>();
             Sprites = new List<BackgroundSprite>();
         }
 
         public Vector2 Parallax { get; set; }
 
+        //public List<ISprite> Sprites { get; private set; }
         public List<BackgroundSprite> Sprites { get; private set; }
 
-        public void Draw(SpriteBatch spriteBatch)
+        public void Draw(SpriteBatch spriteBatch, Vector2 cameraLocation)
         {
             spriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.LinearWrap, null, null, null, _camera.GetViewMatrix(Parallax));
 
             foreach (BackgroundSprite sprite in Sprites)
-                sprite.Draw(spriteBatch);
-
-            spriteBatch.End();
-        }
-
-        public void Draw(SpriteBatch spriteBatch, Vector2 location)
-        {
-            spriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.LinearWrap, null, null, null, _camera.GetViewMatrix(Parallax));
-
-            foreach (BackgroundSprite sprite in Sprites)
-                sprite.Draw(spriteBatch, location, Parallax);
+                sprite.Draw(spriteBatch, cameraLocation, Parallax);
             //sprite.Draw(spriteBatch, location);
 
             spriteBatch.End();
