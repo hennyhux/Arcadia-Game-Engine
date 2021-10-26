@@ -27,42 +27,39 @@ namespace GameSpace.GameObjects.ItemObjects
 
         private Boolean hasCollided;
         private Boolean drawBox;
-        public Boolean isVisible; 
 
         public SuperShroom(Vector2 initialPosition)
         {
             this.ObjectID = (int)ItemID.SUPERSHROOM;
             this.Sprite = SpriteItemFactory.GetInstance().CreateSuperShroom();
             this.Position = initialPosition;
-            //Doesn't need collision box until revealed
-            //this.CollisionBox = new Rectangle((int)Position.X, (int)Position.Y, Sprite.Texture.Width * 2, Sprite.Texture.Height * 2);
+            this.CollisionBox = new Rectangle((int)Position.X, (int)Position.Y, Sprite.Texture.Width * 2, Sprite.Texture.Height * 2);
             drawBox = false;
-            isVisible = true;
             this.hasCollided = false;
             this.state = new StateSuperShroomHidden(this);
+
+            if (EntityManager.FindItem((int)AvatarID.MARIO).Position.X <= Position.X)
+            {
+                this.state = new StateSuperShroomLeft(this);
+
+            }
+            else
+            {
+                this.state = new StateSuperShroomRight(this);
+
+            }
         }
 
         public void Draw(SpriteBatch spritebatch)
         {
-            if (isVisible)
-            {
-                Sprite.Draw(spritebatch, Position);
-                if (drawBox) Sprite.DrawBoundary(spritebatch, CollisionBox);
-            }
+            Sprite.Draw(spritebatch, Position);
+            if (drawBox) Sprite.DrawBoundary(spritebatch, CollisionBox);
         }
 
         public void Update(GameTime gametime)
         {
-            if (isVisible)
-            {
-                UpdatePosition(Position, gametime);
-                Sprite.Update(gametime);
-            }
-        }
-
-        private void SetPosition(Vector2 position)
-        {
-            throw new NotImplementedException();
+            UpdatePosition(Position, gametime);
+            Sprite.Update(gametime);
         }
 
         public void Trigger()

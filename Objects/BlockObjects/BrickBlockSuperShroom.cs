@@ -71,7 +71,7 @@ namespace GameSpace.Objects.BlockObjects
         public void Trigger()
         {
             state = new StateBrickBlockBumped(this);
-            shroom = ObjectFactory.GetInstance().CreateSuperShroomObject(new Vector2(Position.X - 4, Position.Y - Sprite.Texture.Height * 2 - 4));
+            shroom = ObjectFactory.GetInstance().CreateSuperShroomObject(new Vector2(Position.X - 4, Position.Y - 5 - Sprite.Texture.Height * 2 - 4));
             EntityManager.AddEntity(shroom);
         }
 

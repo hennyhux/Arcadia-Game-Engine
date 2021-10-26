@@ -23,25 +23,40 @@ namespace GameSpace.GameObjects.ItemObjects
 
         private Boolean hasCollided;
         private Boolean drawBox;
-        public Boolean isVisible; //set true when item is revealed
+        public Rectangle ExpandedCollisionBox { get; set; }
+
 
         public OneUpShroom(Vector2 initialPosition)
         {
             this.ObjectID = (int)ItemID.ONEUPSHROOM;
             this.Sprite = SpriteItemFactory.GetInstance().CreateOneUpShroom();
             this.Position = initialPosition;
-            //Doesnt need collision box until revealed
-            //this.CollisionBox = new Rectangle((int)Position.X, (int)Position.Y, Sprite.Texture.Width * 2, Sprite.Texture.Height * 2);
+            this.CollisionBox = new Rectangle((int)Position.X, (int)Position.Y, Sprite.Texture.Width * 2, Sprite.Texture.Height * 2);
             drawBox = false;
             this.hasCollided = false;
-            this.isVisible = false;
-            this.state = new StateOneUpShroomHidden(this);
+            ExpandedCollisionBox = new Rectangle((int)(Position.X + Sprite.Texture.Width / 32), (int)Position.Y, Sprite.Texture.Width, Sprite.Texture.Height * 3);
+
+
+            if (EntityManager.FindItem((int)AvatarID.MARIO).Position.X <= Position.X)
+            {
+                this.state = new StateOneUpShroomRight(this);
+
+            }
+            else
+            {
+                this.state = new StateOneUpShroomLeft(this);
+
+            }
         }
 
         public void Draw(SpriteBatch spritebatch)
         {
             Sprite.Draw(spritebatch, Position);
-            if (drawBox) Sprite.DrawBoundary(spritebatch, CollisionBox);
+            if (drawBox)
+            {
+                Sprite.DrawBoundary(spritebatch, CollisionBox);
+                Sprite.DrawBoundary(spritebatch, ExpandedCollisionBox);
+            }
         }
 
         public void Update(GameTime gametime)
