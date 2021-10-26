@@ -90,6 +90,7 @@ namespace GameSpace.GameObjects.BlockObjects
         }
         public void Update(GameTime gametime)
         {
+            //Debug.WriteLine("Mario X, {0}", Position.X);
             Vector2 newLocation = Velocity * (float)gametime.ElapsedGameTime.TotalSeconds;
             if (!IsGoingToBeOutOfBounds(newLocation))
             {
@@ -104,7 +105,7 @@ namespace GameSpace.GameObjects.BlockObjects
                 }
                 else if(marioActionState is FireMarioCrouchingState || marioActionState is BigMarioCrouchingState)
                 {
-                    this.CollisionBox = new Rectangle((int)Position.X, (int)Position.Y, this.sprite.Width * 2, this.sprite.Height * 2);
+                    this.CollisionBox = new Rectangle((int)Position.X, (int)Position.Y, 32, 44);
                 }
                 else
                 {

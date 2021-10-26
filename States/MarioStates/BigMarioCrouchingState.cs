@@ -40,10 +40,7 @@ namespace GameSpace.States.MarioStates
             Mario.Facing = Facing;
             //Mario.Sprite = MarioStandingState.SpriteFactory.CreateSprite(MarioSpriteFactory.MarioSpriteType(this, currentPowerUpState));
             Mario.sprite = MarioFactory.GetInstance().CreateSprite(MarioFactory.MarioSpriteType(this, Mario.marioPowerUpState));
-
-            Debug.WriteLine("DIFF :, {0}", (64 - Mario.sprite.Height));
-            //Mario.Position = new Vector2(Mario.Position.X, Mario.Position.Y + (64 - Mario.sprite.Height));
-            Debug.WriteLine("Y after(25) facing:, {0}", Mario.Position.Y);
+            Mario.Position = new Vector2(Mario.Position.X, Mario.Position.Y + 20);
 
         }
 
