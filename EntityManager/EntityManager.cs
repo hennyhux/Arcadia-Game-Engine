@@ -165,19 +165,6 @@ namespace GameSpace.EntitiesManager
                 }
             }
 
-            if (fallingObject is Star)
-            {
-                Star copy = (Star)fallingObject;
-                foreach (IGameObjects entity in copyPrunedList)
-                {
-                    if (copy.ExpandedCollisionBox.Intersects(entity.CollisionBox) && entity.ObjectID != copy.ObjectID)
-                    {
-                        gonnaFall = false;
-                        break;
-                    }
-                }
-            }
-
             return gonnaFall;
         }
 
@@ -195,6 +182,15 @@ namespace GameSpace.EntitiesManager
                     mario.marioActionState is BigMarioRunningState ||
                     mario.marioActionState is BigMarioStandingState ||
                     mario.marioActionState is FireMarioFallingState ||
+                    mario.marioActionState is FireMarioJumpingState ||
+                    mario.marioActionState is FireMarioRunningState ||
+                    mario.marioActionState is FireMarioStandingState);
+        }
+
+        public static bool IsCurrentlyFireMario()
+        {
+            Mario mario = (Mario)EntityManager.FindItem((int)AvatarID.MARIO);
+            return (mario.marioActionState is FireMarioFallingState ||
                     mario.marioActionState is FireMarioJumpingState ||
                     mario.marioActionState is FireMarioRunningState ||
                     mario.marioActionState is FireMarioStandingState);

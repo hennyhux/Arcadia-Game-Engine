@@ -33,6 +33,7 @@ namespace GameSpace.GameObjects.BlockObjects
         public Vector2 Acceleration { get; set; }
         public Rectangle CollisionBox { get; set; }
         public int ObjectID { get; set; }
+        public int numFireballs;
 
         public Mario(Vector2 initLocation)
         {
@@ -42,6 +43,7 @@ namespace GameSpace.GameObjects.BlockObjects
             hasCollided = false;
             this.Position = new Vector2((int)initLocation.X, (int)initLocation.Y);
             this.CollisionBox = new Rectangle((int)initLocation.X - 3, (int)initLocation.Y, 32, 32);
+            this.numFireballs = 0;
 
             // this.state = new MarioStates(game);
             // this.sprite = MarioFactory.GetInstance().ReturnMarioS1tandingLeftSprite();

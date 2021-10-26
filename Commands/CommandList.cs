@@ -42,6 +42,8 @@ namespace GameSpace
                 {Keys.H, new ShowHiddenBlockCommand(EntityManager.FindItem((int)BlockID.HIDDENBLOCK))},
                 {Keys.OemQuestion, new ChangeQuestionBlockCommand(EntityManager.FindItem((int)BlockID.QUESTIONBLOCK))},
                 {Keys.C, new ToggleCollisionBoxes()},
+                {Keys.Space, new ThrowFireBallCommand(game)},
+
 
                 // Jump, crouch and dash/throw fireball
             };
