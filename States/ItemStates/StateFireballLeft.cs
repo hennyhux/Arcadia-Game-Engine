@@ -18,20 +18,22 @@ namespace GameSpace.States.ItemStates
         public Fireball Fireball;
         private Boolean bounce;
         public int countdown;
+        public int timeAlive; 
 
         public StateFireballLeft(Fireball fireball)
         {
             StateSprite = SpriteItemFactory.GetInstance().CreateFireBall();
             CollidedWithMario = false;
             this.Fireball = fireball;
-            this.Fireball.Position = new Vector2(this.Fireball.Position.X - 50, this.Fireball.Position.Y +25);
-            this.Fireball.Velocity = new Vector2((float)-40, (float)0);
+            this.Fireball.Position = new Vector2(this.Fireball.Position.X - 25, this.Fireball.Position.Y +25);
+            this.Fireball.Velocity = new Vector2((float)-80, (float)0);
             this.Fireball.Acceleration = new Vector2(0, 400);
         }
 
         public void Draw(SpriteBatch spritebatch, Vector2 location)
         {
             if (bounce) ++this.countdown;
+            ++timeAlive;
         }
 
         public void Trigger()
@@ -41,12 +43,14 @@ namespace GameSpace.States.ItemStates
 
         public void Update(GameTime gametime)
         {
-            if (this.countdown == 15)
+            if (this.countdown == 4)
             {
                 this.Fireball.Acceleration = new Vector2(0, 400);
                 bounce = false;
                 this.countdown = 0;
             }
+
+            if (timeAlive == 75) this.Fireball.Trigger();
         }
     }
 }
