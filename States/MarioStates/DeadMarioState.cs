@@ -24,6 +24,7 @@ namespace GameSpace.States.MarioStates
         public override void Enter(IMarioActionStates previousActionState)
         {
             Mario.marioActionState = this;
+            Mario.CollisionBox = new Rectangle(0, 0, 0, 0);
             this.previousActionState = previousActionState;
            // Mario.marioPowerUpState = new DeadMarioState(Mario);
             Debug.WriteLine("MarioDeadState(25) ed, {0}", Mario.marioActionState);

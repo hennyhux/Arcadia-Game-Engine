@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Diagnostics;
 namespace GameSpace.Sprites.Background
 {
     public class BackgroundSprite : AbstractSprite
@@ -37,8 +38,10 @@ namespace GameSpace.Sprites.Background
 
         public void Draw(SpriteBatch spriteBatch, Vector2 cameraLocation, Vector2 parallax)
         {
-            Rectangle sourceRectangle = new Rectangle((int)cameraLocation.X, 0, 1200, Texture.Height);//1 repeating row of pictures
-            Rectangle destinationRectangle = new Rectangle((int)cameraLocation.X, (int)cameraLocation.Y + (int)Position.Y, 1200, Texture.Height);//the 1200 could be a constant or some value based
+            //Debug.WriteLine("xPox {1}, camera Xpos: {0}", (int)cameraLocation.X * (int)parallax.X, ((int)cameraLocation.X * (int)parallax.X) % Texture.Width);
+            //Debug.WriteLine("parallax {0}, camera abs X: {0}", (int)parallax.X, (int)cameraLocation.X);
+            Rectangle sourceRectangle = new Rectangle((int)(cameraLocation.X * parallax.X) % Texture.Width, 0, 1200, Texture.Height);//1 repeating row of pictures
+            Rectangle destinationRectangle = new Rectangle((int)(cameraLocation.X * parallax.X), (int)cameraLocation.Y + (int)Position.Y, 1200, Texture.Height);//the 1200 could be a constant or some value based
             spriteBatch.Draw(Texture, destinationRectangle, sourceRectangle, Color.White);                                                      // on window size
         }
 
