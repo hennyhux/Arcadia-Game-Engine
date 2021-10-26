@@ -67,7 +67,6 @@ namespace GameSpace.GameObjects.EnemyObjects
         private bool IsInview()
         {
             Camera copyCam = EntityManager.Camera;
-            Debug.WriteLine(copyCam.Position.X);
             return (Position.X > copyCam.Position.X && Position.X < copyCam.Position.X + 800);
         }
         public void Trigger()
