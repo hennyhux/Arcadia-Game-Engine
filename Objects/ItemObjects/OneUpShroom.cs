@@ -23,6 +23,8 @@ namespace GameSpace.GameObjects.ItemObjects
 
         private Boolean hasCollided;
         private Boolean drawBox;
+
+
         public Rectangle ExpandedCollisionBox { get; set; }
 
 
@@ -34,19 +36,9 @@ namespace GameSpace.GameObjects.ItemObjects
             this.CollisionBox = new Rectangle((int)Position.X, (int)Position.Y, Sprite.Texture.Width * 2, Sprite.Texture.Height * 2);
             drawBox = false;
             this.hasCollided = false;
-            ExpandedCollisionBox = new Rectangle((int)(Position.X + Sprite.Texture.Width / 32), (int)Position.Y, Sprite.Texture.Width, Sprite.Texture.Height * 3);
-
-
-            if (EntityManager.FindItem((int)AvatarID.MARIO).Position.X <= Position.X)
-            {
-                this.state = new StateOneUpShroomRight(this);
-
-            }
-            else
-            {
-                this.state = new StateOneUpShroomLeft(this);
-
-            }
+            ExpandedCollisionBox = new Rectangle((int)Position.X, (int)Position.Y, Sprite.Texture.Width * 2, Sprite.Texture.Height * 3);
+            this.state = new StateOneUpShroomHidden(this);
+            
         }
 
         public void Draw(SpriteBatch spritebatch)
@@ -61,6 +53,7 @@ namespace GameSpace.GameObjects.ItemObjects
 
         public void Update(GameTime gametime)
         {
+            if (this.state is StateOneUpShroomHidden) findMario();
             UpdatePosition(Position,gametime);
             Sprite.Update(gametime);
         }
@@ -98,8 +91,27 @@ namespace GameSpace.GameObjects.ItemObjects
 
         public void UpdatePosition(Vector2 location, GameTime gameTime)
         {
-            this.Position = new Vector2(location.X + this.Velocity.X, location.Y);
-            UpdateCollisionBox(this.Position);
+            if (EntityManager.IsGoingToFall(this))
+            {
+
+                //Velocity = new Vector2(0, Velocity.Y);
+                Acceleration = new Vector2(0, 400);
+            }
+
+            else if (!EntityManager.IsGoingToFall(this))
+            {
+                Acceleration = new Vector2(0, 0);
+                if (this.state is StateOneUpShroomRight) Velocity = new Vector2(85, 0);
+                if (this.state is StateOneUpShroomLeft) Velocity = new Vector2(-85, 0);
+            }
+
+            Velocity += Acceleration * (float)gameTime.ElapsedGameTime.TotalSeconds;
+            Position += Velocity * (float)gameTime.ElapsedGameTime.TotalSeconds;
+
+            UpdateCollisionBox(Position);
+
+            //this.Position = new Vector2(location.X + this.Velocity.X, location.Y);
+            //UpdateCollisionBox(this.Position);
         }
 
         public void ToggleCollisionBoxes()
@@ -125,12 +137,35 @@ namespace GameSpace.GameObjects.ItemObjects
                 this.Velocity = new Vector2(0, 0);
                 this.state = new StateOneUpShroomLeft(this);
             }
+
+            else if (EntityManager.DetectCollisionDirection(this, entity) == (int)CollisionDirection.DOWN)
+            {
+                this.Acceleration = new Vector2(0, 0);
+            }
         }
 
         private void UpdateCollisionBox(Vector2 location)
         {
             this.CollisionBox = new Rectangle((int)location.X + state.StateSprite.Texture.Width / 2 - 10, (int)Position.Y,
                 state.StateSprite.Texture.Width * 2, state.StateSprite.Texture.Height * 2);
+
+            this.ExpandedCollisionBox = new Rectangle((int)location.X + state.StateSprite.Texture.Width / 2 - 10, (int)Position.Y,
+             state.StateSprite.Texture.Width * 2, (state.StateSprite.Texture.Height * 2) + 3);
         }
+
+        private void findMario()
+        {
+            if (EntityManager.FindItem((int)AvatarID.MARIO).Position.X <= Position.X)
+            {
+                this.state = new StateOneUpShroomRight(this);
+
+            }
+            else
+            {
+                this.state = new StateOneUpShroomLeft(this);
+
+            }
+        }
+
     }
 }
