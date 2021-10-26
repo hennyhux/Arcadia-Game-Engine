@@ -288,20 +288,6 @@ namespace GameSpace.GameObjects.BlockObjects
         }
 
 
-        //private void CollisionWithFloorBlock(IGameObjects entity)
-        //{
-        //    //if (EntityManager.DetectCollisionDirection(this, entity) == (int)CollisionDirection.UP) { this.SetPosition(new Vector2(this.Position.X * 0, this.Position.Y * 0)); }
-        //    //if (EntityManager.DetectCollisionDirection(this, entity) == (int)CollisionDirection.UP) { this.Position = new Vector2(this.Position.X, (int)entity.Position.Y +  (int)entity.CollisionBox.Height); }
-
-        //    if (EntityManager.DetectCollisionDirection(this, entity) == (int)CollisionDirection.DOWN) { this.Position = new Vector2(this.Position.X, (int)entity.Position.Y - (int)this.CollisionBox.Height); }
-
-        //    changeStateUponCollision(entity);//Change state upon collision
-
-        //    this.CollisionBox = new Rectangle((int)Position.X, (int)Position.Y, CollisionBox.Width, CollisionBox.Height);
-
-        //    //changeStateUponCollision(entity);//Change state upon collision
-        //}
-
         private void CollisionWithGoomba(IGameObjects enemy)
         {
             if (EntityManager.DetectCollisionDirection(this, enemy) == (int)CollisionDirection.LEFT ||
@@ -409,7 +395,7 @@ namespace GameSpace.GameObjects.BlockObjects
 
             else if (EntityManager.DetectCollisionDirection(this, entity) == (int)CollisionDirection.UP) 
             {
-                this.Position = new Vector2(this.Position.X, (int)entity.Position.Y + (int)entity.CollisionBox.Height);
+                //this.Position = new Vector2(this.Position.X, (int)entity.Position.Y + (int)entity.CollisionBox.Height);
             }
 
             else if (EntityManager.DetectCollisionDirection(this, entity) == (int)CollisionDirection.DOWN) 
