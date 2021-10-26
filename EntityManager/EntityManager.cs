@@ -2,6 +2,7 @@
 using GameSpace.Factories;
 using GameSpace.GameObjects.BlockObjects;
 using GameSpace.GameObjects.EnemyObjects;
+using GameSpace.GameObjects.ItemObjects;
 using GameSpace.Interfaces;
 using GameSpace.States.MarioStates;
 using Microsoft.Xna.Framework;
@@ -93,13 +94,37 @@ namespace GameSpace.EntitiesManager
             return null; //lets try not to return null
         }
 
-        public static Boolean IsGoingToFall(IGameObjects enemy)
+        public static Boolean IsGoingToFall(IGameObjects fallingObject)
         {
             Boolean gonnaFall = true;
             
-            if (enemy is Goomba)
+            if (fallingObject is Goomba)
             {
-                Goomba copy = (Goomba)enemy;
+                Goomba copy = (Goomba)fallingObject;
+                foreach (IGameObjects entity in copyPrunedList)
+                {
+                    if (copy.ExpandedCollisionBox.Intersects(entity.CollisionBox) && entity.ObjectID != copy.ObjectID)
+                    {
+                        gonnaFall = false;
+                        break;
+                    }
+                }
+            }
+            else if(fallingObject is OneUpShroom)
+            {
+                OneUpShroom copy = (OneUpShroom)fallingObject;
+                foreach (IGameObjects entity in copyPrunedList)
+                {
+                    if (copy.ExpandedCollisionBox.Intersects(entity.CollisionBox) && entity.ObjectID != copy.ObjectID)
+                    {
+                        gonnaFall = false;
+                        break;
+                    }
+                }
+            }
+            else if (fallingObject is SuperShroom)
+            {
+                SuperShroom copy = (SuperShroom)fallingObject;
                 foreach (IGameObjects entity in copyPrunedList)
                 {
                     if (copy.ExpandedCollisionBox.Intersects(entity.CollisionBox) && entity.ObjectID != copy.ObjectID)
