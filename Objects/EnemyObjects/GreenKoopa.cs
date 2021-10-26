@@ -34,7 +34,7 @@ namespace GameSpace.GameObjects.EnemyObjects
         public GreenKoopa(Vector2 initalPosition)
         {
             ObjectID = (int)EnemyID.GREENKOOPA;
-            direction = (int)eFacing.RIGHT;
+            direction = (int)eFacing.LEFT;
             drawBox = false;
             inFrame = true;
             Velocity = new Vector2(0, 0);
@@ -42,7 +42,7 @@ namespace GameSpace.GameObjects.EnemyObjects
             Sprite = SpriteEnemyFactory.GetInstance().CreateGreenKoopaSprite();
             ExpandedCollisionBox = new Rectangle((int)(Position.X + Sprite.Texture.Width / 32), (int)Position.Y, Sprite.Texture.Width, Sprite.Texture.Height * 3);
             this.Position = initalPosition;
-            this.state = new StateGreenKoopaAliveRight(this);
+            this.state = new StateGreenKoopaAliveLeft(this);
             UpdateCollisionBox(Position);
         }
 
@@ -65,14 +65,14 @@ namespace GameSpace.GameObjects.EnemyObjects
 
         public void UpdatePosition(Vector2 location , GameTime gameTime)
         {
-            if (EntityManager.IsGoingToFall(this))
+            if (EntityManager.IsGoingToFall((GreenKoopa)this) && !(state is StateGreenKoopaDead))
             {
 
                 Velocity = new Vector2(0, Velocity.Y);
                 Acceleration = new Vector2(0, 400);
             }
 
-            else if (!EntityManager.IsGoingToFall(this))
+            else if (!EntityManager.IsGoingToFall((GreenKoopa)this))
             {
                 Acceleration = new Vector2(0, 0);
                 if (direction == (int)eFacing.RIGHT && !(state is StateGreenKoopaDead)) Velocity = new Vector2(85, 0);
@@ -123,6 +123,13 @@ namespace GameSpace.GameObjects.EnemyObjects
                     state = new StateGreenKoopaAliveRight(this);
                     direction = (int)eFacing.RIGHT;
                 }
+
+                else if (EntityManager.DetectCollisionDirection(this, block) == (int)CollisionDirection.UP)
+                {
+                    PreformBounce();
+                    HaltAllMotion();
+                }
+
             }
 
             //If Dead and hits block stays dead
@@ -185,6 +192,17 @@ namespace GameSpace.GameObjects.EnemyObjects
                state.StateSprite.Texture.Width, (state.StateSprite.Texture.Height * 2) + 3);
 
         }
+        private void PreformBounce()
+        {
+            Position = new Vector2(Position.X, Position.Y - 3);
+        }
+
+        private void HaltAllMotion()
+        {
+            Velocity = new Vector2(0, 0);
+            Acceleration = new Vector2(0, 0);
+        }
+
         #endregion
     }
 }

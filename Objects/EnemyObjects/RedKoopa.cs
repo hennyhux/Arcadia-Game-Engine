@@ -61,14 +61,14 @@ namespace GameSpace.GameObjects.EnemyObjects
 
         public void UpdatePosition(Vector2 location, GameTime gameTime) //use velocity
         {
-            if (EntityManager.IsGoingToFall(this))
+            if (EntityManager.IsGoingToFall((RedKoopa)this) && !(state is StateRedKoopaDead))
             {
 
                 Velocity = new Vector2(0, Velocity.Y);
                 Acceleration = new Vector2(0, 400);
             }
 
-            else if (!EntityManager.IsGoingToFall(this))
+            else if (!EntityManager.IsGoingToFall((RedKoopa)this))
             {
                 Acceleration = new Vector2(0, 0);
                 if (direction == (int)eFacing.RIGHT && !(state is StateRedKoopaDead)) Velocity = new Vector2(85, 0);
@@ -119,6 +119,12 @@ namespace GameSpace.GameObjects.EnemyObjects
                     state = new StateRedKoopaAliveRight(this);
                     direction = (int)eFacing.RIGHT;
                 }
+                else if (EntityManager.DetectCollisionDirection(this, block) == (int)CollisionDirection.UP)
+                {
+                    PreformBounce();
+                    HaltAllMotion();
+                }
+
             }
             //If Dead and hits block stays dead
             else if (this.state is StateRedKoopaDeadLeft || this.state is StateRedKoopaDeadRight)
@@ -134,6 +140,13 @@ namespace GameSpace.GameObjects.EnemyObjects
                     state = new StateRedKoopaDeadRight(this);
                     direction = (int)eFacing.RIGHT;
                 }
+
+                else if (EntityManager.DetectCollisionDirection(this, block) == (int)CollisionDirection.DOWN)
+                {
+                    
+                    HaltAllMotion();
+                }
+
             }    
         }
 
@@ -142,12 +155,21 @@ namespace GameSpace.GameObjects.EnemyObjects
             return state;
         }
 
+        private void PreformShellOffset()
+        {
+            Position = new Vector2(Position.X, Position.Y + 20);
+        }
+  
+
         private void CollisionWithMario(IGameObjects mario)
         {
             if (EntityManager.DetectCollisionDirection(this, mario) == (int)CollisionDirection.UP)
             {
                     this.state = new StateRedKoopaDead(this);
+                PreformShellOffset();
             }
+
+
             if (this.state is StateRedKoopaDead)
             {
                 if (EntityManager.DetectCollisionDirection(this, mario) == (int)CollisionDirection.UP)
@@ -184,6 +206,19 @@ namespace GameSpace.GameObjects.EnemyObjects
              state.StateSprite.Texture.Width, (state.StateSprite.Texture.Height * 2) + 3);
 
         }
+
+        private void PreformBounce()
+        {
+            Position = new Vector2(Position.X, Position.Y - 3);
+        }
+
+        private void HaltAllMotion()
+        {
+            Velocity = new Vector2(0, 0);
+            Acceleration = new Vector2(0, 0);
+        }
+
+
         #endregion
     }
 }

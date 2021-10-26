@@ -327,8 +327,7 @@ namespace GameSpace.GameObjects.BlockObjects
 
         private void CollisionWithKoopa(IGameObjects koopa)
         {
-            RedKoopa redKoopa = (RedKoopa)koopa;
-            redKoopa.GetCurrentState();
+
             if(EntityManager.DetectCollisionDirection(this, koopa) == (int)CollisionDirection.DOWN)
             {
                 koopa.Velocity = new Vector2(0, 0);
