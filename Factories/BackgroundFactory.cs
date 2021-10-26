@@ -53,11 +53,6 @@ namespace GameSpace.Factories
             return new BackgroundSprite(RegularBackground, new Vector2(0, 300));
         }
 
-        /*public MountainSprite CreateMountainSprite()//mario.SmallMarioJumpingSprite
-        {
-            return new MountainSprite(Mountain, new Vector2(0, 100));
-        }*/
-
         public BackgroundSprite CreateBGMountainSprite()//mario.SmallMarioJumpingSprite
         {
             return new BackgroundSprite(Mountain, new Vector2(0, 100));
