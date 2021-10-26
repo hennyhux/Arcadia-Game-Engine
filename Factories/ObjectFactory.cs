@@ -83,6 +83,26 @@ namespace GameSpace.Factories
             return new BrickBlockOneShroom(location);
         }
 
+        public IGameObjects CreateQuestionBlockStar(Vector2 location)
+        {
+            return new QuestionBlockStar(location);
+        }
+
+        public IGameObjects CreateQuestionBlockCoin(Vector2 location)
+        {
+            return new QuestionBlockStar(location);
+        }
+
+        public IGameObjects CreateQuestionBlockOneUpShroom(Vector2 location)
+        {
+            return new QuestionBlockOneUpShroom(location);
+        }
+
+        public IGameObjects CreateQuestionBlockShroom(Vector2 location)
+        {
+            return new QuestionBlockOneShroom(location);
+        }
+
         #endregion
 
         #region Enemies 

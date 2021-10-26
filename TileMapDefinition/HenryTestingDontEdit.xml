@@ -36,4 +36,33 @@
 		<y>140</y>
 	</Obstacle>
 
+	<Obstacle>
+		<block>QUESTIONBLOCK</block>
+		<item>NOITEM</item>
+		<x>600</x>
+		<y>140</y>
+	</Obstacle>
+
+	<Obstacle>
+		<block>QUESTIONBLOCK</block>
+		<item>STAR</item>
+		<x>650</x>
+		<y>140</y>
+	</Obstacle>
+
+	<Obstacle>
+		<block>QUESTIONBLOCK</block>
+		<item>ONEUPSHROOM</item>
+		<x>700</x>
+		<y>140</y>
+	</Obstacle>
+
+	<Obstacle>
+		<block>QUESTIONBLOCK</block>
+		<item>SUPERSHROOM</item>
+		<x>750</x>
+		<y>140</y>
+	</Obstacle>
+	
+
 </Level>

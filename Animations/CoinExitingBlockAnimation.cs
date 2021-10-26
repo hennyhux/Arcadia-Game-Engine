@@ -12,13 +12,12 @@ namespace GameSpace.Animations
     public class CoinExitingBlockAnimation : IObjectAnimation
     {
         private Vector2 initialLocation;
-        private Vector2 endLocation;
-        private ISprite sprite;
+
         private GameTime gameTime;
-        private float yVelocity;
         private int offset;
         private int celling;
         private IGameObjects coin;
+        private bool revealed;
 
         public CoinExitingBlockAnimation(Vector2 location, GameTime gameTime)
         {
@@ -28,6 +27,7 @@ namespace GameSpace.Animations
             offset = 3;
             celling = 90;
             this.gameTime = gameTime;
+            revealed = false;
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -38,8 +38,12 @@ namespace GameSpace.Animations
         public void Update(GameTime gametime)
         {
             coin.UpdatePosition(new Vector2 (initialLocation.X + 6 , (initialLocation.Y - coin.Sprite.Texture.Height )- offset), gametime);
-            if (offset <= celling) offset += 3;
-            else coin.Sprite.SetVisible();
+            if (offset < celling) offset += 4;
+            if (!revealed && offset >= celling) 
+            { 
+                coin.Sprite.SetVisible();
+                revealed = true;
+            }
             coin.Update(gameTime);
         }
     }

@@ -33,7 +33,7 @@ namespace GameSpace.Objects.BlockObjects
             state = new SMCoinBrickBlock();
             ObjectID = (int)BlockID.COINBRICKBLOCK;
             Position = initialPosition;
-            Sprite = SpriteBlockFactory.GetInstance().ReturnBrickBlock(); // we could delete this line to save memory but i believe the garbage collector will get it 
+            Sprite = SpriteBlockFactory.GetInstance().ReturnBrickBlock(); 
             this.CollisionBox = new Rectangle((int)Position.X, (int)Position.Y, Sprite.Texture.Width * 2, Sprite.Texture.Height * 2);
             drawBox = false;
         }

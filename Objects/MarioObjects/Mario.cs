@@ -348,13 +348,7 @@ namespace GameSpace.GameObjects.BlockObjects
 
             }
 
-            //if koopa is projectile mario stops
-
-
-
-
-
-
+           
             /*
             if (EntityManager.DetectCollisionDirection(this, enemy) == (int)CollisionDirection.LEFT ||
                 EntityManager.DetectCollisionDirection(this, enemy) == (int)CollisionDirection.RIGHT ||

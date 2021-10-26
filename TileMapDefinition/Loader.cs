@@ -199,7 +199,10 @@ namespace GameSpace.TileMapDefinition
                         break;
 
                     case BlockID.QUESTIONBLOCK:
-                        objectsList.Add(objectFactory.CreateQuestionBlockObject(location));
+                        if (obstacleObject.item == ItemID.NOITEM) objectsList.Add(objectFactory.CreateQuestionBlockObject(location));
+                        if (obstacleObject.item == ItemID.STAR) objectsList.Add(objectFactory.CreateQuestionBlockStar(location));
+                        if (obstacleObject.item == ItemID.ONEUPSHROOM) objectsList.Add(objectFactory.CreateQuestionBlockOneUpShroom(location));
+                        if (obstacleObject.item == ItemID.SUPERSHROOM) objectsList.Add(objectFactory.CreateQuestionBlockShroom(location));
                         break;
                     case BlockID.FLOORBLOCK:
                         objectsList.Add(objectFactory.CreateFloorBlockObject(location));

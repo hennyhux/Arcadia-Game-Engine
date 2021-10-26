@@ -11,15 +11,13 @@ using System.Text;
 using GameSpace.EntitiesManager;
 using System.Diagnostics;
 using GameSpace.Abstracts;
-using GameSpace.Animations;
 
 namespace GameSpace.GameObjects.BlockObjects
 {
-    public class QuestionBlock : AbstractItemBlock
+    public class QuestionBlockOneUpShroom : AbstractItemBlock
     {
-
-
-        public QuestionBlock(Vector2 initalPosition)
+        private IGameObjects shroom;
+        public QuestionBlockOneUpShroom(Vector2 initalPosition)
         {
             this.ObjectID = (int)BlockID.QUESTIONBLOCK;
             this.state = new StateQuestionBlockIdle();
@@ -31,11 +29,10 @@ namespace GameSpace.GameObjects.BlockObjects
 
         public override void Trigger()
         {
-            state = new StateQuestionBlockBump(this);
-            EntityManager.AddAnimation(new CoinExitingBlockAnimation(Position, internalGametime));
+            state = new StateBrickBlockBumped(this);
+            shroom = ObjectFactory.GetInstance().CreateOneUpShroomObject(new Vector2(Position.X - 4, Position.Y - Sprite.Texture.Height * 2 - 8));
+            EntityManager.AddEntity(shroom);
             revealedItem = true;
         }
-
-
     }
 }
