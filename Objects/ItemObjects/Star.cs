@@ -26,7 +26,6 @@ namespace GameSpace.GameObjects.ItemObjects
 
         private Boolean hasCollided;
         private Boolean drawBox;
-        public Rectangle ExpandedCollisionBox { get; set; }
 
 
         public Star(Vector2 initialPosition)
@@ -35,7 +34,6 @@ namespace GameSpace.GameObjects.ItemObjects
             this.Sprite = SpriteItemFactory.GetInstance().CreateStar();
             this.Position = initialPosition;
             this.CollisionBox = new Rectangle((int)Position.X, (int)Position.Y, Sprite.Texture.Width * 2 / 4, Sprite.Texture.Height * 2);
-            //ExpandedCollisionBox = new Rectangle((int)Position.X, (int)Position.Y, Sprite.Texture.Width * 2 / 4, Sprite.Texture.Height * 3);
             drawBox = false;
             this.hasCollided = false;
             this.state = new StateStarHidden(this);
@@ -48,7 +46,6 @@ namespace GameSpace.GameObjects.ItemObjects
             if (drawBox)
             {
                 Sprite.DrawBoundary(spritebatch, CollisionBox);
-                Sprite.DrawBoundary(spritebatch, ExpandedCollisionBox);
             }
         }
 
@@ -92,10 +89,6 @@ namespace GameSpace.GameObjects.ItemObjects
 
         public void UpdatePosition(Vector2 location, GameTime gameTime)
         {
-            //Acceleration = new Vector2(0, 3000);
-
-            //if (this.state is StateStarRight) Velocity = new Vector2(85, 0);
-            //if (this.state is StateStarLeft) Velocity = new Vector2(-85, 0);
 
             Velocity += Acceleration * (float)gameTime.ElapsedGameTime.TotalSeconds;
             Position += Velocity * (float)gameTime.ElapsedGameTime.TotalSeconds;
@@ -117,13 +110,11 @@ namespace GameSpace.GameObjects.ItemObjects
         {
             if (EntityManager.DetectCollisionDirection(this, entity) == (int)CollisionDirection.RIGHT)
             {
-                //this.Velocity = new Vector2(0, 0);
                 this.state = new StateStarRight(this);
             }
 
             else if (EntityManager.DetectCollisionDirection(this, entity) == (int)CollisionDirection.LEFT)
             {
-                //this.Velocity = new Vector2(0, 0);
                 this.state = new StateStarLeft(this);
             }
             else if (EntityManager.DetectCollisionDirection(this, entity) == (int)CollisionDirection.DOWN)
@@ -138,7 +129,6 @@ namespace GameSpace.GameObjects.ItemObjects
         private void UpdateCollisionBox(Vector2 location)
         {
             this.CollisionBox = new Rectangle((int)Position.X, (int)Position.Y, Sprite.Texture.Width * 2 / 4, Sprite.Texture.Height * 2);
-            //ExpandedCollisionBox = new Rectangle((int)Position.X, (int)Position.Y, Sprite.Texture.Width * 2 / 4, (Sprite.Texture.Height * 2) + 3);
         }
 
         private void findMario()

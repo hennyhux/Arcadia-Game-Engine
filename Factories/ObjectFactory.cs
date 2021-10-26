@@ -148,6 +148,11 @@ namespace GameSpace.Factories
         {
             return new SuperShroom(location);
         }
+
+        public IGameObjects CreateFireBallObject(Mario mario)
+        {
+            return new Fireball(mario);
+        }
         #endregion
 
         #region Items
