@@ -143,6 +143,11 @@ namespace GameSpace.GameObjects.EnemyObjects
                 this.CollisionBox = new Rectangle(1, 1, 0, 0);
                 if (!hasCollidedOnTop) hasCollidedOnTop = true;
             }
+
+            else
+            {
+                PreformBounce();
+            }
         }
 
         public void ToggleCollisionBoxes()

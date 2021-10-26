@@ -179,7 +179,7 @@ namespace GameSpace.GameObjects.BlockObjects
 
         public void DeadTransition() 
         {
-            this.CollisionBox = new Rectangle((int)Position.X, (int)Position.Y + 32, 0, 0);
+            this.CollisionBox = new Rectangle(0, 0, 0, 0);
             marioPowerUpState.DeadTransition();
         }
 
@@ -250,7 +250,7 @@ namespace GameSpace.GameObjects.BlockObjects
         private bool IsGoingToBeOutOfBounds(Vector2 newLocation)
         {
             if (Position.X + newLocation.X <= 0) return true;
-            if (Position.X + (CollisionBox.Width) + newLocation.X > 1100) return true;
+            if (Position.X + (CollisionBox.Width) + newLocation.X > 8000) return true;
             if (Position.Y + newLocation.Y <= 0) return true;
             if (Position.Y + newLocation.Y >= 450) return true;
             return false;
@@ -295,6 +295,7 @@ namespace GameSpace.GameObjects.BlockObjects
                 EntityManager.DetectCollisionDirection(this, enemy) == (int)CollisionDirection.RIGHT || 
                 EntityManager.DetectCollisionDirection(this, enemy) == (int)CollisionDirection.DOWN)
             {
+                this.CollisionBox = new Rectangle(1, 1, 0, 0);
                 this.DeadTransition();
                 this.CollisionBox = new Rectangle(1, 1, 0, 0);
 

@@ -96,7 +96,7 @@ namespace GameSpace
             }
 
             //Camera Stuff
-            camera = new Camera(GraphicsDevice.Viewport) { Limits = new Rectangle(0, 0, 1100, 600) };//Should be set to level's max X and Y
+            camera = new Camera(GraphicsDevice.Viewport) { Limits = new Rectangle(0, 0, 8000, 600) };//Should be set to level's max X and Y
 
             EntityManager.AddCamera(camera);
 
@@ -123,7 +123,6 @@ namespace GameSpace
             base.Update(gameTime);
             //Camera Stuff- Centered Mario
             camera.LookAt(new Vector2(GetMario.Position.X + GetMario.CollisionBox.Width / 2, GraphicsDevice.Viewport.Height / 2));
-
 
         }
 
