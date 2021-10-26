@@ -24,23 +24,14 @@ namespace GameSpace
 
         //Camera Stuff
         Camera camera;
-        Vector2 parallax = new Vector2(0.1f);
-        Vector2 parallax0 = new Vector2(0f);
+        Vector2 parallax = new Vector2(1f);
+
 
         //Scrolling Background, Manually Setting
         private List<Layer> layers;
         // Background texture
-        private Texture2D bg;
-        public BackgroundSprite background;
-        // First cloud layer
-        Texture2D _layer1;
-        private float _scrollX1;
-        private float _scrollY1;
 
-        // Second cloud layer
-        Texture2D _layer2;
-        private float _scrollX2;
-        private float _scrollY2;
+
         #region Lists
         private List<IController> controllers;
         private List<IGameObjects> objects;
@@ -104,12 +95,8 @@ namespace GameSpace
                 EntityManager.AddEntity(avatar);
             }
 
-            // Create a camera instance and limit its moving range
-            //camera = new Camera(GraphicsDevice.Viewport) { Limits = new Rectangle(0, 0, 3200, 600) };
             //Camera Stuff
-            camera = new Camera(GraphicsDevice.Viewport);
-            camera.Limits = (new Rectangle(0, 0, 1100, 480));//Should be set to level's max X and Y
-            Debug.WriteLine("Viewport limits: {0}", camera.Limits);
+            camera = new Camera(GraphicsDevice.Viewport) { Limits = new Rectangle(0, 0, 1100, 600) };//Should be set to level's max X and Y
 
             //Scrolling Background, Manually Setting
             //bg = Content.Load<Texture2D>("Background/Background");
@@ -122,31 +109,15 @@ namespace GameSpace
             // Create 9 layers with parallax ranging from 0% to 100% (only horizontal)
             layers = new List<Layer>
             {
-                new Layer(camera) { Parallax = new Vector2(1.8f, 1.0f) },
-                new Layer(camera) { Parallax = new Vector2(0.5f, 1.0f) },
-                //new Layer(camera) { Parallax = new Vector2(0.5f, 1.0f) },
-                /*new Layer(camera) { Parallax = new Vector2(0.3f, 1.0f) },
-                new Layer(camera) { Parallax = new Vector2(0.4f, 1.0f) },
-                new Layer(camera) { Parallax = new Vector2(0.5f, 1.0f) },
-                new Layer(camera) { Parallax = new Vector2(0.6f, 1.0f) },
-                new Layer(camera) { Parallax = new Vector2(0.8f, 1.0f) },
-                new Layer(camera) { Parallax = new Vector2(1.0f, 1.0f) }*/
+                new Layer(camera) { Parallax = new Vector2(2.0f, 1.0f) },
+                new Layer(camera) { Parallax = new Vector2(1.5f, 1.0f) },
+                new Layer(camera) { Parallax = new Vector2(1.0f, 1.0f) },
             };
 
-            // Add one sprite to each layer
-            layers[0].Sprites.Add(new BackgroundSprite { Texture = Content.Load<Texture2D>("Background/cloudsmall") });
-            layers[1].Sprites.Add(new BackgroundSprite { Texture = Content.Load<Texture2D>("Background/cloudbig2") });
-            /*layers[2].Sprites.Add(new BackgroundSprite { Texture = Content.Load<Texture2D>("Layer3") });
-            layers[3].Sprites.Add(new BackgroundSprite { Texture = Content.Load<Texture2D>("Layer4") });
-            layers[4].Sprites.Add(new BackgroundSprite { Texture = Content.Load<Texture2D>("Layer5") });
-            layers[5].Sprites.Add(new BackgroundSprite { Texture = Content.Load<Texture2D>("Layer6") });
-            layers[6].Sprites.Add(new BackgroundSprite { Texture = Content.Load<Texture2D>("Layer7") });
-            layers[7].Sprites.Add(new BackgroundSprite { Texture = Content.Load<Texture2D>("Layer8") });
-            layers[8].Sprites.Add(new BackgroundSprite { Texture = Content.Load<Texture2D>("Layer9") });*/
-
-            // Add a few duplicates in different positions
-            //layers[7].Sprites.Add(new BackgroundSprite { Texture = Content.Load<Texture2D>("Layer8"), Position = new Vector2(900, 0) });
-            //layers[8].Sprites.Add(new BackgroundSprite { Texture = Content.Load<Texture2D>("Layer9"), Position = new Vector2(1600, 0) });
+            // Add a sprite to each layer
+            layers[0].Sprites.Add(BackgroundFactory.GetInstance().CreateCloudsSprite());
+            layers[1].Sprites.Add(BackgroundFactory.GetInstance().CreateBGMountainSprite());
+            layers[2].Sprites.Add(BackgroundFactory.GetInstance().CreateRegularBackground());//Background layer
 
         }
 
@@ -158,42 +129,20 @@ namespace GameSpace
             base.Update(gameTime);
             //Camera Stuff- Centered Mario
             camera.LookAt(new Vector2(GetMario.Position.X + GetMario.CollisionBox.Width/2, GraphicsDevice.Viewport.Height / 2));
-            //Debug.WriteLine("camera.Position {0}", camera.Position);
-            //Debug.WriteLine("Mario.Position {0}", GetMario.Position);
 
-            //Scrolling Background, Manually Setting
-            // Scroll layer 1
-            _scrollX1 += 0.5f;
-            _scrollY1 += 0.5f;
-
-            // Scroll layer 2
-            _scrollX2 += 1.0f;
-            _scrollY2 += 0.8f;
 
         }
 
         protected override void Draw(GameTime gameTime)
         {
-            Vector2 parallax = new Vector2(1f);
-            Vector2 parallax0 = new Vector2(0f);
-            Vector2 parallax1 = new Vector2(0.5f);
-            Vector2 parallax2 = new Vector2(1.3f);
-            int viewportX = 800;
-            int viewportY = 480;
 
             GraphicsDevice.Clear(Color.CornflowerBlue);
-
-            //Draw background
-            spriteBatch.Begin(SpriteSortMode.Deferred, null,samplerState: SamplerState.LinearWrap, null, null, null, camera.GetViewMatrix(parallax2));//moves 1.3 faster
-            background.Draw(spriteBatch, camera.Position);
-            spriteBatch.End();
 
             //Background/Scrolling Stuff
             foreach (Layer layer in layers)
                 layer.Draw(spriteBatch, camera.Position);
 
             //Normal Sprites
-            //spriteBatch.Begin(SpriteSortMode.Deferred, blendState: BlendState.AlphaBlend, null, null, null, null, camera.GetViewMatrix(parallax));
             spriteBatch.Begin(SpriteSortMode.Deferred, null, null, null, null, null, camera.GetViewMatrix(parallax));
             EntityManager.Draw(spriteBatch);
             spriteBatch.End();

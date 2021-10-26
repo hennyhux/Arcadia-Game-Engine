@@ -11,41 +11,32 @@ using GameSpace.Enums;
 
 namespace GameSpace.States.ItemStates
 {
-    public class StateStarRight : IItemStates
+    public class StateStarHidden : IItemStates
     {
         public ISprite StateSprite { get; set; }
+        public Boolean CollidedWithMario { get; set; }
         public Star Star;
-        private int countdown;
-        private Boolean bounce;
 
-        public StateStarRight(Star star)
+        public StateStarHidden(Star star)
         {
             StateSprite = SpriteItemFactory.GetInstance().CreateStar();
+            CollidedWithMario = false;
             this.Star = star;
-            this.Star.Velocity = new Vector2((float)45, (float)0);
-            this.Star.Acceleration = new Vector2(0, 400);
         }
 
         public void Draw(SpriteBatch spritebatch, Vector2 location)
         {
             //StateSprite.Draw(spritebatch, location);
-            if(bounce) ++this.countdown;
         }
 
         public void Trigger()
         {
-            bounce = true;
+            // throw new NotImplementedException();
         }
 
         public void Update(GameTime gametime)
         {
-            if (this.countdown == 15)
-            {
-                this.Star.Acceleration = new Vector2(0, 400);
-                bounce = false;
-                this.countdown = 0;
-            }
-
+            // StateSprite.Update(gametime);
         }
     }
 }

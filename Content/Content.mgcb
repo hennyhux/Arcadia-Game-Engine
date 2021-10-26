@@ -49,18 +49,6 @@
 /processorParam:TextureFormat=Color
 /build:Background/Background.png
 
-#begin Background/cloudbig.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Background/cloudbig.png
-
 #begin Background/cloudbig2.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -97,7 +85,7 @@
 /processorParam:TextureFormat=Color
 /build:Background/cloudsmall.png
 
-#begin Background/Mario_1_1_Background.png
+#begin Background/mountain.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -107,7 +95,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Background/Mario_1_1_Background.png
+/build:Background/mountain.png
 
 #begin Background/small_BG.png
 /importer:TextureImporter
@@ -120,18 +108,6 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Background/small_BG.png
-
-#begin Background/Temp_BG.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Background/Temp_BG.png
 
 #begin Blocks/BrickBlock.png
 /importer:TextureImporter

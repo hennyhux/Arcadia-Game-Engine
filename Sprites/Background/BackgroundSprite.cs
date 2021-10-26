@@ -32,85 +32,15 @@ namespace GameSpace.Sprites.Background
 
         public override void Draw(SpriteBatch spriteBatch, Vector2 location)
         {
-            if (Texture != null)
-            {
-                Rectangle sourceRectangle;
-                Rectangle destinationRectangle;
-                if (Texture.Width == 257)
-                {
-                     sourceRectangle = new Rectangle((int)location.X, 0, 1200, Texture.Height);//1 repeating row of pictures
-                     destinationRectangle = new Rectangle((int)location.X, 0, 1200, Texture.Height);
-                     spriteBatch.Draw(Texture, destinationRectangle, sourceRectangle, Color.White);
-                }
-                else
-                {
-                    sourceRectangle = new Rectangle((int)location.X % Texture.Width, 0, Texture.Width, Texture.Height);//1 repeating row of pictures
-                    destinationRectangle = new Rectangle((int)location.X, 0, Texture.Width, Texture.Height);
-                    spriteBatch.Draw(Texture, destinationRectangle, sourceRectangle, Color.White);
-                }
 
-            }
         }
 
-        public void Draw(SpriteBatch spriteBatch, Vector2 location, Vector2 parallax)
+        public void Draw(SpriteBatch spriteBatch, Vector2 cameraLocation, Vector2 parallax)
         {
-            if (Texture != null)
-            {
-                Rectangle sourceRectangle;
-                Rectangle destinationRectangle;
-                if (Texture.Width == 257)
-                {
-                    sourceRectangle = new Rectangle(((int)location.X * (int)parallax.X) % Texture.Width, 0, 1200, Texture.Height);//1 repeating row of pictures
-                    destinationRectangle = new Rectangle((int)location.X * (int)parallax.X, 0, 1200, Texture.Height);
-                    spriteBatch.Draw(Texture, destinationRectangle, sourceRectangle, Color.White);
-                }
-                if (Texture.Width == 182)
-                {
-                    sourceRectangle = new Rectangle(((int)location.X * (int)parallax.X) % Texture.Width, 0, 1200, Texture.Height);//1 repeating row of pictures
-                    destinationRectangle = new Rectangle((int)location.X * (int)parallax.X, 0, 1200, Texture.Height);
-                    spriteBatch.Draw(Texture, destinationRectangle, sourceRectangle, Color.White);
-                }
-                else
-                {
-                    sourceRectangle = new Rectangle(((int)location.X * (int)parallax.X) % Texture.Width, 0, 1200, Texture.Height);//1 repeating row of pictures
-                    destinationRectangle = new Rectangle((int)location.X * (int)parallax.X, 200, 1200, Texture.Height);
-                    spriteBatch.Draw(Texture, destinationRectangle, sourceRectangle, Color.White);
-                }
-
-            }
+            Rectangle sourceRectangle = new Rectangle((int)cameraLocation.X, 0, 1200, Texture.Height);//1 repeating row of pictures
+            Rectangle destinationRectangle = new Rectangle((int)cameraLocation.X, (int)cameraLocation.Y + (int)Position.Y, 1200, Texture.Height);//the 1200 could be a constant or some value based
+            spriteBatch.Draw(Texture, destinationRectangle, sourceRectangle, Color.White);                                                      // on window size
         }
-
-        public void Draw(SpriteBatch spriteBatch)
-        {
-            if (Texture != null)
-            {
-                /*if (Texture.Width > 1000)
-                {
-                    Rectangle sourceRectangle = new Rectangle(0, 0, 800, 480);
-                    //Rectangle sourceRectangle = new Rectangle(0, 0, Texture.Width, Texture.Height);
-                    Rectangle destinationRectangle = new Rectangle((int)location.X, (int)location.Y, 800, 480);
-                    spriteBatch.Draw(Texture, destinationRectangle, sourceRectangle, Color.White);
-                    //spriteBatch.Draw(Texture, location, Color.White);
-                }
-                else
-                {
-                    spriteBatch.Draw(Texture, Vector2.Zero, Color.White);
-                }//*/
-                Rectangle sourceRectangle = new Rectangle((int)location.X, 0, 800, Texture.Height);//1 repeating row of pictures
-                //Rectangle sourceRectangle = new Rectangle(0, 0, Texture.Width, Texture.Height);
-                Rectangle destinationRectangle = new Rectangle((int)location.X, 0, 800, Texture.Height);
-
-                /*Rectangle sourceRectangle = new Rectangle((int)location.X, 0, 800, 480);
-                //Rectangle sourceRectangle = new Rectangle(0, 0, Texture.Width, Texture.Height);
-                Rectangle destinationRectangle = new Rectangle((int)location.X, 0, 800, 480);*/
-
-                spriteBatch.Draw(Texture, destinationRectangle, sourceRectangle, Color.White);
-            }
-                //spriteBatch.Draw(Texture, Position, Color.White);
-            //spriteBatch.Draw(Texture, Vector2.Zero, Color.White);
-
-        }
-
 
         public override void DrawBoundary(SpriteBatch spriteBatch, Rectangle destination)
         {
