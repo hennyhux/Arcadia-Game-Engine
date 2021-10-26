@@ -112,7 +112,8 @@ namespace GameSpace.EntitiesManager
                     }
                 }
             }
-            else if(fallingObject is OneUpShroom)
+            
+            if(fallingObject is OneUpShroom)
             {
                 OneUpShroom copy = (OneUpShroom)fallingObject;
                 foreach (IGameObjects entity in copyPrunedList)
@@ -124,7 +125,8 @@ namespace GameSpace.EntitiesManager
                     }
                 }
             }
-            else if (fallingObject is SuperShroom)
+            
+            if (fallingObject is SuperShroom)
             {
                 SuperShroom copy = (SuperShroom)fallingObject;
                 foreach (IGameObjects entity in copyPrunedList)
@@ -153,6 +155,19 @@ namespace GameSpace.EntitiesManager
             if (fallingObject is RedKoopa)
             {
                 RedKoopa copy = (RedKoopa)fallingObject;
+                foreach (IGameObjects entity in copyPrunedList)
+                {
+                    if (copy.ExpandedCollisionBox.Intersects(entity.CollisionBox) && entity.ObjectID != copy.ObjectID)
+                    {
+                        gonnaFall = false;
+                        break;
+                    }
+                }
+            }
+
+            if (fallingObject is Star)
+            {
+                Star copy = (Star)fallingObject;
                 foreach (IGameObjects entity in copyPrunedList)
                 {
                     if (copy.ExpandedCollisionBox.Intersects(entity.CollisionBox) && entity.ObjectID != copy.ObjectID)

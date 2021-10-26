@@ -22,7 +22,6 @@ namespace GameSpace.GameObjects.ItemObjects
         public Vector2 Acceleration { get; set; }
         public Rectangle CollisionBox { get; set; }
 
-        public Mario mario;
         public int ObjectID { get; set; }
 
         private Boolean hasCollided;

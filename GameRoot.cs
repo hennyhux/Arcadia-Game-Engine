@@ -51,7 +51,7 @@ namespace GameSpace
         public GraphicsDeviceManager Graphics { get => graphics; }
         
         //string xmlFileName = "../../../TileMapDefinition/HenryTestingDontEdit.xml";
-        string xmlFileName = "../../../TileMapDefinition/JohnTestingDontEdit.xml";
+        string xmlFileName = "../../../TileMapDefinition/Testing2.xml";
         public GameRoot()
         {
             graphics = new GraphicsDeviceManager(this);
