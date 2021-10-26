@@ -75,7 +75,7 @@ namespace GameSpace.GameObjects.EnemyObjects
             if (EntityManager.IsGoingToFall(this))
             {
 
-                Velocity = new Vector2(0, Velocity.Y);
+                //Velocity = new Vector2(0, Velocity.Y);
                 Acceleration = new Vector2(0, 400);
             }
 

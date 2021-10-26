@@ -122,6 +122,18 @@ namespace GameSpace.EntitiesManager
                     }
                 }
             }
+            else if (fallingObject is SuperShroom)
+            {
+                SuperShroom copy = (SuperShroom)fallingObject;
+                foreach (IGameObjects entity in copyPrunedList)
+                {
+                    if (copy.ExpandedCollisionBox.Intersects(entity.CollisionBox) && entity.ObjectID != copy.ObjectID)
+                    {
+                        gonnaFall = false;
+                        break;
+                    }
+                }
+            }
 
             return gonnaFall;
         }

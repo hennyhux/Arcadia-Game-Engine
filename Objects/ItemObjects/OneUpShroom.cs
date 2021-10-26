@@ -93,8 +93,6 @@ namespace GameSpace.GameObjects.ItemObjects
         {
             if (EntityManager.IsGoingToFall(this))
             {
-
-                //Velocity = new Vector2(0, Velocity.Y);
                 Acceleration = new Vector2(0, 400);
             }
 
@@ -109,9 +107,6 @@ namespace GameSpace.GameObjects.ItemObjects
             Position += Velocity * (float)gameTime.ElapsedGameTime.TotalSeconds;
 
             UpdateCollisionBox(Position);
-
-            //this.Position = new Vector2(location.X + this.Velocity.X, location.Y);
-            //UpdateCollisionBox(this.Position);
         }
 
         public void ToggleCollisionBoxes()
