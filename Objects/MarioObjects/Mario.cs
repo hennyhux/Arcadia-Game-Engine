@@ -267,7 +267,7 @@ namespace GameSpace.GameObjects.BlockObjects
             if (Position.X + newLocation.X <= 0) { marioActionState.StandingTransition(); return true; }
             if (Position.X + (CollisionBox.Width) + newLocation.X > ((Rectangle)EntityManager.Camera.Limits).Width) { marioActionState.StandingTransition(); return true; }//should be max X value of level
             if (Position.Y + newLocation.Y <= 0) return true;
-            if (Position.Y + newLocation.Y >= ((Rectangle)EntityManager.Camera.Limits).Height) return true;
+            if (Position.Y + newLocation.Y + CollisionBox.Height >= ((Rectangle)EntityManager.Camera.Limits).Height) { marioPowerUpState.DeadTransition();  return true; } 
             return false;
         }
 

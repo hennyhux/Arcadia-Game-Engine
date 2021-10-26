@@ -27,8 +27,9 @@ namespace GameSpace.States.MarioStates
             Mario.CollisionBox = new Rectangle(0, 0, 0, 0);
             this.previousActionState = previousActionState;
            // Mario.marioPowerUpState = new DeadMarioState(Mario);
-            Debug.WriteLine("MarioDeadState(25) ed, {0}", Mario.marioActionState);
-            Debug.WriteLine("MarioDeadState(25) ded:, {0}", Mario.marioPowerUpState);
+            //Debug.WriteLine("MarioDeadState(25) ed, {0}", Mario.marioActionState);
+            //Debug.WriteLine("MarioDeadState(25) ded:, {0}", Mario.marioPowerUpState);
+            Debug.WriteLine("Pox Y :, {0}", Mario.Position.Y);
 
             Mario.Velocity = new Vector2((float)0, (float)0);
             //AABB aabb = Mario.AABB;
