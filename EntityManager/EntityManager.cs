@@ -20,7 +20,9 @@ namespace GameSpace.EntitiesManager
         private static List<IGameObjects> gameEntities = new List<IGameObjects>();
         private static List<IGameObjects> prunedList = new List<IGameObjects>();
         private static List<IGameObjects> copyPrunedList = new List<IGameObjects>();
-        private static List<IObjectAnimation> animationList = new List<IObjectAnimation>(); 
+        private static List<IObjectAnimation> animationList = new List<IObjectAnimation>();
+        //BackGround Stuff
+        private static List<IGameObjects> backgroundList = new List<IGameObjects>();
         private static IGameObjects mario;
         private static Vector2 marioCurrentLocation;
 
@@ -198,7 +200,7 @@ namespace GameSpace.EntitiesManager
         {
             mario = EntityManager.FindItem((int)AvatarID.MARIO);
             marioCurrentLocation = mario.Position;
-            Debug.WriteLine("MARIO POSITION " + mario.Position.X + "   "+ mario.Position.Y);
+            //Debug.WriteLine("MARIO POSITION " + mario.Position.X + "   "+ mario.Position.Y);
             foreach (IGameObjects entity in gameEntities)
             {
                 if (marioCurrentLocation.X + 800 >= entity.Position.X && entity.Position.X - 800 < marioCurrentLocation.X)
@@ -216,11 +218,11 @@ namespace GameSpace.EntitiesManager
                         prunedList[j].HandleCollision(prunedList[i]);
                     }
                 }
-            Debug.WriteLine("SIZE OF PRUNED LIST " + prunedList.Count);
-            Debug.WriteLine("SIZE OF OG LIST " + gameEntities.Count);
+           // Debug.WriteLine("SIZE OF PRUNED LIST " + prunedList.Count);
+            //Debug.WriteLine("SIZE OF OG LIST " + gameEntities.Count);
             copyPrunedList = prunedList.ToList();
             prunedList.Clear();
-            Debug.WriteLine("SIZE OF PRUNED COPY LIST " + copyPrunedList.Count);
+            //Debug.WriteLine("SIZE OF PRUNED COPY LIST " + copyPrunedList.Count);
         }
 
         private static bool IntersectAABB(IGameObjects a, IGameObjects b)
