@@ -107,23 +107,11 @@ namespace GameSpace
             //Scrolling Background, Manually Setting
             layers = new List<Layer>
             {
-                new Layer(camera) { Parallax = new Vector2(2.0f, 1.0f) },//[0]
-                new Layer(camera) { Parallax = new Vector2(1.5f, 1.0f) },//[1]
-                new Layer(camera) { Parallax = new Vector2(1.0f, 1.0f) },//[2]
-                //new Layer(camera,new Vector2(2.0f, 1.0f)),
-                //new Layer(camera, new Vector2(1.5f, 1.0f)),
-                //new Layer(camera, new Vector2(1.0f, 1.0f)),
-
-                //new Layer(camera, BackgroundFactory.GetInstance().CreateCloudsSprite(), new Vector2(2.0f, 1.0f)),
-                //new Layer(camera, BackgroundFactory.GetInstance().CreateBGMountainSprite(), new Vector2(1.5f, 1.0f)),
-                //new Layer(camera, BackgroundFactory.GetInstance().CreateRegularBackground(), new Vector2(1.0f, 1.0f)),
-            
+                new Layer(camera, BackgroundFactory.GetInstance().CreateCloudsSprite(), new Vector2(2.0f, 1.0f)),
+                new Layer(camera, BackgroundFactory.GetInstance().CreateBGMountainSprite(), new Vector2(1.5f, 1.0f)),
+                new Layer(camera, BackgroundFactory.GetInstance().CreateRegularBackground(), new Vector2(1.0f, 1.0f)),
             };
-            //new Layer(camera, BackgroundFactory.GetInstance().CreateCloudsSprite(), new Vector2(2.0f, 1.0f));
-            // Add a sprite to each layer
-            layers[0].Sprites.Add(BackgroundFactory.GetInstance().CreateCloudsSprite());
-            layers[1].Sprites.Add(BackgroundFactory.GetInstance().CreateBGMountainSprite());
-            layers[2].Sprites.Add(BackgroundFactory.GetInstance().CreateRegularBackground());//Background layer
+
 
         }
 
