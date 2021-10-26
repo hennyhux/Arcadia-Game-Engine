@@ -137,6 +137,11 @@ namespace GameSpace.GameObjects.EnemyObjects
             }    
         }
 
+        public IEnemyState GetCurrentState()
+        {
+            return state;
+        }
+
         private void CollisionWithMario(IGameObjects mario)
         {
             if (EntityManager.DetectCollisionDirection(this, mario) == (int)CollisionDirection.UP)

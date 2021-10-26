@@ -135,9 +135,9 @@ namespace GameSpace.EntitiesManager
                 }
             }
 
-            if (enemy is GreenKoopa)
+            if (fallingObject is GreenKoopa)
             {
-                GreenKoopa copy = (GreenKoopa)enemy;
+                GreenKoopa copy = (GreenKoopa)fallingObject;
                 foreach (IGameObjects entity in copyPrunedList)
                 {
                     if (copy.ExpandedCollisionBox.Intersects(entity.CollisionBox) && entity.ObjectID != copy.ObjectID)
@@ -148,9 +148,9 @@ namespace GameSpace.EntitiesManager
                 }
             }
 
-            if (enemy is RedKoopa)
+            if (fallingObject is RedKoopa)
             {
-                RedKoopa copy = (RedKoopa)enemy;
+                RedKoopa copy = (RedKoopa)fallingObject;
                 foreach (IGameObjects entity in copyPrunedList)
                 {
                     if (copy.ExpandedCollisionBox.Intersects(entity.CollisionBox) && entity.ObjectID != copy.ObjectID)
