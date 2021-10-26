@@ -151,7 +151,7 @@ namespace GameSpace.GameObjects.EnemyObjects
 
         private void CollisionWithMario(IGameObjects mario)
         {
-            if (EntityManager.DetectCollisionDirection(this, mario) == (int)CollisionDirection.DOWN)
+            if (EntityManager.DetectCollisionDirection(this, mario) == (int)CollisionDirection.UP)
             {
                 this.state = new StateGreenKoopaDead(this);
             }

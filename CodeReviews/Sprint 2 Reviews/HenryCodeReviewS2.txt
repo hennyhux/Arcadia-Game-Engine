@@ -1,7 +1,7 @@
 ﻿Author of Review: Henry Zhang
-Date: 10/12/2021
-Sprint Number: 2
-Name of File: Loader.cs
+Date: 10/26/2021
+Sprint Number: 3
+Name of File: EntityManager.Is
 Author of File: Beto Cruz 
 Comments:
 	Upon first glace, there are seperate methods for loading all different game objects into a list that is used

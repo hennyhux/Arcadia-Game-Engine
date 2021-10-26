@@ -35,6 +35,8 @@ namespace GameSpace.GameObjects.BlockObjects
         public int ObjectID { get; set; }
         public int numFireballs;
 
+        public int marioLives { get; set; }
+
         public Mario(Vector2 initLocation)
         {
             Debug.WriteLine("Mario.cs(50) CREATED MARIO \n");
@@ -44,7 +46,7 @@ namespace GameSpace.GameObjects.BlockObjects
             this.Position = new Vector2((int)initLocation.X, (int)initLocation.Y);
             this.CollisionBox = new Rectangle((int)initLocation.X - 3, (int)initLocation.Y, 32, 32);
             this.numFireballs = 0;
-
+            this.marioLives = 3;
             // this.state = new MarioStates(game);
             // this.sprite = MarioFactory.GetInstance().ReturnMarioS1tandingLeftSprite();
             //this.marioPowerUpState = new SmallMarioState(this);
@@ -267,7 +269,7 @@ namespace GameSpace.GameObjects.BlockObjects
             if (Position.X + newLocation.X <= 0) { marioActionState.StandingTransition(); return true; }
             if (Position.X + (CollisionBox.Width) + newLocation.X > ((Rectangle)EntityManager.Camera.Limits).Width) { marioActionState.StandingTransition(); return true; }//should be max X value of level
             if (Position.Y + newLocation.Y <= 0) return true;
-            if (Position.Y + newLocation.Y >= ((Rectangle)EntityManager.Camera.Limits).Height) return true;
+            if (Position.Y + newLocation.Y + CollisionBox.Height >= ((Rectangle)EntityManager.Camera.Limits).Height) { marioPowerUpState.DeadTransition();  return true; } 
             return false;
         }
 

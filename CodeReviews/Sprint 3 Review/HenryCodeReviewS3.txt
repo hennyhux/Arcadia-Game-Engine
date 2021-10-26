@@ -1,0 +1,21 @@
+﻿Author of Review: Henry Zhang
+Date: 10/26/2021
+Sprint Number: 3
+Name of File: EntityManager - IsGoingToFall(IGameObjects fallingObject)
+Author of File/Method: Caleb H.
+
+
+Comments:
+	This method should take full advantages of method overrloading and be broken up into seperate methods with same names but different arguments. This ensures that when 
+	objects invoke the method and pass in its own type, then the method signature ensures that the correct method inside entity manager is called. Since the method takes an IGameObject
+	var as a parameter, this means that ANY IGameObject can be passed into the method, even those not "allowed" by the programming logic inside the method. 
+
+	
+Hypothetical Change:
+	Break IsGoingToFall(IGameObjects fallingObject) into:
+
+	IsGoingToFall(FireFlower ff);
+	IsGoingToFall(SuperShroom ss);
+	IsGoingToFall(OneUpShroom ous);
+
+

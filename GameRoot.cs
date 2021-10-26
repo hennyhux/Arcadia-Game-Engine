@@ -98,7 +98,7 @@ namespace GameSpace
             }
 
             //Camera Stuff
-            camera = new Camera(GraphicsDevice.Viewport) { Limits = new Rectangle(0, 0, Loader.boundaryX, 600) };//Should be set to level's max X and Y
+            camera = new Camera(GraphicsDevice.Viewport) { Limits = new Rectangle(0, 0, Loader.boundaryX, 480) };//Should be set to level's max X and Y
 
             EntityManager.AddCamera(camera);
 

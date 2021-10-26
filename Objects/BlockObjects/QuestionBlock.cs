@@ -17,8 +17,6 @@ namespace GameSpace.GameObjects.BlockObjects
 {
     public class QuestionBlock : AbstractItemBlock
     {
-
-
         public QuestionBlock(Vector2 initalPosition)
         {
             this.ObjectID = (int)BlockID.QUESTIONBLOCK;
@@ -35,7 +33,5 @@ namespace GameSpace.GameObjects.BlockObjects
             EntityManager.AddAnimation(new CoinExitingBlockAnimation(Position, internalGametime));
             revealedItem = true;
         }
-
-
     }
 }
