@@ -9,8 +9,15 @@
 
 
 	<Enemy>
-		<enemy>REDKOOPA</enemy>
+		<enemy>GOOMBA</enemy>
 		<x>450</x>
+		<y>100</y>
+	</Enemy>
+
+
+	<Enemy>
+		<enemy>GOOMBA</enemy>
+		<x>900</x>
 		<y>100</y>
 	</Enemy>
 

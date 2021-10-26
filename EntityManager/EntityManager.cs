@@ -1,4 +1,5 @@
-﻿using GameSpace.Enums;
+﻿using GameSpace.Camera2D;
+using GameSpace.Enums;
 using GameSpace.Factories;
 using GameSpace.GameObjects.BlockObjects;
 using GameSpace.GameObjects.EnemyObjects;
@@ -15,6 +16,7 @@ using System.Text;
 
 namespace GameSpace.EntitiesManager
 {
+    //ROADMAP: convert this static class into four other classes (singleton pattern) for sprint 4 
     public static class EntityManager
     {
         private static List<IGameObjects> gameEntities = new List<IGameObjects>();
@@ -25,6 +27,7 @@ namespace GameSpace.EntitiesManager
         private static List<IGameObjects> backgroundList = new List<IGameObjects>();
         private static IGameObjects mario;
         private static Vector2 marioCurrentLocation;
+        public static Camera Camera { get; set; }
 
 
         #region Entity Managing
@@ -105,7 +108,7 @@ namespace GameSpace.EntitiesManager
                 Goomba copy = (Goomba)fallingObject;
                 foreach (IGameObjects entity in copyPrunedList)
                 {
-                    if (copy.ExpandedCollisionBox.Intersects(entity.CollisionBox) && entity.ObjectID != copy.ObjectID)
+                    if (copy.ExpandedCollisionBox.Intersects(entity.CollisionBox) && entity.ObjectID != copy.ObjectID && entity.ObjectID != (int)AvatarID.MARIO)
                     {
                         gonnaFall = false;
                         break;
@@ -198,11 +201,17 @@ namespace GameSpace.EntitiesManager
 
         #endregion
 
-        #region AnimationManager
+        #region AnimationAndCameraManager
         public static void AddAnimation(IObjectAnimation animation)
         {
             animationList.Add(animation);
         }
+
+        public static void AddCamera(Camera camera)
+        {
+            Camera = camera;
+        }
+
 
         #endregion
 
