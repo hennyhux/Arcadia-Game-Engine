@@ -139,7 +139,7 @@ namespace GameSpace.GameObjects.ItemObjects
 
         private void UpdateCollisionBox(Vector2 location)
         {
-            this.CollisionBox = new Rectangle((int)Position.X + 5, (int)Position.Y, (Sprite.Texture.Width * 2 / 4) - 10, Sprite.Texture.Height * 2);
+            if (!hasCollided)this.CollisionBox = new Rectangle((int)Position.X + 5, (int)Position.Y, (Sprite.Texture.Width * 2 / 4) - 10, Sprite.Texture.Height * 2);
         }
     }
 }

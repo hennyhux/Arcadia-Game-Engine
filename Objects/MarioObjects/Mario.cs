@@ -93,13 +93,18 @@ namespace GameSpace.GameObjects.BlockObjects
             Vector2 newLocation = Velocity * (float)gametime.ElapsedGameTime.TotalSeconds;
             if (!IsGoingToBeOutOfBounds(newLocation)) Position += newLocation;
             //this.CollisionBox = new Rectangle((int)Position.X, (int)Position.Y, CollisionBox.Width, CollisionBox.Height);
-            if(marioPowerUpState is SmallMarioState)
+
+
+            if (!(marioPowerUpState is States.BlockStates.DeadMarioState))
             {
-                this.CollisionBox = new Rectangle((int)Position.X, (int)Position.Y, 32, 32);
-            }
-            else
-            {
-                this.CollisionBox = new Rectangle((int)Position.X, (int)Position.Y, this.sprite.Width*2, this.sprite.Height*2);
+                if (marioPowerUpState is SmallMarioState)
+                {
+                    this.CollisionBox = new Rectangle((int)Position.X, (int)Position.Y, 32, 32);
+                }
+                else
+                {
+                    this.CollisionBox = new Rectangle((int)Position.X, (int)Position.Y, this.sprite.Width * 2, this.sprite.Height * 2);
+                }
             }
             
             //GetMario.sprite.Height
