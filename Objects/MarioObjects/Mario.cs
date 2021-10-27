@@ -47,36 +47,13 @@ namespace GameSpace.GameObjects.BlockObjects
             this.CollisionBox = new Rectangle((int)initLocation.X - 3, (int)initLocation.Y, 32, 32);
             this.numFireballs = 0;
             this.marioLives = 3;
-            // this.state = new MarioStates(game);
-            // this.sprite = MarioFactory.GetInstance().ReturnMarioS1tandingLeftSprite();
-            //this.marioPowerUpState = new SmallMarioState(this);
-            int big = 0;
-            if (big == 0)
-            {
-                this.sprite = MarioFactory.GetInstance().CreateSprite(1);
-                //this.Sprite = MarioFactory.GetInstance().CreateSprite(1); 
-                this.marioPowerUpState = new SmallMarioState(this);
-                this.marioActionState = new SmallMarioStandingState(this);
-            }
-            /*else if(big == 1)
-             {
-                 this.sprite = MarioFactory.GetInstance().CreateSprite(16);
-                 this.marioPowerUpState = new BigMarioState(this);
-                 this.marioActionState = new BigMarioStandingState(this);
+            this.Acceleration = new Vector2(0, 100);//NEW
 
-             }
-             else
-             {
 
-                 this.sprite = MarioFactory.GetInstance().CreateSprite(32);
-                 this.marioPowerUpState = new FireMarioState(this);
-                 this.marioActionState = new FireMarioStandingState(this);
-                 ///*////this.marioPowerUpState = new FireMarioState(this);
-            // this.marioActionState = new FireMarioStandingState(this);
-            // this.sprite = MarioFactory.GetInstance().CreateSprite(MarioFactory.MarioSpriteType(marioActionState, this.marioPowerUpState));
-            //this.sprite = MarioFactory.GetInstance().CreateSprite(10);*/*/
-            //}
-
+            this.sprite = MarioFactory.GetInstance().CreateSprite(1);
+            this.marioPowerUpState = new SmallMarioState(this);
+            this.marioActionState = new SmallMarioStandingState(this);
+            
         }
 
         public void Draw(SpriteBatch spritebatch)
@@ -92,7 +69,8 @@ namespace GameSpace.GameObjects.BlockObjects
         }
         public void Update(GameTime gametime)
         {
-            //Debug.WriteLine("Mario X, {0}", Position.X);
+            Debug.WriteLine("Mario velocity, {0}", Velocity.Y);
+            //Velocity += Acceleration * (float)gametime.ElapsedGameTime.TotalSeconds;
             Vector2 newLocation = Velocity * (float)gametime.ElapsedGameTime.TotalSeconds;
             if (!IsGoingToBeOutOfBounds(newLocation))
             {
@@ -506,5 +484,7 @@ namespace GameSpace.GameObjects.BlockObjects
         {
             return hasCollided;
         }
+
+        
     }
 }

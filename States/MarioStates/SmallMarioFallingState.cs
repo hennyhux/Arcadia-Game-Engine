@@ -133,14 +133,14 @@ namespace GameSpace.States.MarioStates
 
         public override void Update(GameTime gametime)
         {
-            //something with velocity and check if we hit the ground
-            // if we hit ground then do to either Standing or like running if u still have Horziontal velocity idk
+            Mario.Velocity += Mario.Acceleration * (float)gametime.ElapsedGameTime.TotalSeconds;
+            Mario.Velocity = ClampVelocity(Mario.Velocity);
         }
         //void Update(GameTime gametime, GraphicsDeviceManager graphics);
 
         Vector2 ClampVelocity(Vector2 velocity)
         {
-            return Vector2.Zero;//return the actualy velocity
+            return new Vector2(Mario.Velocity.X, Mario.Velocity.Y);
         }
         // max velocity speed, clamp for each state speed
     }
