@@ -59,13 +59,27 @@ namespace GameSpace.TileMapDefinition
                 switch (obstacles.block)
                 {
                     case BlockID.BRICKBLOCK:
-                        for (int i = 0; i < obstacles.blockRow; i++)
+                        if (obstacles.blockRow == 1 && obstacles.item == ItemID.COIN)
                         {
-                            objectsList.Add(objectFactory.CreateBrickBlockObject(new Vector2(obstacles.x + (32 * i), obstacles.y)));
+                            objectsList.Add(objectFactory.CreateCoinBrickBlock(location));
+                        } 
+                        else if(obstacles.blockRow == 1 && obstacles.item == ItemID.STAR)
+                        {
+                            objectsList.Add(objectFactory.CreateStarBrickBlock(location));
+                        }
+                        else
+                        {
+                            for (int i = 0; i < obstacles.blockRow; i++)
+                            {
+                                objectsList.Add(objectFactory.CreateBrickBlockObject(new Vector2(obstacles.x + (32 * i), obstacles.y)));
+                            }
                         }
                         break;
                     case BlockID.QUESTIONBLOCK:
-                        objectsList.Add(objectFactory.CreateQuestionBlockObject(location));
+                        if (obstacles.item == ItemID.COIN) objectsList.Add(objectFactory.CreateQuestionBlockCoin(location));
+                        //else if (obstacles.item == ItemID.STAR) objectsList.Add(objectFactory.CreateQuestionBlockStar(location));
+                        else if (obstacles.item == ItemID.ONEUPSHROOM) objectsList.Add(objectFactory.CreateQuestionBlockOneUpShroom(location));
+                        else if (obstacles.item == ItemID.SUPERSHROOM) objectsList.Add(objectFactory.CreateQuestionBlockShroom(location));
                         break;
                     case BlockID.FLOORBLOCK:
                         for (int i = 0; i < obstacles.blockRow; i++)
@@ -98,78 +112,23 @@ namespace GameSpace.TileMapDefinition
                         objectsList.Add(objectFactory.CreateRedKoopaObject(location));
                         break;
                 }
-                
-                if (obstacles.hiddenItem)
+                switch (obstacles.item)
                 {
-                    switch (obstacles.item)
-                    {
-                        case ItemID.SUPERSHROOM:
-                            objectsList.Add(objectFactory.CreateSuperShroomObject(location));
-                            break;
-                        case ItemID.STAR:
-                            objectsList.Add(objectFactory.CreateStarObject(location));
-                            break;
-                        case ItemID.ONEUPSHROOM:
-                            objectsList.Add(objectFactory.CreateOneUpShroomObject(location));
-                            break;
-                        case ItemID.FIREFLOWER:
-                            objectsList.Add(objectFactory.CreateFireFlowerObject(location));
-                            break;
-                        case ItemID.COIN:
-                            objectsList.Add(objectFactory.CreateCoinObject(location));
-                            break;
-                        case ItemID.SMALLPIPE:
-                            objectsList.Add(objectFactory.CreateSmallPipeObject(location));
-                            break;
-                        case ItemID.MEDIUMPIPE:
-                            objectsList.Add(objectFactory.CreateMediumPipeObject(location));
-                            break;
-                        case ItemID.BIGPIPE:
-                            objectsList.Add(objectFactory.CreateBigPipeObject(location));
-                            break;
-                        case ItemID.CASTLE:
-                            objectsList.Add(objectFactory.CreateCastleObject(location));
-                            break;
-                        case ItemID.FLAGPOLE:
-                            objectsList.Add(objectFactory.CreateFlagPoleObject(location));
-                            break;
-                    }
-                }
-                else if (!obstacles.hiddenItem)
-                {
-                    switch (obstacles.item)
-                    {
-                        case ItemID.SUPERSHROOM:
-                            objectsList.Add(objectFactory.CreateSuperShroomObject(location));
-                            break;
-                        case ItemID.STAR:
-                            objectsList.Add(objectFactory.CreateStarObject(location));
-                            break;
-                        case ItemID.ONEUPSHROOM:
-                            objectsList.Add(objectFactory.CreateOneUpShroomObject(location));
-                            break;
-                        case ItemID.FIREFLOWER:
-                            objectsList.Add(objectFactory.CreateFireFlowerObject(location));
-                            break;
-                        case ItemID.COIN:
-                            objectsList.Add(objectFactory.CreateCoinObject(location));
-                            break;
-                        case ItemID.SMALLPIPE:
-                            objectsList.Add(objectFactory.CreateSmallPipeObject(location));
-                            break;
-                        case ItemID.MEDIUMPIPE:
-                            objectsList.Add(objectFactory.CreateMediumPipeObject(location));
-                            break;
-                        case ItemID.BIGPIPE:
-                            objectsList.Add(objectFactory.CreateBigPipeObject(location));
-                            break;
-                        case ItemID.CASTLE:
-                            objectsList.Add(objectFactory.CreateCastleObject(location));
-                            break;
-                        case ItemID.FLAGPOLE:
-                            objectsList.Add(objectFactory.CreateFlagPoleObject(location));
-                            break;
-                    }
+                    case ItemID.SMALLPIPE:
+                        objectsList.Add(objectFactory.CreateSmallPipeObject(location));
+                        break;
+                    case ItemID.MEDIUMPIPE:
+                        objectsList.Add(objectFactory.CreateMediumPipeObject(location));
+                        break;
+                    case ItemID.BIGPIPE:
+                        objectsList.Add(objectFactory.CreateBigPipeObject(location));
+                        break;
+                    case ItemID.CASTLE:
+                        objectsList.Add(objectFactory.CreateCastleObject(location));
+                        break;
+                    case ItemID.FLAGPOLE:
+                        objectsList.Add(objectFactory.CreateFlagPoleObject(location));
+                        break;
                 }
             }
             return objectsList;
