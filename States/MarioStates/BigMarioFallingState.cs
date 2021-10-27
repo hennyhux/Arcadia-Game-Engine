@@ -28,7 +28,7 @@ namespace GameSpace.States.MarioStates
             //Mario.marioPowerUpState = new BigMarioState(Mario);
             Debug.WriteLine("MarioStandState(25) Enter, {0}", Mario.marioActionState);
             Debug.WriteLine("MarioWalkingState(25) facing:, {0}", Mario.Facing);
-            Mario.Velocity = new Vector2((float)0, (float)100);
+            
             //AABB aabb = Mario.AABB;
             //eFacing Facing = MarioStandingState.Facing;
             eFacing Facing = Mario.Facing;
@@ -116,7 +116,15 @@ namespace GameSpace.States.MarioStates
         }
         public override void DownTransition()
         {
-            StandingTransition();
+            if (previousActionState is BigMarioJumpingState)
+            {
+                StandingTransition();
+            }
+            else
+            {
+                Mario.marioActionState = previousActionState;
+                Mario.marioActionState.Enter(this);
+            }
         }
         public override void SmallPowerUp()
         {
@@ -144,13 +152,14 @@ namespace GameSpace.States.MarioStates
 
         public override void Update(GameTime gametime)
         {
-
+            Mario.Velocity += Mario.Acceleration * (float)gametime.ElapsedGameTime.TotalSeconds;
+            Mario.Velocity = ClampVelocity(Mario.Velocity);
         }
         //void Update(GameTime gametime, GraphicsDeviceManager graphics);
 
         Vector2 ClampVelocity(Vector2 velocity)
         {
-            return Vector2.Zero;
+            return new Vector2(Mario.Velocity.X, Mario.Velocity.Y);
         }
         // max velocity speed, clamp for each state speed
     }

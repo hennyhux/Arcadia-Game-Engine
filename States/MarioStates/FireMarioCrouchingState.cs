@@ -30,7 +30,7 @@ namespace GameSpace.States.MarioStates
             //Debug.WriteLine("MarioWalkingState(25) facing:, {0}", Mario.Facing);
 
             //Mario.Position = new Vector2(Mario.Position.X, Mario.Position.Y + 20);
-            Mario.Velocity = new Vector2((float)0, (float)100);
+            
 
             //AABB aabb = Mario.AABB;
             //eFacing Facing = MarioStandingState.Facing;

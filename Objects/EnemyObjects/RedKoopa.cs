@@ -28,12 +28,13 @@ namespace GameSpace.GameObjects.EnemyObjects
         private Boolean inFrame; //is the current enemy inside of the viewport? 
         public int direction;
         public Rectangle ExpandedCollisionBox { get; set; }
-
+        private Boolean shifted;
         public RedKoopa(Vector2 initalPosition)
         {
             ObjectID = (int)EnemyID.REDKOOPA;
             direction = (int)eFacing.LEFT;
             drawBox = false;
+            shifted = false;
             inFrame = true;
             this.Position = initalPosition;
             this.state = new StateRedKoopaAliveLeft(this);
@@ -44,6 +45,11 @@ namespace GameSpace.GameObjects.EnemyObjects
 
         public void Draw(SpriteBatch spritebatch)
         {
+            if (shifted)
+            {
+                Position = new Vector2(Position.X, Position.Y - 20);
+                shifted = false;
+            }
             state.Draw(spritebatch, Position);
             if (drawBox) state.DrawBoundaries(spritebatch, CollisionBox);
         }
@@ -168,6 +174,7 @@ namespace GameSpace.GameObjects.EnemyObjects
         private void PreformShellOffset()
         {
             Position = new Vector2(Position.X, Position.Y + 20);
+            shifted = true;
         }
 
 
@@ -177,7 +184,7 @@ namespace GameSpace.GameObjects.EnemyObjects
             /*if (EntityManager.DetectCollisionDirection(this, mario) == (int)CollisionDirection.UP)
             {
                     this.state = new StateRedKoopaDead(this);
-                PreformShellOffset();
+               // PreformShellOffset();
             }
 
 
@@ -185,10 +192,12 @@ namespace GameSpace.GameObjects.EnemyObjects
             {
                 if (EntityManager.DetectCollisionDirection(this, mario) == (int)CollisionDirection.UP)
                 {
+                    //PreformShellOffsetDown();
                     this.state = new StateRedKoopaDead(this);
                 }
                 else if (EntityManager.DetectCollisionDirection(this, mario) == (int)CollisionDirection.RIGHT)
                 {
+                    //PreformShellOffsetDown();
                     this.state = new StateRedKoopaDeadRight(this);
                 }
                 else if (EntityManager.DetectCollisionDirection(this, mario) == (int)CollisionDirection.LEFT)
@@ -222,7 +231,7 @@ namespace GameSpace.GameObjects.EnemyObjects
                 {
                     this.state = new StateRedKoopaDeadRight(this);
                 }
-            }
+            }*/
 
 
         }

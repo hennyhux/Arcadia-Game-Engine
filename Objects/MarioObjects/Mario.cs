@@ -71,7 +71,7 @@ namespace GameSpace.GameObjects.BlockObjects
         }
         public void Update(GameTime gametime)
         {
-            Debug.WriteLine("Mario velocity, {0}", Velocity.Y);
+            //Debug.WriteLine("Mario velocity, {0}", Velocity.Y);
             //Velocity += Acceleration * (float)gametime.ElapsedGameTime.TotalSeconds;
             Vector2 newLocation = Velocity * (float)gametime.ElapsedGameTime.TotalSeconds;
             if (!IsGoingToBeOutOfBounds(newLocation))
@@ -254,7 +254,8 @@ namespace GameSpace.GameObjects.BlockObjects
         {
             if (Position.X + newLocation.X <= 0) { marioActionState.StandingTransition(); return true; }
             if (Position.X + (CollisionBox.Width) + newLocation.X > ((Rectangle)EntityManager.Camera.Limits).Width) { marioActionState.StandingTransition(); return true; }//should be max X value of level
-            if (Position.Y + newLocation.Y <= 0) return true;
+            if (Position.Y + newLocation.Y <= 0) {this.Velocity = new Vector2(this.Velocity.X, 50); marioActionState.FallingTransition(); return true; }
+           
             if (Position.Y + newLocation.Y + CollisionBox.Height >= ((Rectangle)EntityManager.Camera.Limits).Height) { marioPowerUpState.DeadTransition();  return true; } 
             return false;
         }
@@ -271,9 +272,10 @@ namespace GameSpace.GameObjects.BlockObjects
             { 
                 if(marioActionState is SmallMarioFallingState || marioActionState is BigMarioFallingState || marioActionState is FireMarioFallingState)
                 {
-                    StandingTransition();
+                    DownTransition();
+                    
                 }
-                StopAnyMotion(); 
+                //StopAnyMotion(); 
             }
         }
 
@@ -432,10 +434,12 @@ namespace GameSpace.GameObjects.BlockObjects
             else if (EntityManager.DetectCollisionDirection(this, entity) == (int)CollisionDirection.UP) 
             {
                 //this.Position = new Vector2(this.Position.X, (int)entity.Position.Y + (int)entity.CollisionBox.Height);
+                this.Velocity = new Vector2(this.Velocity.X, 50);
             }
 
             else if (EntityManager.DetectCollisionDirection(this, entity) == (int)CollisionDirection.DOWN) 
             {
+               
                 this.Position = new Vector2(this.Position.X, (int)entity.Position.Y - (int)this.CollisionBox.Height);
             }
 
@@ -460,6 +464,7 @@ namespace GameSpace.GameObjects.BlockObjects
 
                 else if (EntityManager.DetectCollisionDirection(this, entity) == (int)CollisionDirection.UP)
                 {
+                    this.Velocity = new Vector2(this.Velocity.X, 50);
                     this.Position = new Vector2(this.Position.X, (int)entity.Position.Y + (int)entity.CollisionBox.Height);
                 }
 
