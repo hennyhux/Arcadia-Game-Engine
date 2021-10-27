@@ -141,6 +141,20 @@ namespace GameSpace.EntitiesManager
             return gonnaFall;
         }
 
+        public static Boolean IsGoingToFall(Mario player)
+        {
+            Boolean gonnaFall = true;
+            foreach (IGameObjects entity in copyPrunedList)
+            {
+                if (player.ExpandedCollisionBox.Intersects(entity.CollisionBox) && entity.ObjectID == (int)AvatarID.MARIO)
+                {
+                    gonnaFall = false;
+                    break;
+                }
+            }
+            return gonnaFall;
+        }
+
         public static Boolean IsGoingToFall(IGameObjects fallingObject)
         {
             Boolean gonnaFall = true;
@@ -158,7 +172,10 @@ namespace GameSpace.EntitiesManager
                     }
                 }
             }
-            
+
+
+
+
             if (fallingObject is SuperShroom)
             {
                 SuperShroom copy = (SuperShroom)fallingObject;
@@ -172,8 +189,25 @@ namespace GameSpace.EntitiesManager
                 }
             }
 
+
+
+
+
             return gonnaFall;
         }
+       /* public static Boolean IsGoingToFall(Mario enemy)
+        {
+            Boolean gonnaFall = true;
+            foreach (IGameObjects entity in copyPrunedList)
+            {
+                if (enemy.ExpandedCollisionBox.Intersects(entity.CollisionBox) && entity.ObjectID != enemy.ObjectID && entity.ObjectID != (int)AvatarID.MARIO)
+                {
+                    gonnaFall = false;
+                    break;
+                }
+            }
+            return gonnaFall;
+        } */
 
         public static IMarioActionStates GetCurrentMarioState()
         {
