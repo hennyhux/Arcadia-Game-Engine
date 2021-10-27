@@ -6,7 +6,7 @@ using System;
 using GameSpace.GameObjects.EnemyObjects;
 
 
-namespace GameSpace.States
+namespace GameSpace.States.EnemyStates
 {
     public class StateRedKoopaDead: IEnemyState
     {
@@ -28,7 +28,8 @@ namespace GameSpace.States
 
         public void Draw(SpriteBatch spritebatch, Vector2 location)
         {
-            StateSprite.Draw(spritebatch, location);
+            Vector2 copy = new Vector2(location.X, location.Y + 20);
+            StateSprite.Draw(spritebatch, copy);
             if (CollidedWithMario) this.countDown++;
         }
 

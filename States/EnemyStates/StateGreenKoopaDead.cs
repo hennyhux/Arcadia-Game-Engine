@@ -6,7 +6,7 @@ using System;
 using GameSpace.GameObjects.EnemyObjects;
 
 
-namespace GameSpace.States
+namespace GameSpace.States.EnemyStates
 {
     public class StateGreenKoopaDead : IEnemyState
     {
