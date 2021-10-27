@@ -238,7 +238,13 @@ namespace GameSpace.GameObjects.BlockObjects
                 case (int)EnemyID.REDKOOPA:
                     CollisionWithKoopa(entity);
                     break;
+
+                case (int)ItemID.FIREBALL:
+                    CollisionWithFireball(entity);
+                    break;
             }
+
+            
             
         }
 
@@ -355,6 +361,24 @@ namespace GameSpace.GameObjects.BlockObjects
                 PrefromBounce(0, 10);
                 StandingTransition();
             }*/
+        }
+
+        private void CollisionWithFireball(IGameObjects enemy)
+        {
+            this.CollisionBox = new Rectangle(1, 1, 0, 0);
+            this.DeadTransition();
+            this.CollisionBox = new Rectangle(1, 1, 0, 0);
+
+            if (EntityManager.DetectCollisionDirection(this, enemy) == (int)CollisionDirection.LEFT) { this.Position = new Vector2((int)enemy.Position.X - (int)this.CollisionBox.Width - 5, (int)this.Position.Y); }
+
+            else if (EntityManager.DetectCollisionDirection(this, enemy) == (int)CollisionDirection.RIGHT) { this.Position = new Vector2((int)enemy.Position.X + (int)enemy.CollisionBox.Width + 5, (int)this.Position.Y); }
+
+            else if (EntityManager.DetectCollisionDirection(this, enemy) == (int)CollisionDirection.DOWN) { this.Position = new Vector2(this.Position.X, (int)enemy.Position.Y - (int)this.CollisionBox.Height); }
+
+            changeStateUponCollision(enemy);
+            this.CollisionBox = new Rectangle(1, 1, 0, 0);
+
+            hasCollided = false;
         }
 
         private void StopAnyMotion()
