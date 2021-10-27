@@ -44,7 +44,7 @@ namespace GameSpace.States.MarioStates
 
         public override void Exit()
         {
-
+            Mario.Velocity = new Vector2(Mario.Velocity.X, -15);
         }
 
         public override void StandingTransition()
