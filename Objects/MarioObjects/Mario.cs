@@ -36,6 +36,7 @@ namespace GameSpace.GameObjects.BlockObjects
         public Rectangle CollisionBox { get; set; }
         public int ObjectID { get; set; }
         public int numFireballs;
+        public Rectangle ExpandedCollisionBox { get; set; }
 
         public int marioLives { get; set; }
 
@@ -50,7 +51,7 @@ namespace GameSpace.GameObjects.BlockObjects
             this.numFireballs = 0;
             this.marioLives = 3;
             this.Acceleration = new Vector2(0, 100);//NEW
-
+            ExpandedCollisionBox = new Rectangle((int)initLocation.X - 3, (int)initLocation.Y, 33, 33);
 
             this.sprite = MarioFactory.GetInstance().CreateSprite(1);
             this.marioPowerUpState = new SmallMarioState(this);
