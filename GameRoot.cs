@@ -41,7 +41,7 @@ namespace GameSpace
         public Mario GetMario { get => (Mario)EntityManager.FindItem((int)AvatarID.MARIO); }
         public GraphicsDeviceManager Graphics { get => graphics; }
 
-        string xmlFileName = "../../../TileMapDefinition/Testing2.xml";
+        string xmlFileName = "../../../TileMapDefinition/Level1.xml";
         //string xmlFileName = "../../../TileMapDefinition/Testing2.xml";
         //string xmlFileName;
         public GameRoot()
@@ -76,8 +76,8 @@ namespace GameSpace
             #endregion
 
             #region Loading Lists
-            objects = Loader.Load(xmlFileName);
-            objects = Loader.LoadEverything("../../../TileMapDefinition/Level1.xml");
+            //objects = Loader.Load(xmlFileName);
+            objects = Loader.LoadEverything(xmlFileName);
             #endregion
 
             #region Load EntityManager
@@ -90,12 +90,6 @@ namespace GameSpace
                 new KeyboardInput(this), new ControllerInput(this)
             };
             #endregion
-
-            avatars = Loader.LoadAvatars(xmlFileName);
-            foreach (IGameObjects avatar in avatars)
-            {
-                EntityManager.AddEntity(avatar);
-            }
 
             //Camera Stuff
             camera = new Camera(GraphicsDevice.Viewport) { Limits = new Rectangle(0, 0, Loader.boundaryX, 480) };//Should be set to level's max X and Y
