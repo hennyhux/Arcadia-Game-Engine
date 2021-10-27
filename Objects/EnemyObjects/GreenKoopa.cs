@@ -112,7 +112,7 @@ namespace GameSpace.GameObjects.EnemyObjects
         }
         private void PreformShellOffset()
         {
-            Position = new Vector2(Position.X, Position.Y - 10);
+            Position = new Vector2(Position.X, Position.Y + 10);
             shifted = true;
         }
 
