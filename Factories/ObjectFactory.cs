@@ -78,6 +78,11 @@ namespace GameSpace.Factories
             return new BrickBlockSuperShroom(location);
         }
 
+        public IGameObjects CreateFireBrickBlock(Vector2 location)
+        {
+            return new BrickBlockFire(location);
+        }
+
         public IGameObjects CreateOneUpShroomBrickBlock(Vector2 location)
         {
             return new BrickBlockOneShroom(location);
@@ -101,6 +106,11 @@ namespace GameSpace.Factories
         public IGameObjects CreateQuestionBlockShroom(Vector2 location)
         {
             return new QuestionBlockOneShroom(location);
+        }
+
+        public IGameObjects CreateQuestionBlockFire(Vector2 location)
+        {
+            return new QuestionBlockFire(location);
         }
 
         #endregion
@@ -147,6 +157,11 @@ namespace GameSpace.Factories
         public IGameObjects CreateSuperShroomObject(Vector2 location)
         {
             return new SuperShroom(location);
+        }
+
+        public IGameObjects CreateFireBallObject(Mario mario)
+        {
+            return new Fireball(mario);
         }
         #endregion
 

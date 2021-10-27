@@ -14,10 +14,10 @@ using GameSpace.Abstracts;
 
 namespace GameSpace.GameObjects.BlockObjects
 {
-    public class QuestionBlockStar : AbstractItemBlock
+    public class QuestionBlockFire : AbstractItemBlock
     {
-        private IGameObjects star;
-        public QuestionBlockStar(Vector2 initalPosition)
+        private IGameObjects fire;
+        public QuestionBlockFire(Vector2 initalPosition)
         {
             this.ObjectID = (int)BlockID.QUESTIONBLOCK;
             this.state = new StateQuestionBlockIdle();
@@ -30,8 +30,8 @@ namespace GameSpace.GameObjects.BlockObjects
         public override void Trigger()
         {
             state = new StateQuestionBlockBump(this);
-            star = ObjectFactory.GetInstance().CreateStarObject(new Vector2(Position.X - 4, Position.Y - Sprite.Texture.Height * 2 - 4));
-            EntityManager.AddEntity(star);
+            fire = ObjectFactory.GetInstance().CreateFireFlowerObject(new Vector2(Position.X - 4, Position.Y - Sprite.Texture.Height * 2 - 4));
+            EntityManager.AddEntity(fire);
             revealedItem = true;
         }
     }

@@ -99,22 +99,52 @@ namespace GameSpace.EntitiesManager
             return null; //lets try not to return null
         }
 
+        public static Boolean IsGoingToFall(Goomba enemy)
+        {
+            Boolean gonnaFall = true;
+            foreach (IGameObjects entity in copyPrunedList)
+            {
+                if (enemy.ExpandedCollisionBox.Intersects(entity.CollisionBox) && entity.ObjectID != enemy.ObjectID && entity.ObjectID != (int)AvatarID.MARIO)
+                {
+                    gonnaFall = false;
+                    break;
+                }
+            }
+            return gonnaFall;
+        }
+
+        public static Boolean IsGoingToFall(RedKoopa enemy)
+        {
+            Boolean gonnaFall = true;
+            foreach (IGameObjects entity in copyPrunedList)
+            {
+                if (enemy.ExpandedCollisionBox.Intersects(entity.CollisionBox) && entity.ObjectID != enemy.ObjectID && entity.ObjectID != (int)AvatarID.MARIO)
+                {
+                    gonnaFall = false;
+                    break;
+                }
+            }
+            return gonnaFall;
+        }
+
+        public static Boolean IsGoingToFall(GreenKoopa enemy)
+        {
+            Boolean gonnaFall = true;
+            foreach (IGameObjects entity in copyPrunedList)
+            {
+                if (enemy.ExpandedCollisionBox.Intersects(entity.CollisionBox) && entity.ObjectID != enemy.ObjectID && entity.ObjectID != (int)AvatarID.MARIO)
+                {
+                    gonnaFall = false;
+                    break;
+                }
+            }
+            return gonnaFall;
+        }
+
         public static Boolean IsGoingToFall(IGameObjects fallingObject)
         {
             Boolean gonnaFall = true;
             
-            if (fallingObject is Goomba)
-            {
-                Goomba copy = (Goomba)fallingObject;
-                foreach (IGameObjects entity in copyPrunedList)
-                {
-                    if (copy.ExpandedCollisionBox.Intersects(entity.CollisionBox) && entity.ObjectID != copy.ObjectID && entity.ObjectID != (int)AvatarID.MARIO)
-                    {
-                        gonnaFall = false;
-                        break;
-                    }
-                }
-            }
             
             if(fallingObject is OneUpShroom)
             {
@@ -142,45 +172,6 @@ namespace GameSpace.EntitiesManager
                 }
             }
 
-            if (fallingObject is GreenKoopa)
-            {
-                GreenKoopa copy = (GreenKoopa)fallingObject;
-                foreach (IGameObjects entity in copyPrunedList)
-                {
-                    if (copy.ExpandedCollisionBox.Intersects(entity.CollisionBox) && entity.ObjectID != copy.ObjectID)
-                    {
-                        gonnaFall = false;
-                        break;
-                    }
-                }
-            }
-
-            if (fallingObject is RedKoopa)
-            {
-                RedKoopa copy = (RedKoopa)fallingObject;
-                foreach (IGameObjects entity in copyPrunedList)
-                {
-                    if (copy.ExpandedCollisionBox.Intersects(entity.CollisionBox) && entity.ObjectID != copy.ObjectID)
-                    {
-                        gonnaFall = false;
-                        break;
-                    }
-                }
-            }
-
-            if (fallingObject is Star)
-            {
-                Star copy = (Star)fallingObject;
-                foreach (IGameObjects entity in copyPrunedList)
-                {
-                    if (copy.ExpandedCollisionBox.Intersects(entity.CollisionBox) && entity.ObjectID != copy.ObjectID)
-                    {
-                        gonnaFall = false;
-                        break;
-                    }
-                }
-            }
-
             return gonnaFall;
         }
 
@@ -198,6 +189,15 @@ namespace GameSpace.EntitiesManager
                     mario.marioActionState is BigMarioRunningState ||
                     mario.marioActionState is BigMarioStandingState ||
                     mario.marioActionState is FireMarioFallingState ||
+                    mario.marioActionState is FireMarioJumpingState ||
+                    mario.marioActionState is FireMarioRunningState ||
+                    mario.marioActionState is FireMarioStandingState);
+        }
+
+        public static bool IsCurrentlyFireMario()
+        {
+            Mario mario = (Mario)EntityManager.FindItem((int)AvatarID.MARIO);
+            return (mario.marioActionState is FireMarioFallingState ||
                     mario.marioActionState is FireMarioJumpingState ||
                     mario.marioActionState is FireMarioRunningState ||
                     mario.marioActionState is FireMarioStandingState);

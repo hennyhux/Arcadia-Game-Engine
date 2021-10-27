@@ -7,13 +7,17 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using GameSpace.Enums;
 using GameSpace.GameObjects.BlockObjects;
+using GameSpace.States.ItemStates;
+using GameSpace.EntitiesManager;
 
-namespace GameSpace.Objects.ItemObjects
+
+
+namespace GameSpace.GameObjects.ItemObjects
 {
     public class Fireball : IGameObjects
     {
 
-        private IObjectState state;
+        private IItemStates state;
         public ISprite Sprite { get; set; }
         public Vector2 Position { get; set; }
         public Vector2 Velocity { get; set; }
@@ -30,39 +34,78 @@ namespace GameSpace.Objects.ItemObjects
             this.ObjectID = (int)ItemID.FIREBALL;
             this.Sprite = SpriteItemFactory.GetInstance().CreateFireBall();
             this.Mario = mario;
-            this.Position = this.Mario.Position;
-            this.CollisionBox = new Rectangle((int)Position.X, (int)Position.Y, Sprite.Texture.Width * 2 / 4, Sprite.Texture.Height * 2);
-            this.Velocity = new Vector2(2, 0);
+            this.Position = Mario.Position;
+            this.CollisionBox = new Rectangle((int)Position.X + 5, (int)Position.Y, (Sprite.Texture.Width * 2 / 4) -10, Sprite.Texture.Height * 2 + 5);
             hasCollided = false;
             drawBox = false;
+            ++this.Mario.numFireballs;
 
+            if(Mario.Facing == 0)
+            {
+                this.state = new StateFireballLeft(this);
+            }
+            else
+            {
+                this.state = new StateFireballRight(this);
+            }
         }
 
         public void Draw(SpriteBatch spritebatch)
         {
             Sprite.Draw(spritebatch, Position);
-            if (drawBox && Sprite.GetVisibleStatus()) Sprite.DrawBoundary(spritebatch, CollisionBox);
+            this.state.Draw(spritebatch, Position);
+            if (drawBox)
+            {
+                Sprite.DrawBoundary(spritebatch, CollisionBox);
+            }
         }
 
         public void Update(GameTime gametime)
         {
+            this.state.Update(gametime);
             Sprite.Update(gametime);
+            UpdatePosition(Position, gametime);
+
         }
 
         public void Trigger()
         {
-            this.Sprite.SetVisible();
-            this.CollisionBox = new Rectangle(1, 1, 0, 0);
+            if (!hasCollided)
+            {
+                this.Sprite.SetVisible();
+                this.CollisionBox = new Rectangle(1, 1, 0, 0);
+            }
+            this.hasCollided = true;
+            --this.Mario.numFireballs;
         }
 
         public void HandleCollision(IGameObjects entity)
         {
-            this.Trigger();
+
+            switch (entity.ObjectID)
+            {
+                case (int)AvatarID.MARIO:
+                    this.Trigger();
+                    break;
+
+                case (int)BlockID.USEDBLOCK:
+                case (int)BlockID.QUESTIONBLOCK:
+                case (int)BlockID.FLOORBLOCK:
+                case (int)BlockID.STAIRBLOCK:
+                case (int)BlockID.COINBRICKBLOCK:
+                case (int)BlockID.BRICKBLOCK:
+                    CollisionWithBlock(entity);
+                    break;
+            }
+
         }
 
         public void UpdatePosition(Vector2 location, GameTime gameTime)
         {
-            throw new NotImplementedException();
+            Velocity += Acceleration * (float)gameTime.ElapsedGameTime.TotalSeconds;
+            Position += Velocity * (float)gameTime.ElapsedGameTime.TotalSeconds;
+
+            UpdateCollisionBox(Position);
         }
 
         public void ToggleCollisionBoxes()
@@ -73,6 +116,29 @@ namespace GameSpace.Objects.ItemObjects
         public bool IsCurrentlyColliding()
         {
             throw new NotImplementedException();
+        }
+        public void CollisionWithBlock(IGameObjects entity)
+        {
+            if (EntityManager.DetectCollisionDirection(this, entity) == (int)CollisionDirection.DOWN)
+            {
+                this.Position = new Vector2(this.Position.X, this.Position.Y - 10);
+                if (this.state is StateFireballRight) this.Velocity = new Vector2(45, 0);
+                if (this.state is StateFireballLeft) this.Velocity = new Vector2(-45, 0);
+                this.Acceleration = new Vector2(0, -200);
+                this.state.Trigger();
+            }
+            else if (EntityManager.DetectCollisionDirection(this, entity) == (int)CollisionDirection.RIGHT ||
+                     EntityManager.DetectCollisionDirection(this, entity) == (int)CollisionDirection.LEFT) 
+            {
+                this.Trigger();
+                
+            }
+
+        }
+
+        private void UpdateCollisionBox(Vector2 location)
+        {
+            if (!hasCollided)this.CollisionBox = new Rectangle((int)Position.X + 5, (int)Position.Y, (Sprite.Texture.Width * 2 / 4) - 10, Sprite.Texture.Height * 2 + 5);
         }
     }
 }

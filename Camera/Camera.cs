@@ -94,11 +94,7 @@ namespace GameSpace.Camera2D
             {
                 displacement = Vector2.Transform(displacement, Matrix.CreateRotationZ(-Rotation));
             }
-            Debug.WriteLine("displacement: {0}", displacement);
-            Debug.WriteLine("camera.Position before {0}", Position);
             Position += displacement;
-            Debug.WriteLine("X Pos:{0}, Y Pos {1}", Position.X + displacement.X, Position.Y + displacement.Y);
-            Debug.WriteLine("camera.Position after {0}\n", Position);
         }
 
         private readonly Viewport _viewport;

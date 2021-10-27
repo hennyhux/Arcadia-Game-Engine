@@ -23,21 +23,18 @@ namespace GameSpace.States.MarioStates
 
         public override void Enter(IMarioActionStates previousActionState)
         {
+            
+            Mario.marioLives -= 1;
+            Debug.WriteLine("Mario has lost a life, mario has {0} lives remaining \n", Mario.marioLives);
             Mario.marioActionState = this;
+            Mario.CollisionBox = new Rectangle(0, 0, 0, 0);
             this.previousActionState = previousActionState;
-           // Mario.marioPowerUpState = new DeadMarioState(Mario);
-            Debug.WriteLine("MarioDeadState(25) ed, {0}", Mario.marioActionState);
-            Debug.WriteLine("MarioDeadState(25) ded:, {0}", Mario.marioPowerUpState);
 
             Mario.Velocity = new Vector2((float)0, (float)0);
-            //AABB aabb = Mario.AABB;
-            //eFacing Facing = MarioStandingState.Facing;
             eFacing Facing = Mario.Facing;
             Mario.Facing = Facing;
             //Mario.Sprite = MarioStandingState.SpriteFactory.CreateSprite(MarioSpriteFactory.MarioSpriteType(this, currentPowerUpState));
             Mario.sprite = MarioFactory.GetInstance().CreateSprite(MarioFactory.MarioSpriteType(this, Mario.marioPowerUpState));
-
-            //Mario.sprite = MarioFactory.GetInstance().CreateSprite(1);
 
         }
 

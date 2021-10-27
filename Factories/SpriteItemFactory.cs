@@ -61,7 +61,7 @@ namespace GameSpace.Factories
 
         public ISprite CreateFireBall()
         {
-            return new CoinSprite(Coin, 1, 4, 4, 0, 0);
+            return new FireballSprite(FireBall, 1, 4, 4, 0, 0);
         }
 
     }

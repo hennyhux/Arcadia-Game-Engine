@@ -43,6 +43,7 @@ namespace GameSpace
 
         string xmlFileName = "../../../TileMapDefinition/HenryTestingDontEdit2.xml";
         //string xmlFileName = "../../../TileMapDefinition/Testing2.xml";
+        //string xmlFileName;
         public GameRoot()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -97,22 +98,19 @@ namespace GameSpace
             }
 
             //Camera Stuff
-            camera = new Camera(GraphicsDevice.Viewport) { Limits = new Rectangle(0, 0, 100000, 600) };//Should be set to level's max X and Y
+            camera = new Camera(GraphicsDevice.Viewport) { Limits = new Rectangle(0, 0, Loader.boundaryX, 480) };//Should be set to level's max X and Y
 
             EntityManager.AddCamera(camera);
+
 
             //Scrolling Background, Manually Setting
             layers = new List<Layer>
             {
-                new Layer(camera) { Parallax = new Vector2(2.0f, 1.0f) },
-                new Layer(camera) { Parallax = new Vector2(1.5f, 1.0f) },
-                new Layer(camera) { Parallax = new Vector2(1.0f, 1.0f) },
+                new Layer(camera, BackgroundFactory.GetInstance().CreateCloudsSprite(), new Vector2(2.0f, 1.0f)),
+                new Layer(camera, BackgroundFactory.GetInstance().CreateBGMountainSprite(), new Vector2(1.5f, 1.0f)),
+                new Layer(camera, BackgroundFactory.GetInstance().CreateRegularBackground(), new Vector2(1.0f, 1.0f)),
             };
 
-            // Add a sprite to each layer
-            layers[0].Sprites.Add(BackgroundFactory.GetInstance().CreateCloudsSprite());
-            layers[1].Sprites.Add(BackgroundFactory.GetInstance().CreateBGMountainSprite());
-            layers[2].Sprites.Add(BackgroundFactory.GetInstance().CreateRegularBackground());//Background layer
 
         }
 
@@ -124,7 +122,6 @@ namespace GameSpace
             base.Update(gameTime);
             //Camera Stuff- Centered Mario
             camera.LookAt(new Vector2(GetMario.Position.X + GetMario.CollisionBox.Width / 2, GraphicsDevice.Viewport.Height / 2));
-
 
         }
 
@@ -142,8 +139,6 @@ namespace GameSpace
             EntityManager.Draw(spriteBatch);
             spriteBatch.End();
             base.Draw(gameTime);
-
-
         }
     }
 }

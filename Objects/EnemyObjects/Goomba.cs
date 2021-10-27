@@ -78,13 +78,13 @@ namespace GameSpace.GameObjects.EnemyObjects
         public void UpdatePosition(Vector2 location, GameTime gameTime)
         {
 
-            if (EntityManager.IsGoingToFall(this))
+            if (EntityManager.IsGoingToFall((Goomba)this))
             {
                 //Velocity = new Vector2(0, Velocity.Y);
                 Acceleration = new Vector2(0, 400);
             }
 
-            else if (!EntityManager.IsGoingToFall(this))
+            else if (!EntityManager.IsGoingToFall((Goomba)this))
             {
                 Acceleration = new Vector2(0, 0);
                 if (direction == (int)eFacing.RIGHT)Velocity = new Vector2(85, 0);
@@ -134,7 +134,6 @@ namespace GameSpace.GameObjects.EnemyObjects
             }
         }
 
-
         private void CollisionWithMario(IGameObjects mario)
         {
             if (EntityManager.DetectCollisionDirection(this, mario) == (int)CollisionDirection.UP)
@@ -143,8 +142,14 @@ namespace GameSpace.GameObjects.EnemyObjects
                 this.CollisionBox = new Rectangle(1, 1, 0, 0);
                 if (!hasCollidedOnTop) hasCollidedOnTop = true;
             }
-        }
 
+            else
+            {
+                
+            }
+
+        }
+        
         public void ToggleCollisionBoxes()
         {
             drawBox = !drawBox;

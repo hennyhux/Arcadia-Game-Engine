@@ -1,13 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Level>
-	<Avatar>
-		<avatar>MARIO</avatar>
-		<facing>LEFT</facing>
-		<x>350</x>
-		<y>200</y>
-	</Avatar>
-
-
 	<Item>
 		<item>STAR</item>
 		<x>450</x>

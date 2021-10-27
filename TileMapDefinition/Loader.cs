@@ -15,12 +15,13 @@ namespace GameSpace.TileMapDefinition
 {
     public static class Loader
     {
-
+        public static int boundaryX = 0;
         public static List<IGameObjects> Load(String xmlFile)
         {
            // List<IGameObjects> fullList = LoadEverything(xmlFile);
             List<IGameObjects> fullList = LoadBlocks(xmlFile);
             List<IGameObjects> itemsList = LoadItems(xmlFile);
+            
             fullList.AddRange(itemsList);
             List<IGameObjects> enemiesList = LoadEnemies(xmlFile);
             fullList.AddRange(enemiesList);
@@ -41,6 +42,8 @@ namespace GameSpace.TileMapDefinition
             foreach(Obstacles obstacles in fullList)
             {
                 Vector2 location = new Vector2(obstacles.x, obstacles.y);
+                if (boundaryX < obstacles.x) boundaryX = obstacles.x;
+
                 switch (obstacles.avatar)
                 {
                     case AvatarID.MARIO:
@@ -147,6 +150,7 @@ namespace GameSpace.TileMapDefinition
             foreach (Obstacle obstacleObject in obstacleList)
             {
                 Vector2 location = new Vector2(obstacleObject.x, obstacleObject.y);
+                if (boundaryX < obstacleObject.x) boundaryX = obstacleObject.x;
                 switch (obstacleObject.block)
                 {
                     case BlockID.BRICKBLOCK:
@@ -155,6 +159,7 @@ namespace GameSpace.TileMapDefinition
                         if (obstacleObject.item == ItemID.STAR) objectsList.Add(objectFactory.CreateStarBrickBlock(location));
                         if (obstacleObject.item == ItemID.ONEUPSHROOM) objectsList.Add(objectFactory.CreateOneUpShroomBrickBlock(location));
                         if (obstacleObject.item == ItemID.SUPERSHROOM) objectsList.Add(objectFactory.CreateSuperShroomBrickBlock(location));
+                        if (obstacleObject.item == ItemID.FIREFLOWER) objectsList.Add(objectFactory.CreateFireBrickBlock(location));
                         break;
 
                     case BlockID.QUESTIONBLOCK:
@@ -162,6 +167,7 @@ namespace GameSpace.TileMapDefinition
                         if (obstacleObject.item == ItemID.STAR) objectsList.Add(objectFactory.CreateQuestionBlockStar(location));
                         if (obstacleObject.item == ItemID.ONEUPSHROOM) objectsList.Add(objectFactory.CreateQuestionBlockOneUpShroom(location));
                         if (obstacleObject.item == ItemID.SUPERSHROOM) objectsList.Add(objectFactory.CreateQuestionBlockShroom(location));
+                        if (obstacleObject.item == ItemID.FIREFLOWER) objectsList.Add(objectFactory.CreateQuestionBlockFire(location));
                         break;
                     case BlockID.FLOORBLOCK:
                         objectsList.Add(objectFactory.CreateFloorBlockObject(location));
@@ -218,6 +224,7 @@ namespace GameSpace.TileMapDefinition
             foreach (Item itemObject in itemList)
             {
                 Vector2 location = new Vector2(itemObject.x, itemObject.y);
+                if (boundaryX < itemObject.x) boundaryX = itemObject.x;
                 switch (itemObject.item)
                 {
                     case ItemID.SUPERSHROOM:
@@ -253,6 +260,8 @@ namespace GameSpace.TileMapDefinition
             foreach (Enemy enemyObject in enemyList)
             {
                 Vector2 location = new Vector2(enemyObject.x, enemyObject.y);
+                if (boundaryX < enemyObject.x) boundaryX = enemyObject.x;
+
                 switch (enemyObject.enemy)
                 {
                     case EnemyID.GOOMBA:
@@ -283,6 +292,7 @@ namespace GameSpace.TileMapDefinition
             foreach (Avatar avatarObject in avatarList)
             {
                 Vector2 location = new Vector2(avatarObject.x, avatarObject.y);
+                if (boundaryX < avatarObject.x) boundaryX = avatarObject.x;
                 switch (avatarObject.facing)
                 {
                     case eFacing.LEFT:
