@@ -69,7 +69,7 @@ namespace GameSpace.GameObjects.BlockObjects
         }
         public void Update(GameTime gametime)
         {
-            Debug.WriteLine("Mario velocity, {0}", Velocity.Y);
+            //Debug.WriteLine("Mario velocity, {0}", Velocity.Y);
             //Velocity += Acceleration * (float)gametime.ElapsedGameTime.TotalSeconds;
             Vector2 newLocation = Velocity * (float)gametime.ElapsedGameTime.TotalSeconds;
             if (!IsGoingToBeOutOfBounds(newLocation))
@@ -271,7 +271,7 @@ namespace GameSpace.GameObjects.BlockObjects
                 {
                     StandingTransition();
                 }
-                StopAnyMotion(); 
+                //StopAnyMotion(); 
             }
         }
 
@@ -402,10 +402,12 @@ namespace GameSpace.GameObjects.BlockObjects
             else if (EntityManager.DetectCollisionDirection(this, entity) == (int)CollisionDirection.UP) 
             {
                 //this.Position = new Vector2(this.Position.X, (int)entity.Position.Y + (int)entity.CollisionBox.Height);
+                this.Velocity = new Vector2(this.Velocity.X, 50);
             }
 
             else if (EntityManager.DetectCollisionDirection(this, entity) == (int)CollisionDirection.DOWN) 
             {
+               
                 this.Position = new Vector2(this.Position.X, (int)entity.Position.Y - (int)this.CollisionBox.Height);
             }
 
@@ -430,6 +432,7 @@ namespace GameSpace.GameObjects.BlockObjects
 
                 else if (EntityManager.DetectCollisionDirection(this, entity) == (int)CollisionDirection.UP)
                 {
+                    this.Velocity = new Vector2(this.Velocity.X, 50);
                     this.Position = new Vector2(this.Position.X, (int)entity.Position.Y + (int)entity.CollisionBox.Height);
                 }
 
