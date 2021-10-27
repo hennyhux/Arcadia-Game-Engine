@@ -169,11 +169,12 @@ namespace GameSpace.GameObjects.EnemyObjects
         {
             Position = new Vector2(Position.X, Position.Y + 20);
         }
-  
+
 
         private void CollisionWithMario(IGameObjects mario)
         {
-            if (EntityManager.DetectCollisionDirection(this, mario) == (int)CollisionDirection.UP)
+
+            /*if (EntityManager.DetectCollisionDirection(this, mario) == (int)CollisionDirection.UP)
             {
                     this.state = new StateRedKoopaDead(this);
                 PreformShellOffset();
@@ -194,7 +195,36 @@ namespace GameSpace.GameObjects.EnemyObjects
                 {
                     this.state = new StateRedKoopaDeadLeft(this);
                 }
+            }*/
+
+            if (this.state is StateRedKoopaAliveRight || this.state is StateRedKoopaAliveLeft)
+            {
+                if (EntityManager.DetectCollisionDirection(this, mario) == (int)CollisionDirection.UP)
+                {
+                    this.state = new StateRedKoopaDead(this);
+                    PreformShellOffset();
+                }
+            } 
+            else if(this.state is StateRedKoopaDeadRight || this.state is StateRedKoopaDeadLeft)
+            {
+                if (EntityManager.DetectCollisionDirection(this, mario) == (int)CollisionDirection.UP)
+                {
+                    this.state = new StateRedKoopaDead(this);
+                }
             }
+            else if(this.state is StateRedKoopaDead)
+            {
+                if (EntityManager.DetectCollisionDirection(this, mario) == (int)CollisionDirection.LEFT)
+                {
+                    this.state = new StateRedKoopaDeadLeft(this);
+                }
+                else if (EntityManager.DetectCollisionDirection(this, mario) == (int)CollisionDirection.RIGHT)
+                {
+                    this.state = new StateRedKoopaDeadRight(this);
+                }
+            }
+
+
         }
 
         public void ToggleCollisionBoxes()
