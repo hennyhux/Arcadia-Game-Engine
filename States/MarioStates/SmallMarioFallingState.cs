@@ -102,7 +102,17 @@ namespace GameSpace.States.MarioStates
         }
         public override void DownTransition()
         {
-
+            if(previousActionState is SmallMarioJumpingState)
+            {
+                StandingTransition();
+            }
+            else
+            {
+                Mario.marioActionState = previousActionState;
+                Mario.marioActionState.Enter(this);
+            }
+            
+            
         }
         public override void SmallPowerUp() { }
         public override void BigPowerUp()
