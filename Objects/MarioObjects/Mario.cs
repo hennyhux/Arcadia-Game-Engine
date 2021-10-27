@@ -270,7 +270,8 @@ namespace GameSpace.GameObjects.BlockObjects
             { 
                 if(marioActionState is SmallMarioFallingState || marioActionState is BigMarioFallingState || marioActionState is FireMarioFallingState)
                 {
-                    StandingTransition();
+                    DownTransition();
+                    
                 }
                 //StopAnyMotion(); 
             }
