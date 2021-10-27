@@ -181,31 +181,6 @@ namespace GameSpace.GameObjects.EnemyObjects
         private void CollisionWithMario(IGameObjects mario)
         {
 
-            /*if (EntityManager.DetectCollisionDirection(this, mario) == (int)CollisionDirection.UP)
-            {
-                    this.state = new StateRedKoopaDead(this);
-               // PreformShellOffset();
-            }
-
-
-            if (this.state is StateRedKoopaDead)
-            {
-                if (EntityManager.DetectCollisionDirection(this, mario) == (int)CollisionDirection.UP)
-                {
-                    //PreformShellOffsetDown();
-                    this.state = new StateRedKoopaDead(this);
-                }
-                else if (EntityManager.DetectCollisionDirection(this, mario) == (int)CollisionDirection.RIGHT)
-                {
-                    //PreformShellOffsetDown();
-                    this.state = new StateRedKoopaDeadRight(this);
-                }
-                else if (EntityManager.DetectCollisionDirection(this, mario) == (int)CollisionDirection.LEFT)
-                {
-                    this.state = new StateRedKoopaDeadLeft(this);
-                }
-            }*/
-
             if (this.state is StateRedKoopaAliveRight || this.state is StateRedKoopaAliveLeft)
             {
                 if (EntityManager.DetectCollisionDirection(this, mario) == (int)CollisionDirection.UP)

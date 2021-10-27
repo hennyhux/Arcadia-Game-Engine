@@ -27,6 +27,8 @@ namespace GameSpace.GameObjects.EnemyObjects
         private Boolean drawBox;
         private Boolean inFrame; //is the current enemy inside of the viewport? 
         public int direction;
+        private Boolean shifted;
+
 
         public Rectangle ExpandedCollisionBox { get; set; }
 
@@ -37,6 +39,7 @@ namespace GameSpace.GameObjects.EnemyObjects
             direction = (int)eFacing.LEFT;
             drawBox = false;
             inFrame = true;
+            shifted = false;
             Velocity = new Vector2(0, 0);
             Acceleration = new Vector2(0, 0);
             Sprite = SpriteEnemyFactory.GetInstance().CreateGreenKoopaSprite();
@@ -105,8 +108,12 @@ namespace GameSpace.GameObjects.EnemyObjects
                 case (int)ItemID.FIREBALL:
                     CollisionWithFireball(entity);
                     break;
-                    //dead when colliding with fireball, etc 
             }
+        }
+        private void PreformShellOffset()
+        {
+            Position = new Vector2(Position.X, Position.Y - 10);
+            shifted = true;
         }
 
         #region Collision Handling
@@ -159,24 +166,30 @@ namespace GameSpace.GameObjects.EnemyObjects
 
         private void CollisionWithMario(IGameObjects mario)
         {
-            if (EntityManager.DetectCollisionDirection(this, mario) == (int)CollisionDirection.UP)
+            if (this.state is StateGreenKoopaAliveRight || this.state is StateGreenKoopaAliveLeft)
             {
-                this.state = new StateGreenKoopaDead(this);
+                if (EntityManager.DetectCollisionDirection(this, mario) == (int)CollisionDirection.UP)
+                {
+                    this.state = new StateGreenKoopaDead(this);
+                    PreformShellOffset();
+                }
             }
-
-            if (this.state is StateGreenKoopaDead)
+            else if (this.state is StateGreenKoopaDeadRight || this.state is StateGreenKoopaDeadLeft)
             {
                 if (EntityManager.DetectCollisionDirection(this, mario) == (int)CollisionDirection.UP)
                 {
                     this.state = new StateGreenKoopaDead(this);
                 }
+            }
+            else if (this.state is StateGreenKoopaDead)
+            {
+                if (EntityManager.DetectCollisionDirection(this, mario) == (int)CollisionDirection.LEFT)
+                {
+                    this.state = new StateGreenKoopaDeadLeft(this);
+                }
                 else if (EntityManager.DetectCollisionDirection(this, mario) == (int)CollisionDirection.RIGHT)
                 {
                     this.state = new StateGreenKoopaDeadRight(this);
-                }
-                else if (EntityManager.DetectCollisionDirection(this, mario) == (int)CollisionDirection.LEFT)
-                {
-                    this.state = new StateGreenKoopaDeadLeft(this);
                 }
             }
         }

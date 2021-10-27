@@ -237,8 +237,10 @@ namespace GameSpace.GameObjects.BlockObjects
                     CollisionWithGoomba(entity);
                     break;
                 case (int)EnemyID.GREENKOOPA:
+                    CollisionWithGreenKoopa(entity);
+                    break;
                 case (int)EnemyID.REDKOOPA:
-                    CollisionWithKoopa(entity);
+                    CollisionWithRedKoopa(entity);
                     break;
 
                 case (int)ItemID.FIREBALL:
@@ -309,7 +311,7 @@ namespace GameSpace.GameObjects.BlockObjects
             }
         }
 
-        private void CollisionWithKoopa(IGameObjects enemy)
+        private void CollisionWithRedKoopa(IGameObjects enemy)
         {
             RedKoopa redKoopa = (RedKoopa)enemy;
             
@@ -341,38 +343,26 @@ namespace GameSpace.GameObjects.BlockObjects
 
                 hasCollided = false;
             }
-            /*if(EntityManager.DetectCollisionDirection(this, koopa) == (int)CollisionDirection.DOWN)
+        }
+
+        private void CollisionWithGreenKoopa(IGameObjects enemy)
+        {
+            GreenKoopa redKoopa = (GreenKoopa)enemy;
+
+            if (redKoopa.state is StateGreenKoopaDead)
             {
-                PrefromBounce(0, 10);
-                StandingTransition();
+                if (EntityManager.DetectCollisionDirection(this, enemy) == (int)CollisionDirection.LEFT ||
+                    EntityManager.DetectCollisionDirection(this, enemy) == (int)CollisionDirection.RIGHT ||
+                    EntityManager.DetectCollisionDirection(this, enemy) == (int)CollisionDirection.DOWN)
+                {
+                    StandingTransition();
+                    PrefromBounce(0, 10);
+                }
             }
-
-            if (EntityManager.DetectCollisionDirection(this, koopa) == (int)CollisionDirection.UP)
+            else
             {
-                this.Position = new Vector2(this.Position.X, (int)koopa.Position.Y - (int)this.CollisionBox.Height);
-            }
 
-
-            //Left or right response
-            //if koopa is alive mario takes damage
-            if (EntityManager.DetectCollisionDirection(this, koopa) == (int)CollisionDirection.LEFT ||
-                EntityManager.DetectCollisionDirection(this, koopa) == (int)CollisionDirection.RIGHT)
-            {
-                this.DeadTransition();
                 this.CollisionBox = new Rectangle(1, 1, 0, 0);
-
-                if (EntityManager.DetectCollisionDirection(this, koopa) == (int)CollisionDirection.LEFT) { this.Position = new Vector2((int)koopa.Position.X - (int)this.CollisionBox.Width - 5, (int)this.Position.Y); }
-
-                else if (EntityManager.DetectCollisionDirection(this, koopa) == (int)CollisionDirection.RIGHT) { this.Position = new Vector2((int)koopa.Position.X + (int)koopa.CollisionBox.Width + 5, (int)this.Position.Y); }
-
-            }
-
-           
-            
-            if (EntityManager.DetectCollisionDirection(this, enemy) == (int)CollisionDirection.LEFT ||
-                EntityManager.DetectCollisionDirection(this, enemy) == (int)CollisionDirection.RIGHT ||
-                EntityManager.DetectCollisionDirection(this, enemy) == (int)CollisionDirection.DOWN)
-            {
                 this.DeadTransition();
                 this.CollisionBox = new Rectangle(1, 1, 0, 0);
 
@@ -387,12 +377,6 @@ namespace GameSpace.GameObjects.BlockObjects
 
                 hasCollided = false;
             }
-
-            else
-            {
-                PrefromBounce(0, 10);
-                StandingTransition();
-            }*/
         }
 
         private void CollisionWithFireball(IGameObjects enemy)
