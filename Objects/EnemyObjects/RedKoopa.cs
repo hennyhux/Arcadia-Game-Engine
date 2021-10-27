@@ -28,12 +28,13 @@ namespace GameSpace.GameObjects.EnemyObjects
         private Boolean inFrame; //is the current enemy inside of the viewport? 
         public int direction;
         public Rectangle ExpandedCollisionBox { get; set; }
-
+        private Boolean shifted;
         public RedKoopa(Vector2 initalPosition)
         {
             ObjectID = (int)EnemyID.REDKOOPA;
             direction = (int)eFacing.LEFT;
             drawBox = false;
+            shifted = false;
             inFrame = true;
             this.Position = initalPosition;
             this.state = new StateRedKoopaAliveLeft(this);
@@ -44,6 +45,11 @@ namespace GameSpace.GameObjects.EnemyObjects
 
         public void Draw(SpriteBatch spritebatch)
         {
+            if (shifted)
+            {
+                Position = new Vector2(Position.X, Position.Y - 20);
+                shifted = false;
+            }
             state.Draw(spritebatch, Position);
             if (drawBox) state.DrawBoundaries(spritebatch, CollisionBox);
         }
@@ -168,33 +174,41 @@ namespace GameSpace.GameObjects.EnemyObjects
         private void PreformShellOffset()
         {
             Position = new Vector2(Position.X, Position.Y + 20);
+            shifted = true;
         }
-  
+
 
         private void CollisionWithMario(IGameObjects mario)
         {
-            if (EntityManager.DetectCollisionDirection(this, mario) == (int)CollisionDirection.UP)
+
+            if (this.state is StateRedKoopaAliveRight || this.state is StateRedKoopaAliveLeft)
             {
+                if (EntityManager.DetectCollisionDirection(this, mario) == (int)CollisionDirection.UP)
+                {
                     this.state = new StateRedKoopaDead(this);
-                PreformShellOffset();
-            }
-
-
-            if (this.state is StateRedKoopaDead)
+                    PreformShellOffset();
+                }
+            } 
+            else if(this.state is StateRedKoopaDeadRight || this.state is StateRedKoopaDeadLeft)
             {
                 if (EntityManager.DetectCollisionDirection(this, mario) == (int)CollisionDirection.UP)
                 {
                     this.state = new StateRedKoopaDead(this);
                 }
+            }
+            else if(this.state is StateRedKoopaDead)
+            {
+                if (EntityManager.DetectCollisionDirection(this, mario) == (int)CollisionDirection.LEFT)
+                {
+                    this.state = new StateRedKoopaDeadLeft(this);
+                }
                 else if (EntityManager.DetectCollisionDirection(this, mario) == (int)CollisionDirection.RIGHT)
                 {
                     this.state = new StateRedKoopaDeadRight(this);
                 }
-                else if (EntityManager.DetectCollisionDirection(this, mario) == (int)CollisionDirection.LEFT)
-                {
-                    this.state = new StateRedKoopaDeadLeft(this);
-                }
             }
+
+
         }
 
         public void ToggleCollisionBoxes()

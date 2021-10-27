@@ -331,6 +331,7 @@ namespace GameSpace.EntitiesManager
             return direction;
         }
 
+
         #endregion
     }
 }
