@@ -97,6 +97,9 @@ namespace GameSpace.GameObjects.EnemyObjects
                 case (int)BlockID.BRICKBLOCK:
                     CollisionWithBlock(entity);
                     break;
+                case (int)ItemID.FIREBALL:
+                    CollisionWithFireball(entity);
+                    break;
 
                     //dead when colliding with fireball, etc 
             }
@@ -148,6 +151,13 @@ namespace GameSpace.GameObjects.EnemyObjects
                 }
 
             }    
+        }
+
+        private void CollisionWithFireball(IGameObjects fireball)
+        {
+            this.state = new StateRedKoopaDead(this);
+            PreformShellOffset();
+
         }
 
         public IEnemyState GetCurrentState()

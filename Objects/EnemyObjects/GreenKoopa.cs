@@ -102,6 +102,9 @@ namespace GameSpace.GameObjects.EnemyObjects
                     CollisionWithBlock(entity);
                     break;
 
+                case (int)ItemID.FIREBALL:
+                    CollisionWithFireball(entity);
+                    break;
                     //dead when colliding with fireball, etc 
             }
         }
@@ -147,6 +150,11 @@ namespace GameSpace.GameObjects.EnemyObjects
                     direction = (int)eFacing.RIGHT;
                 }
             }
+        }
+        private void CollisionWithFireball(IGameObjects fireball)
+        {
+            this.state = new StateGreenKoopaDead(this);
+
         }
 
         private void CollisionWithMario(IGameObjects mario)
