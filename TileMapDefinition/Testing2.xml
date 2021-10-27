@@ -1,10 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Level>
-	<Item>
-		<item>STAR</item>
+
+	<Avatar>
+		<avatar>MARIO</avatar>
+		<facing>LEFT</facing>
+		<x>350</x>
+		<y>200</y>
+	</Avatar>
+	<Enemy>
+		<enemy>REDKOOPA</enemy>
 		<x>450</x>
 		<y>100</y>
-	</Item>
+	</Enemy>
 
 	<Obstacle>
 		<block>BRICKBLOCK</block>
