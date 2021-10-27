@@ -134,6 +134,7 @@ namespace GameSpace
             foreach (Layer layer in layers)
                 layer.Draw(spriteBatch, camera.Position);
 
+
             //Normal Sprites
             spriteBatch.Begin(SpriteSortMode.Deferred, null, null, null, null, null, camera.GetViewMatrix(parallax));
             EntityManager.Draw(spriteBatch);
