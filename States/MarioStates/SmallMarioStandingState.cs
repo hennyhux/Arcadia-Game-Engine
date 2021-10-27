@@ -26,7 +26,8 @@ namespace GameSpace.States.MarioStates
             Mario.marioActionState = this;
             this.previousActionState = previousActionState;
             Mario.marioPowerUpState = new SmallMarioState(Mario);
-            Mario.Velocity = new Vector2((float)0, (float)0);
+           
+
             Debug.WriteLine("MarioStandState(25) Enter, {0}", Mario.marioActionState);
             Debug.WriteLine("MarioWalkingState(25) facing:, {0}", Mario.Facing);
 
@@ -44,7 +45,7 @@ namespace GameSpace.States.MarioStates
         public override void Exit() { }
 
         public override void StandingTransition() {
-            Mario.Velocity = new Vector2((float)0, (float)50);//Responsible for mario going down upon pressing down for small mario
+            //Mario.Velocity = new Vector2((float)0, (float)50);//Responsible for mario going down upon pressing down for small mario
         }
         public override void CrouchingTransition() { }//nothsing
         public override void WalkingTransition()//Not Used Now, Used after Sprint2
@@ -96,7 +97,7 @@ namespace GameSpace.States.MarioStates
          }*/
         public override void UpTransition()
         {
-            if (Mario.Velocity.Y > (float)0)//MOVE THIS TO UpTransition()
+            if (Mario.Velocity.Y > (float)0 && false)//MOVE THIS TO UpTransition()
             {
                 Mario.Velocity = new Vector2((float)0, (float)0);
             }
@@ -163,7 +164,7 @@ namespace GameSpace.States.MarioStates
 
         public override void Update(GameTime gametime)
         {
-
+            Mario.Velocity = ClampVelocity(Mario.Velocity);
         }
         //void Update(GameTime gametime, GraphicsDeviceManager graphics);
 

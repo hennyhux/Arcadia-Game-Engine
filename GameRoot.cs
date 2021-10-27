@@ -41,7 +41,7 @@ namespace GameSpace
         public Mario GetMario { get => (Mario)EntityManager.FindItem((int)AvatarID.MARIO); }
         public GraphicsDeviceManager Graphics { get => graphics; }
 
-        string xmlFileName = "../../../TileMapDefinition/HenryTestingDontEdit2.xml";
+        string xmlFileName = "../../../TileMapDefinition/Testing2.xml";
         //string xmlFileName = "../../../TileMapDefinition/Testing2.xml";
         //string xmlFileName;
         public GameRoot()
@@ -133,6 +133,7 @@ namespace GameSpace
             //Background/Scrolling Stuff
             foreach (Layer layer in layers)
                 layer.Draw(spriteBatch, camera.Position);
+
 
             //Normal Sprites
             spriteBatch.Begin(SpriteSortMode.Deferred, null, null, null, null, null, camera.GetViewMatrix(parallax));

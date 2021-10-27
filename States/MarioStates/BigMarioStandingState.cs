@@ -25,8 +25,7 @@ namespace GameSpace.States.MarioStates
         {
             Mario.marioActionState = this;
             this.previousActionState = previousActionState;
-            //Mario.marioPowerUpState = new BigMarioState(Mario);
-            Mario.Velocity = new Vector2((float)0, (float)0);
+
             Debug.WriteLine("BigMarioStandState(25) Enter, {0}", Mario.marioActionState);
             Debug.WriteLine("BigMarioStandState(25) facing:, {0}", Mario.marioPowerUpState);
 
@@ -149,7 +148,7 @@ namespace GameSpace.States.MarioStates
 
         public override void Update(GameTime gametime)
         {
-
+            Mario.Velocity = ClampVelocity(Mario.Velocity);
         }
         //void Update(GameTime gametime, GraphicsDeviceManager graphics);
 

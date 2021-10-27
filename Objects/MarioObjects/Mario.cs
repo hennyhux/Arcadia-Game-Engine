@@ -47,36 +47,13 @@ namespace GameSpace.GameObjects.BlockObjects
             this.CollisionBox = new Rectangle((int)initLocation.X - 3, (int)initLocation.Y, 32, 32);
             this.numFireballs = 0;
             this.marioLives = 3;
-            // this.state = new MarioStates(game);
-            // this.sprite = MarioFactory.GetInstance().ReturnMarioS1tandingLeftSprite();
-            //this.marioPowerUpState = new SmallMarioState(this);
-            int big = 0;
-            if (big == 0)
-            {
-                this.sprite = MarioFactory.GetInstance().CreateSprite(1);
-                //this.Sprite = MarioFactory.GetInstance().CreateSprite(1); 
-                this.marioPowerUpState = new SmallMarioState(this);
-                this.marioActionState = new SmallMarioStandingState(this);
-            }
-            /*else if(big == 1)
-             {
-                 this.sprite = MarioFactory.GetInstance().CreateSprite(16);
-                 this.marioPowerUpState = new BigMarioState(this);
-                 this.marioActionState = new BigMarioStandingState(this);
+            this.Acceleration = new Vector2(0, 100);//NEW
 
-             }
-             else
-             {
 
-                 this.sprite = MarioFactory.GetInstance().CreateSprite(32);
-                 this.marioPowerUpState = new FireMarioState(this);
-                 this.marioActionState = new FireMarioStandingState(this);
-                 ///*////this.marioPowerUpState = new FireMarioState(this);
-            // this.marioActionState = new FireMarioStandingState(this);
-            // this.sprite = MarioFactory.GetInstance().CreateSprite(MarioFactory.MarioSpriteType(marioActionState, this.marioPowerUpState));
-            //this.sprite = MarioFactory.GetInstance().CreateSprite(10);*/*/
-            //}
-
+            this.sprite = MarioFactory.GetInstance().CreateSprite(1);
+            this.marioPowerUpState = new SmallMarioState(this);
+            this.marioActionState = new SmallMarioStandingState(this);
+            
         }
 
         public void Draw(SpriteBatch spritebatch)
@@ -92,7 +69,8 @@ namespace GameSpace.GameObjects.BlockObjects
         }
         public void Update(GameTime gametime)
         {
-            //Debug.WriteLine("Mario X, {0}", Position.X);
+            //Debug.WriteLine("Mario velocity, {0}", Velocity.Y);
+            //Velocity += Acceleration * (float)gametime.ElapsedGameTime.TotalSeconds;
             Vector2 newLocation = Velocity * (float)gametime.ElapsedGameTime.TotalSeconds;
             if (!IsGoingToBeOutOfBounds(newLocation))
             {
@@ -260,7 +238,13 @@ namespace GameSpace.GameObjects.BlockObjects
                 case (int)EnemyID.REDKOOPA:
                     CollisionWithKoopa(entity);
                     break;
+
+                case (int)ItemID.FIREBALL:
+                    CollisionWithFireball(entity);
+                    break;
             }
+
+            
             
         }
 
@@ -287,7 +271,7 @@ namespace GameSpace.GameObjects.BlockObjects
                 {
                     StandingTransition();
                 }
-                StopAnyMotion(); 
+                //StopAnyMotion(); 
             }
         }
 
@@ -379,6 +363,24 @@ namespace GameSpace.GameObjects.BlockObjects
             }*/
         }
 
+        private void CollisionWithFireball(IGameObjects enemy)
+        {
+            this.CollisionBox = new Rectangle(1, 1, 0, 0);
+            this.DeadTransition();
+            this.CollisionBox = new Rectangle(1, 1, 0, 0);
+
+            if (EntityManager.DetectCollisionDirection(this, enemy) == (int)CollisionDirection.LEFT) { this.Position = new Vector2((int)enemy.Position.X - (int)this.CollisionBox.Width - 5, (int)this.Position.Y); }
+
+            else if (EntityManager.DetectCollisionDirection(this, enemy) == (int)CollisionDirection.RIGHT) { this.Position = new Vector2((int)enemy.Position.X + (int)enemy.CollisionBox.Width + 5, (int)this.Position.Y); }
+
+            else if (EntityManager.DetectCollisionDirection(this, enemy) == (int)CollisionDirection.DOWN) { this.Position = new Vector2(this.Position.X, (int)enemy.Position.Y - (int)this.CollisionBox.Height); }
+
+            changeStateUponCollision(enemy);
+            this.CollisionBox = new Rectangle(1, 1, 0, 0);
+
+            hasCollided = false;
+        }
+
         private void StopAnyMotion()
         {
             this.Velocity = new Vector2(0, 0);
@@ -400,10 +402,12 @@ namespace GameSpace.GameObjects.BlockObjects
             else if (EntityManager.DetectCollisionDirection(this, entity) == (int)CollisionDirection.UP) 
             {
                 //this.Position = new Vector2(this.Position.X, (int)entity.Position.Y + (int)entity.CollisionBox.Height);
+                this.Velocity = new Vector2(this.Velocity.X, 50);
             }
 
             else if (EntityManager.DetectCollisionDirection(this, entity) == (int)CollisionDirection.DOWN) 
             {
+               
                 this.Position = new Vector2(this.Position.X, (int)entity.Position.Y - (int)this.CollisionBox.Height);
             }
 
@@ -428,6 +432,7 @@ namespace GameSpace.GameObjects.BlockObjects
 
                 else if (EntityManager.DetectCollisionDirection(this, entity) == (int)CollisionDirection.UP)
                 {
+                    this.Velocity = new Vector2(this.Velocity.X, 50);
                     this.Position = new Vector2(this.Position.X, (int)entity.Position.Y + (int)entity.CollisionBox.Height);
                 }
 
@@ -482,5 +487,7 @@ namespace GameSpace.GameObjects.BlockObjects
         {
             return hasCollided;
         }
+
+        
     }
 }

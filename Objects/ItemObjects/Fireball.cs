@@ -84,6 +84,9 @@ namespace GameSpace.GameObjects.ItemObjects
 
             switch (entity.ObjectID)
             {
+                case (int)EnemyID.GOOMBA:
+                case (int)EnemyID.GREENKOOPA:
+                case (int)EnemyID.REDKOOPA:
                 case (int)AvatarID.MARIO:
                     this.Trigger();
                     break;

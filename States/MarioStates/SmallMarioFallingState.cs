@@ -28,9 +28,9 @@ namespace GameSpace.States.MarioStates
             this.previousActionState = previousActionState;
             Debug.WriteLine("MarioFallingState(25) Enter, {0}", Mario.marioActionState);
             Debug.WriteLine("MarioWalkingState(25) facing:, {0}", Mario.Facing);
-            Mario.Velocity = new Vector2((float)0, (float)100);
-            //Set Proper velocity upon entering state
 
+            //Set Proper velocity upon entering state
+            Mario.Velocity = new Vector2(Mario.Velocity.X, 100);
 
             //AABB aabb = Mario.AABB;
             //eFacing Facing = MarioStandingState.Facing;
@@ -84,14 +84,14 @@ namespace GameSpace.States.MarioStates
         public override void FaceLeftTransition()
         {
             if (Mario.Facing == eFacing.LEFT)
-                WalkingTransition();
+                RunningTransition();
             else
                 Mario.Facing = eFacing.LEFT;
         }
         public override void FaceRightTransition()
         {
             if (Mario.Facing == eFacing.RIGHT)
-                WalkingTransition();
+                RunningTransition();
             else
                 Mario.Facing = eFacing.RIGHT;
         }
@@ -133,14 +133,14 @@ namespace GameSpace.States.MarioStates
 
         public override void Update(GameTime gametime)
         {
-            //something with velocity and check if we hit the ground
-            // if we hit ground then do to either Standing or like running if u still have Horziontal velocity idk
+            Mario.Velocity += Mario.Acceleration * (float)gametime.ElapsedGameTime.TotalSeconds;
+            Mario.Velocity = ClampVelocity(Mario.Velocity);
         }
         //void Update(GameTime gametime, GraphicsDeviceManager graphics);
 
         Vector2 ClampVelocity(Vector2 velocity)
         {
-            return Vector2.Zero;//return the actualy velocity
+            return new Vector2(Mario.Velocity.X, Mario.Velocity.Y);
         }
         // max velocity speed, clamp for each state speed
     }

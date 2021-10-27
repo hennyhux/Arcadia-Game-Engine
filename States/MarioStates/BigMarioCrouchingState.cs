@@ -32,7 +32,7 @@ namespace GameSpace.States.MarioStates
             Debug.WriteLine("Y before(25) facing:, {0}", Mario.Position.Y);
             
 
-            Mario.Velocity = new Vector2((float)0, (float)100);
+            
 
             //AABB aabb = Mario.AABB;
             //eFacing Facing = MarioStandingState.Facing;

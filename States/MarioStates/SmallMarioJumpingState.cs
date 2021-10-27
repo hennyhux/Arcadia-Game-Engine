@@ -29,9 +29,9 @@ namespace GameSpace.States.MarioStates
             Debug.WriteLine("MarioWalkingState(25) facing:, {0}", Mario.Facing);
             
             //Set Proper velocity upon entering state
-            Mario.Velocity = new Vector2((float)0, (float)-100);
+            Mario.Velocity = new Vector2(Mario.Velocity.X, (float)-200);//NEW
 
-
+            
             //AABB aabb = Mario.AABB;
             //eFacing Facing = MarioStandingState.Facing;
             eFacing Facing = Mario.Facing;
@@ -44,8 +44,7 @@ namespace GameSpace.States.MarioStates
 
         public override void Exit()
         {
-            //Velocity == 0;
-            Mario.Velocity = new Vector2(Mario.Velocity.X, (float)0);
+            Mario.Velocity = new Vector2(Mario.Velocity.X, -15);
         }
 
         public override void StandingTransition()
@@ -163,32 +162,14 @@ namespace GameSpace.States.MarioStates
 
         public override void Update(GameTime gametime)
         {
-            //something with velocity
-            /*if (Mario.marioPowerUpState != new SmallMarioState(Mario))
-            {
-                //if (Mario.marioActionState == new BigMarioState(Mario))
-                Debug.WriteLine("SMJump(158) currentAState, {0}, currentPowerup {1}", Mario.marioActionState, Mario.marioPowerUpState);
-                Debug.WriteLine("SMJump(158) currentPowerup, {0}, checkState {1}", Mario.marioPowerUpState, new BigMarioState(Mario));
-                Debug.WriteLine("SMJump(158) isEqual: {0}", Mario.marioPowerUpState is BigMarioState);
-                if (Mario.marioPowerUpState is BigMarioState)
-                {
-                    //Exit();
-                    Mario.marioActionState = new BigMarioJumpingState(Mario);
-                    Mario.marioActionState.Enter(this); // Changing states
-                }
-                else if (Mario.marioPowerUpState is FireMarioState)
-                {
-                    //Exit();
-                    Mario.marioActionState = new FireMarioJumpingState(Mario);
-                    Mario.marioActionState.Enter(this); // Changing states
-                }
-            }*/
+            Mario.Velocity += Mario.Acceleration * (float)gametime.ElapsedGameTime.TotalSeconds;
+            Mario.Velocity = ClampVelocity(Mario.Velocity);
         }
         //void Update(GameTime gametime, GraphicsDeviceManager graphics);
 
         Vector2 ClampVelocity(Vector2 velocity)
         {
-            return Vector2.Zero;//return the actualy velocity
+            return new Vector2(Mario.Velocity.X, Mario.Velocity.Y) ;//return the actualy velocity
         }
         // max velocity speed, clamp for each state speed
     }

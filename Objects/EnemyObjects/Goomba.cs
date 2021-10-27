@@ -113,6 +113,10 @@ namespace GameSpace.GameObjects.EnemyObjects
                 case (int)BlockID.BRICKBLOCK:
                     CollisionWithBlock(entity);
                     break;
+
+                case (int)ItemID.FIREBALL:
+                    CollisionWithFireball(entity);
+                    break;
             }
         }
         private void CollisionWithBlock(IGameObjects block)
@@ -149,7 +153,13 @@ namespace GameSpace.GameObjects.EnemyObjects
             }
 
         }
-        
+        private void CollisionWithFireball(IGameObjects fireball)
+        {
+            this.Trigger();
+            this.CollisionBox = new Rectangle(1, 1, 0, 0);
+            if (!hasCollidedOnTop) hasCollidedOnTop = true;
+        }
+
         public void ToggleCollisionBoxes()
         {
             drawBox = !drawBox;

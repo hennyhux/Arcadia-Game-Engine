@@ -35,6 +35,7 @@ namespace GameSpace.States.MarioStates
             {
                 Mario.Velocity = new Vector2((float)100, (float)0);
             }
+
             //AABB aabb = Mario.AABB;
             //eFacing Facing = MarioStandingState.Facing;
             eFacing Facing = Mario.Facing;
@@ -187,12 +188,14 @@ namespace GameSpace.States.MarioStates
         public override void Update(GameTime gametime)
         {
             //something with velocity
+            Mario.Velocity += Mario.Acceleration * (float)gametime.ElapsedGameTime.TotalSeconds;
+            Mario.Velocity = ClampVelocity(Mario.Velocity);
         }
         //void Update(GameTime gametime, GraphicsDeviceManager graphics);
 
         Vector2 ClampVelocity(Vector2 velocity)
         {
-            return Vector2.Zero;//return the actualy velocity
+            return new Vector2(Mario.Velocity.X, 0);
         }
         // max velocity speed, clamp for each state speed
     }
