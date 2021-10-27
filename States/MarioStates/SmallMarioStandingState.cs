@@ -28,7 +28,6 @@ namespace GameSpace.States.MarioStates
             Mario.marioPowerUpState = new SmallMarioState(Mario);
            
 
-            Mario.Velocity = ClampVelocity(Mario.Velocity);
             Debug.WriteLine("MarioStandState(25) Enter, {0}", Mario.marioActionState);
             Debug.WriteLine("MarioWalkingState(25) facing:, {0}", Mario.Facing);
 
