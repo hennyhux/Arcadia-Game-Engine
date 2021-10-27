@@ -231,7 +231,7 @@ namespace GameSpace.GameObjects.EnemyObjects
                 {
                     this.state = new StateRedKoopaDeadRight(this);
                 }
-            }*/
+            }
 
 
         }
