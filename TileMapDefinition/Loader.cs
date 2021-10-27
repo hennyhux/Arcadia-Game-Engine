@@ -80,7 +80,7 @@ namespace GameSpace.TileMapDefinition
                         break;
                     case BlockID.QUESTIONBLOCK:
                         if (obstacles.item == ItemID.COIN) objectsList.Add(objectFactory.CreateQuestionBlockCoin(location));
-                        //else if (obstacles.item == ItemID.STAR) objectsList.Add(objectFactory.CreateQuestionBlockStar(location));
+                        else if (obstacles.item == ItemID.STAR) objectsList.Add(objectFactory.CreateQuestionBlockStar(location));
                         else if (obstacles.item == ItemID.ONEUPSHROOM) objectsList.Add(objectFactory.CreateQuestionBlockOneUpShroom(location));
                         else if (obstacles.item == ItemID.SUPERSHROOM) objectsList.Add(objectFactory.CreateQuestionBlockShroom(location));
                         break;

@@ -50,7 +50,7 @@ namespace GameSpace.Factories
 
         public BackgroundSprite CreateRegularBackground()//mario.SmallMarioJumpingSprite
         {
-            return new BackgroundSprite(RegularBackground, new Vector2(0, 300));
+            return new BackgroundSprite(RegularBackground, new Vector2(0, 334));
         }
 
         public BackgroundSprite CreateBGMountainSprite()//mario.SmallMarioJumpingSprite

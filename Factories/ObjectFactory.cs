@@ -95,7 +95,7 @@ namespace GameSpace.Factories
 
         public IGameObjects CreateQuestionBlockCoin(Vector2 location)
         {
-            return new QuestionBlockStar(location);
+            return new QuestionBlock(location);
         }
 
         public IGameObjects CreateQuestionBlockOneUpShroom(Vector2 location)

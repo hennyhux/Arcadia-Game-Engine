@@ -2,6 +2,13 @@
 
 <Level>
 	<Obstacles>
+		<x>64</x>
+		<y>402</y>
+		<avatar>MARIO</avatar>
+		<facing>RIGHT</facing>
+	</Obstacles>
+	
+	<Obstacles>
 		<x>0</x>
 		<y>466</y>
 		<block>FLOORBLOCK</block>
@@ -58,7 +65,54 @@
 		<block>QUESTIONBLOCK</block>
 		<item>COIN</item>
 	</Obstacles>
+	
+	<Obstacles>
+		<x>736</x>
+		<y>402</y>
+		<enemy>GOOMBA</enemy>
+	</Obstacles>
+	
+	<Obstacles>
+		<x>896</x>
+		<y>370</y>
+		<item>SMALLPIPE</item>
+	</Obstacles>
+	<Obstacles>
+		<x>1216</x>
+		<y>338</y>
+		<item>MEDIUMPIPE</item>
+	</Obstacles>
+	
+	<Obstacles>
+		<x>1280</x>
+		<y>402</y>
+		<enemy>GOOMBA</enemy>
+	</Obstacles>
+	
+	<Obstacles>
+		<x>1472</x>
+		<y>306</y>
+		<item>BIGPIPE</item>
+	</Obstacles>
+	
+	<Obstacles>
+		<x>1568</x>
+		<y>402</y>
+		<enemy>GOOMBA</enemy>
+	</Obstacles><Obstacles>
+		<x>1600</x>
+		<y>402</y>
+		<enemy>GOOMBA</enemy>
+	</Obstacles>
+		
+	<Obstacles>
+		<x>1824</x>
+		<y>306</y>
+		<item>BIGPIPE</item>
+	</Obstacles>
 
+	
+	
 	
 	
 	
@@ -101,7 +155,15 @@
 		<blockRow>7</blockRow>
 	</Obstacles>
 	
-	
+	<Obstacles>
+		<x>2624</x>
+		<y>130</y>
+		<enemy>GOOMBA</enemy>
+	</Obstacles><Obstacles>
+		<x>2676</x>
+		<y>130</y>
+		<enemy>GOOMBA</enemy>
+	</Obstacles>
 	
 
 	<Obstacles>
@@ -130,6 +192,14 @@
 		<item>COIN</item>
 	</Obstacles>
 	
+	
+	<Obstacles>
+		<x>2976</x>
+		<y>306</y>
+		<block>BRICKBLOCK</block>
+		<blockRow>1</blockRow>
+		<item>COIN</item>
+	</Obstacles>
 	<Obstacles>
 		<x>3008</x>
 		<y>306</y>
@@ -152,6 +222,23 @@
 	</Obstacles>
 	
 	<Obstacles>
+		<x>2924</x>
+		<y>402</y>
+		<enemy>GOOMBA</enemy>
+	</Obstacles>
+	<Obstacles>
+		<x>2976</x>
+		<y>402</y>
+		<enemy>GOOMBA</enemy>
+	</Obstacles>
+	
+	<Obstacles>
+		<x>3232</x>
+		<y>388</y>
+		<enemy>GREENKOOPA</enemy>
+	</Obstacles>
+	
+	<Obstacles>
 		<x>3392</x>
 		<y>306</y>
 		<block>QUESTIONBLOCK</block>
@@ -169,24 +256,61 @@
 		<block>QUESTIONBLOCK</block>
 		<item>COIN</item>
 	</Obstacles>
+	
+	<Obstacles>
+		<x>3488</x>
+		<y>402</y>
+		<enemy>GOOMBA</enemy>
+	</Obstacles>
+	<Obstacles>
+		<x>3540</x>
+		<y>402</y>
+		<enemy>GOOMBA</enemy>
+	</Obstacles>
+		
 	<Obstacles>
 		<x>3488</x>
 		<y>162</y>
 		<block>QUESTIONBLOCK</block>
-		<item>COIN</item>
+		<item>SUPERSHROOM</item>
 	</Obstacles>
+	
 	<Obstacles>
 		<x>3776</x>
 		<y>306</y>
 		<block>BRICKBLOCK</block>
 		<blockRow>1</blockRow>
 	</Obstacles>
+	
 	<Obstacles>
 		<x>3872</x>
 		<y>162</y>
 		<block>BRICKBLOCK</block>
 		<blockRow>3</blockRow>
 	</Obstacles>
+	
+	<Obstacles>
+		<x>3872</x>
+		<y>402</y>
+		<enemy>GOOMBA</enemy>
+	</Obstacles>
+	<Obstacles>
+		<x>3924</x>
+		<y>402</y>
+		<enemy>GOOMBA</enemy>
+	</Obstacles>
+	<Obstacles>
+		<x>3976</x>
+		<y>402</y>
+		<enemy>GOOMBA</enemy>
+	</Obstacles>
+	<Obstacles>
+		<x>4104</x>
+		<y>402</y>
+		<enemy>GOOMBA</enemy>
+	</Obstacles>
+	
+		
 	<Obstacles>
 		<x>4096</x>
 		<y>162</y>
@@ -296,18 +420,7 @@
 
 	
 		
-	<Obstacles>
-		<x>4960</x>
-		<y>466</y>
-		<block>FLOORBLOCK</block>
-		<blockRow>64</blockRow>
-	</Obstacles>
-	<Obstacles>
-		<x>4960</x>
-		<y>434</y>
-		<block>FLOORBLOCK</block>
-		<blockRow>64</blockRow>
-	</Obstacles>
+	
 	
 	
 	<Obstacles>
@@ -360,6 +473,16 @@
 		<blockRow>1</blockRow>
 	</Obstacles>
 	
+	<Obstacles>
+		<x>5504</x>
+		<y>402</y>
+		<enemy>GOOMBA</enemy>
+	</Obstacles>
+	<Obstacles>
+		<x>5524</x>
+		<y>402</y>
+		<enemy>GOOMBA</enemy>
+	</Obstacles>
 	
 	<Obstacles>
 		<x>5728</x>
@@ -444,32 +567,7 @@
 		<blockRow>7</blockRow>
 	</Obstacles>
 	
-	<Obstacles>
-		<x>1000</x>
-		<y>390</y>
-		<enemy>REDKOOPA</enemy>
-	</Obstacles>
-	
-	<Obstacles>
-		<x>896</x>
-		<y>370</y>
-		<item>SMALLPIPE</item>
-	</Obstacles>
-	<Obstacles>
-		<x>1216</x>
-		<y>338</y>
-		<item>MEDIUMPIPE</item>
-	</Obstacles>
-	<Obstacles>
-		<x>1472</x>
-		<y>306</y>
-		<item>BIGPIPE</item>
-	</Obstacles>
-	<Obstacles>
-		<x>1824</x>
-		<y>306</y>
-		<item>BIGPIPE</item>
-	</Obstacles>
+
 
 
 
@@ -479,12 +577,28 @@
 		<item>FLAGPOLE</item>
 	</Obstacles>
 
-	
-	
 	<Obstacles>
-		<x>64</x>
-		<y>402</y>
-		<avatar>MARIO</avatar>
-		<facing>RIGHT</facing>
+		<x>6464</x>
+		<y>275</y>
+		<item>CASTLE</item>
 	</Obstacles>
+	<Obstacles>
+		<x>4960</x>
+		<y>466</y>
+		<block>FLOORBLOCK</block>
+		<blockRow>64</blockRow>
+	</Obstacles>
+	<Obstacles>
+		<x>4960</x>
+		<y>434</y>
+		<block>FLOORBLOCK</block>
+		<blockRow>64</blockRow>
+	</Obstacles>
+	<Obstacles>
+		<x>6712</x>
+		<y>162</y>
+		<block>BRICKBLOCK</block>
+		<blockRow>1</blockRow>
+	</Obstacles>
+	
 </Level>
