@@ -41,9 +41,9 @@ namespace GameSpace
         public Mario GetMario { get => (Mario)EntityManager.FindItem((int)AvatarID.MARIO); }
         public GraphicsDeviceManager Graphics { get => graphics; }
 
+        //string xmlFileName = "./Level1.xml";
         string xmlFileName = "../../../TileMapDefinition/Level1.xml";
-        //string xmlFileName = "../../../TileMapDefinition/Testing2.xml";
-        //string xmlFileName;
+        //string xmlFileName = "./Level1.xml";
         public GameRoot()
         {
             graphics = new GraphicsDeviceManager(this);

@@ -7,6 +7,15 @@
 		<avatar>MARIO</avatar>
 		<facing>RIGHT</facing>
 	</Obstacles>
+
+	<Obstacles>
+		<x>100</x>
+		<y>100</y>
+		<block>BRICKBLOCK</block>
+		<blockRow>1</blockRow>
+		<item>COIN</item>
+	</Obstacles>
+	
 	
 	<Obstacles>
 		<x>0</x>
@@ -68,8 +77,8 @@
 	
 	<Obstacles>
 		<x>736</x>
-		<y>402</y>
-		<enemy>GOOMBA</enemy>
+		<y>350</y>
+		<enemy>GREENKOOPA</enemy>
 	</Obstacles>
 	
 	<Obstacles>

@@ -1,4 +1,5 @@
-﻿using GameSpace.EntitiesManager;
+﻿using GameSpace.Abstracts;
+using GameSpace.EntitiesManager;
 using GameSpace.Enums;
 using GameSpace.Factories;
 using GameSpace.Interfaces;
@@ -14,58 +15,22 @@ using System.Text;
 
 namespace GameSpace.GameObjects.EnemyObjects
 {
-    public class RedKoopa : IGameObjects
+    public class RedKoopa : AbstractEnemy
     {
-        public IEnemyState state;
-        public ISprite Sprite { get; set; }
-        public Vector2 Position { get; set; }
-        public Vector2 Velocity { get; set; }
-        public Vector2 Acceleration { get; set; }
-        public Rectangle CollisionBox { get; set; }
-        public int ObjectID { get; set; }
-
-        private Boolean drawBox;
-        private Boolean inFrame; //is the current enemy inside of the viewport? 
-        public int direction;
-        public Rectangle ExpandedCollisionBox { get; set; }
-        private Boolean shifted;
+  
         public RedKoopa(Vector2 initalPosition)
         {
             ObjectID = (int)EnemyID.REDKOOPA;
             direction = (int)eFacing.LEFT;
             drawBox = false;
-            shifted = false;
-            inFrame = true;
-            this.Position = initalPosition;
-            this.state = new StateRedKoopaAliveLeft(this);
+            Position = initalPosition;
+            state = new StateRedKoopaAliveLeft(this);
             Sprite = SpriteEnemyFactory.GetInstance().CreateRedKoopaSprite();
             ExpandedCollisionBox = new Rectangle((int)(Position.X + Sprite.Texture.Width / 32), (int)Position.Y, Sprite.Texture.Width, Sprite.Texture.Height * 3);
             UpdateCollisionBox(Position);
         }
 
-        public void Draw(SpriteBatch spritebatch)
-        {
-            if (shifted)
-            {
-                Position = new Vector2(Position.X, Position.Y - 20);
-                shifted = false;
-            }
-            state.Draw(spritebatch, Position);
-            if (drawBox) state.DrawBoundaries(spritebatch, CollisionBox);
-        }
-
-        public void Update(GameTime gametime)
-        {
-            state.Update(gametime);
-            UpdatePosition(Position, gametime);
-        }
-
-        public void Trigger()
-        {
-
-        }
-
-        public void UpdatePosition(Vector2 location, GameTime gameTime) //use velocity
+        public override void UpdatePosition(Vector2 location, GameTime gameTime) //use velocity
         {
             if (EntityManager.IsGoingToFall((RedKoopa)this) && !(state is StateRedKoopaDead))
             {
@@ -87,32 +52,14 @@ namespace GameSpace.GameObjects.EnemyObjects
             UpdateCollisionBox(Position);
         }
 
-        public void HandleCollision(IGameObjects entity)
+        public override void Trigger()
         {
-            switch (entity.ObjectID)
-            {
-                case (int)AvatarID.MARIO:
-                    CollisionWithMario(entity);
-                    break;
-
-                case (int)BlockID.USEDBLOCK:
-                case (int)BlockID.QUESTIONBLOCK:
-                case (int)BlockID.FLOORBLOCK:
-                case (int)BlockID.STAIRBLOCK:
-                case (int)BlockID.COINBRICKBLOCK:
-                case (int)BlockID.BRICKBLOCK:
-                    CollisionWithBlock(entity);
-                    break;
-                case (int)ItemID.FIREBALL:
-                    CollisionWithFireball(entity);
-                    break;
-
-                    //dead when colliding with fireball, etc 
-            }
+            this.state = new StateRedKoopaDead(this);
+            PreformShellOffset();
         }
 
         #region Collision Handling
-        private void CollisionWithBlock(IGameObjects block)
+        internal override void CollisionWithBlock(IGameObjects block)
         {
             //If alive and hits block stays alive
             if (this.state is StateRedKoopaAliveLeft || this.state is StateRedKoopaAliveRight)
@@ -159,13 +106,6 @@ namespace GameSpace.GameObjects.EnemyObjects
             }    
         }
 
-        private void CollisionWithFireball(IGameObjects fireball)
-        {
-            this.state = new StateRedKoopaDead(this);
-            PreformShellOffset();
-
-        }
-
         public IEnemyState GetCurrentState()
         {
             return state;
@@ -174,11 +114,9 @@ namespace GameSpace.GameObjects.EnemyObjects
         private void PreformShellOffset()
         {
             Position = new Vector2(Position.X, Position.Y + 20);
-            shifted = true;
         }
 
-
-        private void CollisionWithMario(IGameObjects mario)
+        internal override void CollisionWithMario(IGameObjects mario)
         {
 
             if (this.state is StateRedKoopaAliveRight || this.state is StateRedKoopaAliveLeft)
@@ -207,41 +145,7 @@ namespace GameSpace.GameObjects.EnemyObjects
                     this.state = new StateRedKoopaDeadRight(this);
                 }
             }
-
-
         }
-
-        public void ToggleCollisionBoxes()
-        {
-            drawBox = !drawBox;
-        }
-
-        public bool IsCurrentlyColliding()
-        {
-            throw new NotImplementedException();
-        }
-
-        private void UpdateCollisionBox(Vector2 location)
-        {
-            this.CollisionBox = new Rectangle((int)location.X + state.StateSprite.Texture.Width / 4 + 2, (int)Position.Y,
-                state.StateSprite.Texture.Width / 2, state.StateSprite.Texture.Height * 2);
-
-            this.ExpandedCollisionBox = new Rectangle((int)location.X + state.StateSprite.Texture.Width / 4 - 6, (int)Position.Y,
-             state.StateSprite.Texture.Width, (state.StateSprite.Texture.Height * 2) + 3);
-
-        }
-
-        private void PreformBounce()
-        {
-            Position = new Vector2(Position.X, Position.Y - 3);
-        }
-
-        private void HaltAllMotion()
-        {
-            Velocity = new Vector2(0, 0);
-            Acceleration = new Vector2(0, 0);
-        }
-
 
         #endregion
     }

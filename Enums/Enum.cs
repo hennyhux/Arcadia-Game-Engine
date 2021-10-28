@@ -22,13 +22,13 @@ namespace GameSpace.Enums
         STAR = 7,
         ONEUPSHROOM = 8,
         FIREFLOWER = 9,
-        COIN = 10,
-        NOITEM = 11,
-        BIGPIPE = 12,
-        MEDIUMPIPE = 13,
-        SMALLPIPE = 14,
-        FLAGPOLE = 15,
-        CASTLE = 16,
+        COIN = 100,
+        NOITEM = 110,
+        BIGPIPE = 120,
+        MEDIUMPIPE = 130,
+        SMALLPIPE = 140,
+        FLAGPOLE = 150,
+        CASTLE = 160,
         FIREBALL = 19
     };
 

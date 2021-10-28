@@ -2,82 +2,38 @@
 using GameSpace.Factories;
 using GameSpace.Interfaces;
 using GameSpace.States;
-using GameSpace.States.BlockStates;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using GameSpace.EntitiesManager;
+using GameSpace.Abstracts;
+using GameSpace.States.BlockStates;
 
 namespace GameSpace.GameObjects.BlockObjects
 {
-    public class HiddenBlock : IGameObjects
+    public class HiddenBlock : AbstractBlock
     {
-
-        private IObjectState state;
-        public ISprite Sprite { get; set; }
-        public Vector2 Position { get; set; }
-        public Vector2 Velocity { get; set; }
-        public Vector2 Acceleration { get; set; }
-
-        public Vector2 Location => throw new NotImplementedException();
-
-        public Rectangle CollisionBox { get; set; }
-
-        public int ObjectID { get; set; }
-        public Boolean hasCollided { get; set; }
-        private Boolean drawBox;
-
-
         public HiddenBlock(Vector2 initalPosition)
         {
-            this.ObjectID = (int)BlockID.HIDDENBLOCK;
-            this.state = new StateBlockIdle();
-            this.Sprite = SpriteBlockFactory.GetInstance().ReturnHiddenBlock();
-            this.Position = initalPosition;
-            this.CollisionBox = new Rectangle((int)Position.X, (int)Position.Y, Sprite.Texture.Width * 2, Sprite.Texture.Height * 2);
-            drawBox = false;
+            ObjectID = (int)BlockID.HIDDENBLOCK;
+            state = new StateHiddenBlockIdle();
+            Sprite = SpriteBlockFactory.GetInstance().ReturnHiddenBlock();
+            Position = initalPosition;
+            CollisionBox = new Rectangle((int)Position.X, (int)Position.Y, Sprite.Texture.Width * 2, Sprite.Texture.Height * 2);
         }
 
-        public void Draw(SpriteBatch spritebatch)
+        public override void Trigger()
         {
-            Sprite.Draw(spritebatch, Position); //this shouldnt be hardcoded anymore 
-            if (drawBox) Sprite.DrawBoundary(spritebatch, CollisionBox);
+            state = new StateHiddenBlockBump(this);
         }
 
-        public void Update(GameTime gametime)
-        {
-            Sprite.Update(gametime);
-        }
-
-        public void Trigger()
-        {
-            state = new StateBlockBumped(this);
-        }
-
-        public void UpdatePosition(Vector2 location , GameTime gameTime)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void HandleCollision(IGameObjects entity)
+        public override void HandleCollision(IGameObjects entity)
         {
             if (EntityManager.DetectCollisionDirection(this, entity) == (int)CollisionDirection.DOWN && hasCollided == false && entity.Velocity.Y < 0)
             {
                 this.Trigger();
                 hasCollided = true;
             }
-        }
-
-        public void ToggleCollisionBoxes()
-        {
-            drawBox = !drawBox;
-        }
-
-        public bool IsCurrentlyColliding()
-        {
-            throw new NotImplementedException();
         }
     }
 }

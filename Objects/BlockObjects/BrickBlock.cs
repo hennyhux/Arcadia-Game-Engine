@@ -10,45 +10,25 @@ using System.Diagnostics;
 using System.Text;
 using GameSpace.Enums;
 using GameSpace.EntitiesManager;
+using GameSpace.Abstracts;
 
 namespace GameSpace.GameObjects.BlockObjects
 {
-    public class BrickBlock : IGameObjects
+    public class BrickBlock : AbstractBlock
     {
-
-        private IObjectState state;
-        public ISprite Sprite { get; set; }
-        public Vector2 Position { get; set; }
-        public Vector2 Velocity { get; set; }
-        public Vector2 Acceleration { get; set; }
-        public Rectangle CollisionBox { get; set; }
-
-        public int ObjectID { get; set; }
-
-        private Boolean hasCollided;
-        private Boolean drawBox;
-
         public BrickBlock(Vector2 initalPosition)
         {
             this.ObjectID = (int)BlockID.BRICKBLOCK;
-            this.state = new StateBlockIdle();
             this.Sprite = SpriteBlockFactory.GetInstance().ReturnBrickBlock();
             this.Position = initalPosition;
             this.CollisionBox = new Rectangle((int)Position.X, (int)Position.Y, Sprite.Texture.Width * 2, Sprite.Texture.Height * 2);
-            drawBox = false;
-            //Debug.WriteLine("BRICK BLOCK AT " + "(" + this.Position.X + ", " + this.Position.Y + ")");
+            state = new StateBrickBlockIdle();
         }
 
-        public void Draw(SpriteBatch spritebatch)
-        {
-            Sprite.Draw(spritebatch, Position); //this shouldnt be hardcoded anymore 
-            if (drawBox) Sprite.DrawBoundary(spritebatch, CollisionBox);
-        }
-
-        public void Update(GameTime gametime)
+        public override void Update(GameTime gametime)
         {
 
-            Sprite.Update(gametime);
+            state.Update(gametime);
             if((state is StateExplodingBlock))
             {
                 //this.Position = new Vector2((float)-50, (float)50);
@@ -69,19 +49,15 @@ namespace GameSpace.GameObjects.BlockObjects
             }
         }
 
-        public void Trigger()
+        public override void Trigger()
         {
-            state = new StateBlockBumped(this);
+            state = new StateBrickBlockBump(this);
         }
 
-        public void UpdatePosition(Vector2 newLocation, GameTime gameTime)
-        {
 
-        }
-
-        public void HandleCollision(IGameObjects entity)
+        public override void HandleCollision(IGameObjects entity)
         {
-            //hasCollided = true;
+            hasCollided = true;
 
             if (EntityManager.DetectCollisionDirection(this, entity) == (int)CollisionDirection.DOWN)
             {
@@ -91,7 +67,7 @@ namespace GameSpace.GameObjects.BlockObjects
                     if (mario.marioPowerUpState is BigMarioState || mario.marioPowerUpState is FireMarioState)
                     {
                         Debug.WriteLine("SHATTER BLOCK, mario PowerUp {0}", mario.marioPowerUpState);
-                        state = new StateExplodingBlock(this);
+                        //state = new StateExplodingBlock(this);
                     }
                     else
                     {
@@ -101,16 +77,6 @@ namespace GameSpace.GameObjects.BlockObjects
                 }
                 
             } 
-        }
-
-        public void ToggleCollisionBoxes()
-        {
-            drawBox = !drawBox;
-        }
-
-        public bool IsCurrentlyColliding()
-        {
-            throw new NotImplementedException();
         }
     }
 }

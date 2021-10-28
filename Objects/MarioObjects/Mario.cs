@@ -227,6 +227,9 @@ namespace GameSpace.GameObjects.BlockObjects
                 case (int)BlockID.STAIRBLOCK:
                 case (int)BlockID.USEDBLOCK:
                 case (int)BlockID.COINBRICKBLOCK:
+                case (int)ItemID.BIGPIPE:
+                case (int)ItemID.MEDIUMPIPE:
+                case (int)ItemID.SMALLPIPE:
                     CollisionWithBlock(entity);
                     break;
 
@@ -241,7 +244,7 @@ namespace GameSpace.GameObjects.BlockObjects
                     CollisionWithGreenKoopa(entity);
                     break;
                 case (int)EnemyID.REDKOOPA:
-                    CollisionWithRedKoopa(entity);
+                    CollisionWithRedKoopa(entity); // ABSTRACT THESE INTO ONE MEHOD 
                     break;
 
                 case (int)ItemID.FIREBALL:
@@ -249,8 +252,7 @@ namespace GameSpace.GameObjects.BlockObjects
                     break;
             }
 
-            
-            
+           
         }
 
         private bool IsGoingToBeOutOfBounds(Vector2 newLocation)
@@ -287,7 +289,7 @@ namespace GameSpace.GameObjects.BlockObjects
         {
             if (EntityManager.DetectCollisionDirection(this, enemy) == (int)CollisionDirection.LEFT ||
                 EntityManager.DetectCollisionDirection(this, enemy) == (int)CollisionDirection.RIGHT || 
-                EntityManager.DetectCollisionDirection(this, enemy) == (int)CollisionDirection.DOWN)
+                EntityManager.DetectCollisionDirection(this, enemy) == (int)CollisionDirection.UP)
             {
                 this.CollisionBox = new Rectangle(1, 1, 0, 0);
                 this.DeadTransition();
@@ -354,7 +356,7 @@ namespace GameSpace.GameObjects.BlockObjects
             {
                 if (EntityManager.DetectCollisionDirection(this, enemy) == (int)CollisionDirection.LEFT ||
                     EntityManager.DetectCollisionDirection(this, enemy) == (int)CollisionDirection.RIGHT ||
-                    EntityManager.DetectCollisionDirection(this, enemy) == (int)CollisionDirection.DOWN)
+                    EntityManager.DetectCollisionDirection(this, enemy) == (int)CollisionDirection.UP)
                 {
                     StandingTransition();
                     PrefromBounce(0, 10);
