@@ -3,21 +3,19 @@ using GameSpace.Interfaces;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace GameSpace.States.ItemStates
 {
     public class FireFlowerState : IItemStates
     {
-        private ISprite sprite;
-        private bool triggered;
+        private readonly ISprite sprite;
+        private readonly bool triggered;
 
         public ISprite StateSprite { get; set; }
 
         public FireFlowerState(GameRoot game)
         {
-            this.sprite = SpriteItemFactory.GetInstance().CreateFireFlower();
+            sprite = SpriteItemFactory.GetInstance().CreateFireFlower();
             triggered = false;
         }
 

@@ -1,18 +1,14 @@
-﻿using GameSpace.Factories;
+﻿using GameSpace.Camera2D;
+using GameSpace.EntitiesManager;
+using GameSpace.EntityManaging;
+using GameSpace.Enums;
+using GameSpace.Factories;
 using GameSpace.GameObjects.BlockObjects;
 using GameSpace.Interfaces;
+using GameSpace.TileMapDefinition;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
-using GameSpace.EntitiesManager;
-using GameSpace.TileMapDefinition;
-using System.Diagnostics;
-using GameSpace.Enums;
-using GameSpace.Camera2D;
-using System;
-using System.Text;
-using System.Linq;
-using GameSpace.Sprites.Background;
 
 namespace GameSpace
 {
@@ -20,11 +16,12 @@ namespace GameSpace
     {
         private protected readonly GraphicsDeviceManager graphics;
         private protected SpriteBatch spriteBatch;
+
         //private protected Camera camera;
 
         //Camera Stuff
-        Camera camera;
-        Vector2 parallax = new Vector2(1f);
+        private Camera camera;
+        private Vector2 parallax = new Vector2(1f);
 
 
         //Scrolling Background, Manually Setting
@@ -35,22 +32,22 @@ namespace GameSpace
         #region Lists
         private List<IController> controllers;
         private List<IGameObjects> objects;
-        private List<IGameObjects> avatars;
+        private readonly List<IGameObjects> avatars;
         #endregion
 
-        public Mario GetMario { get => (Mario)EntityManager.FindItem((int)AvatarID.MARIO); }
-        public GraphicsDeviceManager Graphics { get => graphics; }
 
-        string xmlFileName = "../../../TileMapDefinition/Level1.xml";
-        //string xmlFileName = "../../../TileMapDefinition/Testing2.xml";
-        //string xmlFileName;
+        public GraphicsDeviceManager Graphics => graphics;
+
+        //private readonly string xmlFileName = "./Level1.xml"; // Turn in with this line of code!
+        private readonly string xmlFileName = "../../../TileMapDefinition/Level1.xml"; // ONLY to run on our machines
+        //private readonly string xmlFileName = "../../../TileMapDefinition/HenryTesting.xml";
         public GameRoot()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
         }
 
-        SpriteBatch spriteBatch1;
+        private readonly SpriteBatch spriteBatch1;
         protected override void Initialize()
         {
             base.Initialize();
@@ -76,12 +73,12 @@ namespace GameSpace
             #endregion
 
             #region Loading Lists
-            //objects = Loader.Load(xmlFileName);
-            objects = Loader.LoadEverything(xmlFileName);
+            objects = Loader.Load(xmlFileName);
             #endregion
 
             #region Load EntityManager
-            EntityManager.LoadList(objects);
+            //EntityManager.LoadList(objects);
+            TheaterMachine.GetInstance().LoadList(objects);
             #endregion
 
             #region Loading Controllers
@@ -95,7 +92,7 @@ namespace GameSpace
             camera = new Camera(GraphicsDevice.Viewport) { Limits = new Rectangle(0, 0, Loader.boundaryX, 480) };//Should be set to level's max X and Y
 
             EntityManager.AddCamera(camera);
-
+            CameraMachine.GetInstance().LoadCamera(camera);
 
             //Scrolling Background, Manually Setting
             layers = new List<Layer>
@@ -105,18 +102,21 @@ namespace GameSpace
                 new Layer(camera, BackgroundFactory.GetInstance().CreateRegularBackground(), new Vector2(1.0f, 1.0f)),
             };
 
-
         }
+
+        public Mario GetMario => (Mario)FinderMachine.GetInstance().FindItem((int)AvatarID.MARIO);
 
         protected override void Update(GameTime gameTime)
         {
-            foreach (IController controller in controllers) controller.Update();
+            foreach (IController controller in controllers)
+            {
+                controller.Update();
+            }
 
-            EntityManager.Update(gameTime);
+            TheaterMachine.GetInstance().Update(gameTime);
             base.Update(gameTime);
             //Camera Stuff- Centered Mario
             camera.LookAt(new Vector2(GetMario.Position.X + GetMario.CollisionBox.Width / 2, GraphicsDevice.Viewport.Height / 2));
-
         }
 
         protected override void Draw(GameTime gameTime)
@@ -126,12 +126,13 @@ namespace GameSpace
 
             //Background/Scrolling Stuff
             foreach (Layer layer in layers)
+            {
                 layer.Draw(spriteBatch, camera.Position);
-
+            }
 
             //Normal Sprites
             spriteBatch.Begin(SpriteSortMode.Deferred, null, null, null, null, null, camera.GetViewMatrix(parallax));
-            EntityManager.Draw(spriteBatch);
+            TheaterMachine.GetInstance().Draw(spriteBatch);
             spriteBatch.End();
             base.Draw(gameTime);
         }

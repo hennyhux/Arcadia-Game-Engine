@@ -1,85 +1,52 @@
-﻿using GameSpace.EntitiesManager;
+﻿using GameSpace.Abstracts;
+using GameSpace.EntitiesManager;
+using GameSpace.EntityManaging;
 using GameSpace.Enums;
 using GameSpace.Factories;
 using GameSpace.Interfaces;
-using GameSpace.Sprites;
-using GameSpace.States;
-using GameSpace.States.EnemyStates;
-using GameSpace.States.StateMachines;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace GameSpace.GameObjects.EnemyObjects
 {
-    public class GreenKoopa : IGameObjects
+    public class GreenKoopa : AbstractEnemy
     {
-        public IEnemyState state;
-        public ISprite Sprite { get; set; }
-        public Vector2 Position { get; set; }
-        public Vector2 Velocity { get; set; }
-        public Vector2 Acceleration { get; set; }
-        public Rectangle CollisionBox { get; set; }
-        public int ObjectID { get; set; }
-
-        private Boolean drawBox;
-        private Boolean inFrame; //is the current enemy inside of the viewport? 
-        public int direction;
-        private Boolean shifted;
-
-
-        public Rectangle ExpandedCollisionBox { get; set; }
-
-
         public GreenKoopa(Vector2 initalPosition)
         {
             ObjectID = (int)EnemyID.GREENKOOPA;
             direction = (int)eFacing.LEFT;
             drawBox = false;
-            inFrame = true;
-            shifted = false;
-            Velocity = new Vector2(0, 0);
-            Acceleration = new Vector2(0, 0);
             Sprite = SpriteEnemyFactory.GetInstance().CreateGreenKoopaSprite();
-            ExpandedCollisionBox = new Rectangle((int)(Position.X + Sprite.Texture.Width / 32), (int)Position.Y, Sprite.Texture.Width, Sprite.Texture.Height * 3);
-            this.Position = initalPosition;
-            this.state = new StateGreenKoopaAliveLeft(this);
+            Position = initalPosition;
+            state = new StateGreenKoopaAliveFaceLeft();
             UpdateCollisionBox(Position);
         }
 
-        public void Draw(SpriteBatch spritebatch)
+        public override void UpdatePosition(Vector2 location, GameTime gameTime)
         {
-            state.Draw(spritebatch, Position);
-            if (drawBox) state.DrawBoundaries(spritebatch, CollisionBox);
-        }
-
-        public void Update(GameTime gametime)
-        {
-            state.Update(gametime);
-            UpdatePosition(Position, gametime);
-        }
-
-        public void Trigger()
-        {
-
-        }
-
-        public void UpdatePosition(Vector2 location , GameTime gameTime)
-        {
-            if (EntityManager.IsGoingToFall((GreenKoopa)this) && !(state is StateGreenKoopaDead))
+            if (!(state is StateGreenKoopaShelled) && ColliderMachine.GetInstance().IsGoingToFall(this))
             {
 
                 Velocity = new Vector2(0, Velocity.Y);
                 Acceleration = new Vector2(0, 400);
             }
 
-            else if (!EntityManager.IsGoingToFall((GreenKoopa)this))
+            else
             {
                 Acceleration = new Vector2(0, 0);
-                if (direction == (int)eFacing.RIGHT && !(state is StateGreenKoopaDead)) Velocity = new Vector2(85, 0);
-                if (direction == (int)eFacing.LEFT && !(state is StateGreenKoopaDead)) Velocity = new Vector2(-85, 0);
+                if (direction == (int)eFacing.RIGHT && !(state is StateGreenKoopaShelled))
+                {
+                    Velocity = new Vector2(85, 0);
+                }
+
+                if (direction == (int)eFacing.LEFT && !(state is StateGreenKoopaShelled))
+                {
+                    Velocity = new Vector2(-85, 0);
+                }
+            }
+
+            if (state is StateGreenKoopaShelled)
+            {
+                HaltAllMotion();
             }
 
             Velocity += Acceleration * (float)gameTime.ElapsedGameTime.TotalSeconds;
@@ -88,143 +55,74 @@ namespace GameSpace.GameObjects.EnemyObjects
             UpdateCollisionBox(Position);
         }
 
-        public void HandleCollision(IGameObjects entity)
+        public override void Trigger()
         {
-            switch (entity.ObjectID)
-            {
-                case (int)AvatarID.MARIO:
-                    CollisionWithMario(entity);
-                    break;
-
-                case (int)BlockID.USEDBLOCK:
-                case (int)BlockID.QUESTIONBLOCK:
-                case (int)BlockID.FLOORBLOCK:
-                case (int)BlockID.STAIRBLOCK:
-                case (int)BlockID.COINBRICKBLOCK:
-                case (int)BlockID.BRICKBLOCK:
-                    CollisionWithBlock(entity);
-                    break;
-
-                case (int)ItemID.FIREBALL:
-                    CollisionWithFireball(entity);
-                    break;
-            }
-        }
-        private void PreformShellOffset()
-        {
-            Position = new Vector2(Position.X, Position.Y + 10);
-            shifted = true;
+            state = new StateGreenKoopaShelled();
         }
 
-        #region Collision Handling
-        private void CollisionWithBlock(IGameObjects block)
+        internal override void UpdateCollisionBox(Vector2 location)
         {
-            //If alive and hits block stays alive
-            if (this.state is StateGreenKoopaAliveLeft || this.state is StateGreenKoopaAliveRight)
-            {
-                if (EntityManager.DetectCollisionDirection(this, block) == (int)CollisionDirection.LEFT)
-                {
-                    state = new StateGreenKoopaAliveLeft(this);
-                    direction = (int)eFacing.LEFT;
-                }
-
-                if (EntityManager.DetectCollisionDirection(this, block) == (int)CollisionDirection.RIGHT)
-                {
-                    state = new StateGreenKoopaAliveRight(this);
-                    direction = (int)eFacing.RIGHT;
-                }
-
-                else if (EntityManager.DetectCollisionDirection(this, block) == (int)CollisionDirection.UP)
-                {
-                    PreformBounce();
-                    HaltAllMotion();
-                }
-
-            }
-
-            //If Dead and hits block stays dead
-            else if (this.state is StateGreenKoopaDeadLeft || this.state is StateGreenKoopaDeadRight)
-            {
-                if (EntityManager.DetectCollisionDirection(this, block) == (int)CollisionDirection.LEFT)
-                {
-                    state = new StateGreenKoopaDeadLeft(this);
-                    direction = (int)eFacing.LEFT;
-                }
-
-                if (EntityManager.DetectCollisionDirection(this, block) == (int)CollisionDirection.RIGHT)
-                {
-                    state = new StateGreenKoopaDeadRight(this);
-                    direction = (int)eFacing.RIGHT;
-                }
-            }
-        }
-        private void CollisionWithFireball(IGameObjects fireball)
-        {
-            this.state = new StateGreenKoopaDead(this);
-
-        }
-
-        private void CollisionWithMario(IGameObjects mario)
-        {
-            if (this.state is StateGreenKoopaAliveRight || this.state is StateGreenKoopaAliveLeft)
-            {
-                if (EntityManager.DetectCollisionDirection(this, mario) == (int)CollisionDirection.UP)
-                {
-                    this.state = new StateGreenKoopaDead(this);
-                    PreformShellOffset();
-                }
-            }
-            else if (this.state is StateGreenKoopaDeadRight || this.state is StateGreenKoopaDeadLeft)
-            {
-                if (EntityManager.DetectCollisionDirection(this, mario) == (int)CollisionDirection.UP)
-                {
-                    this.state = new StateGreenKoopaDead(this);
-                }
-            }
-            else if (this.state is StateGreenKoopaDead)
-            {
-                if (EntityManager.DetectCollisionDirection(this, mario) == (int)CollisionDirection.LEFT)
-                {
-                    this.state = new StateGreenKoopaDeadLeft(this);
-                }
-                else if (EntityManager.DetectCollisionDirection(this, mario) == (int)CollisionDirection.RIGHT)
-                {
-                    this.state = new StateGreenKoopaDeadRight(this);
-                }
-            }
-        }
-
-        public void ToggleCollisionBoxes()
-        {
-            drawBox = !drawBox;
-        }
-
-        public bool IsCurrentlyColliding()
-        {
-            throw new NotImplementedException();
-        }
-
-        private void UpdateCollisionBox(Vector2 location)
-        {
-            this.CollisionBox = new Rectangle((int)location.X + state.StateSprite.Texture.Width / 4 + 2, (int)Position.Y,
+            CollisionBox = new Rectangle((int)location.X + state.StateSprite.Texture.Width / 4, (int)Position.Y,
                 state.StateSprite.Texture.Width / 2, state.StateSprite.Texture.Height * 2);
 
-            this.ExpandedCollisionBox = new Rectangle((int)location.X + state.StateSprite.Texture.Width / 4 - 6, (int)Position.Y,
-               state.StateSprite.Texture.Width, (state.StateSprite.Texture.Height * 2) + 3);
-
+            ExpandedCollisionBox = new Rectangle((int)location.X + state.StateSprite.Texture.Width / 4, (int)Position.Y,
+                state.StateSprite.Texture.Width / 2, (state.StateSprite.Texture.Height * 2) + 4); // MAGIC NUMBERS 
         }
-        private void PreformBounce()
+
+        internal override void CollisionWithFireball(IGameObjects fireball)
         {
-            Position = new Vector2(Position.X, Position.Y - 3);
+
         }
 
-        private void HaltAllMotion()
+        internal override void CollisionWithMario(IGameObjects mario)
         {
-            Velocity = new Vector2(0, 0);
-            Acceleration = new Vector2(0, 0);
-        }
+            switch (EntityManager.DetectCollisionDirection(this, mario))
+            {
+                case (int)CollisionDirection.UP:
+                    if (!(state is StateGreenKoopaShelled))
+                    {
+                        state = new StateGreenKoopaShelled();
+                    }
 
-        #endregion
+                    if (state is StateGreenKoopaShelled)
+                    {
+                        state = new StateGreenKoopaDeadMoving();
+                    }
+
+                    break;
+            }
+        }
+    }
+
+    public class StateGreenKoopaAliveFaceRight : AbstractEnemyState
+    {
+        public StateGreenKoopaAliveFaceRight()
+        {
+            StateSprite = SpriteEnemyFactory.GetInstance().CreateGreenKoopaRightSprite();
+        }
+    }
+
+    public class StateGreenKoopaAliveFaceLeft : AbstractEnemyState
+    {
+        public StateGreenKoopaAliveFaceLeft()
+        {
+            StateSprite = SpriteEnemyFactory.GetInstance().CreateGreenKoopaSprite();
+        }
+    }
+
+    public class StateGreenKoopaDeadMoving : AbstractEnemyState
+    {
+        public StateGreenKoopaDeadMoving()
+        {
+            StateSprite = SpriteEnemyFactory.GetInstance().CreateGreenKoopaShellSprite();
+        }
+    }
+
+    public class StateGreenKoopaShelled : AbstractEnemyState
+    {
+        public StateGreenKoopaShelled()
+        {
+            StateSprite = SpriteEnemyFactory.GetInstance().CreateGreenKoopaShellSprite();
+        }
     }
 }
-

@@ -1,8 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace GameSpace.Sprites
 {
@@ -15,7 +12,7 @@ namespace GameSpace.Sprites
 
         public HiddenBlockSprite(Texture2D texture, int rows, int columns, int totalFrames)
         {
-            this.Texture = texture;
+            Texture = texture;
             isVisible = false;
             this.rows = rows;
             this.columns = columns;

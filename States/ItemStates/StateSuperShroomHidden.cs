@@ -1,27 +1,22 @@
 ﻿using GameSpace.Factories;
+using GameSpace.GameObjects.ItemObjects;
 using GameSpace.Interfaces;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using GameSpace.GameObjects.ItemObjects;
-using System.Diagnostics;
-using GameSpace.Enums;
 
 namespace GameSpace.States.ItemStates
 {
     public class StateSuperShroomHidden : IItemStates
     {
         public ISprite StateSprite { get; set; }
-        public Boolean CollidedWithMario { get; set; }
+        public bool CollidedWithMario { get; set; }
         public SuperShroom SuperShroom;
 
         public StateSuperShroomHidden(SuperShroom superShroom)
         {
             StateSprite = SpriteItemFactory.GetInstance().CreateSuperShroom();
             CollidedWithMario = false;
-            this.SuperShroom = SuperShroom;
+            SuperShroom = SuperShroom;
         }
 
         public void Draw(SpriteBatch spritebatch, Vector2 location)

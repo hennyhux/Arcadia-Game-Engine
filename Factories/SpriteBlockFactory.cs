@@ -1,10 +1,6 @@
-﻿using Microsoft.Xna.Framework.Graphics;
+﻿using GameSpace.Sprites;
 using Microsoft.Xna.Framework.Content;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using GameSpace.Sprites;
-using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace GameSpace.Factories
 {
@@ -48,7 +44,7 @@ namespace GameSpace.Factories
             StairBlock = content.Load<Texture2D>("Blocks/StairBlock");
             HiddenBlock = content.Load<Texture2D>("Blocks/UsedBlock");
             WhiteRectangle = content.Load<Texture2D>("WhiteTexture");
-        } 
+        }
         public ISprite ReturnQuestionBlock()
         {
             return new QuestionBlockSprite(QuestionBlock, 1, 3, 3, 0, 0);
@@ -58,7 +54,7 @@ namespace GameSpace.Factories
         {
             return new BrickBlockSprite(BrickBlock, 1, 1, 1);
         }
-        
+
         public ISprite ReturnFloorBlock()
         {
             return new FloorBlockSprite(FloorBlock, 1, 1, 1);

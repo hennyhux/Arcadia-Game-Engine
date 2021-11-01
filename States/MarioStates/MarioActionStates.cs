@@ -1,13 +1,6 @@
-﻿using GameSpace.Factories;
+﻿using GameSpace.GameObjects.BlockObjects;
 using GameSpace.Interfaces;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using GameSpace.States.MarioStates;
-using GameSpace.GameObjects.BlockObjects;
-using System.Diagnostics;
 
 namespace GameSpace.States.MarioStates
 {
@@ -15,7 +8,7 @@ namespace GameSpace.States.MarioStates
     {
         //protected MarioActionStateMachine marioActionStateMachine; dont use
         //protected IMarioActionState currentActionState;
-       // protected IMarioActionState previousActionState;
+        // protected IMarioActionState previousActionState;
         //protected Kinematics previousKinematics;
 
         public Mario Mario { get; }

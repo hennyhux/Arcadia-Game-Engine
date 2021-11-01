@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Collections.Generic;
+﻿using GameSpace.Sprites.Background;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using GameSpace.Camera2D;
-using GameSpace.Sprites.Background;
+using System.Collections.Generic;
 
 namespace GameSpace.Camera2D
 {
@@ -26,9 +22,11 @@ namespace GameSpace.Camera2D
             _camera = camera;
             Parallax = parallax;
             //Sprites = new List<ISprite>();
-            Sprites = new List<BackgroundSprite>();
-            //Sprites.Add((BackgroundSprite)Sprite);
-            Sprites.Add(Sprite);
+            Sprites = new List<BackgroundSprite>
+            {
+                //Sprites.Add((BackgroundSprite)Sprite);
+                Sprite
+            };
         }
 
         public Vector2 Parallax { get; set; }
@@ -41,7 +39,9 @@ namespace GameSpace.Camera2D
             spriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.LinearWrap, null, null, null, _camera.GetViewMatrix(Parallax));
 
             foreach (BackgroundSprite sprite in Sprites)
+            {
                 sprite.Draw(spriteBatch, cameraLocation, Parallax);
+            }
             //sprite.Draw(spriteBatch, location);
 
             spriteBatch.End();

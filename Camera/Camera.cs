@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Linq;
-using Microsoft.Xna.Framework;
-using System.Diagnostics;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace GameSpace.Camera2D
@@ -19,10 +14,7 @@ namespace GameSpace.Camera2D
 
         public Vector2 Position
         {
-            get
-            {
-                return _position;
-            }
+            get => _position;
             set
             {
 
@@ -47,10 +39,7 @@ namespace GameSpace.Camera2D
 
         public Rectangle? Limits
         {
-            get
-            {
-                return _limits;
-            }
+            get => _limits;
             set
             {
                 if (value != null)

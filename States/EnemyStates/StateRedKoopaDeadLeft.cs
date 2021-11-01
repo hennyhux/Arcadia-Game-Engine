@@ -1,26 +1,25 @@
 ﻿using GameSpace.Factories;
+using GameSpace.GameObjects.EnemyObjects;
 using GameSpace.Interfaces;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
-using GameSpace.GameObjects.EnemyObjects;
 
 namespace GameSpace.States.EnemyStates
 {
-    public class StateRedKoopaDeadLeft: IEnemyState
+    public class StateRedKoopaDeadLeft : IEnemyState
     {
         public ISprite StateSprite { get; set; }
-        public Boolean CollidedWithMario { get; set; }
-        private RedKoopa RedKoopa;
+        public bool CollidedWithMario { get; set; }
+        private readonly RedKoopa RedKoopa;
 
         public StateRedKoopaDeadLeft(RedKoopa redKoopa)
         {
             StateSprite = SpriteEnemyFactory.GetInstance().CreateRedKoopaShellSprite();
             CollidedWithMario = false;
-            this.RedKoopa = redKoopa;
-            this.RedKoopa.state = this;
-            this.RedKoopa.Velocity = new Vector2((float)-1, (float)0);
-            this.RedKoopa.direction = 0;
+            RedKoopa = redKoopa;
+            RedKoopa.state = this;
+            RedKoopa.Velocity = new Vector2(-1, 0);
+            RedKoopa.direction = 0;
 
         }
 

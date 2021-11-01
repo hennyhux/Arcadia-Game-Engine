@@ -1,8 +1,4 @@
-﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using Microsoft.Xna.Framework.Graphics;
 
 namespace GameSpace.Sprites
 {
@@ -11,7 +7,7 @@ namespace GameSpace.Sprites
 
         public StairBlockSprite(Texture2D texture, int rows, int columns, int totalFrames)
         {
-            this.Texture = texture;
+            Texture = texture;
             isVisible = true;
             this.rows = rows;
             this.columns = columns;

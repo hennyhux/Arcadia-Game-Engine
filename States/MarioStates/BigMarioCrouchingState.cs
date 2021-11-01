@@ -1,19 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using GameSpace.Interfaces;
-using GameSpace.States.BlockStates;
+﻿using GameSpace.Enums;
 using GameSpace.Factories;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using GameSpace.States.MarioStates;
 using GameSpace.GameObjects.BlockObjects;
+using GameSpace.Interfaces;
+using Microsoft.Xna.Framework;
 using System.Diagnostics;
-using GameSpace.Enums;
 
 namespace GameSpace.States.MarioStates
 {
-    class BigMarioCrouchingState : MarioActionStates//MarioPowerUpStates
+    internal class BigMarioCrouchingState : MarioActionStates//MarioPowerUpStates
     {
         public BigMarioCrouchingState(Mario mario)
             : base(mario)
@@ -30,9 +24,9 @@ namespace GameSpace.States.MarioStates
             Debug.WriteLine("MarioWalkingState(25) facing:, {0}", Mario.Facing);
             //Mario.Position = new Vector2(Mario.Position.X, Mario.Position.Y + 20);
             Debug.WriteLine("Y before(25) facing:, {0}", Mario.Position.Y);
-            
 
-            
+
+
 
             //AABB aabb = Mario.AABB;
             //eFacing Facing = MarioStandingState.Facing;
@@ -95,19 +89,27 @@ namespace GameSpace.States.MarioStates
         public override void FaceLeftTransition()
         {
             if (Mario.Facing == eFacing.LEFT)
+            {
                 RunningTransition();
+            }
             // WalkingTransition(); bc no walking
             else
+            {
                 Mario.Facing = eFacing.LEFT;
+            }
         }
         public override void FaceRightTransition()
         {
 
             if (Mario.Facing == eFacing.RIGHT)
+            {
                 RunningTransition();
+            }
             // WalkingTransition();
             else
+            {
                 Mario.Facing = eFacing.RIGHT;
+            }
         }
 
         public override void UpTransition()
@@ -138,7 +140,7 @@ namespace GameSpace.States.MarioStates
 
         }
 
-        public override void CrouchingDiscontinueTransition() 
+        public override void CrouchingDiscontinueTransition()
         {
             StandingTransition();
         }//when you exit crouch, release down key
@@ -152,9 +154,10 @@ namespace GameSpace.States.MarioStates
         {
 
         }
+
         //void Update(GameTime gametime, GraphicsDeviceManager graphics);
 
-        Vector2 ClampVelocity(Vector2 velocity)
+        private Vector2 ClampVelocity(Vector2 velocity)
         {
             return Vector2.Zero;
         }

@@ -3,15 +3,12 @@ using GameSpace.Enums;
 using GameSpace.Interfaces;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace GameSpace.Abstracts
 {
     public abstract class AbstractItemBlock : IGameObjects
     {
-        public ISprite Sprite { get ; set; }
+        public ISprite Sprite { get; set; }
         public Vector2 Position { get; set; }
         public Vector2 Velocity { get; set; }
         public Vector2 Acceleration { get; set; }
@@ -27,7 +24,10 @@ namespace GameSpace.Abstracts
         public virtual void Draw(SpriteBatch spritebatch)
         {
             state.Draw(spritebatch, Position);
-            if (drawBox) state.DrawBounds(spritebatch, CollisionBox);
+            if (drawBox)
+            {
+                state.DrawBounds(spritebatch, CollisionBox);
+            }
         }
 
         public virtual void Update(GameTime gametime)
@@ -55,7 +55,10 @@ namespace GameSpace.Abstracts
         {
             if (EntityManager.DetectCollisionDirection(this, entity) == (int)CollisionDirection.DOWN)
             {
-                if (!revealedItem) this.Trigger();
+                if (!revealedItem)
+                {
+                    Trigger();
+                }
             }
         }
 

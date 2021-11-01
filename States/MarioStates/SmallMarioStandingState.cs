@@ -1,19 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using GameSpace.Enums;
+using GameSpace.Factories;
+using GameSpace.GameObjects.BlockObjects;
 using GameSpace.Interfaces;
 using GameSpace.States.BlockStates;
-using GameSpace.Factories;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using GameSpace.States.MarioStates;
-using GameSpace.GameObjects.BlockObjects;
 using System.Diagnostics;
-using GameSpace.Enums;
 
 namespace GameSpace.States.MarioStates
 {
-    class SmallMarioStandingState : MarioActionStates//MarioPowerUpStates
+    internal class SmallMarioStandingState : MarioActionStates//MarioPowerUpStates
     {
         public SmallMarioStandingState(Mario mario)
             : base(mario)
@@ -26,7 +21,7 @@ namespace GameSpace.States.MarioStates
             Mario.marioActionState = this;
             this.previousActionState = previousActionState;
             Mario.marioPowerUpState = new SmallMarioState(Mario);
-           
+
 
             Debug.WriteLine("MarioStandState(25) Enter, {0}", Mario.marioActionState);
             Debug.WriteLine("MarioWalkingState(25) facing:, {0}", Mario.Facing);
@@ -44,7 +39,8 @@ namespace GameSpace.States.MarioStates
 
         public override void Exit() { }
 
-        public override void StandingTransition() {
+        public override void StandingTransition()
+        {
             //Mario.Velocity = new Vector2((float)0, (float)50);//Responsible for mario going down upon pressing down for small mario
         }
         public override void CrouchingTransition() { }//nothsing
@@ -67,20 +63,20 @@ namespace GameSpace.States.MarioStates
         } //Longer you hold running you increase velocity and speed of animation
         public override void JumpingTransition()
         {
-           /* if (Mario.Velocity.Y > (float)0)//MOVE THIS TO UpTransition()
-            {
-                Mario.Velocity = new Vector2((float)0, (float)0);
-            }
-            else
-            {*/
-                //JumpingTransition();
+            /* if (Mario.Velocity.Y > (float)0)//MOVE THIS TO UpTransition()
+             {
+                 Mario.Velocity = new Vector2((float)0, (float)0);
+             }
+             else
+             {*/
+            //JumpingTransition();
 
-                Exit();
-                Mario.marioActionState = new SmallMarioJumpingState(Mario);
-                //Debug.WriteLine("MarioStandState(39) currentAState, {0}", Mario.marioActionState);
-                //Mario.sprite = MarioFactory.GetInstance().CreateSprite(5);
-                Mario.marioActionState.Enter(this); // Changing states
-           // }
+            Exit();
+            Mario.marioActionState = new SmallMarioJumpingState(Mario);
+            //Debug.WriteLine("MarioStandState(39) currentAState, {0}", Mario.marioActionState);
+            //Mario.sprite = MarioFactory.GetInstance().CreateSprite(5);
+            Mario.marioActionState.Enter(this); // Changing states
+                                                // }
         }
         public override void FallingTransition()
         {
@@ -97,16 +93,16 @@ namespace GameSpace.States.MarioStates
          }*/
         public override void UpTransition()
         {
-            if (Mario.Velocity.Y > (float)0 && false)//MOVE THIS TO UpTransition()
+            if (Mario.Velocity.Y > 0 && false)//MOVE THIS TO UpTransition()
             {
-                Mario.Velocity = new Vector2((float)0, (float)0);
+                Mario.Velocity = new Vector2(0, 0);
             }
             else
             {
                 JumpingTransition();
             }
         }
-        public override void DownTransition() 
+        public override void DownTransition()
         {
             //Mario.Velocity = new Vector2((float)0, (float)50);//Responsible for mario going down upon pressing down for small mario
             FallingTransition();
@@ -120,7 +116,9 @@ namespace GameSpace.States.MarioStates
                 // WalkingTransition(); bc no walking
             }
             else
+            {
                 Mario.Facing = eFacing.LEFT;
+            }
         }
         public override void FaceRightTransition()
         {
@@ -130,10 +128,12 @@ namespace GameSpace.States.MarioStates
                 RunningTransition();
             }
 
-                
+
             // WalkingTransition();
             else
+            {
                 Mario.Facing = eFacing.RIGHT;
+            }
         }
         public override void SmallPowerUp() { }
         public override void BigPowerUp()
@@ -166,9 +166,10 @@ namespace GameSpace.States.MarioStates
         {
             Mario.Velocity = ClampVelocity(Mario.Velocity);
         }
+
         //void Update(GameTime gametime, GraphicsDeviceManager graphics);
 
-        Vector2 ClampVelocity(Vector2 velocity)
+        private Vector2 ClampVelocity(Vector2 velocity)
         {
             return Vector2.Zero;
         }

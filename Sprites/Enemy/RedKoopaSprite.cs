@@ -1,11 +1,8 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace GameSpace.Sprites
-{ 
+{
     public class RedKoopaSprite : AbstractSprite
     {
         public RedKoopaSprite(Texture2D texture, int rows, int columns, int totalFrames, int startingPointX,
@@ -30,7 +27,7 @@ namespace GameSpace.Sprites
 
             #region time
             timeSinceLastFrame = 0;
-            milliSecondsPerFrame = 275; 
+            milliSecondsPerFrame = 275;
             #endregion
         }
 

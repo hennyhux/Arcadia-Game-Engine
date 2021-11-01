@@ -1,14 +1,4 @@
-﻿using GameSpace.EntitiesManager;
-using GameSpace.Factories;
-using GameSpace.Interfaces;
-using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Diagnostics;
-using GameSpace.Enums;
-
-namespace GameSpace.Commands
+﻿namespace GameSpace.Commands
 {
     public class MoveDownCommand : ICommand
     {
@@ -23,7 +13,7 @@ namespace GameSpace.Commands
 
         public void Execute()
         {
-           // EntityManager.FindItem((int)AvatarID.MARIO).Velocity = new Vector2((float)0, EntityManager.FindItem((int)AvatarID.MARIO).Velocity.Y + 40);
+            // EntityManager.FindItem((int)AvatarID.MARIO).Velocity = new Vector2((float)0, EntityManager.FindItem((int)AvatarID.MARIO).Velocity.Y + 40);
             //game.GetMario.StandingTransition();
 
             game.GetMario.DownTransition();

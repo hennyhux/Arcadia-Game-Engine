@@ -1,22 +1,21 @@
 ﻿using GameSpace.Sprites;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System.Diagnostics;
 
 namespace GameSpace.States
 {
     //A reusable class that can show blocks being bumped 
     public class BumpAnimation : AbstractSprite
     {
-        private Texture2D sprite;
+        private readonly Texture2D sprite;
         private protected int maxOffset;
         private protected int currentOffset;
         private protected Vector2 initLocation;
         public bool animationFinished;
 
-        public BumpAnimation(Texture2D texture, int x, int y, int MaxOffset, int rows = 1, int columns = 1, int totalFrames = 1 )
+        public BumpAnimation(Texture2D texture, int x, int y, int MaxOffset, int rows = 1, int columns = 1, int totalFrames = 1)
         {
-            this.Texture = texture;
+            Texture = texture;
             isVisible = true;
             this.rows = rows;
             this.columns = columns;
@@ -24,8 +23,8 @@ namespace GameSpace.States
             frameHeight = rows;
             currentFrame = 0;
             this.totalFrames = totalFrames;
-            this.initLocation = location;
-            this.maxOffset = MaxOffset;
+            initLocation = location;
+            maxOffset = MaxOffset;
             currentOffset = 0;
             initLocation.X = x;
             initLocation.Y = y;

@@ -1,15 +1,12 @@
 ﻿using GameSpace.Factories;
 using GameSpace.Interfaces;
 using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace GameSpace.States
 {
     public class StateBlockBumped : IObjectState
     {
-        private IGameObjects block;
+        private readonly IGameObjects block;
 
         public StateBlockBumped(IGameObjects block)
         {
@@ -26,7 +23,7 @@ namespace GameSpace.States
         }
         public void Update(GameTime gametime)
         {
-            
+
         }
     }
 }

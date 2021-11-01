@@ -15,7 +15,6 @@ namespace GameSpace.TileMapDefinition
     public static class Loader
     {
         public static int boundaryX = 0;
-        private static List<IGameObjects> objects = new List<IGameObjects>();
         private static ObjectFactory objectFactory = ObjectFactory.GetInstance();
 
         public static List<IGameObjects> Load(string xmlFile)
@@ -36,8 +35,8 @@ namespace GameSpace.TileMapDefinition
                 }
                 LoadBackground(objects, obstacles, location);
                 LoadBlocks(objects, obstacles, location);
-                LoadExtraItems(objects, obstacles, location);
-                LoadEnemies(objects,obstacles, location);
+                LoadItems(objects, obstacles, location);
+                LoadEnemies(objects, obstacles, location);
                 LoadAvatar(objects, obstacles, location);
             }
             return objects;
@@ -53,41 +52,6 @@ namespace GameSpace.TileMapDefinition
         {
             switch (obstacles.block)
             {
-                case BlockID.BRICKBLOCK:
-                    if (obstacles.blockRow == 1 && obstacles.item == ItemID.COIN)
-                    {
-                        objects.Add(objectFactory.CreateCoinBrickBlock(location));
-                    }
-                    else if (obstacles.blockRow == 1 && obstacles.item == ItemID.STAR)
-                    {
-                        objects.Add(objectFactory.CreateStarBrickBlock(location));
-                    }
-                    else
-                    {
-                        for (int i = 0; i < obstacles.blockRow; i++)
-                        {
-                            objects.Add(objectFactory.CreateBrickBlockObject(new Vector2(obstacles.x + (32 * i), obstacles.y)));
-                        }
-                    }
-                    break;
-                case BlockID.QUESTIONBLOCK:
-                    if (obstacles.item == ItemID.COIN)
-                    {
-                        objects.Add(objectFactory.CreateQuestionBlockCoin(location));
-                    }
-                    else if (obstacles.item == ItemID.STAR)
-                    {
-                        objects.Add(objectFactory.CreateQuestionBlockStar(location));
-                    }
-                    else if (obstacles.item == ItemID.ONEUPSHROOM)
-                    {
-                        objects.Add(objectFactory.CreateQuestionBlockOneUpShroom(location));
-                    }
-                    else if (obstacles.item == ItemID.SUPERSHROOM)
-                    {
-                        objects.Add(objectFactory.CreateQuestionBlockShroom(location));
-                    }
-                    break;
                 case BlockID.FLOORBLOCK:
                     for (int i = 0; i < obstacles.blockRow; i++)
                     {
@@ -97,18 +61,69 @@ namespace GameSpace.TileMapDefinition
                 case BlockID.HIDDENBLOCK:
                     objects.Add(objectFactory.CreateHiddenBlockObject(location));
                     break;
+                case BlockID.USEDBLOCK: //NOT USED IN LEVEL 1-1
+                    objects.Add(objectFactory.CreateUsedBlockObject(location));
+                    break;
                 case BlockID.STAIRBLOCK:
                     for (int i = 0; i < obstacles.blockRow; i++)
                     {
                         objects.Add(objectFactory.CreateStairBlockObject(new Vector2(obstacles.x + (32 * i), obstacles.y)));
                     }
                     break;
+                case BlockID.BRICKBLOCK:
+                    for (int i = 0; i < obstacles.blockRow; i++)
+                    {
+                        objects.Add(objectFactory.CreateBrickBlockObject(new Vector2(obstacles.x + (32 * i), obstacles.y)));
+                    }
+                    break;
+                case BlockID.COINBRICKBLOCK:
+                    objects.Add(objectFactory.CreateCoinBrickBlock(location));
+                    break;
+                case BlockID.STARBRICKBLOCK:
+                    objects.Add(objectFactory.CreateStarBrickBlock(location));
+                    break;
+                case BlockID.QUESTIONBLOCK: //NOT USED IN LEVEL 1-1
+                    objects.Add(objectFactory.CreateQuestionBlockObject(location));
+                    break;
+                case BlockID.COINQUESTIONBLOCK:
+                    objects.Add(objectFactory.CreateQuestionBlockCoin(location));
+                    break;
+                case BlockID.STARQUESTIONBLOCK:
+                    objects.Add(objectFactory.CreateQuestionBlockStar(location));
+                    break;
+                case BlockID.ONEUPSHROOMQUESTIONBLOCK:
+                    objects.Add(objectFactory.CreateQuestionBlockOneUpShroom(location));
+                    break;
+                case BlockID.SUPERSHROOMQUESTIONBLOCK:
+                    objects.Add(objectFactory.CreateQuestionBlockShroom(location));
+                    break;
+                case BlockID.FIREFLOWERQUESTIONBLOCK:
+                    objects.Add(objectFactory.CreateQuestionBlockFire(location));
+                    break;
             }
         }
-        public static void LoadExtraItems(List<IGameObjects> objects, Obstacles obstacles, Vector2 location)
+        public static void LoadItems(List<IGameObjects> objects, Obstacles obstacles, Vector2 location)
         {
             switch (obstacles.item)
             {
+                case ItemID.COIN: //NOT USED IN LEVEL 1-1
+                    objects.Add(objectFactory.CreateCoinObject(location));
+                    break;
+                case ItemID.STAR: //NOT USED IN LEVEL 1-1
+                    objects.Add(objectFactory.CreateStarObject(location));
+                    break;
+                case ItemID.ONEUPSHROOM: //NOT USED IN LEVEL 1-1
+                    objects.Add(objectFactory.CreateOneUpShroomObject(location));
+                    break;
+                case ItemID.SUPERSHROOM: //NOT USED IN LEVEL 1-1
+                    objects.Add(objectFactory.CreateSuperShroomObject(location));
+                    break;
+                case ItemID.FIREFLOWER: //NOT USED IN LEVEL 1-1
+                    objects.Add(objectFactory.CreateFireFlowerObject(location));
+                    break;
+                case ItemID.FIREBALL: //NOT USED IN LEVEL 1-1
+                    //Do nothing
+                    break;
                 case ItemID.SMALLPIPE:
                     objects.Add(objectFactory.CreateSmallPipeObject(location));
                     break;
@@ -118,14 +133,26 @@ namespace GameSpace.TileMapDefinition
                 case ItemID.BIGPIPE:
                     objects.Add(objectFactory.CreateBigPipeObject(location));
                     break;
-                /* case ItemID.WARPPIPE:
-                     objects.Add(objectFactory.CreateBigPipeObject(location));
-                     break;*/
-                case ItemID.CASTLE:
-                    objects.Add(objectFactory.CreateCastleObject(location));
+                case ItemID.WARPPIPE:
+                     //objects.Add(objectFactory.CreateWarpPipeObject(location));
+                     break;
+                case ItemID.WARPPIPEGOOMBA:
+                    //objects.Add(objectFactory.CreateWarpPipeGoombaObject(location));
+                    break;
+                case ItemID.WARPPIPEGREENKOOPA:
+                    //objects.Add(objectFactory.CreateWarpPipeGreenKoopaObject(location));
+                    break;
+                case ItemID.WARPPIPEREDKOOPA:
+                    //objects.Add(objectFactory.CreateWarpPipeRedKoopaObject(location));
+                    break;
+                case ItemID.WARPPIPENEWENEMY:
+                    //objects.Add(objectFactory.CreateWarpPipeNewEnemyObject(location));
                     break;
                 case ItemID.FLAGPOLE:
                     objects.Add(objectFactory.CreateFlagPoleObject(location));
+                    break;
+                case ItemID.CASTLE:
+                    objects.Add(objectFactory.CreateCastleObject(location));
                     break;
             }
         }
@@ -142,6 +169,9 @@ namespace GameSpace.TileMapDefinition
                     break;
                 case EnemyID.REDKOOPA:
                     objects.Add(objectFactory.CreateRedKoopaObject(location));
+                    break;
+                case EnemyID.NEWENEMYFORSPRINT5:
+                    //objects.Add(objectFactory.CreateNewEnemyObject(location));
                     break;
             }
         }

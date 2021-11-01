@@ -1,19 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using GameSpace.Interfaces;
-using GameSpace.States.BlockStates;
+﻿using GameSpace.Enums;
 using GameSpace.Factories;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using GameSpace.States.MarioStates;
 using GameSpace.GameObjects.BlockObjects;
+using GameSpace.Interfaces;
+using Microsoft.Xna.Framework;
 using System.Diagnostics;
-using GameSpace.Enums;
 
 namespace GameSpace.States.MarioStates
 {
-    class BigMarioFallingState : MarioActionStates//MarioPowerUpStates
+    internal class BigMarioFallingState : MarioActionStates//MarioPowerUpStates
     {
         public BigMarioFallingState(Mario mario)
             : base(mario)
@@ -28,7 +22,7 @@ namespace GameSpace.States.MarioStates
             //Mario.marioPowerUpState = new BigMarioState(Mario);
             Debug.WriteLine("MarioStandState(25) Enter, {0}", Mario.marioActionState);
             Debug.WriteLine("MarioWalkingState(25) facing:, {0}", Mario.Facing);
-            
+
             //AABB aabb = Mario.AABB;
             //eFacing Facing = MarioStandingState.Facing;
             eFacing Facing = Mario.Facing;
@@ -57,8 +51,8 @@ namespace GameSpace.States.MarioStates
         }
         public override void CrouchingTransition()
         {
-           // Exit();
-           // Mario.marioActionState = new BigMarioCrouchingState(Mario);
+            // Exit();
+            // Mario.marioActionState = new BigMarioCrouchingState(Mario);
             //Debug.WriteLine("MarioStandState(39) currentAState, {0}", Mario.marioActionState);
             //Mario.sprite = MarioFactory.GetInstance().CreateSprite(3);
             //Mario.marioActionState.Enter(this); // Changing states
@@ -95,19 +89,27 @@ namespace GameSpace.States.MarioStates
         public override void FaceLeftTransition()
         {
             if (Mario.Facing == eFacing.LEFT)
+            {
                 RunningTransition();
+            }
             // WalkingTransition(); bc no walking
             else
+            {
                 Mario.Facing = eFacing.LEFT;
+            }
         }
         public override void FaceRightTransition()
         {
 
             if (Mario.Facing == eFacing.RIGHT)
+            {
                 RunningTransition();
+            }
             // WalkingTransition();
             else
+            {
                 Mario.Facing = eFacing.RIGHT;
+            }
         }
 
         public override void UpTransition()
@@ -155,9 +157,10 @@ namespace GameSpace.States.MarioStates
             Mario.Velocity += Mario.Acceleration * (float)gametime.ElapsedGameTime.TotalSeconds;
             Mario.Velocity = ClampVelocity(Mario.Velocity);
         }
+
         //void Update(GameTime gametime, GraphicsDeviceManager graphics);
 
-        Vector2 ClampVelocity(Vector2 velocity)
+        private Vector2 ClampVelocity(Vector2 velocity)
         {
             return new Vector2(Mario.Velocity.X, Mario.Velocity.Y);
         }

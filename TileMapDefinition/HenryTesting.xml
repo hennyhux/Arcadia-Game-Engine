@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<Level>
+	<Obstacles>
+		<x>64</x>
+		<y>402</y>
+		<avatar>MARIO</avatar>
+		<facing>RIGHT</facing>
+	</Obstacles>
+
+	<Obstacles>
+		<x>100</x>
+		<y>100</y>
+		<block>COINBRICKBLOCK</block>
+	</Obstacles>
+	
+	<Obstacles>
+		<x>400</x>
+		<y>200</y>
+		<enemy>GREENKOOPA</enemy>
+	</Obstacles>
+
+	<Obstacles>
+		<x>100</x>
+		<y>400</y>
+		<block>BRICKBLOCK</block>
+		<blockRow>15</blockRow>
+	</Obstacles>
+
+	<Obstacles>
+		<x>164</x>
+		<y>368</y>
+		<block>BRICKBLOCK</block>
+		<blockRow>1</blockRow>
+	</Obstacles>	
+</Level>

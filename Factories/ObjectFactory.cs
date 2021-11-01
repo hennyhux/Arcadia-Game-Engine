@@ -1,20 +1,17 @@
 ﻿using GameSpace.GameObjects.BlockObjects;
 using GameSpace.GameObjects.EnemyObjects;
-using GameSpace.GameObjects.ItemObjects;
 using GameSpace.GameObjects.ExtraItemsObjects;
+using GameSpace.GameObjects.ItemObjects;
 using GameSpace.Interfaces;
 using GameSpace.Objects.BlockObjects;
 using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace GameSpace.Factories
 {
     public class ObjectFactory
     {
 
-        private static protected GameRoot instanceGame;
+        private protected static GameRoot instanceGame;
 
         private static ObjectFactory instance;
 

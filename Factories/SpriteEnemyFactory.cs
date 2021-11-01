@@ -1,11 +1,8 @@
 ﻿
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Content;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using GameSpace.Sprites;
 using GameSpace.Sprites.Enemy;
+using Microsoft.Xna.Framework.Content;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace GameSpace.Factories
 {
@@ -52,7 +49,7 @@ namespace GameSpace.Factories
 
         }
 
-    public ISprite CreateGoombaSprite()
+        public ISprite CreateGoombaSprite()
         {
             return new GoombaSprite(Goomba, 1, 2, 2, 0, 0);
         }
@@ -64,7 +61,7 @@ namespace GameSpace.Factories
 
         public ISprite CreateRedKoopaSprite()
         {
-            return new KoopaSprite(RedKoopa, 1, 2, 2, 0, 0); 
+            return new KoopaSprite(RedKoopa, 1, 2, 2, 0, 0);
         }
 
         public ISprite CreateGreenKoopaSprite()
@@ -74,7 +71,7 @@ namespace GameSpace.Factories
 
         public ISprite CreateRedKoopaRightSprite()
         {
-            return new KoopaSprite(RedKoopaRight, 1, 2, 2, 0, 0); 
+            return new KoopaSprite(RedKoopaRight, 1, 2, 2, 0, 0);
         }
 
         public ISprite CreateGreenKoopaRightSprite()

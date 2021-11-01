@@ -1,13 +1,9 @@
 ﻿
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GameSpace
 {
-    public class ExitCommand: ICommand
+    public class ExitCommand : ICommand
     {
         private protected GameRoot game;
         public ExitCommand(GameRoot game)
@@ -17,7 +13,7 @@ namespace GameSpace
 
         public void Execute()
         {
-            this.game.Exit();
+            game.Exit();
         }
 
         public void Unexecute()

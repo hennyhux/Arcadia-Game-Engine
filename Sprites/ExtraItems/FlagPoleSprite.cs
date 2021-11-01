@@ -1,8 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace GameSpace.Sprites
 {
@@ -12,7 +9,7 @@ namespace GameSpace.Sprites
         public FlagPoleSprite(Texture2D texture, int rows, int columns, int totalFrames, int startingPointX,
             int startingPointY)
         {
-            this.Texture = texture;
+            Texture = texture;
             isVisible = true;
             this.rows = rows;
             this.columns = columns;

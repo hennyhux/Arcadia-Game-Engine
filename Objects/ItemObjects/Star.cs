@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using GameSpace.EntitiesManager;
 using GameSpace.Enums;
 using GameSpace.Factories;
 using GameSpace.Interfaces;
 using GameSpace.States.ItemStates;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using GameSpace.EntitiesManager;
-using GameSpace.GameObjects.BlockObjects;
+using System;
 
 
 
@@ -24,25 +21,25 @@ namespace GameSpace.GameObjects.ItemObjects
         public Rectangle CollisionBox { get; set; }
         public int ObjectID { get; set; }
 
-        private Boolean hasCollided;
-        private Boolean drawBox;
+        private bool hasCollided;
+        private bool drawBox;
 
 
         public Star(Vector2 initialPosition)
         {
-            this.ObjectID = (int)ItemID.STAR;
-            this.Sprite = SpriteItemFactory.GetInstance().CreateStar();
-            this.Position = initialPosition;
-            this.CollisionBox = new Rectangle((int)Position.X, (int)Position.Y, Sprite.Texture.Width * 2 / 4, Sprite.Texture.Height * 2);
+            ObjectID = (int)ItemID.STAR;
+            Sprite = SpriteItemFactory.GetInstance().CreateStar();
+            Position = initialPosition;
+            CollisionBox = new Rectangle((int)Position.X, (int)Position.Y, Sprite.Texture.Width * 2 / 4, Sprite.Texture.Height * 2);
             drawBox = false;
-            this.hasCollided = false;
-            this.state = new StateStarHidden(this);
+            hasCollided = false;
+            state = new StateStarHidden(this);
         }
 
         public void Draw(SpriteBatch spritebatch)
         {
             Sprite.Draw(spritebatch, Position);
-            this.state.Draw(spritebatch, Position);
+            state.Draw(spritebatch, Position);
             if (drawBox)
             {
                 Sprite.DrawBoundary(spritebatch, CollisionBox);
@@ -51,8 +48,12 @@ namespace GameSpace.GameObjects.ItemObjects
 
         public void Update(GameTime gametime)
         {
-            if (this.state is StateStarHidden) findMario();
-            this.state.Update(gametime);
+            if (state is StateStarHidden)
+            {
+                findMario();
+            }
+
+            state.Update(gametime);
             UpdatePosition(Position, gametime);
             Sprite.Update(gametime);
         }
@@ -61,10 +62,10 @@ namespace GameSpace.GameObjects.ItemObjects
         {
             if (!hasCollided)
             {
-                this.Sprite.SetVisible();
-                this.CollisionBox = new Rectangle();
+                Sprite.SetVisible();
+                CollisionBox = new Rectangle();
             }
-            this.hasCollided = true;
+            hasCollided = true;
         }
 
         public void HandleCollision(IGameObjects entity)
@@ -72,7 +73,7 @@ namespace GameSpace.GameObjects.ItemObjects
             switch (entity.ObjectID)
             {
                 case (int)AvatarID.MARIO:
-                    this.Trigger();
+                    Trigger();
                     break;
 
                 case (int)BlockID.USEDBLOCK:
@@ -110,37 +111,45 @@ namespace GameSpace.GameObjects.ItemObjects
         {
             if (EntityManager.DetectCollisionDirection(this, entity) == (int)CollisionDirection.RIGHT)
             {
-                this.state = new StateStarRight(this);
+                state = new StateStarRight(this);
             }
 
             else if (EntityManager.DetectCollisionDirection(this, entity) == (int)CollisionDirection.LEFT)
             {
-                this.state = new StateStarLeft(this);
+                state = new StateStarLeft(this);
             }
             else if (EntityManager.DetectCollisionDirection(this, entity) == (int)CollisionDirection.DOWN)
             {
-                this.Position = new Vector2(this.Position.X, this.Position.Y - 10);
-                if(this.state is StateStarRight) this.Velocity = new Vector2(45, 0);
-                if (this.state is StateStarLeft) this.Velocity = new Vector2(-45, 0);
-                this.Acceleration = new Vector2(0, -400);
-                this.state.Trigger();
+                Position = new Vector2(Position.X, Position.Y - 10);
+                if (state is StateStarRight)
+                {
+                    Velocity = new Vector2(45, 0);
+                }
+
+                if (state is StateStarLeft)
+                {
+                    Velocity = new Vector2(-45, 0);
+                }
+
+                Acceleration = new Vector2(0, -400);
+                state.Trigger();
             }
         }
         private void UpdateCollisionBox(Vector2 location)
         {
-            this.CollisionBox = new Rectangle((int)Position.X, (int)Position.Y, Sprite.Texture.Width * 2 / 4, Sprite.Texture.Height * 2);
+            CollisionBox = new Rectangle((int)Position.X, (int)Position.Y, Sprite.Texture.Width * 2 / 4, Sprite.Texture.Height * 2);
         }
 
         private void findMario()
         {
             if (EntityManager.FindItem((int)AvatarID.MARIO).Position.X <= Position.X)
             {
-                this.state = new StateStarRight(this);
+                state = new StateStarRight(this);
 
             }
             else
             {
-                this.state = new StateStarLeft(this);
+                state = new StateStarLeft(this);
 
             }
         }

@@ -2,20 +2,16 @@
 using GameSpace.Factories;
 using GameSpace.Interfaces;
 using GameSpace.States;
-using GameSpace.States.BlockStates;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
-using System.Collections.Generic;
-using System.Text;
-using GameSpace.EntitiesManager;
 
 namespace GameSpace.GameObjects.BlockObjects
 {
     public class UsedBlock : IGameObjects
     {
 
-        private IObjectState state;
+        private readonly IObjectState state;
         public ISprite Sprite { get; set; }
         public Vector2 Position { get; set; }
         public Vector2 Velocity { get; set; }
@@ -26,23 +22,26 @@ namespace GameSpace.GameObjects.BlockObjects
         public Rectangle CollisionBox { get; set; }
 
         public int ObjectID { get; set; }
-        private Boolean hasCollided;
-        private Boolean drawBox;
+        private readonly bool hasCollided;
+        private bool drawBox;
 
         public UsedBlock(Vector2 initalPosition)
         {
-            this.ObjectID = (int)BlockID.USEDBLOCK;
-            this.state = new StateBlockIdle();
-            this.Sprite = SpriteBlockFactory.GetInstance().ReturnUsedBlock();
-            this.Position = initalPosition;
-            this.CollisionBox = new Rectangle((int)Position.X, (int)Position.Y, Sprite.Texture.Width * 2, Sprite.Texture.Height * 2);
+            ObjectID = (int)BlockID.USEDBLOCK;
+            state = new StateBlockIdle();
+            Sprite = SpriteBlockFactory.GetInstance().ReturnUsedBlock();
+            Position = initalPosition;
+            CollisionBox = new Rectangle((int)Position.X, (int)Position.Y, Sprite.Texture.Width * 2, Sprite.Texture.Height * 2);
             drawBox = false;
         }
 
         public void Draw(SpriteBatch spritebatch)
         {
             Sprite.Draw(spritebatch, Position); //this shouldnt be hardcoded anymore 
-            if (drawBox) Sprite.DrawBoundary(spritebatch, CollisionBox);
+            if (drawBox)
+            {
+                Sprite.DrawBoundary(spritebatch, CollisionBox);
+            }
         }
 
         public void Update(GameTime gametime)
@@ -52,7 +51,7 @@ namespace GameSpace.GameObjects.BlockObjects
 
         public void Trigger()
         {
-            
+
         }
 
         public void UpdatePosition(Vector2 location, GameTime gameTime)
@@ -61,7 +60,7 @@ namespace GameSpace.GameObjects.BlockObjects
         }
         public void HandleCollision(IGameObjects entity)
         {
-            
+
         }
 
         public void ToggleCollisionBoxes()

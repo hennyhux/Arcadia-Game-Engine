@@ -1,12 +1,9 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace GameSpace.Interfaces
 {
-    interface IMario
+    internal interface IMario
     {
         public Vector2 Position { get; set; }
         public Vector2 Velocity { get; set; }

@@ -2,18 +2,14 @@
 using GameSpace.EntitiesManager;
 using GameSpace.Enums;
 using Microsoft.Xna.Framework.Input;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GameSpace
 {
     public class CommandList
     {
-        private Dictionary<Keys, ICommand> keyboardCommands;
-        private Dictionary<Buttons, ICommand> controllerCommands;
+        private readonly Dictionary<Keys, ICommand> keyboardCommands;
+        private readonly Dictionary<Buttons, ICommand> controllerCommands;
 
         public CommandList(GameRoot game)
         {
@@ -57,14 +53,8 @@ namespace GameSpace
             };
         }
 
-        public Dictionary<Keys, ICommand> GetCommand
-        {
-            get => keyboardCommands;
-        }
+        public Dictionary<Keys, ICommand> GetCommand => keyboardCommands;
 
-        public Dictionary<Buttons, ICommand> GetControllerCommands
-        {
-            get => controllerCommands;
-        }
+        public Dictionary<Buttons, ICommand> GetControllerCommands => controllerCommands;
     }
 }
