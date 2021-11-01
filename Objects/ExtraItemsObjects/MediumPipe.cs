@@ -70,5 +70,10 @@ namespace GameSpace.GameObjects.ExtraItemsObjects
         {
             throw new NotImplementedException();
         }
+
+        public bool RevealItem()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -18,5 +18,6 @@ namespace GameSpace.Interfaces
         public void HandleCollision(IGameObjects entity);
         public void ToggleCollisionBoxes();
         public bool IsCurrentlyColliding();
+        public bool RevealItem();
     }
 }

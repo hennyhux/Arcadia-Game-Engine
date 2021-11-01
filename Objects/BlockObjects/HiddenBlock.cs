@@ -32,5 +32,10 @@ namespace GameSpace.GameObjects.BlockObjects
                 hasCollided = true;
             }
         }
+
+        public override bool RevealItem()
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

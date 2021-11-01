@@ -72,5 +72,10 @@ namespace GameSpace.GameObjects.BlockObjects
         {
             throw new NotImplementedException();
         }
+
+        public bool RevealItem()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

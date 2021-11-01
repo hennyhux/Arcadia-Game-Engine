@@ -18,5 +18,9 @@ namespace GameSpace.GameObjects.BlockObjects
             state = new StateFloorBlock();
         }
 
+        public override bool RevealItem()
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

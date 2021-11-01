@@ -32,7 +32,7 @@ namespace GameSpace.Factories
         #region Blocks
         public IGameObjects CreateBrickBlockObject(Vector2 location)
         {
-            return new BrickBlock(location);
+            return new GameObjects.BlockObjects.BrickBlocks(location);
         }
 
         public IGameObjects CreateStairBlockObject(Vector2 location)
@@ -62,7 +62,7 @@ namespace GameSpace.Factories
 
         public IGameObjects CreateCoinBrickBlock(Vector2 location)
         {
-            return new BrickBlockCoin(location);
+            return new BrickBlockWithItem(location, ObjectFactory.GetInstance().CreateCoinObject(location));
         }
 
         public IGameObjects CreateStarBrickBlock(Vector2 location)

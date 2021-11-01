@@ -16,6 +16,11 @@ namespace GameSpace.GameObjects.BlockObjects
             CollisionBox = new Rectangle((int)Position.X, (int)Position.Y, Sprite.Texture.Width * 2, Sprite.Texture.Height * 2);
             state = new StateStairBlock();
         }
+
+        public override bool RevealItem()
+        {
+            throw new System.NotImplementedException();
+        }
     }
 
 }

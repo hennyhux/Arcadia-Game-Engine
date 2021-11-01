@@ -152,6 +152,11 @@ namespace GameSpace.GameObjects.ItemObjects
                 CollisionBox = new Rectangle((int)Position.X + 5, (int)Position.Y, (Sprite.Texture.Width * 2 / 4) - 10, Sprite.Texture.Height * 2 + 5);
             }
         }
+
+        public bool RevealItem()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
 

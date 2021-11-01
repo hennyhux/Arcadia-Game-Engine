@@ -17,6 +17,7 @@ namespace GameSpace.Abstracts
         internal bool drawBox;
         internal bool hasCollided;
         internal IBlockStates state;
+        internal IGameObjects item;
 
 
         public AbstractBlock()
@@ -54,12 +55,14 @@ namespace GameSpace.Abstracts
 
         public virtual void Trigger()
         {
-
+            //bump and reveal the item when triggered
         }
 
         public virtual void HandleCollision(IGameObjects entity)
         {
 
         }
+
+        public abstract bool RevealItem();
     }
 }
