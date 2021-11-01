@@ -16,9 +16,6 @@ namespace GameSpace.GameObjects.BlockObjects
         public Vector2 Position { get; set; }
         public Vector2 Velocity { get; set; }
         public Vector2 Acceleration { get; set; }
-
-        public Vector2 Location => throw new NotImplementedException();
-
         public Rectangle CollisionBox { get; set; }
 
         public int ObjectID { get; set; }

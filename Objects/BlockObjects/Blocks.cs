@@ -15,7 +15,7 @@ using System.Text;
 
 namespace GameSpace.Objects.BlockObjects
 {
-    public abstract class BrickBlocks : AbstractBlock
+    public class BrickBlocks : AbstractBlock
     {
         public BrickBlocks(Vector2 initLocation)
         {
@@ -99,7 +99,7 @@ namespace GameSpace.Objects.BlockObjects
         {
             if (!hasRevealedItem)
             {
-                item.Position = new Vector2(item.Position.X, item.Position.Y - 64);
+                item.Position = new Vector2(item.Position.X, item.Position.Y - 32);
                 TheaterMachine.GetInstance().AddItemToStage(item);
                 hasRevealedItem = true;
             }

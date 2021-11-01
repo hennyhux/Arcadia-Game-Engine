@@ -15,6 +15,14 @@
 		<blockRow>1</blockRow>
 		<item>COIN</item>
 	</Obstacles>
+
+	<Obstacles>
+		<x>150</x>
+		<y>100</y>
+		<block>BRICKBLOCK</block>
+		<blockRow>1</blockRow>
+		<item>NOITEM</item>
+	</Obstacles>
 	
 	<Obstacles>
 		<x>400</x>
