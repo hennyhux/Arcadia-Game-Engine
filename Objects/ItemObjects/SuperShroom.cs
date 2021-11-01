@@ -166,5 +166,10 @@ namespace GameSpace.GameObjects.ItemObjects
 
             }
         }
+
+        public bool RevealItem()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

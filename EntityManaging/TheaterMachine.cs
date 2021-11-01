@@ -72,5 +72,10 @@ namespace GameSpace.EntityManaging
             }
         }
 
+        public void AddItemToStage(IGameObjects item)
+        {
+            gameEntityList.Add(item);
+        }
+
     }
 }

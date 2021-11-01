@@ -1,22 +1,27 @@
 ﻿using GameSpace.Abstracts;
 using GameSpace.EntitiesManager;
+using GameSpace.EntityManaging;
 using GameSpace.Enums;
 using GameSpace.Factories;
+using GameSpace.GameObjects.BlockObjects;
 using GameSpace.Interfaces;
 using GameSpace.States;
 using GameSpace.States.BlockStates;
 using Microsoft.Xna.Framework;
+using System;
+using System.Collections.Generic;
 using System.Diagnostics;
+using System.Text;
 
-namespace GameSpace.GameObjects.BlockObjects
+namespace GameSpace.Objects.BlockObjects
 {
-    public class BrickBlocks : AbstractBlock
+    public abstract class BrickBlocks : AbstractBlock
     {
-        public BrickBlocks(Vector2 initalPosition)
+        public BrickBlocks(Vector2 initLocation)
         {
             ObjectID = (int)BlockID.BRICKBLOCK;
             Sprite = SpriteBlockFactory.GetInstance().ReturnBrickBlock();
-            Position = initalPosition;
+            Position = initLocation;
             CollisionBox = new Rectangle((int)Position.X, (int)Position.Y, Sprite.Texture.Width * 2, Sprite.Texture.Height * 2);
             state = new StateBrickBlockIdle();
         }
@@ -25,7 +30,7 @@ namespace GameSpace.GameObjects.BlockObjects
         {
 
             state.Update(gametime);
-            if ((state is StateExplodingBlock))
+            if (state is StateExplodingBlock)
             {
                 //this.Position = new Vector2((float)-50, (float)50);
                 BumpAnimation sprite = (BumpAnimation)Sprite;
@@ -67,7 +72,7 @@ namespace GameSpace.GameObjects.BlockObjects
                     }
                     else
                     {
-                        //Debug.WriteLine("BUMP BLOCK, mario PowerUp {0}", mario.marioPowerUpState);
+                        RevealItem();
                         Trigger();
                     }
                 }
@@ -77,7 +82,28 @@ namespace GameSpace.GameObjects.BlockObjects
 
         public override bool RevealItem()
         {
-            throw new System.NotImplementedException();
+            return false; 
+        }
+    }
+
+    public class BrickBlockWithItem : BrickBlocks
+    {
+        private bool hasRevealedItem;
+        public BrickBlockWithItem(Vector2 initLocation , IGameObjects item) : base(initLocation)
+        {
+            this.item = item;
+            hasRevealedItem = false;
+        }
+
+        public override bool RevealItem()
+        {
+            if (!hasRevealedItem)
+            {
+                item.Position = new Vector2(item.Position.X, item.Position.Y - 64);
+                TheaterMachine.GetInstance().AddItemToStage(item);
+                hasRevealedItem = true;
+            }
+            return hasRevealedItem;
         }
     }
 }

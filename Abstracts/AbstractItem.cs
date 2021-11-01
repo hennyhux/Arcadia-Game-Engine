@@ -43,5 +43,10 @@ namespace GameSpace.Abstracts
         {
 
         }
+
+        public bool RevealItem()
+        {
+            return false;
+        }
     }
 }

@@ -160,5 +160,9 @@ namespace GameSpace.Abstracts
             Position = new Vector2(Position.X, Position.Y - 4);
         }
 
+        public bool RevealItem()
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

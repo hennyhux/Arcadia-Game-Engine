@@ -1,4 +1,5 @@
-﻿using GameSpace.Enums;
+﻿using GameSpace.Abstracts;
+using GameSpace.Enums;
 using GameSpace.Factories;
 using GameSpace.Interfaces;
 using Microsoft.Xna.Framework;
@@ -7,19 +8,9 @@ using System;
 
 namespace GameSpace.GameObjects.ItemObjects
 {
-    public class Coin : IGameObjects
+    public class Coin : AbstractItem
     {
-        private readonly IObjectState state;
-        public ISprite Sprite { get; set; }
-        public Vector2 Position { get; set; }
-        public Vector2 Velocity { get; set; }
-        public Vector2 Acceleration { get; set; }
-        public Rectangle CollisionBox { get; set; }
-        public int ObjectID { get; set; }
-
         private bool hasCollided;
-        private bool drawBox;
-
         public Coin(Vector2 initalPosition)
         {
             ObjectID = (int)ItemID.COIN;
@@ -30,26 +21,7 @@ namespace GameSpace.GameObjects.ItemObjects
             drawBox = false;
         }
 
-        public void Draw(SpriteBatch spritebatch)
-        {
-            Sprite.Draw(spritebatch, Position);
-            if (drawBox && Sprite.GetVisibleStatus())
-            {
-                Sprite.DrawBoundary(spritebatch, CollisionBox);
-            }
-        }
-
-        public void Update(GameTime gametime)
-        {
-            Sprite.Update(gametime);
-        }
-
-        public void Trigger()
-        {
-
-        }
-
-        public void HandleCollision(IGameObjects entity)
+        public override void HandleCollision(IGameObjects entity)
         {
             if (!hasCollided)
             {
@@ -58,19 +30,6 @@ namespace GameSpace.GameObjects.ItemObjects
 
             hasCollided = true;
         }
-        public void UpdatePosition(Vector2 location, GameTime gameTime)
-        {
-            Position = location;
-        }
 
-        public void ToggleCollisionBoxes()
-        {
-            drawBox = !drawBox;
-        }
-
-        public bool IsCurrentlyColliding()
-        {
-            throw new NotImplementedException();
-        }
     }
 }

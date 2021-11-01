@@ -9,7 +9,7 @@ using System;
 
 
 
-namespace GameSpace
+namespace GameSpace.Commands
 {
     public class ThrowFireBallCommand : ICommand
     {

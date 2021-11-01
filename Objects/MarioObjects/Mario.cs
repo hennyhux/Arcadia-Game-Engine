@@ -525,5 +525,10 @@ namespace GameSpace.GameObjects.BlockObjects
         {
             return hasCollided;
         }
+
+        public bool RevealItem()
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

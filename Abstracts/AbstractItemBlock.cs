@@ -76,5 +76,10 @@ namespace GameSpace.Abstracts
         {
             //block doesnt move; future use? 
         }
+
+        public bool RevealItem()
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

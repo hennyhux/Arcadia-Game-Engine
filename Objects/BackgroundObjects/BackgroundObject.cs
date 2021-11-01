@@ -43,5 +43,9 @@ namespace GameSpace.Objects.BackgroundObjects
 
         public abstract bool IsCurrentlyColliding();
 
+        public bool RevealItem()
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }
