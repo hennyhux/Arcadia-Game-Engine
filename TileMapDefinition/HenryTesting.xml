@@ -11,9 +11,7 @@
 	<Obstacles>
 		<x>100</x>
 		<y>100</y>
-		<block>BRICKBLOCK</block>
-		<blockRow>1</blockRow>
-		<item>COIN</item>
+		<block>COINBRICKBLOCK</block>
 	</Obstacles>
 
 	<Obstacles>
@@ -34,8 +32,7 @@
 		<x>100</x>
 		<y>400</y>
 		<block>BRICKBLOCK</block>
-		<blockRow>1</blockRow>
-		<item>NOITEM</item>
+		<blockRow>15</blockRow>
 	</Obstacles>
 
 	<Obstacles>
@@ -43,105 +40,5 @@
 		<y>368</y>
 		<block>BRICKBLOCK</block>
 		<blockRow>1</blockRow>
-		<item>NOITEM</item>
-	</Obstacles>
-	
-
-	<Obstacles>
-		<x>132</x>
-		<y>400</y>
-		<block>BRICKBLOCK</block>
-		<blockRow>1</blockRow>
-		<item>NOITEM</item>
-	</Obstacles>
-
-	<Obstacles>
-		<x>164</x>
-		<y>400</y>
-		<block>BRICKBLOCK</block>
-		<blockRow>1</blockRow>
-		<item>NOITEM</item>
-	</Obstacles>
-
-	<Obstacles>
-		<x>196</x>
-		<y>400</y>
-		<block>BRICKBLOCK</block>
-		<blockRow>1</blockRow>
-		<item>NOITEM</item>
-	</Obstacles>
-
-	<Obstacles>
-		<x>228</x>
-		<y>400</y>
-		<block>BRICKBLOCK</block>
-		<blockRow>1</blockRow>
-		<item>NOITEM</item>
-	</Obstacles>
-
-	<Obstacles>
-		<x>260</x>
-		<y>400</y>
-		<block>BRICKBLOCK</block>
-		<blockRow>1</blockRow>
-		<item>NOITEM</item>
-	</Obstacles>
-
-	<Obstacles>
-		<x>292</x>
-		<y>400</y>
-		<block>BRICKBLOCK</block>
-		<blockRow>1</blockRow>
-		<item>NOITEM</item>
-	</Obstacles>
-
-	<Obstacles>
-		<x>324</x>
-		<y>400</y>
-		<block>BRICKBLOCK</block>
-		<blockRow>1</blockRow>
-		<item>NOITEM</item>
-	</Obstacles>
-
-	<Obstacles>
-		<x>356</x>
-		<y>400</y>
-		<block>BRICKBLOCK</block>
-		<blockRow>1</blockRow>
-		<item>NOITEM</item>
-	</Obstacles>
-
-	<Obstacles>
-		<x>388</x>
-		<y>400</y>
-		<block>BRICKBLOCK</block>
-		<blockRow>1</blockRow>
-		<item>NOITEM</item>
-	</Obstacles>
-
-	<Obstacles>
-		<x>420</x>
-		<y>400</y>
-		<block>BRICKBLOCK</block>
-		<blockRow>1</blockRow>
-		<item>NOITEM</item>
-	</Obstacles>
-
-	<Obstacles>
-		<x>452</x>
-		<y>400</y>
-		<block>BRICKBLOCK</block>
-		<blockRow>1</blockRow>
-		<item>NOITEM</item>
-	</Obstacles>
-
-	<Obstacles>
-		<x>484</x>
-		<y>400</y>
-		<block>BRICKBLOCK</block>
-		<blockRow>1</blockRow>
-		<item>NOITEM</item>
-	</Obstacles>
-	
-	
+	</Obstacles>	
 </Level>

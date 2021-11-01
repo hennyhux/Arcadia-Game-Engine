@@ -121,36 +121,31 @@
 		<x>540</x>
 		<y>254</y>
 		<item>SUPERSHROOM</item>
-		<hidden>TRUE</hidden>
 	</Obstacles>
 	<Obstacles>
 		<x>380</x>
 		<y>254</y>
 		<item>ONEUPSHROOM</item>
-		<hidden>TRUE</hidden>
 	</Obstacles>
 	<Obstacles>
 		<x>604</x>
 		<y>254</y>
 		<item>FIREFLOWER</item>
-		<hidden>TRUE</hidden>
 	</Obstacles>
 	<Obstacles>
 		<x>28</x>
 		<y>126</y>
 		<item>STAR</item>
-		<hidden>TRUE</hidden>
 	</Obstacles>
 	<Obstacles>
 		<x>582</x>
 		<y>133</y>
 		<item>COIN</item>
-		<hidden>TRUE</hidden>
 	</Obstacles>
 
 	<Obstacles>
 		<x>64</x>
-		<y>386</y>
+		<y>340</y>
 		<avatar>MARIO</avatar>
 		<facing>RIGHT</facing>
 	</Obstacles>
