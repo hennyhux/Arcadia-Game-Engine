@@ -1,19 +1,19 @@
 ﻿using GameSpace.Factories;
+using GameSpace.GameObjects.EnemyObjects;
 using GameSpace.Interfaces;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
-using GameSpace.GameObjects.EnemyObjects;
 
 
 namespace GameSpace.States.EnemyStates
 {
-    public class StateRedKoopaDead: IEnemyState
+    public class StateRedKoopaDead : IEnemyState
     {
         public ISprite StateSprite { get; set; }
         public Boolean CollidedWithMario { get; set; }
         private int countDown;
-        private RedKoopa RedKoopa;
+        private readonly RedKoopa RedKoopa;
 
 
 
@@ -21,16 +21,16 @@ namespace GameSpace.States.EnemyStates
         {
             StateSprite = SpriteEnemyFactory.GetInstance().CreateRedKoopaShellSprite();
             CollidedWithMario = true;
-            this.RedKoopa = redKoopa;
-            this.RedKoopa.state = this;
-            this.RedKoopa.Velocity = new Vector2(0, 0);
+            RedKoopa = redKoopa;
+            RedKoopa.state = this;
+            RedKoopa.Velocity = new Vector2(0, 0);
         }
 
         public void Draw(SpriteBatch spritebatch, Vector2 location)
         {
             Vector2 copy = new Vector2(location.X, location.Y + 20);
             StateSprite.Draw(spritebatch, copy);
-            if (CollidedWithMario) this.countDown++;
+            if (CollidedWithMario) countDown++;
         }
 
         public void Update(GameTime gametime)
@@ -40,13 +40,13 @@ namespace GameSpace.States.EnemyStates
 
             if (countDown == 550)
             {
-                if (this.RedKoopa.direction == 0)
+                if (RedKoopa.direction == 0)
                 {
-                    this.RedKoopa.state = new StateRedKoopaAliveLeft(this.RedKoopa);
+                    RedKoopa.state = new StateRedKoopaAliveLeft(RedKoopa);
                 }
                 else
                 {
-                    this.RedKoopa.state = new StateRedKoopaAliveRight(this.RedKoopa);
+                    RedKoopa.state = new StateRedKoopaAliveRight(RedKoopa);
                 }
                 countDown = 0;
             }
@@ -55,7 +55,7 @@ namespace GameSpace.States.EnemyStates
 
         public void Trigger()
         {
-            
+
         }
 
         public void DrawBoundaries(SpriteBatch spritebatch, Rectangle destination)

@@ -1,8 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace GameSpace.Interfaces
 {
@@ -11,7 +8,7 @@ namespace GameSpace.Interfaces
         public ISprite Sprite { get; set; }
         public Vector2 Position { get; set; }
         public Vector2 Velocity { get; set; }
-        public Vector2 Acceleration { get; set; } 
+        public Vector2 Acceleration { get; set; }
         public Rectangle CollisionBox { get; set; }
         public int ObjectID { get; }
         public void Draw(SpriteBatch spritebatch);

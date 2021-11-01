@@ -1,13 +1,10 @@
-﻿using GameSpace.Enums;
+﻿using GameSpace.Abstracts;
+using GameSpace.EntitiesManager;
+using GameSpace.Enums;
 using GameSpace.Factories;
 using GameSpace.Interfaces;
-using GameSpace.States;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using System;
-using GameSpace.EntitiesManager;
-using GameSpace.Abstracts;
 using GameSpace.States.BlockStates;
+using Microsoft.Xna.Framework;
 
 namespace GameSpace.GameObjects.BlockObjects
 {
@@ -31,7 +28,7 @@ namespace GameSpace.GameObjects.BlockObjects
         {
             if (EntityManager.DetectCollisionDirection(this, entity) == (int)CollisionDirection.DOWN && hasCollided == false && entity.Velocity.Y < 0)
             {
-                this.Trigger();
+                Trigger();
                 hasCollided = true;
             }
         }

@@ -1,9 +1,9 @@
 ﻿using GameSpace.Factories;
+using GameSpace.GameObjects.EnemyObjects;
 using GameSpace.Interfaces;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
-using GameSpace.GameObjects.EnemyObjects;
 
 namespace GameSpace.States.EnemyStates
 {
@@ -11,15 +11,15 @@ namespace GameSpace.States.EnemyStates
     {
         public ISprite StateSprite { get; set; }
         public Boolean CollidedWithMario { get; set; }
-        private GreenKoopa GreenKoopa;
+        private readonly GreenKoopa GreenKoopa;
 
         public StateGreenKoopaDeadRight(GreenKoopa greenKoopa)
         {
             StateSprite = SpriteEnemyFactory.GetInstance().CreateGreenKoopaShellSprite();
             CollidedWithMario = false;
-            this.GreenKoopa = greenKoopa;
-            this.GreenKoopa.state = this;
-            this.GreenKoopa.Velocity = new Vector2((float)+1, (float)0);
+            GreenKoopa = greenKoopa;
+            GreenKoopa.state = this;
+            GreenKoopa.Velocity = new Vector2(+1, 0);
 
         }
 

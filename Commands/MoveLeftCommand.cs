@@ -1,8 +1,4 @@
-﻿using Microsoft.Xna.Framework;
-using System.Diagnostics;
-using GameSpace.Interfaces;
-using GameSpace.Enums;
-using GameSpace.EntitiesManager;
+﻿using System.Diagnostics;
 
 namespace GameSpace
 {
@@ -51,7 +47,7 @@ namespace GameSpace
 
         public void Unexecute()
         {
-            
+
         }
     }
 }

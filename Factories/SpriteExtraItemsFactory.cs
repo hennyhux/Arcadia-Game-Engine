@@ -1,10 +1,6 @@
-﻿using Microsoft.Xna.Framework.Graphics;
+﻿using GameSpace.Sprites;
 using Microsoft.Xna.Framework.Content;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using GameSpace.Sprites;
-using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace GameSpace.Factories
 {

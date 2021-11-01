@@ -1,14 +1,4 @@
-﻿using GameSpace.EntitiesManager;
-using GameSpace.Factories;
-using GameSpace.Interfaces;
-using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Diagnostics;
-using GameSpace.Enums;
-
-namespace GameSpace.Commands
+﻿namespace GameSpace.Commands
 {
     public class MoveUpCommand : ICommand
     {
@@ -55,7 +45,7 @@ namespace GameSpace.Commands
 
         public void Unexecute()
         {
-            
+
         }
     }
 }

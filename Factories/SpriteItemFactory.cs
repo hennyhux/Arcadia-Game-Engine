@@ -1,10 +1,6 @@
-﻿using Microsoft.Xna.Framework.Graphics;
+﻿using GameSpace.Sprites;
 using Microsoft.Xna.Framework.Content;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using GameSpace.Sprites;
-using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace GameSpace.Factories
 {
@@ -18,7 +14,7 @@ namespace GameSpace.Factories
         private Texture2D FireFlower;
         private Texture2D FireBall;
         #endregion
-        private static SpriteItemFactory instance = new SpriteItemFactory();
+        private static readonly SpriteItemFactory instance = new SpriteItemFactory();
         public static SpriteItemFactory GetInstance() => instance;
         private SpriteItemFactory()
         {

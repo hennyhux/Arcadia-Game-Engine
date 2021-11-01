@@ -1,7 +1,4 @@
-﻿using GameSpace.EntitiesManager;
-using GameSpace.Interfaces;
-using System.Collections.Generic;
-using System.Linq;
+﻿using GameSpace.Interfaces;
 
 namespace GameSpace
 {
@@ -12,7 +9,7 @@ namespace GameSpace
         public ChangeBlockCommand(IGameObjects block)
         {
             reciever = block;
-            
+
         }
         public void Execute()
         {

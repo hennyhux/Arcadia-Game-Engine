@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using GameSpace.Enums;
+﻿using GameSpace.Enums;
+using System;
 
 namespace GameSpace.TileMapDefinition
 {

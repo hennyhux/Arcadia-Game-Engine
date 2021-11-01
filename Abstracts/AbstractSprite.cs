@@ -1,10 +1,6 @@
-﻿using GameSpace.Enums;
-using GameSpace.Factories;
+﻿using GameSpace.Factories;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace GameSpace.Sprites
 {
@@ -72,19 +68,19 @@ namespace GameSpace.Sprites
                 int column = currentFrame % frameWidth;
 
                 Rectangle sourceRectangle = new Rectangle(width * column, height * row, width, height);
-                Rectangle destinationRectangle = new Rectangle((int)location.X, (int)location.Y, width * 2, height *2);
+                Rectangle destinationRectangle = new Rectangle((int)location.X, (int)location.Y, width * 2, height * 2);
                 spriteBatch.Draw(Texture, destinationRectangle, sourceRectangle, Color.White);
             }
         }
 
         public virtual void UpdateLocation(Vector2 location)
         {
-            
+
         }
 
         public virtual void DrawBoundary(SpriteBatch spriteBatch, Rectangle destination)
         {
-            spriteBatch.Draw(WhiteRect, destination, Color.Blue *0.4f);
+            spriteBatch.Draw(WhiteRect, destination, Color.Blue * 0.4f);
         }
     }
 }

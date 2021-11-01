@@ -1,13 +1,9 @@
 ﻿using GameSpace.Factories;
+using GameSpace.GameObjects.ItemObjects;
 using GameSpace.Interfaces;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
-using System.Collections.Generic;
-using System.Text;
-using GameSpace.GameObjects.ItemObjects;
-using System.Diagnostics;
-using GameSpace.Enums;
 
 namespace GameSpace.States.ItemStates
 {
@@ -21,15 +17,15 @@ namespace GameSpace.States.ItemStates
         public StateStarRight(Star star)
         {
             StateSprite = SpriteItemFactory.GetInstance().CreateStar();
-            this.Star = star;
-            this.Star.Velocity = new Vector2((float)45, (float)0);
-            this.Star.Acceleration = new Vector2(0, 400);
+            Star = star;
+            Star.Velocity = new Vector2(45, 0);
+            Star.Acceleration = new Vector2(0, 400);
         }
 
         public void Draw(SpriteBatch spritebatch, Vector2 location)
         {
             //StateSprite.Draw(spritebatch, location);
-            if(bounce) ++this.countdown;
+            if (bounce) ++countdown;
         }
 
         public void Trigger()
@@ -39,11 +35,11 @@ namespace GameSpace.States.ItemStates
 
         public void Update(GameTime gametime)
         {
-            if (this.countdown == 15)
+            if (countdown == 15)
             {
-                this.Star.Acceleration = new Vector2(0, 400);
+                Star.Acceleration = new Vector2(0, 400);
                 bounce = false;
-                this.countdown = 0;
+                countdown = 0;
             }
 
         }

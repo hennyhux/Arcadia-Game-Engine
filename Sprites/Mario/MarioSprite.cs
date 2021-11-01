@@ -1,13 +1,8 @@
-﻿using Microsoft.Xna.Framework;
+﻿using GameSpace.Factories;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
-using System.Collections.Generic;
-using System.Text;
-using GameSpace.GameObjects.BlockObjects;
 using System.Diagnostics;
-using GameSpace.Factories;
-using GameSpace.Enums;
-using GameSpace.EntitiesManager;
 
 namespace GameSpace.Sprites
 {
@@ -45,11 +40,11 @@ namespace GameSpace.Sprites
          * Fire Mario does not have textures for dying
          *      Meaning the corresponding indexes will be 0's
          */
-        private int[] XFrame = new int[] { 0, 0, 29, 60, 0, 89, 121, 150, 181, 211, 241, 272, 300, 0, 331, 359, 0, 390, 30, 61, 0, 0, 90, 120, 151, 180, 210, 241, 271, 301, 0, 0, 331, 361, 0, 0, 30, 60, 0, 90, 121, 150, 180, 209, 239, 270, 299, 0, 329, 359, 389, 0, 1, 28, 52, 78, 103, 127, 152, 180, 209, 237, 262, 288, 313, 337, 363, 391, 0, 0, 27, 52, 77, 102, 128, 152, 180, 209, 237, 264, 287, 312, 337, 362, 389, 0, 1, 28, 52, 78, 103, 127, 152, 180, 209, 237, 262, 288, 313, 337, 363, 391 };
-        private int[] YFrame = new int[] { 16, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 15, 30, 30, 0, 0, 30, 30, 30, 30, 30, 30, 30, 30, 0, 0, 30, 30, 0, 57, 52, 52, 0, 53, 52, 52, 52, 52, 52, 52, 52, 0, 52, 52, 57, 0, 88, 89, 88, 88, 88, 88, 88, 88, 88, 88, 88, 88, 88, 88, 89, 88, 0, 127, 122, 122, 123, 123, 122, 122, 122, 122, 122, 121, 123, 123, 122, 122, 127, 0, 159, 160, 159, 159, 159, 159, 159, 159, 159, 159, 159, 159, 159, 159, 160, 159 };
-        private int[] XWidth = new int[] { 15, 0, 17, 14, 0, 16, 12, 14, 13, 13, 14, 12, 16, 0, 14, 17, 0, 15, 14, 13, 0, 0, 14, 14, 13, 15, 15, 13, 14, 14, 0, 0, 13, 14, 0, 16, 16, 16, 0, 16, 14, 16, 16, 16, 16, 14, 16, 0, 16, 16, 16, 0, 13, 14, 16, 14, 14, 16, 16, 16, 16, 16, 16, 14, 14, 16, 14, 13, 0, 16, 16, 16, 16, 16, 14, 17, 16, 16, 16, 14, 16, 16, 16, 16, 16, 0, 13, 14, 16, 14, 14, 16, 16, 16, 16, 16, 16, 14, 14, 16, 14, 13 };
-        private int[] YHeight = new int[] { 14, 0, 16, 16, 0, 15, 16, 15, 16, 16, 15, 16, 15, 0, 16, 16, 0, 14, 16, 15, 0, 0, 15, 15, 15, 15, 15, 15, 15, 15, 0, 0, 15, 16, 0, 22, 32, 32, 0, 30, 31, 32, 32, 32, 32, 31, 30, 0, 32, 32, 22, 0, 30, 27, 13, 30, 30, 29, 29, 29, 29, 29, 29, 30, 30, 30, 27, 30, 0, 22, 32, 32, 30, 30, 31, 32, 32, 32, 32, 31, 30, 30, 32, 32, 22, 0, 30, 27, 13, 30, 30, 29, 29, 29, 29, 29, 29, 30, 30, 30, 27, 30 };
-        private int[] totalFramesAnimation = new int[] { 1, 1, 1, 1, 1, 3, 3, 3, 1, 1, 3, 3, 3, 1, 1, 1, 1, 1, 2, 2, 0, 0, 3, 3, 3, 1, 1, 3, 3, 3, 0, 0, 2, 2, 0, 1, 1, 1, 0, 3, 3, 3, 1, 1, 3, 3, 3, 0, 1, 1, 1, 0, 2, 2, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 2, 2, 0, 1, 1, 1, 2, 3, 3, 3, 1, 1, 3, 3, 3, 1, 1, 1, 1, 0, 2, 2, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 2, 2 };
+        private readonly int[] XFrame = new int[] { 0, 0, 29, 60, 0, 89, 121, 150, 181, 211, 241, 272, 300, 0, 331, 359, 0, 390, 30, 61, 0, 0, 90, 120, 151, 180, 210, 241, 271, 301, 0, 0, 331, 361, 0, 0, 30, 60, 0, 90, 121, 150, 180, 209, 239, 270, 299, 0, 329, 359, 389, 0, 1, 28, 52, 78, 103, 127, 152, 180, 209, 237, 262, 288, 313, 337, 363, 391, 0, 0, 27, 52, 77, 102, 128, 152, 180, 209, 237, 264, 287, 312, 337, 362, 389, 0, 1, 28, 52, 78, 103, 127, 152, 180, 209, 237, 262, 288, 313, 337, 363, 391 };
+        private readonly int[] YFrame = new int[] { 16, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 15, 30, 30, 0, 0, 30, 30, 30, 30, 30, 30, 30, 30, 0, 0, 30, 30, 0, 57, 52, 52, 0, 53, 52, 52, 52, 52, 52, 52, 52, 0, 52, 52, 57, 0, 88, 89, 88, 88, 88, 88, 88, 88, 88, 88, 88, 88, 88, 88, 89, 88, 0, 127, 122, 122, 123, 123, 122, 122, 122, 122, 122, 121, 123, 123, 122, 122, 127, 0, 159, 160, 159, 159, 159, 159, 159, 159, 159, 159, 159, 159, 159, 159, 160, 159 };
+        private readonly int[] XWidth = new int[] { 15, 0, 17, 14, 0, 16, 12, 14, 13, 13, 14, 12, 16, 0, 14, 17, 0, 15, 14, 13, 0, 0, 14, 14, 13, 15, 15, 13, 14, 14, 0, 0, 13, 14, 0, 16, 16, 16, 0, 16, 14, 16, 16, 16, 16, 14, 16, 0, 16, 16, 16, 0, 13, 14, 16, 14, 14, 16, 16, 16, 16, 16, 16, 14, 14, 16, 14, 13, 0, 16, 16, 16, 16, 16, 14, 17, 16, 16, 16, 14, 16, 16, 16, 16, 16, 0, 13, 14, 16, 14, 14, 16, 16, 16, 16, 16, 16, 14, 14, 16, 14, 13 };
+        private readonly int[] YHeight = new int[] { 14, 0, 16, 16, 0, 15, 16, 15, 16, 16, 15, 16, 15, 0, 16, 16, 0, 14, 16, 15, 0, 0, 15, 15, 15, 15, 15, 15, 15, 15, 0, 0, 15, 16, 0, 22, 32, 32, 0, 30, 31, 32, 32, 32, 32, 31, 30, 0, 32, 32, 22, 0, 30, 27, 13, 30, 30, 29, 29, 29, 29, 29, 29, 30, 30, 30, 27, 30, 0, 22, 32, 32, 30, 30, 31, 32, 32, 32, 32, 31, 30, 30, 32, 32, 22, 0, 30, 27, 13, 30, 30, 29, 29, 29, 29, 29, 29, 30, 30, 30, 27, 30 };
+        private readonly int[] totalFramesAnimation = new int[] { 1, 1, 1, 1, 1, 3, 3, 3, 1, 1, 3, 3, 3, 1, 1, 1, 1, 1, 2, 2, 0, 0, 3, 3, 3, 1, 1, 3, 3, 3, 0, 0, 2, 2, 0, 1, 1, 1, 0, 3, 3, 3, 1, 1, 3, 3, 3, 0, 1, 1, 1, 0, 2, 2, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 2, 2, 0, 1, 1, 1, 2, 3, 3, 3, 1, 1, 3, 3, 3, 1, 1, 1, 1, 0, 2, 2, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 2, 2 };
 
 
         public void SetVisible() { IsVisible = !IsVisible; }
@@ -114,12 +109,12 @@ namespace GameSpace.Sprites
         {
             //Debug.WriteLine("marioPower: ", marioPower);
             //Debug.WriteLine("actionState: ", actionState);
-            
+
             if (IsVisible)
             {
                 int startingFrame = 0;
 
-                if(facingRight==1) Debug.WriteLine("spriteActionState {1}, \nfacingRight: {0}", facingRight, actionState);
+                if (facingRight == 1) Debug.WriteLine("spriteActionState {1}, \nfacingRight: {0}", facingRight, actionState);
 
                 /*marioPower = [Small, Big, Fire, Star, Dead]1
                   actionState = [Idling, Crouching, Walking, Running, Jumping, Falling, Dying]*/
@@ -204,16 +199,16 @@ namespace GameSpace.Sprites
             //Debug.WriteLine("mario drawK \n");
             if (IsVisible)
             {
-                 Width = XWidth[currentFrame];
-                 Height = YHeight[currentFrame];
-                
+                Width = XWidth[currentFrame];
+                Height = YHeight[currentFrame];
+
                 Rectangle sourceRectangle = new Rectangle(XFrame[currentFrame], YFrame[currentFrame], Width, Height);
                 Rectangle destinationRectangle = new Rectangle((int)location.X, (int)location.Y, Width * 2, Height * 2);
 
                 spriteBatch.Draw(Texture, destinationRectangle, sourceRectangle, Color.White, 0, new Vector2(0, 0), facing, 0);
 
             }
-            
+
         }
 
         public void UpdateLocation(Vector2 location)

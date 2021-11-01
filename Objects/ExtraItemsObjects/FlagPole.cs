@@ -1,14 +1,10 @@
 ﻿using GameSpace.Enums;
 using GameSpace.Factories;
 using GameSpace.Interfaces;
-using GameSpace.States;
-using GameSpace.States.BlockStates;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Text;
 
 namespace GameSpace.GameObjects.ExtraItemsObjects
 {
@@ -28,12 +24,12 @@ namespace GameSpace.GameObjects.ExtraItemsObjects
 
         public FlagPole(Vector2 initalPosition)
         {
-            this.ObjectID = (int)ItemID.FLAGPOLE;
-            this.Sprite = SpriteExtraItemsFactory.GetInstance().ReturnFlagPole();
-            this.Position = initalPosition;
-            this.CollisionBox = new Rectangle((int)Position.X, (int)Position.Y, Sprite.Texture.Width * 2/5, Sprite.Texture.Height * 2);
+            ObjectID = (int)ItemID.FLAGPOLE;
+            Sprite = SpriteExtraItemsFactory.GetInstance().ReturnFlagPole();
+            Position = initalPosition;
+            CollisionBox = new Rectangle((int)Position.X, (int)Position.Y, Sprite.Texture.Width * 2 / 5, Sprite.Texture.Height * 2);
             drawBox = false;
-            Debug.WriteLine("EXTRA ITEM AT " + "(" + this.Position.X + ", " + this.Position.Y + ")");
+            Debug.WriteLine("EXTRA ITEM AT " + "(" + Position.X + ", " + Position.Y + ")");
         }
 
         public void Draw(SpriteBatch spritebatch)

@@ -1,13 +1,9 @@
 ﻿using GameSpace.Factories;
+using GameSpace.GameObjects.ItemObjects;
 using GameSpace.Interfaces;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
-using System.Collections.Generic;
-using System.Text;
-using GameSpace.GameObjects.ItemObjects;
-using System.Diagnostics;
-using GameSpace.Enums;
 
 namespace GameSpace.States.ItemStates
 {
@@ -24,16 +20,16 @@ namespace GameSpace.States.ItemStates
         {
             StateSprite = SpriteItemFactory.GetInstance().CreateFireBall();
             CollidedWithMario = false;
-            this.Fireball = fireball;
-            this.Fireball.Position = new Vector2(this.Fireball.Position.X + 35, this.Fireball.Position.Y+25);
+            Fireball = fireball;
+            Fireball.Position = new Vector2(Fireball.Position.X + 35, Fireball.Position.Y + 25);
 
-            this.Fireball.Velocity = new Vector2((float)80, (float)0);
-            this.Fireball.Acceleration = new Vector2(0, 400);
+            Fireball.Velocity = new Vector2(80, 0);
+            Fireball.Acceleration = new Vector2(0, 400);
         }
 
         public void Draw(SpriteBatch spritebatch, Vector2 location)
         {
-            if (bounce) ++this.countdown;
+            if (bounce) ++countdown;
             ++timeAlive;
         }
 
@@ -44,14 +40,14 @@ namespace GameSpace.States.ItemStates
 
         public void Update(GameTime gametime)
         {
-            if (this.countdown == 4)
+            if (countdown == 4)
             {
-                this.Fireball.Acceleration = new Vector2(0, 400);
+                Fireball.Acceleration = new Vector2(0, 400);
                 bounce = false;
-                this.countdown = 0;
+                countdown = 0;
             }
 
-            if (timeAlive == 75) this.Fireball.Trigger();
+            if (timeAlive == 75) Fireball.Trigger();
         }
     }
 }

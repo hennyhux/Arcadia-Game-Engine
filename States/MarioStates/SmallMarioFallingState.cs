@@ -1,20 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using GameSpace.Interfaces;
-using GameSpace.States.BlockStates;
+﻿using GameSpace.Enums;
 using GameSpace.Factories;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using GameSpace.States.MarioStates;
 using GameSpace.GameObjects.BlockObjects;
+using GameSpace.Interfaces;
+using Microsoft.Xna.Framework;
 using System.Diagnostics;
-using GameSpace.Enums;
 
 namespace GameSpace.States.MarioStates
 {
- 
-    class SmallMarioFallingState : MarioActionStates//MarioPowerUpStates
+    internal class SmallMarioFallingState : MarioActionStates//MarioPowerUpStates
     {
         public SmallMarioFallingState(Mario mario)
             : base(mario)
@@ -102,7 +95,7 @@ namespace GameSpace.States.MarioStates
         }
         public override void DownTransition()
         {
-            if(previousActionState is SmallMarioJumpingState)
+            if (previousActionState is SmallMarioJumpingState)
             {
                 StandingTransition();
             }
@@ -111,8 +104,8 @@ namespace GameSpace.States.MarioStates
                 Mario.marioActionState = previousActionState;
                 Mario.marioActionState.Enter(this);
             }
-            
-            
+
+
         }
         public override void SmallPowerUp() { }
         public override void BigPowerUp()
@@ -137,7 +130,7 @@ namespace GameSpace.States.MarioStates
         public override void CrouchingDiscontinueTransition() { }//when you exit crouch, release down key
         public override void FaceLeftDiscontinueTransition() { }//generic entering walk and run, face left then start walking, then start running
         public override void FaceRightDiscontinueTransition() { }
-        public override void WalkingDiscontinueTransition(){ }
+        public override void WalkingDiscontinueTransition() { }
         public override void RunningDiscontinueTransition() { }
         public override void JumpingDiscontinueTransition() { }
 
@@ -146,9 +139,10 @@ namespace GameSpace.States.MarioStates
             Mario.Velocity += Mario.Acceleration * (float)gametime.ElapsedGameTime.TotalSeconds;
             Mario.Velocity = ClampVelocity(Mario.Velocity);
         }
+
         //void Update(GameTime gametime, GraphicsDeviceManager graphics);
 
-        Vector2 ClampVelocity(Vector2 velocity)
+        private Vector2 ClampVelocity(Vector2 velocity)
         {
             return new Vector2(Mario.Velocity.X, Mario.Velocity.Y);
         }

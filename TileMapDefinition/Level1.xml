@@ -17,6 +17,9 @@
 	</Obstacles>
 	
 	
+	
+	
+	
 	<Obstacles>
 		<x>0</x>
 		<y>466</y>
@@ -76,9 +79,9 @@
 	</Obstacles>
 	
 	<Obstacles>
-		<x>736</x>
-		<y>350</y>
-		<enemy>GREENKOOPA</enemy>
+		<x>400</x>
+		<y>400</y>
+		<item>BIGPIPE</item>
 	</Obstacles>
 	
 	<Obstacles>

@@ -2,9 +2,6 @@
 using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 //Please note that I do not have a controller and cant test this code
 namespace GameSpace
@@ -30,9 +27,9 @@ namespace GameSpace
             {
                 if (currentGamePadState != emptyInput)
                 {
-                    var buttonList = (Buttons[])Enum.GetValues(typeof(Buttons));
+                    Buttons[] buttonList = (Buttons[])Enum.GetValues(typeof(Buttons));
 
-                    foreach (var button in buttonList)
+                    foreach (Buttons button in buttonList)
                     {
                         if (currentGamePadState.IsButtonDown(button) &&
                             !previousState.IsButtonDown(button))
@@ -42,9 +39,9 @@ namespace GameSpace
                                 commands.GetControllerCommands[button].Execute();
                             }
 
-                            catch (KeyNotFoundException e)
+                            catch (KeyNotFoundException)
                             {
-                                
+
                             }
                         }
                     }

@@ -8,15 +8,13 @@ using GameSpace.States.StateMachines;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace GameSpace.Objects.BlockObjects
 {
     public class BrickBlockCoin : IGameObjects
     {
         public ISprite Sprite { get; set; }
-        public Vector2 Position { get ; set ; }
+        public Vector2 Position { get; set; }
         public Vector2 Velocity { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
         public Vector2 Acceleration { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
         public Rectangle CollisionBox { get; set; }
@@ -24,23 +22,23 @@ namespace GameSpace.Objects.BlockObjects
         public int ObjectID { get; set; }
 
         private bool drawBox;
-        private IBlockStateMachine state;
+        private readonly IBlockStateMachine state;
         private GameTime internalGameTime;
         private SpriteBatch internalSpritebatch;
 
-        public BrickBlockCoin (Vector2 initialPosition)
+        public BrickBlockCoin(Vector2 initialPosition)
         {
             state = new SMCoinBrickBlock();
             ObjectID = (int)BlockID.COINBRICKBLOCK;
             Position = initialPosition;
-            Sprite = SpriteBlockFactory.GetInstance().ReturnBrickBlock(); 
-            this.CollisionBox = new Rectangle((int)Position.X, (int)Position.Y, Sprite.Texture.Width * 2, Sprite.Texture.Height * 2);
+            Sprite = SpriteBlockFactory.GetInstance().ReturnBrickBlock();
+            CollisionBox = new Rectangle((int)Position.X, (int)Position.Y, Sprite.Texture.Width * 2, Sprite.Texture.Height * 2);
             drawBox = false;
         }
 
         public void Draw(SpriteBatch spritebatch)
         {
-            state.Draw(spritebatch, Position); 
+            state.Draw(spritebatch, Position);
             if (drawBox) state.FindSprite().DrawBoundary(spritebatch, CollisionBox);
             if (internalSpritebatch == null) internalSpritebatch = spritebatch;
         }
@@ -52,7 +50,7 @@ namespace GameSpace.Objects.BlockObjects
 
         public void HandleCollision(IGameObjects entity)
         {
-            this.Trigger();
+            Trigger();
         }
 
         public void ToggleCollisionBoxes()

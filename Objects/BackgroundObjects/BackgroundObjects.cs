@@ -1,21 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using GameSpace.EntitiesManager;
-using GameSpace.Enums;
-using GameSpace.Factories;
+﻿using GameSpace.Factories;
 using GameSpace.Interfaces;
-using GameSpace.States.EnemyStates;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Text;
 
 namespace GameSpace.Objects.BackgroundObjects
 {
-    class BackgroundObjects : BackgroundObject
+    internal class BackgroundObjects : BackgroundObject
     {
         public ISprite Sprite { get; set; }
         public Vector2 Position { get; set; }
@@ -24,10 +15,10 @@ namespace GameSpace.Objects.BackgroundObjects
         public Rectangle CollisionBox { get; set; }
 
         public int ObjectID { get; set; }
-        private Boolean hasCollidedOnTop;
-        private Boolean drawBox;
-        private int countDown;
-        private int direction;
+        private readonly Boolean hasCollidedOnTop;
+        private readonly Boolean drawBox;
+        private readonly int countDown;
+        private readonly int direction;
         public Rectangle ExpandedCollisionBox { get; set; }
 
         public Vector2 Parallax { get; set; }

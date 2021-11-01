@@ -1,19 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using GameSpace.Interfaces;
-using GameSpace.States.BlockStates;
+﻿using GameSpace.Enums;
 using GameSpace.Factories;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using GameSpace.States.MarioStates;
 using GameSpace.GameObjects.BlockObjects;
+using GameSpace.Interfaces;
+using Microsoft.Xna.Framework;
 using System.Diagnostics;
-using GameSpace.Enums;
 
 namespace GameSpace.States.MarioStates
 {
-    class DeadMarioState : MarioActionStates//MarioPowerUpStates
+    internal class DeadMarioState : MarioActionStates//MarioPowerUpStates
     {
         public DeadMarioState(Mario mario)
             : base(mario)
@@ -23,14 +17,14 @@ namespace GameSpace.States.MarioStates
 
         public override void Enter(IMarioActionStates previousActionState)
         {
-            
+
             Mario.marioLives -= 1;
             Debug.WriteLine("Mario has lost a life, mario has {0} lives remaining \n", Mario.marioLives);
             Mario.marioActionState = this;
             Mario.CollisionBox = new Rectangle(0, 0, 0, 0);
             this.previousActionState = previousActionState;
 
-            Mario.Velocity = new Vector2((float)0, (float)0);
+            Mario.Velocity = new Vector2(0, 0);
             eFacing Facing = Mario.Facing;
             Mario.Facing = Facing;
             //Mario.Sprite = MarioStandingState.SpriteFactory.CreateSprite(MarioSpriteFactory.MarioSpriteType(this, currentPowerUpState));
@@ -132,9 +126,10 @@ namespace GameSpace.States.MarioStates
         {
 
         }
+
         //void Update(GameTime gametime, GraphicsDeviceManager graphics);
 
-        Vector2 ClampVelocity(Vector2 velocity)
+        private Vector2 ClampVelocity(Vector2 velocity)
         {
             return Vector2.Zero;
         }

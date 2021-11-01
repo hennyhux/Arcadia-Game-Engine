@@ -1,19 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using GameSpace.Interfaces;
-using GameSpace.States.BlockStates;
+﻿using GameSpace.Enums;
 using GameSpace.Factories;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using GameSpace.States.MarioStates;
 using GameSpace.GameObjects.BlockObjects;
+using GameSpace.Interfaces;
+using Microsoft.Xna.Framework;
 using System.Diagnostics;
-using GameSpace.Enums;
 
 namespace GameSpace.States.MarioStates
 {
-    class SmallMarioWalkingState : MarioActionStates//MarioPowerUpStates
+    internal class SmallMarioWalkingState : MarioActionStates//MarioPowerUpStates
     {
         public SmallMarioWalkingState(Mario mario)
             : base(mario)
@@ -39,7 +33,8 @@ namespace GameSpace.States.MarioStates
 
         }
 
-        public override void Exit() { 
+        public override void Exit()
+        {
             //Velocity == 0;
         }
 
@@ -111,7 +106,7 @@ namespace GameSpace.States.MarioStates
                 //Mario.Facing = eFacing.Left;//we walking, want to go left, if we face right we idle
                 StandingTransition();
             }
-                
+
         }
         public override void FaceRightTransition()
         {
@@ -122,7 +117,7 @@ namespace GameSpace.States.MarioStates
                 //Mario.Facing = eFacing.Right; 
                 StandingTransition();
             }
-                
+
         }
 
         public override void UpTransition()
@@ -135,7 +130,7 @@ namespace GameSpace.States.MarioStates
         }
 
         public override void SmallPowerUp() { }
-        public override void BigPowerUp() 
+        public override void BigPowerUp()
         {
             Exit();
             Mario.marioActionState = new BigMarioRunningState(Mario);
@@ -156,7 +151,7 @@ namespace GameSpace.States.MarioStates
         public override void CrouchingDiscontinueTransition() { }//when you exit crouch, release down key
         public override void FaceLeftDiscontinueTransition() { }//generic entering walk and run, face left then start walking, then start running
         public override void FaceRightDiscontinueTransition() { }
-        public override void WalkingDiscontinueTransition() 
+        public override void WalkingDiscontinueTransition()
         {
             Exit();
             Mario.marioActionState = new SmallMarioStandingState(Mario);
@@ -164,14 +159,14 @@ namespace GameSpace.States.MarioStates
             //Mario.sprite = MarioFactory.GetInstance().CreateSprite(2);
             Mario.marioActionState.Enter(this); // Changing states
         }//decelerata and go to standing
-        public override void RunningDiscontinueTransition() 
+        public override void RunningDiscontinueTransition()
         {
             //Exit();
-           // Mario.marioActionState = new SmallMarioWalkingState(Mario);
+            // Mario.marioActionState = new SmallMarioWalkingState(Mario);
             //Debug.WriteLine("MarioStandState(39) currentAState, {0}", Mario.marioActionState);
             //Mario.sprite = MarioFactory.GetInstance().CreateSprite(3);
             //Mario.marioActionState.Enter(this); // Changing states
-                                                //Mario.marioActionState.SmallMarioWalkingState.Enter(this);
+            //Mario.marioActionState.SmallMarioWalkingState.Enter(this);
 
         }//decelerate and go to walking dis
         public override void JumpingDiscontinueTransition() { }//abort jump or force jump to disc bc you reached apex of jump
@@ -180,9 +175,10 @@ namespace GameSpace.States.MarioStates
         {
             //something with velocity
         }
+
         //void Update(GameTime gametime, GraphicsDeviceManager graphics);
 
-        Vector2 ClampVelocity(Vector2 velocity)
+        private Vector2 ClampVelocity(Vector2 velocity)
         {
             return Vector2.Zero;//return the actualy velocity
         }

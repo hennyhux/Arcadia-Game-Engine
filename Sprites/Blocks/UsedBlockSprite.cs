@@ -1,8 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace GameSpace.Sprites
 {
@@ -15,7 +12,7 @@ namespace GameSpace.Sprites
 
         public UsedBlockSprite(Texture2D texture, int rows, int columns, int totalFrames)
         {
-            this.Texture = texture;
+            Texture = texture;
             isVisible = true;
             this.rows = rows;
             this.columns = columns;
@@ -30,13 +27,13 @@ namespace GameSpace.Sprites
 
         public override void Update(GameTime gametime)
         {
-            if (currentOffset < maxOffset/2)
+            if (currentOffset < maxOffset / 2)
             {
                 initLocation.Y -= 3;
                 currentOffset += 3;
             }
 
-            if (currentOffset >= maxOffset/2 && currentOffset < maxOffset)
+            if (currentOffset >= maxOffset / 2 && currentOffset < maxOffset)
             {
                 initLocation.Y += 3;
                 currentOffset += 3;

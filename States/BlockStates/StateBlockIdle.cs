@@ -1,8 +1,5 @@
 ﻿using GameSpace.Interfaces;
 using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace GameSpace.States
 {
@@ -14,7 +11,7 @@ namespace GameSpace.States
         }
         public void Update(GameTime gametime)
         {
-            
+
         }
     }
 }

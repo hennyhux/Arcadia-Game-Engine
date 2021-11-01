@@ -1,19 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using GameSpace.Interfaces;
-using GameSpace.States.BlockStates;
+﻿using GameSpace.Enums;
 using GameSpace.Factories;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using GameSpace.States.MarioStates;
 using GameSpace.GameObjects.BlockObjects;
+using GameSpace.Interfaces;
+using Microsoft.Xna.Framework;
 using System.Diagnostics;
-using GameSpace.Enums;
 
 namespace GameSpace.States.MarioStates
 {
-    class BigMarioRunningState : MarioActionStates//MarioPowerUpStates
+    internal class BigMarioRunningState : MarioActionStates//MarioPowerUpStates
     {
         public BigMarioRunningState(Mario mario)
             : base(mario)
@@ -30,11 +24,11 @@ namespace GameSpace.States.MarioStates
             Debug.WriteLine("MarioWalkingState(25) facing:, {0}", Mario.Facing);
             if (Mario.Facing == eFacing.LEFT)//Set Proper velocity upon entering state
             {
-                Mario.Velocity = new Vector2((float)-100, (float)0);
+                Mario.Velocity = new Vector2(-100, 0);
             }
             else if (Mario.Facing == eFacing.RIGHT)
             {
-                Mario.Velocity = new Vector2((float)100, (float)0);
+                Mario.Velocity = new Vector2(100, 0);
             }
             //AABB aabb = Mario.AABB;
             //eFacing Facing = MarioStandingState.Facing;
@@ -158,12 +152,12 @@ namespace GameSpace.States.MarioStates
         public override void FaceLeftDiscontinueTransition() { }//generic entering walk and run, face left then start walking, then start running
         public override void FaceRightDiscontinueTransition() { }
         public override void WalkingDiscontinueTransition() { }//decelerata and go to standing
-        public override void RunningDiscontinueTransition() 
+        public override void RunningDiscontinueTransition()
         {
             Exit();
             Mario.marioActionState = new BigMarioStandingState(Mario);
             //Debug.WriteLine("MarioStandState(39) currentAState, {0}", Mario.marioActionState);
-           // Mario.sprite = MarioFactory.GetInstance().CreateSprite(3);
+            // Mario.sprite = MarioFactory.GetInstance().CreateSprite(3);
             Mario.marioActionState.Enter(this); // Changing states
                                                 //Mario.marioActionState.SmallMarioWalkingState.Enter(this);
         }//decelerate and go to walking dis
@@ -175,9 +169,10 @@ namespace GameSpace.States.MarioStates
             Mario.Velocity += Mario.Acceleration * (float)gametime.ElapsedGameTime.TotalSeconds;
             Mario.Velocity = ClampVelocity(Mario.Velocity);
         }
+
         //void Update(GameTime gametime, GraphicsDeviceManager graphics);
 
-        Vector2 ClampVelocity(Vector2 velocity)
+        private Vector2 ClampVelocity(Vector2 velocity)
         {
             return new Vector2(Mario.Velocity.X, 0);
         }

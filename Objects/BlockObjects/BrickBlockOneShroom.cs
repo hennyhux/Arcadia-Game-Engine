@@ -1,30 +1,22 @@
 ﻿using GameSpace.Abstracts;
-using GameSpace.Animations;
 using GameSpace.EntitiesManager;
-using GameSpace.Enums;
 using GameSpace.Factories;
 using GameSpace.Interfaces;
-using GameSpace.States;
 using GameSpace.States.BlockStates;
-using GameSpace.States.StateMachines;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace GameSpace.Objects.BlockObjects
 {
     public class BrickBlockOneShroom : AbstractItemBlock
     {
-    
+
         private IGameObjects shroom;
         public BrickBlockOneShroom(Vector2 initialPosition)
         {
             state = new StateBrickBlockIdle();
             Position = initialPosition;
-            Sprite = SpriteBlockFactory.GetInstance().ReturnBrickBlock(); 
-            this.CollisionBox = new Rectangle((int)Position.X, (int)Position.Y, Sprite.Texture.Width * 2, Sprite.Texture.Height * 2);
+            Sprite = SpriteBlockFactory.GetInstance().ReturnBrickBlock();
+            CollisionBox = new Rectangle((int)Position.X, (int)Position.Y, Sprite.Texture.Width * 2, Sprite.Texture.Height * 2);
             drawBox = false;
             revealedItem = false;
         }

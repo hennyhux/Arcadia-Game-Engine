@@ -1,12 +1,9 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace GameSpace.Sprites
 {
-    class QuestionBlockSprite : AbstractSprite
+    internal class QuestionBlockSprite : AbstractSprite
     {
 
         public QuestionBlockSprite(Texture2D texture, int rows, int columns, int totalFrames, int startingPointX,
@@ -46,7 +43,7 @@ namespace GameSpace.Sprites
                     frameOrigin.Y + currentFramePoint.Y * frameSize.Y,
                     frameSize.X,
                     frameSize.Y);
-                Rectangle destinationRectangle = new Rectangle((int)location.X, (int)location.Y, width *2 , height *2);
+                Rectangle destinationRectangle = new Rectangle((int)location.X, (int)location.Y, width * 2, height * 2);
                 spriteBatch.Draw(Texture, destinationRectangle, sourceRectangle, Color.White);
             }
         }

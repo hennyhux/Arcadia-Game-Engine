@@ -3,21 +3,19 @@ using GameSpace.Interfaces;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace GameSpace.States.ItemStates
 {
     public class CoinState : IItemStates
     {
-        private ISprite sprite;
-        private bool triggered;
+        private readonly ISprite sprite;
+        private readonly bool triggered;
 
         public ISprite StateSprite { get; set; }
 
         public CoinState(GameRoot game)
         {
-            this.sprite = SpriteItemFactory.GetInstance().CreateCoin();
+            sprite = SpriteItemFactory.GetInstance().CreateCoin();
             triggered = false;
         }
 

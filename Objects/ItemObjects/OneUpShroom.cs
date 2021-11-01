@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using GameSpace.EntitiesManager;
+﻿using GameSpace.EntitiesManager;
 using GameSpace.Enums;
 using GameSpace.Factories;
 using GameSpace.Interfaces;
 using GameSpace.States.ItemStates;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System;
 
 namespace GameSpace.GameObjects.ItemObjects
 {
@@ -30,15 +28,15 @@ namespace GameSpace.GameObjects.ItemObjects
 
         public OneUpShroom(Vector2 initialPosition)
         {
-            this.ObjectID = (int)ItemID.ONEUPSHROOM;
-            this.Sprite = SpriteItemFactory.GetInstance().CreateOneUpShroom();
-            this.Position = initialPosition;
-            this.CollisionBox = new Rectangle((int)Position.X, (int)Position.Y, Sprite.Texture.Width * 2, Sprite.Texture.Height * 2);
+            ObjectID = (int)ItemID.ONEUPSHROOM;
+            Sprite = SpriteItemFactory.GetInstance().CreateOneUpShroom();
+            Position = initialPosition;
+            CollisionBox = new Rectangle((int)Position.X, (int)Position.Y, Sprite.Texture.Width * 2, Sprite.Texture.Height * 2);
             drawBox = false;
-            this.hasCollided = false;
+            hasCollided = false;
             ExpandedCollisionBox = new Rectangle((int)Position.X, (int)Position.Y, Sprite.Texture.Width * 2, Sprite.Texture.Height * 3);
-            this.state = new StateOneUpShroomHidden(this);
-            
+            state = new StateOneUpShroomHidden(this);
+
         }
 
         public void Draw(SpriteBatch spritebatch)
@@ -53,8 +51,8 @@ namespace GameSpace.GameObjects.ItemObjects
 
         public void Update(GameTime gametime)
         {
-            if (this.state is StateOneUpShroomHidden) findMario();
-            UpdatePosition(Position,gametime);
+            if (state is StateOneUpShroomHidden) findMario();
+            UpdatePosition(Position, gametime);
             Sprite.Update(gametime);
         }
 
@@ -62,10 +60,10 @@ namespace GameSpace.GameObjects.ItemObjects
         {
             if (!hasCollided)
             {
-                this.Sprite.SetVisible();
-                this.CollisionBox = new Rectangle();
+                Sprite.SetVisible();
+                CollisionBox = new Rectangle();
             }
-            this.hasCollided = true;
+            hasCollided = true;
 
             //Increase Mario's lives
         }
@@ -75,7 +73,7 @@ namespace GameSpace.GameObjects.ItemObjects
             switch (entity.ObjectID)
             {
                 case (int)AvatarID.MARIO:
-                    this.Trigger();
+                    Trigger();
                     break;
 
                 case (int)BlockID.USEDBLOCK:
@@ -99,8 +97,8 @@ namespace GameSpace.GameObjects.ItemObjects
             else if (!EntityManager.IsGoingToFall(this))
             {
                 Acceleration = new Vector2(0, 0);
-                if (this.state is StateOneUpShroomRight) Velocity = new Vector2(85, 0);
-                if (this.state is StateOneUpShroomLeft) Velocity = new Vector2(-85, 0);
+                if (state is StateOneUpShroomRight) Velocity = new Vector2(85, 0);
+                if (state is StateOneUpShroomLeft) Velocity = new Vector2(-85, 0);
             }
 
             Velocity += Acceleration * (float)gameTime.ElapsedGameTime.TotalSeconds;
@@ -123,28 +121,28 @@ namespace GameSpace.GameObjects.ItemObjects
         {
             if (EntityManager.DetectCollisionDirection(this, entity) == (int)CollisionDirection.RIGHT)
             {
-                this.Velocity = new Vector2(0, 0);
-                this.state = new StateOneUpShroomRight(this);
+                Velocity = new Vector2(0, 0);
+                state = new StateOneUpShroomRight(this);
             }
 
             else if (EntityManager.DetectCollisionDirection(this, entity) == (int)CollisionDirection.LEFT)
             {
-                this.Velocity = new Vector2(0, 0);
-                this.state = new StateOneUpShroomLeft(this);
+                Velocity = new Vector2(0, 0);
+                state = new StateOneUpShroomLeft(this);
             }
 
             else if (EntityManager.DetectCollisionDirection(this, entity) == (int)CollisionDirection.DOWN)
             {
-                this.Acceleration = new Vector2(0, 0);
+                Acceleration = new Vector2(0, 0);
             }
         }
 
         private void UpdateCollisionBox(Vector2 location)
         {
-            this.CollisionBox = new Rectangle((int)location.X + state.StateSprite.Texture.Width / 2 - 10, (int)Position.Y,
+            CollisionBox = new Rectangle((int)location.X + state.StateSprite.Texture.Width / 2 - 10, (int)Position.Y,
                 state.StateSprite.Texture.Width * 2, state.StateSprite.Texture.Height * 2);
 
-            this.ExpandedCollisionBox = new Rectangle((int)location.X + state.StateSprite.Texture.Width / 2 - 10, (int)Position.Y,
+            ExpandedCollisionBox = new Rectangle((int)location.X + state.StateSprite.Texture.Width / 2 - 10, (int)Position.Y,
              state.StateSprite.Texture.Width * 2, (state.StateSprite.Texture.Height * 2) + 3);
         }
 
@@ -152,12 +150,12 @@ namespace GameSpace.GameObjects.ItemObjects
         {
             if (EntityManager.FindItem((int)AvatarID.MARIO).Position.X <= Position.X)
             {
-                this.state = new StateOneUpShroomRight(this);
+                state = new StateOneUpShroomRight(this);
 
             }
             else
             {
-                this.state = new StateOneUpShroomLeft(this);
+                state = new StateOneUpShroomLeft(this);
 
             }
         }

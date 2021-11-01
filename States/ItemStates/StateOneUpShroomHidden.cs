@@ -1,13 +1,9 @@
 ﻿using GameSpace.Factories;
+using GameSpace.GameObjects.ItemObjects;
 using GameSpace.Interfaces;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
-using System.Collections.Generic;
-using System.Text;
-using GameSpace.GameObjects.ItemObjects;
-using System.Diagnostics;
-using GameSpace.Enums;
 
 namespace GameSpace.States.ItemStates
 {
@@ -21,7 +17,7 @@ namespace GameSpace.States.ItemStates
         {
             StateSprite = SpriteItemFactory.GetInstance().CreateOneUpShroom();
             CollidedWithMario = false;
-            this.OneUpShroom = oneUpShroom;
+            OneUpShroom = oneUpShroom;
         }
 
         public void Draw(SpriteBatch spritebatch, Vector2 location)

@@ -1,19 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using GameSpace.Interfaces;
-using GameSpace.States.BlockStates;
+﻿using GameSpace.Enums;
 using GameSpace.Factories;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using GameSpace.States.MarioStates;
 using GameSpace.GameObjects.BlockObjects;
+using GameSpace.Interfaces;
+using Microsoft.Xna.Framework;
 using System.Diagnostics;
-using GameSpace.Enums;
 
 namespace GameSpace.States.MarioStates
 {
-    class SmallMarioJumpingState : MarioActionStates//MarioPowerUpStates
+    internal class SmallMarioJumpingState : MarioActionStates//MarioPowerUpStates
     {
         public SmallMarioJumpingState(Mario mario)
             : base(mario)
@@ -27,11 +21,11 @@ namespace GameSpace.States.MarioStates
             this.previousActionState = previousActionState;
             Debug.WriteLine("MarioJumpingtate(25) Enter, {0}", Mario.marioActionState);
             Debug.WriteLine("MarioWalkingState(25) facing:, {0}", Mario.Facing);
-            
-            //Set Proper velocity upon entering state
-            Mario.Velocity = new Vector2(Mario.Velocity.X, (float)-200);//NEW
 
-            
+            //Set Proper velocity upon entering state
+            Mario.Velocity = new Vector2(Mario.Velocity.X, -200);//NEW
+
+
             //AABB aabb = Mario.AABB;
             //eFacing Facing = MarioStandingState.Facing;
             eFacing Facing = Mario.Facing;
@@ -149,7 +143,7 @@ namespace GameSpace.States.MarioStates
 
 
         }//decelerate and go to walking dis
-        public override void JumpingDiscontinueTransition() 
+        public override void JumpingDiscontinueTransition()
         {
             Exit();
             Mario.marioActionState = new SmallMarioFallingState(Mario);
@@ -165,11 +159,12 @@ namespace GameSpace.States.MarioStates
             Mario.Velocity += Mario.Acceleration * (float)gametime.ElapsedGameTime.TotalSeconds;
             Mario.Velocity = ClampVelocity(Mario.Velocity);
         }
+
         //void Update(GameTime gametime, GraphicsDeviceManager graphics);
 
-        Vector2 ClampVelocity(Vector2 velocity)
+        private Vector2 ClampVelocity(Vector2 velocity)
         {
-            return new Vector2(Mario.Velocity.X, Mario.Velocity.Y) ;//return the actualy velocity
+            return new Vector2(Mario.Velocity.X, Mario.Velocity.Y);//return the actualy velocity
         }
         // max velocity speed, clamp for each state speed
     }

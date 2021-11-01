@@ -6,9 +6,9 @@ namespace FirstGame
     public static class Program
     {
         [STAThread]
-        static void Main()
-      {
-            using (var game = new GameRoot())
+        private static void Main()
+        {
+            using (GameRoot game = new GameRoot())
                 game.Run();
         }
     }

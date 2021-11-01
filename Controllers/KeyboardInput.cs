@@ -1,9 +1,5 @@
 ﻿using Microsoft.Xna.Framework.Input;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GameSpace
 {
@@ -12,8 +8,8 @@ namespace GameSpace
 
         private KeyboardState previousState;
         private protected CommandList commands;
-        private ICommand executeCommand;
-        private Dictionary<Keys, ICommand> command;
+        private readonly ICommand executeCommand;
+        private readonly Dictionary<Keys, ICommand> command;
 
         public KeyboardInput(GameRoot game)
         {
@@ -28,16 +24,16 @@ namespace GameSpace
 
             foreach (Keys key in keysPressed)
             {
-                if(!previousState.IsKeyDown(key))
-                {   
+                if (!previousState.IsKeyDown(key))
+                {
                     try
                     {
                         commands.GetCommand[key].Execute();
                     }
-                    
-                    catch(KeyNotFoundException e)
+
+                    catch (KeyNotFoundException)
                     {
-                        
+
                     }
                 }
             }

@@ -1,13 +1,7 @@
-﻿using GameSpace.Factories;
+﻿using GameSpace.GameObjects.BlockObjects;
 using GameSpace.Interfaces;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using GameSpace.States.MarioStates;
-using GameSpace.GameObjects.BlockObjects;
-using System.Diagnostics;
+using Microsoft.Xna.Framework;
 
 namespace GameSpace.States.BlockStates
 {
@@ -46,53 +40,53 @@ namespace GameSpace.States.BlockStates
 
         public abstract void DeadTransition();
 
-       public abstract void Update(GameTime gametime);
+        public abstract void Update(GameTime gametime);
 
     }
 
     public class SmallMarioState : MarioPowerUpStates
     {
         public SmallMarioState(Mario mario)
-            :base(mario)
+            : base(mario)
         {
 
         }
-            public override void Enter(IMarioPowerUpStates previousPowerUpState) 
-            { 
-                
-            }
-            public override void Exit() { }
+        public override void Enter(IMarioPowerUpStates previousPowerUpState)
+        {
 
-            public override void smallMarioTransformation() { }
+        }
+        public override void Exit() { }
 
-            public override void bigMarioTransformation() 
-            {
-               // Exit();
-                Mario.marioPowerUpState = new BigMarioState(Mario);
+        public override void smallMarioTransformation() { }
 
-                Mario.Position = new Vector2((int)Mario.Position.X, (int)Mario.Position.Y-32);
+        public override void bigMarioTransformation()
+        {
+            // Exit();
+            Mario.marioPowerUpState = new BigMarioState(Mario);
+
+            Mario.Position = new Vector2((int)Mario.Position.X, (int)Mario.Position.Y - 32);
             //Mario.marioPowerUpState.Enter(this);
-               // if(Mario.Velocity.Y )
-                Mario.marioActionState.BigPowerUp();
-            
-            }
+            // if(Mario.Velocity.Y )
+            Mario.marioActionState.BigPowerUp();
 
-            public override void fireMarioTransformation() 
-            { 
-                Mario.marioPowerUpState = new FireMarioState(Mario);
-                Mario.Position = new Vector2((int)Mario.Position.X, (int)Mario.Position.Y - 32);
-                Mario.marioActionState.FirePowerUp();
-            }
+        }
 
-            public override void DeadTransition() 
-            { 
-                Mario.marioPowerUpState = new DeadMarioState(Mario);
-                Mario.marioActionState.DeadPowerUp();
+        public override void fireMarioTransformation()
+        {
+            Mario.marioPowerUpState = new FireMarioState(Mario);
+            Mario.Position = new Vector2((int)Mario.Position.X, (int)Mario.Position.Y - 32);
+            Mario.marioActionState.FirePowerUp();
+        }
 
-            }
+        public override void DeadTransition()
+        {
+            Mario.marioPowerUpState = new DeadMarioState(Mario);
+            Mario.marioActionState.DeadPowerUp();
 
-            public override void Update(GameTime gametime) { } 
-        
+        }
+
+        public override void Update(GameTime gametime) { }
+
     }
 
     public class BigMarioState : MarioPowerUpStates
@@ -102,29 +96,29 @@ namespace GameSpace.States.BlockStates
         {
 
         }
-        public override void Enter(IMarioPowerUpStates previousPowerUpState) 
-        { 
+        public override void Enter(IMarioPowerUpStates previousPowerUpState)
+        {
 
         }
         public override void Exit() { }
 
-        public override void smallMarioTransformation() 
+        public override void smallMarioTransformation()
         {
             Mario.marioPowerUpState = new SmallMarioState(Mario);
             Mario.Position = new Vector2((int)Mario.Position.X, (int)Mario.Position.Y + 32);
             Mario.marioActionState.SmallPowerUp();
         }
 
-        public override void bigMarioTransformation() {}
+        public override void bigMarioTransformation() { }
 
-        public override void fireMarioTransformation() 
-        { 
+        public override void fireMarioTransformation()
+        {
             Mario.marioPowerUpState = new FireMarioState(Mario);
             Mario.Position = new Vector2((int)Mario.Position.X, (int)Mario.Position.Y);
             Mario.marioActionState.FirePowerUp();
         }
 
-        public override void DeadTransition() 
+        public override void DeadTransition()
         {
             Mario.marioPowerUpState = new SmallMarioState(Mario);
             Mario.Position = new Vector2((int)Mario.Position.X, (int)Mario.Position.Y + 32);
@@ -146,15 +140,15 @@ namespace GameSpace.States.BlockStates
         public override void Enter(IMarioPowerUpStates previousPowerUpState) { }
         public override void Exit() { }
 
-        public override void smallMarioTransformation() 
-        { 
+        public override void smallMarioTransformation()
+        {
             Mario.marioPowerUpState = new SmallMarioState(Mario);
             Mario.Position = new Vector2((int)Mario.Position.X, (int)Mario.Position.Y + 32);
             Mario.marioActionState.SmallPowerUp();
         }
 
-        public override void bigMarioTransformation() 
-        { 
+        public override void bigMarioTransformation()
+        {
 
             Mario.marioPowerUpState = new BigMarioState(Mario);
             Mario.marioActionState.BigPowerUp();
@@ -162,7 +156,7 @@ namespace GameSpace.States.BlockStates
 
         public override void fireMarioTransformation() { }
 
-        public override void DeadTransition() 
+        public override void DeadTransition()
         {
             //Goes to Big
             //Mario.marioPowerUpState = new BigMarioState(Mario);
@@ -185,20 +179,21 @@ namespace GameSpace.States.BlockStates
         {
 
         }
-        public override void Enter(IMarioPowerUpStates previousPowerUpState) {
-            Mario.Velocity = new Vector2((float)0, (float)0);
+        public override void Enter(IMarioPowerUpStates previousPowerUpState)
+        {
+            Mario.Velocity = new Vector2(0, 0);
         }
         public override void Exit() { }
 
-        public override void smallMarioTransformation() 
-        { 
-            Mario.marioPowerUpState = new SmallMarioState(Mario); 
+        public override void smallMarioTransformation()
+        {
+            Mario.marioPowerUpState = new SmallMarioState(Mario);
             Mario.marioActionState = new BigMarioStandingState(Mario); //Make it big mario State so I can call SmallPowerUp to get it small.
             Mario.marioActionState.SmallPowerUp();
-        
+
         }
 
-        public override void bigMarioTransformation() 
+        public override void bigMarioTransformation()
         {
             Mario.marioPowerUpState = new BigMarioState(Mario);
             Mario.marioActionState = new SmallMarioStandingState(Mario); //Make it small mario State so I can call BigPowerUp to get it big.
@@ -206,7 +201,7 @@ namespace GameSpace.States.BlockStates
             Mario.Position = new Vector2((int)Mario.Position.X, (int)Mario.Position.Y - 32);
         }
 
-        public override void fireMarioTransformation() 
+        public override void fireMarioTransformation()
         {
             Mario.marioPowerUpState = new FireMarioState(Mario);
             Mario.marioActionState = new SmallMarioStandingState(Mario); //Make it small mario State so I can call FirePowerUp to get it fire.
@@ -214,7 +209,7 @@ namespace GameSpace.States.BlockStates
             Mario.Position = new Vector2((int)Mario.Position.X, (int)Mario.Position.Y - 32);
         }
 
-        public override void DeadTransition() {  }
+        public override void DeadTransition() { }
 
         public override void Update(GameTime gametime) { }
 

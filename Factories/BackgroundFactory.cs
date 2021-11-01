@@ -1,24 +1,7 @@
-﻿using GameSpace.Sprites;
+﻿using GameSpace.Sprites.Background;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using GameSpace.Sprites.Background;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using GameSpace.EntitiesManager;
-using GameSpace.Enums;
-using GameSpace.Factories;
-using GameSpace.Interfaces;
-using GameSpace.States.EnemyStates;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Text;
 
 namespace GameSpace.Factories
 {
@@ -29,8 +12,8 @@ namespace GameSpace.Factories
         private Texture2D Clouds;
 
 
-        private static BackgroundFactory instance = new BackgroundFactory();
-        public static BackgroundFactory GetInstance ()
+        private static readonly BackgroundFactory instance = new BackgroundFactory();
+        public static BackgroundFactory GetInstance()
         {
             return instance;
         }

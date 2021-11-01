@@ -1,24 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using GameSpace.Objects.BackgroundObjects;
-using GameSpace.EntitiesManager;
-using GameSpace.Enums;
-using GameSpace.Factories;
-using GameSpace.Interfaces;
-using GameSpace.Sprites;
-using GameSpace.States;
-using GameSpace.States.EnemyStates;
-using GameSpace.States.StateMachines;
+﻿using GameSpace.Interfaces;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace GameSpace.Objects.BackgroundObjects
 {
-    public abstract class  BackgroundObject : IGameObjects
+    public abstract class BackgroundObject : IGameObjects
     {
         public ISprite Sprite { get; set; }
         public Vector2 Position { get; set; }
@@ -27,10 +14,10 @@ namespace GameSpace.Objects.BackgroundObjects
         public Rectangle CollisionBox { get; set; }
 
         public int ObjectID { get; set; }
-        private Boolean hasCollidedOnTop;
-        private Boolean drawBox;
-        private int countDown;
-        private int direction;
+        private readonly Boolean hasCollidedOnTop;
+        private readonly Boolean drawBox;
+        private readonly int countDown;
+        private readonly int direction;
 
         public Vector2 Parallax { get; set; }
 
@@ -39,23 +26,23 @@ namespace GameSpace.Objects.BackgroundObjects
 
         }
 
-    public abstract void Draw(SpriteBatch spritebatch, Vector2 position);
+        public abstract void Draw(SpriteBatch spritebatch, Vector2 position);
 
-    public  void Draw(SpriteBatch spritebatch) {  }
+        public void Draw(SpriteBatch spritebatch) { }
         public abstract void Update(GameTime gametime);
- 
-
-    public abstract void Trigger();
 
 
-    public abstract void UpdatePosition(Vector2 location, GameTime gameTime);
+        public abstract void Trigger();
 
 
-    public abstract void HandleCollision(IGameObjects entity);
+        public abstract void UpdatePosition(Vector2 location, GameTime gameTime);
 
-    public abstract void ToggleCollisionBoxes();
 
-    public abstract bool IsCurrentlyColliding();
+        public abstract void HandleCollision(IGameObjects entity);
+
+        public abstract void ToggleCollisionBoxes();
+
+        public abstract bool IsCurrentlyColliding();
 
     }
 }

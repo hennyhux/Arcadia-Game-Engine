@@ -1,6 +1,5 @@
 ﻿using GameSpace.Camera2D;
 using GameSpace.Enums;
-using GameSpace.Factories;
 using GameSpace.GameObjects.BlockObjects;
 using GameSpace.GameObjects.EnemyObjects;
 using GameSpace.GameObjects.ItemObjects;
@@ -10,9 +9,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
-using System.Text;
 
 namespace GameSpace.EntitiesManager
 {
@@ -20,11 +17,12 @@ namespace GameSpace.EntitiesManager
     public static class EntityManager
     {
         private static List<IGameObjects> gameEntities = new List<IGameObjects>();
-        private static List<IGameObjects> prunedList = new List<IGameObjects>();
+        private static readonly List<IGameObjects> prunedList = new List<IGameObjects>();
         private static List<IGameObjects> copyPrunedList = new List<IGameObjects>();
-        private static List<IObjectAnimation> animationList = new List<IObjectAnimation>();
+        private static readonly List<IObjectAnimation> animationList = new List<IObjectAnimation>();
+        private static readonly List<IGameObjects> listOfWarpPipes = new List<IGameObjects>();
         //BackGround Stuff
-        private static List<IGameObjects> backgroundList = new List<IGameObjects>();
+        private static readonly List<IGameObjects> backgroundList = new List<IGameObjects>();
         private static IGameObjects mario;
         private static Vector2 marioCurrentLocation;
         public static Camera Camera { get; set; }
@@ -39,12 +37,25 @@ namespace GameSpace.EntitiesManager
         public static void LoadList(List<IGameObjects> objectList)
         {
             gameEntities = objectList;
-            
+
+            foreach (IGameObjects entity in gameEntities)
+            {
+                if (entity.ObjectID == (int)ItemID.BIGPIPE)
+                {
+                    listOfWarpPipes.Add(entity);
+                }
+            }
+
         }
 
         public static List<IGameObjects> GetEntityList()
         {
             return gameEntities;
+        }
+
+        public static List<IGameObjects> GetWarpPipes()
+        {
+            return listOfWarpPipes;
         }
 
         public static void Draw(SpriteBatch spriteBatch)
@@ -158,9 +169,9 @@ namespace GameSpace.EntitiesManager
         public static Boolean IsGoingToFall(IGameObjects fallingObject)
         {
             Boolean gonnaFall = true;
-            
-            
-            if(fallingObject is OneUpShroom)
+
+
+            if (fallingObject is OneUpShroom)
             {
                 OneUpShroom copy = (OneUpShroom)fallingObject;
                 foreach (IGameObjects entity in copyPrunedList)
@@ -195,19 +206,19 @@ namespace GameSpace.EntitiesManager
 
             return gonnaFall;
         }
-       /* public static Boolean IsGoingToFall(Mario enemy)
-        {
-            Boolean gonnaFall = true;
-            foreach (IGameObjects entity in copyPrunedList)
-            {
-                if (enemy.ExpandedCollisionBox.Intersects(entity.CollisionBox) && entity.ObjectID != enemy.ObjectID && entity.ObjectID != (int)AvatarID.MARIO)
-                {
-                    gonnaFall = false;
-                    break;
-                }
-            }
-            return gonnaFall;
-        } */
+        /* public static Boolean IsGoingToFall(Mario enemy)
+         {
+             Boolean gonnaFall = true;
+             foreach (IGameObjects entity in copyPrunedList)
+             {
+                 if (enemy.ExpandedCollisionBox.Intersects(entity.CollisionBox) && entity.ObjectID != enemy.ObjectID && entity.ObjectID != (int)AvatarID.MARIO)
+                 {
+                     gonnaFall = false;
+                     break;
+                 }
+             }
+             return gonnaFall;
+         } */
 
         public static IMarioActionStates GetCurrentMarioState()
         {
@@ -276,7 +287,7 @@ namespace GameSpace.EntitiesManager
                         prunedList[j].HandleCollision(prunedList[i]);
                     }
                 }
-           // Debug.WriteLine("SIZE OF PRUNED LIST " + prunedList.Count);
+            // Debug.WriteLine("SIZE OF PRUNED LIST " + prunedList.Count);
             //Debug.WriteLine("SIZE OF OG LIST " + gameEntities.Count);
             copyPrunedList = prunedList.ToList();
             prunedList.Clear();
@@ -300,8 +311,8 @@ namespace GameSpace.EntitiesManager
 
         }
 
-       public static int DetectCollisionDirection(IGameObjects a, IGameObjects b)
-       {
+        public static int DetectCollisionDirection(IGameObjects a, IGameObjects b)
+        {
             Rectangle overLappedRectangle = Rectangle.Intersect(a.CollisionBox, b.CollisionBox);
             int direction = 0;
 

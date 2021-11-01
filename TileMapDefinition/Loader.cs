@@ -1,15 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Xml;
-using System.IO;
-using System.Xml.Serialization;
-using static GameSpace.TileMapDefinition.LevelDefinition;
+﻿using GameSpace.Enums;
+using GameSpace.Factories;
 using GameSpace.GameObjects.BlockObjects;
-using GameSpace.EntitiesManager;
 using GameSpace.Interfaces;
 using Microsoft.Xna.Framework;
-using GameSpace.Factories;
-using GameSpace.Enums;
+using System;
+using System.Collections.Generic;
+using System.Xml;
+using System.Xml.Serialization;
+using static GameSpace.TileMapDefinition.LevelDefinition;
 
 namespace GameSpace.TileMapDefinition
 {
@@ -18,10 +16,10 @@ namespace GameSpace.TileMapDefinition
         public static int boundaryX = 0;
         public static List<IGameObjects> Load(String xmlFile)
         {
-           // List<IGameObjects> fullList = LoadEverything(xmlFile);
+            // List<IGameObjects> fullList = LoadEverything(xmlFile);
             List<IGameObjects> fullList = LoadBlocks(xmlFile);
             List<IGameObjects> itemsList = LoadItems(xmlFile);
-            
+
             fullList.AddRange(itemsList);
             List<IGameObjects> enemiesList = LoadEnemies(xmlFile);
             fullList.AddRange(enemiesList);
@@ -39,7 +37,7 @@ namespace GameSpace.TileMapDefinition
             {
                 fullList = (List<Obstacles>)serializer.Deserialize(reader);
             }
-            foreach(Obstacles obstacles in fullList)
+            foreach (Obstacles obstacles in fullList)
             {
                 Vector2 location = new Vector2(obstacles.x, obstacles.y);
                 if (boundaryX < obstacles.x) boundaryX = obstacles.x;
@@ -65,8 +63,8 @@ namespace GameSpace.TileMapDefinition
                         if (obstacles.blockRow == 1 && obstacles.item == ItemID.COIN)
                         {
                             objectsList.Add(objectFactory.CreateCoinBrickBlock(location));
-                        } 
-                        else if(obstacles.blockRow == 1 && obstacles.item == ItemID.STAR)
+                        }
+                        else if (obstacles.blockRow == 1 && obstacles.item == ItemID.STAR)
                         {
                             objectsList.Add(objectFactory.CreateStarBrickBlock(location));
                         }

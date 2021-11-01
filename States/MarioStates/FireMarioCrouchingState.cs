@@ -1,19 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using GameSpace.Interfaces;
-using GameSpace.States.BlockStates;
+﻿using GameSpace.Enums;
 using GameSpace.Factories;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using GameSpace.States.MarioStates;
 using GameSpace.GameObjects.BlockObjects;
+using GameSpace.Interfaces;
+using Microsoft.Xna.Framework;
 using System.Diagnostics;
-using GameSpace.Enums;
 
 namespace GameSpace.States.MarioStates
 {
-    class FireMarioCrouchingState : MarioActionStates//MarioPowerUpStates
+    internal class FireMarioCrouchingState : MarioActionStates//MarioPowerUpStates
     {
         public FireMarioCrouchingState(Mario mario)
             : base(mario)
@@ -25,12 +19,12 @@ namespace GameSpace.States.MarioStates
         {
             Mario.marioActionState = this;
             this.previousActionState = previousActionState;
-           // Mario.marioPowerUpState = new FireMarioState(Mario);
+            // Mario.marioPowerUpState = new FireMarioState(Mario);
             //Debug.WriteLine("MarioStandState(25) Enter, {0}", Mario.marioActionState);
             //Debug.WriteLine("MarioWalkingState(25) facing:, {0}", Mario.Facing);
 
             //Mario.Position = new Vector2(Mario.Position.X, Mario.Position.Y + 20);
-            
+
 
             //AABB aabb = Mario.AABB;
             //eFacing Facing = MarioStandingState.Facing;
@@ -97,7 +91,7 @@ namespace GameSpace.States.MarioStates
 
         public override void FaceLeftTransition()
         {
-            
+
             if (Mario.Facing == eFacing.LEFT)
                 RunningTransition();
             // WalkingTransition(); bc no walking
@@ -158,9 +152,10 @@ namespace GameSpace.States.MarioStates
         {
 
         }
+
         //void Update(GameTime gametime, GraphicsDeviceManager graphics);
 
-        Vector2 ClampVelocity(Vector2 velocity)
+        private Vector2 ClampVelocity(Vector2 velocity)
         {
             return Vector2.Zero;
         }

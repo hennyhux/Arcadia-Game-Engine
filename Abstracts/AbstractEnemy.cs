@@ -5,8 +5,6 @@ using GameSpace.Interfaces;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace GameSpace.Abstracts
 {
@@ -47,12 +45,12 @@ namespace GameSpace.Abstracts
 
         }
 
-        internal void UpdateCollisionBox(Vector2 location)
+        internal virtual void UpdateCollisionBox(Vector2 location)
         {
-            this.CollisionBox = new Rectangle((int)location.X + state.StateSprite.Texture.Width / 4 - 6, (int)Position.Y,
+            CollisionBox = new Rectangle((int)location.X + state.StateSprite.Texture.Width / 4, (int)Position.Y,
                 state.StateSprite.Texture.Width, state.StateSprite.Texture.Height * 2);
 
-            this.ExpandedCollisionBox = new Rectangle((int)location.X + state.StateSprite.Texture.Width / 4 - 6, (int)Position.Y,
+            ExpandedCollisionBox = new Rectangle((int)location.X + state.StateSprite.Texture.Width / 4, (int)Position.Y,
                 state.StateSprite.Texture.Width, (state.StateSprite.Texture.Height * 2) + 3);
         }
         internal bool IsInview()
@@ -120,8 +118,8 @@ namespace GameSpace.Abstracts
         {
             if (EntityManager.DetectCollisionDirection(this, mario) == (int)CollisionDirection.UP)
             {
-                this.Trigger();
-                this.CollisionBox = new Rectangle(1, 1, 0, 0);
+                Trigger();
+                CollisionBox = new Rectangle(1, 1, 0, 0);
                 if (!hasCollidedOnTop) hasCollidedOnTop = true;
             }
 
@@ -129,13 +127,12 @@ namespace GameSpace.Abstracts
             {
 
             }
-
         }
 
         internal virtual void CollisionWithFireball(IGameObjects fireball)
         {
-            this.Trigger();
-            this.CollisionBox = new Rectangle(1, 1, 0, 0);
+            Trigger();
+            CollisionBox = new Rectangle(1, 1, 0, 0);
             if (!hasCollidedOnTop) hasCollidedOnTop = true;
         }
 

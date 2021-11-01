@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Collections.Generic;
+﻿using GameSpace.Sprites.Background;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using GameSpace.Camera2D;
-using GameSpace.Sprites.Background;
+using System.Collections.Generic;
 
 namespace GameSpace.Camera2D
 {

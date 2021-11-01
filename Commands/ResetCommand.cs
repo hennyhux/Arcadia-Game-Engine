@@ -1,10 +1,4 @@
-﻿using Microsoft.Xna.Framework;
-using System.Diagnostics;
-using GameSpace.Interfaces;
-using GameSpace.Enums;
-using GameSpace.EntitiesManager;
-
-namespace GameSpace
+﻿namespace GameSpace
 {
     public class ResetCommand : ICommand
     {
@@ -12,7 +6,7 @@ namespace GameSpace
 
         public ResetCommand(GameRoot game)
         {
-            this.MyGame = game;
+            MyGame = game;
         }
 
         public void Execute()

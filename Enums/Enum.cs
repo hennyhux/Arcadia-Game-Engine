@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace GameSpace.Enums
+﻿namespace GameSpace.Enums
 {
     public enum BlockID
     {
@@ -16,7 +12,7 @@ namespace GameSpace.Enums
         BRICKBLOCKSTAR = 18
     };
 
-    public enum ItemID: int
+    public enum ItemID : int
     {
         SUPERSHROOM = 6,
         STAR = 7,
@@ -32,7 +28,7 @@ namespace GameSpace.Enums
         FIREBALL = 19
     };
 
-    public enum EnemyID: int
+    public enum EnemyID : int
     {
         GOOMBA = 12,
         GREENKOOPA = 13,

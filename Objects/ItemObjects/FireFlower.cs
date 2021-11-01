@@ -1,19 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using GameSpace.EntitiesManager;
-using GameSpace.Enums;
+﻿using GameSpace.Enums;
 using GameSpace.Factories;
 using GameSpace.Interfaces;
-using GameSpace.States.ItemStates;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System;
 
 namespace GameSpace.GameObjects.ItemObjects
 {
     public class FireFlower : IGameObjects
     {
-        private IObjectState state;
+        private readonly IObjectState state;
         public ISprite Sprite { get; set; }
         public Vector2 Position { get; set; }
         public Vector2 Velocity { get; set; }
@@ -21,15 +17,15 @@ namespace GameSpace.GameObjects.ItemObjects
         public Rectangle CollisionBox { get; set; }
         public int ObjectID { get; set; }
 
-        private Boolean hasCollided;
+        private readonly Boolean hasCollided;
         private Boolean drawBox;
 
         public FireFlower(Vector2 initialPosition)
         {
-            this.ObjectID = (int)ItemID.FIREFLOWER;
-            this.Sprite = SpriteItemFactory.GetInstance().CreateFireFlower();
-            this.Position = initialPosition;
-            this.CollisionBox = new Rectangle((int)Position.X, (int)Position.Y, Sprite.Texture.Width * 2 / 4, Sprite.Texture.Height * 2);
+            ObjectID = (int)ItemID.FIREFLOWER;
+            Sprite = SpriteItemFactory.GetInstance().CreateFireFlower();
+            Position = initialPosition;
+            CollisionBox = new Rectangle((int)Position.X, (int)Position.Y, Sprite.Texture.Width * 2 / 4, Sprite.Texture.Height * 2);
             hasCollided = false;
             drawBox = false;
         }
@@ -47,8 +43,8 @@ namespace GameSpace.GameObjects.ItemObjects
 
         public void Trigger()
         {
-            this.Sprite.SetVisible();
-            this.CollisionBox = new Rectangle(1, 1, 0, 0);
+            Sprite.SetVisible();
+            CollisionBox = new Rectangle(1, 1, 0, 0);
         }
 
         public void HandleCollision(IGameObjects entity)
@@ -56,7 +52,7 @@ namespace GameSpace.GameObjects.ItemObjects
             switch (entity.ObjectID)
             {
                 case (int)AvatarID.MARIO:
-                    this.Trigger();
+                    Trigger();
                     break;
             }
         }

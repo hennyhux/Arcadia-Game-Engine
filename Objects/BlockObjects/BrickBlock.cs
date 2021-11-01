@@ -1,16 +1,12 @@
-﻿using GameSpace.Factories;
+﻿using GameSpace.Abstracts;
+using GameSpace.EntitiesManager;
+using GameSpace.Enums;
+using GameSpace.Factories;
 using GameSpace.Interfaces;
 using GameSpace.States;
 using GameSpace.States.BlockStates;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Text;
-using GameSpace.Enums;
-using GameSpace.EntitiesManager;
-using GameSpace.Abstracts;
 
 namespace GameSpace.GameObjects.BlockObjects
 {
@@ -18,10 +14,10 @@ namespace GameSpace.GameObjects.BlockObjects
     {
         public BrickBlock(Vector2 initalPosition)
         {
-            this.ObjectID = (int)BlockID.BRICKBLOCK;
-            this.Sprite = SpriteBlockFactory.GetInstance().ReturnBrickBlock();
-            this.Position = initalPosition;
-            this.CollisionBox = new Rectangle((int)Position.X, (int)Position.Y, Sprite.Texture.Width * 2, Sprite.Texture.Height * 2);
+            ObjectID = (int)BlockID.BRICKBLOCK;
+            Sprite = SpriteBlockFactory.GetInstance().ReturnBrickBlock();
+            Position = initalPosition;
+            CollisionBox = new Rectangle((int)Position.X, (int)Position.Y, Sprite.Texture.Width * 2, Sprite.Texture.Height * 2);
             state = new StateBrickBlockIdle();
         }
 
@@ -29,15 +25,15 @@ namespace GameSpace.GameObjects.BlockObjects
         {
 
             state.Update(gametime);
-            if((state is StateExplodingBlock))
+            if ((state is StateExplodingBlock))
             {
                 //this.Position = new Vector2((float)-50, (float)50);
                 BumpAnimation sprite = (BumpAnimation)Sprite;
 
                 if (sprite.animationFinished)
                 {
-                    this.CollisionBox = new Rectangle((int)Position.X, (int)Position.Y, 0, 0);
-                    this.Position = new Vector2((float)0, (float)0);
+                    CollisionBox = new Rectangle((int)Position.X, (int)Position.Y, 0, 0);
+                    Position = new Vector2(0, 0);
                     if (Sprite.GetVisibleStatus() == true)
                     {
                         Sprite.SetVisible();
@@ -72,11 +68,11 @@ namespace GameSpace.GameObjects.BlockObjects
                     else
                     {
                         //Debug.WriteLine("BUMP BLOCK, mario PowerUp {0}", mario.marioPowerUpState);
-                        this.Trigger();
+                        Trigger();
                     }
                 }
-                
-            } 
+
+            }
         }
     }
 }
