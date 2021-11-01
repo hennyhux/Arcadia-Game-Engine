@@ -1,15 +1,20 @@
-﻿namespace GameSpace
+﻿using Microsoft.Xna.Framework.Media;
+using System;
+
+
+namespace GameSpace
 {
     //Future command 
     public class MuteCommand : ICommand
     {
+        private protected GameRoot game;
         public MuteCommand(GameRoot game)
         {
-
+            this.game = game; 
         }
         public void Execute()
         {
-            throw new System.NotImplementedException();
+            MediaPlayer.IsMuted = !MediaPlayer.IsMuted;
         }
 
         public void Unexecute()

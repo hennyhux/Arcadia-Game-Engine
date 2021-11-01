@@ -40,8 +40,7 @@ namespace GameSpace
                 {Keys.C, new ToggleCollisionBoxes()},
                 {Keys.Space, new ThrowFireBallCommand(game)},
 
-
-                // Jump, crouch and dash/throw fireball
+                // Jump, crouch and dash
             };
 
             controllerCommands = new Dictionary<Buttons, ICommand>()

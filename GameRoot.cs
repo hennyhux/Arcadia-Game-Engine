@@ -9,6 +9,7 @@ using GameSpace.TileMapDefinition;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
+using Microsoft.Xna.Framework.Media;
 
 namespace GameSpace
 {
@@ -35,6 +36,8 @@ namespace GameSpace
         private readonly List<IGameObjects> avatars;
         #endregion
 
+        //Audio stuff
+        private Song song;
 
         public GraphicsDeviceManager Graphics => graphics;
 
@@ -70,6 +73,7 @@ namespace GameSpace
             BackgroundFactory.GetInstance().LoadContent(Content);
             SpriteItemFactory.GetInstance().LoadContent(Content);
             BackgroundFactory.GetInstance().LoadContent(Content);
+            AudioFactory.GetInstance().LoadContent(Content);
             #endregion
 
             #region Loading Lists
@@ -103,6 +107,10 @@ namespace GameSpace
                 new Layer(camera, BackgroundFactory.GetInstance().CreateRegularBackground(), new Vector2(1.0f, 1.0f)),
             };
 
+            //Audio Stuff
+            this.song = AudioFactory.GetInstance().CreateSong();
+            MediaPlayer.Play(this.song);
+            MediaPlayer.IsRepeating = true; 
         }
 
         public Mario GetMario => (Mario)FinderMachine.GetInstance().FindItem((int)AvatarID.MARIO);
