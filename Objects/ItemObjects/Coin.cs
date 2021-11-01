@@ -17,8 +17,8 @@ namespace GameSpace.GameObjects.ItemObjects
         public Rectangle CollisionBox { get; set; }
         public int ObjectID { get; set; }
 
-        private Boolean hasCollided;
-        private Boolean drawBox;
+        private bool hasCollided;
+        private bool drawBox;
 
         public Coin(Vector2 initalPosition)
         {
@@ -33,7 +33,10 @@ namespace GameSpace.GameObjects.ItemObjects
         public void Draw(SpriteBatch spritebatch)
         {
             Sprite.Draw(spritebatch, Position);
-            if (drawBox && Sprite.GetVisibleStatus()) Sprite.DrawBoundary(spritebatch, CollisionBox);
+            if (drawBox && Sprite.GetVisibleStatus())
+            {
+                Sprite.DrawBoundary(spritebatch, CollisionBox);
+            }
         }
 
         public void Update(GameTime gametime)
@@ -48,7 +51,11 @@ namespace GameSpace.GameObjects.ItemObjects
 
         public void HandleCollision(IGameObjects entity)
         {
-            if (!hasCollided) Trigger();
+            if (!hasCollided)
+            {
+                Trigger();
+            }
+
             hasCollided = true;
         }
         public void UpdatePosition(Vector2 location, GameTime gameTime)

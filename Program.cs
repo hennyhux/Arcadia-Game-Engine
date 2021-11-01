@@ -9,7 +9,9 @@ namespace FirstGame
         private static void Main()
         {
             using (GameRoot game = new GameRoot())
+            {
                 game.Run();
+            }
         }
     }
 }

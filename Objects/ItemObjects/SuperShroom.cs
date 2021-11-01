@@ -20,8 +20,8 @@ namespace GameSpace.GameObjects.ItemObjects
 
         public int ObjectID { get; set; }
 
-        private Boolean hasCollided;
-        private Boolean drawBox;
+        private bool hasCollided;
+        private bool drawBox;
         public Rectangle ExpandedCollisionBox { get; set; }
 
 
@@ -50,7 +50,11 @@ namespace GameSpace.GameObjects.ItemObjects
 
         public void Update(GameTime gametime)
         {
-            if (state is StateSuperShroomHidden) findMario();
+            if (state is StateSuperShroomHidden)
+            {
+                findMario();
+            }
+
             UpdatePosition(Position, gametime);
             Sprite.Update(gametime);
         }
@@ -94,8 +98,15 @@ namespace GameSpace.GameObjects.ItemObjects
             else if (!EntityManager.IsGoingToFall(this))
             {
                 Acceleration = new Vector2(0, 0);
-                if (state is StateSuperShroomRight) Velocity = new Vector2(85, 0);
-                if (state is StateSuperShroomLeft) Velocity = new Vector2(-85, 0);
+                if (state is StateSuperShroomRight)
+                {
+                    Velocity = new Vector2(85, 0);
+                }
+
+                if (state is StateSuperShroomLeft)
+                {
+                    Velocity = new Vector2(-85, 0);
+                }
             }
 
             Velocity += Acceleration * (float)gameTime.ElapsedGameTime.TotalSeconds;

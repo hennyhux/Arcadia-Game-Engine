@@ -1,10 +1,10 @@
 ﻿using GameSpace.Camera2D;
 using GameSpace.EntitiesManager;
+using GameSpace.EntityManaging;
 using GameSpace.Enums;
 using GameSpace.Interfaces;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
 
 namespace GameSpace.Abstracts
 {
@@ -17,17 +17,20 @@ namespace GameSpace.Abstracts
         public Rectangle CollisionBox { get; set; }
         public int ObjectID { get; set; }
 
-        internal Boolean hasCollidedOnTop;
-        internal Boolean drawBox;
+        internal bool hasCollidedOnTop;
+        internal bool drawBox;
         internal int countDown;
-        internal int direction;
+        public int direction { get; set; }
         internal IEnemyState state;
         public Rectangle ExpandedCollisionBox { get; set; }
 
         public virtual void Draw(SpriteBatch spritebatch)
         {
             state.Draw(spritebatch, Position);
-            if (drawBox) state.DrawBoundaries(spritebatch, CollisionBox);
+            if (drawBox)
+            {
+                state.DrawBoundaries(spritebatch, CollisionBox);
+            }
         }
         public virtual void Update(GameTime gametime)
         {
@@ -42,20 +45,42 @@ namespace GameSpace.Abstracts
 
         public virtual void UpdatePosition(Vector2 location, GameTime gameTime)
         {
+            if (ColliderMachine.GetInstance().IsGoingToFall(this))
+            {
+                Acceleration = new Vector2(0, 400);
+            }
 
+            else
+            {
+                Acceleration = new Vector2(0, 0);
+                if (direction == (int)eFacing.RIGHT)
+                {
+                    Velocity = new Vector2(85, 0);
+                }
+
+                if (direction == (int)eFacing.LEFT)
+                {
+                    Velocity = new Vector2(-85, 0);
+                }
+            }
+
+            Velocity += Acceleration * (float)gameTime.ElapsedGameTime.TotalSeconds;
+            Position += Velocity * (float)gameTime.ElapsedGameTime.TotalSeconds;
+
+            UpdateCollisionBox(Position);
         }
 
         internal virtual void UpdateCollisionBox(Vector2 location)
         {
-            CollisionBox = new Rectangle((int)location.X + state.StateSprite.Texture.Width / 4, (int)Position.Y,
+            CollisionBox = new Rectangle((int)location.X, (int)location.Y,
                 state.StateSprite.Texture.Width, state.StateSprite.Texture.Height * 2);
 
-            ExpandedCollisionBox = new Rectangle((int)location.X + state.StateSprite.Texture.Width / 4, (int)Position.Y,
-                state.StateSprite.Texture.Width, (state.StateSprite.Texture.Height * 2) + 3);
+            ExpandedCollisionBox = new Rectangle((int)location.X, (int)location.Y,
+                state.StateSprite.Texture.Width, (state.StateSprite.Texture.Height * 2) + 6);
         }
         internal bool IsInview()
         {
-            Camera copyCam = EntityManager.Camera;
+            Camera copyCam = FinderMachine.GetInstance().FindCameraCopy();
             return (Position.X > copyCam.Position.X && Position.X < copyCam.Position.X + 800);
         }
 
@@ -74,7 +99,7 @@ namespace GameSpace.Abstracts
             switch (entity.ObjectID)
             {
                 case (int)AvatarID.MARIO:
-                    CollisionWithMario(entity);
+                    ColliderMachine.GetInstance().HandleMarioCollision(this, entity);
                     break;
 
                 case (int)BlockID.USEDBLOCK:
@@ -86,7 +111,7 @@ namespace GameSpace.Abstracts
                 case (int)ItemID.BIGPIPE:
                 case (int)ItemID.MEDIUMPIPE:
                 case (int)ItemID.SMALLPIPE:
-                    CollisionWithBlock(entity);
+                    ColliderMachine.GetInstance().HandleBlockCollision(this, entity);
                     break;
 
                 case (int)ItemID.FIREBALL:
@@ -95,24 +120,6 @@ namespace GameSpace.Abstracts
             }
         }
 
-        internal virtual void CollisionWithBlock(IGameObjects block)
-        {
-            if (EntityManager.DetectCollisionDirection(this, block) == (int)CollisionDirection.LEFT)
-            {
-                direction = (int)eFacing.LEFT;
-            }
-
-            else if (EntityManager.DetectCollisionDirection(this, block) == (int)CollisionDirection.RIGHT)
-            {
-                direction = (int)eFacing.RIGHT;
-            }
-
-            else if (EntityManager.DetectCollisionDirection(this, block) == (int)CollisionDirection.UP)
-            {
-                PreformBounce();
-                HaltAllMotion();
-            }
-        }
 
         internal virtual void CollisionWithMario(IGameObjects mario)
         {
@@ -120,7 +127,10 @@ namespace GameSpace.Abstracts
             {
                 Trigger();
                 CollisionBox = new Rectangle(1, 1, 0, 0);
-                if (!hasCollidedOnTop) hasCollidedOnTop = true;
+                if (!hasCollidedOnTop)
+                {
+                    hasCollidedOnTop = true;
+                }
             }
 
             else
@@ -133,7 +143,10 @@ namespace GameSpace.Abstracts
         {
             Trigger();
             CollisionBox = new Rectangle(1, 1, 0, 0);
-            if (!hasCollidedOnTop) hasCollidedOnTop = true;
+            if (!hasCollidedOnTop)
+            {
+                hasCollidedOnTop = true;
+            }
         }
 
         internal void HaltAllMotion()

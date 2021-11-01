@@ -1,4 +1,5 @@
 ﻿using GameSpace.EntitiesManager;
+using GameSpace.EntityManaging;
 using GameSpace.Enums;
 using GameSpace.Factories;
 using GameSpace.GameObjects.EnemyObjects;
@@ -9,7 +10,6 @@ using GameSpace.States.EnemyStates;
 using GameSpace.States.MarioStates;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
 using System.Diagnostics;
 
 
@@ -18,8 +18,8 @@ namespace GameSpace.GameObjects.BlockObjects
     public class Mario : IGameObjects
     {
 
-        private Boolean hasCollided;
-        private Boolean drawBox;
+        private bool hasCollided;
+        private bool drawBox;
 
         public MarioSprite sprite { get; set; }
         public eFacing Facing { get; set; }
@@ -58,13 +58,22 @@ namespace GameSpace.GameObjects.BlockObjects
 
         public void Draw(SpriteBatch spritebatch)
         {
-            if (drawBox) sprite.DrawBoundary(spritebatch, CollisionBox);
+            if (drawBox)
+            {
+                sprite.DrawBoundary(spritebatch, CollisionBox);
+            }
+
             if (Facing == eFacing.LEFT)
+            {
                 //sprite.facingRight = 0;
                 sprite.facing = SpriteEffects.None;// swap if
+            }
             else
+            {
                 //sprite.facingRight = 0;
                 sprite.facing = SpriteEffects.FlipHorizontally;// swap if base facing direction of sprite is right
+            }
+
             sprite.Draw(spritebatch, Position);
         }
         public void Update(GameTime gametime)
@@ -432,19 +441,18 @@ namespace GameSpace.GameObjects.BlockObjects
 
             if (entity.ObjectID == (int)ItemID.BIGPIPE)
             {
-                IGameObjects[] NextPipe = EntityManager.GetWarpPipes().ToArray();
+                WarpMario();
 
-                Position = new Vector2(NextPipe[1].Position.X, NextPipe[1].Position.Y - 32);
             }
         }
 
-
-        private void WrapMario()
+        private void WarpMario()
         {
-            IGameObjects[] NextPipe = EntityManager.GetWarpPipes().ToArray();
+            IGameObjects[] NextPipe = FinderMachine.GetInstance().FindWarpPipes();
 
             Position = NextPipe[1].Position;
         }
+
         private void CollisionWithHiddenBlock(IGameObjects entity)
         {
             HiddenBlock hBlock = (HiddenBlock)entity;

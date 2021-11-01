@@ -17,8 +17,8 @@ namespace GameSpace.GameObjects.ItemObjects
         public Rectangle CollisionBox { get; set; }
         public int ObjectID { get; set; }
 
-        private readonly Boolean hasCollided;
-        private Boolean drawBox;
+        private readonly bool hasCollided;
+        private bool drawBox;
 
         public FireFlower(Vector2 initialPosition)
         {
@@ -33,7 +33,10 @@ namespace GameSpace.GameObjects.ItemObjects
         public void Draw(SpriteBatch spritebatch)
         {
             Sprite.Draw(spritebatch, Position);
-            if (drawBox && Sprite.GetVisibleStatus()) Sprite.DrawBoundary(spritebatch, CollisionBox);
+            if (drawBox && Sprite.GetVisibleStatus())
+            {
+                Sprite.DrawBoundary(spritebatch, CollisionBox);
+            }
         }
 
         public void Update(GameTime gametime)

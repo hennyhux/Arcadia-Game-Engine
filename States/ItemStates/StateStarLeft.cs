@@ -3,16 +3,15 @@ using GameSpace.GameObjects.ItemObjects;
 using GameSpace.Interfaces;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
 
 namespace GameSpace.States.ItemStates
 {
     public class StateStarLeft : IItemStates
     {
         public ISprite StateSprite { get; set; }
-        public Boolean CollidedWithMario { get; set; }
+        public bool CollidedWithMario { get; set; }
         public Star Star;
-        private Boolean bounce;
+        private bool bounce;
         private int countdown;
 
         public StateStarLeft(Star star)
@@ -26,7 +25,10 @@ namespace GameSpace.States.ItemStates
 
         public void Draw(SpriteBatch spritebatch, Vector2 location)
         {
-            if (bounce) ++countdown;
+            if (bounce)
+            {
+                ++countdown;
+            }
         }
 
         public void Trigger()

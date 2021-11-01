@@ -53,14 +53,8 @@ namespace GameSpace
             };
         }
 
-        public Dictionary<Keys, ICommand> GetCommand
-        {
-            get => keyboardCommands;
-        }
+        public Dictionary<Keys, ICommand> GetCommand => keyboardCommands;
 
-        public Dictionary<Buttons, ICommand> GetControllerCommands
-        {
-            get => controllerCommands;
-        }
+        public Dictionary<Buttons, ICommand> GetControllerCommands => controllerCommands;
     }
 }

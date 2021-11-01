@@ -107,10 +107,14 @@ namespace GameSpace.States.MarioStates
         public override void FaceLeftTransition()
         {
             if (Mario.Facing == eFacing.LEFT)
+            {
                 RunningTransition();
+            }
             // WalkingTransition(); bc no walking
             else
+            {
                 Mario.Facing = eFacing.LEFT;
+            }
         }
 
         public override void UpTransition()
@@ -133,10 +137,14 @@ namespace GameSpace.States.MarioStates
         {
 
             if (Mario.Facing == eFacing.RIGHT)
+            {
                 RunningTransition();
+            }
             // WalkingTransition();
             else
+            {
                 Mario.Facing = eFacing.RIGHT;
+            }
         }
 
         public override void SmallPowerUp()

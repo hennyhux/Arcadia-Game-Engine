@@ -1,4 +1,4 @@
-﻿using GameSpace.EntitiesManager;
+﻿using GameSpace.EntityManaging;
 
 namespace GameSpace.Commands
 {
@@ -11,7 +11,7 @@ namespace GameSpace.Commands
 
         public void Execute()
         {
-            EntityManager.ToggleCollisionBox();
+            TheaterMachine.GetInstance().ToggleCollisionBox();
         }
 
         public void Unexecute()

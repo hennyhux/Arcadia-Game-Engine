@@ -245,9 +245,9 @@
 	</Obstacles>
 	
 	<Obstacles>
-		<x>3232</x>
-		<y>388</y>
-		<enemy>GREENKOOPA</enemy>
+		<x>322</x>
+		<y>100</y>
+		<enemy>GOOMBA</enemy>
 	</Obstacles>
 	
 	<Obstacles>

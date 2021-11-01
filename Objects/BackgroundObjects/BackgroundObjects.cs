@@ -15,8 +15,8 @@ namespace GameSpace.Objects.BackgroundObjects
         public Rectangle CollisionBox { get; set; }
 
         public int ObjectID { get; set; }
-        private readonly Boolean hasCollidedOnTop;
-        private readonly Boolean drawBox;
+        private readonly bool hasCollidedOnTop;
+        private readonly bool drawBox;
         private readonly int countDown;
         private readonly int direction;
         public Rectangle ExpandedCollisionBox { get; set; }

@@ -22,9 +22,11 @@ namespace GameSpace.Camera2D
             _camera = camera;
             Parallax = parallax;
             //Sprites = new List<ISprite>();
-            Sprites = new List<BackgroundSprite>();
-            //Sprites.Add((BackgroundSprite)Sprite);
-            Sprites.Add(Sprite);
+            Sprites = new List<BackgroundSprite>
+            {
+                //Sprites.Add((BackgroundSprite)Sprite);
+                Sprite
+            };
         }
 
         public Vector2 Parallax { get; set; }
@@ -37,7 +39,9 @@ namespace GameSpace.Camera2D
             spriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.LinearWrap, null, null, null, _camera.GetViewMatrix(Parallax));
 
             foreach (BackgroundSprite sprite in Sprites)
+            {
                 sprite.Draw(spriteBatch, cameraLocation, Parallax);
+            }
             //sprite.Draw(spriteBatch, location);
 
             spriteBatch.End();

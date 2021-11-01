@@ -15,7 +15,11 @@ namespace GameSpace.Factories
         private Texture2D FireBall;
         #endregion
         private static readonly SpriteItemFactory instance = new SpriteItemFactory();
-        public static SpriteItemFactory GetInstance() => instance;
+        public static SpriteItemFactory GetInstance()
+        {
+            return instance;
+        }
+
         private SpriteItemFactory()
         {
 

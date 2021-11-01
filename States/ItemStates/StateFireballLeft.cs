@@ -3,16 +3,15 @@ using GameSpace.GameObjects.ItemObjects;
 using GameSpace.Interfaces;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
 
 namespace GameSpace.States.ItemStates
 {
     public class StateFireballLeft : IItemStates
     {
         public ISprite StateSprite { get; set; }
-        public Boolean CollidedWithMario { get; set; }
+        public bool CollidedWithMario { get; set; }
         public Fireball Fireball;
-        private Boolean bounce;
+        private bool bounce;
         public int countdown;
         public int timeAlive;
 
@@ -28,7 +27,11 @@ namespace GameSpace.States.ItemStates
 
         public void Draw(SpriteBatch spritebatch, Vector2 location)
         {
-            if (bounce) ++countdown;
+            if (bounce)
+            {
+                ++countdown;
+            }
+
             ++timeAlive;
         }
 
@@ -46,7 +49,10 @@ namespace GameSpace.States.ItemStates
                 countdown = 0;
             }
 
-            if (timeAlive == 75) Fireball.Trigger();
+            if (timeAlive == 75)
+            {
+                Fireball.Trigger();
+            }
         }
     }
 }

@@ -3,7 +3,6 @@ using GameSpace.GameObjects.ItemObjects;
 using GameSpace.Interfaces;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
 
 namespace GameSpace.States.ItemStates
 {
@@ -12,7 +11,7 @@ namespace GameSpace.States.ItemStates
         public ISprite StateSprite { get; set; }
         public Star Star;
         private int countdown;
-        private Boolean bounce;
+        private bool bounce;
 
         public StateStarRight(Star star)
         {
@@ -25,7 +24,10 @@ namespace GameSpace.States.ItemStates
         public void Draw(SpriteBatch spritebatch, Vector2 location)
         {
             //StateSprite.Draw(spritebatch, location);
-            if (bounce) ++countdown;
+            if (bounce)
+            {
+                ++countdown;
+            }
         }
 
         public void Trigger()

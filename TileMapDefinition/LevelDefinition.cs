@@ -1,5 +1,4 @@
 ﻿using GameSpace.Enums;
-using System;
 
 namespace GameSpace.TileMapDefinition
 {
@@ -12,7 +11,7 @@ namespace GameSpace.TileMapDefinition
             public int y;
             public BlockID block;
             public int blockRow;
-            public Boolean hiddenItem;
+            public bool hiddenItem;
             public ItemID item;
             public EnemyID enemy;
             public AvatarID avatar;

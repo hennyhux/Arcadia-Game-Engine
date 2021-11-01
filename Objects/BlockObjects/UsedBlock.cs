@@ -22,8 +22,8 @@ namespace GameSpace.GameObjects.BlockObjects
         public Rectangle CollisionBox { get; set; }
 
         public int ObjectID { get; set; }
-        private readonly Boolean hasCollided;
-        private Boolean drawBox;
+        private readonly bool hasCollided;
+        private bool drawBox;
 
         public UsedBlock(Vector2 initalPosition)
         {
@@ -38,7 +38,10 @@ namespace GameSpace.GameObjects.BlockObjects
         public void Draw(SpriteBatch spritebatch)
         {
             Sprite.Draw(spritebatch, Position); //this shouldnt be hardcoded anymore 
-            if (drawBox) Sprite.DrawBoundary(spritebatch, CollisionBox);
+            if (drawBox)
+            {
+                Sprite.DrawBoundary(spritebatch, CollisionBox);
+            }
         }
 
         public void Update(GameTime gametime)

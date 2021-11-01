@@ -35,11 +35,11 @@ namespace GameSpace
         private readonly List<IGameObjects> avatars;
         #endregion
 
-        public Mario GetMario { get => (Mario)EntityManager.FindItem((int)AvatarID.MARIO); }
-        public GraphicsDeviceManager Graphics { get => graphics; }
+
+        public GraphicsDeviceManager Graphics => graphics;
 
         //string xmlFileName = "./Level1.xml";
-        private readonly string xmlFileName = "../../../TileMapDefinition/Level1.xml";
+        private readonly string xmlFileName = "../../../TileMapDefinition/HenryTesting.xml";
         //string xmlFileName = "./Level1.xml";
         public GameRoot()
         {
@@ -93,6 +93,7 @@ namespace GameSpace
             camera = new Camera(GraphicsDevice.Viewport) { Limits = new Rectangle(0, 0, Loader.boundaryX, 480) };//Should be set to level's max X and Y
 
             EntityManager.AddCamera(camera);
+            CameraMachine.GetInstance().LoadCamera(camera);
 
             //Scrolling Background, Manually Setting
             layers = new List<Layer>
@@ -104,9 +105,14 @@ namespace GameSpace
 
         }
 
+        public Mario GetMario => (Mario)FinderMachine.GetInstance().FindItem((int)AvatarID.MARIO);
+
         protected override void Update(GameTime gameTime)
         {
-            foreach (IController controller in controllers) controller.Update();
+            foreach (IController controller in controllers)
+            {
+                controller.Update();
+            }
 
             TheaterMachine.GetInstance().Update(gameTime);
             base.Update(gameTime);
@@ -121,7 +127,9 @@ namespace GameSpace
 
             //Background/Scrolling Stuff
             foreach (Layer layer in layers)
+            {
                 layer.Draw(spriteBatch, camera.Position);
+            }
 
             //Normal Sprites
             spriteBatch.Begin(SpriteSortMode.Deferred, null, null, null, null, null, camera.GetViewMatrix(parallax));

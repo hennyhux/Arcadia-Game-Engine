@@ -14,10 +14,7 @@ namespace GameSpace.Camera2D
 
         public Vector2 Position
         {
-            get
-            {
-                return _position;
-            }
+            get => _position;
             set
             {
 
@@ -42,10 +39,7 @@ namespace GameSpace.Camera2D
 
         public Rectangle? Limits
         {
-            get
-            {
-                return _limits;
-            }
+            get => _limits;
             set
             {
                 if (value != null)

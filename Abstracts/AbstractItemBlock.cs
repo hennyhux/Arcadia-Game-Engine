@@ -24,7 +24,10 @@ namespace GameSpace.Abstracts
         public virtual void Draw(SpriteBatch spritebatch)
         {
             state.Draw(spritebatch, Position);
-            if (drawBox) state.DrawBounds(spritebatch, CollisionBox);
+            if (drawBox)
+            {
+                state.DrawBounds(spritebatch, CollisionBox);
+            }
         }
 
         public virtual void Update(GameTime gametime)
@@ -52,7 +55,10 @@ namespace GameSpace.Abstracts
         {
             if (EntityManager.DetectCollisionDirection(this, entity) == (int)CollisionDirection.DOWN)
             {
-                if (!revealedItem) Trigger();
+                if (!revealedItem)
+                {
+                    Trigger();
+                }
             }
         }
 

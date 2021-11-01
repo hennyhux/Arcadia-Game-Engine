@@ -3,14 +3,13 @@ using GameSpace.GameObjects.ItemObjects;
 using GameSpace.Interfaces;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
 
 namespace GameSpace.States.ItemStates
 {
     public class StateOneUpShroomLeft : IItemStates
     {
         public ISprite StateSprite { get; set; }
-        public Boolean CollidedWithMario { get; set; }
+        public bool CollidedWithMario { get; set; }
         public OneUpShroom OneUpShroom;
 
         public StateOneUpShroomLeft(OneUpShroom oneUpShroom)

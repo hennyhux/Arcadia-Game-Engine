@@ -3,14 +3,13 @@ using GameSpace.GameObjects.EnemyObjects;
 using GameSpace.Interfaces;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
 
 namespace GameSpace.States.EnemyStates
 {
     public class StateGreenKoopaDeadRight : IEnemyState
     {
         public ISprite StateSprite { get; set; }
-        public Boolean CollidedWithMario { get; set; }
+        public bool CollidedWithMario { get; set; }
         private readonly GreenKoopa GreenKoopa;
 
         public StateGreenKoopaDeadRight(GreenKoopa greenKoopa)

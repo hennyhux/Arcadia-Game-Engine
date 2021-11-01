@@ -19,8 +19,8 @@ namespace GameSpace.GameObjects.ExtraItemsObjects
         public Vector2 Location => throw new NotImplementedException();
 
         public int ObjectID { get; set; }
-        private Boolean hasCollided;
-        private Boolean drawBox;
+        private bool hasCollided;
+        private bool drawBox;
 
         public FlagPole(Vector2 initalPosition)
         {
@@ -35,7 +35,10 @@ namespace GameSpace.GameObjects.ExtraItemsObjects
         public void Draw(SpriteBatch spritebatch)
         {
             Sprite.Draw(spritebatch, Position); //this shouldnt be hardcoded anymore 
-            if (drawBox) Sprite.DrawBoundary(spritebatch, CollisionBox);
+            if (drawBox)
+            {
+                Sprite.DrawBoundary(spritebatch, CollisionBox);
+            }
         }
 
         public void Update(GameTime gametime)

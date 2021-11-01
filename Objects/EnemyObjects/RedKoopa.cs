@@ -36,8 +36,15 @@ namespace GameSpace.GameObjects.EnemyObjects
             else if (!EntityManager.IsGoingToFall(this))
             {
                 Acceleration = new Vector2(0, 0);
-                if (direction == (int)eFacing.RIGHT && !(state is StateRedKoopaDead)) Velocity = new Vector2(85, 0);
-                if (direction == (int)eFacing.LEFT && !(state is StateRedKoopaDead)) Velocity = new Vector2(-85, 0);
+                if (direction == (int)eFacing.RIGHT && !(state is StateRedKoopaDead))
+                {
+                    Velocity = new Vector2(85, 0);
+                }
+
+                if (direction == (int)eFacing.LEFT && !(state is StateRedKoopaDead))
+                {
+                    Velocity = new Vector2(-85, 0);
+                }
             }
 
             Velocity += Acceleration * (float)gameTime.ElapsedGameTime.TotalSeconds;
@@ -53,53 +60,6 @@ namespace GameSpace.GameObjects.EnemyObjects
         }
 
         #region Collision Handling
-        internal override void CollisionWithBlock(IGameObjects block)
-        {
-            //If alive and hits block stays alive
-            if (state is StateRedKoopaAliveLeft || state is StateRedKoopaAliveRight)
-            {
-                if (EntityManager.DetectCollisionDirection(this, block) == (int)CollisionDirection.LEFT)
-                {
-                    state = new StateRedKoopaAliveLeft(this);
-                    direction = (int)eFacing.LEFT;
-                }
-
-                if (EntityManager.DetectCollisionDirection(this, block) == (int)CollisionDirection.RIGHT)
-                {
-                    state = new StateRedKoopaAliveRight(this);
-                    direction = (int)eFacing.RIGHT;
-                }
-                else if (EntityManager.DetectCollisionDirection(this, block) == (int)CollisionDirection.UP)
-                {
-                    PreformBounce();
-                    HaltAllMotion();
-                }
-
-            }
-            //If Dead and hits block stays dead
-            else if (state is StateRedKoopaDeadLeft || state is StateRedKoopaDeadRight)
-            {
-                if (EntityManager.DetectCollisionDirection(this, block) == (int)CollisionDirection.LEFT)
-                {
-                    state = new StateRedKoopaDeadLeft(this);
-                    direction = (int)eFacing.LEFT;
-                }
-
-                if (EntityManager.DetectCollisionDirection(this, block) == (int)CollisionDirection.RIGHT)
-                {
-                    state = new StateRedKoopaDeadRight(this);
-                    direction = (int)eFacing.RIGHT;
-                }
-
-                else if (EntityManager.DetectCollisionDirection(this, block) == (int)CollisionDirection.DOWN)
-                {
-
-                    HaltAllMotion();
-                }
-
-            }
-        }
-
         public IEnemyState GetCurrentState()
         {
             return state;

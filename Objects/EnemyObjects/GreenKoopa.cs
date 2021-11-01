@@ -1,5 +1,6 @@
 ﻿using GameSpace.Abstracts;
 using GameSpace.EntitiesManager;
+using GameSpace.EntityManaging;
 using GameSpace.Enums;
 using GameSpace.Factories;
 using GameSpace.Interfaces;
@@ -22,25 +23,41 @@ namespace GameSpace.GameObjects.EnemyObjects
 
         public override void UpdatePosition(Vector2 location, GameTime gameTime)
         {
-            if (EntityManager.IsGoingToFall(this) && !(state is StateGreenKoopaShelled))
+            if (!(state is StateGreenKoopaShelled) && ColliderMachine.GetInstance().IsGoingToFall(this))
             {
 
                 Velocity = new Vector2(0, Velocity.Y);
                 Acceleration = new Vector2(0, 400);
             }
 
-            else if (!EntityManager.IsGoingToFall(this))
+            else
             {
                 Acceleration = new Vector2(0, 0);
-                if (direction == (int)eFacing.RIGHT && !(state is StateGreenKoopaShelled)) Velocity = new Vector2(85, 0);
-                if (direction == (int)eFacing.LEFT && !(state is StateGreenKoopaShelled)) Velocity = new Vector2(-85, 0);
+                if (direction == (int)eFacing.RIGHT && !(state is StateGreenKoopaShelled))
+                {
+                    Velocity = new Vector2(85, 0);
+                }
+
+                if (direction == (int)eFacing.LEFT && !(state is StateGreenKoopaShelled))
+                {
+                    Velocity = new Vector2(-85, 0);
+                }
             }
 
-            if (state is StateGreenKoopaShelled) HaltAllMotion();
+            if (state is StateGreenKoopaShelled)
+            {
+                HaltAllMotion();
+            }
+
             Velocity += Acceleration * (float)gameTime.ElapsedGameTime.TotalSeconds;
             Position += Velocity * (float)gameTime.ElapsedGameTime.TotalSeconds;
 
             UpdateCollisionBox(Position);
+        }
+
+        public override void Trigger()
+        {
+            state = new StateGreenKoopaShelled();
         }
 
         internal override void UpdateCollisionBox(Vector2 location)
@@ -50,21 +67,6 @@ namespace GameSpace.GameObjects.EnemyObjects
 
             ExpandedCollisionBox = new Rectangle((int)location.X + state.StateSprite.Texture.Width / 4, (int)Position.Y,
                 state.StateSprite.Texture.Width / 2, (state.StateSprite.Texture.Height * 2) + 4); // MAGIC NUMBERS 
-        }
-
-        internal override void CollisionWithBlock(IGameObjects block)
-        {
-            if (EntityManager.DetectCollisionDirection(this, block) == (int)CollisionDirection.LEFT)
-            {
-                state = new StateGreenKoopaAliveFaceLeft();
-                direction = (int)eFacing.LEFT;
-            }
-
-            if (EntityManager.DetectCollisionDirection(this, block) == (int)CollisionDirection.RIGHT)
-            {
-                state = new StateGreenKoopaAliveFaceRight();
-                direction = (int)eFacing.RIGHT;
-            }
         }
 
         internal override void CollisionWithFireball(IGameObjects fireball)
@@ -77,8 +79,16 @@ namespace GameSpace.GameObjects.EnemyObjects
             switch (EntityManager.DetectCollisionDirection(this, mario))
             {
                 case (int)CollisionDirection.UP:
-                    if (!(state is StateGreenKoopaShelled)) state = new StateGreenKoopaShelled();
-                    if (state is StateGreenKoopaShelled) state = new StateGreenKoopaDeadMoving();
+                    if (!(state is StateGreenKoopaShelled))
+                    {
+                        state = new StateGreenKoopaShelled();
+                    }
+
+                    if (state is StateGreenKoopaShelled)
+                    {
+                        state = new StateGreenKoopaDeadMoving();
+                    }
+
                     break;
             }
         }

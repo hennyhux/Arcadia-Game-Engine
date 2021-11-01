@@ -23,8 +23,8 @@ namespace GameSpace.GameObjects.ItemObjects
         public Rectangle CollisionBox { get; set; }
         public int ObjectID { get; set; }
 
-        private Boolean hasCollided;
-        private Boolean drawBox;
+        private bool hasCollided;
+        private bool drawBox;
         public Mario Mario;
 
         public Fireball(Mario mario)
@@ -123,8 +123,16 @@ namespace GameSpace.GameObjects.ItemObjects
             if (EntityManager.DetectCollisionDirection(this, entity) == (int)CollisionDirection.DOWN)
             {
                 Position = new Vector2(Position.X, Position.Y - 10);
-                if (state is StateFireballRight) Velocity = new Vector2(45, 0);
-                if (state is StateFireballLeft) Velocity = new Vector2(-45, 0);
+                if (state is StateFireballRight)
+                {
+                    Velocity = new Vector2(45, 0);
+                }
+
+                if (state is StateFireballLeft)
+                {
+                    Velocity = new Vector2(-45, 0);
+                }
+
                 Acceleration = new Vector2(0, -200);
                 state.Trigger();
             }
@@ -139,7 +147,10 @@ namespace GameSpace.GameObjects.ItemObjects
 
         private void UpdateCollisionBox(Vector2 location)
         {
-            if (!hasCollided) CollisionBox = new Rectangle((int)Position.X + 5, (int)Position.Y, (Sprite.Texture.Width * 2 / 4) - 10, Sprite.Texture.Height * 2 + 5);
+            if (!hasCollided)
+            {
+                CollisionBox = new Rectangle((int)Position.X + 5, (int)Position.Y, (Sprite.Texture.Width * 2 / 4) - 10, Sprite.Texture.Height * 2 + 5);
+            }
         }
     }
 }

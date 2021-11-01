@@ -1,4 +1,5 @@
-﻿using GameSpace.Interfaces;
+﻿using GameSpace.Camera2D;
+using GameSpace.Interfaces;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 
@@ -13,5 +14,6 @@ namespace GameSpace.Abstracts
         internal static List<IGameObjects> listOfWarpPipes = new List<IGameObjects>();
         internal static IGameObjects mario;
         internal static Vector2 marioCurrentLocation;
+        internal static Camera cameraCopy;
     }
 }

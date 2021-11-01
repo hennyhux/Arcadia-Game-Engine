@@ -1,7 +1,6 @@
 ﻿using GameSpace.Interfaces;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
 
 namespace GameSpace.Abstracts
 {
@@ -13,11 +12,14 @@ namespace GameSpace.Abstracts
         public virtual Vector2 Acceleration { get; set; }
         public virtual Rectangle CollisionBox { get; set; }
         public virtual int ObjectID { get; set; }
-        internal Boolean drawBox;
+        internal bool drawBox;
         public virtual void Draw(SpriteBatch spritebatch)
         {
             Sprite.Draw(spritebatch, Position); //this shouldnt be hardcoded anymore 
-            if (drawBox) Sprite.DrawBoundary(spritebatch, CollisionBox);
+            if (drawBox)
+            {
+                Sprite.DrawBoundary(spritebatch, CollisionBox);
+            }
         }
         public abstract void HandleCollision(IGameObjects entity);
         public virtual bool IsCurrentlyColliding()

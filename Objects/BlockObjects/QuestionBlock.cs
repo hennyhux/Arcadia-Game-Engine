@@ -1,6 +1,6 @@
 ﻿using GameSpace.Abstracts;
 using GameSpace.Animations;
-using GameSpace.EntitiesManager;
+using GameSpace.EntityManaging;
 using GameSpace.Enums;
 using GameSpace.Factories;
 using GameSpace.States.BlockStates;
@@ -23,7 +23,7 @@ namespace GameSpace.GameObjects.BlockObjects
         public override void Trigger()
         {
             state = new StateQuestionBlockBump(this);
-            EntityManager.AddAnimation(new CoinExitingBlockAnimation(Position, internalGametime));
+            AnimationMachine.GetInstance().AddAnimation(new CoinExitingBlockAnimation(Position, internalGametime));
             revealedItem = true;
         }
     }

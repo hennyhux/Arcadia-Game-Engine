@@ -34,7 +34,11 @@ namespace GameSpace.Animations
         public void Update(GameTime gametime)
         {
             coin.UpdatePosition(new Vector2(initialLocation.X + 6, (initialLocation.Y - coin.Sprite.Texture.Height) - offset), gametime);
-            if (offset < celling) offset += 4;
+            if (offset < celling)
+            {
+                offset += 4;
+            }
+
             if (!revealed && offset >= celling)
             {
                 coin.Sprite.SetVisible();

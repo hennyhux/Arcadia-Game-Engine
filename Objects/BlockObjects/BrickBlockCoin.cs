@@ -1,5 +1,5 @@
 ﻿using GameSpace.Animations;
-using GameSpace.EntitiesManager;
+using GameSpace.EntityManaging;
 using GameSpace.Enums;
 using GameSpace.Factories;
 using GameSpace.Interfaces;
@@ -39,13 +39,23 @@ namespace GameSpace.Objects.BlockObjects
         public void Draw(SpriteBatch spritebatch)
         {
             state.Draw(spritebatch, Position);
-            if (drawBox) state.FindSprite().DrawBoundary(spritebatch, CollisionBox);
-            if (internalSpritebatch == null) internalSpritebatch = spritebatch;
+            if (drawBox)
+            {
+                state.FindSprite().DrawBoundary(spritebatch, CollisionBox);
+            }
+
+            if (internalSpritebatch == null)
+            {
+                internalSpritebatch = spritebatch;
+            }
         }
         public void Update(GameTime gametime)
         {
             state.Update(gametime);
-            if (internalGameTime == null) internalGameTime = gametime;
+            if (internalGameTime == null)
+            {
+                internalGameTime = gametime;
+            }
         }
 
         public void HandleCollision(IGameObjects entity)
@@ -61,7 +71,7 @@ namespace GameSpace.Objects.BlockObjects
         public void Trigger()
         {
             state.SetSprite(new BumpAnimation(Sprite.Texture, (int)Position.X, (int)Position.Y, 24));
-            EntityManager.AddAnimation(new CoinExitingBlockAnimation(Position, internalGameTime));
+            AnimationMachine.GetInstance().AddAnimation(new CoinExitingBlockAnimation(Position, internalGameTime));
         }
 
         public bool IsCurrentlyColliding()

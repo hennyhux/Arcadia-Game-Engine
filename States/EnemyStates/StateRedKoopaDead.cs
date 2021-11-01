@@ -3,7 +3,6 @@ using GameSpace.GameObjects.EnemyObjects;
 using GameSpace.Interfaces;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
 
 
 namespace GameSpace.States.EnemyStates
@@ -11,7 +10,7 @@ namespace GameSpace.States.EnemyStates
     public class StateRedKoopaDead : IEnemyState
     {
         public ISprite StateSprite { get; set; }
-        public Boolean CollidedWithMario { get; set; }
+        public bool CollidedWithMario { get; set; }
         private int countDown;
         private readonly RedKoopa RedKoopa;
 
@@ -30,13 +29,19 @@ namespace GameSpace.States.EnemyStates
         {
             Vector2 copy = new Vector2(location.X, location.Y + 20);
             StateSprite.Draw(spritebatch, copy);
-            if (CollidedWithMario) countDown++;
+            if (CollidedWithMario)
+            {
+                countDown++;
+            }
         }
 
         public void Update(GameTime gametime)
         {
             StateSprite.Update(gametime);
-            if (countDown == 225) StateSprite = SpriteEnemyFactory.GetInstance().CreateRedKoopaShellAndLegsSprite();
+            if (countDown == 225)
+            {
+                StateSprite = SpriteEnemyFactory.GetInstance().CreateRedKoopaShellAndLegsSprite();
+            }
 
             if (countDown == 550)
             {

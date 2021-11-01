@@ -1,8 +1,6 @@
 ﻿using GameSpace.Abstracts;
-using GameSpace.EntitiesManager;
 using GameSpace.Enums;
 using GameSpace.Factories;
-using GameSpace.States.EnemyStates;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -14,16 +12,11 @@ namespace GameSpace.GameObjects.EnemyObjects
         {
             ObjectID = (int)EnemyID.GOOMBA;
             direction = (int)eFacing.LEFT;
-            Velocity = new Vector2(0, 0);
-            Acceleration = new Vector2(0, 0);
-
             Sprite = SpriteEnemyFactory.GetInstance().CreateGoombaSprite();
             Position = initalPosition;
-            CollisionBox = new Rectangle((int)(Position.X + Sprite.Texture.Width / 32), (int)Position.Y, Sprite.Texture.Width, Sprite.Texture.Height * 2);
-            ExpandedCollisionBox = new Rectangle((int)(Position.X + Sprite.Texture.Width / 32), (int)Position.Y, Sprite.Texture.Width, Sprite.Texture.Height * 3);
-
-            drawBox = false;
             state = new StateGoombaAlive();
+            UpdateCollisionBox(Position);
+            drawBox = false;
         }
 
         public override void Draw(SpriteBatch spritebatch)
@@ -34,14 +27,29 @@ namespace GameSpace.GameObjects.EnemyObjects
                 state.DrawBoundaries(spritebatch, CollisionBox);
                 state.DrawBoundaries(spritebatch, ExpandedCollisionBox);
             }
-            if (hasCollidedOnTop) countDown++;
+            if (hasCollidedOnTop)
+            {
+                countDown++;
+            }
+
         }
 
         public override void Update(GameTime gametime)
         {
-            state.Update(gametime);
-            if (!hasCollidedOnTop && IsInview()) UpdatePosition(Position, gametime);
-            if (countDown == 90) state.StateSprite.SetVisible();
+
+            if (state is StateGoombaAlive)
+            {
+                state.Update(gametime);
+                if (!hasCollidedOnTop && IsInview())
+                {
+                    UpdatePosition(Position, gametime);
+                }
+
+                if (countDown == 90)
+                {
+                    state.StateSprite.SetVisible();
+                }
+            }
         }
 
         public override void Trigger()
@@ -49,28 +57,22 @@ namespace GameSpace.GameObjects.EnemyObjects
             state = new StateGoombaDead();
             countDown = 0;
         }
-
-        public override void UpdatePosition(Vector2 location, GameTime gameTime)
+    }
+    public class StateGoombaDead : AbstractEnemyState
+    {
+        public StateGoombaDead()
         {
+            StateSprite = SpriteEnemyFactory.GetInstance().CreateDeadGoombaSprite();
+        }
+    }
 
-            if (EntityManager.IsGoingToFall(this))
-            {
-                //Velocity = new Vector2(0, Velocity.Y);
-                Acceleration = new Vector2(0, 400);
-            }
-
-            else if (!EntityManager.IsGoingToFall(this))
-            {
-                Acceleration = new Vector2(0, 0);
-                if (direction == (int)eFacing.RIGHT) Velocity = new Vector2(85, 0);
-                if (direction == (int)eFacing.LEFT) Velocity = new Vector2(-85, 0);
-            }
-
-            Velocity += Acceleration * (float)gameTime.ElapsedGameTime.TotalSeconds;
-            Position += Velocity * (float)gameTime.ElapsedGameTime.TotalSeconds;
-
-            UpdateCollisionBox(Position);
+    public class StateGoombaAlive : AbstractEnemyState
+    {
+        public StateGoombaAlive()
+        {
+            StateSprite = SpriteEnemyFactory.GetInstance().CreateGoombaSprite();
         }
     }
 }
+
 

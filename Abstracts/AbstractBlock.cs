@@ -1,7 +1,6 @@
 ﻿using GameSpace.Interfaces;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
 
 namespace GameSpace.Abstracts
 {
@@ -15,8 +14,8 @@ namespace GameSpace.Abstracts
 
         public int ObjectID { get; set; }
 
-        internal Boolean drawBox;
-        internal Boolean hasCollided;
+        internal bool drawBox;
+        internal bool hasCollided;
         internal IBlockStates state;
 
 
@@ -28,7 +27,10 @@ namespace GameSpace.Abstracts
         public virtual void Draw(SpriteBatch spritebatch)
         {
             state.Draw(spritebatch, Position); //this shouldnt be hardcoded anymore 
-            if (drawBox) Sprite.DrawBoundary(spritebatch, CollisionBox);
+            if (drawBox)
+            {
+                Sprite.DrawBoundary(spritebatch, CollisionBox);
+            }
         }
 
         public virtual void Update(GameTime gametime)

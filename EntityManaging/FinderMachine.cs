@@ -1,8 +1,10 @@
-﻿using GameSpace.Interfaces;
+﻿using GameSpace.Abstracts;
+using GameSpace.Camera2D;
+using GameSpace.Interfaces;
 
 namespace GameSpace.EntityManaging
 {
-    public class FinderMachine
+    public class FinderMachine : AbstractMachine
     {
         private static readonly FinderMachine instance = new FinderMachine();
         public static FinderMachine GetInstance()
@@ -17,7 +19,7 @@ namespace GameSpace.EntityManaging
 
         public IGameObjects FindItem(int ItemID)
         {
-            foreach (IGameObjects entity in TheaterMachine.GetInstance().)
+            foreach (IGameObjects entity in gameEntityList)
             {
                 if (entity.ObjectID == ItemID)
                 {
@@ -26,5 +28,16 @@ namespace GameSpace.EntityManaging
             }
             return null; //lets try not to return null
         }
+
+        public IGameObjects[] FindWarpPipes()
+        {
+            return listOfWarpPipes.ToArray();
+        }
+
+        public Camera FindCameraCopy()
+        {
+            return cameraCopy;
+        }
+
     }
 }

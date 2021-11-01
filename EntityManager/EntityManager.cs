@@ -7,7 +7,6 @@ using GameSpace.Interfaces;
 using GameSpace.States.MarioStates;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -16,7 +15,7 @@ namespace GameSpace.EntitiesManager
     //ROADMAP: convert this static class into four other classes (singleton pattern) for sprint 4 
     public static class EntityManager
     {
-        private static List<IGameObjects> gameEntities = new List<IGameObjects>();
+        private static readonly List<IGameObjects> gameEntities = new List<IGameObjects>();
         private static readonly List<IGameObjects> prunedList = new List<IGameObjects>();
         private static List<IGameObjects> copyPrunedList = new List<IGameObjects>();
         private static readonly List<IObjectAnimation> animationList = new List<IObjectAnimation>();
@@ -34,24 +33,7 @@ namespace GameSpace.EntitiesManager
             gameEntities.Add(gameObject);
         }
 
-        public static void LoadList(List<IGameObjects> objectList)
-        {
-            gameEntities = objectList;
 
-            foreach (IGameObjects entity in gameEntities)
-            {
-                if (entity.ObjectID == (int)ItemID.BIGPIPE)
-                {
-                    listOfWarpPipes.Add(entity);
-                }
-            }
-
-        }
-
-        public static List<IGameObjects> GetEntityList()
-        {
-            return gameEntities;
-        }
 
         public static List<IGameObjects> GetWarpPipes()
         {
@@ -110,9 +92,9 @@ namespace GameSpace.EntitiesManager
             return null; //lets try not to return null
         }
 
-        public static Boolean IsGoingToFall(Goomba enemy)
+        public static bool IsGoingToFall(Goomba enemy)
         {
-            Boolean gonnaFall = true;
+            bool gonnaFall = true;
             foreach (IGameObjects entity in copyPrunedList)
             {
                 if (enemy.ExpandedCollisionBox.Intersects(entity.CollisionBox) && entity.ObjectID != enemy.ObjectID && entity.ObjectID != (int)AvatarID.MARIO)
@@ -124,9 +106,9 @@ namespace GameSpace.EntitiesManager
             return gonnaFall;
         }
 
-        public static Boolean IsGoingToFall(RedKoopa enemy)
+        public static bool IsGoingToFall(RedKoopa enemy)
         {
-            Boolean gonnaFall = true;
+            bool gonnaFall = true;
             foreach (IGameObjects entity in copyPrunedList)
             {
                 if (enemy.ExpandedCollisionBox.Intersects(entity.CollisionBox) && entity.ObjectID != enemy.ObjectID && entity.ObjectID != (int)AvatarID.MARIO)
@@ -138,9 +120,9 @@ namespace GameSpace.EntitiesManager
             return gonnaFall;
         }
 
-        public static Boolean IsGoingToFall(GreenKoopa enemy)
+        public static bool IsGoingToFall(GreenKoopa enemy)
         {
-            Boolean gonnaFall = true;
+            bool gonnaFall = true;
             foreach (IGameObjects entity in copyPrunedList)
             {
                 if (enemy.ExpandedCollisionBox.Intersects(entity.CollisionBox) && entity.ObjectID != enemy.ObjectID && entity.ObjectID != (int)AvatarID.MARIO)
@@ -152,9 +134,9 @@ namespace GameSpace.EntitiesManager
             return gonnaFall;
         }
 
-        public static Boolean IsGoingToFall(Mario player)
+        public static bool IsGoingToFall(Mario player)
         {
-            Boolean gonnaFall = true;
+            bool gonnaFall = true;
             foreach (IGameObjects entity in copyPrunedList)
             {
                 if (player.ExpandedCollisionBox.Intersects(entity.CollisionBox) && entity.ObjectID == (int)AvatarID.MARIO)
@@ -166,9 +148,9 @@ namespace GameSpace.EntitiesManager
             return gonnaFall;
         }
 
-        public static Boolean IsGoingToFall(IGameObjects fallingObject)
+        public static bool IsGoingToFall(IGameObjects fallingObject)
         {
-            Boolean gonnaFall = true;
+            bool gonnaFall = true;
 
 
             if (fallingObject is OneUpShroom)
@@ -251,10 +233,6 @@ namespace GameSpace.EntitiesManager
         #endregion
 
         #region AnimationAndCameraManager
-        public static void AddAnimation(IObjectAnimation animation)
-        {
-            animationList.Add(animation);
-        }
 
         public static void AddCamera(Camera camera)
         {
@@ -279,6 +257,7 @@ namespace GameSpace.EntitiesManager
             }
 
             for (int i = 0; i < prunedList.Count; i++)
+            {
                 for (int j = i + 1; j < prunedList.Count; j++)
                 {
                     if (IntersectAABB(prunedList[i], prunedList[j]))
@@ -287,6 +266,7 @@ namespace GameSpace.EntitiesManager
                         prunedList[j].HandleCollision(prunedList[i]);
                     }
                 }
+            }
             // Debug.WriteLine("SIZE OF PRUNED LIST " + prunedList.Count);
             //Debug.WriteLine("SIZE OF OG LIST " + gameEntities.Count);
             copyPrunedList = prunedList.ToList();

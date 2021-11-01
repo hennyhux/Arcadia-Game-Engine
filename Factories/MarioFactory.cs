@@ -16,7 +16,11 @@ namespace GameSpace.Factories
         //private int currentState = SmallMarioStanding;
 
         //private static SpriteBlockFactory instance = new SpriteBlockFactory();
-        public static MarioFactory GetInstance() => instance;
+        public static MarioFactory GetInstance()
+        {
+            return instance;
+        }
+
         //private Sprite
         //He used protected Dictonary<int, Sprite> sprites;
         // public abstract Sprite CreateSprite(int type);
@@ -89,57 +93,88 @@ namespace GameSpace.Factories
             Debug.WriteLine("MSTypeFactory(90) currentPowerUpState, {0}", currentPowerUpState);
             int type = (int)eMarioSprite.SmallMarioStanding;
             if (currentActionState is GameSpace.States.MarioStates.DeadMarioState)
+            {
                 //currentState = (int)eMarioSprite.SmallMarioStanding;
                 type = (int)eMarioSprite.DeadMario;
-
+            }
 
             if (currentActionState is GameSpace.States.MarioStates.SmallMarioStandingState)
+            {
                 //currentState = (int)eMarioSprite.SmallMarioStanding;
                 type = (int)eMarioSprite.SmallMarioStanding;
+            }
             else
              if (currentActionState is GameSpace.States.MarioStates.SmallMarioWalkingState)
+            {
                 type = (int)eMarioSprite.SmallMarioWalking;
+            }
             else
              if (currentActionState is GameSpace.States.MarioStates.SmallMarioRunningState)
+            {
                 type = (int)eMarioSprite.SmallMarioRunning;
+            }
             else
              if (currentActionState is GameSpace.States.MarioStates.SmallMarioJumpingState)
+            {
                 type = (int)eMarioSprite.SmallMarioJumping;
+            }
             else
              if (currentActionState is GameSpace.States.MarioStates.SmallMarioFallingState)
+            {
                 type = (int)eMarioSprite.SmallMarioFalling;
+            }
 
             //BIG MARIO
             if (currentActionState is GameSpace.States.MarioStates.BigMarioStandingState)
+            {
                 type = (int)eMarioSprite.BigMarioStanding;
+            }
             else
             if (currentActionState is GameSpace.States.MarioStates.BigMarioCrouchingState)
+            {
                 type = (int)eMarioSprite.BigMarioCrouching;
+            }
             else
             if (currentActionState is GameSpace.States.MarioStates.BigMarioRunningState)
+            {
                 type = (int)eMarioSprite.BigMarioRunning;
+            }
             else
             if (currentActionState is GameSpace.States.MarioStates.BigMarioJumpingState)
+            {
                 type = (int)eMarioSprite.BigMarioJumping;
+            }
             else
             if (currentActionState is GameSpace.States.MarioStates.BigMarioFallingState)
+            {
                 type = (int)eMarioSprite.BigMarioFalling;
+            }
 
             //FIRE MARIO
             if (currentActionState is GameSpace.States.MarioStates.FireMarioStandingState)
+            {
                 type = (int)eMarioSprite.FireMarioStanding;
+            }
             else
             if (currentActionState is GameSpace.States.MarioStates.FireMarioCrouchingState)
+            {
                 type = (int)eMarioSprite.FireMarioCrouching;
+            }
             else
             if (currentActionState is GameSpace.States.MarioStates.FireMarioRunningState)
+            {
                 type = (int)eMarioSprite.FireMarioRunning;
+            }
             else
             if (currentActionState is GameSpace.States.MarioStates.FireMarioJumpingState)
+            {
                 type = (int)eMarioSprite.FireMarioJumping;
+            }
             else
             if (currentActionState is GameSpace.States.MarioStates.FireMarioFallingState)
+            {
                 type = (int)eMarioSprite.FireMarioFalling;
+            }
 
             //Debug.WriteLine("GetType(152)Type: {2}, AcurrentState: {0}, PowerUp, {1}, ", currentActionState, currentPowerUpState, type);
             return type;

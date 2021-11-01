@@ -100,7 +100,9 @@ namespace GameSpace.States.MarioStates
         public override void FaceLeftTransition()
         {
             if (Mario.Facing == eFacing.LEFT)//we are walking, Want to go left, if we face left run left
+            {
                 RunningTransition();//then run?
+            }
             else
             {
                 //Mario.Facing = eFacing.Left;//we walking, want to go left, if we face right we idle
@@ -111,7 +113,9 @@ namespace GameSpace.States.MarioStates
         public override void FaceRightTransition()
         {
             if (Mario.Facing == eFacing.RIGHT)
+            {
                 RunningTransition();
+            }
             else
             {
                 //Mario.Facing = eFacing.Right; 

@@ -51,9 +51,15 @@ namespace GameSpace.Sprites
                         currentFrame = 0;
                     }
 
-                    if (currentFramePoint.X < totalFrames) currentFramePoint.X++;
+                    if (currentFramePoint.X < totalFrames)
+                    {
+                        currentFramePoint.X++;
+                    }
 
-                    if (currentFramePoint.X >= totalFrames) currentFramePoint.X = startingPointX;
+                    if (currentFramePoint.X >= totalFrames)
+                    {
+                        currentFramePoint.X = startingPointX;
+                    }
                 }
             }
         }

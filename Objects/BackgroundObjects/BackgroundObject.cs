@@ -1,7 +1,6 @@
 ﻿using GameSpace.Interfaces;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
 
 namespace GameSpace.Objects.BackgroundObjects
 {
@@ -14,8 +13,8 @@ namespace GameSpace.Objects.BackgroundObjects
         public Rectangle CollisionBox { get; set; }
 
         public int ObjectID { get; set; }
-        private readonly Boolean hasCollidedOnTop;
-        private readonly Boolean drawBox;
+        private readonly bool hasCollidedOnTop;
+        private readonly bool drawBox;
         private readonly int countDown;
         private readonly int direction;
 

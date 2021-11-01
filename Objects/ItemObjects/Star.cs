@@ -21,8 +21,8 @@ namespace GameSpace.GameObjects.ItemObjects
         public Rectangle CollisionBox { get; set; }
         public int ObjectID { get; set; }
 
-        private Boolean hasCollided;
-        private Boolean drawBox;
+        private bool hasCollided;
+        private bool drawBox;
 
 
         public Star(Vector2 initialPosition)
@@ -48,7 +48,11 @@ namespace GameSpace.GameObjects.ItemObjects
 
         public void Update(GameTime gametime)
         {
-            if (state is StateStarHidden) findMario();
+            if (state is StateStarHidden)
+            {
+                findMario();
+            }
+
             state.Update(gametime);
             UpdatePosition(Position, gametime);
             Sprite.Update(gametime);
@@ -117,8 +121,16 @@ namespace GameSpace.GameObjects.ItemObjects
             else if (EntityManager.DetectCollisionDirection(this, entity) == (int)CollisionDirection.DOWN)
             {
                 Position = new Vector2(Position.X, Position.Y - 10);
-                if (state is StateStarRight) Velocity = new Vector2(45, 0);
-                if (state is StateStarLeft) Velocity = new Vector2(-45, 0);
+                if (state is StateStarRight)
+                {
+                    Velocity = new Vector2(45, 0);
+                }
+
+                if (state is StateStarLeft)
+                {
+                    Velocity = new Vector2(-45, 0);
+                }
+
                 Acceleration = new Vector2(0, -400);
                 state.Trigger();
             }

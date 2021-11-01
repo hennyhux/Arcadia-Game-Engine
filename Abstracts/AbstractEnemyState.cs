@@ -20,9 +20,9 @@ namespace GameSpace.Abstracts
             StateSprite.DrawBoundary(spritebatch, destination);
         }
 
-        public void Trigger()
+        public virtual void Trigger()
         {
-            throw new NotImplementedException();
+
         }
 
         public virtual void Update(GameTime gametime)
