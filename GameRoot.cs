@@ -81,7 +81,7 @@ namespace GameSpace
 
             #region Loading Lists
             //objects = Loader.Load(xmlFileName);
-            objects = Loader.LoadEverything(xmlFileName);
+            objects = Loader.Load(xmlFileName);
             soundEffects = AudioFactory.GetInstance().loadList();
             #endregion
 

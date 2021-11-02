@@ -34,7 +34,15 @@ namespace GameSpace.Factories
         {
             return new GameObjects.BlockObjects.BrickBlocks(location);
         }
+        public IGameObjects CreateCoinBrickBlock(Vector2 location)
+        {
+            return new BrickBlockWithItem(location, ObjectFactory.GetInstance().CreateCoinObject(location));
+        }
 
+        public IGameObjects CreateFireBrickBlock(Vector2 location)
+        {
+            return new BrickBlockWithItem(location, ObjectFactory.GetInstance().CreateFireFlowerObject(location));
+        }
         public IGameObjects CreateStairBlockObject(Vector2 location)
         {
             return new StairBlock(location);
@@ -60,11 +68,6 @@ namespace GameSpace.Factories
             return new UsedBlock(location);
         }
 
-        public IGameObjects CreateCoinBrickBlock(Vector2 location)
-        {
-            return new BrickBlockWithItem(location, ObjectFactory.GetInstance().CreateCoinObject(location));
-        }
-
         public IGameObjects CreateStarBrickBlock(Vector2 location)
         {
             return new BrickBlockStar(location);
@@ -73,11 +76,6 @@ namespace GameSpace.Factories
         public IGameObjects CreateSuperShroomBrickBlock(Vector2 location)
         {
             return new BrickBlockSuperShroom(location);
-        }
-
-        public IGameObjects CreateFireBrickBlock(Vector2 location)
-        {
-            return new BrickBlockFire(location);
         }
 
         public IGameObjects CreateOneUpShroomBrickBlock(Vector2 location)

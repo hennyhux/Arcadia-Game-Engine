@@ -19,8 +19,16 @@
 		<y>100</y>
 		<block>BRICKBLOCK</block>
 		<blockRow>1</blockRow>
-		<item>NOITEM</item>
 	</Obstacles>
+
+	<Obstacles>
+		<x>200</x>
+		<y>100</y>
+		<block>BRICKBLOCK</block>
+		<blockRow>1</blockRow>
+		<item>FIREFLOWER</item>
+	</Obstacles>
+	
 	
 	<Obstacles>
 		<x>400</x>
