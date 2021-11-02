@@ -10,6 +10,8 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
 using Microsoft.Xna.Framework.Media;
+using Microsoft.Xna.Framework.Audio;
+
 
 namespace GameSpace
 {
@@ -34,6 +36,7 @@ namespace GameSpace
         private List<IController> controllers;
         private List<IGameObjects> objects;
         private readonly List<IGameObjects> avatars;
+        public List<SoundEffect> soundEffects;
         #endregion
 
         //Audio stuff
@@ -79,6 +82,7 @@ namespace GameSpace
             #region Loading Lists
             //objects = Loader.Load(xmlFileName);
             objects = Loader.LoadEverything(xmlFileName);
+            soundEffects = AudioFactory.GetInstance().loadList();
             #endregion
 
             #region Load EntityManager

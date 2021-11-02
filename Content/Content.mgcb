@@ -19,6 +19,12 @@
 /processorParam:Quality=Best
 /build:Audio/backgroundSong.mp3
 
+#begin Audio/smallJump.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Audio/smallJump.wav
+
 #begin AvatarSprite/MarioStandingLeft.png
 /importer:TextureImporter
 /processor:TextureProcessor
