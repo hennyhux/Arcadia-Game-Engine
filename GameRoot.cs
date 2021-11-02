@@ -11,7 +11,7 @@ using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
 using Microsoft.Xna.Framework.Media;
 using Microsoft.Xna.Framework.Audio;
-
+using GameSpace.Machines;
 
 namespace GameSpace
 {
@@ -83,6 +83,7 @@ namespace GameSpace
             objects = Loader.Load(xmlFileName);
             //objects = Loader.LoadEverything(xmlFileName);
             soundEffects = AudioFactory.GetInstance().loadList();
+            MusicMachine.GetInstance().LoadMusicIntoList(soundEffects);
             #endregion
 
             #region Load EntityManager

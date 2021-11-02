@@ -1,6 +1,8 @@
 ﻿using GameSpace.Abstracts;
 using GameSpace.Camera2D;
 using GameSpace.Interfaces;
+using Microsoft.Xna.Framework.Audio;
+using System.Collections.Generic;
 
 namespace GameSpace.EntityManaging
 {
@@ -37,6 +39,11 @@ namespace GameSpace.EntityManaging
         public Camera FindCameraCopy()
         {
             return cameraCopy;
+        }
+
+        public List<SoundEffect> FindListOFSoundEffects()
+        {
+            return musicList;
         }
 
     }
