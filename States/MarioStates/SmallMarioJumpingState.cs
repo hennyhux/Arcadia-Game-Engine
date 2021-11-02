@@ -34,6 +34,8 @@ namespace GameSpace.States.MarioStates
             Mario.sprite = MarioFactory.GetInstance().CreateSprite(MarioFactory.MarioSpriteType(this, Mario.marioPowerUpState));
             //Mario.sprite = MarioFactory.GetInstance().CreateSprite(5);
 
+            //play standard jumping sound effect
+
         }
 
         public override void Exit()

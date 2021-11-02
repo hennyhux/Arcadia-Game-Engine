@@ -11,6 +11,7 @@ namespace GameSpace.Factories
         #region mp3s
         private Song song;
         private SoundEffect smallJump;
+        private SoundEffect superJump;
         #endregion
         private static readonly AudioFactory instance = new AudioFactory();
         private List<SoundEffect> list;
@@ -28,7 +29,7 @@ namespace GameSpace.Factories
         {
             this.song = content.Load<Song>("Audio/backgroundSong");
             this.smallJump = content.Load<SoundEffect>("Audio/smallJump");
-
+            this.superJump = content.Load<SoundEffect>("Audio/superJump");
         }
       
         public Song CreateSong()
@@ -40,6 +41,7 @@ namespace GameSpace.Factories
         {
             this.list = new List<SoundEffect>();
             this.list.Add(this.smallJump);
+            this.list.Add(this.superJump);
             return this.list;
         }
     }

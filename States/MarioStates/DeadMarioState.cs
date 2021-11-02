@@ -9,11 +9,14 @@ namespace GameSpace.States.MarioStates
 {
     internal class DeadMarioState : MarioActionStates//MarioPowerUpStates
     {
+        private protected GameRoot game; 
         public DeadMarioState(Mario mario)
             : base(mario)
         {
 
         }
+
+        
 
         public override void Enter(IMarioActionStates previousActionState)
         {
@@ -29,6 +32,8 @@ namespace GameSpace.States.MarioStates
             Mario.Facing = Facing;
             //Mario.Sprite = MarioStandingState.SpriteFactory.CreateSprite(MarioSpriteFactory.MarioSpriteType(this, currentPowerUpState));
             Mario.sprite = MarioFactory.GetInstance().CreateSprite(MarioFactory.MarioSpriteType(this, Mario.marioPowerUpState));
+
+            //play dead sound effect
 
         }
 

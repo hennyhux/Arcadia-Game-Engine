@@ -46,7 +46,7 @@ namespace GameSpace
 
         //private readonly string xmlFileName = "./Level1.xml"; // Turn in with this line of code!
         //private readonly string xmlFileName = "../../../TileMapDefinition/Level1.xml"; // ONLY to run on our machines
-        private readonly string xmlFileName = "../../../TileMapDefinition/HenryTesting.xml";
+        private readonly string xmlFileName = "../../../TileMapDefinition/CalebTesting.xml";
         public GameRoot()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -80,8 +80,8 @@ namespace GameSpace
             #endregion
 
             #region Loading Lists
-            //objects = Loader.Load(xmlFileName);
-            objects = Loader.LoadEverything(xmlFileName);
+            objects = Loader.Load(xmlFileName);
+            //objects = Loader.LoadEverything(xmlFileName);
             soundEffects = AudioFactory.GetInstance().loadList();
             #endregion
 
