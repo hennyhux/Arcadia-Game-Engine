@@ -25,6 +25,12 @@
 /processorParam:Quality=Best
 /build:Audio/smallJump.wav
 
+#begin Audio/superJump.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Audio/superJump.wav
+
 #begin AvatarSprite/MarioStandingLeft.png
 /importer:TextureImporter
 /processor:TextureProcessor
