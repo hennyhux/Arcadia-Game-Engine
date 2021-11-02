@@ -44,9 +44,9 @@ namespace GameSpace
 
         public GraphicsDeviceManager Graphics => graphics;
 
-        //string xmlFileName = "./Level1.xml";
+        //private readonly string xmlFileName = "./Level1.xml"; // Turn in with this line of code!
+        //private readonly string xmlFileName = "../../../TileMapDefinition/Level1.xml"; // ONLY to run on our machines
         private readonly string xmlFileName = "../../../TileMapDefinition/HenryTesting.xml";
-        //string xmlFileName = "./Level1.xml";
         public GameRoot()
         {
             graphics = new GraphicsDeviceManager(this);

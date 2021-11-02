@@ -11,13 +11,15 @@
 	<Obstacles>
 		<x>100</x>
 		<y>100</y>
-		<block>BRICKBLOCK</block>
-		<blockRow>1</blockRow>
-		<item>COIN</item>
+		<block>FIREFLOWERQUESTIONBLOCK</block>
 	</Obstacles>
-	
-	
-	
+
+	<Obstacles>
+		<x>100</x>
+		<y>200</y>
+		<item>FIREFLOWER</item>
+	</Obstacles>
+
 	
 	
 	<Obstacles>
@@ -36,8 +38,7 @@
 	<Obstacles>
 		<x>512</x>
 		<y>306</y>
-		<block>QUESTIONBLOCK</block>
-		<item>COIN</item>
+		<block>COINQUESTIONBLOCK</block>
 	</Obstacles>
 
 	<Obstacles>
@@ -49,8 +50,7 @@
 	<Obstacles>
 		<x>672</x>
 		<y>306</y>
-		<block>QUESTIONBLOCK</block>
-		<item>SUPERSHROOM</item>
+		<block>SUPERSHROOMQUESTIONBLOCK</block>
 	</Obstacles>
 	<Obstacles>
 		<x>704</x>
@@ -61,8 +61,7 @@
 	<Obstacles>
 		<x>736</x>
 		<y>306</y>
-		<block>QUESTIONBLOCK</block>
-		<item>COIN</item>
+		<block>COINQUESTIONBLOCK</block>
 	</Obstacles>
 	<Obstacles>
 		<x>768</x>
@@ -74,8 +73,7 @@
 	<Obstacles>
 		<x>704 </x>
 		<y>162</y>
-		<block>QUESTIONBLOCK</block>
-		<item>COIN</item>
+		<block>COINQUESTIONBLOCK</block>
 	</Obstacles>
 	
 	<Obstacles>
@@ -150,8 +148,7 @@
 	<Obstacles>
 		<x>2496</x>
 		<y>306</y>
-		<block>QUESTIONBLOCK</block>
-		<item>SUPERSHROOM</item>
+		<block>SUPERSHROOMQUESTIONBLOCK</block>
 	</Obstacles>
 	<Obstacles>
 		<x>2528</x>
@@ -200,24 +197,19 @@
 	<Obstacles>
 		<x>3008</x>
 		<y>162</y>
-		<block>QUESTIONBLOCK</block>
-		<item>COIN</item>
+		<block>COINQUESTIONBLOCK</block>
 	</Obstacles>
 	
 	
 	<Obstacles>
 		<x>2976</x>
 		<y>306</y>
-		<block>BRICKBLOCK</block>
-		<blockRow>1</blockRow>
-		<item>COIN</item>
+		<block>COINBRICKBLOCK</block>
 	</Obstacles>
 	<Obstacles>
 		<x>3008</x>
 		<y>306</y>
-		<block>BRICKBLOCK</block>
-		<blockRow>1</blockRow>
-		<item>COIN</item>
+		<block>COINBRICKBLOCK</block>
 	</Obstacles>
 	<Obstacles>
 		<x>3200</x>
@@ -228,9 +220,7 @@
 	<Obstacles>
 		<x>3232</x>
 		<y>306</y>
-		<block>BRICKBLOCK</block>
-		<blockRow>1</blockRow>
-		<item>STAR</item>
+		<block>STARBRICKBLOCK</block>
 	</Obstacles>
 	
 	<Obstacles>
@@ -253,20 +243,17 @@
 	<Obstacles>
 		<x>3392</x>
 		<y>306</y>
-		<block>QUESTIONBLOCK</block>
-		<item>COIN</item>
+		<block>COINQUESTIONBLOCK</block>
 	</Obstacles>
 	<Obstacles>
 		<x>3488</x>
 		<y>306</y>
-		<block>QUESTIONBLOCK</block>
-		<item>COIN</item>
+		<block>COINQUESTIONBLOCK</block>
 	</Obstacles>
 	<Obstacles>
 		<x>3584</x>
 		<y>306</y>
-		<block>QUESTIONBLOCK</block>
-		<item>COIN</item>
+		<block>COINQUESTIONBLOCK</block>
 	</Obstacles>
 	
 	<Obstacles>
@@ -283,8 +270,7 @@
 	<Obstacles>
 		<x>3488</x>
 		<y>162</y>
-		<block>QUESTIONBLOCK</block>
-		<item>SUPERSHROOM</item>
+		<block>SUPERSHROOMQUESTIONBLOCK</block>
 	</Obstacles>
 	
 	<Obstacles>
@@ -332,14 +318,12 @@
 	<Obstacles>
 		<x>4128</x>
 		<y>162</y>
-		<block>QUESTIONBLOCK</block>
-		<item>COIN</item>
+		<block>COINQUESTIONBLOCK</block>
 	</Obstacles>
 	<Obstacles>
 		<x>4160</x>
 		<y>162</y>
-		<block>QUESTIONBLOCK</block>
-		<item>COIN</item>
+		<block>COINQUESTIONBLOCK</block>
 	</Obstacles>
 	<Obstacles>
 		<x>4192</x>
@@ -475,8 +459,7 @@
 	<Obstacles>
 		<x>5440</x>
 		<y>306</y>
-		<block>QUESTIONBLOCK</block>
-		<item>COIN</item>
+		<block>COINQUESTIONBLOCK</block>
 	</Obstacles>
 	<Obstacles>
 		<x>5472</x>
@@ -562,8 +545,7 @@
 	<Obstacles>
 		<x>2496</x>
 		<y>306</y>
-		<block>QUESTIONBLOCK</block>
-		<item>SUPERSHROOM</item>
+		<block>SUPERSHROOMQUESTIONBLOCK</block>
 	</Obstacles>
 	<Obstacles>
 		<x>2528</x>

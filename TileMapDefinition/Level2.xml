@@ -1,27 +1,25 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Level>
-	<Avatar>
-		<avatar>MARIO</avatar>
-		<facing>LEFT</facing>
+	<Obstacles>
 		<x>350</x>
 		<y>200</y>
-	</Avatar>
+		<avatar>MARIO</avatar>
+		<facing>LEFT</facing>
+	</Obstacles>
 
-	<Enemy>
-		<enemy>GOOMBA</enemy>
+	<Obstacles>
 		<x>448</x>
 		<y>386</y>
-	</Enemy>
-	<Enemy>
-		<enemy>GREENKOOPA</enemy>
+		<enemy>GOOMBA</enemy>
+	</Obstacles>
+	<Obstacles>
 		<x>32</x>
 		<y>372</y>
-	</Enemy>
-	<Enemy>
-		<enemy>REDKOOPA</enemy>
+		<enemy>GREENKOOPA</enemy>
+	</Obstacles>
+	<Obstacles>
 		<x>288</x>
 		<y>372</y>
-	</Enemy>
-
-
+		<enemy>REDKOOPA</enemy>
+	</Obstacles>
 </Level>
