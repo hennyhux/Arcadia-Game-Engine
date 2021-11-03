@@ -36,8 +36,9 @@ namespace GameSpace.GameObjects.BlockObjects
         public int ObjectID { get; set; }
         public int numFireballs;
         public Rectangle ExpandedCollisionBox { get; set; }
-
         public int marioLives { get; set; }
+        public int numCoinsCollected { get; set; }
+        public int score { get; set; }
 
         private AbstractMachine collider;
 
@@ -58,7 +59,8 @@ namespace GameSpace.GameObjects.BlockObjects
             marioPowerUpState = new SmallMarioState(this);
             marioActionState = new SmallMarioStandingState(this);
             collider = ColliderMachine.GetInstance();
-
+            numCoinsCollected = 0;
+            score = 0;
         }
 
         public void Draw(SpriteBatch spritebatch)
@@ -108,13 +110,13 @@ namespace GameSpace.GameObjects.BlockObjects
                     CollisionBox = new Rectangle((int)Position.X, (int)Position.Y, 32, 64);
                 }
             }
-
+            //if mario collects 100 coins he gets an extra life
+            if (numCoinsCollected % 100 == 0) ++marioLives;
 
             //GetMario.sprite.Height
             marioPowerUpState.Update(gametime);
             marioActionState.Update(gametime);
             sprite.Update(gametime);
-
         }
 
         #region Mario States 
@@ -222,6 +224,12 @@ namespace GameSpace.GameObjects.BlockObjects
 
                 case (int)ItemID.SUPERSHROOM:
                     ColliderMachine.GetInstance().MarioToItemCollision((SuperShroom)entity);
+                    break;
+                case (int)ItemID.COIN:
+                    ColliderMachine.GetInstance().MarioToItemCollision((Coin)entity);
+                    break;
+                case (int)ItemID.STAR:
+                    ColliderMachine.GetInstance().MarioToItemCollision((Star)entity);
                     break;
 
                 case (int)BlockID.QUESTIONBLOCK:

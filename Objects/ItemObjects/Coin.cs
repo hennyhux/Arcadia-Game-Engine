@@ -3,6 +3,8 @@ using GameSpace.Enums;
 using GameSpace.Factories;
 using GameSpace.Interfaces;
 using Microsoft.Xna.Framework;
+using GameSpace.Machines;
+using GameSpace.EntityManaging;
 
 namespace GameSpace.GameObjects.ItemObjects
 {
@@ -19,14 +21,22 @@ namespace GameSpace.GameObjects.ItemObjects
             drawBox = false;
         }
 
+        public override void Trigger()
+        {
+            Sprite.SetVisible();
+            CollisionBox = new Rectangle(1, 1, 0, 0);
+            //play sound effect for coinCollect
+            MusicMachine.GetInstance().PlaySoundEffect(7);
+        }
+
         public override void HandleCollision(IGameObjects entity)
         {
-            if (!hasCollided)
+            switch (entity.ObjectID)
             {
-                Trigger();
+                case (int)AvatarID.MARIO:
+                    Trigger();
+                    break;
             }
-
-            hasCollided = true;
         }
 
     }

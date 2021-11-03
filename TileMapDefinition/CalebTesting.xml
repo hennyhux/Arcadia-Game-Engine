@@ -17,7 +17,7 @@
 	<Obstacles>
 		<x>100</x>
 		<y>100</y>
-		<block>FIREFLOWERQUESTIONBLOCK</block>
+		<item>COIN</item>
 	</Obstacles>
 
 	<Obstacles>

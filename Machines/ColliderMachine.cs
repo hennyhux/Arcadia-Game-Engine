@@ -254,6 +254,14 @@ namespace GameSpace.EntityManaging
             {
                 mario.FireMarioTransformation();
             }
+
+            mario.score += 1000;
+        }
+
+        public void MarioToItemCollision(Star item)
+        {
+            //Don't have to implement star powerUp but should still receive points
+            mario.score += 1000;
         }
 
         public void MarioToItemCollision(SuperShroom item)
@@ -262,11 +270,18 @@ namespace GameSpace.EntityManaging
             {
                 mario.BigMarioTransformation();
             }
+            mario.score += 1000;
         }
 
         public void MarioToItemCollision(OneUpShroom item)
         {
+            ++mario.marioLives;
+        }
 
+        public void MarioToItemCollision(Coin coin)
+        {
+            ++mario.numCoinsCollected;
+            mario.score += 200;
         }
 
         #endregion
