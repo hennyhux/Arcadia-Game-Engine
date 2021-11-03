@@ -16,6 +16,7 @@ namespace GameSpace.Factories
         private SoundEffect death;
         private SoundEffect powerUpAppear;
         private SoundEffect powerUpCollect;
+        private SoundEffect oneUpCollect;
 
         #endregion
         private static readonly AudioFactory instance = new AudioFactory();
@@ -38,6 +39,7 @@ namespace GameSpace.Factories
             this.death = content.Load<SoundEffect>("Audio/death");
             this.powerUpAppear = content.Load<SoundEffect>("Audio/powerUpAppear");
             this.powerUpCollect = content.Load<SoundEffect>("Audio/powerUpCollect");
+            this.oneUpCollect = content.Load<SoundEffect>("Audio/oneUpCollect");
         }
       
         public Song CreateSong()
@@ -53,7 +55,8 @@ namespace GameSpace.Factories
             list.Add(this.stomp);
             list.Add(this.death);
             list.Add(this.powerUpAppear);
-            list.Add(this.powerUpCollect);
+            list.Add(this.powerUpCollect); //5
+            list.Add(this.oneUpCollect);
             return list;
         }
     }

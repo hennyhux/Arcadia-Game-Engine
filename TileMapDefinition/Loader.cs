@@ -15,7 +15,7 @@ namespace GameSpace.TileMapDefinition
         public static int boundaryX = 0;
         private static readonly ObjectFactory objectFactory = ObjectFactory.GetInstance();
 
-        public static List<IGameObjects> Load(string xmlFile)
+        public static List<IGameObjects> Load(GameRoot game, string xmlFile, Vector2 checkPoint, bool checkIfLevelRestart)
         {
             List<IGameObjects> objects = new List<IGameObjects>();
             List<Obstacles> fullList = new List<Obstacles>();
@@ -35,7 +35,14 @@ namespace GameSpace.TileMapDefinition
                 LoadBlocks(objects, obstacles, location);
                 LoadItems(objects, obstacles, location);
                 LoadEnemies(objects, obstacles, location);
-                LoadAvatar(objects, obstacles, location);
+                if (checkIfLevelRestart)
+                {
+                    LoadAvatar(game, objects, obstacles, checkPoint);
+                }
+                else
+                {
+                    LoadAvatar(game, objects, obstacles, location);
+                }
             }
             return objects;
         }
@@ -174,7 +181,7 @@ namespace GameSpace.TileMapDefinition
             }
         }
 
-        public static void LoadAvatar(List<IGameObjects> objects, Obstacles obstacles, Vector2 location)
+        public static void LoadAvatar(GameRoot game, List<IGameObjects> objects, Obstacles obstacles, Vector2 location)
         {
             MarioFactory marioFactory = MarioFactory.GetInstance();
             Mario avatar;

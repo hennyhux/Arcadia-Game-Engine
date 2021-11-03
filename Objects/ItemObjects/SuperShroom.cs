@@ -6,6 +6,7 @@ using GameSpace.States.ItemStates;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
+using GameSpace.Machines;
 
 namespace GameSpace.GameObjects.ItemObjects
 {
@@ -36,6 +37,9 @@ namespace GameSpace.GameObjects.ItemObjects
             drawBox = false;
             hasCollided = false;
             state = new StateSuperShroomHidden(this);
+
+            //play sound effect for powerUpAppear
+            MusicMachine.GetInstance().PlaySoundEffect(4);
         }
 
         public void Draw(SpriteBatch spritebatch)
@@ -65,6 +69,8 @@ namespace GameSpace.GameObjects.ItemObjects
             {
                 Sprite.SetVisible();
                 CollisionBox = new Rectangle();
+                //play sound effect for powerUpCollect
+                MusicMachine.GetInstance().PlaySoundEffect(5);
             }
             hasCollided = true;
         }

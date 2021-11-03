@@ -25,6 +25,12 @@
 /processorParam:Quality=Best
 /build:Audio/death.wav
 
+#begin Audio/oneUpCollect.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Audio/oneUpCollect.wav
+
 #begin Audio/powerUpAppear.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor

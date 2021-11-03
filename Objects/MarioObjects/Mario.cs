@@ -8,6 +8,7 @@ using GameSpace.Interfaces;
 using GameSpace.Sprites;
 using GameSpace.States.BlockStates;
 using GameSpace.States.MarioStates;
+using GameSpace.Level;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Diagnostics;
@@ -21,6 +22,8 @@ namespace GameSpace.GameObjects.BlockObjects
         private bool hasCollided;
         private bool drawBox;
 
+        public LevelRestart levelRestart;
+        public GameRoot hey;
         public MarioSprite sprite { get; set; }
         public eFacing Facing { get; set; }
         public IMarioPowerUpStates marioPowerUpState { get; set; }
@@ -187,6 +190,13 @@ namespace GameSpace.GameObjects.BlockObjects
         {
             CollisionBox = new Rectangle(0, 0, 0, 0);
             marioPowerUpState.DeadTransition();
+            bool stillHasLives = true;
+            marioLives--; 
+            if (marioLives == 0)
+            {
+                stillHasLives = false;
+            }
+            //levelRestart.Restart(stillHasLives);
         }
 
         public void Trigger()
