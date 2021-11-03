@@ -99,7 +99,7 @@ namespace GameSpace.Abstracts
             switch (entity.ObjectID)
             {
                 case (int)AvatarID.MARIO:
-                    ColliderMachine.GetInstance().HandleMarioCollision(this, entity);
+                    ColliderMachine.GetInstance().EnemyToMarioCollision(this, entity);
                     break;
 
                 case (int)BlockID.USEDBLOCK:
@@ -111,7 +111,7 @@ namespace GameSpace.Abstracts
                 case (int)ItemID.BIGPIPE:
                 case (int)ItemID.MEDIUMPIPE:
                 case (int)ItemID.SMALLPIPE:
-                    ColliderMachine.GetInstance().HandleBlockCollision(this, entity);
+                    ColliderMachine.GetInstance().EnemyToBlockCollision(this, entity);
                     break;
 
                 case (int)ItemID.FIREBALL:

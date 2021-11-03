@@ -379,9 +379,9 @@ namespace GameSpace.Factories
             normalMarioSprite = content.Load<Texture2D>("AvatarSprite/OGMarioSheet");
         }
 
-        public Mario ReturnMario(Vector2 location, GameRoot game)
+        public Mario ReturnMario(Vector2 location)
         {
-            return new Mario(location, game);
+            return new Mario(location);
         }
 
         public MarioSprite ReturnMarioStandingLeftSprite()

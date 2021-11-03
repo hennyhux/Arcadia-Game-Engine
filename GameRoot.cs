@@ -12,6 +12,7 @@ using System.Collections.Generic;
 using Microsoft.Xna.Framework.Media;
 using Microsoft.Xna.Framework.Audio;
 using GameSpace.Machines;
+using GameSpace.Level;
 
 namespace GameSpace
 {
@@ -19,6 +20,9 @@ namespace GameSpace
     {
         private protected readonly GraphicsDeviceManager graphics;
         private protected SpriteBatch spriteBatch;
+        private LevelRestart levelRestart;
+        private static Vector2 p;
+        private static bool startOfGame;
 
         //private protected Camera camera;
 
@@ -45,12 +49,13 @@ namespace GameSpace
         public GraphicsDeviceManager Graphics => graphics;
 
         //private readonly string xmlFileName = "./Level1.xml"; // Turn in with this line of code!
-        //private readonly string xmlFileName = "../../../TileMapDefinition/Level1.xml"; // ONLY to run on our machines
-        private readonly string xmlFileName = "../../../TileMapDefinition/CalebTesting.xml";
+        private readonly string xmlFileName = "../../../TileMapDefinition/Level1.xml"; // ONLY to run on our machines
+        //private readonly string xmlFileName = "../../../TileMapDefinition/CalebTesting.xml";
         public GameRoot()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+            levelRestart = new LevelRestart(this, 0);
         }
 
         private readonly SpriteBatch spriteBatch1;
@@ -61,11 +66,15 @@ namespace GameSpace
         }
         public void Reset()
         {
+            startOfGame = true;
             Initialize();
         }
 
-        protected override void LoadContent()
+        public void Restart(Vector2 position)
         {
+            startOfGame = false;
+            p = position;
+            Initialize();
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             #region Loading Factories
@@ -80,7 +89,7 @@ namespace GameSpace
             #endregion
 
             #region Loading Lists
-            objects = Loader.Load(xmlFileName);
+            objects = Loader.Load(this, xmlFileName, p, true);
             //objects = Loader.LoadEverything(xmlFileName);
             soundEffects = AudioFactory.GetInstance().loadList();
             MusicMachine.GetInstance().LoadMusicIntoList(soundEffects);
@@ -88,7 +97,7 @@ namespace GameSpace
 
             #region Load EntityManager
             //EntityManager.LoadList(objects);
-            TheaterMachine.GetInstance().LoadList(objects);
+            TheaterMachine.GetInstance().LoadData(objects);
             #endregion
 
             #region Loading Controllers
@@ -114,8 +123,60 @@ namespace GameSpace
 
             //Audio Stuff
             this.song = AudioFactory.GetInstance().CreateSong();
-            MediaPlayer.Play(this.song);
-            MediaPlayer.IsRepeating = true; 
+            MusicMachine.GetInstance().PlaySong(this.song);
+        }
+
+        protected override void LoadContent()
+        {
+            spriteBatch = new SpriteBatch(GraphicsDevice);
+
+            #region Loading Factories
+            SpriteBlockFactory.GetInstance().LoadContent(Content);
+            MarioFactory.GetInstance(this).LoadContent(Content);
+            SpriteEnemyFactory.GetInstance().LoadContent(Content);
+            SpriteExtraItemsFactory.GetInstance().LoadContent(Content);
+            BackgroundFactory.GetInstance().LoadContent(Content);
+            SpriteItemFactory.GetInstance().LoadContent(Content);
+            BackgroundFactory.GetInstance().LoadContent(Content);
+            AudioFactory.GetInstance().LoadContent(Content);
+            #endregion
+
+            #region Loading Lists
+            objects = Loader.Load(this, xmlFileName, new Vector2(0, 0), false);
+            //objects = Loader.LoadEverything(xmlFileName);
+            soundEffects = AudioFactory.GetInstance().loadList();
+            MusicMachine.GetInstance().LoadMusicIntoList(soundEffects);
+            #endregion
+
+            #region Load EntityManager
+            //EntityManager.LoadList(objects);
+            TheaterMachine.GetInstance().LoadData(objects);
+            #endregion
+
+            #region Loading Controllers
+            controllers = new List<IController>()
+            {
+                new KeyboardInput(this), new ControllerInput(this)
+            };
+            #endregion
+
+            //Camera Stuff
+            camera = new Camera(GraphicsDevice.Viewport) { Limits = new Rectangle(0, 0, Loader.boundaryX, 480) };//Should be set to level's max X and Y
+
+            EntityManager.AddCamera(camera);
+            CameraMachine.GetInstance().LoadCamera(camera);
+
+            //Scrolling Background, Manually Setting
+            layers = new List<Layer>
+            {
+                new Layer(camera, BackgroundFactory.GetInstance().CreateCloudsSprite(), new Vector2(2.0f, 1.0f)),
+                new Layer(camera, BackgroundFactory.GetInstance().CreateBGMountainSprite(), new Vector2(1.5f, 1.0f)),
+                new Layer(camera, BackgroundFactory.GetInstance().CreateRegularBackground(), new Vector2(1.0f, 1.0f)),
+            };
+
+            //Audio Stuff
+            this.song = AudioFactory.GetInstance().CreateSong();
+            MusicMachine.GetInstance().PlaySong(this.song);
         }
 
         public Mario GetMario => (Mario)FinderMachine.GetInstance().FindItem((int)AvatarID.MARIO);
@@ -131,6 +192,7 @@ namespace GameSpace
             base.Update(gameTime);
             //Camera Stuff- Centered Mario
             camera.LookAt(new Vector2(GetMario.Position.X + GetMario.CollisionBox.Width / 2, GraphicsDevice.Viewport.Height / 2));
+            levelRestart.Restart(true);
         }
 
         protected override void Draw(GameTime gameTime)

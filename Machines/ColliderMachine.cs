@@ -1,10 +1,15 @@
 ﻿using GameSpace.Abstracts;
 using GameSpace.EntitiesManager;
 using GameSpace.Enums;
+using GameSpace.GameObjects.BlockObjects;
 using GameSpace.GameObjects.EnemyObjects;
 using GameSpace.GameObjects.ExtraItemsObjects;
+using GameSpace.GameObjects.ItemObjects;
 using GameSpace.Interfaces;
+using GameSpace.States.BlockStates;
+using GameSpace.States.MarioStates;
 using Microsoft.Xna.Framework;
+using System.Diagnostics;
 using System.Linq;
 
 namespace GameSpace.EntityManaging
@@ -23,19 +28,14 @@ namespace GameSpace.EntityManaging
 
         }
 
-        public void HandleMarioCollision(BigPipe pipe)
+        public void UpdateCollision()
         {
-            switch (DetectCollisionDirection(mario, pipe))
-            {
-                case (int)CollisionDirection.UP:
-
-                    break;
-            }
+            SweepAndPrune();
         }
 
-        public void SweepAndPrune()
+        #region Collision Algorithms
+        protected internal void SweepAndPrune()
         {
-            mario = FinderMachine.GetInstance().FindItem((int)AvatarID.MARIO);
             marioCurrentLocation = mario.Position;
             //Debug.WriteLine("MARIO POSITION " + mario.Position.X + "   "+ mario.Position.Y);
             foreach (IGameObjects entity in gameEntityList)
@@ -57,8 +57,8 @@ namespace GameSpace.EntityManaging
                     }
                 }
             }
-            // Debug.WriteLine("SIZE OF PRUNED LIST " + prunedList.Count);
-            //Debug.WriteLine("SIZE OF OG LIST " + gameEntities.Count);
+            //Debug.WriteLine("SIZE OF PRUNED LIST " + prunedList.Count);
+            //Debug.WriteLine("SIZE OF OG LIST " + gameEntityList.Count);
             copyPrunedList = prunedList.ToList();
             prunedList.Clear();
             //Debug.WriteLine("SIZE OF PRUNED COPY LIST " + copyPrunedList.Count);
@@ -111,8 +111,22 @@ namespace GameSpace.EntityManaging
 
         }
 
+        #endregion
 
-        #region HandleCollision
+
+        #region Item Collision
+        public void ItemToMarioCollison(BigPipe pipe)
+        {
+            switch (DetectCollisionDirection(mario, pipe))
+            {
+                case (int)CollisionDirection.UP:
+
+                    break;
+            }
+        }
+        #endregion
+
+        #region Enemy Collision
         public bool IsGoingToFall(AbstractEnemy enemy)
         {
             bool gonnaFall = true;
@@ -129,7 +143,7 @@ namespace GameSpace.EntityManaging
             return gonnaFall;
         }
 
-        public void HandleBlockCollision(AbstractEnemy enemy, IGameObjects block)
+        public void EnemyToBlockCollision(AbstractEnemy enemy, IGameObjects block)
         {
 
             if (EntityManager.DetectCollisionDirection(enemy, block) == (int)CollisionDirection.LEFT)
@@ -151,7 +165,7 @@ namespace GameSpace.EntityManaging
             }
         }
 
-        public void HandleMarioCollision(AbstractEnemy enemy, IGameObjects mario)
+        public void EnemyToMarioCollision(AbstractEnemy enemy, IGameObjects mario)
         {
             if (EntityManager.DetectCollisionDirection(enemy, mario) == (int)CollisionDirection.UP)
             {
@@ -159,8 +173,106 @@ namespace GameSpace.EntityManaging
                 enemy.CollisionBox = new Rectangle(1, 1, 0, 0);
             }
         }
+        #endregion
+
+        #region Mario Collision
+        public void ChangeMarioStatesUponCollision(IGameObjects entity)
+        {
+            switch (DetectCollisionDirection(mario, entity))
+            {
+                case (int)CollisionDirection.LEFT:
+                case (int)CollisionDirection.RIGHT:
+                    mario.StandingTransition();
+                    break;
+
+                case (int)CollisionDirection.UP:
+                    mario.FallingTransition();
+                    break;
+
+                case (int)CollisionDirection.DOWN:
+                    if (mario.marioActionState is SmallMarioFallingState ||
+                        mario.marioActionState is BigMarioFallingState || 
+                        mario.marioActionState is FireMarioFallingState)
+                    {
+                        mario.DownTransition();
+                    }
+                    break;
+            }
+        }
+
+        public void MarioToBlockCollision(IGameObjects block)
+        {
+            switch (DetectCollisionDirection(mario, block))
+            {
+                case (int)CollisionDirection.LEFT:
+                    mario.Position = new Vector2((int)block.Position.X - mario.CollisionBox.Width, (int)mario.Position.Y);
+                    break;
+
+                case (int)CollisionDirection.RIGHT:
+                    mario.Position = new Vector2((int)block.Position.X + block.CollisionBox.Width, (int)mario.Position.Y);
+                    break;
+
+                case (int)CollisionDirection.UP:
+                    mario.Velocity = new Vector2(mario.Velocity.X, 50);
+                    break;
+
+                case (int)CollisionDirection.DOWN:
+                    mario.Position = new Vector2(mario.Position.X, (int)block.Position.Y - mario.CollisionBox.Height);
+                    break;
+            }
+
+            if (block.ObjectID == (int)ItemID.BIGPIPE)
+            {
+                mario.WarpMario();
+            }
+        }
+
+        public void MarioToHiddenBlockCollision(IGameObjects block)
+        {
+            HiddenBlock hBlock = (HiddenBlock)block;
+            if (hBlock.hasCollided)
+            {
+                MarioToBlockCollision(block);
+            }
+        }
+
+        public void MarioToEnemyCollision(IGameObjects enemy)
+        {
+            if (DetectCollisionDirection(mario, enemy) != (int)CollisionDirection.DOWN)
+            {
+                mario.Trigger(); 
+            }
+        }
+
+        public void MarioToItemCollision(FireFlower item)
+        {
+            if (mario.marioPowerUpState is SmallMarioState)
+            {
+                mario.BigMarioTransformation();
+            }
+            else if (mario.marioPowerUpState is BigMarioState)
+            {
+                mario.FireMarioTransformation();
+            }
+        }
+
+        public void MarioToItemCollision(SuperShroom item)
+        {
+            if (!(mario.marioPowerUpState is FireMarioState))
+            {
+                mario.BigMarioTransformation();
+            }
+        }
+
+        public void MarioToItemCollision(OneUpShroom item)
+        {
+
+        }
+
+        #endregion
+
     }
-    #endregion
+
 }
 
 

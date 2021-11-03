@@ -3,6 +3,9 @@ using GameSpace.Enums;
 using GameSpace.Factories;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using GameSpace.Machines;
+
+
 
 namespace GameSpace.GameObjects.EnemyObjects
 {
@@ -56,6 +59,8 @@ namespace GameSpace.GameObjects.EnemyObjects
         {
             state = new StateGoombaDead();
             countDown = 0;
+            MusicMachine.GetInstance().PlaySoundEffect(2);
+
         }
     }
     public class StateGoombaDead : AbstractEnemyState

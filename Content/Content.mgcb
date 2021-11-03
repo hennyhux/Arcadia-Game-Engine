@@ -19,11 +19,35 @@
 /processorParam:Quality=Best
 /build:Audio/backgroundSong.mp3
 
+#begin Audio/death.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Audio/death.wav
+
+#begin Audio/powerUpAppear.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Audio/powerUpAppear.wav
+
+#begin Audio/powerUpCollect.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Audio/powerUpCollect.wav
+
 #begin Audio/smallJump.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
 /build:Audio/smallJump.wav
+
+#begin Audio/stomp.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Audio/stomp.wav
 
 #begin Audio/superJump.wav
 /importer:WavImporter

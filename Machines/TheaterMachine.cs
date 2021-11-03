@@ -1,5 +1,6 @@
 ﻿using GameSpace.Abstracts;
 using GameSpace.Enums;
+using GameSpace.GameObjects.BlockObjects;
 using GameSpace.Interfaces;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -20,7 +21,7 @@ namespace GameSpace.EntityManaging
 
         }
 
-        public void LoadList(List<IGameObjects> objectList)
+        public void LoadData(List<IGameObjects> objectList)
         {
             gameEntityList = objectList;
 
@@ -32,7 +33,7 @@ namespace GameSpace.EntityManaging
                 }
             }
 
-            mario = FinderMachine.GetInstance().FindItem((int)AvatarID.MARIO);
+            mario = (Mario)FinderMachine.GetInstance().FindItem((int)AvatarID.MARIO);
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -47,7 +48,7 @@ namespace GameSpace.EntityManaging
                 animation.Draw(spriteBatch);
             }
 
-            ColliderMachine.GetInstance().SweepAndPrune();
+            //ColliderMachine.GetInstance().UpdateCollision();
         }
 
         public void Update(GameTime gametime)
@@ -62,6 +63,8 @@ namespace GameSpace.EntityManaging
             {
                 animation.Update(gametime);
             }
+
+            ColliderMachine.GetInstance().UpdateCollision();
         }
 
         public void ToggleCollisionBox()

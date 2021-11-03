@@ -16,7 +16,7 @@ namespace GameSpace.Commands
         public void Execute()
         {
             //EntityManager.MoveBlock(0, 1);
-            game.GetMario.bigMarioTransformation();
+            game.GetMario.BigMarioTransformation();
             Debug.WriteLine("BigMarioTransformation, powerUp {0}\n AState {1}\n", game.GetMario.marioPowerUpState, game.GetMario.marioActionState);
         }
 

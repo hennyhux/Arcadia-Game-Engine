@@ -1,21 +1,19 @@
-﻿using System.Collections.Generic;
+﻿using GameSpace.Enums;
+using GameSpace.Factories;
+using GameSpace.GameObjects.BlockObjects;
+using GameSpace.Interfaces;
+using Microsoft.Xna.Framework;
+using System.Collections.Generic;
 using System.Xml;
 using System.Xml.Serialization;
 using static GameSpace.TileMapDefinition.LevelDefinition;
-using Microsoft.Xna.Framework.Graphics;
-using GameSpace.GameObjects.BlockObjects;
-using GameSpace.Interfaces;
-using GameSpace.EntitiesManager;
-using Microsoft.Xna.Framework;
-using GameSpace.Factories;
-using GameSpace.Enums;
 
 namespace GameSpace.TileMapDefinition
 {
     public static class Loader
     {
         public static int boundaryX = 0;
-        private static ObjectFactory objectFactory = ObjectFactory.GetInstance();
+        private static readonly ObjectFactory objectFactory = ObjectFactory.GetInstance();
 
         public static List<IGameObjects> Load(GameRoot game, string xmlFile, Vector2 checkPoint, bool checkIfLevelRestart)
         {
@@ -141,8 +139,8 @@ namespace GameSpace.TileMapDefinition
                     objects.Add(objectFactory.CreateBigPipeObject(location));
                     break;
                 case ItemID.WARPPIPE:
-                     //objects.Add(objectFactory.CreateWarpPipeObject(location));
-                     break;
+                    //objects.Add(objectFactory.CreateWarpPipeObject(location));
+                    break;
                 case ItemID.WARPPIPEGOOMBA:
                     //objects.Add(objectFactory.CreateWarpPipeGoombaObject(location));
                     break;
@@ -192,11 +190,11 @@ namespace GameSpace.TileMapDefinition
                 case AvatarID.MARIO:
                     if (obstacles.facing == eFacing.LEFT)
                     {
-                        objects.Add(marioFactory.ReturnMario(location, game));
+                        objects.Add(marioFactory.ReturnMario(location));
                     }
                     else if (obstacles.facing == eFacing.RIGHT)
                     {
-                        avatar = marioFactory.ReturnMario(location, game);
+                        avatar = marioFactory.ReturnMario(location);
                         avatar.FaceRightTransition();
                         objects.Add(avatar);
                     }
