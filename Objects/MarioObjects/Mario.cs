@@ -58,7 +58,7 @@ namespace GameSpace.GameObjects.BlockObjects
             sprite = MarioFactory.GetInstance().CreateSprite(1);
             marioPowerUpState = new SmallMarioState(this);
             marioActionState = new SmallMarioStandingState(this);
-            collider = ColliderMachine.GetInstance();
+            collider = CollisionHandler.GetInstance();
             numCoinsCollected = 0;
             score = 0;
         }
@@ -225,10 +225,10 @@ namespace GameSpace.GameObjects.BlockObjects
                     CollisionHandler.GetInstance().MarioToItemCollision((SuperShroom)entity);
                     break;
                 case (int)ItemID.COIN:
-                    ColliderMachine.GetInstance().MarioToItemCollision((Coin)entity);
+                    CollisionHandler.GetInstance().MarioToItemCollision((Coin)entity);
                     break;
                 case (int)ItemID.STAR:
-                    ColliderMachine.GetInstance().MarioToItemCollision((Star)entity);
+                    CollisionHandler.GetInstance().MarioToItemCollision((Star)entity);
                     break;
 
                 case (int)BlockID.QUESTIONBLOCK:

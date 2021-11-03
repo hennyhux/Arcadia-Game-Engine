@@ -68,7 +68,7 @@ namespace GameSpace.GameObjects.ItemObjects
                 Sprite.SetVisible();
                 CollisionBox = new Rectangle();
                 //play sound effect for 1-Up being collected
-                MusicMachine.GetInstance().PlaySoundEffect(6);
+                MusicHandler.GetInstance().PlaySoundEffect(6);
             }
             hasCollided = true;
 

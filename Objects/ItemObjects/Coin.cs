@@ -26,7 +26,7 @@ namespace GameSpace.GameObjects.ItemObjects
             Sprite.SetVisible();
             CollisionBox = new Rectangle(1, 1, 0, 0);
             //play sound effect for coinCollect
-            MusicMachine.GetInstance().PlaySoundEffect(7);
+            MusicHandler.GetInstance().PlaySoundEffect(7);
         }
 
         public override void HandleCollision(IGameObjects entity)
