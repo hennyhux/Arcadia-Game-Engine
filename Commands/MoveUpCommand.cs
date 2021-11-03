@@ -1,7 +1,4 @@
-﻿using GameSpace.States.MarioStates;
-
-
-namespace GameSpace.Commands
+﻿namespace GameSpace.Commands
 {
     public class MoveUpCommand : ICommand
     {

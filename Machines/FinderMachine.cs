@@ -1,5 +1,6 @@
 ﻿using GameSpace.Abstracts;
 using GameSpace.Camera2D;
+using GameSpace.GameObjects.BlockObjects;
 using GameSpace.Interfaces;
 using Microsoft.Xna.Framework.Audio;
 using System.Collections.Generic;
@@ -40,5 +41,16 @@ namespace GameSpace.EntityManaging
         {
             return cameraCopy;
         }
+
+        public List<SoundEffect> FindListOFSoundEffects()
+        {
+            return musicList;
+        }
+
+        public Mario FindMario()
+        {
+            return mario;
+        }
+
     }
 }

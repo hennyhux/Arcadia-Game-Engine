@@ -1,5 +1,4 @@
 ﻿using Microsoft.Xna.Framework.Media;
-using System;
 
 
 namespace GameSpace
@@ -10,7 +9,7 @@ namespace GameSpace
         private protected GameRoot game;
         public MuteCommand(GameRoot game)
         {
-            this.game = game; 
+            this.game = game;
         }
         public void Execute()
         {

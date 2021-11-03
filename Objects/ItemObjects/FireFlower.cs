@@ -3,7 +3,9 @@ using GameSpace.Enums;
 using GameSpace.Factories;
 using GameSpace.Interfaces;
 using Microsoft.Xna.Framework;
-using GameSpace.Machines;
+using Microsoft.Xna.Framework.Graphics;
+using System;
+using GameSpace.Machines
 
 
 namespace GameSpace.GameObjects.ItemObjects
