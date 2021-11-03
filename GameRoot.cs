@@ -88,7 +88,7 @@ namespace GameSpace
 
             #region Load EntityManager
             //EntityManager.LoadList(objects);
-            TheaterMachine.GetInstance().LoadList(objects);
+            TheaterMachine.GetInstance().LoadData(objects);
             #endregion
 
             #region Loading Controllers
