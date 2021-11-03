@@ -5,7 +5,7 @@ using GameSpace.Interfaces;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
-using GameSpace.Machines
+using GameSpace.Machines;
 
 
 namespace GameSpace.GameObjects.ItemObjects
