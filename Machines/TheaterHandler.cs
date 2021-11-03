@@ -8,15 +8,15 @@ using System.Collections.Generic;
 
 namespace GameSpace.EntityManaging
 {
-    public class TheaterMachine : AbstractMachine
+    public class TheaterHandler : AbstractHandler
     {
-        private static readonly TheaterMachine instance = new TheaterMachine();
-        public static TheaterMachine GetInstance()
+        private static readonly TheaterHandler instance = new TheaterHandler();
+        public static TheaterHandler GetInstance()
         {
             return instance;
         }
 
-        private TheaterMachine()
+        private TheaterHandler()
         {
 
         }
@@ -33,7 +33,7 @@ namespace GameSpace.EntityManaging
                 }
             }
 
-            mario = (Mario)FinderMachine.GetInstance().FindItem((int)AvatarID.MARIO);
+            mario = (Mario)FinderHandler.GetInstance().FindItem((int)AvatarID.MARIO);
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -64,7 +64,7 @@ namespace GameSpace.EntityManaging
                 animation.Update(gametime);
             }
 
-            ColliderMachine.GetInstance().UpdateCollision();
+            CollisionHandler.GetInstance().UpdateCollision();
         }
 
         public void ToggleCollisionBox()

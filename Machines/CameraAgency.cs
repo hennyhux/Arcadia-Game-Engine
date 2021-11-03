@@ -3,16 +3,16 @@ using GameSpace.Camera2D;
 
 namespace GameSpace.EntityManaging
 {
-    public class CameraMachine : AbstractMachine
+    public class CameraAgency : AbstractHandler
     {
-        private static readonly CameraMachine instance = new CameraMachine();
+        private static readonly CameraAgency instance = new CameraAgency();
 
-        public static CameraMachine GetInstance()
+        public static CameraAgency GetInstance()
         {
             return instance;
         }
 
-        private CameraMachine()
+        private CameraAgency()
         {
 
         }

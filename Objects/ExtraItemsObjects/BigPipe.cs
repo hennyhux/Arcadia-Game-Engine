@@ -26,7 +26,7 @@ namespace GameSpace.GameObjects.ExtraItemsObjects
             switch (entity.ObjectID)
             {
                 case (int)AvatarID.MARIO:
-                    ColliderMachine.GetInstance().ItemToMarioCollison(this);
+                    CollisionHandler.GetInstance().ItemToMarioCollison(this);
                     break;
             }
         }

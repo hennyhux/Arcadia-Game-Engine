@@ -45,7 +45,7 @@ namespace GameSpace.Abstracts
 
         public virtual void UpdatePosition(Vector2 location, GameTime gameTime)
         {
-            if (ColliderMachine.GetInstance().IsGoingToFall(this))
+            if (CollisionHandler.GetInstance().IsGoingToFall(this))
             {
                 Acceleration = new Vector2(0, 400);
             }
@@ -80,7 +80,7 @@ namespace GameSpace.Abstracts
         }
         internal bool IsInview()
         {
-            Camera copyCam = FinderMachine.GetInstance().FindCameraCopy();
+            Camera copyCam = FinderHandler.GetInstance().FindCameraCopy();
             return (Position.X > copyCam.Position.X && Position.X < copyCam.Position.X + 800);
         }
 
@@ -99,7 +99,7 @@ namespace GameSpace.Abstracts
             switch (entity.ObjectID)
             {
                 case (int)AvatarID.MARIO:
-                    ColliderMachine.GetInstance().EnemyToMarioCollision(this, entity);
+                    CollisionHandler.GetInstance().EnemyToMarioCollision(this, entity);
                     break;
 
                 case (int)BlockID.USEDBLOCK:
@@ -111,7 +111,7 @@ namespace GameSpace.Abstracts
                 case (int)ItemID.BIGPIPE:
                 case (int)ItemID.MEDIUMPIPE:
                 case (int)ItemID.SMALLPIPE:
-                    ColliderMachine.GetInstance().EnemyToBlockCollision(this, entity);
+                    CollisionHandler.GetInstance().EnemyToBlockCollision(this, entity);
                     break;
 
                 case (int)ItemID.FIREBALL:

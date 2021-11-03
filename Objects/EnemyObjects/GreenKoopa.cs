@@ -23,7 +23,7 @@ namespace GameSpace.GameObjects.EnemyObjects
 
         public override void UpdatePosition(Vector2 location, GameTime gameTime)
         {
-            if (!(state is StateGreenKoopaShelled) && ColliderMachine.GetInstance().IsGoingToFall(this))
+            if (!(state is StateGreenKoopaShelled) && CollisionHandler.GetInstance().IsGoingToFall(this))
             {
 
                 Velocity = new Vector2(0, Velocity.Y);

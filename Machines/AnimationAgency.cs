@@ -3,15 +3,15 @@ using GameSpace.Interfaces;
 
 namespace GameSpace.EntityManaging
 {
-    public class AnimationMachine : AbstractMachine
+    public class AnimationAgency : AbstractHandler
     {
-        private static readonly AnimationMachine instance = new AnimationMachine();
-        public static AnimationMachine GetInstance()
+        private static readonly AnimationAgency instance = new AnimationAgency();
+        public static AnimationAgency GetInstance()
         {
             return instance;
         }
 
-        private AnimationMachine()
+        private AnimationAgency()
         {
 
         }

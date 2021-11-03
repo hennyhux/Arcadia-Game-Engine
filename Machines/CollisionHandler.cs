@@ -1,4 +1,5 @@
 ﻿using GameSpace.Abstracts;
+using GameSpace.Camera2D;
 using GameSpace.EntitiesManager;
 using GameSpace.Enums;
 using GameSpace.GameObjects.BlockObjects;
@@ -14,16 +15,16 @@ using System.Linq;
 
 namespace GameSpace.EntityManaging
 {
-    public class ColliderMachine : AbstractMachine
+    public class CollisionHandler : AbstractHandler
     {
-        private static readonly ColliderMachine instance = new ColliderMachine();
+        private static readonly CollisionHandler instance = new CollisionHandler();
 
-        public static ColliderMachine GetInstance()
+        public static CollisionHandler GetInstance()
         {
             return instance;
         }
 
-        private ColliderMachine()
+        private CollisionHandler()
         {
 
         }
@@ -50,7 +51,7 @@ namespace GameSpace.EntityManaging
             {
                 for (int j = i + 1; j < prunedList.Count; j++)
                 {
-                    if (ColliderMachine.GetInstance().IntersectAABB(prunedList[i], prunedList[j]))
+                    if (CollisionHandler.GetInstance().IntersectAABB(prunedList[i], prunedList[j]))
                     {
                         prunedList[i].HandleCollision(prunedList[j]);
                         prunedList[j].HandleCollision(prunedList[i]);
@@ -112,7 +113,6 @@ namespace GameSpace.EntityManaging
         }
 
         #endregion
-
 
         #region Item Collision
         public void ItemToMarioCollison(BigPipe pipe)
@@ -284,6 +284,37 @@ namespace GameSpace.EntityManaging
             mario.score += 200;
         }
 
+        #endregion
+
+        #region Misc Collision
+        public bool IsGoingToBeOutOfBounds(IGameObjects entity, Vector2 newLocation)
+        {
+            if (entity.Position.X + newLocation.X <= 0)
+            {
+                if (entity is Mario)mario.marioActionState.StandingTransition();
+                return true;
+            }
+
+            if (entity.Position.Y + newLocation.Y <= 0) 
+            {
+                entity.Velocity = new Vector2(entity.Velocity.X, 50);
+                if (entity is Mario) mario.marioActionState.FallingTransition();
+                return true; 
+            }
+
+            if (entity.Position.X + (entity.CollisionBox.Width) + newLocation.X > ((Rectangle)cameraCopy.Limits).Width)
+            {
+                if (entity is Mario) mario.marioActionState.StandingTransition(); 
+                return true; 
+            }
+
+            if (entity.Position.Y + newLocation.Y + entity.CollisionBox.Height >= ((Rectangle)cameraCopy.Limits).Height) 
+            {
+                if (entity is Mario) mario.marioPowerUpState.DeadTransition();
+                return true; 
+            }
+            return false; 
+        }
         #endregion
 
     }

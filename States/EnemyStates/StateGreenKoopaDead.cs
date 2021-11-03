@@ -23,7 +23,7 @@ namespace GameSpace.States.EnemyStates
             GreenKoopa = greenKoopa;
             GreenKoopa.state = this;
             GreenKoopa.Velocity = new Vector2(0, 0);
-            MusicMachine.GetInstance().PlaySoundEffect(2);
+            MusicHandler.GetInstance().PlaySoundEffect(2);
         }
 
         public void Draw(SpriteBatch spritebatch, Vector2 location)

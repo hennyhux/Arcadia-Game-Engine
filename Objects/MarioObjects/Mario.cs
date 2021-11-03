@@ -40,7 +40,7 @@ namespace GameSpace.GameObjects.BlockObjects
         public int numCoinsCollected { get; set; }
         public int score { get; set; }
 
-        private AbstractMachine collider;
+        private AbstractHandler collider;
 
         public Mario(Vector2 initLocation)
         {
@@ -88,9 +88,8 @@ namespace GameSpace.GameObjects.BlockObjects
             //Debug.WriteLine("Mario velocity, {0}", Velocity.Y);
             //Velocity += Acceleration * (float)gametime.ElapsedGameTime.TotalSeconds;
             Vector2 newLocation = Velocity * (float)gametime.ElapsedGameTime.TotalSeconds;
-            if (!IsGoingToBeOutOfBounds(newLocation))
+            if (!CollisionHandler.GetInstance().IsGoingToBeOutOfBounds(this, newLocation))
             {
-
                 Position += newLocation;
             }
             //this.CollisionBox = new Rectangle((int)Position.X, (int)Position.Y, CollisionBox.Width, CollisionBox.Height);
@@ -219,11 +218,11 @@ namespace GameSpace.GameObjects.BlockObjects
             switch (entity.ObjectID)
             {
                 case (int)ItemID.FIREFLOWER:
-                    ColliderMachine.GetInstance().MarioToItemCollision((FireFlower)entity);
+                    CollisionHandler.GetInstance().MarioToItemCollision((FireFlower)entity);
                     break;
 
                 case (int)ItemID.SUPERSHROOM:
-                    ColliderMachine.GetInstance().MarioToItemCollision((SuperShroom)entity);
+                    CollisionHandler.GetInstance().MarioToItemCollision((SuperShroom)entity);
                     break;
                 case (int)ItemID.COIN:
                     ColliderMachine.GetInstance().MarioToItemCollision((Coin)entity);
@@ -241,37 +240,27 @@ namespace GameSpace.GameObjects.BlockObjects
                 case (int)ItemID.BIGPIPE:
                 case (int)ItemID.MEDIUMPIPE:
                 case (int)ItemID.SMALLPIPE:
-                    ColliderMachine.GetInstance().ChangeMarioStatesUponCollision(entity);
-                    ColliderMachine.GetInstance().MarioToBlockCollision(entity);
+                    CollisionHandler.GetInstance().ChangeMarioStatesUponCollision(entity);
+                    CollisionHandler.GetInstance().MarioToBlockCollision(entity);
                     break;
 
                 case (int)BlockID.HIDDENBLOCK:
-                    ColliderMachine.GetInstance().ChangeMarioStatesUponCollision(entity);
-                    ColliderMachine.GetInstance().MarioToHiddenBlockCollision(entity);
+                    CollisionHandler.GetInstance().ChangeMarioStatesUponCollision(entity);
+                    CollisionHandler.GetInstance().MarioToHiddenBlockCollision(entity);
                     break;
 
                 case (int)EnemyID.GOOMBA:
                 case (int)EnemyID.GREENKOOPA:
                 case (int)EnemyID.REDKOOPA:
-                    ColliderMachine.GetInstance().ChangeMarioStatesUponCollision(entity);
-                    ColliderMachine.GetInstance().MarioToEnemyCollision(entity);
+                    CollisionHandler.GetInstance().ChangeMarioStatesUponCollision(entity);
+                    CollisionHandler.GetInstance().MarioToEnemyCollision(entity);
                     break;
             }
         }
 
-        private bool IsGoingToBeOutOfBounds(Vector2 newLocation)
-        {
-            if (Position.X + newLocation.X <= 0) { marioActionState.StandingTransition(); return true; }
-            if (Position.X + (CollisionBox.Width) + newLocation.X > ((Rectangle)EntityManager.Camera.Limits).Width) { marioActionState.StandingTransition(); return true; }//should be max X value of level
-            if (Position.Y + newLocation.Y <= 0) { Velocity = new Vector2(Velocity.X, 50); marioActionState.FallingTransition(); return true; }
-
-            if (Position.Y + newLocation.Y + CollisionBox.Height >= ((Rectangle)EntityManager.Camera.Limits).Height) { marioPowerUpState.DeadTransition(); return true; }
-            return false;
-        }
-
         public void WarpMario()
         {
-            IGameObjects[] NextPipe = FinderMachine.GetInstance().FindWarpPipes();
+            IGameObjects[] NextPipe = FinderHandler.GetInstance().FindWarpPipes();
             Position = NextPipe[1].Position;
         }
 

@@ -7,15 +7,15 @@ using System.Collections.Generic;
 
 namespace GameSpace.EntityManaging
 {
-    public class FinderMachine : AbstractMachine
+    public class FinderHandler : AbstractHandler
     {
-        private static readonly FinderMachine instance = new FinderMachine();
-        public static FinderMachine GetInstance()
+        private static readonly FinderHandler instance = new FinderHandler();
+        public static FinderHandler GetInstance()
         {
             return instance;
         }
 
-        private FinderMachine()
+        private FinderHandler()
         {
 
         }
