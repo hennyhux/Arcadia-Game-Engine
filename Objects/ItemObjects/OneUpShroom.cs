@@ -6,6 +6,8 @@ using GameSpace.States.ItemStates;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
+using GameSpace.Machines;
+
 
 namespace GameSpace.GameObjects.ItemObjects
 {
@@ -36,7 +38,6 @@ namespace GameSpace.GameObjects.ItemObjects
             hasCollided = false;
             ExpandedCollisionBox = new Rectangle((int)Position.X, (int)Position.Y, Sprite.Texture.Width * 2, Sprite.Texture.Height * 3);
             state = new StateOneUpShroomHidden(this);
-
         }
 
         public void Draw(SpriteBatch spritebatch)
@@ -66,6 +67,8 @@ namespace GameSpace.GameObjects.ItemObjects
             {
                 Sprite.SetVisible();
                 CollisionBox = new Rectangle();
+                //play sound effect for 1-Up being collected
+                MusicMachine.GetInstance().PlaySoundEffect(6);
             }
             hasCollided = true;
 
