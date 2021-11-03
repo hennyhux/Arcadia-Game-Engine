@@ -35,8 +35,7 @@ namespace GameSpace.Machines
 
         public void PlaySoundEffect(int soundEffect)
         {
-            SoundEffect goingToPlay = musicList[soundEffect];
-            goingToPlay.CreateInstance().Play();
+            musicList[soundEffect].CreateInstance().Play();
         }
 
     }

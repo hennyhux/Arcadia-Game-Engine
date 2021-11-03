@@ -7,10 +7,17 @@
 		<avatar>MARIO</avatar>
 		<facing>LEFT</facing>
 	</Obstacles>
+	
 	<Obstacles>
 		<x>450</x>
 		<y>100</y>
 		<enemy>GREENKOOPA</enemy>
+	</Obstacles>
+
+	<Obstacles>
+		<x>100</x>
+		<y>100</y>
+		<block>SUPERSHROOMQUESTIONBLOCK</block>
 	</Obstacles>
 
 	<Obstacles>
