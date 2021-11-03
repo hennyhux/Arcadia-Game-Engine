@@ -8,10 +8,7 @@ using GameSpace.Interfaces;
 using GameSpace.States;
 using GameSpace.States.BlockStates;
 using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Text;
 
 namespace GameSpace.Objects.BlockObjects
 {
@@ -82,14 +79,14 @@ namespace GameSpace.Objects.BlockObjects
 
         public override bool RevealItem()
         {
-            return false; 
+            return false;
         }
     }
 
     public class BrickBlockWithItem : BrickBlocks
     {
         private bool hasRevealedItem;
-        public BrickBlockWithItem(Vector2 initLocation , IGameObjects item) : base(initLocation)
+        public BrickBlockWithItem(Vector2 initLocation, IGameObjects item) : base(initLocation)
         {
             this.item = item;
             hasRevealedItem = false;

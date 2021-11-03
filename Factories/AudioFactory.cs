@@ -1,6 +1,6 @@
-﻿using Microsoft.Xna.Framework.Media;
-using Microsoft.Xna.Framework.Audio;
+﻿using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
+using Microsoft.Xna.Framework.Media;
 using System.Collections.Generic;
 
 
@@ -27,22 +27,24 @@ namespace GameSpace.Factories
 
         public void LoadContent(ContentManager content)
         {
-            this.song = content.Load<Song>("Audio/backgroundSong");
-            this.smallJump = content.Load<SoundEffect>("Audio/smallJump");
-            this.superJump = content.Load<SoundEffect>("Audio/superJump");
+            song = content.Load<Song>("Audio/backgroundSong");
+            smallJump = content.Load<SoundEffect>("Audio/smallJump");
+            superJump = content.Load<SoundEffect>("Audio/superJump");
         }
-      
+
         public Song CreateSong()
         {
-            return this.song;
+            return song;
         }
 
         public List<SoundEffect> loadList()
         {
-            this.list = new List<SoundEffect>();
-            this.list.Add(this.smallJump);
-            this.list.Add(this.superJump);
-            return this.list;
+            list = new List<SoundEffect>
+            {
+                smallJump,
+                superJump
+            };
+            return list;
         }
     }
 }

@@ -40,42 +40,7 @@ namespace GameSpace.EntitiesManager
             return listOfWarpPipes;
         }
 
-        public static void Draw(SpriteBatch spriteBatch)
-        {
-            foreach (IGameObjects entity in gameEntities)
-            {
-                entity.Draw(spriteBatch);
-            }
 
-            foreach (IObjectAnimation animation in animationList)
-            {
-                animation.Draw(spriteBatch);
-            }
-
-            SweepAndPrune();
-        }
-
-        public static void Update(GameTime gametime)
-        {
-
-            foreach (IGameObjects entity in gameEntities)
-            {
-                entity.Update(gametime);
-            }
-
-            foreach (IObjectAnimation animation in animationList)
-            {
-                animation.Update(gametime);
-            }
-        }
-
-        public static void ToggleCollisionBox()
-        {
-            foreach (IGameObjects entity in gameEntities)
-            {
-                entity.ToggleCollisionBoxes();
-            }
-        }
         #endregion
 
         #region Moving and Finding Entities

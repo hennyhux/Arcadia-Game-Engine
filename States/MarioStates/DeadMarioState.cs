@@ -9,14 +9,14 @@ namespace GameSpace.States.MarioStates
 {
     internal class DeadMarioState : MarioActionStates//MarioPowerUpStates
     {
-        private protected GameRoot game; 
+        private protected GameRoot game;
         public DeadMarioState(Mario mario)
             : base(mario)
         {
 
         }
 
-        
+
 
         public override void Enter(IMarioActionStates previousActionState)
         {
