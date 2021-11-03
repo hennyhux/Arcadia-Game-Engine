@@ -3,6 +3,7 @@ using GameSpace.GameObjects.EnemyObjects;
 using GameSpace.Interfaces;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using GameSpace.Machines;
 
 
 namespace GameSpace.States.EnemyStates
@@ -23,6 +24,7 @@ namespace GameSpace.States.EnemyStates
             RedKoopa = redKoopa;
             RedKoopa.state = this;
             RedKoopa.Velocity = new Vector2(0, 0);
+            MusicMachine.GetInstance().PlaySoundEffect(2);
         }
 
         public void Draw(SpriteBatch spritebatch, Vector2 location)

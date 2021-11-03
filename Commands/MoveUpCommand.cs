@@ -16,18 +16,6 @@
             //EntityManager.FindItem((int)AvatarID.MARIO).Velocity = new Vector2((float)0, EntityManager.FindItem((int)AvatarID.MARIO).Velocity.Y - 40);
             //game.GetMario.JumpingTransition();
             game.GetMario.UpTransition();
-            /*if(game.GetMario.marioActionState is BigMarioJumpingState || game.GetMario.marioActionState is FireMarioJumpingState)
-            {
-                //play super jumping 
-                game.soundEffects[1].CreateInstance().Play();
-
-            }
-            else if (game.GetMario.marioActionState is SmallMarioJumpingState)
-            {
-                //play standard jumping 
-                game.soundEffects[0].CreateInstance().Play();
-
-            }*/
 
             /*EntityManager.FindItem((int)AvatarID.MARIO).Velocity = new Vector2((float)0, EntityManager.FindItem((int)AvatarID.MARIO).Velocity.Y - 40);
             IMarioActionStates currentState = game.GetMario.marioActionState;

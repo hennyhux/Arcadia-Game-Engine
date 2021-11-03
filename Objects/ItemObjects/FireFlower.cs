@@ -15,6 +15,7 @@ namespace GameSpace.GameObjects.ItemObjects
             Position = initialPosition;
             CollisionBox = new Rectangle((int)Position.X, (int)Position.Y, Sprite.Texture.Width * 2 / 4, Sprite.Texture.Height * 2);
             drawBox = false;
+            //play sound effect for powerUpAppear
         }
 
         public override void Trigger()

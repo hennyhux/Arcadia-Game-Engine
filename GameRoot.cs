@@ -5,13 +5,13 @@ using GameSpace.Enums;
 using GameSpace.Factories;
 using GameSpace.GameObjects.BlockObjects;
 using GameSpace.Interfaces;
-using GameSpace.Machines;
 using GameSpace.TileMapDefinition;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Media;
 using System.Collections.Generic;
+using Microsoft.Xna.Framework.Media;
+using Microsoft.Xna.Framework.Audio;
+using GameSpace.Machines;
 
 namespace GameSpace
 {
@@ -46,12 +46,14 @@ namespace GameSpace
 
         //private readonly string xmlFileName = "./Level1.xml"; // Turn in with this line of code!
         //private readonly string xmlFileName = "../../../TileMapDefinition/Level1.xml"; // ONLY to run on our machines
-        private readonly string xmlFileName = "../../../TileMapDefinition/HenryTesting.xml";
+        private readonly string xmlFileName = "../../../TileMapDefinition/CalebTesting.xml";
         public GameRoot()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
         }
+
+        private readonly SpriteBatch spriteBatch1;
         protected override void Initialize()
         {
             base.Initialize();
@@ -86,7 +88,7 @@ namespace GameSpace
 
             #region Load EntityManager
             //EntityManager.LoadList(objects);
-            TheaterMachine.GetInstance().LoadData(objects);
+            TheaterMachine.GetInstance().LoadList(objects);
             #endregion
 
             #region Loading Controllers
@@ -111,9 +113,8 @@ namespace GameSpace
             };
 
             //Audio Stuff
-            song = AudioFactory.GetInstance().CreateSong();
-            MediaPlayer.Play(song);
-            MediaPlayer.IsRepeating = true;
+            this.song = AudioFactory.GetInstance().CreateSong();
+            MusicMachine.GetInstance().PlaySong(this.song);
         }
 
         public Mario GetMario => (Mario)FinderMachine.GetInstance().FindItem((int)AvatarID.MARIO);

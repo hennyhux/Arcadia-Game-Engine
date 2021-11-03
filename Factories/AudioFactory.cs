@@ -1,6 +1,6 @@
-﻿using Microsoft.Xna.Framework.Audio;
+﻿using Microsoft.Xna.Framework.Media;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
-using Microsoft.Xna.Framework.Media;
 using System.Collections.Generic;
 
 
@@ -12,9 +12,13 @@ namespace GameSpace.Factories
         private Song song;
         private SoundEffect smallJump;
         private SoundEffect superJump;
+        private SoundEffect stomp;
+        private SoundEffect death;
+        private SoundEffect powerUpAppear;
+        private SoundEffect powerUpCollect;
+
         #endregion
         private static readonly AudioFactory instance = new AudioFactory();
-        private List<SoundEffect> list;
         public static AudioFactory GetInstance()
         {
             return instance;
@@ -27,23 +31,29 @@ namespace GameSpace.Factories
 
         public void LoadContent(ContentManager content)
         {
-            song = content.Load<Song>("Audio/backgroundSong");
-            smallJump = content.Load<SoundEffect>("Audio/smallJump");
-            superJump = content.Load<SoundEffect>("Audio/superJump");
+            this.song = content.Load<Song>("Audio/backgroundSong");
+            this.smallJump = content.Load<SoundEffect>("Audio/smallJump");
+            this.superJump = content.Load<SoundEffect>("Audio/superJump");
+            this.stomp = content.Load<SoundEffect>("Audio/stomp");
+            this.death = content.Load<SoundEffect>("Audio/death");
+            this.powerUpAppear = content.Load<SoundEffect>("Audio/powerUpAppear");
+            this.powerUpCollect = content.Load<SoundEffect>("Audio/powerUpCollect");
         }
-
+      
         public Song CreateSong()
         {
-            return song;
+            return this.song;
         }
 
         public List<SoundEffect> loadList()
         {
-            list = new List<SoundEffect>
-            {
-                smallJump,
-                superJump
-            };
+            List<SoundEffect> list = new List<SoundEffect>();
+            list.Add(this.smallJump);
+            list.Add(this.superJump);
+            list.Add(this.stomp);
+            list.Add(this.death);
+            list.Add(this.powerUpAppear);
+            list.Add(this.powerUpCollect);
             return list;
         }
     }

@@ -4,6 +4,8 @@ using GameSpace.GameObjects.BlockObjects;
 using GameSpace.Interfaces;
 using Microsoft.Xna.Framework;
 using System.Diagnostics;
+using GameSpace.Machines;
+
 
 namespace GameSpace.States.MarioStates
 {
@@ -37,6 +39,7 @@ namespace GameSpace.States.MarioStates
             //Mario.sprite = MarioFactory.GetInstance().CreateSprite(1);
 
             //play super jumping sound effect
+            MusicMachine.GetInstance().PlaySoundEffect(1);
 
         }
 
