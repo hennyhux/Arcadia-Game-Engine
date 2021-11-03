@@ -8,6 +8,7 @@ using GameSpace.Sprites;
 using GameSpace.States.BlockStates;
 using GameSpace.States.EnemyStates;
 using GameSpace.States.MarioStates;
+using GameSpace.Level;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Diagnostics;
@@ -21,6 +22,8 @@ namespace GameSpace.GameObjects.BlockObjects
         private bool hasCollided;
         private bool drawBox;
 
+        public LevelRestart levelRestart;
+        public GameRoot hey;
         public MarioSprite sprite { get; set; }
         public eFacing Facing { get; set; }
         public IMarioPowerUpStates marioPowerUpState { get; set; }
@@ -37,7 +40,7 @@ namespace GameSpace.GameObjects.BlockObjects
 
         public int marioLives { get; set; }
 
-        public Mario(Vector2 initLocation)
+        public Mario(Vector2 initLocation, GameRoot game)
         {
             Debug.WriteLine("Mario.cs(50) CREATED MARIO \n");
             ObjectID = (int)AvatarID.MARIO;
@@ -53,7 +56,7 @@ namespace GameSpace.GameObjects.BlockObjects
             sprite = MarioFactory.GetInstance().CreateSprite(1);
             marioPowerUpState = new SmallMarioState(this);
             marioActionState = new SmallMarioStandingState(this);
-
+            levelRestart = new LevelRestart(game, 0);
         }
 
         public void Draw(SpriteBatch spritebatch)
@@ -189,6 +192,13 @@ namespace GameSpace.GameObjects.BlockObjects
         {
             CollisionBox = new Rectangle(0, 0, 0, 0);
             marioPowerUpState.DeadTransition();
+            bool stillHasLives = true;
+            marioLives--; 
+            if (marioLives == 0)
+            {
+                stillHasLives = false;
+            }
+            //levelRestart.Restart(stillHasLives);
         }
 
         public void Trigger()

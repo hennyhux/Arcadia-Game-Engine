@@ -19,6 +19,7 @@ namespace GameSpace
                 {Keys.P, new PauseGameCommand(game)},
                 {Keys.M, new MuteCommand(game)},
                 {Keys.R, new ResetCommand(game)},
+                {Keys.X, new RestartCommand(game)},
                 {Keys.F, new ToggleFullscreenCommand(game)},
                 {Keys.D, new MoveRightCommand(game)},
                 {Keys.Right, new MoveRightCommand(game)},
