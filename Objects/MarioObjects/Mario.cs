@@ -39,8 +39,6 @@ namespace GameSpace.GameObjects.BlockObjects
 
         public int marioLives { get; set; }
 
-        private AbstractHandler collider;
-
         public Mario(Vector2 initLocation)
         {
             Debug.WriteLine("Mario.cs(50) CREATED MARIO \n");
@@ -57,7 +55,6 @@ namespace GameSpace.GameObjects.BlockObjects
             sprite = MarioFactory.GetInstance().CreateSprite(1);
             marioPowerUpState = new SmallMarioState(this);
             marioActionState = new SmallMarioStandingState(this);
-            collider = CollisionHandler.GetInstance();
 
         }
 
@@ -232,6 +229,10 @@ namespace GameSpace.GameObjects.BlockObjects
                 case (int)ItemID.BIGPIPE:
                 case (int)ItemID.MEDIUMPIPE:
                 case (int)ItemID.SMALLPIPE:
+                case (int)ItemID.WARPPIPE:
+                case (int)ItemID.WARPPIPEGOOMBA:
+                case (int)ItemID.WARPPIPEGREENKOOPA:
+                case (int)ItemID.WARPPIPEREDKOOPA:
                     CollisionHandler.GetInstance().ChangeMarioStatesUponCollision(entity);
                     CollisionHandler.GetInstance().MarioToBlockCollision(entity);
                     break;

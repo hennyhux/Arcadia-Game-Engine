@@ -17,8 +17,7 @@
 	<Obstacles>
 		<x>150</x>
 		<y>100</y>
-		<block>BRICKBLOCK</block>
-		<blockRow>1</blockRow>
+		<block>FIREBRICKBLOCK</block>
 	</Obstacles>
 
 	<Obstacles>
@@ -26,9 +25,19 @@
 		<y>100</y>
 		<block>BRICKBLOCK</block>
 		<blockRow>1</blockRow>
-		<item>FIREFLOWER</item>
 	</Obstacles>
 	
+	<Obstacles>
+		<x>320</x>
+		<y>100</y>
+		<item>WARPPIPE</item>
+	</Obstacles>
+	
+	<Obstacles>
+		<x>4000</x>
+		<y>100</y>
+		<item>WARPPIPE</item>
+	</Obstacles>
 	
 	<Obstacles>
 		<x>400</x>

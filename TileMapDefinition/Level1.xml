@@ -79,8 +79,9 @@
 	<Obstacles>
 		<x>400</x>
 		<y>400</y>
-		<item>BIGPIPE</item>
+		<item>WARPPIPEGOOMBA</item>
 	</Obstacles>
+	
 	
 	<Obstacles>
 		<x>896</x>

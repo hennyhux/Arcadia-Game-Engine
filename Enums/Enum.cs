@@ -7,8 +7,9 @@
         USEDBLOCK = 2,
         STAIRBLOCK = 3,
         BRICKBLOCK = 4,
-        COINBRICKBLOCK = 5,
-        STARBRICKBLOCK = 6,
+        COINBRICKBLOCK = 40,
+        STARBRICKBLOCK = 400,
+        FIREBRICKBLOCK = 4000,
         QUESTIONBLOCK = 7,
         COINQUESTIONBLOCK = 8,
         STARQUESTIONBLOCK = 9,
@@ -62,7 +63,7 @@
 
     public enum AvatarID
     {
-        MARIO = 40,
+        MARIO = 1984,
     };
 
     public enum CollisionDirection

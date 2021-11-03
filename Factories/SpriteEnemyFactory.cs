@@ -64,7 +64,7 @@ namespace GameSpace.Factories
             return new KoopaSprite(RedKoopa, 1, 2, 2, 0, 0);
         }
 
-        public ISprite CreateGreenKoopaSprite()
+        public ISprite CreateGreenKoopaLeftSprite()
         {
             return new KoopaSprite(GreenKoopa, 1, 2, 2, 0, 0);
         }

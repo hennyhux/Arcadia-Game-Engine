@@ -92,7 +92,7 @@ namespace GameSpace.Objects.BlockObjects
         {
             if (!hasRevealedItem)
             {
-                item.Position = new Vector2(item.Position.X, item.Position.Y - 32);
+                item.Position = new Vector2(item.Position.X, item.Position.Y - 64);
                 TheaterHandler.GetInstance().AddItemToStage(item);
                 hasRevealedItem = true;
             }

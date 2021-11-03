@@ -4,6 +4,7 @@ using GameSpace.GameObjects.ExtraItemsObjects;
 using GameSpace.GameObjects.ItemObjects;
 using GameSpace.Interfaces;
 using GameSpace.Objects.BlockObjects;
+using GameSpace.Sprites.ExtraItems;
 using Microsoft.Xna.Framework;
 
 namespace GameSpace.Factories
@@ -29,20 +30,18 @@ namespace GameSpace.Factories
 
         }
 
-        #region Blocks
+
+        #region BrickBlock
         public IGameObjects CreateBrickBlockObject(Vector2 location)
         {
-            return new GameObjects.BlockObjects.BrickBlocks(location);
-        }
-        public IGameObjects CreateCoinBrickBlock(Vector2 location)
-        {
-            return new BrickBlockWithItem(location, ObjectFactory.GetInstance().CreateCoinObject(location));
+            return new BrickBlocks(location);
         }
 
-        public IGameObjects CreateFireBrickBlock(Vector2 location)
+        public IGameObjects CreateBrickBlockWithItem(Vector2 location, IGameObjects item)
         {
-            return new BrickBlockWithItem(location, ObjectFactory.GetInstance().CreateFireFlowerObject(location));
+            return new BrickBlockWithItem(location, item);
         }
+        #endregion
         public IGameObjects CreateStairBlockObject(Vector2 location)
         {
             return new StairBlock(location);
@@ -108,7 +107,6 @@ namespace GameSpace.Factories
             return new QuestionBlockFire(location);
         }
 
-        #endregion
 
         #region Enemies 
         public IGameObjects CreateGoombaObject(Vector2 location)
@@ -185,6 +183,18 @@ namespace GameSpace.Factories
         {
             return new Castle(location);
         }
+
+        public IGameObjects CreateWarpPipeHead(Vector2 location)
+        {
+            return new WarpPipeHead(location);
+        }
+
+        public IGameObjects CreateWarpPipeHeadWithMob(Vector2 location)
+        {
+            return new WarpPipeHeadWithMob(location);
+        }
+
+
         #endregion
     }
 }

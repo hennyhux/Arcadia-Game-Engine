@@ -8,7 +8,6 @@ namespace GameSpace.GameObjects.BlockObjects
 {
     public class FloorBlock : AbstractBlock
     {
-
         public FloorBlock(Vector2 initalPosition)
         {
             ObjectID = (int)BlockID.FLOORBLOCK;

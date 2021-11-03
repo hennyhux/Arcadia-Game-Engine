@@ -44,7 +44,7 @@ namespace GameSpace.Abstracts
 
         }
 
-        public bool RevealItem()
+        public virtual bool RevealItem()
         {
             return false;
         }

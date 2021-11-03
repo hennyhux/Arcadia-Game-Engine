@@ -35,7 +35,7 @@ namespace GameSpace.Machines
 
         public void PlaySoundEffect(int soundEffect)
         {
-            musicList[soundEffect].CreateInstance().Play();
+            //musicList[soundEffect].CreateInstance().Play(); //broken?
         }
     }
 }

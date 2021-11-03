@@ -20,7 +20,7 @@ namespace GameSpace.GameObjects.ItemObjects
             CollisionBox = new Rectangle((int)Position.X, (int)Position.Y, Sprite.Texture.Width * 2 / 4, Sprite.Texture.Height * 2);
             drawBox = false;
             //play sound effect for powerUpAppear
-            MusicMachine.GetInstance().PlaySoundEffect(4);  
+            MusicHandler.GetInstance().PlaySoundEffect(4);  
 
         }
 
@@ -29,7 +29,7 @@ namespace GameSpace.GameObjects.ItemObjects
             Sprite.SetVisible();
             CollisionBox = new Rectangle(1, 1, 0, 0);
             //play sound effect for powerUpCollect
-            MusicMachine.GetInstance().PlaySoundEffect(5);
+            MusicHandler.GetInstance().PlaySoundEffect(5);
 
         }
 

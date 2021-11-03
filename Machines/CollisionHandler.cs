@@ -7,11 +7,14 @@ using GameSpace.GameObjects.EnemyObjects;
 using GameSpace.GameObjects.ExtraItemsObjects;
 using GameSpace.GameObjects.ItemObjects;
 using GameSpace.Interfaces;
+using GameSpace.Machines;
+using GameSpace.Sprites.ExtraItems;
 using GameSpace.States.BlockStates;
 using GameSpace.States.MarioStates;
 using Microsoft.Xna.Framework;
 using System.Diagnostics;
 using System.Linq;
+using static GameSpace.GameObjects.EnemyObjects.GreenKoopa;
 
 namespace GameSpace.EntityManaging
 {
@@ -124,6 +127,29 @@ namespace GameSpace.EntityManaging
                     break;
             }
         }
+        public void ItemToMarioCollison(WarpPipeHead pipe)
+        {
+            switch (DetectCollisionDirection(mario, pipe))
+            {
+                case (int)CollisionDirection.DOWN:
+                    pipe.TimesCollided++;
+                    MarioHandler.GetInstance().BounceMario();
+                    if (pipe.TimesCollided == 2)
+                    {
+                        MarioHandler.GetInstance().SetMarioStateToWarp();
+                    }
+                    break;
+            }
+        }
+        public void ItemToMarioCollison(WarpPipeHeadWithMob pipe)
+        {
+           if (mario.Position.X >= pipe.expandedCollisionBox.X)
+            {
+                pipe.RevealItem();
+            }
+        }
+
+
         #endregion
 
         #region Enemy Collision
@@ -148,7 +174,7 @@ namespace GameSpace.EntityManaging
 
             if (EntityManager.DetectCollisionDirection(enemy, block) == (int)CollisionDirection.LEFT)
             {
-                enemy.direction = (int)eFacing.LEFT;
+                enemy.Direction = (int)eFacing.LEFT;
                 if (enemy is GreenKoopa)
                 {
                     enemy.state = new StateGreenKoopaAliveFaceLeft();
@@ -157,7 +183,7 @@ namespace GameSpace.EntityManaging
 
             else if (EntityManager.DetectCollisionDirection(enemy, block) == (int)CollisionDirection.RIGHT)
             {
-                enemy.direction = (int)eFacing.RIGHT;
+                enemy.Direction = (int)eFacing.RIGHT;
                 if (enemy is GreenKoopa)
                 {
                     enemy.state = new StateGreenKoopaAliveFaceRight();
@@ -269,6 +295,18 @@ namespace GameSpace.EntityManaging
 
         }
 
+        #endregion
+
+        #region Block Collision
+        public void BlockToMarioCollision(IGameObjects block)
+        {
+            switch (DetectCollisionDirection(mario, block))
+            {
+                case (int)CollisionDirection.UP:
+                    block.Trigger();
+                    break;
+            }
+        }
         #endregion
 
         #region Misc Collision

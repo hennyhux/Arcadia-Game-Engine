@@ -45,7 +45,7 @@ namespace GameSpace.States.EnemyStates
 
             if (countDown == 550)
             {
-                if (GreenKoopa.direction == 0)
+                if (GreenKoopa.Direction == 0)
                 {
                     GreenKoopa.state = new StateGreenKoopaAliveLeft(GreenKoopa);
                 }

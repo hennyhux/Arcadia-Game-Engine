@@ -2,6 +2,7 @@
 using GameSpace.Camera2D;
 using GameSpace.GameObjects.BlockObjects;
 using GameSpace.Interfaces;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using System.Collections.Generic;
 
@@ -51,6 +52,11 @@ namespace GameSpace.EntityManaging
         {
             return mario;
         }
+
+        public Vector2 FindMarioPosition()
+        {
+            return mario.Position;
+        } 
 
     }
 }

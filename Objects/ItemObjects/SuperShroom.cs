@@ -39,7 +39,7 @@ namespace GameSpace.GameObjects.ItemObjects
             state = new StateSuperShroomHidden(this);
 
             //play sound effect for powerUpAppear
-            MusicMachine.GetInstance().PlaySoundEffect(4);
+            MusicHandler.GetInstance().PlaySoundEffect(4);
         }
 
         public void Draw(SpriteBatch spritebatch)
@@ -70,7 +70,7 @@ namespace GameSpace.GameObjects.ItemObjects
                 Sprite.SetVisible();
                 CollisionBox = new Rectangle();
                 //play sound effect for powerUpCollect
-                MusicMachine.GetInstance().PlaySoundEffect(5);
+                MusicHandler.GetInstance().PlaySoundEffect(5);
             }
             hasCollided = true;
         }

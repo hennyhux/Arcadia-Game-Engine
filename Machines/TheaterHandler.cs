@@ -27,7 +27,7 @@ namespace GameSpace.EntityManaging
 
             foreach (IGameObjects entity in gameEntityList)
             {
-                if (entity.ObjectID == (int)ItemID.BIGPIPE)
+                if (entity.ObjectID == (int)ItemID.WARPPIPE)
                 {
                     listOfWarpPipes.Add(entity);
                 }

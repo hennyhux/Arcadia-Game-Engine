@@ -10,9 +10,9 @@ using System.Diagnostics;
 
 namespace GameSpace.GameObjects.BlockObjects
 {
-    public class BrickBlocks : AbstractBlock
+    public class BrickBlock : AbstractBlock
     {
-        public BrickBlocks(Vector2 initalPosition)
+        public BrickBlock(Vector2 initalPosition)
         {
             ObjectID = (int)BlockID.BRICKBLOCK;
             Sprite = SpriteBlockFactory.GetInstance().ReturnBrickBlock();
@@ -38,7 +38,6 @@ namespace GameSpace.GameObjects.BlockObjects
                     {
                         Sprite.SetVisible();
                     }
-
                     //this.CollisionBox = new Rectangle((int)Position.X, (int)Position.Y, 0, 0);
                 }
 
@@ -48,31 +47,6 @@ namespace GameSpace.GameObjects.BlockObjects
         public override void Trigger()
         {
             state = new StateBrickBlockBump(this);
-        }
-
-
-        public override void HandleCollision(IGameObjects entity)
-        {
-            hasCollided = true;
-
-            if (EntityManager.DetectCollisionDirection(this, entity) == (int)CollisionDirection.DOWN)
-            {
-                if (entity is Mario)
-                {
-                    Mario mario = (Mario)entity;
-                    if (mario.marioPowerUpState is BigMarioState || mario.marioPowerUpState is FireMarioState)
-                    {
-                        Debug.WriteLine("SHATTER BLOCK, mario PowerUp {0}", mario.marioPowerUpState);
-                        //state = new StateExplodingBlock(this);
-                    }
-                    else
-                    {
-                        //Debug.WriteLine("BUMP BLOCK, mario PowerUp {0}", mario.marioPowerUpState);
-                        Trigger();
-                    }
-                }
-
-            }
         }
 
         public override bool RevealItem()
