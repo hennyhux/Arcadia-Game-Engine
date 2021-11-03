@@ -40,11 +40,5 @@ namespace GameSpace.EntityManaging
         {
             return cameraCopy;
         }
-
-        public List<SoundEffect> FindListOFSoundEffects()
-        {
-            return musicList;
-        }
-
     }
 }

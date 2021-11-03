@@ -114,8 +114,7 @@ namespace GameSpace
 
             //Audio Stuff
             this.song = AudioFactory.GetInstance().CreateSong();
-            MediaPlayer.Play(this.song);
-            MediaPlayer.IsRepeating = true; 
+            MusicMachine.GetInstance().PlaySong(this.song);
         }
 
         public Mario GetMario => (Mario)FinderMachine.GetInstance().FindItem((int)AvatarID.MARIO);

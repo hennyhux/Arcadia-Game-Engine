@@ -12,9 +12,13 @@ namespace GameSpace.Factories
         private Song song;
         private SoundEffect smallJump;
         private SoundEffect superJump;
+        private SoundEffect stomp;
+        private SoundEffect death;
+        private SoundEffect powerUpAppear;
+        private SoundEffect powerUpCollect;
+
         #endregion
         private static readonly AudioFactory instance = new AudioFactory();
-        private List<SoundEffect> list;
         public static AudioFactory GetInstance()
         {
             return instance;
@@ -30,6 +34,10 @@ namespace GameSpace.Factories
             this.song = content.Load<Song>("Audio/backgroundSong");
             this.smallJump = content.Load<SoundEffect>("Audio/smallJump");
             this.superJump = content.Load<SoundEffect>("Audio/superJump");
+            this.stomp = content.Load<SoundEffect>("Audio/stomp");
+            this.death = content.Load<SoundEffect>("Audio/death");
+            this.powerUpAppear = content.Load<SoundEffect>("Audio/powerUpAppear");
+            this.powerUpCollect = content.Load<SoundEffect>("Audio/powerUpCollect");
         }
       
         public Song CreateSong()
@@ -39,10 +47,14 @@ namespace GameSpace.Factories
 
         public List<SoundEffect> loadList()
         {
-            this.list = new List<SoundEffect>();
-            this.list.Add(this.smallJump);
-            this.list.Add(this.superJump);
-            return this.list;
+            List<SoundEffect> list = new List<SoundEffect>();
+            list.Add(this.smallJump);
+            list.Add(this.superJump);
+            list.Add(this.stomp);
+            list.Add(this.death);
+            list.Add(this.powerUpAppear);
+            list.Add(this.powerUpCollect);
+            return list;
         }
     }
 }
