@@ -24,7 +24,7 @@ namespace GameSpace.States.EnemyStates
             RedKoopa = redKoopa;
             RedKoopa.state = this;
             RedKoopa.Velocity = new Vector2(0, 0);
-            MusicMachine.GetInstance().PlaySoundEffect(2);
+            MusicHandler.GetInstance().PlaySoundEffect(2);
         }
 
         public void Draw(SpriteBatch spritebatch, Vector2 location)

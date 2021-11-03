@@ -36,7 +36,7 @@ namespace GameSpace.States.MarioStates
             //Mario.sprite = MarioFactory.GetInstance().CreateSprite(5);
 
             //play standard jumping sound effect
-            MusicMachine.GetInstance().PlaySoundEffect(0);
+            MusicHandler.GetInstance().PlaySoundEffect(0);
         }
 
         public override void Exit()

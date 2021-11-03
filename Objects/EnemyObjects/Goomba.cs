@@ -59,7 +59,7 @@ namespace GameSpace.GameObjects.EnemyObjects
         {
             state = new StateGoombaDead();
             countDown = 0;
-            MusicMachine.GetInstance().PlaySoundEffect(2);
+            MusicHandler.GetInstance().PlaySoundEffect(2);
 
         }
     }

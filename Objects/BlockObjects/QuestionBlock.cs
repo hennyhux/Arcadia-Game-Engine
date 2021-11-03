@@ -23,7 +23,7 @@ namespace GameSpace.GameObjects.BlockObjects
         public override void Trigger()
         {
             state = new StateQuestionBlockBump(this);
-            AnimationMachine.GetInstance().AddAnimation(new CoinExitingBlockAnimation(Position, internalGametime));
+            AnimationAgency.GetInstance().AddAnimation(new CoinExitingBlockAnimation(Position, internalGametime));
             revealedItem = true;
         }
     }

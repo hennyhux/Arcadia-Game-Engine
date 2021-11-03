@@ -11,7 +11,7 @@ namespace GameSpace.Commands
 
         public void Execute()
         {
-            TheaterMachine.GetInstance().ToggleCollisionBox();
+            TheaterHandler.GetInstance().ToggleCollisionBox();
         }
 
         public void Unexecute()

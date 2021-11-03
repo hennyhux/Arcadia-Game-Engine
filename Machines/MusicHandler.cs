@@ -8,15 +8,15 @@ using System.Text;
 
 namespace GameSpace.Machines
 {
-    public class MusicMachine : AbstractMachine
+    public class MusicHandler : AbstractHandler
     {
-        private static MusicMachine instance = new MusicMachine();
-        public static MusicMachine GetInstance()
+        private static MusicHandler instance = new MusicHandler();
+        public static MusicHandler GetInstance()
         {
             return instance;
         }
 
-        private MusicMachine()
+        private MusicHandler()
         {
 
         }
@@ -38,6 +38,5 @@ namespace GameSpace.Machines
             SoundEffect goingToPlay = musicList[soundEffect];
             goingToPlay.CreateInstance().Play();
         }
-
     }
 }

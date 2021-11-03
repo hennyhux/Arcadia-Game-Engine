@@ -36,7 +36,7 @@ namespace GameSpace.States.MarioStates
             Mario.sprite = MarioFactory.GetInstance().CreateSprite(MarioFactory.MarioSpriteType(this, Mario.marioPowerUpState));
 
             //play dead sound effect
-            MusicMachine.GetInstance().PlaySoundEffect(3);
+            MusicHandler.GetInstance().PlaySoundEffect(3);
         }
 
         public override void Exit() { }

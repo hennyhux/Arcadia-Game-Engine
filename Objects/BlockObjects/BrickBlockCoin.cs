@@ -71,7 +71,7 @@ namespace GameSpace.Objects.BlockObjects
         public void Trigger()
         {
             state.SetSprite(new BumpAnimation(Sprite.Texture, (int)Position.X, (int)Position.Y, 24));
-            AnimationMachine.GetInstance().AddAnimation(new CoinExitingBlockAnimation(Position, internalGameTime));
+            AnimationAgency.GetInstance().AddAnimation(new CoinExitingBlockAnimation(Position, internalGameTime));
         }
 
         public bool IsCurrentlyColliding()

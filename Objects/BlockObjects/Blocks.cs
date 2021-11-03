@@ -25,7 +25,6 @@ namespace GameSpace.Objects.BlockObjects
 
         public override void Update(GameTime gametime)
         {
-
             state.Update(gametime);
             if (state is StateExplodingBlock)
             {
@@ -40,10 +39,8 @@ namespace GameSpace.Objects.BlockObjects
                     {
                         Sprite.SetVisible();
                     }
-
                     //this.CollisionBox = new Rectangle((int)Position.X, (int)Position.Y, 0, 0);
                 }
-
             }
         }
 
@@ -51,7 +48,6 @@ namespace GameSpace.Objects.BlockObjects
         {
             state = new StateBrickBlockBump(this);
         }
-
 
         public override void HandleCollision(IGameObjects entity)
         {
@@ -97,7 +93,7 @@ namespace GameSpace.Objects.BlockObjects
             if (!hasRevealedItem)
             {
                 item.Position = new Vector2(item.Position.X, item.Position.Y - 32);
-                TheaterMachine.GetInstance().AddItemToStage(item);
+                TheaterHandler.GetInstance().AddItemToStage(item);
                 hasRevealedItem = true;
             }
             return hasRevealedItem;
