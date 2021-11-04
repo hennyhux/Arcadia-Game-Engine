@@ -19,5 +19,6 @@ namespace GameSpace.Abstracts
         private protected static Vector2 marioCurrentLocation;
         private protected static Camera cameraCopy;
         private protected static int currentWarpLocation = 0;
+        private protected static int marioScores = 0;
     }
 }

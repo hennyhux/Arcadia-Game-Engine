@@ -130,6 +130,8 @@ namespace GameSpace
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
+            HUDHandler.GetInstance().LoadContent(Content);
+
             #region Loading Factories
             SpriteBlockFactory.GetInstance().LoadContent(Content);
             MarioFactory.GetInstance(this).LoadContent(Content);
@@ -207,6 +209,7 @@ namespace GameSpace
             }
             //Normal Sprites
             spriteBatch.Begin(SpriteSortMode.Deferred, null, null, null, null, null, camera.GetViewMatrix(parallax));
+            HUDHandler.GetInstance().Draw(spriteBatch);
             TheaterHandler.GetInstance().Draw(spriteBatch);
             spriteBatch.End();
             base.Draw(gameTime);
