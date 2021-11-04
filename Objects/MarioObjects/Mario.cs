@@ -56,8 +56,6 @@ namespace GameSpace.GameObjects.BlockObjects
             sprite = MarioFactory.GetInstance().CreateSprite(1);
             marioPowerUpState = new SmallMarioState(this);
             marioActionState = new SmallMarioStandingState(this);
-
-            collider = CollisionHandler.GetInstance();
             numCoinsCollected = 0;
             score = 0;
         }

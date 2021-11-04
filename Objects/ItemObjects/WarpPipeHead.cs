@@ -53,12 +53,13 @@ namespace GameSpace.Sprites.ExtraItems
             CollisionBox = new Rectangle((int)Position.X, (int)Position.Y, Sprite.Texture.Width * 2, Sprite.Texture.Height * 2);
             expandedCollisionBox = new Rectangle((int)Position.X - Sprite.Texture.Width * 5, (int)Position.Y, Sprite.Texture.Width * 10, Sprite.Texture.Height * 2);
             drawBox = false;
+            itemRevealed = false;
 
         }
         public override void Update(GameTime gametime)
         {
             base.Update(gametime);
-            if (FinderHandler.GetInstance().FindMarioPosition().X > expandedCollisionBox.X)
+            if (!itemRevealed && FinderHandler.GetInstance().FindMarioPosition().X > expandedCollisionBox.X)
             {
                 RevealItem();
             }
@@ -67,7 +68,7 @@ namespace GameSpace.Sprites.ExtraItems
         public override bool RevealItem()
         {
             mob = ObjectFactory.GetInstance().CreateGoombaObject(new Vector2(Position.X - 4, Position.Y - Sprite.Texture.Height * 2 - 4));
-            TheaterHandler.GetInstance().AddItemToStage(mob);
+            //TheaterHandler.GetInstance().AddItemToStage(mob);
             itemRevealed = true;
             return true;
         }
