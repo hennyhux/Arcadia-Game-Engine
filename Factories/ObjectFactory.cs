@@ -1,4 +1,5 @@
-﻿using GameSpace.GameObjects.BlockObjects;
+﻿using GameSpace.Abstracts;
+using GameSpace.GameObjects.BlockObjects;
 using GameSpace.GameObjects.EnemyObjects;
 using GameSpace.GameObjects.ExtraItemsObjects;
 using GameSpace.GameObjects.ItemObjects;
@@ -34,12 +35,12 @@ namespace GameSpace.Factories
         #region BrickBlock
         public IGameObjects CreateBrickBlockObject(Vector2 location)
         {
-            return new BrickBlocks(location);
+            return new BrickBlock(location);
         }
 
         public IGameObjects CreateBrickBlockWithItem(Vector2 location, IGameObjects item)
         {
-            return new BrickBlockWithItem(location, item);
+            return new BrickBlockWithItem(location, (AbstractItem)item);
         }
         #endregion
         public IGameObjects CreateStairBlockObject(Vector2 location)

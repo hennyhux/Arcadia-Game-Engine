@@ -35,30 +35,32 @@ namespace GameSpace.EntityManaging
         public void UpdateCollision()
         {
             SweepAndPrune();
+            HandleAllCollisions();
         }
 
         #region Collision Algorithms
-        protected internal void SweepAndPrune()
+        private protected void HandleAllCollisions()
+        {
+            for (int i = 0; i < copyPrunedList.Count; i++)
+            {
+                for (int j = i + 1; j < copyPrunedList.Count; j++)
+                {
+                    if (IntersectAABB(copyPrunedList[i], copyPrunedList[j]))
+                    {
+                        copyPrunedList[i].HandleCollision(copyPrunedList[j]);
+                        copyPrunedList[j].HandleCollision(copyPrunedList[i]);
+                    }
+                }
+            }
+        }
+        private protected void SweepAndPrune()
         {
             marioCurrentLocation = mario.Position;
-            //Debug.WriteLine("MARIO POSITION " + mario.Position.X + "   "+ mario.Position.Y);
             foreach (IGameObjects entity in gameEntityList)
             {
                 if (marioCurrentLocation.X + 800 >= entity.Position.X && entity.Position.X - 800 < marioCurrentLocation.X)
                 {
                     prunedList.Add(entity);
-                }
-            }
-
-            for (int i = 0; i < prunedList.Count; i++)
-            {
-                for (int j = i + 1; j < prunedList.Count; j++)
-                {
-                    if (CollisionHandler.GetInstance().IntersectAABB(prunedList[i], prunedList[j]))
-                    {
-                        prunedList[i].HandleCollision(prunedList[j]);
-                        prunedList[j].HandleCollision(prunedList[i]);
-                    }
                 }
             }
             //Debug.WriteLine("SIZE OF PRUNED LIST " + prunedList.Count);
@@ -98,7 +100,7 @@ namespace GameSpace.EntityManaging
 
             return direction;
         }
-        public bool IntersectAABB(IGameObjects a, IGameObjects b)
+        private bool IntersectAABB(IGameObjects a, IGameObjects b)
         {
 
             if (a.CollisionBox.X + a.CollisionBox.Width < b.CollisionBox.X || a.CollisionBox.X > b.CollisionBox.X + b.CollisionBox.Width)
@@ -284,6 +286,8 @@ namespace GameSpace.EntityManaging
             mario.score += 1000;
         }
 
+
+
         public void MarioToItemCollision(Star item)
         {
             //Don't have to implement star powerUp but should still receive points
@@ -301,6 +305,7 @@ namespace GameSpace.EntityManaging
 
         public void MarioToItemCollision(OneUpShroom item)
         {
+            mario.marioPowerUpState.bigMarioTransformation();
             ++mario.marioLives;
         }
 
@@ -308,6 +313,11 @@ namespace GameSpace.EntityManaging
         {
             ++mario.numCoinsCollected;
             mario.score += 200;
+        }
+
+        public void MarioToItemCollision(Castle castle)
+        {
+           // MarioHandler.GetInstance().EnterVictoryPanel();
         }
 
         #endregion

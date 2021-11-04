@@ -19,6 +19,20 @@
 		<y>100</y>
 		<block>FIREBRICKBLOCK</block>
 	</Obstacles>
+	
+	<Obstacles>
+		<x>250</x>
+		<y>100</y>
+		<block>ONEUPSHROOMBRICKBLOCK</block>
+	</Obstacles>
+
+
+		<Obstacles>
+		<x>400</x>
+		<y>275</y>
+		<item>CASTLE</item>
+	</Obstacles>
+	
 
 	<Obstacles>
 		<x>200</x>

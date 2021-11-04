@@ -47,7 +47,6 @@ namespace GameSpace.EntityManaging
             {
                 animation.Draw(spriteBatch);
             }
-
             //ColliderMachine.GetInstance().UpdateCollision();
         }
 

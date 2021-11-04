@@ -38,15 +38,28 @@ namespace GameSpace.Abstracts
         public virtual void Update(GameTime gametime)
         {
             Sprite.Update(gametime);
+            UpdatePosition(Position, gametime);
         }
         public virtual void UpdatePosition(Vector2 location, GameTime gametime)
         {
-
+            Velocity += Acceleration * (float)gametime.ElapsedGameTime.TotalSeconds;
+            Position += Velocity * (float)gametime.ElapsedGameTime.TotalSeconds;
         }
 
         public virtual bool RevealItem()
         {
             return false;
+        }
+
+        public void DeleteCollisionBox()
+        {
+            CollisionBox = new Rectangle(0, 0, 0, 0);
+        }
+
+        public virtual void AdjustLocationComingOutOfBlock()
+        {
+            Position = new Vector2(Position.X + 6, Position.Y - Sprite.Texture.Height * 2);
+            CollisionBox = new Rectangle((int)Position.X, (int)Position.Y, Sprite.Texture.Width * 2 / 4, Sprite.Texture.Height * 2);
         }
     }
 }

@@ -24,7 +24,7 @@ namespace GameSpace.GameObjects.ItemObjects
         public override void Trigger()
         {
             Sprite.SetVisible();
-            CollisionBox = new Rectangle(1, 1, 0, 0);
+            DeleteCollisionBox();
             //play sound effect for coinCollect
             MusicHandler.GetInstance().PlaySoundEffect(7);
         }
@@ -38,6 +38,5 @@ namespace GameSpace.GameObjects.ItemObjects
                     break;
             }
         }
-
     }
 }

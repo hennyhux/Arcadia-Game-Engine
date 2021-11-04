@@ -27,10 +27,9 @@ namespace GameSpace.GameObjects.ItemObjects
         public override void Trigger()
         {
             Sprite.SetVisible();
-            CollisionBox = new Rectangle(1, 1, 0, 0);
+            DeleteCollisionBox();
             //play sound effect for powerUpCollect
             MusicHandler.GetInstance().PlaySoundEffect(5);
-
         }
 
         public override void HandleCollision(IGameObjects entity)
@@ -41,6 +40,12 @@ namespace GameSpace.GameObjects.ItemObjects
                     Trigger();
                     break;
             }
+        }
+
+        public override void AdjustLocationComingOutOfBlock()
+        {
+            Position = new Vector2(Position.X - 4, Position.Y - Sprite.Texture.Height * 2);
+            CollisionBox = new Rectangle((int)Position.X, (int)Position.Y, Sprite.Texture.Width * 2 / 4, Sprite.Texture.Height * 2);
         }
     }
 }

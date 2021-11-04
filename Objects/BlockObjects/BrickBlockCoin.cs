@@ -24,7 +24,6 @@ namespace GameSpace.Objects.BlockObjects
         private bool drawBox;
         private readonly IBlockStateMachine state;
         private GameTime internalGameTime;
-        private SpriteBatch internalSpritebatch;
 
         public BrickBlockCoin(Vector2 initialPosition)
         {
@@ -43,19 +42,10 @@ namespace GameSpace.Objects.BlockObjects
             {
                 state.FindSprite().DrawBoundary(spritebatch, CollisionBox);
             }
-
-            if (internalSpritebatch == null)
-            {
-                internalSpritebatch = spritebatch;
-            }
         }
         public void Update(GameTime gametime)
         {
             state.Update(gametime);
-            if (internalGameTime == null)
-            {
-                internalGameTime = gametime;
-            }
         }
 
         public void HandleCollision(IGameObjects entity)

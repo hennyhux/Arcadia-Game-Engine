@@ -1,29 +1,26 @@
-﻿using GameSpace.Factories;
+﻿using GameSpace.Abstracts;
+using GameSpace.Factories;
+using GameSpace.GameObjects.BlockObjects;
 using GameSpace.Interfaces;
+using GameSpace.Objects.BlockObjects;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace GameSpace.States
 {
-    public class StateBlockBumped : IObjectState
+    public class StateBlockBumped : AbstractBlockStates
     {
-        private readonly IGameObjects block;
-
         public StateBlockBumped(IGameObjects block)
         {
-            this.block = block;
-            if (block.Sprite.Texture.Name.Equals("Blocks/QuestionBlock"))
+            if (block is QuestionBlock || block is BrickBlockWithItem)
             {
-                block.Sprite = new BumpAnimation(SpriteBlockFactory.GetInstance().ReturnUsedBlock().Texture, (int)block.Position.X, (int)block.Position.Y, 24);
+                sprite = new BumpAnimation(SpriteBlockFactory.GetInstance().ReturnUsedBlock().Texture, (int)block.Position.X, (int)block.Position.Y, 24);
             }
 
             else
             {
-                block.Sprite = new BumpAnimation(block.Sprite.Texture, (int)block.Position.X, (int)block.Position.Y, 24);
+                sprite = new BumpAnimation(block.Sprite.Texture, (int)block.Position.X, (int)block.Position.Y, 24);
             }
-        }
-        public void Update(GameTime gametime)
-        {
-
         }
     }
 }

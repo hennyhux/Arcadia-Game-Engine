@@ -12,7 +12,7 @@ using GameSpace.Level;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Diagnostics;
-
+using GameSpace.GameObjects.ExtraItemsObjects;
 
 namespace GameSpace.GameObjects.BlockObjects
 {
@@ -221,11 +221,18 @@ namespace GameSpace.GameObjects.BlockObjects
                 case (int)ItemID.SUPERSHROOM:
                     CollisionHandler.GetInstance().MarioToItemCollision((SuperShroom)entity);
                     break;
+                case (int)ItemID.ONEUPSHROOM:
+                    CollisionHandler.GetInstance().MarioToItemCollision((OneUpShroom)entity);
+                    break;
                 case (int)ItemID.COIN:
                     CollisionHandler.GetInstance().MarioToItemCollision((Coin)entity);
                     break;
                 case (int)ItemID.STAR:
                     CollisionHandler.GetInstance().MarioToItemCollision((Star)entity);
+                    break;
+
+                case (int)ItemID.CASTLE:
+                    CollisionHandler.GetInstance().MarioToItemCollision((Castle)entity);
                     break;
 
                 case (int)BlockID.QUESTIONBLOCK:

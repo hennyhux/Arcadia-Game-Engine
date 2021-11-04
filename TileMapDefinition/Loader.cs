@@ -95,11 +95,19 @@ namespace GameSpace.TileMapDefinition
                     objects.Add(objectFactory.CreateBrickBlockWithItem(location, objectFactory.CreateFireFlowerObject(location)));
                     break;
 
-                #endregion
+                case BlockID.ONEUPSHROOMBRICKBLOCK:
+                    objects.Add(objectFactory.CreateBrickBlockWithItem(location, objectFactory.CreateOneUpShroomObject(location)));
+                    break;
+
+                case BlockID.SUPERSHROOMBRICKBLOCK:
+                    objects.Add(objectFactory.CreateBrickBlockWithItem(location, objectFactory.CreateSuperShroomObject(location)));
+                    break;
 
                 case BlockID.STARBRICKBLOCK:
-                    objects.Add(objectFactory.CreateStarBrickBlock(location));
+                    objects.Add(objectFactory.CreateBrickBlockWithItem(location, objectFactory.CreateStarObject(location)));
                     break;
+                #endregion
+
 
                 case BlockID.QUESTIONBLOCK: //NOT USED IN LEVEL 1-1
                     objects.Add(objectFactory.CreateQuestionBlockObject(location));

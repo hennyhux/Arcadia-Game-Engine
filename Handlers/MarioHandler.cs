@@ -35,5 +35,9 @@ namespace GameSpace.Machines
             mario.Position = new Vector2(mario.Position.X, mario.Position.Y - 3);
         }
 
+        internal void EnterVictoryPanel(GameRoot game)
+        {
+            HUDHandler.GetInstance().EnterVictoryMode(game);
+        }
     }
 }

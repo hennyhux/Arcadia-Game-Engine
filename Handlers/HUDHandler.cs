@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 
 namespace GameSpace.Machines
@@ -33,13 +34,18 @@ namespace GameSpace.Machines
 
         public void Draw(SpriteBatch spritebatch)
         {
-            spritebatch.DrawString(HeadsUpDisplay, "Score: " + marioScores.ToString(), HudPosition, Color.Black);
+            spritebatch.DrawString(HeadsUpDisplay, "Score: " + mario.score.ToString(), HudPosition, Color.Black);
             UpdateHudPosition();
         }
 
         private void UpdateHudPosition()
         {
             if (cameraCopy.Position.X > HudPosition.X) HudPosition.X++;
+        }
+
+        internal void EnterVictoryMode(GameRoot game)
+        {
+            cameraCopy.LookAt(new Vector2(100, 2000));
         }
     }
 }
