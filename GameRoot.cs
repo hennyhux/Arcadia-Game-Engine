@@ -5,14 +5,14 @@ using GameSpace.Enums;
 using GameSpace.Factories;
 using GameSpace.GameObjects.BlockObjects;
 using GameSpace.Interfaces;
+using GameSpace.Level;
+using GameSpace.Machines;
 using GameSpace.TileMapDefinition;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using System.Collections.Generic;
-using Microsoft.Xna.Framework.Media;
 using Microsoft.Xna.Framework.Audio;
-using GameSpace.Machines;
-using GameSpace.Level;
+using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Media;
+using System.Collections.Generic;
 
 namespace GameSpace
 {
@@ -20,7 +20,7 @@ namespace GameSpace
     {
         private protected readonly GraphicsDeviceManager graphics;
         private protected SpriteBatch spriteBatch;
-        private LevelRestart levelRestart;
+        private readonly LevelRestart levelRestart;
         private static Vector2 p;
         private static bool startOfGame;
         internal IGameState currentGameState;
@@ -64,7 +64,7 @@ namespace GameSpace
         {
             base.Initialize();
             LoadContent();
-            Vic = 1; 
+            Vic = 1;
         }
 
         protected override void LoadContent()
@@ -121,8 +121,8 @@ namespace GameSpace
             };
 
             //Audio Stuff
-            this.song = AudioFactory.GetInstance().CreateSong();
-            MusicHandler.GetInstance().PlaySong(this.song);
+            song = AudioFactory.GetInstance().CreateSong();
+            MusicHandler.GetInstance().PlaySong(song);
         }
 
         public Mario GetMario => (Mario)FinderHandler.GetInstance().FindItem((int)AvatarID.MARIO);
@@ -138,8 +138,16 @@ namespace GameSpace
             base.Update(gameTime);
             //Camera Stuff- Centered Mario
 
-            if (Vic == 1) camera.LookAt(new Vector2(GetMario.Position.X + GetMario.CollisionBox.Width / 2, GraphicsDevice.Viewport.Height / 2));
-            if (Vic == 2) camera.LookAt(new Vector2(2000, 300));
+            if (Vic == 1)
+            {
+                camera.LookAt(new Vector2(GetMario.Position.X + GetMario.CollisionBox.Width / 2, GraphicsDevice.Viewport.Height / 2));
+            }
+
+            if (Vic == 2)
+            {
+                camera.LookAt(new Vector2(2000, 300));
+            }
+
             levelRestart.Restart(true);
         }
 
@@ -218,8 +226,8 @@ namespace GameSpace
             };
 
             //Audio Stuff
-            this.song = AudioFactory.GetInstance().CreateSong();
-            MusicHandler.GetInstance().PlaySong(this.song);
+            song = AudioFactory.GetInstance().CreateSong();
+            MusicHandler.GetInstance().PlaySong(song);
         }
     }
 

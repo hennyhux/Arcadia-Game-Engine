@@ -3,8 +3,6 @@ using GameSpace.Enums;
 using GameSpace.Factories;
 using GameSpace.Interfaces;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using System;
 using System.Diagnostics;
 
 namespace GameSpace.GameObjects.ExtraItemsObjects

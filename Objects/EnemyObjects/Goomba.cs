@@ -1,9 +1,9 @@
 ﻿using GameSpace.Abstracts;
 using GameSpace.Enums;
 using GameSpace.Factories;
+using GameSpace.Machines;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using GameSpace.Machines;
 
 
 

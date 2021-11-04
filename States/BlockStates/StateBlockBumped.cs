@@ -3,8 +3,6 @@ using GameSpace.Factories;
 using GameSpace.GameObjects.BlockObjects;
 using GameSpace.Interfaces;
 using GameSpace.Objects.BlockObjects;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 
 namespace GameSpace.States
 {

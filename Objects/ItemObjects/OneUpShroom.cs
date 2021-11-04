@@ -1,19 +1,16 @@
-﻿using GameSpace.EntitiesManager;
+﻿using GameSpace.Abstracts;
 using GameSpace.Enums;
 using GameSpace.Factories;
 using GameSpace.Interfaces;
+using GameSpace.Machines;
 using GameSpace.States.ItemStates;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using System;
-using GameSpace.Machines;
-using GameSpace.Abstracts;
 
 namespace GameSpace.GameObjects.ItemObjects
 {
     public class OneUpShroom : AbstractItem
     {
-        private IItemStates state;
+        private readonly IItemStates state;
 
         private bool hasCollided;
         public Rectangle ExpandedCollisionBox { get; set; }
@@ -42,7 +39,7 @@ namespace GameSpace.GameObjects.ItemObjects
 
             //Increase Mario's lives
         }
-       
+
 
         public override void HandleCollision(IGameObjects entity)
         {
@@ -52,7 +49,7 @@ namespace GameSpace.GameObjects.ItemObjects
                     Trigger();
                     break;
             }
-            
+
         }
     }
 }

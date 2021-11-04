@@ -31,7 +31,11 @@ namespace GameSpace.Objects.BlockObjects
 
         public override void Trigger()
         {
-            if (!hasCollided)state = new StateBlockBumped(this);
+            if (!hasCollided)
+            {
+                state = new StateBlockBumped(this);
+            }
+
             hasCollided = true;
         }
 

@@ -1,6 +1,4 @@
 ﻿using GameSpace.Abstracts;
-using GameSpace.Camera2D;
-using GameSpace.EntitiesManager;
 using GameSpace.Enums;
 using GameSpace.GameObjects.BlockObjects;
 using GameSpace.GameObjects.EnemyObjects;
@@ -12,7 +10,6 @@ using GameSpace.Sprites.ExtraItems;
 using GameSpace.States.BlockStates;
 using GameSpace.States.MarioStates;
 using Microsoft.Xna.Framework;
-using System.Diagnostics;
 using System.Linq;
 using static GameSpace.GameObjects.EnemyObjects.GreenKoopa;
 
@@ -145,12 +142,11 @@ namespace GameSpace.EntityManaging
         }
         public void ItemToMarioCollison(WarpPipeHeadWithMob pipe)
         {
-           if (mario.Position.X >= pipe.expandedCollisionBox.X)
+            if (mario.Position.X >= pipe.ExpandedCollisionBox.X)
             {
                 pipe.RevealItem();
             }
         }
-
 
         #endregion
 
@@ -174,7 +170,7 @@ namespace GameSpace.EntityManaging
         public void EnemyToBlockCollision(AbstractEnemy enemy, IGameObjects block)
         {
 
-            if (EntityManager.DetectCollisionDirection(enemy, block) == (int)CollisionDirection.LEFT)
+            if (DetectCollisionDirection(enemy, block) == (int)CollisionDirection.LEFT)
             {
                 enemy.Direction = (int)eFacing.LEFT;
                 if (enemy is GreenKoopa)
@@ -183,7 +179,7 @@ namespace GameSpace.EntityManaging
                 }
             }
 
-            else if (EntityManager.DetectCollisionDirection(enemy, block) == (int)CollisionDirection.RIGHT)
+            else if (DetectCollisionDirection(enemy, block) == (int)CollisionDirection.RIGHT)
             {
                 enemy.Direction = (int)eFacing.RIGHT;
                 if (enemy is GreenKoopa)
@@ -195,10 +191,26 @@ namespace GameSpace.EntityManaging
 
         public void EnemyToMarioCollision(AbstractEnemy enemy, IGameObjects mario)
         {
-            if (EntityManager.DetectCollisionDirection(enemy, mario) == (int)CollisionDirection.UP)
+            if (DetectCollisionDirection(enemy, mario) == (int)CollisionDirection.UP)
             {
                 enemy.Trigger();
-                enemy.CollisionBox = new Rectangle(1, 1, 0, 0);
+                //enemy.CollisionBox = new Rectangle(1, 1, 0, 0);
+            }
+        }
+
+        public void EnemyToMarioCollision(GreenKoopa enemy, IGameObjects mario)
+        {
+            if (DetectCollisionDirection(enemy, mario) == (int)CollisionDirection.UP)
+            {
+                if (enemy.state is StateGreenKoopaShelled)
+                {
+                    enemy.state = new StateGreenKoopaDeadMoving();
+                }
+
+                else
+                {
+                    if (!(enemy.state is StateGreenKoopaDeadMoving))enemy.Trigger();
+                }
             }
         }
         #endregion
@@ -219,7 +231,7 @@ namespace GameSpace.EntityManaging
 
                 case (int)CollisionDirection.DOWN:
                     if (mario.marioActionState is SmallMarioFallingState ||
-                        mario.marioActionState is BigMarioFallingState || 
+                        mario.marioActionState is BigMarioFallingState ||
                         mario.marioActionState is FireMarioFallingState)
                     {
                         mario.DownTransition();
@@ -268,7 +280,7 @@ namespace GameSpace.EntityManaging
         {
             if (DetectCollisionDirection(mario, enemy) != (int)CollisionDirection.DOWN)
             {
-                mario.Trigger(); 
+                mario.Trigger();
             }
         }
 
@@ -317,7 +329,7 @@ namespace GameSpace.EntityManaging
 
         public void MarioToItemCollision(Castle castle)
         {
-           // MarioHandler.GetInstance().EnterVictoryPanel();
+            // MarioHandler.GetInstance().EnterVictoryPanel();
         }
 
         #endregion
@@ -339,29 +351,45 @@ namespace GameSpace.EntityManaging
         {
             if (entity.Position.X + newLocation.X <= 0)
             {
-                if (entity is Mario)mario.marioActionState.StandingTransition();
+                if (entity is Mario)
+                {
+                    mario.marioActionState.StandingTransition();
+                }
+
                 return true;
             }
 
-            if (entity.Position.Y + newLocation.Y <= 0) 
+            if (entity.Position.Y + newLocation.Y <= 0)
             {
                 entity.Velocity = new Vector2(entity.Velocity.X, 50);
-                if (entity is Mario) mario.marioActionState.FallingTransition();
-                return true; 
+                if (entity is Mario)
+                {
+                    mario.marioActionState.FallingTransition();
+                }
+
+                return true;
             }
 
             if (entity.Position.X + (entity.CollisionBox.Width) + newLocation.X > ((Rectangle)cameraCopy.Limits).Width)
             {
-                if (entity is Mario) mario.marioActionState.StandingTransition(); 
-                return true; 
+                if (entity is Mario)
+                {
+                    mario.marioActionState.StandingTransition();
+                }
+
+                return true;
             }
 
-            if (entity.Position.Y + newLocation.Y + entity.CollisionBox.Height >= ((Rectangle)cameraCopy.Limits).Height) 
+            if (entity.Position.Y + newLocation.Y + entity.CollisionBox.Height >= ((Rectangle)cameraCopy.Limits).Height)
             {
-                if (entity is Mario) mario.marioPowerUpState.DeadTransition();
-                return true; 
+                if (entity is Mario)
+                {
+                    mario.marioPowerUpState.DeadTransition();
+                }
+
+                return true;
             }
-            return false; 
+            return false;
         }
         #endregion
 

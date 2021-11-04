@@ -1,11 +1,7 @@
 ﻿using GameSpace.Abstracts;
-using GameSpace.EntityManaging;
 using GameSpace.Interfaces;
 using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Text;
 
 namespace GameSpace.Machines
 {
@@ -24,7 +20,11 @@ namespace GameSpace.Machines
 
         public void SetMarioStateToWarp()
         {
-            if (currentWarpLocation < listOfWarpPipes.Count - 3) currentWarpLocation++;
+            if (currentWarpLocation < listOfWarpPipes.Count - 3)
+            {
+                currentWarpLocation++;
+            }
+
             Debug.WriteLine(listOfWarpPipes.Count);
             IGameObjects nextPipe = listOfWarpPipes.ToArray()[currentWarpLocation];
             mario.Position = new Vector2(nextPipe.Position.X, nextPipe.Position.Y - 20);

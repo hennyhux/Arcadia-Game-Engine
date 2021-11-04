@@ -2,17 +2,13 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Text;
 
 namespace GameSpace.Machines
 {
     public class HUDHandler : AbstractHandler
     {
-        SpriteFont HeadsUpDisplay;
-        Vector2 HudPosition;
+        private SpriteFont HeadsUpDisplay;
+        private Vector2 HudPosition;
 
         private static readonly HUDHandler instance = new HUDHandler();
         public static HUDHandler GetInstance()
@@ -40,7 +36,10 @@ namespace GameSpace.Machines
 
         private void UpdateHudPosition()
         {
-            if (cameraCopy.Position.X > HudPosition.X) HudPosition.X++;
+            if (cameraCopy.Position.X > HudPosition.X)
+            {
+                HudPosition.X++;
+            }
         }
 
         internal void EnterVictoryMode(GameRoot game)

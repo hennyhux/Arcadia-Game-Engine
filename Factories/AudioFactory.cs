@@ -1,6 +1,6 @@
-﻿using Microsoft.Xna.Framework.Media;
-using Microsoft.Xna.Framework.Audio;
+﻿using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
+using Microsoft.Xna.Framework.Media;
 using System.Collections.Generic;
 
 
@@ -33,33 +33,35 @@ namespace GameSpace.Factories
 
         public void LoadContent(ContentManager content)
         {
-            this.song = content.Load<Song>("Audio/backgroundSong");
-            this.smallJump = content.Load<SoundEffect>("Audio/smallJump");
-            this.superJump = content.Load<SoundEffect>("Audio/superJump");
-            this.stomp = content.Load<SoundEffect>("Audio/stomp");
-            this.death = content.Load<SoundEffect>("Audio/death");
-            this.powerUpAppear = content.Load<SoundEffect>("Audio/powerUpAppear");
-            this.powerUpCollect = content.Load<SoundEffect>("Audio/powerUpCollect");
-            this.oneUpCollect = content.Load<SoundEffect>("Audio/oneUpCollect");
-            this.coinCollect = content.Load<SoundEffect>("Audio/coinCollect");
+            song = content.Load<Song>("Audio/backgroundSong");
+            smallJump = content.Load<SoundEffect>("Audio/smallJump");
+            superJump = content.Load<SoundEffect>("Audio/superJump");
+            stomp = content.Load<SoundEffect>("Audio/stomp");
+            death = content.Load<SoundEffect>("Audio/death");
+            powerUpAppear = content.Load<SoundEffect>("Audio/powerUpAppear");
+            powerUpCollect = content.Load<SoundEffect>("Audio/powerUpCollect");
+            oneUpCollect = content.Load<SoundEffect>("Audio/oneUpCollect");
+            coinCollect = content.Load<SoundEffect>("Audio/coinCollect");
         }
-      
+
         public Song CreateSong()
         {
-            return this.song;
+            return song;
         }
 
         public List<SoundEffect> loadList()
         {
-            List<SoundEffect> list = new List<SoundEffect>();
-            list.Add(this.smallJump);
-            list.Add(this.superJump);
-            list.Add(this.stomp);
-            list.Add(this.death);
-            list.Add(this.powerUpAppear);
-            list.Add(this.powerUpCollect); //5
-            list.Add(this.oneUpCollect);
-            list.Add(this.coinCollect);
+            List<SoundEffect> list = new List<SoundEffect>
+            {
+                smallJump,
+                superJump,
+                stomp,
+                death,
+                powerUpAppear,
+                powerUpCollect, //5
+                oneUpCollect,
+                coinCollect
+            };
             return list;
         }
     }

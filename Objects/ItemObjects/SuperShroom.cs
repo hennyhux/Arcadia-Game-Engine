@@ -2,11 +2,11 @@
 using GameSpace.Enums;
 using GameSpace.Factories;
 using GameSpace.Interfaces;
+using GameSpace.Machines;
 using GameSpace.States.ItemStates;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
-using GameSpace.Machines;
 
 namespace GameSpace.GameObjects.ItemObjects
 {

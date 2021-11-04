@@ -56,7 +56,7 @@ namespace GameSpace.EntityManaging
         public Vector2 FindMarioPosition()
         {
             return mario.Position;
-        } 
+        }
 
     }
 }

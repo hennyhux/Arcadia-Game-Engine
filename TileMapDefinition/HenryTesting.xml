@@ -44,7 +44,7 @@
 	<Obstacles>
 		<x>320</x>
 		<y>100</y>
-		<item>WARPPIPE</item>
+		<item>WARPPIPEGOOMBA</item>
 	</Obstacles>
 	
 	<Obstacles>

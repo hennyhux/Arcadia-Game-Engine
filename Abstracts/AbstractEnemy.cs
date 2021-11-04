@@ -1,5 +1,4 @@
 ﻿using GameSpace.Camera2D;
-using GameSpace.EntitiesManager;
 using GameSpace.EntityManaging;
 using GameSpace.Enums;
 using GameSpace.Interfaces;
@@ -42,12 +41,12 @@ namespace GameSpace.Abstracts
         public virtual void Update(GameTime gametime)
         {
             state.Update(gametime);
-            if (!hasCollidedOnTop)
-            {
-                UpdateSpeed();
-                UpdatePosition(Position, gametime);
-                UpdateCollisionBox(Position);
-            }
+
+
+            UpdateSpeed();
+            UpdatePosition(Position, gametime);
+            UpdateCollisionBox(Position);
+
         }
 
         public virtual void Trigger()
@@ -55,7 +54,7 @@ namespace GameSpace.Abstracts
             hasCollidedOnTop = true;
         }
 
-        private protected virtual void UpdateSpeed()
+        internal virtual void UpdateSpeed()
         {
             if (CollisionHandler.GetInstance().IsGoingToFall(this))
             {

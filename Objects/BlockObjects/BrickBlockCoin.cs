@@ -23,7 +23,7 @@ namespace GameSpace.Objects.BlockObjects
 
         private bool drawBox;
         private readonly IBlockStateMachine state;
-        private GameTime internalGameTime;
+        private readonly GameTime internalGameTime;
 
         public BrickBlockCoin(Vector2 initialPosition)
         {

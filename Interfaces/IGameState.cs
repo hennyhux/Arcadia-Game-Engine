@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace GameSpace.Interfaces
+﻿namespace GameSpace.Interfaces
 {
-    interface IGameState
+    internal interface IGameState
     {
     }
 }

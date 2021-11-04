@@ -2,9 +2,9 @@
 using GameSpace.Factories;
 using GameSpace.GameObjects.BlockObjects;
 using GameSpace.Interfaces;
+using GameSpace.Machines;
 using Microsoft.Xna.Framework;
 using System.Diagnostics;
-using GameSpace.Machines;
 
 
 namespace GameSpace.States.MarioStates

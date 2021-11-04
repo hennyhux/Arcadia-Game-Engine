@@ -1,11 +1,9 @@
 ﻿using GameSpace.Abstracts;
-using GameSpace.EntitiesManager;
 using GameSpace.EntityManaging;
 using GameSpace.Enums;
 using GameSpace.Factories;
 using GameSpace.Interfaces;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 
 namespace GameSpace.GameObjects.EnemyObjects
 {
@@ -27,11 +25,64 @@ namespace GameSpace.GameObjects.EnemyObjects
         {
             base.Update(gametime);
 
-            if (hasCollidedOnTop) countdown++;
+            if (hasCollidedOnTop)
+            {
+                countdown++;
+            }
 
-            if (countdown == 100)
+            if (countdown == 250)
             {
                 state = new StateGreenKoopaShellAndLegs();
+            }
+
+            if (countdown == 500)
+            {
+                state = new StateGreenKoopaAliveFaceLeft();
+                countdown = 0;
+                hasCollidedOnTop = false;
+            }
+
+        }
+
+        public override void HandleCollision(IGameObjects entity)
+        {
+            switch (entity.ObjectID)
+            {
+                case (int)AvatarID.MARIO:
+                    CollisionHandler.GetInstance().EnemyToMarioCollision((GreenKoopa)this, entity);
+                    break;
+
+                case (int)BlockID.USEDBLOCK:
+                case (int)BlockID.QUESTIONBLOCK:
+                case (int)BlockID.FLOORBLOCK:
+                case (int)BlockID.STAIRBLOCK:
+                case (int)BlockID.COINBRICKBLOCK:
+                case (int)BlockID.BRICKBLOCK:
+                case (int)ItemID.BIGPIPE:
+                case (int)ItemID.MEDIUMPIPE:
+                case (int)ItemID.SMALLPIPE:
+                    CollisionHandler.GetInstance().EnemyToBlockCollision(this, entity);
+                    break;
+
+                case (int)ItemID.FIREBALL:
+                    Trigger();
+                    break;
+            }
+        }
+
+        public override void UpdatePosition(Vector2 location, GameTime gameTime)
+        {
+            if (state is StateGreenKoopaDeadMoving)
+            {
+                Position += new Vector2(300, 0) * (float)gameTime.ElapsedGameTime.TotalSeconds;
+            }
+
+            else if (!(state is StateGreenKoopaShelled) &&
+                !(state is StateGreenKoopaShellAndLegs) && 
+                !(state is StateGreenKoopaDeadMoving))
+            {
+                Velocity += Acceleration * (float)gameTime.ElapsedGameTime.TotalSeconds;
+                Position += Velocity * (float)gameTime.ElapsedGameTime.TotalSeconds;
             }
 
         }

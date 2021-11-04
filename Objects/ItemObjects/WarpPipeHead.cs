@@ -3,13 +3,7 @@ using GameSpace.EntityManaging;
 using GameSpace.Enums;
 using GameSpace.Factories;
 using GameSpace.Interfaces;
-using GameSpace.Machines;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Text;
 
 namespace GameSpace.Sprites.ExtraItems
 {
@@ -20,7 +14,7 @@ namespace GameSpace.Sprites.ExtraItems
     }
     public class WarpPipeHead : AbstractItem
     {
-        private bool hasCollided;
+        private readonly bool hasCollided;
         public int TimesCollided { get; set; }
         public WarpPipeHead(Vector2 location)
         {
@@ -31,7 +25,7 @@ namespace GameSpace.Sprites.ExtraItems
             hasCollided = false;
             drawBox = false;
             TimesCollided = 0;
-            
+
         }
 
         public override void HandleCollision(IGameObjects entity)
@@ -44,14 +38,13 @@ namespace GameSpace.Sprites.ExtraItems
     {
         private IGameObjects mob;
         private bool itemRevealed;
-        public Rectangle expandedCollisionBox { get; private set; }
-        public WarpPipeHeadWithMob(Vector2 location)
+        public WarpPipeHeadWithMob(Vector2 location, AbstractEnemy mob)
         {
             ObjectID = (int)ItemID.WARPPIPEGOOMBA;
             Sprite = SpriteItemFactory.GetInstance().CreateWarpPipe();
             Position = location;
             CollisionBox = new Rectangle((int)Position.X, (int)Position.Y, Sprite.Texture.Width * 2, Sprite.Texture.Height * 2);
-            expandedCollisionBox = new Rectangle((int)Position.X - Sprite.Texture.Width * 5, (int)Position.Y, Sprite.Texture.Width * 10, Sprite.Texture.Height * 2);
+            ExpandedCollisionBox = new Rectangle((int)Position.X - Sprite.Texture.Width * 5, (int)Position.Y, Sprite.Texture.Width * 10, Sprite.Texture.Height * 2);
             drawBox = false;
             itemRevealed = false;
 
@@ -59,7 +52,7 @@ namespace GameSpace.Sprites.ExtraItems
         public override void Update(GameTime gametime)
         {
             base.Update(gametime);
-            if (!itemRevealed && FinderHandler.GetInstance().FindMarioPosition().X > expandedCollisionBox.X)
+            if (!itemRevealed)
             {
                 RevealItem();
             }
@@ -67,10 +60,15 @@ namespace GameSpace.Sprites.ExtraItems
 
         public override bool RevealItem()
         {
-            mob = ObjectFactory.GetInstance().CreateGoombaObject(new Vector2(Position.X - 4, Position.Y - Sprite.Texture.Height * 2 - 4));
-            //TheaterHandler.GetInstance().AddItemToStage(mob);
-            itemRevealed = true;
-            return true;
+            if (!itemRevealed)
+            {
+                mob = ObjectFactory.GetInstance().CreateGoombaObject(new Vector2(Position.X - 4, Position.Y - Sprite.Texture.Height * 2 - 4));
+                //TheaterHandler.GetInstance().AddItemToStage(mob);
+                itemRevealed = true;
+                return true;
+            }
+
+            return false;
         }
 
         public override void HandleCollision(IGameObjects entity)

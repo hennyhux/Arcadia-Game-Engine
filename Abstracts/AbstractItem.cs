@@ -13,12 +13,16 @@ namespace GameSpace.Abstracts
         public virtual Rectangle CollisionBox { get; set; }
         public virtual int ObjectID { get; set; }
         internal bool drawBox;
+
+        public virtual Rectangle ExpandedCollisionBox { get; set; }
+
         public virtual void Draw(SpriteBatch spritebatch)
         {
             Sprite.Draw(spritebatch, Position); //this shouldnt be hardcoded anymore 
             if (drawBox)
             {
                 Sprite.DrawBoundary(spritebatch, CollisionBox);
+                Sprite.DrawBoundary(spritebatch, ExpandedCollisionBox);
             }
         }
         public abstract void HandleCollision(IGameObjects entity);

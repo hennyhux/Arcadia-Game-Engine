@@ -1,18 +1,17 @@
-﻿using GameSpace.Abstracts;
-using GameSpace.EntitiesManager;
-using GameSpace.EntityManaging;
+﻿using GameSpace.EntityManaging;
 using GameSpace.Enums;
 using GameSpace.Factories;
+using GameSpace.GameObjects.ExtraItemsObjects;
 using GameSpace.GameObjects.ItemObjects;
 using GameSpace.Interfaces;
+using GameSpace.Level;
+using GameSpace.Machines;
 using GameSpace.Sprites;
 using GameSpace.States.BlockStates;
 using GameSpace.States.MarioStates;
-using GameSpace.Level;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Diagnostics;
-using GameSpace.GameObjects.ExtraItemsObjects;
 
 namespace GameSpace.GameObjects.BlockObjects
 {
@@ -107,7 +106,10 @@ namespace GameSpace.GameObjects.BlockObjects
                 }
             }
             //if mario collects 100 coins he gets an extra life
-            if (numCoinsCollected % 100 == 0) ++marioLives;
+            if (numCoinsCollected % 100 == 0)
+            {
+                ++marioLives;
+            }
 
             //GetMario.sprite.Height
             marioPowerUpState.Update(gametime);
@@ -189,11 +191,9 @@ namespace GameSpace.GameObjects.BlockObjects
         {
             CollisionBox = new Rectangle(0, 0, 0, 0);
             marioPowerUpState.DeadTransition();
-            bool stillHasLives = true;
-            marioLives--; 
+            marioLives--;
             if (marioLives == 0)
             {
-                stillHasLives = false;
             }
             //levelRestart.Restart(stillHasLives);
         }
@@ -261,6 +261,7 @@ namespace GameSpace.GameObjects.BlockObjects
                 case (int)EnemyID.GREENKOOPA:
                 case (int)EnemyID.REDKOOPA:
                     CollisionHandler.GetInstance().ChangeMarioStatesUponCollision(entity);
+                    MarioHandler.GetInstance().BounceMario();
                     CollisionHandler.GetInstance().MarioToEnemyCollision(entity);
                     break;
             }

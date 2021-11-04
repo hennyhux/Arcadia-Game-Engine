@@ -1,16 +1,13 @@
 ﻿using GameSpace.Abstracts;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Media;
-using GameSpace.EntityManaging;
-using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace GameSpace.Machines
 {
     public class MusicHandler : AbstractHandler
     {
-        private static MusicHandler instance = new MusicHandler();
+        private static readonly MusicHandler instance = new MusicHandler();
         public static MusicHandler GetInstance()
         {
             return instance;
