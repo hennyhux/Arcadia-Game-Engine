@@ -19,6 +19,12 @@
 /processorParam:Quality=Best
 /build:Audio/backgroundSong.mp3
 
+#begin Audio/coinCollect.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Audio/coinCollect.wav
+
 #begin Audio/death.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor
