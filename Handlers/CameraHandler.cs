@@ -1,5 +1,6 @@
 ﻿using GameSpace.Abstracts;
 using GameSpace.Camera2D;
+using System.Diagnostics;
 
 namespace GameSpace.EntityManaging
 {
@@ -20,6 +21,11 @@ namespace GameSpace.EntityManaging
         public void LoadCamera(Camera camera)
         {
             cameraCopy = camera;
+        }
+
+        public void DebugCameraFindLimits()
+        {
+            //Debug.WriteLine("Camera Limits:" + cameraCopy. + "   " + cameraCopy.Limits.Value.Y);
         }
     }
 }

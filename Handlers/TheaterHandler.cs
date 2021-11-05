@@ -57,6 +57,7 @@ namespace GameSpace.EntityManaging
         {
 
             CollisionHandler.GetInstance().UpdateCollision();
+            internalGametime = gametime;
 
             if (addItem != null)
             {
@@ -77,7 +78,7 @@ namespace GameSpace.EntityManaging
             //CollisionHandler.GetInstance().UpdateCollision();
         }
 
- 
+
         public void ToggleCollisionBox()
         {
             foreach (IGameObjects entity in gameEntityList)

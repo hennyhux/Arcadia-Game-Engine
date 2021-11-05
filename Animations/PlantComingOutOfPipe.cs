@@ -2,9 +2,6 @@
 using GameSpace.Interfaces;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace GameSpace.Animations
 {
@@ -13,15 +10,26 @@ namespace GameSpace.Animations
 
         private AbstractEnemy item;
         private Vector2 initLocation;
+        private Vector2 goalLocation;
         public PlantComingOutOfPipe(AbstractEnemy plant)
         {
-            this.item = plant;
+            item = plant;
             initLocation = plant.Position;
+            goalLocation = new Vector2(initLocation.X, initLocation.Y - 20);
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            item.Velocity = new Vector2(0, -2);
+            if (goalLocation.Y < item.Position.Y)
+            {
+                item.Velocity = new Vector2(0, -5);
+            }
+
+            else
+            {
+                item.Velocity = new Vector2(0, 0);
+            }
+
             item.Draw(spriteBatch);
         }
 

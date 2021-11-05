@@ -18,6 +18,8 @@ namespace GameSpace.Machines
 
         }
 
+
+
         public void SetMarioStateToWarp()
         {
             if (currentWarpLocation < listOfWarpPipes.Count - 3)
@@ -33,6 +35,11 @@ namespace GameSpace.Machines
         public void BounceMario()
         {
             mario.Position = new Vector2(mario.Position.X, mario.Position.Y - 3);
+        }
+
+        public void WarpMarioToHiddenRoom()
+        {
+            mario.Position = new Vector2(0, 750);
         }
 
         internal void EnterVictoryPanel(GameRoot game)

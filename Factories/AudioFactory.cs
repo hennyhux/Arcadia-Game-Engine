@@ -17,7 +17,7 @@ namespace GameSpace.Factories
         private SoundEffect powerUpAppear;
         private SoundEffect powerUpCollect;
         private SoundEffect oneUpCollect;
-        private SoundEffect coinCollect;
+        private readonly SoundEffect coinCollect;
 
         #endregion
         private static readonly AudioFactory instance = new AudioFactory();
@@ -41,7 +41,7 @@ namespace GameSpace.Factories
             powerUpAppear = content.Load<SoundEffect>("Audio/powerUpAppear");
             powerUpCollect = content.Load<SoundEffect>("Audio/powerUpCollect");
             oneUpCollect = content.Load<SoundEffect>("Audio/oneUpCollect");
-           // coinCollect = content.Load<SoundEffect>("Audio/coinCollect");
+            // coinCollect = content.Load<SoundEffect>("Audio/coinCollect");
         }
 
         public Song CreateSong()

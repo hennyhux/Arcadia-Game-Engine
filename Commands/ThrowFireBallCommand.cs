@@ -1,9 +1,6 @@
-﻿using GameSpace.EntitiesManager;
-using GameSpace.EntityManaging;
-using GameSpace.Enums;
+﻿using GameSpace.EntityManaging;
 using GameSpace.Factories;
 using GameSpace.GameObjects.BlockObjects;
-using GameSpace.GameObjects.ItemObjects;
 using GameSpace.Interfaces;
 using GameSpace.States.MarioStates;
 using System;

@@ -20,7 +20,7 @@ namespace GameSpace
     {
         private protected readonly GraphicsDeviceManager graphics;
         private protected SpriteBatch spriteBatch;
-        private LevelRestart levelRestart;
+        private readonly LevelRestart levelRestart;
         private static Vector2 p;
         private static bool startOfGame;
         private SpriteFont fontFile;
@@ -127,9 +127,8 @@ namespace GameSpace
             };
 
             //Audio Stuff
-            this.song = AudioFactory.GetInstance().CreateSong();
-            MusicHandler.GetInstance().PlaySong(this.song);
-            DeathTimer.ResetTimer();
+            song = AudioFactory.GetInstance().CreateSong();
+            MusicHandler.GetInstance().PlaySong(song);
         }
 
         public void Restart(Vector2 position)
@@ -172,7 +171,7 @@ namespace GameSpace
             #endregion
             fontFile = Content.Load<SpriteFont>("font");
             //Camera Stuff
-            camera = new Camera(GraphicsDevice.Viewport) { Limits = new Rectangle(0, 0, Loader.boundaryX, 480) };//Should be set to level's max X and Y
+            camera = new Camera(GraphicsDevice.Viewport) { Limits = new Rectangle(0, 0, Loader.boundaryX, 2000) };//Should be set to level's max X and Y
 
             EntityManager.AddCamera(camera);
             CameraHandler.GetInstance().LoadCamera(camera);
@@ -186,8 +185,8 @@ namespace GameSpace
             };
 
             //Audio Stuff
-            this.song = AudioFactory.GetInstance().CreateSong();
-            MusicHandler.GetInstance().PlaySong(this.song);
+            song = AudioFactory.GetInstance().CreateSong();
+            MusicHandler.GetInstance().PlaySong(song);
         }
 
         public Mario GetMario => (Mario)FinderHandler.GetInstance().FindItem((int)AvatarID.MARIO);
@@ -203,10 +202,11 @@ namespace GameSpace
             base.Update(gameTime);
             //Camera Stuff- Centered Mario
             camera.LookAt(new Vector2(GetMario.Position.X + GetMario.CollisionBox.Width / 2, GraphicsDevice.Viewport.Height / 2));
+            CameraHandler.GetInstance().DebugCameraFindLimits();
             levelRestart.Restart(true);
             //timer = new DeathTimer(gameTime, fontFile);
             //timer.helper();
-            DeathTimer.UpdateTimer(gameTime, 2);
+
         }
 
         protected override void Draw(GameTime gameTime)
@@ -222,7 +222,7 @@ namespace GameSpace
             //Normal Sprites
             spriteBatch.Begin(SpriteSortMode.Deferred, null, null, null, null, null, camera.GetViewMatrix(parallax));
             TheaterHandler.GetInstance().Draw(spriteBatch);
-            DeathTimer.Draw(spriteBatch, fontFile);
+            HUDHandler.GetInstance().Draw(spriteBatch);
             spriteBatch.End();
             base.Draw(gameTime);
         }

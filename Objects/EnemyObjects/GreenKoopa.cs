@@ -49,7 +49,7 @@ namespace GameSpace.GameObjects.EnemyObjects
             switch (entity.ObjectID)
             {
                 case (int)AvatarID.MARIO:
-                    CollisionHandler.GetInstance().EnemyToMarioCollision((GreenKoopa)this, entity);
+                    CollisionHandler.GetInstance().EnemyToMarioCollision(this, entity);
                     break;
 
                 case (int)BlockID.USEDBLOCK:
@@ -78,7 +78,7 @@ namespace GameSpace.GameObjects.EnemyObjects
             }
 
             else if (!(state is StateGreenKoopaShelled) &&
-                !(state is StateGreenKoopaShellAndLegs) && 
+                !(state is StateGreenKoopaShellAndLegs) &&
                 !(state is StateGreenKoopaDeadMoving))
             {
                 Velocity += Acceleration * (float)gameTime.ElapsedGameTime.TotalSeconds;

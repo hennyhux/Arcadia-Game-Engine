@@ -230,6 +230,11 @@ namespace GameSpace.Factories
             return new BlackWindow(location);
         }
 
+        public IGameObjects CreateWarpPipeHeadRoom(Vector2 location)
+        {
+            return new WarpPipeHeadRoom(location);
+        }
+
         #endregion
     }
 }

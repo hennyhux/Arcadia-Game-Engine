@@ -1,7 +1,6 @@
 ﻿using GameSpace.Camera2D;
 using GameSpace.GameObjects.BlockObjects;
 using GameSpace.Interfaces;
-using GameSpace.Objects.BlockObjects;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using System.Collections.Generic;
@@ -16,6 +15,7 @@ namespace GameSpace.Abstracts
         private protected static List<IObjectAnimation> animationList = new List<IObjectAnimation>();
         private protected static List<IGameObjects> listOfWarpPipes = new List<IGameObjects>();
         private protected static List<SoundEffect> musicList = new List<SoundEffect>();
+        private protected static GameTime internalGametime = new GameTime();
         private protected static Mario mario;
         private protected static Vector2 marioCurrentLocation;
         private protected static Camera cameraCopy;

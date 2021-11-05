@@ -142,7 +142,7 @@ namespace GameSpace.TileMapDefinition
                 case BlockID.FIREFLOWERQUESTIONBLOCK:
                     objects.Add(objectFactory.CreateQuestionBlockFire(location));
                     break;
-                #endregion
+                    #endregion
             }
         }
         public static void LoadItems(List<IGameObjects> objects, Obstacles obstacles, Vector2 location)
@@ -193,8 +193,8 @@ namespace GameSpace.TileMapDefinition
                 case ItemID.HIDDENLEVELVERTICALPIPE:
                     objects.Add(objectFactory.CreateHiddenLevelVerticalPipe(location));
                     break;
-                case ItemID.WARPPIPEGREENKOOPA:
-                    //objects.Add(objectFactory.CreateWarpPipeGreenKoopaObject(location));
+                case ItemID.WARPPIPEROOM:
+                    objects.Add(objectFactory.CreateWarpPipeHeadRoom(location));
                     break;
                 case ItemID.WARPPIPEREDKOOPA:
                     //objects.Add(objectFactory.CreateWarpPipeRedKoopaObject(location));

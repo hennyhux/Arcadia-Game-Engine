@@ -38,7 +38,7 @@
         WARPPIPEHEADWITHMOB = 23,
         HIDDENLEVELHORIZONTALPIPE = 200,
         HIDDENLEVELVERTICALPIPE = 2000,
-        WARPPIPEGREENKOOPA = 24,
+        WARPPIPEROOM = 24,
         WARPPIPEREDKOOPA = 25,
         WARPPIPENEWENEMY = 26, //For Sprint 5, we can implement another enemy
         FLAGPOLE = 27,

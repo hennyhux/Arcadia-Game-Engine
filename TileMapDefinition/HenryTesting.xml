@@ -44,13 +44,13 @@
 	<Obstacles>
 		<x>320</x>
 		<y>250</y>
-		<item>WARPPIPEGOOMBA</item>
+		<item>WARPPIPEHEADWITHMOB</item>
 	</Obstacles>
 	
 	<Obstacles>
 		<x>4000</x>
 		<y>100</y>
-		<item>WARPPIPE</item>
+		<item>WARPPIPEHEAD</item>
 	</Obstacles>
 	
 	<Obstacles>

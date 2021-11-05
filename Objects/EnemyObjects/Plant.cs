@@ -4,9 +4,6 @@ using GameSpace.Factories;
 using GameSpace.Machines;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace GameSpace.Objects.EnemyObjects
 {
@@ -29,11 +26,16 @@ namespace GameSpace.Objects.EnemyObjects
                 UpdatePosition(Position, gametime);
             }
 
+
         }
 
         public override void Draw(SpriteBatch spritebatch)
         {
-             if (!(state is StatePlantDead))base.Draw(spritebatch);
+            if (!(state is StatePlantDead))
+            {
+                base.Draw(spritebatch);
+            }
+
         }
 
         public override void Trigger()
@@ -41,7 +43,17 @@ namespace GameSpace.Objects.EnemyObjects
             base.Trigger();
             MarioHandler.GetInstance().IncrementMarioPoints(200);
             state = new StatePlantDead();
-            this.DeleteCollisionBox();
+            DeleteCollisionBox();
+        }
+
+        public void Hide()
+        {
+            state = new StatePlantHidden();
+        }
+
+        public void Show()
+        {
+            state = new StatePlantIdle();
         }
 
     }
@@ -59,6 +71,15 @@ namespace GameSpace.Objects.EnemyObjects
         public StatePlantDead()
         {
             StateSprite = SpriteEnemyFactory.GetInstance().CreatePlantSprite();
+        }
+    }
+
+    public class StatePlantHidden : AbstractEnemyState
+    {
+        public StatePlantHidden()
+        {
+            StateSprite = SpriteEnemyFactory.GetInstance().CreatePlantSprite();
+            StateSprite.SetVisible();
         }
     }
 

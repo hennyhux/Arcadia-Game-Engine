@@ -46,7 +46,10 @@ namespace GameSpace.Abstracts
         {
             Sprite.Update(gametime);
             UpdatePosition(Position, gametime);
-            if (!hasCollided)UpdateCollisionBox();
+            if (!hasCollided)
+            {
+                UpdateCollisionBox();
+            }
         }
         public virtual void UpdatePosition(Vector2 location, GameTime gametime)
         {

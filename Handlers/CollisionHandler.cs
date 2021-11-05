@@ -142,9 +142,27 @@ namespace GameSpace.EntityManaging
         }
         public void ItemToMarioCollison(WarpPipeHeadWithMob pipe)
         {
-            
-                pipe.RevealItem();
-           
+
+            switch (DetectCollisionDirection(mario, pipe))
+            {
+                case (int)CollisionDirection.DOWN:
+                case (int)CollisionDirection.LEFT:
+                case (int)CollisionDirection.RIGHT:
+                    pipe.HideItem();
+                    break;
+            }
+
+        }
+
+        public void ItemToMarioCollison(WarpPipeHeadRoom pipe)
+        {
+            switch (DetectCollisionDirection(mario, pipe))
+            {
+                case(int)CollisionDirection.DOWN:
+                    MarioHandler.GetInstance().WarpMarioToHiddenRoom();
+                    break;
+            }
+
         }
 
         #endregion
@@ -208,7 +226,10 @@ namespace GameSpace.EntityManaging
 
                 else
                 {
-                    if (!(enemy.state is StateGreenKoopaDeadMoving))enemy.Trigger();
+                    if (!(enemy.state is StateGreenKoopaDeadMoving))
+                    {
+                        enemy.Trigger();
+                    }
                 }
             }
         }

@@ -1,14 +1,11 @@
 ﻿using GameSpace.Abstracts;
-using GameSpace.EntitiesManager;
 using GameSpace.EntityManaging;
 using GameSpace.Enums;
 using GameSpace.Factories;
 using GameSpace.GameObjects.BlockObjects;
 using GameSpace.Interfaces;
-using GameSpace.States.ItemStates;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
 
 
 
@@ -45,7 +42,7 @@ namespace GameSpace.GameObjects.ItemObjects
             mario = FinderHandler.GetInstance().FindMario();
             Position = mario.Position;
             CollisionBox = new Rectangle((int)Position.X + 5, (int)Position.Y, (Sprite.Texture.Width * 2 / 8) - 10, Sprite.Texture.Height * 2 + 5);
-            this.Velocity = new Vector2(200, 0);
+            Velocity = new Vector2(200, 0);
             hasCollided = false;
             drawBox = false;
             ++mario.numFireballs;
@@ -71,7 +68,7 @@ namespace GameSpace.GameObjects.ItemObjects
             if (state is StateFireBallExploded)
             {
                 hasCollided = true;
-                this.DeleteCollisionBox();
+                DeleteCollisionBox();
             }
 
         }
