@@ -1,4 +1,5 @@
-﻿using GameSpace.EntitiesManager;
+﻿using GameSpace.Abstracts;
+using GameSpace.EntitiesManager;
 using GameSpace.Enums;
 using GameSpace.Factories;
 using GameSpace.Interfaces;
@@ -11,20 +12,9 @@ using System;
 
 namespace GameSpace.GameObjects.ItemObjects
 {
-    public class Star : IGameObjects
+    public class Star : AbstractItem
     {
         private IItemStates state;
-        public ISprite Sprite { get; set; }
-        public Vector2 Position { get; set; }
-        public Vector2 Velocity { get; set; }
-        public Vector2 Acceleration { get; set; }
-        public Rectangle CollisionBox { get; set; }
-        public int ObjectID { get; set; }
-
-        private bool hasCollided;
-        private bool drawBox;
-
-
         public Star(Vector2 initialPosition)
         {
             ObjectID = (int)ItemID.STAR;
@@ -68,7 +58,7 @@ namespace GameSpace.GameObjects.ItemObjects
             hasCollided = true;
         }
 
-        public void HandleCollision(IGameObjects entity)
+        public override void HandleCollision(IGameObjects entity)
         {
             switch (entity.ObjectID)
             {
@@ -97,10 +87,6 @@ namespace GameSpace.GameObjects.ItemObjects
             UpdateCollisionBox(Position);
         }
 
-        public void ToggleCollisionBoxes()
-        {
-            drawBox = !drawBox;
-        }
 
         public bool IsCurrentlyColliding()
         {
@@ -154,9 +140,5 @@ namespace GameSpace.GameObjects.ItemObjects
             }
         }
 
-        public bool RevealItem()
-        {
-            throw new NotImplementedException();
-        }
     }
 }

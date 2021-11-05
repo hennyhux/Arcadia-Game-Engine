@@ -142,10 +142,9 @@ namespace GameSpace.EntityManaging
         }
         public void ItemToMarioCollison(WarpPipeHeadWithMob pipe)
         {
-            if (mario.Position.X >= pipe.ExpandedCollisionBox.X)
-            {
+            
                 pipe.RevealItem();
-            }
+           
         }
 
         #endregion

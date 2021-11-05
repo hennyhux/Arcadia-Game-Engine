@@ -11,6 +11,8 @@ namespace GameSpace.EntityManaging
     public class TheaterHandler : AbstractHandler
     {
         private static readonly TheaterHandler instance = new TheaterHandler();
+
+        private IGameObjects addItem;
         public static TheaterHandler GetInstance()
         {
             return instance;
@@ -18,7 +20,7 @@ namespace GameSpace.EntityManaging
 
         private TheaterHandler()
         {
-
+            addItem = null;
         }
 
         public void LoadData(List<IGameObjects> objectList)
@@ -56,6 +58,12 @@ namespace GameSpace.EntityManaging
 
             CollisionHandler.GetInstance().UpdateCollision();
 
+            if (addItem != null)
+            {
+                gameEntityList.Add(addItem);
+                addItem = null;
+            }
+
             foreach (IGameObjects entity in gameEntityList)
             {
                 entity.Update(gametime);
@@ -69,6 +77,7 @@ namespace GameSpace.EntityManaging
             //CollisionHandler.GetInstance().UpdateCollision();
         }
 
+ 
         public void ToggleCollisionBox()
         {
             foreach (IGameObjects entity in gameEntityList)
@@ -80,6 +89,11 @@ namespace GameSpace.EntityManaging
         public void AddItemToStage(IGameObjects item)
         {
             gameEntityList.Add(item);
+        }
+
+        public void QueueItemAddToStage(IGameObjects item)
+        {
+            addItem = item;
         }
 
     }

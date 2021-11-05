@@ -19,12 +19,6 @@
 /processorParam:Quality=Best
 /build:Audio/backgroundSong.mp3
 
-#begin Audio/coinCollect.wav
-/importer:WavImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:Audio/coinCollect.wav
-
 #begin Audio/death.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor
@@ -319,6 +313,18 @@
 /processorParam:TextureFormat=Color
 /build:Enemies/GreenShell.png
 
+#begin Enemies/Plant.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Enemies/Plant.png
+
 #begin Enemies/RedKoopaRight.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -470,6 +476,18 @@
 /processorParam:TextureFormat=Color
 /build:Items/flower.png
 
+#begin Items/HitFireballs.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Items/HitFireballs.png
+
 #begin Items/star.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -493,6 +511,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Items/supermushroom.png
+
+#begin Items/WarpPipeHead.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Items/WarpPipeHead.png
 
 #begin Items/WarpPipeHead.png
 /importer:TextureImporter

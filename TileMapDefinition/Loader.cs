@@ -202,8 +202,8 @@ namespace GameSpace.TileMapDefinition
                 case EnemyID.REDKOOPA:
                     objects.Add(objectFactory.CreateRedKoopaObject(location));
                     break;
-                case EnemyID.NEWENEMYFORSPRINT5:
-                    //objects.Add(objectFactory.CreateNewEnemyObject(location));
+                case EnemyID.PLANT:
+                    objects.Add(objectFactory.CreatePlantObject(location));
                     break;
             }
         }

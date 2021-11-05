@@ -45,7 +45,7 @@
         GOOMBA = 29,
         GREENKOOPA = 30,
         REDKOOPA = 31,
-        NEWENEMYFORSPRINT5 = 32 //For Sprint 5, we can implement another enemy
+        PLANT = 32 //For Sprint 5, we can implement another enemy
     };
 
     public enum Velocity

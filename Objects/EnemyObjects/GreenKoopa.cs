@@ -93,7 +93,7 @@ namespace GameSpace.GameObjects.EnemyObjects
             hasCollidedOnTop = true;
         }
 
-        protected override void UpdateCollisionBox(Vector2 location)
+        public override void UpdateCollisionBox(Vector2 location)
         {
 
             base.UpdateCollisionBox(location);

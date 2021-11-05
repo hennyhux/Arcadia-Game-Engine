@@ -31,6 +31,7 @@ namespace GameSpace.Machines
         public void Draw(SpriteBatch spritebatch)
         {
             spritebatch.DrawString(HeadsUpDisplay, "Score: " + mario.score.ToString(), HudPosition, Color.Black);
+            spritebatch.DrawString(HeadsUpDisplay, "Mario Lives: " + mario.marioLives.ToString(), new Vector2(HudPosition.X, HudPosition.Y + 20), Color.Black);
             UpdateHudPosition();
         }
 

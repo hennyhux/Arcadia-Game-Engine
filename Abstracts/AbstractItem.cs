@@ -14,6 +14,8 @@ namespace GameSpace.Abstracts
         public virtual int ObjectID { get; set; }
         internal bool drawBox;
 
+        internal bool hasCollided;
+
         public virtual Rectangle ExpandedCollisionBox { get; set; }
 
         public virtual void Draw(SpriteBatch spritebatch)
@@ -37,17 +39,28 @@ namespace GameSpace.Abstracts
 
         public virtual void Trigger()
         {
-
+            hasCollided = true;
+            DeleteCollisionBox();
         }
         public virtual void Update(GameTime gametime)
         {
             Sprite.Update(gametime);
             UpdatePosition(Position, gametime);
+            if (!hasCollided)UpdateCollisionBox();
         }
         public virtual void UpdatePosition(Vector2 location, GameTime gametime)
         {
             Velocity += Acceleration * (float)gametime.ElapsedGameTime.TotalSeconds;
             Position += Velocity * (float)gametime.ElapsedGameTime.TotalSeconds;
+        }
+
+        public virtual void UpdateCollisionBox()
+        {
+            CollisionBox = new Rectangle((int)Position.X, (int)Position.Y,
+              Sprite.Texture.Width, Sprite.Texture.Height * 2);
+
+            ExpandedCollisionBox = new Rectangle((int)Position.X, (int)Position.Y,
+                Sprite.Texture.Width, (Sprite.Texture.Height * 2) + 4);
         }
 
         public virtual bool RevealItem()

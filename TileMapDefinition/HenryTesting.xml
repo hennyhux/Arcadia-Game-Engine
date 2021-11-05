@@ -43,7 +43,7 @@
 	
 	<Obstacles>
 		<x>320</x>
-		<y>100</y>
+		<y>250</y>
 		<item>WARPPIPEGOOMBA</item>
 	</Obstacles>
 	
@@ -58,6 +58,8 @@
 		<y>200</y>
 		<enemy>GREENKOOPA</enemy>
 	</Obstacles>
+	
+
 
 	<Obstacles>
 		<x>100</x>
