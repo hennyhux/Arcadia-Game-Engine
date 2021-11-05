@@ -47,7 +47,7 @@ namespace GameSpace.GameObjects.BlockObjects
             hasCollided = false;
             Position = new Vector2((int)initLocation.X, (int)initLocation.Y);
             CollisionBox = new Rectangle((int)initLocation.X - 3, (int)initLocation.Y, 32, 32);
-            numFireballs = 0;
+            numFireballs = 30;
             marioLives = 3;
             Acceleration = new Vector2(0, 100);//NEW
             ExpandedCollisionBox = new Rectangle((int)initLocation.X - 3, (int)initLocation.Y, 33, 33);
@@ -108,7 +108,7 @@ namespace GameSpace.GameObjects.BlockObjects
             //if mario collects 100 coins he gets an extra life
             if (numCoinsCollected % 100 == 0)
             {
-                ++marioLives;
+                //w++marioLives;
             }
 
             //GetMario.sprite.Height

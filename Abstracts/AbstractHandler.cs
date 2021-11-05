@@ -1,6 +1,7 @@
 ﻿using GameSpace.Camera2D;
 using GameSpace.GameObjects.BlockObjects;
 using GameSpace.Interfaces;
+using GameSpace.Objects.BlockObjects;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using System.Collections.Generic;

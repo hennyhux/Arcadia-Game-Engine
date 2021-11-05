@@ -41,8 +41,6 @@ namespace GameSpace.Abstracts
         public virtual void Update(GameTime gametime)
         {
             state.Update(gametime);
-
-
             UpdateSpeed();
             UpdatePosition(Position, gametime);
             UpdateCollisionBox(Position);
@@ -82,7 +80,7 @@ namespace GameSpace.Abstracts
             Position += Velocity * (float)gameTime.ElapsedGameTime.TotalSeconds;
         }
 
-        protected virtual void UpdateCollisionBox(Vector2 location)
+        public virtual void UpdateCollisionBox(Vector2 location)
         {
             CollisionBox = new Rectangle((int)location.X, (int)location.Y,
                 state.StateSprite.Texture.Width, state.StateSprite.Texture.Height * 2);
@@ -141,6 +139,11 @@ namespace GameSpace.Abstracts
         public bool RevealItem()
         {
             return false;
+        }
+
+        public void DeleteCollisionBox()
+        {
+            CollisionBox = new Rectangle(0, 0, 0, 0);
         }
     }
 }

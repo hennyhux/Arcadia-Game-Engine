@@ -1,4 +1,5 @@
 ﻿using GameSpace.Abstracts;
+using GameSpace.Animations;
 using GameSpace.EntityManaging;
 using GameSpace.Enums;
 using GameSpace.Factories;
@@ -46,13 +47,14 @@ namespace GameSpace.Sprites.ExtraItems
             CollisionBox = new Rectangle((int)Position.X, (int)Position.Y, Sprite.Texture.Width * 2, Sprite.Texture.Height * 2);
             ExpandedCollisionBox = new Rectangle((int)Position.X - Sprite.Texture.Width * 5, (int)Position.Y, Sprite.Texture.Width * 10, Sprite.Texture.Height * 2);
             drawBox = false;
+            hasCollided = false;
             itemRevealed = false;
 
         }
         public override void Update(GameTime gametime)
         {
             base.Update(gametime);
-            if (!itemRevealed)
+            if (itemRevealed)
             {
                 RevealItem();
             }
@@ -60,20 +62,24 @@ namespace GameSpace.Sprites.ExtraItems
 
         public override bool RevealItem()
         {
-            if (!itemRevealed)
-            {
-                mob = ObjectFactory.GetInstance().CreateGoombaObject(new Vector2(Position.X - 4, Position.Y - Sprite.Texture.Height * 2 - 4));
-                //TheaterHandler.GetInstance().AddItemToStage(mob);
+            
+      
+                mob = ObjectFactory.GetInstance().CreatePlantObject(new Vector2(Position.X - 4, Position.Y - Sprite.Texture.Height * 2 - 4));
+                TheaterHandler.GetInstance().QueueItemAddToStage(mob);
+            AnimationHandler.GetInstance().AddAnimation(new PlantComingOutOfPipe((AbstractEnemy)mob));
                 itemRevealed = true;
-                return true;
-            }
 
             return false;
         }
 
         public override void HandleCollision(IGameObjects entity)
         {
-            CollisionHandler.GetInstance().ItemToMarioCollison(this);
+            switch (entity.ObjectID)
+            {
+                case (int)AvatarID.MARIO:
+                    CollisionHandler.GetInstance().ItemToMarioCollison(this);
+                    break;
+            }
         }
     }
 }

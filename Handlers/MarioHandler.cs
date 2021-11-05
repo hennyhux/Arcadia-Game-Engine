@@ -39,5 +39,16 @@ namespace GameSpace.Machines
         {
             HUDHandler.GetInstance().EnterVictoryMode(game);
         }
+
+        public void IncrementMarioPoints(int points)
+        {
+            mario.score += points;
+        }
+
+        public void IncrementMarioLives()
+        {
+            mario.marioLives++;
+            mario.marioLives -= 1;
+        }
     }
 }

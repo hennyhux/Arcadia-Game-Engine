@@ -1,8 +1,11 @@
 ﻿using GameSpace.EntitiesManager;
+using GameSpace.EntityManaging;
 using GameSpace.Enums;
 using GameSpace.Factories;
 using GameSpace.GameObjects.BlockObjects;
 using GameSpace.GameObjects.ItemObjects;
+using GameSpace.Interfaces;
+using GameSpace.States.MarioStates;
 using System;
 
 
@@ -15,7 +18,7 @@ namespace GameSpace.Commands
     {
         private protected GameRoot game;
         private Mario mario;
-        private Fireball fireball;
+        private IGameObjects fireball;
 
         public ThrowFireBallCommand(GameRoot game)
         {
@@ -24,14 +27,17 @@ namespace GameSpace.Commands
 
         public void Execute()
         {
-            mario = (Mario)EntityManager.FindItem((int)AvatarID.MARIO);
-            if (mario.numFireballs < 2)
+            mario = FinderHandler.GetInstance().FindMario();
+            if (mario.numFireballs != 0)
             {
-                if (EntityManager.IsCurrentlyFireMario())
+                if (mario.marioActionState is FireMarioFallingState ||
+                    mario.marioActionState is FireMarioJumpingState ||
+                    mario.marioActionState is FireMarioRunningState ||
+                    mario.marioActionState is FireMarioStandingState)
                 {
-                    mario = (Mario)EntityManager.FindItem((int)AvatarID.MARIO);
-                    fireball = (Fireball)ObjectFactory.GetInstance().CreateFireBallObject(mario);
-                    EntityManager.AddEntity(fireball);
+                    fireball = ObjectFactory.GetInstance().CreateFireBallObject(mario);
+                    TheaterHandler.GetInstance().AddItemToStage(fireball);
+                    mario.numFireballs--;
                 }
             }
         }

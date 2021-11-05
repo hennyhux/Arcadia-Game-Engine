@@ -11,8 +11,6 @@ namespace GameSpace.GameObjects.ItemObjects
     public class OneUpShroom : AbstractItem
     {
         private readonly IItemStates state;
-
-        private bool hasCollided;
         public Rectangle ExpandedCollisionBox { get; set; }
         public OneUpShroom(Vector2 initialPosition)
         {
@@ -34,10 +32,9 @@ namespace GameSpace.GameObjects.ItemObjects
                 CollisionBox = new Rectangle();
                 //play sound effect for 1-Up being collected
                 MusicHandler.GetInstance().PlaySoundEffect(6);
+                MarioHandler.GetInstance().IncrementMarioLives();
             }
             hasCollided = true;
-
-            //Increase Mario's lives
         }
 
 

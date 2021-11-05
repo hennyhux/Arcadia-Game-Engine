@@ -5,6 +5,7 @@ using GameSpace.GameObjects.ExtraItemsObjects;
 using GameSpace.GameObjects.ItemObjects;
 using GameSpace.Interfaces;
 using GameSpace.Objects.BlockObjects;
+using GameSpace.Objects.EnemyObjects;
 using GameSpace.Sprites.ExtraItems;
 using Microsoft.Xna.Framework;
 
@@ -125,6 +126,11 @@ namespace GameSpace.Factories
             return new RedKoopa(location);
         }
 
+        public IGameObjects CreatePlantObject(Vector2 location)
+        {
+            return new Plant(location);
+        }
+
         #endregion
 
         #region Items
@@ -155,7 +161,7 @@ namespace GameSpace.Factories
 
         public IGameObjects CreateFireBallObject(Mario mario)
         {
-            return new Fireball(mario);
+            return new Fireball();
         }
         #endregion
 
