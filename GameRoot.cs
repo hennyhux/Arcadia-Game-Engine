@@ -11,6 +11,7 @@ using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
 using Microsoft.Xna.Framework.Media;
 using Microsoft.Xna.Framework.Audio;
+using Microsoft.Xna.Framework.Input;
 using GameSpace.Machines;
 using GameSpace.Level;
 
@@ -20,9 +21,14 @@ namespace GameSpace
     {
         private protected readonly GraphicsDeviceManager graphics;
         private protected SpriteBatch spriteBatch;
+
+
         private LevelRestart levelRestart;
-        private static Vector2 p;
-        private static bool startOfGame;
+        private Vector2 p;
+        private bool startOfGame;
+        private SpriteFont fontFile;
+       // DeathTimer timer;
+        public Color FontColor { get; set; } = Color.DarkBlue;
 
         //private protected Camera camera;
 
@@ -49,8 +55,8 @@ namespace GameSpace
         public GraphicsDeviceManager Graphics => graphics;
 
         //private readonly string xmlFileName = "./Level1.xml"; // Turn in with this line of code!
-        //private readonly string xmlFileName = "../../../TileMapDefinition/Level1.xml"; // ONLY to run on our machines
-        private readonly string xmlFileName = "../../../TileMapDefinition/CalebTesting.xml";
+        private readonly string xmlFileName = "../../../TileMapDefinition/Level1.xml"; // ONLY to run on our machines
+        //private readonly string xmlFileName = "../../../TileMapDefinition/CalebTesting.xml";
         public GameRoot()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -75,7 +81,7 @@ namespace GameSpace
             startOfGame = false;
             p = position;
             Initialize();
-            spriteBatch = new SpriteBatch(GraphicsDevice);
+           /* spriteBatch = new SpriteBatch(GraphicsDevice);
 
             #region Loading Factories
             SpriteBlockFactory.GetInstance().LoadContent(Content);
@@ -123,7 +129,7 @@ namespace GameSpace
 
             //Audio Stuff
             this.song = AudioFactory.GetInstance().CreateSong();
-            MusicHandler.GetInstance().PlaySong(this.song);
+            MusicHandler.GetInstance().PlaySong(this.song);*/
         }
 
         protected override void LoadContent()
@@ -142,8 +148,7 @@ namespace GameSpace
             #endregion
 
             #region Loading Lists
-            objects = Loader.Load(this, xmlFileName, new Vector2(0, 0), false);
-            //objects = Loader.LoadEverything(xmlFileName);
+            objects = Loader.Load(this, xmlFileName, p, false);
             soundEffects = AudioFactory.GetInstance().loadList();
             MusicHandler.GetInstance().LoadMusicIntoList(soundEffects);
             #endregion
@@ -151,6 +156,7 @@ namespace GameSpace
             #region Load EntityManager
             //EntityManager.LoadList(objects);
             TheaterHandler.GetInstance().LoadData(objects);
+            fontFile = Content.Load<SpriteFont>("font");
             #endregion
 
             #region Loading Controllers
@@ -172,11 +178,13 @@ namespace GameSpace
                 new Layer(camera, BackgroundFactory.GetInstance().CreateCloudsSprite(), new Vector2(2.0f, 1.0f)),
                 new Layer(camera, BackgroundFactory.GetInstance().CreateBGMountainSprite(), new Vector2(1.5f, 1.0f)),
                 new Layer(camera, BackgroundFactory.GetInstance().CreateRegularBackground(), new Vector2(1.0f, 1.0f)),
+                
             };
 
             //Audio Stuff
             this.song = AudioFactory.GetInstance().CreateSong();
             MusicHandler.GetInstance().PlaySong(this.song);
+            DeathTimer.ResetTimer();
         }
 
         public Mario GetMario => (Mario)FinderHandler.GetInstance().FindItem((int)AvatarID.MARIO);
@@ -193,6 +201,9 @@ namespace GameSpace
             //Camera Stuff- Centered Mario
             camera.LookAt(new Vector2(GetMario.Position.X + GetMario.CollisionBox.Width / 2, GraphicsDevice.Viewport.Height / 2));
             levelRestart.Restart(true);
+            //timer = new DeathTimer(gameTime, fontFile);
+            //timer.helper();
+            DeathTimer.UpdateTimer(gameTime, 2);
         }
 
         protected override void Draw(GameTime gameTime)
@@ -209,6 +220,7 @@ namespace GameSpace
             //Normal Sprites
             spriteBatch.Begin(SpriteSortMode.Deferred, null, null, null, null, null, camera.GetViewMatrix(parallax));
             TheaterHandler.GetInstance().Draw(spriteBatch);
+            DeathTimer.Draw(spriteBatch, fontFile);
             spriteBatch.End();
             base.Draw(gameTime);
         }

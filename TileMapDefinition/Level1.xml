@@ -14,11 +14,7 @@
 		<block>FIREFLOWERQUESTIONBLOCK</block>
 	</Obstacles>
 
-	<Obstacles>
-		<x>100</x>
-		<y>200</y>
-		<item>FIREFLOWER</item>
-	</Obstacles>
+
 
 	
 	
