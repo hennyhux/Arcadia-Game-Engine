@@ -38,7 +38,7 @@ namespace GameSpace.Sprites.ExtraItems
     {
         private IGameObjects mob;
         private bool itemRevealed;
-        public WarpPipeHeadWithMob(Vector2 location, AbstractEnemy mob)
+        public WarpPipeHeadWithMob(Vector2 location)
         {
             ObjectID = (int)ItemID.WARPPIPEGOOMBA;
             Sprite = SpriteItemFactory.GetInstance().CreateWarpPipe();
