@@ -12,7 +12,9 @@ namespace GameSpace.Factories
         private Texture2D ShatterBlock;
         private Texture2D UsedBlock;
         private Texture2D BrickBlock;
+        private Texture2D HiddenLevelBrickBlock;
         private Texture2D FloorBlock;
+        private Texture2D HiddenLevelFloorBlock;
         private Texture2D StairBlock;
         private Texture2D HiddenBlock;
         private Texture2D WhiteRectangle;
@@ -40,7 +42,9 @@ namespace GameSpace.Factories
             ShatterBlock = content.Load<Texture2D>("Blocks/ShatterBrickBlock");
             UsedBlock = content.Load<Texture2D>("Blocks/UsedBlock");
             BrickBlock = content.Load<Texture2D>("Blocks/BrickBlock");
+            HiddenLevelBrickBlock = content.Load<Texture2D>("Blocks/HiddenLevelBrickBlock");
             FloorBlock = content.Load<Texture2D>("Blocks/FloorBlock");
+            HiddenLevelFloorBlock = content.Load<Texture2D>("Blocks/HiddenLevelFloorBlock");
             StairBlock = content.Load<Texture2D>("Blocks/StairBlock");
             HiddenBlock = content.Load<Texture2D>("Blocks/UsedBlock");
             WhiteRectangle = content.Load<Texture2D>("WhiteTexture");
@@ -55,9 +59,19 @@ namespace GameSpace.Factories
             return new BrickBlockSprite(BrickBlock, 1, 1, 1);
         }
 
+        public ISprite ReturnHiddenLevelBrickBlock()
+        {
+            return new HiddenLevelBrickBlockSprite(HiddenLevelBrickBlock, 1, 1, 1);
+        }
+
         public ISprite ReturnFloorBlock()
         {
             return new FloorBlockSprite(FloorBlock, 1, 1, 1);
+        }
+
+        public ISprite ReturnHiddenLevelFloorBlock()
+        {
+            return new HiddenLevelFloorBlockSprite(HiddenLevelFloorBlock, 1, 1, 1);
         }
 
         public ISprite ReturnStairBlock()

@@ -3,10 +3,12 @@
     public enum BlockID
     {
         FLOORBLOCK = 0,
+        HIDDENLEVELFLOORBLOCK = 6,
         HIDDENBLOCK = 1,
         USEDBLOCK = 2,
         STAIRBLOCK = 3,
         BRICKBLOCK = 4,
+        HIDDENLEVELBRICKBLOCK = 5,
         COINBRICKBLOCK = 40,
         STARBRICKBLOCK = 400,
         FIREBRICKBLOCK = 4000,
@@ -23,6 +25,7 @@
     public enum ItemID : int
     {
         COIN = 13,
+        HIDDENLEVELCOIN = 130,
         STAR = 14,
         ONEUPSHROOM = 15,
         SUPERSHROOM = 16,
@@ -31,13 +34,16 @@
         SMALLPIPE = 19,
         MEDIUMPIPE = 20,
         BIGPIPE = 21,
-        WARPPIPE = 22,
-        WARPPIPEGOOMBA = 23,
+        WARPPIPEHEAD = 22,
+        WARPPIPEHEADWITHMOB = 23,
+        HIDDENLEVELHORIZONTALPIPE = 200,
+        HIDDENLEVELVERTICALPIPE = 2000,
         WARPPIPEGREENKOOPA = 24,
         WARPPIPEREDKOOPA = 25,
         WARPPIPENEWENEMY = 26, //For Sprint 5, we can implement another enemy
         FLAGPOLE = 27,
-        CASTLE = 28
+        CASTLE = 28,
+        BLACKWINDOW = 999
     };
 
     public enum EnemyID : int
@@ -45,7 +51,7 @@
         GOOMBA = 29,
         GREENKOOPA = 30,
         REDKOOPA = 31,
-        PLANT = 32 //For Sprint 5, we can implement another enemy
+        PLANT = 32
     };
 
     public enum Velocity

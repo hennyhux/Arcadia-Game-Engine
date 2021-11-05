@@ -9,12 +9,14 @@ namespace GameSpace.Factories
         #region sprites
         private Texture2D Star;
         private Texture2D Coin;
+        private Texture2D HiddenLevelCoin;
         private Texture2D OneUpShroom;
         private Texture2D SuperShroom;
         private Texture2D FireFlower;
         private Texture2D FireBall;
         private Texture2D HitFireball;
         private Texture2D WarpPipeHead;
+
         #endregion
         private static readonly SpriteItemFactory instance = new SpriteItemFactory();
         public static SpriteItemFactory GetInstance()
@@ -31,12 +33,13 @@ namespace GameSpace.Factories
         {
             Star = content.Load<Texture2D>("Items/star");
             Coin = content.Load<Texture2D>("Items/coin");
+            HiddenLevelCoin = content.Load<Texture2D>("Items/HiddenLevelCoin");
             OneUpShroom = content.Load<Texture2D>("Items/1upshroom");
             SuperShroom = content.Load<Texture2D>("Items/supermushroom");
             FireFlower = content.Load<Texture2D>("Items/flower");
             FireBall = content.Load<Texture2D>("Items/FireBalls");
             WarpPipeHead = content.Load<Texture2D>("Items/WarpPipeHead");
-            HitFireball= content.Load<Texture2D>("Items/HitFireballs");
+            HitFireball = content.Load<Texture2D>("Items/HitFireballs");
         }
         public ISprite CreateStar()
         {
@@ -63,6 +66,11 @@ namespace GameSpace.Factories
             return new CoinSprite(Coin, 1, 4, 4, 0, 0);
         }
 
+        public ISprite CreateHiddenLevelCoin()
+        {
+            return new HiddenLevelCoinSprite(HiddenLevelCoin, 1, 3, 3, 0, 0);
+        }
+
         public ISprite CreateFireBall()
         {
             return new FireballSprite(FireBall, 1, 4, 4, 0, 0);
@@ -77,6 +85,5 @@ namespace GameSpace.Factories
         {
             return new BigPipeSprite(WarpPipeHead, 1, 1, 1);
         }
-
     }
 }

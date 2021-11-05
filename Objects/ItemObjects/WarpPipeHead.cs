@@ -19,7 +19,7 @@ namespace GameSpace.Sprites.ExtraItems
         public int TimesCollided { get; set; }
         public WarpPipeHead(Vector2 location)
         {
-            ObjectID = (int)ItemID.WARPPIPE;
+            ObjectID = (int)ItemID.WARPPIPEHEAD;
             Sprite = SpriteItemFactory.GetInstance().CreateWarpPipe();
             Position = location;
             CollisionBox = new Rectangle((int)Position.X, (int)Position.Y, Sprite.Texture.Width * 2, Sprite.Texture.Height * 2);
@@ -41,7 +41,7 @@ namespace GameSpace.Sprites.ExtraItems
         private bool itemRevealed;
         public WarpPipeHeadWithMob(Vector2 location)
         {
-            ObjectID = (int)ItemID.WARPPIPEGOOMBA;
+            ObjectID = (int)ItemID.WARPPIPEHEADWITHMOB;
             Sprite = SpriteItemFactory.GetInstance().CreateWarpPipe();
             Position = location;
             CollisionBox = new Rectangle((int)Position.X, (int)Position.Y, Sprite.Texture.Width * 2, Sprite.Texture.Height * 2);

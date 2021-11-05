@@ -39,6 +39,12 @@ namespace GameSpace.Factories
             return new BrickBlock(location);
         }
 
+        public IGameObjects CreateHiddenLevelBrickBlockObject(Vector2 location)
+        {
+            return new HiddenLevelBrickBlock(location);
+        }
+
+
         public IGameObjects CreateBrickBlockWithItem(Vector2 location, IGameObjects item)
         {
             return new BrickBlockWithItem(location, (AbstractItem)item);
@@ -52,6 +58,11 @@ namespace GameSpace.Factories
         public IGameObjects CreateFloorBlockObject(Vector2 location)
         {
             return new FloorBlock(location);
+        }
+
+        public IGameObjects CreateHiddenLevelFloorBlockObject(Vector2 location)
+        {
+            return new HiddenLevelFloorBlock(location);
         }
 
         public IGameObjects CreateQuestionBlockObject(Vector2 location)
@@ -138,7 +149,10 @@ namespace GameSpace.Factories
         {
             return new Coin(location);
         }
-
+        public IGameObjects CreateHiddenLevelCoinObject(Vector2 location)
+        {
+            return new HiddenLevelCoin(location);
+        }
         public IGameObjects CreateStarObject(Vector2 location)
         {
             return new Star(location);
@@ -201,6 +215,20 @@ namespace GameSpace.Factories
             return new WarpPipeHeadWithMob(location);
         }
 
+        public IGameObjects CreateHiddenLevelHorizontalPipe(Vector2 location)
+        {
+            return new HiddenLevelHorizontalPipe(location);
+        }
+
+        public IGameObjects CreateHiddenLevelVerticalPipe(Vector2 location)
+        {
+            return new HiddenLevelVerticalPipe(location);
+        }
+
+        public IGameObjects CreateBlackWindow(Vector2 location)
+        {
+            return new BlackWindow(location);
+        }
 
         #endregion
     }

@@ -244,8 +244,8 @@ namespace GameSpace.GameObjects.BlockObjects
                 case (int)ItemID.BIGPIPE:
                 case (int)ItemID.MEDIUMPIPE:
                 case (int)ItemID.SMALLPIPE:
-                case (int)ItemID.WARPPIPE:
-                case (int)ItemID.WARPPIPEGOOMBA:
+                case (int)ItemID.WARPPIPEHEAD:
+                case (int)ItemID.WARPPIPEHEADWITHMOB:
                 case (int)ItemID.WARPPIPEGREENKOOPA:
                 case (int)ItemID.WARPPIPEREDKOOPA:
                     CollisionHandler.GetInstance().ChangeMarioStatesUponCollision(entity);

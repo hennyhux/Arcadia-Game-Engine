@@ -53,8 +53,8 @@ namespace GameSpace
         public GraphicsDeviceManager Graphics => graphics;
 
         //private readonly string xmlFileName = "./Level1.xml"; // Turn in with this line of code!
-        //private readonly string xmlFileName = "../../../TileMapDefinition/Level1.xml"; // ONLY to run on our machines
-        private readonly string xmlFileName = "../../../TileMapDefinition/CalebTesting.xml";
+        private readonly string xmlFileName = "../../../TileMapDefinition/Level1.xml"; // ONLY to run on our machines
+        //private readonly string xmlFileName = "../../../TileMapDefinition/CalebTesting.xml";
         public GameRoot()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -95,7 +95,6 @@ namespace GameSpace
 
             #region Loading Lists
             objects = Loader.Load(this, xmlFileName, new Vector2(0, 0), false);
-            //objects = Loader.LoadEverything(xmlFileName);
             //soundEffects = AudioFactory.GetInstance().loadList();
             #endregion
 
@@ -151,16 +150,18 @@ namespace GameSpace
             AudioFactory.GetInstance().LoadContent(Content);
             #endregion
 
+            MusicHandler.GetInstance().LoadMusicIntoList(AudioFactory.GetInstance().loadList());
+
             #region Loading Lists
-            objects = Loader.Load(this, xmlFileName, new Vector2(0, 0), false);
-            soundEffects = AudioFactory.GetInstance().loadList();
-            MusicHandler.GetInstance().LoadMusicIntoList(soundEffects);
+            objects = Loader.Load(this, xmlFileName, position, true);
+            //soundEffects = AudioFactory.GetInstance().loadList();
             #endregion
 
-            #region Load EntityManager
+            #region Loading Handlers
             //EntityManager.LoadList(objects);
+            //MusicHandler.GetInstance().LoadMusicIntoList(soundEffects);
+            HUDHandler.GetInstance().LoadContent(Content);
             TheaterHandler.GetInstance().LoadData(objects);
-            fontFile = Content.Load<SpriteFont>("font");
             #endregion
 
             #region Loading Controllers
@@ -169,7 +170,7 @@ namespace GameSpace
                 new KeyboardInput(this), new ControllerInput(this)
             };
             #endregion
-
+            fontFile = Content.Load<SpriteFont>("font");
             //Camera Stuff
             camera = new Camera(GraphicsDevice.Viewport) { Limits = new Rectangle(0, 0, Loader.boundaryX, 480) };//Should be set to level's max X and Y
 
@@ -182,13 +183,11 @@ namespace GameSpace
                 new Layer(camera, BackgroundFactory.GetInstance().CreateCloudsSprite(), new Vector2(2.0f, 1.0f)),
                 new Layer(camera, BackgroundFactory.GetInstance().CreateBGMountainSprite(), new Vector2(1.5f, 1.0f)),
                 new Layer(camera, BackgroundFactory.GetInstance().CreateRegularBackground(), new Vector2(1.0f, 1.0f)),
-                
             };
 
             //Audio Stuff
             this.song = AudioFactory.GetInstance().CreateSong();
             MusicHandler.GetInstance().PlaySong(this.song);
-            DeathTimer.ResetTimer();
         }
 
         public Mario GetMario => (Mario)FinderHandler.GetInstance().FindItem((int)AvatarID.MARIO);

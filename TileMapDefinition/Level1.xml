@@ -1,6 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 
 <Level>
+
+	<Description>					LEVEL 1 BEGINS					</Description>
+	
 	<Obstacles>
 		<x>64</x>
 		<y>402</y>
@@ -14,6 +17,7 @@
 		<block>FIREFLOWERQUESTIONBLOCK</block>
 	</Obstacles>
 
+	
 
 
 	
@@ -75,7 +79,7 @@
 	<Obstacles>
 		<x>400</x>
 		<y>400</y>
-		<item>WARPPIPEGOOMBA</item>
+		<item>WARPPIPEHEADWITHMOB</item>
 	</Obstacles>
 	
 	
@@ -118,10 +122,10 @@
 		<item>BIGPIPE</item>
 	</Obstacles>
 
-	
-	
-	
-	
+
+
+
+	<Description>					CHECKPOINT 1					</Description>
 	
 	<Obstacles>
 		<x>2272</x>
@@ -440,6 +444,10 @@
 		<block>STAIRBLOCK</block>
 		<blockRow>1</blockRow>
 	</Obstacles>
+
+
+
+	<Description>					CHECKPOINT 2					</Description>
 	
 	<Obstacles>
 		<x>5216</x>
@@ -591,5 +599,252 @@
 		<block>BRICKBLOCK</block>
 		<blockRow>1</blockRow>
 	</Obstacles>
+
+	<Description>					LEVEL 1 ENDS					</Description>
+
+
+
+
+
+
+
+
+	<Description>					HIDDEN LEVEL BEGINS					</Description>
+
+	<Obstacles>
+		<x>0</x>
+		<y>498</y>
+		<item>BLACKWINDOW</item>
+	</Obstacles>
+	
+
+	<Obstacles>
+		<x>0</x>
+		<y>498</y>
+		<block>HIDDENLEVELBRICKBLOCK</block>
+		<blockRow>1</blockRow>
+	</Obstacles>
+	<Obstacles>
+		<x>0</x>
+		<y>530</y>
+		<block>HIDDENLEVELBRICKBLOCK</block>
+		<blockRow>1</blockRow>
+	</Obstacles>
+	<Obstacles>
+		<x>0</x>
+		<y>562</y>
+		<block>HIDDENLEVELBRICKBLOCK</block>
+		<blockRow>1</blockRow>
+	</Obstacles>
+	<Obstacles>
+		<x>0</x>
+		<y>594</y>
+		<block>HIDDENLEVELBRICKBLOCK</block>
+		<blockRow>1</blockRow>
+	</Obstacles>
+	<Obstacles>
+		<x>0</x>
+		<y>626</y>
+		<block>HIDDENLEVELBRICKBLOCK</block>
+		<blockRow>1</blockRow>
+	</Obstacles>
+	<Obstacles>
+		<x>0</x>
+		<y>658</y>
+		<block>HIDDENLEVELBRICKBLOCK</block>
+		<blockRow>1</blockRow>
+	</Obstacles>
+	<Obstacles>
+		<x>0</x>
+		<y>690</y>
+		<block>HIDDENLEVELBRICKBLOCK</block>
+		<blockRow>1</blockRow>
+	</Obstacles>
+	<Obstacles>
+		<x>0</x>
+		<y>722</y>
+		<block>HIDDENLEVELBRICKBLOCK</block>
+		<blockRow>1</blockRow>
+	</Obstacles>
+	<Obstacles>
+		<x>0</x>
+		<y>754</y>
+		<block>HIDDENLEVELBRICKBLOCK</block>
+		<blockRow>1</blockRow>
+	</Obstacles>
+	<Obstacles>
+		<x>0</x>
+		<y>786</y>
+		<block>HIDDENLEVELBRICKBLOCK</block>
+		<blockRow>1</blockRow>
+	</Obstacles>
+	<Obstacles>
+		<x>0</x>
+		<y>818</y>
+		<block>HIDDENLEVELBRICKBLOCK</block>
+		<blockRow>1</blockRow>
+	</Obstacles>
+	
+	
+
+	<Obstacles>
+		<x>0</x>
+		<y>850</y>
+		<block>HIDDENLEVELFLOORBLOCK</block>
+		<blockRow>17</blockRow>
+	</Obstacles>
+	<Obstacles>
+		<x>0</x>
+		<y>882</y>
+		<block>HIDDENLEVELFLOORBLOCK</block>
+		<blockRow>17</blockRow>
+	</Obstacles>
+
+
+	<Obstacles>
+		<x>128</x>
+		<y>498</y>
+		<block>HIDDENLEVELBRICKBLOCK</block>
+		<blockRow>7</blockRow>
+	</Obstacles>
+	<Obstacles>
+		<x>128</x>
+		<y>754</y>
+		<block>HIDDENLEVELBRICKBLOCK</block>
+		<blockRow>7</blockRow>
+	</Obstacles>
+	<Obstacles>
+		<x>128</x>
+		<y>786</y>
+		<block>HIDDENLEVELBRICKBLOCK</block>
+		<blockRow>7</blockRow>
+	</Obstacles>
+	<Obstacles>
+		<x>128</x>
+		<y>818</y>
+		<block>HIDDENLEVELBRICKBLOCK</block>
+		<blockRow>7</blockRow>
+	</Obstacles>
+
+	<Obstacles>
+		<x>416</x>
+		<y>786</y>
+		<item>HIDDENLEVELHORIZONTALPIPE</item>
+	</Obstacles>
+	<Obstacles>
+		<x>484</x>
+		<y>498</y>
+		<item>HIDDENLEVELVERTICALPIPE</item>
+	</Obstacles>
+	<Obstacles>
+		<x>484</x>
+		<y>594</y>
+		<item>HIDDENLEVELVERTICALPIPE</item>
+	</Obstacles>
+
+
+	<Obstacles>
+		<x>135</x>
+		<y>722</y>
+		<item>HIDDENLEVELCOIN</item>
+	</Obstacles>
+	<Obstacles>
+		<x>167</x>
+		<y>722</y>
+		<item>HIDDENLEVELCOIN</item>
+	</Obstacles>
+	<Obstacles>
+		<x>199</x>
+		<y>722</y>
+		<item>HIDDENLEVELCOIN</item>
+	</Obstacles>
+	<Obstacles>
+		<x>231</x>
+		<y>722</y>
+		<item>HIDDENLEVELCOIN</item>
+	</Obstacles>
+	<Obstacles>
+		<x>263</x>
+		<y>722</y>
+		<item>HIDDENLEVELCOIN</item>
+	</Obstacles>
+	<Obstacles>
+		<x>295</x>
+		<y>722</y>
+		<item>HIDDENLEVELCOIN</item>
+	</Obstacles>
+	<Obstacles>
+		<x>327</x>
+		<y>722</y>
+		<item>HIDDENLEVELCOIN</item>
+	</Obstacles>
+
+	
+	
+	<Obstacles>
+		<x>135</x>
+		<y>658</y>
+		<item>HIDDENLEVELCOIN</item>
+	</Obstacles>
+	<Obstacles>
+		<x>167</x>
+		<y>658</y>
+		<item>HIDDENLEVELCOIN</item>
+	</Obstacles>
+	<Obstacles>
+		<x>199</x>
+		<y>658</y>
+		<item>HIDDENLEVELCOIN</item>
+	</Obstacles>
+	<Obstacles>
+		<x>231</x>
+		<y>658</y>
+		<item>HIDDENLEVELCOIN</item>
+	</Obstacles>
+	<Obstacles>
+		<x>263</x>
+		<y>658</y>
+		<item>HIDDENLEVELCOIN</item>
+	</Obstacles>
+	<Obstacles>
+		<x>295</x>
+		<y>658</y>
+		<item>HIDDENLEVELCOIN</item>
+	</Obstacles>
+	<Obstacles>
+		<x>327</x>
+		<y>658</y>
+		<item>HIDDENLEVELCOIN</item>
+	</Obstacles>
+
+
+
+	<Obstacles>
+		<x>167</x>
+		<y>594</y>
+		<item>HIDDENLEVELCOIN</item>
+	</Obstacles>
+	<Obstacles>
+		<x>199</x>
+		<y>594</y>
+		<item>HIDDENLEVELCOIN</item>
+	</Obstacles>
+	<Obstacles>
+		<x>231</x>
+		<y>594</y>
+		<item>HIDDENLEVELCOIN</item>
+	</Obstacles>
+	<Obstacles>
+		<x>263</x>
+		<y>594</y>
+		<item>HIDDENLEVELCOIN</item>
+	</Obstacles>
+	<Obstacles>
+		<x>295</x>
+		<y>594</y>
+		<item>HIDDENLEVELCOIN</item>
+	</Obstacles>
+	
+	<Description>					HIDDEN LEVEL ENDS					</Description>
 	
 </Level>

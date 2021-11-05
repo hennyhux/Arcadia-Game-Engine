@@ -157,6 +157,18 @@
 /processorParam:TextureFormat=Color
 /build:Background/small_BG.png
 
+#begin BlackWindow.jpg
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:BlackWindow.jpg
+
 #begin Blocks/BrickBlock.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -192,6 +204,30 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Blocks/HiddenBlock.png
+
+#begin Blocks/HiddenLevelBrickBlock.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Blocks/HiddenLevelBrickBlock.png
+
+#begin Blocks/HiddenLevelFloorBlock.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Blocks/HiddenLevelFloorBlock.png
 
 #begin Blocks/QuestionBlock.png
 /importer:TextureImporter
@@ -397,6 +433,30 @@
 /processorParam:TextureFormat=Color
 /build:ExtraItems/FlagPole.png
 
+#begin ExtraItems/HiddenHorizontalPipe.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:ExtraItems/HiddenHorizontalPipe.png
+
+#begin ExtraItems/HiddenVerticalPipe.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:ExtraItems/HiddenVerticalPipe.png
+
 #begin ExtraItems/MediumPipe.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -476,6 +536,18 @@
 /processorParam:TextureFormat=Color
 /build:Items/flower.png
 
+#begin Items/HiddenLevelCoin.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Items/HiddenLevelCoin.png
+
 #begin Items/HitFireballs.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -511,18 +583,6 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Items/supermushroom.png
-
-#begin Items/WarpPipeHead.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Items/WarpPipeHead.png
 
 #begin Items/WarpPipeHead.png
 /importer:TextureImporter

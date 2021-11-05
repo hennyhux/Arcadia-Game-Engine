@@ -12,11 +12,27 @@ namespace GameSpace.States.BlockStates
         }
     }
 
+    public class StateHiddenLevelBrickBlockBump : AbstractBlockStates
+    {
+        public StateHiddenLevelBrickBlockBump(IGameObjects block)
+        {
+            sprite = new BumpAnimation(SpriteBlockFactory.GetInstance().ReturnUsedBlock().Texture, (int)block.Position.X, (int)block.Position.Y, 24);
+        }
+    }
+
     public class StateBrickBlockIdle : AbstractBlockStates
     {
         public StateBrickBlockIdle()
         {
             sprite = SpriteBlockFactory.GetInstance().ReturnBrickBlock();
+        }
+    }
+
+    public class StateHiddenLevelBrickBlockIdle : AbstractBlockStates
+    {
+        public StateHiddenLevelBrickBlockIdle()
+        {
+            sprite = SpriteBlockFactory.GetInstance().ReturnHiddenLevelBrickBlock();
         }
     }
 
@@ -41,6 +57,14 @@ namespace GameSpace.States.BlockStates
         public StateFloorBlock()
         {
             sprite = SpriteBlockFactory.GetInstance().ReturnFloorBlock();
+        }
+    }
+
+    public class StateHiddenLevelFloorBlock : AbstractBlockStates
+    {
+        public StateHiddenLevelFloorBlock()
+        {
+            sprite = SpriteBlockFactory.GetInstance().ReturnHiddenLevelFloorBlock();
         }
     }
 
