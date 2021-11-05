@@ -1,9 +1,9 @@
 ﻿using GameSpace.Factories;
 using GameSpace.GameObjects.EnemyObjects;
 using GameSpace.Interfaces;
+using GameSpace.Machines;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using GameSpace.Machines;
 
 
 namespace GameSpace.States.EnemyStates
@@ -47,7 +47,7 @@ namespace GameSpace.States.EnemyStates
 
             if (countDown == 550)
             {
-                if (RedKoopa.direction == 0)
+                if (RedKoopa.Direction == 0)
                 {
                     RedKoopa.state = new StateRedKoopaAliveLeft(RedKoopa);
                 }

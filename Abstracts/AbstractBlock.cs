@@ -1,4 +1,6 @@
-﻿using GameSpace.Interfaces;
+﻿using GameSpace.EntityManaging;
+using GameSpace.Enums;
+using GameSpace.Interfaces;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -17,7 +19,7 @@ namespace GameSpace.Abstracts
         internal bool drawBox;
         internal bool hasCollided;
         internal IBlockStates state;
-        internal IGameObjects item;
+        internal AbstractItem item;
 
 
         public AbstractBlock()
@@ -60,7 +62,13 @@ namespace GameSpace.Abstracts
 
         public virtual void HandleCollision(IGameObjects entity)
         {
-
+            hasCollided = true;
+            switch (entity.ObjectID)
+            {
+                case (int)AvatarID.MARIO:
+                    CollisionHandler.GetInstance().BlockToMarioCollision(this);
+                    break;
+            }
         }
 
         public abstract bool RevealItem();

@@ -1,7 +1,4 @@
 ﻿using GameSpace.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using Microsoft.Xna.Framework;
 
 namespace GameSpace.Level
@@ -10,12 +7,12 @@ namespace GameSpace.Level
     {
         private protected GameRoot MyGame;
         public int lastCheckPoint;
-       // public Vector2 positionBeforeDead;
+        // public Vector2 positionBeforeDead;
         public LevelRestart(GameRoot game, int checkPoint)
         {
             MyGame = game;
-            lastCheckPoint =  0;
-           // positionBeforeDead = new Vector2(64, 402);
+            lastCheckPoint = 0;
+            // positionBeforeDead = new Vector2(64, 402);
         }
 
         public int GetCheckPoint()
@@ -79,6 +76,6 @@ namespace GameSpace.Level
                 //Call method for GameOver
             }
         }
-        
+
     }
 }

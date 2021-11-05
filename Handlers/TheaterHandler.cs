@@ -27,7 +27,7 @@ namespace GameSpace.EntityManaging
 
             foreach (IGameObjects entity in gameEntityList)
             {
-                if (entity.ObjectID == (int)ItemID.BIGPIPE)
+                if (entity.ObjectID == (int)ItemID.WARPPIPE)
                 {
                     listOfWarpPipes.Add(entity);
                 }
@@ -48,11 +48,13 @@ namespace GameSpace.EntityManaging
                 animation.Draw(spriteBatch);
             }
 
-            //ColliderMachine.GetInstance().UpdateCollision();
+            //CollisionHandler.GetInstance().UpdateCollision();
         }
 
         public void Update(GameTime gametime)
         {
+
+            CollisionHandler.GetInstance().UpdateCollision();
 
             foreach (IGameObjects entity in gameEntityList)
             {
@@ -64,7 +66,7 @@ namespace GameSpace.EntityManaging
                 animation.Update(gametime);
             }
 
-            CollisionHandler.GetInstance().UpdateCollision();
+            //CollisionHandler.GetInstance().UpdateCollision();
         }
 
         public void ToggleCollisionBox()

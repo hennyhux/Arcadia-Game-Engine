@@ -63,45 +63,72 @@ namespace GameSpace.TileMapDefinition
                         objects.Add(objectFactory.CreateFloorBlockObject(new Vector2(obstacles.x + (32 * i), obstacles.y)));
                     }
                     break;
+
                 case BlockID.HIDDENBLOCK:
                     objects.Add(objectFactory.CreateHiddenBlockObject(location));
                     break;
+
                 case BlockID.USEDBLOCK: //NOT USED IN LEVEL 1-1
                     objects.Add(objectFactory.CreateUsedBlockObject(location));
                     break;
+
                 case BlockID.STAIRBLOCK:
                     for (int i = 0; i < obstacles.blockRow; i++)
                     {
                         objects.Add(objectFactory.CreateStairBlockObject(new Vector2(obstacles.x + (32 * i), obstacles.y)));
                     }
                     break;
+
+                #region Brick Blocks
                 case BlockID.BRICKBLOCK:
                     for (int i = 0; i < obstacles.blockRow; i++)
                     {
                         objects.Add(objectFactory.CreateBrickBlockObject(new Vector2(obstacles.x + (32 * i), obstacles.y)));
                     }
                     break;
+
                 case BlockID.COINBRICKBLOCK:
-                    objects.Add(objectFactory.CreateCoinBrickBlock(location));
+                    objects.Add(objectFactory.CreateBrickBlockWithItem(location, objectFactory.CreateCoinObject(location)));
                     break;
+
+                case BlockID.FIREBRICKBLOCK:
+                    objects.Add(objectFactory.CreateBrickBlockWithItem(location, objectFactory.CreateFireFlowerObject(location)));
+                    break;
+
+                case BlockID.ONEUPSHROOMBRICKBLOCK:
+                    objects.Add(objectFactory.CreateBrickBlockWithItem(location, objectFactory.CreateOneUpShroomObject(location)));
+                    break;
+
+                case BlockID.SUPERSHROOMBRICKBLOCK:
+                    objects.Add(objectFactory.CreateBrickBlockWithItem(location, objectFactory.CreateSuperShroomObject(location)));
+                    break;
+
                 case BlockID.STARBRICKBLOCK:
-                    objects.Add(objectFactory.CreateStarBrickBlock(location));
+                    objects.Add(objectFactory.CreateBrickBlockWithItem(location, objectFactory.CreateStarObject(location)));
                     break;
+                #endregion
+
+
                 case BlockID.QUESTIONBLOCK: //NOT USED IN LEVEL 1-1
                     objects.Add(objectFactory.CreateQuestionBlockObject(location));
                     break;
+
                 case BlockID.COINQUESTIONBLOCK:
                     objects.Add(objectFactory.CreateQuestionBlockCoin(location));
                     break;
+
                 case BlockID.STARQUESTIONBLOCK:
                     objects.Add(objectFactory.CreateQuestionBlockStar(location));
                     break;
+
                 case BlockID.ONEUPSHROOMQUESTIONBLOCK:
                     objects.Add(objectFactory.CreateQuestionBlockOneUpShroom(location));
                     break;
+
                 case BlockID.SUPERSHROOMQUESTIONBLOCK:
                     objects.Add(objectFactory.CreateQuestionBlockShroom(location));
                     break;
+
                 case BlockID.FIREFLOWERQUESTIONBLOCK:
                     objects.Add(objectFactory.CreateQuestionBlockFire(location));
                     break;
@@ -139,10 +166,10 @@ namespace GameSpace.TileMapDefinition
                     objects.Add(objectFactory.CreateBigPipeObject(location));
                     break;
                 case ItemID.WARPPIPE:
-                    //objects.Add(objectFactory.CreateWarpPipeObject(location));
+                    objects.Add(objectFactory.CreateWarpPipeHead(location));
                     break;
                 case ItemID.WARPPIPEGOOMBA:
-                    //objects.Add(objectFactory.CreateWarpPipeGoombaObject(location));
+                    objects.Add(objectFactory.CreateWarpPipeHeadWithMob(location));
                     break;
                 case ItemID.WARPPIPEGREENKOOPA:
                     //objects.Add(objectFactory.CreateWarpPipeGreenKoopaObject(location));

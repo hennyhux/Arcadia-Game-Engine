@@ -15,7 +15,7 @@ namespace GameSpace.States.EnemyStates
 
         public StateGreenKoopaAliveLeft(GreenKoopa greenKoopa)
         {
-            StateSprite = SpriteEnemyFactory.GetInstance().CreateGreenKoopaSprite();
+            StateSprite = SpriteEnemyFactory.GetInstance().CreateGreenKoopaLeftSprite();
             CollidedWithMario = false;
             GreenKoopa = greenKoopa;
             GreenKoopa.state = this;

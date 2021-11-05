@@ -1,9 +1,9 @@
 ﻿using GameSpace.Abstracts;
 using GameSpace.Enums;
 using GameSpace.Factories;
+using GameSpace.Machines;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using GameSpace.Machines;
 
 
 
@@ -14,12 +14,12 @@ namespace GameSpace.GameObjects.EnemyObjects
         public Goomba(Vector2 initalPosition)
         {
             ObjectID = (int)EnemyID.GOOMBA;
-            direction = (int)eFacing.LEFT;
-            Sprite = SpriteEnemyFactory.GetInstance().CreateGoombaSprite();
+            Direction = (int)eFacing.LEFT;
             Position = initalPosition;
             state = new StateGoombaAlive();
             UpdateCollisionBox(Position);
             drawBox = false;
+            hasCollidedOnTop = false;
         }
 
         public override void Draw(SpriteBatch spritebatch)
@@ -34,35 +34,35 @@ namespace GameSpace.GameObjects.EnemyObjects
             {
                 countDown++;
             }
-
         }
 
         public override void Update(GameTime gametime)
         {
-
-            if (state is StateGoombaAlive)
+            if (state is StateGoombaAlive && IsInview())
             {
                 state.Update(gametime);
-                if (!hasCollidedOnTop && IsInview())
-                {
-                    UpdatePosition(Position, gametime);
-                }
+                UpdateSpeed();
+                UpdatePosition(Position, gametime);
+                UpdateCollisionBox(Position);
+            }
 
+            else
+            {
                 if (countDown == 90)
                 {
                     state.StateSprite.SetVisible();
                 }
             }
         }
-
         public override void Trigger()
         {
             state = new StateGoombaDead();
+            hasCollidedOnTop = true;
             countDown = 0;
             MusicHandler.GetInstance().PlaySoundEffect(2);
-
         }
     }
+
     public class StateGoombaDead : AbstractEnemyState
     {
         public StateGoombaDead()

@@ -2,15 +2,14 @@
 using GameSpace.Enums;
 using GameSpace.Factories;
 using GameSpace.Interfaces;
-using Microsoft.Xna.Framework;
 using GameSpace.Machines;
-using GameSpace.EntityManaging;
+using Microsoft.Xna.Framework;
 
 namespace GameSpace.GameObjects.ItemObjects
 {
     public class Coin : AbstractItem
     {
-        private bool hasCollided;
+        private readonly bool hasCollided;
         public Coin(Vector2 initalPosition)
         {
             ObjectID = (int)ItemID.COIN;
@@ -24,7 +23,7 @@ namespace GameSpace.GameObjects.ItemObjects
         public override void Trigger()
         {
             Sprite.SetVisible();
-            CollisionBox = new Rectangle(1, 1, 0, 0);
+            DeleteCollisionBox();
             //play sound effect for coinCollect
             MusicHandler.GetInstance().PlaySoundEffect(7);
         }
@@ -38,6 +37,5 @@ namespace GameSpace.GameObjects.ItemObjects
                     break;
             }
         }
-
     }
 }

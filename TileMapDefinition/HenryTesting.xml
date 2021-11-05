@@ -17,18 +17,41 @@
 	<Obstacles>
 		<x>150</x>
 		<y>100</y>
-		<block>BRICKBLOCK</block>
-		<blockRow>1</blockRow>
+		<block>FIREBRICKBLOCK</block>
 	</Obstacles>
+	
+	<Obstacles>
+		<x>250</x>
+		<y>100</y>
+		<block>ONEUPSHROOMBRICKBLOCK</block>
+	</Obstacles>
+
+
+		<Obstacles>
+		<x>400</x>
+		<y>275</y>
+		<item>CASTLE</item>
+	</Obstacles>
+	
 
 	<Obstacles>
 		<x>200</x>
 		<y>100</y>
 		<block>BRICKBLOCK</block>
 		<blockRow>1</blockRow>
-		<item>FIREFLOWER</item>
 	</Obstacles>
 	
+	<Obstacles>
+		<x>320</x>
+		<y>100</y>
+		<item>WARPPIPEGOOMBA</item>
+	</Obstacles>
+	
+	<Obstacles>
+		<x>4000</x>
+		<y>100</y>
+		<item>WARPPIPE</item>
+	</Obstacles>
 	
 	<Obstacles>
 		<x>400</x>

@@ -5,15 +5,14 @@ using GameSpace.Enums;
 using GameSpace.Factories;
 using GameSpace.GameObjects.BlockObjects;
 using GameSpace.Interfaces;
+using GameSpace.Level;
+using GameSpace.Machines;
 using GameSpace.TileMapDefinition;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using System.Collections.Generic;
-using Microsoft.Xna.Framework.Media;
 using Microsoft.Xna.Framework.Audio;
-using Microsoft.Xna.Framework.Input;
-using GameSpace.Machines;
-using GameSpace.Level;
+using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Media;
+using System.Collections.Generic;
 
 namespace GameSpace
 {
@@ -21,14 +20,14 @@ namespace GameSpace
     {
         private protected readonly GraphicsDeviceManager graphics;
         private protected SpriteBatch spriteBatch;
-
-
         private LevelRestart levelRestart;
-        private Vector2 p;
-        private bool startOfGame;
+        private static Vector2 p;
+        private static bool startOfGame;
         private SpriteFont fontFile;
-       // DeathTimer timer;
+        // DeathTimer timer;
         public Color FontColor { get; set; } = Color.DarkBlue;
+
+        public int Vic { get; set; }
 
         //private protected Camera camera;
 
@@ -45,7 +44,6 @@ namespace GameSpace
         #region Lists
         private List<IController> controllers;
         private List<IGameObjects> objects;
-        private readonly List<IGameObjects> avatars;
         public List<SoundEffect> soundEffects;
         #endregion
 
@@ -55,8 +53,8 @@ namespace GameSpace
         public GraphicsDeviceManager Graphics => graphics;
 
         //private readonly string xmlFileName = "./Level1.xml"; // Turn in with this line of code!
-        private readonly string xmlFileName = "../../../TileMapDefinition/Level1.xml"; // ONLY to run on our machines
-        //private readonly string xmlFileName = "../../../TileMapDefinition/CalebTesting.xml";
+        //private readonly string xmlFileName = "../../../TileMapDefinition/Level1.xml"; // ONLY to run on our machines
+        private readonly string xmlFileName = "../../../TileMapDefinition/CalebTesting.xml";
         public GameRoot()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -64,11 +62,11 @@ namespace GameSpace
             levelRestart = new LevelRestart(this, 0);
         }
 
-        private readonly SpriteBatch spriteBatch1;
         protected override void Initialize()
         {
             base.Initialize();
             LoadContent();
+            Vic = 1;
         }
         public void Reset()
         {
@@ -76,12 +74,11 @@ namespace GameSpace
             Initialize();
         }
 
-        public void Restart(Vector2 position)
+        protected override void LoadContent()
         {
-            startOfGame = false;
-            p = position;
-            Initialize();
-           /* spriteBatch = new SpriteBatch(GraphicsDevice);
+            spriteBatch = new SpriteBatch(GraphicsDevice);
+
+            HUDHandler.GetInstance().LoadContent(Content);
 
             #region Loading Factories
             SpriteBlockFactory.GetInstance().LoadContent(Content);
@@ -94,15 +91,18 @@ namespace GameSpace
             AudioFactory.GetInstance().LoadContent(Content);
             #endregion
 
+            MusicHandler.GetInstance().LoadMusicIntoList(AudioFactory.GetInstance().loadList());
+
             #region Loading Lists
-            objects = Loader.Load(this, xmlFileName, p, true);
+            objects = Loader.Load(this, xmlFileName, new Vector2(0, 0), false);
             //objects = Loader.LoadEverything(xmlFileName);
-            soundEffects = AudioFactory.GetInstance().loadList();
-            MusicHandler.GetInstance().LoadMusicIntoList(soundEffects);
+            //soundEffects = AudioFactory.GetInstance().loadList();
             #endregion
 
-            #region Load EntityManager
+            #region Loading Handlers
             //EntityManager.LoadList(objects);
+            //MusicHandler.GetInstance().LoadMusicIntoList(soundEffects);
+            HUDHandler.GetInstance().LoadContent(Content);
             TheaterHandler.GetInstance().LoadData(objects);
             #endregion
 
@@ -112,12 +112,12 @@ namespace GameSpace
                 new KeyboardInput(this), new ControllerInput(this)
             };
             #endregion
-
+            fontFile = Content.Load<SpriteFont>("font");
             //Camera Stuff
             camera = new Camera(GraphicsDevice.Viewport) { Limits = new Rectangle(0, 0, Loader.boundaryX, 480) };//Should be set to level's max X and Y
 
             EntityManager.AddCamera(camera);
-            CameraAgency.GetInstance().LoadCamera(camera);
+            CameraHandler.GetInstance().LoadCamera(camera);
 
             //Scrolling Background, Manually Setting
             layers = new List<Layer>
@@ -129,11 +129,15 @@ namespace GameSpace
 
             //Audio Stuff
             this.song = AudioFactory.GetInstance().CreateSong();
-            MusicHandler.GetInstance().PlaySong(this.song);*/
+            MusicHandler.GetInstance().PlaySong(this.song);
+            DeathTimer.ResetTimer();
         }
 
-        protected override void LoadContent()
+        public void Restart(Vector2 position)
         {
+            startOfGame = false;
+            p = position;
+            Initialize();
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             #region Loading Factories
@@ -148,7 +152,7 @@ namespace GameSpace
             #endregion
 
             #region Loading Lists
-            objects = Loader.Load(this, xmlFileName, p, false);
+            objects = Loader.Load(this, xmlFileName, new Vector2(0, 0), false);
             soundEffects = AudioFactory.GetInstance().loadList();
             MusicHandler.GetInstance().LoadMusicIntoList(soundEffects);
             #endregion
@@ -170,7 +174,7 @@ namespace GameSpace
             camera = new Camera(GraphicsDevice.Viewport) { Limits = new Rectangle(0, 0, Loader.boundaryX, 480) };//Should be set to level's max X and Y
 
             EntityManager.AddCamera(camera);
-            CameraAgency.GetInstance().LoadCamera(camera);
+            CameraHandler.GetInstance().LoadCamera(camera);
 
             //Scrolling Background, Manually Setting
             layers = new List<Layer>
@@ -216,7 +220,6 @@ namespace GameSpace
             {
                 layer.Draw(spriteBatch, camera.Position);
             }
-
             //Normal Sprites
             spriteBatch.Begin(SpriteSortMode.Deferred, null, null, null, null, null, camera.GetViewMatrix(parallax));
             TheaterHandler.GetInstance().Draw(spriteBatch);

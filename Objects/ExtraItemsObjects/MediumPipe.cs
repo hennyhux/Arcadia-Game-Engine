@@ -1,27 +1,16 @@
-﻿using GameSpace.Enums;
+﻿using GameSpace.Abstracts;
+using GameSpace.Enums;
 using GameSpace.Factories;
 using GameSpace.Interfaces;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using System;
 using System.Diagnostics;
 
 namespace GameSpace.GameObjects.ExtraItemsObjects
 {
-    public class MediumPipe : IGameObjects
+    public class MediumPipe : AbstractItem
     {
-        public ISprite Sprite { get; set; }
-        public Vector2 Position { get; set; }
-        public Vector2 Velocity { get; set; }
-        public Rectangle CollisionBox { get; set; }
-        public Vector2 Acceleration { get; set; }
 
-        public Vector2 Location => throw new NotImplementedException();
-
-        public int ObjectID { get; set; }
         private bool hasCollided;
-        private bool drawBox;
-
         public MediumPipe(Vector2 initalPosition)
         {
             ObjectID = (int)ItemID.MEDIUMPIPE;
@@ -32,48 +21,10 @@ namespace GameSpace.GameObjects.ExtraItemsObjects
             Debug.WriteLine("EXTRA ITEM AT " + "(" + Position.X + ", " + Position.Y + ")");
         }
 
-        public void Draw(SpriteBatch spritebatch)
-        {
-            Sprite.Draw(spritebatch, Position); //this shouldnt be hardcoded anymore 
-            if (drawBox)
-            {
-                Sprite.DrawBoundary(spritebatch, CollisionBox);
-            }
-        }
-
-        public void Update(GameTime gametime)
-        {
-            Sprite.Update(gametime);
-        }
-
-        public void Trigger()
-        {
-            //Pipe does nothing.
-        }
-
-        public void UpdatePosition(Vector2 location, GameTime gameTime)
-        {
-            //Pipe doesn't move.
-        }
-
-        public void HandleCollision(IGameObjects entity)
+        public override void HandleCollision(IGameObjects entity)
         {
             hasCollided = true;
         }
 
-        public void ToggleCollisionBoxes()
-        {
-            drawBox = !drawBox;
-        }
-
-        public bool IsCurrentlyColliding()
-        {
-            throw new NotImplementedException();
-        }
-
-        public bool RevealItem()
-        {
-            throw new NotImplementedException();
-        }
     }
 }

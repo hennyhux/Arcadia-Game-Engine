@@ -2,10 +2,8 @@
 using GameSpace.Enums;
 using GameSpace.Factories;
 using GameSpace.Interfaces;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using System;
 using GameSpace.Machines;
+using Microsoft.Xna.Framework;
 
 
 namespace GameSpace.GameObjects.ItemObjects
@@ -20,17 +18,16 @@ namespace GameSpace.GameObjects.ItemObjects
             CollisionBox = new Rectangle((int)Position.X, (int)Position.Y, Sprite.Texture.Width * 2 / 4, Sprite.Texture.Height * 2);
             drawBox = false;
             //play sound effect for powerUpAppear
-            MusicHandler.GetInstance().PlaySoundEffect(4);  
+            MusicHandler.GetInstance().PlaySoundEffect(4);
 
         }
 
         public override void Trigger()
         {
             Sprite.SetVisible();
-            CollisionBox = new Rectangle(1, 1, 0, 0);
+            DeleteCollisionBox();
             //play sound effect for powerUpCollect
             MusicHandler.GetInstance().PlaySoundEffect(5);
-
         }
 
         public override void HandleCollision(IGameObjects entity)
@@ -41,6 +38,12 @@ namespace GameSpace.GameObjects.ItemObjects
                     Trigger();
                     break;
             }
+        }
+
+        public override void AdjustLocationComingOutOfBlock()
+        {
+            Position = new Vector2(Position.X - 4, Position.Y - Sprite.Texture.Height * 2);
+            CollisionBox = new Rectangle((int)Position.X, (int)Position.Y, Sprite.Texture.Width * 2 / 4, Sprite.Texture.Height * 2);
         }
     }
 }

@@ -11,9 +11,9 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Remove="Content\NewFolder\**" />
-    <EmbeddedResource Remove="Content\NewFolder\**" />
-    <None Remove="Content\NewFolder\**" />
+    <Compile Remove="Objects\TestingObjects\**" />
+    <EmbeddedResource Remove="Objects\TestingObjects\**" />
+    <None Remove="Objects\TestingObjects\**" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="Content\Enemies\GreenKoopas.png" />
@@ -29,6 +29,7 @@
     <MonoGameContentReference Include="Content\Content.mgcb" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Content\NewFolder\" />
     <Folder Include="Objects\TestingObjects\" />
   </ItemGroup>
 </Project>

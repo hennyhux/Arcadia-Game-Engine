@@ -19,7 +19,7 @@ namespace GameSpace.States.EnemyStates
             RedKoopa = redKoopa;
             RedKoopa.state = this;
             RedKoopa.Velocity = new Vector2(+1, 0);
-            RedKoopa.direction = 1;
+            RedKoopa.Direction = 1;
 
         }
 

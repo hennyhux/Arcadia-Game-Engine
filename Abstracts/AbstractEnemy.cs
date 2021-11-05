@@ -1,5 +1,4 @@
 ﻿using GameSpace.Camera2D;
-using GameSpace.EntitiesManager;
 using GameSpace.EntityManaging;
 using GameSpace.Enums;
 using GameSpace.Interfaces;
@@ -20,9 +19,16 @@ namespace GameSpace.Abstracts
         internal bool hasCollidedOnTop;
         internal bool drawBox;
         internal int countDown;
-        public int direction { get; set; }
+        public int Direction { get; set; }
         internal IEnemyState state;
+
+        public AbstractEnemy()
+        {
+            hasCollidedOnTop = false;
+        }
+
         public Rectangle ExpandedCollisionBox { get; set; }
+
 
         public virtual void Draw(SpriteBatch spritebatch)
         {
@@ -35,15 +41,20 @@ namespace GameSpace.Abstracts
         public virtual void Update(GameTime gametime)
         {
             state.Update(gametime);
+
+
+            UpdateSpeed();
             UpdatePosition(Position, gametime);
+            UpdateCollisionBox(Position);
+
         }
 
         public virtual void Trigger()
         {
-
+            hasCollidedOnTop = true;
         }
 
-        public virtual void UpdatePosition(Vector2 location, GameTime gameTime)
+        internal virtual void UpdateSpeed()
         {
             if (CollisionHandler.GetInstance().IsGoingToFall(this))
             {
@@ -53,32 +64,33 @@ namespace GameSpace.Abstracts
             else
             {
                 Acceleration = new Vector2(0, 0);
-                if (direction == (int)eFacing.RIGHT)
+                if (Direction == (int)eFacing.RIGHT)
                 {
-                    Velocity = new Vector2(85, 0);
+                    Velocity = new Vector2(75, 0);
                 }
 
-                if (direction == (int)eFacing.LEFT)
+                else if (Direction == (int)eFacing.LEFT)
                 {
-                    Velocity = new Vector2(-85, 0);
+                    Velocity = new Vector2(-75, 0);
                 }
             }
-
-            Velocity += Acceleration * (float)gameTime.ElapsedGameTime.TotalSeconds;
-            Position += Velocity * (float)gameTime.ElapsedGameTime.TotalSeconds;
-
-            UpdateCollisionBox(Position);
         }
 
-        internal virtual void UpdateCollisionBox(Vector2 location)
+        public virtual void UpdatePosition(Vector2 location, GameTime gameTime)
+        {
+            Velocity += Acceleration * (float)gameTime.ElapsedGameTime.TotalSeconds;
+            Position += Velocity * (float)gameTime.ElapsedGameTime.TotalSeconds;
+        }
+
+        protected virtual void UpdateCollisionBox(Vector2 location)
         {
             CollisionBox = new Rectangle((int)location.X, (int)location.Y,
                 state.StateSprite.Texture.Width, state.StateSprite.Texture.Height * 2);
 
             ExpandedCollisionBox = new Rectangle((int)location.X, (int)location.Y,
-                state.StateSprite.Texture.Width, (state.StateSprite.Texture.Height * 2) + 6);
+                state.StateSprite.Texture.Width, (state.StateSprite.Texture.Height * 2) + 4);
         }
-        internal bool IsInview()
+        private protected bool IsInview()
         {
             Camera copyCam = FinderHandler.GetInstance().FindCameraCopy();
             return (Position.X > copyCam.Position.X && Position.X < copyCam.Position.X + 800);
@@ -115,54 +127,20 @@ namespace GameSpace.Abstracts
                     break;
 
                 case (int)ItemID.FIREBALL:
-                    CollisionWithFireball(entity);
+                    Trigger();
                     break;
             }
         }
 
-
-        internal virtual void CollisionWithMario(IGameObjects mario)
-        {
-            if (EntityManager.DetectCollisionDirection(this, mario) == (int)CollisionDirection.UP)
-            {
-                Trigger();
-                CollisionBox = new Rectangle(1, 1, 0, 0);
-                if (!hasCollidedOnTop)
-                {
-                    hasCollidedOnTop = true;
-                }
-            }
-
-            else
-            {
-
-            }
-        }
-
-        internal virtual void CollisionWithFireball(IGameObjects fireball)
-        {
-            Trigger();
-            CollisionBox = new Rectangle(1, 1, 0, 0);
-            if (!hasCollidedOnTop)
-            {
-                hasCollidedOnTop = true;
-            }
-        }
-
-        internal void HaltAllMotion()
+        private protected void HaltAllMotion()
         {
             Velocity = new Vector2(0, 0);
             Acceleration = new Vector2(0, 0);
         }
 
-        internal void PreformBounce()
-        {
-            Position = new Vector2(Position.X, Position.Y - 4);
-        }
-
         public bool RevealItem()
         {
-            throw new System.NotImplementedException();
+            return false;
         }
     }
 }
