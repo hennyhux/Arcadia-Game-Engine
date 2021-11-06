@@ -76,6 +76,65 @@ namespace GameSpace.States.GameStates
             spriteBatch.End();
         }
 
+        public override void Restart(Vector2 position)
+        {
+            startOfGame = false;
+            p = position;
+            Initialize();
+            spriteBatch = new SpriteBatch(graphicsDevice);
+
+            #region Loading Factories
+            SpriteBlockFactory.GetInstance().LoadContent(content);
+            MarioFactory.GetInstance(game).LoadContent(content);
+            SpriteEnemyFactory.GetInstance().LoadContent(content);
+            SpriteExtraItemsFactory.GetInstance().LoadContent(content);
+            BackgroundFactory.GetInstance().LoadContent(content);
+            SpriteItemFactory.GetInstance().LoadContent(content);
+            BackgroundFactory.GetInstance().LoadContent(content);
+            AudioFactory.GetInstance().LoadContent(content);
+            #endregion
+
+            MusicHandler.GetInstance().LoadMusicIntoList(AudioFactory.GetInstance().loadList());
+
+            #region Loading Lists
+            objects = Loader.Load(game, xmlFileName, position, true);
+            //soundEffects = AudioFactory.GetInstance().loadList();
+            #endregion
+
+            #region Loading Handlers
+            //EntityManager.LoadList(objects);
+            //MusicHandler.GetInstance().LoadMusicIntoList(soundEffects);
+            HUDHandler.GetInstance().LoadContent(content);
+            TheaterHandler.GetInstance().LoadData(objects);
+            #endregion
+
+            #region Loading Controllers
+            controllers = new List<IController>()
+            {
+                new KeyboardInput(game), new ControllerInput(game)
+            };
+            #endregion
+            fontFile = content.Load<SpriteFont>("font");
+            //Camera Stuff
+            camera = new Camera(graphicsDevice.Viewport) { Limits = new Rectangle(0, 0, Loader.boundaryX, 2000) };//Should be set to level's max X and Y
+
+            EntityManager.AddCamera(camera);
+            CameraHandler.GetInstance().LoadCamera(camera);
+
+            //Scrolling Background, Manually Setting
+            layers = new List<Layer>
+            {
+                new Layer(camera, BackgroundFactory.GetInstance().CreateCloudsSprite(), new Vector2(2.0f, 1.0f)),
+                new Layer(camera, BackgroundFactory.GetInstance().CreateBGMountainSprite(), new Vector2(1.5f, 1.0f)),
+                new Layer(camera, BackgroundFactory.GetInstance().CreateRegularBackground(), new Vector2(1.0f, 1.0f)),
+            };
+
+            //Audio Stuff
+            song = AudioFactory.GetInstance().CreateSong();
+            MusicHandler.GetInstance().PlaySong(song);
+        }
+
+
         public Mario GetMario => (Mario)FinderHandler.GetInstance().FindItem((int)AvatarID.MARIO);
 
         public override void LoadContent()
@@ -145,11 +204,6 @@ namespace GameSpace.States.GameStates
             Initialize();
         }
 
-        public override void PostUpdate(GameTime gameTime)
-        {
-            throw new NotImplementedException();
-        }
-
         public override void Update(GameTime gameTime)
         {
             foreach (IController controller in controllers)
@@ -187,8 +241,6 @@ namespace GameSpace.States.GameStates
 
         public abstract void Draw(GameTime gameTime, SpriteBatch spriteBatch);
 
-        public abstract void PostUpdate(GameTime gameTime);
-
         public State(GameRoot game, GraphicsDevice graphicsDevice, ContentManager content)
         {
             this.game = game;
@@ -199,6 +251,8 @@ namespace GameSpace.States.GameStates
         }
 
         public abstract void Update(GameTime gameTime);
+
+        public abstract void Restart(Vector2 position);
 
         #endregion
     }
