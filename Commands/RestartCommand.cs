@@ -1,4 +1,5 @@
 ﻿using GameSpace.Level;
+using Microsoft.Xna.Framework;
 
 namespace GameSpace
 {
@@ -15,7 +16,7 @@ namespace GameSpace
 
         public void Execute()
         {
-            levelRestart.Restart(true);
+            MyGame.Restart();
         }
 
         public void Unexecute()

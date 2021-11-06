@@ -81,7 +81,7 @@ namespace GameSpace.Factories
 
         public ISprite ReturnBlackWindow()
         {
-            return new CastleSprite(BlackWindow, 1, 1, 1);
+            return new BlackWindowSprite(BlackWindow, 1, 1, 1);
         }
     }
 }

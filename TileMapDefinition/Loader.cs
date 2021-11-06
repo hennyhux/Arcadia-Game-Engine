@@ -15,7 +15,7 @@ namespace GameSpace.TileMapDefinition
         public static int boundaryX = 0;
         private static readonly ObjectFactory objectFactory = ObjectFactory.GetInstance();
 
-        public static List<IGameObjects> Load(GameRoot game, string xmlFile, Vector2 checkPoint, bool checkIfLevelRestart)
+        public static List<IGameObjects> Load(GameRoot game, string xmlFile, Vector2 checkPoint, bool levelRestart)
         {
             List<IGameObjects> objects = new List<IGameObjects>();
             List<Obstacles> fullList = new List<Obstacles>();
@@ -35,13 +35,13 @@ namespace GameSpace.TileMapDefinition
                 LoadBlocks(objects, obstacles, location);
                 LoadItems(objects, obstacles, location);
                 LoadEnemies(objects, obstacles, location);
-                if (checkIfLevelRestart)
+                if (levelRestart)
                 {
-                    LoadAvatar(game, objects, obstacles, checkPoint);
+                    LoadAvatar(game, objects, obstacles, location);
                 }
                 else
                 {
-                    LoadAvatar(game, objects, obstacles, location);
+                    LoadAvatar(game, objects, obstacles, checkPoint);
                 }
             }
             return objects;
@@ -169,7 +169,7 @@ namespace GameSpace.TileMapDefinition
                     //Do nothing
                     break;
                 #endregion
-                case ItemID.HIDDENLEVELCOIN: //NOT USED IN LEVEL 1-1
+                case ItemID.HIDDENLEVELCOIN: //Used on Hidden Level
                     objects.Add(objectFactory.CreateHiddenLevelCoinObject(location));
                     break;
                 case ItemID.SMALLPIPE:

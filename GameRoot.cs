@@ -21,11 +21,8 @@ namespace GameSpace
         private protected readonly GraphicsDeviceManager graphics;
         private protected SpriteBatch spriteBatch;
         private readonly LevelRestart levelRestart;
-        private static Vector2 p;
-        private static bool startOfGame;
-        private SpriteFont fontFile;
-        // DeathTimer timer;
-        public Color FontColor { get; set; } = Color.DarkBlue;
+        private bool startOfGame = true;
+        private int marioLives = 3;
 
         public int Vic { get; set; }
 
@@ -71,15 +68,22 @@ namespace GameSpace
         public void Reset()
         {
             startOfGame = true;
+            marioLives = 3;
             Initialize();
+        }
+
+        public void Restart()
+        {
+            startOfGame = false;
+           // marioLives--;
+            Initialize();
+
         }
 
         protected override void LoadContent()
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            HUDHandler.GetInstance().LoadContent(Content);
-
             #region Loading Factories
             SpriteBlockFactory.GetInstance().LoadContent(Content);
             MarioFactory.GetInstance(this).LoadContent(Content);
@@ -94,14 +98,20 @@ namespace GameSpace
             MusicHandler.GetInstance().LoadMusicIntoList(AudioFactory.GetInstance().loadList());
 
             #region Loading Lists
-            objects = Loader.Load(this, xmlFileName, new Vector2(0, 0), false);
-            //soundEffects = AudioFactory.GetInstance().loadList();
+            if (startOfGame)
+            {
+                objects = Loader.Load(this, xmlFileName, new Vector2(0, 0), startOfGame);
+            }
+            else
+            {
+                objects = Loader.Load(this, xmlFileName, levelRestart.GetPosition(), startOfGame);
+            }
             #endregion
 
             #region Loading Handlers
             //EntityManager.LoadList(objects);
             //MusicHandler.GetInstance().LoadMusicIntoList(soundEffects);
-            HUDHandler.GetInstance().LoadContent(Content);
+            HUDHandler.GetInstance().LoadContent(Content, marioLives, this);
             TheaterHandler.GetInstance().LoadData(objects);
             #endregion
 
@@ -111,67 +121,8 @@ namespace GameSpace
                 new KeyboardInput(this), new ControllerInput(this)
             };
             #endregion
-            fontFile = Content.Load<SpriteFont>("font");
             //Camera Stuff
             camera = new Camera(GraphicsDevice.Viewport) { Limits = new Rectangle(0, 0, Loader.boundaryX, 480) };//Should be set to level's max X and Y
-
-            EntityManager.AddCamera(camera);
-            CameraHandler.GetInstance().LoadCamera(camera);
-
-            //Scrolling Background, Manually Setting
-            layers = new List<Layer>
-            {
-                new Layer(camera, BackgroundFactory.GetInstance().CreateCloudsSprite(), new Vector2(2.0f, 1.0f)),
-                new Layer(camera, BackgroundFactory.GetInstance().CreateBGMountainSprite(), new Vector2(1.5f, 1.0f)),
-                new Layer(camera, BackgroundFactory.GetInstance().CreateRegularBackground(), new Vector2(1.0f, 1.0f)),
-            };
-
-            //Audio Stuff
-            song = AudioFactory.GetInstance().CreateSong();
-            MusicHandler.GetInstance().PlaySong(song);
-        }
-
-        public void Restart(Vector2 position)
-        {
-            startOfGame = false;
-            p = position;
-            Initialize();
-            spriteBatch = new SpriteBatch(GraphicsDevice);
-
-            #region Loading Factories
-            SpriteBlockFactory.GetInstance().LoadContent(Content);
-            MarioFactory.GetInstance(this).LoadContent(Content);
-            SpriteEnemyFactory.GetInstance().LoadContent(Content);
-            SpriteExtraItemsFactory.GetInstance().LoadContent(Content);
-            BackgroundFactory.GetInstance().LoadContent(Content);
-            SpriteItemFactory.GetInstance().LoadContent(Content);
-            BackgroundFactory.GetInstance().LoadContent(Content);
-            AudioFactory.GetInstance().LoadContent(Content);
-            #endregion
-
-            MusicHandler.GetInstance().LoadMusicIntoList(AudioFactory.GetInstance().loadList());
-
-            #region Loading Lists
-            objects = Loader.Load(this, xmlFileName, position, true);
-            //soundEffects = AudioFactory.GetInstance().loadList();
-            #endregion
-
-            #region Loading Handlers
-            //EntityManager.LoadList(objects);
-            //MusicHandler.GetInstance().LoadMusicIntoList(soundEffects);
-            HUDHandler.GetInstance().LoadContent(Content);
-            TheaterHandler.GetInstance().LoadData(objects);
-            #endregion
-
-            #region Loading Controllers
-            controllers = new List<IController>()
-            {
-                new KeyboardInput(this), new ControllerInput(this)
-            };
-            #endregion
-            fontFile = Content.Load<SpriteFont>("font");
-            //Camera Stuff
-            camera = new Camera(GraphicsDevice.Viewport) { Limits = new Rectangle(0, 0, Loader.boundaryX, 2000) };//Should be set to level's max X and Y
 
             EntityManager.AddCamera(camera);
             CameraHandler.GetInstance().LoadCamera(camera);
@@ -193,6 +144,9 @@ namespace GameSpace
 
         protected override void Update(GameTime gameTime)
         {
+            startOfGame = false;
+            HUDHandler.GetInstance().LoadGameTime(gameTime);
+            HUDHandler.GetInstance().UpdateTimer();
             foreach (IController controller in controllers)
             {
                 controller.Update();
@@ -203,10 +157,7 @@ namespace GameSpace
             //Camera Stuff- Centered Mario
             camera.LookAt(new Vector2(GetMario.Position.X + GetMario.CollisionBox.Width / 2, GraphicsDevice.Viewport.Height / 2));
             CameraHandler.GetInstance().DebugCameraFindLimits();
-            levelRestart.Restart(true);
-            //timer = new DeathTimer(gameTime, fontFile);
-            //timer.helper();
-
+            levelRestart.Restart();
         }
 
         protected override void Draw(GameTime gameTime)
