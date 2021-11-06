@@ -347,6 +347,11 @@ namespace GameSpace.EntityManaging
             mario.score += 200;
         }
 
+        public void MarioToItemCollision(HiddenLevelCoin coin)
+        {
+            ++mario.numCoinsCollected;
+            mario.score += 200;
+        }
         public void MarioToItemCollision(Castle castle)
         {
             // MarioHandler.GetInstance().EnterVictoryPanel();

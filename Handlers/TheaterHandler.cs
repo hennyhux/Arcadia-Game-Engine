@@ -2,6 +2,7 @@
 using GameSpace.Enums;
 using GameSpace.GameObjects.BlockObjects;
 using GameSpace.Interfaces;
+using GameSpace.States.GameStates;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
@@ -23,7 +24,7 @@ namespace GameSpace.EntityManaging
             addItem = null;
         }
 
-        public void LoadData(List<IGameObjects> objectList)
+        public void LoadData(List<IGameObjects> objectList, GameRoot copy)
         {
             gameEntityList = objectList;
 
@@ -34,7 +35,7 @@ namespace GameSpace.EntityManaging
                     listOfWarpPipes.Add(entity);
                 }
             }
-
+            gameRootCopy = copy;
             mario = (Mario)FinderHandler.GetInstance().FindItem((int)AvatarID.MARIO);
         }
 
@@ -78,7 +79,6 @@ namespace GameSpace.EntityManaging
             //CollisionHandler.GetInstance().UpdateCollision();
         }
 
-
         public void ToggleCollisionBox()
         {
             foreach (IGameObjects entity in gameEntityList)
@@ -95,6 +95,11 @@ namespace GameSpace.EntityManaging
         public void QueueItemAddToStage(IGameObjects item)
         {
             addItem = item;
+        }
+
+        public void ChangeGameState(State state)
+        {
+            gameRootCopy.ChangeState(state);
         }
 
     }

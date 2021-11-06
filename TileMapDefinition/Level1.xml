@@ -85,25 +85,12 @@
 		<item>WARPPIPEHEADWITHMOB</item>
 	</Obstacles>
 	
-	<Obstacles>
-		<x>50</x>
-		<y>100</y>
-		<item>WARPPIPEROOM</item>
-	</Obstacles>
 	
 	<Obstacles>
 		<x>100</x>
 		<y>400</y>
 		<item>WARPPIPEHEAD</item>
 	</Obstacles>
-	
-	
-	<Obstacles>
-		<x>1000</x>
-		<y>300</y>
-		<item>WARPPIPEHEAD</item>
-	</Obstacles>
-	
 	
 	
 	<Obstacles>
@@ -149,6 +136,16 @@
 
 
 	<Description>					CHECKPOINT 1					</Description>
+	
+	
+		
+	<Obstacles>
+		<x>2272</x>
+		<y>300</y>
+		<item>WARPPIPEHEAD</item>
+	</Obstacles>
+	
+	
 	
 	<Obstacles>
 		<x>2272</x>
@@ -632,6 +629,7 @@
 
 
 
+
 	<Description>					HIDDEN LEVEL BEGINS					</Description>
 
 
@@ -707,8 +705,8 @@
 		<block>HIDDENLEVELBRICKBLOCK</block>
 		<blockRow>1</blockRow>
 	</Obstacles>
-	
-	
+
+
 
 	<Obstacles>
 		<x>7008</x>
@@ -802,8 +800,8 @@
 		<item>HIDDENLEVELCOIN</item>
 	</Obstacles>
 
-	
-	
+
+
 	<Obstacles>
 		<x>7143</x>
 		<y>242</y>
@@ -867,7 +865,7 @@
 		<y>178</y>
 		<item>HIDDENLEVELCOIN</item>
 	</Obstacles>
-	
+
 	<Description>					HIDDEN LEVEL ENDS					</Description>
-	
+
 </Level>

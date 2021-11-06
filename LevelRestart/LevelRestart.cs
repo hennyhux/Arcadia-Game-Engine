@@ -7,12 +7,10 @@ namespace GameSpace.Level
     {
         private protected GameRoot MyGame;
         public int lastCheckPoint;
-        // public Vector2 positionBeforeDead;
         public LevelRestart(GameRoot game, int checkPoint)
         {
             MyGame = game;
             lastCheckPoint = 0;
-            // positionBeforeDead = new Vector2(64, 402);
         }
 
         public void FindCheckPoint()
@@ -60,6 +58,5 @@ namespace GameSpace.Level
                 MyGame.Restart();
             }
         }
-
     }
 }
