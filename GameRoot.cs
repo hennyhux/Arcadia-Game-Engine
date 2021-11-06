@@ -27,8 +27,6 @@ namespace GameSpace
         // DeathTimer timer;
         public Color FontColor { get; set; } = Color.DarkBlue;
 
-        public int Vic { get; set; }
-
         //private protected Camera camera;
 
         //Camera Stuff
@@ -66,7 +64,6 @@ namespace GameSpace
         {
             base.Initialize();
             LoadContent();
-            Vic = 1;
         }
         public void Reset()
         {

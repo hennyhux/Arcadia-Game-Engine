@@ -227,6 +227,11 @@ namespace GameSpace.GameObjects.BlockObjects
                 case (int)ItemID.COIN:
                     CollisionHandler.GetInstance().MarioToItemCollision((Coin)entity);
                     break;
+
+                case (int)ItemID.HIDDENLEVELCOIN:
+                    CollisionHandler.GetInstance().MarioToItemCollision((HiddenLevelCoin)entity);
+                    break;
+
                 case (int)ItemID.STAR:
                     CollisionHandler.GetInstance().MarioToItemCollision((Star)entity);
                     break;
@@ -248,6 +253,8 @@ namespace GameSpace.GameObjects.BlockObjects
                 case (int)ItemID.WARPPIPEHEADWITHMOB:
                 case (int)ItemID.WARPPIPEROOM:
                 case (int)ItemID.WARPPIPEREDKOOPA:
+                case (int)BlockID.HIDDENLEVELFLOORBLOCK:
+                case (int)BlockID.HIDDENLEVELBRICKBLOCK:
                     CollisionHandler.GetInstance().ChangeMarioStatesUponCollision(entity);
                     CollisionHandler.GetInstance().MarioToBlockCollision(entity);
                     break;

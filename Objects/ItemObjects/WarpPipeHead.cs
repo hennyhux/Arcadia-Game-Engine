@@ -29,7 +29,7 @@ namespace GameSpace.Sprites.ExtraItems
             sprite = SpriteItemFactory.GetInstance().CreateWarpPipe();
         }
     }
-    public class WarpPipeHead : AbstractItem
+    public class WarpPipeHead : AbstractBlock
     {
         private readonly bool hasCollided;
         public int TimesCollided { get; set; }
@@ -42,12 +42,18 @@ namespace GameSpace.Sprites.ExtraItems
             hasCollided = false;
             drawBox = false;
             TimesCollided = 0;
+            state = new StateWarpPipeIdle();
 
         }
 
         public override void HandleCollision(IGameObjects entity)
         {
             CollisionHandler.GetInstance().ItemToMarioCollison(this);
+        }
+
+        public override bool RevealItem()
+        {
+            return false;
         }
     }
 
