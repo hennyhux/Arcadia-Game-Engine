@@ -20,11 +20,12 @@ namespace GameSpace.Abstracts
         internal bool hasCollided;
         internal IBlockStates state;
         internal AbstractItem item;
-
+        internal bool revealedItem;
 
         public AbstractBlock()
         {
             drawBox = false;
+            revealedItem = false;
         }
 
         public virtual void Draw(SpriteBatch spritebatch)

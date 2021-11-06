@@ -1,4 +1,7 @@
-﻿using GameSpace.Interfaces;
+﻿using GameSpace.EntityManaging;
+using GameSpace.Enums;
+using GameSpace.Interfaces;
+using GameSpace.Machines;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -21,13 +24,21 @@ namespace GameSpace.Abstracts
         public virtual void Draw(SpriteBatch spritebatch)
         {
             Sprite.Draw(spritebatch, Position); //this shouldnt be hardcoded anymore 
-            if (drawBox)
+            if (drawBox && !hasCollided)
             {
                 Sprite.DrawBoundary(spritebatch, CollisionBox);
                 Sprite.DrawBoundary(spritebatch, ExpandedCollisionBox);
             }
         }
-        public abstract void HandleCollision(IGameObjects entity);
+        public virtual void HandleCollision(IGameObjects entity)
+        {
+            switch (entity.ObjectID)
+            {
+                case (int)AvatarID.MARIO:
+                    Trigger();
+                    break;
+            }
+        }
         public virtual bool IsCurrentlyColliding()
         {
             return false; //future use 
@@ -40,14 +51,16 @@ namespace GameSpace.Abstracts
         public virtual void Trigger()
         {
             hasCollided = true;
+            Sprite.SetVisible();
             DeleteCollisionBox();
         }
         public virtual void Update(GameTime gametime)
         {
             Sprite.Update(gametime);
-            UpdatePosition(Position, gametime);
             if (!hasCollided)
             {
+                UpdateSpeed();
+                UpdatePosition(Position, gametime);
                 UpdateCollisionBox();
             }
         }
@@ -65,7 +78,27 @@ namespace GameSpace.Abstracts
             ExpandedCollisionBox = new Rectangle((int)Position.X, (int)Position.Y,
                 Sprite.Texture.Width, (Sprite.Texture.Height * 2) + 4);
         }
+        internal virtual void UpdateSpeed()
+        {
+            if (CollisionHandler.GetInstance().IsGoingToFall(this))
+            {
+                Acceleration = new Vector2(0, 400);
+            }
 
+            else
+            {
+                Acceleration = new Vector2(0, 0);
+                if (FinderHandler.GetInstance().FindMario().Facing == eFacing.RIGHT)
+                {
+                    Velocity = new Vector2(75, 0);
+                }
+
+                else if (FinderHandler.GetInstance().FindMario().Facing == eFacing.LEFT)
+                {
+                    Velocity = new Vector2(-75, 0);
+                }
+            }
+        }
         public virtual bool RevealItem()
         {
             return false;

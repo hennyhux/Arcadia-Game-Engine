@@ -1,0 +1,30 @@
+﻿using GameSpace.Abstracts;
+using GameSpace.Enums;
+using GameSpace.Factories;
+using GameSpace.Interfaces;
+using GameSpace.States.ItemStates;
+using Microsoft.Xna.Framework;
+
+namespace GameSpace.GameObjects.ItemObjects
+{
+    public class Star : AbstractItem
+    {
+        private readonly IItemStates state;
+        public Star(Vector2 initialPosition)
+        {
+            ObjectID = (int)ItemID.STAR;
+            Sprite = SpriteItemFactory.GetInstance().CreateStar();
+            Position = initialPosition;
+            CollisionBox = new Rectangle((int)Position.X, (int)Position.Y, Sprite.Texture.Width * 2 / 4, Sprite.Texture.Height * 2);
+            drawBox = false;
+            hasCollided = false;
+            state = new StateStarHidden(this);
+        }
+
+        public override void Trigger()
+        {
+            base.Trigger();
+        }
+    }
+
+}

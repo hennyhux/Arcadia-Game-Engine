@@ -26,19 +26,56 @@
 		<block>ONEUPSHROOMBRICKBLOCK</block>
 	</Obstacles>
 
-
+	<Obstacles>
+		<x>200</x>
+		<y>100</y>
+		<block>SUPERSHROOMBRICKBLOCK</block>
+		<blockRow>1</blockRow>
+	</Obstacles>
+	
+	<Obstacles>
+		<x>300</x>
+		<y>100</y>
+		<block>STARBRICKBLOCK</block>
+		<blockRow>1</blockRow>
+	</Obstacles>
+	
+	
+		<Obstacles>
+		<x>100</x>
+		<y>200</y>
+		<block>QUESTIONBLOCK</block>
+		<blockRow>1</blockRow>
+	</Obstacles>
+	
+		<Obstacles>
+		<x>150</x>
+		<y>200</y>
+		<block>COINQUESTIONBLOCK</block>
+	</Obstacles>
+	
+	<Obstacles>
+		<x>200</x>
+		<y>200</y>
+		<block>ONEUPSHROOMQUESTIONBLOCK</block>
+	</Obstacles>
+	
+	<Obstacles>
+		<x>250</x>
+		<y>200</y>
+		<block>SUPERSHROOMQUESTIONBLOCK</block>
+	</Obstacles>
+	
 		<Obstacles>
 		<x>400</x>
 		<y>275</y>
 		<item>CASTLE</item>
 	</Obstacles>
 	
-
 	<Obstacles>
 		<x>200</x>
-		<y>100</y>
-		<block>BRICKBLOCK</block>
-		<blockRow>1</blockRow>
+		<y>275</y>
+		<item>COIN</item>
 	</Obstacles>
 	
 	<Obstacles>
@@ -51,12 +88,6 @@
 		<x>4000</x>
 		<y>100</y>
 		<item>WARPPIPEHEAD</item>
-	</Obstacles>
-	
-	<Obstacles>
-		<x>400</x>
-		<y>200</y>
-		<enemy>GREENKOOPA</enemy>
 	</Obstacles>
 	
 

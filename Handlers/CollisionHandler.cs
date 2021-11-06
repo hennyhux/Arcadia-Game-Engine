@@ -117,6 +117,21 @@ namespace GameSpace.EntityManaging
         #endregion
 
         #region Item Collision
+        public bool IsGoingToFall(AbstractItem item)
+        {
+            bool gonnaFall = true;
+            foreach (IGameObjects entity in copyPrunedList)
+            {
+                if (item.ExpandedCollisionBox.Intersects(entity.CollisionBox) &&
+                    entity.ObjectID != item.ObjectID &&
+                    entity.ObjectID != (int)AvatarID.MARIO)
+                {
+                    gonnaFall = false;
+                    break;
+                }
+            }
+            return gonnaFall;
+        }
         public void ItemToMarioCollison(BigPipe pipe)
         {
             switch (DetectCollisionDirection(mario, pipe))
@@ -153,18 +168,15 @@ namespace GameSpace.EntityManaging
             }
 
         }
-
         public void ItemToMarioCollison(WarpPipeHeadRoom pipe)
         {
             switch (DetectCollisionDirection(mario, pipe))
             {
-                case(int)CollisionDirection.DOWN:
+                case (int)CollisionDirection.DOWN:
                     MarioHandler.GetInstance().WarpMarioToHiddenRoom();
                     break;
             }
-
         }
-
         #endregion
 
         #region Enemy Collision

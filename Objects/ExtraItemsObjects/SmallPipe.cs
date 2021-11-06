@@ -1,4 +1,5 @@
-﻿using GameSpace.Enums;
+﻿using GameSpace.Abstracts;
+using GameSpace.Enums;
 using GameSpace.Factories;
 using GameSpace.Interfaces;
 using Microsoft.Xna.Framework;
@@ -8,19 +9,8 @@ using System.Diagnostics;
 
 namespace GameSpace.GameObjects.ExtraItemsObjects
 {
-    public class SmallPipe : IGameObjects
+    public class SmallPipe : AbstractBlock
     {
-        public ISprite Sprite { get; set; }
-        public Vector2 Position { get; set; }
-        public Vector2 Velocity { get; set; }
-        public Rectangle CollisionBox { get; set; }
-        public Vector2 Acceleration { get; set; }
-
-        public Vector2 Location => throw new NotImplementedException();
-
-        public int ObjectID { get; set; }
-        private bool hasCollided;
-        private bool drawBox;
 
         public SmallPipe(Vector2 initalPosition)
         {
@@ -29,51 +19,20 @@ namespace GameSpace.GameObjects.ExtraItemsObjects
             Position = initalPosition;
             CollisionBox = new Rectangle((int)Position.X, (int)Position.Y, Sprite.Texture.Width * 2, Sprite.Texture.Height * 2);
             drawBox = false;
-            Debug.WriteLine("EXTRA ITEM AT " + "(" + Position.X + ", " + Position.Y + ")");
+            state = new StateSmallPipeIdle();
         }
 
-        public void Draw(SpriteBatch spritebatch)
+        public override bool RevealItem()
         {
-            Sprite.Draw(spritebatch, Position); //this shouldnt be hardcoded anymore 
-            if (drawBox)
-            {
-                Sprite.DrawBoundary(spritebatch, CollisionBox);
-            }
+            return false;
         }
+    }
 
-        public void Update(GameTime gametime)
+    public class StateSmallPipeIdle : AbstractBlockStates
+    {
+        public StateSmallPipeIdle()
         {
-            Sprite.Update(gametime);
-        }
-
-        public void Trigger()
-        {
-            //Pipe does nothing.
-        }
-
-        public void UpdatePosition(Vector2 location, GameTime gameTime)
-        {
-            //Pipe doesn't move.
-        }
-
-        public void HandleCollision(IGameObjects entity)
-        {
-            hasCollided = true;
-        }
-
-        public void ToggleCollisionBoxes()
-        {
-            drawBox = !drawBox;
-        }
-
-        public bool IsCurrentlyColliding()
-        {
-            throw new NotImplementedException();
-        }
-
-        public bool RevealItem()
-        {
-            throw new NotImplementedException();
+            sprite = SpriteExtraItemsFactory.GetInstance().ReturnSmallPipe();
         }
     }
 }

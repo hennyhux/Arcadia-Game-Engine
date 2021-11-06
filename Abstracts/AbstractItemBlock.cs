@@ -77,7 +77,7 @@ namespace GameSpace.Abstracts
             //block doesnt move; future use? 
         }
 
-        public bool RevealItem()
+        public virtual bool RevealItem()
         {
             throw new System.NotImplementedException();
         }

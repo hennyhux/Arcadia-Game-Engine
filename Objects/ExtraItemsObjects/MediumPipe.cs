@@ -7,10 +7,9 @@ using System.Diagnostics;
 
 namespace GameSpace.GameObjects.ExtraItemsObjects
 {
-    public class MediumPipe : AbstractItem
+    public class MediumPipe : AbstractBlock
     {
 
-        private bool hasCollided;
         public MediumPipe(Vector2 initalPosition)
         {
             ObjectID = (int)ItemID.MEDIUMPIPE;
@@ -18,13 +17,20 @@ namespace GameSpace.GameObjects.ExtraItemsObjects
             Position = initalPosition;
             CollisionBox = new Rectangle((int)Position.X, (int)Position.Y, Sprite.Texture.Width * 2, Sprite.Texture.Height * 2);
             drawBox = false;
-            Debug.WriteLine("EXTRA ITEM AT " + "(" + Position.X + ", " + Position.Y + ")");
+            state = new StateMediumPipeIdle();
         }
 
-        public override void HandleCollision(IGameObjects entity)
+        public override bool RevealItem()
         {
-            hasCollided = true;
+            throw new System.NotImplementedException();
         }
+    }
 
+    public class StateMediumPipeIdle : AbstractBlockStates
+    {
+        public StateMediumPipeIdle()
+        {
+            sprite = SpriteExtraItemsFactory.GetInstance().ReturnMediumPipe();
+        }
     }
 }

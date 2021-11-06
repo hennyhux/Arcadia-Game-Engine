@@ -1,13 +1,9 @@
 ﻿using GameSpace.Abstracts;
-using GameSpace.Animations;
 using GameSpace.EntityManaging;
 using GameSpace.Enums;
 using GameSpace.Factories;
 using GameSpace.Interfaces;
-using GameSpace.Machines;
 using GameSpace.Objects.EnemyObjects;
-using GameSpace.States;
-using GameSpace.States.BlockStates;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -59,8 +55,8 @@ namespace GameSpace.Sprites.ExtraItems
 
     public class WarpPipeHeadWithMob : AbstractBlock
     {
-        private IGameObjects mob;
-        private bool itemRevealed;
+        private readonly IGameObjects mob;
+        private readonly bool itemRevealed;
         public Rectangle ExpandedCollisionBox;
         public Rectangle InRangeCollisionBox;
         public WarpPipeHeadWithMob(Vector2 location)
@@ -88,7 +84,7 @@ namespace GameSpace.Sprites.ExtraItems
             {
                 Sprite.DrawBoundary(spritebatch, CollisionBox);
                 Sprite.DrawBoundary(spritebatch, ExpandedCollisionBox);
-               // Sprite.DrawBoundary(spritebatch, InRangeCollisionBox);
+                // Sprite.DrawBoundary(spritebatch, InRangeCollisionBox);
             }
         }
 
@@ -97,12 +93,18 @@ namespace GameSpace.Sprites.ExtraItems
             base.Update(gametime);
             if (FinderHandler.GetInstance().FindMarioPosition().X >= ExpandedCollisionBox.X)
             {
-                if (state is StateWarpPipeIdle)ShowItem();
+                if (state is StateWarpPipeIdle)
+                {
+                    ShowItem();
+                }
             }
 
             else
             {
-                if (state is StateWarpPipeActivated) HideItem();
+                if (state is StateWarpPipeActivated)
+                {
+                    HideItem();
+                }
             }
 
         }

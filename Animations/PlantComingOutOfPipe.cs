@@ -8,7 +8,7 @@ namespace GameSpace.Animations
     public class PlantComingOutOfPipe : IObjectAnimation
     {
 
-        private AbstractEnemy item;
+        private readonly AbstractEnemy item;
         private Vector2 initLocation;
         private Vector2 goalLocation;
         public PlantComingOutOfPipe(AbstractEnemy plant)

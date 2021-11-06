@@ -1,5 +1,4 @@
 ﻿using GameSpace.Interfaces;
-using GameSpace.States.GameStates;
 using Microsoft.Xna.Framework;
 
 namespace GameSpace.Level
@@ -59,17 +58,17 @@ namespace GameSpace.Level
                 if (lastCheckPoint == 2)
                 {
                     positionBeforeDead = new Vector2(5120, 402); //Checkpoint 2 - Randomly assigned
-                    MyGame.Restart(positionBeforeDead);
+                    MyGame.RestartCurrentState(positionBeforeDead);
                 }
                 else if (lastCheckPoint == 1) //Checkpoint 1 - Randomly assigned
                 {
                     positionBeforeDead = new Vector2(2336, 402);
-                    MyGame.Restart(positionBeforeDead);
+                    MyGame.RestartCurrentState(positionBeforeDead);
                 }
                 else //Starting position
                 {
                     positionBeforeDead = new Vector2(64, 402);
-                    MyGame.Restart(positionBeforeDead);
+                    MyGame.RestartCurrentState(positionBeforeDead);
                 }
             }
             else

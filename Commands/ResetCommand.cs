@@ -11,7 +11,7 @@
 
         public void Execute()
         {
-            MyGame.Reset();
+            MyGame.ResetCurrentState();
         }
 
         public void Unexecute()

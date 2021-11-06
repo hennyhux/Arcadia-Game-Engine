@@ -44,11 +44,11 @@ namespace GameSpace.Factories
             return new HiddenLevelBrickBlock(location);
         }
 
-
         public IGameObjects CreateBrickBlockWithItem(Vector2 location, IGameObjects item)
         {
             return new BrickBlockWithItem(location, (AbstractItem)item);
         }
+
         #endregion
         public IGameObjects CreateStairBlockObject(Vector2 location)
         {
@@ -65,10 +65,39 @@ namespace GameSpace.Factories
             return new HiddenLevelFloorBlock(location);
         }
 
+        #region Question Block
+
         public IGameObjects CreateQuestionBlockObject(Vector2 location)
         {
-            return new QuestionBlock(location);
+            return new QuestionBlock(location, null);
         }
+
+        public IGameObjects CreateQuestionBlockCoin(Vector2 location)
+        {
+            return new QuestionBlock(location, (AbstractItem)CreateCoinObject(location));
+        }
+
+        public IGameObjects CreateQuestionBlockOneUpShroom(Vector2 location)
+        {
+            return new QuestionBlock(location, (AbstractItem)CreateOneUpShroomObject(location));
+        }
+
+        public IGameObjects CreateQuestionBlockShroom(Vector2 location)
+        {
+            return new QuestionBlock(location, (AbstractItem)CreateSuperShroomObject(location));
+        }
+
+        public IGameObjects CreateQuestionBlockFire(Vector2 location)
+        {
+            return new QuestionBlock(location, (AbstractItem)CreateFireFlowerObject(location));
+        }
+
+        public IGameObjects CreateQuestionBlockStar(Vector2 location)
+        {
+            return new QuestionBlock(location , (AbstractItem)CreateStarObject(location));
+        }
+
+        #endregion
 
         public IGameObjects CreateHiddenBlockObject(Vector2 location)
         {
@@ -79,47 +108,7 @@ namespace GameSpace.Factories
         {
             return new UsedBlock(location);
         }
-
-        public IGameObjects CreateStarBrickBlock(Vector2 location)
-        {
-            return new BrickBlockStar(location);
-        }
-
-        public IGameObjects CreateSuperShroomBrickBlock(Vector2 location)
-        {
-            return new BrickBlockSuperShroom(location);
-        }
-
-        public IGameObjects CreateOneUpShroomBrickBlock(Vector2 location)
-        {
-            return new BrickBlockOneShroom(location);
-        }
-
-        public IGameObjects CreateQuestionBlockStar(Vector2 location)
-        {
-            return new QuestionBlockStar(location);
-        }
-
-        public IGameObjects CreateQuestionBlockCoin(Vector2 location)
-        {
-            return new QuestionBlock(location);
-        }
-
-        public IGameObjects CreateQuestionBlockOneUpShroom(Vector2 location)
-        {
-            return new QuestionBlockOneUpShroom(location);
-        }
-
-        public IGameObjects CreateQuestionBlockShroom(Vector2 location)
-        {
-            return new QuestionBlockOneShroom(location);
-        }
-
-        public IGameObjects CreateQuestionBlockFire(Vector2 location)
-        {
-            return new QuestionBlockFire(location);
-        }
-
+   
 
         #region Enemies 
         public IGameObjects CreateGoombaObject(Vector2 location)

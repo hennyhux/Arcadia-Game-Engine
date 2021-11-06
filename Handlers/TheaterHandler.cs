@@ -2,7 +2,6 @@
 using GameSpace.Enums;
 using GameSpace.GameObjects.BlockObjects;
 using GameSpace.Interfaces;
-using GameSpace.States.GameStates;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
@@ -35,7 +34,7 @@ namespace GameSpace.EntityManaging
                     listOfWarpPipes.Add(entity);
                 }
             }
-            
+
             mario = (Mario)FinderHandler.GetInstance().FindItem((int)AvatarID.MARIO);
         }
 

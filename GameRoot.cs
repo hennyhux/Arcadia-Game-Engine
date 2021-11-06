@@ -1,19 +1,9 @@
-﻿using GameSpace.Camera2D;
-using GameSpace.EntitiesManager;
-using GameSpace.EntityManaging;
+﻿using GameSpace.EntityManaging;
 using GameSpace.Enums;
-using GameSpace.Factories;
 using GameSpace.GameObjects.BlockObjects;
-using GameSpace.Interfaces;
-using GameSpace.Level;
-using GameSpace.Machines;
 using GameSpace.States.GameStates;
-using GameSpace.TileMapDefinition;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Media;
-using System.Collections.Generic;
 
 namespace GameSpace
 {
@@ -34,17 +24,13 @@ namespace GameSpace
         {
             graphicsDevice = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+            TheaterHandler.GetInstance().CopyGameRoot(this);
         }
 
         protected override void Initialize()
         {
             base.Initialize();
-            TheaterHandler.GetInstance().CopyGameRoot(this);
             LoadContent();
-        }
-        public void Reset()
-        {
-            Initialize();
         }
 
         protected override void LoadContent()
@@ -52,11 +38,6 @@ namespace GameSpace
             spriteBatch = new SpriteBatch(GraphicsDevice);
             currentState = new StartGameState(this, GraphicsDevice, Content);
             currentState.LoadContent();
-        }
-
-        public void Restart(Vector2 position)
-        {
-            currentState.Restart(position);
         }
 
         protected override void Update(GameTime gameTime)
@@ -79,9 +60,21 @@ namespace GameSpace
             base.Draw(gameTime);
         }
 
+        #region Game State
         public void ChangeToPlayState()
         {
             nextState = new PlayingGameState(this, GraphicsDevice, Content);
         }
+        public void RestartCurrentState(Vector2 position)
+        {
+            currentState.Restart(position);
+        }
+
+        public void ResetCurrentState()
+        {
+            currentState.Initialize();
+        }
+
+        #endregion
     }
 }

@@ -1,6 +1,5 @@
 ﻿using GameSpace.Abstracts;
 using GameSpace.Camera2D;
-using System.Diagnostics;
 
 namespace GameSpace.EntityManaging
 {

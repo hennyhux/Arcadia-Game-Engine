@@ -8,7 +8,7 @@ using System.Diagnostics;
 
 namespace GameSpace.GameObjects.ExtraItemsObjects
 {
-    public class BigPipe : AbstractItem
+    public class BigPipe : AbstractBlock
     {
         public BigPipe(Vector2 initalPosition)
         {
@@ -17,19 +17,20 @@ namespace GameSpace.GameObjects.ExtraItemsObjects
             Position = initalPosition;
             CollisionBox = new Rectangle((int)Position.X, (int)Position.Y, Sprite.Texture.Width * 2, Sprite.Texture.Height * 2);
             drawBox = false;
-            Debug.WriteLine("EXTRA ITEM AT " + "(" + Position.X + ", " + Position.Y + ")");
+            state = new StateBigPipeIdle();
         }
 
-        public override void HandleCollision(IGameObjects entity)
+        public override bool RevealItem()
         {
-
-            switch (entity.ObjectID)
-            {
-                case (int)AvatarID.MARIO:
-                    CollisionHandler.GetInstance().ItemToMarioCollison(this);
-                    break;
-            }
+            throw new System.NotImplementedException();
         }
+    }
 
+    public class StateBigPipeIdle : AbstractBlockStates
+    {
+        public StateBigPipeIdle()
+        {
+            sprite = SpriteExtraItemsFactory.GetInstance().ReturnBigPipe();
+        }
     }
 }

@@ -13,9 +13,7 @@ using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Media;
-using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace GameSpace.States.GameStates
 {
@@ -55,9 +53,14 @@ namespace GameSpace.States.GameStates
         private readonly string xmlFileName = "../../../TileMapDefinition/Level1.xml"; // ONLY to run on our machines
         //private readonly string xmlFileName = "../../../TileMapDefinition/CalebTesting.xml";
 
-        public PlayingGameState(GameRoot game, GraphicsDevice graphicsDevice ,ContentManager content) : base(game, graphicsDevice, content)
+        public PlayingGameState(GameRoot game, GraphicsDevice graphicsDevice, ContentManager content) : base(game, graphicsDevice, content)
         {
             levelRestart = new LevelRestart(game, 0);
+        }
+
+        public void Initalize()
+        {
+            Initialize();
         }
 
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
@@ -188,8 +191,9 @@ namespace GameSpace.States.GameStates
             MusicHandler.GetInstance().PlaySong(song);
         }
 
-        public void Initialize()
+        public override void Initialize()
         {
+            base.Initialize();
             LoadContent();
         }
         public void Reset()
@@ -229,6 +233,11 @@ namespace GameSpace.States.GameStates
         protected GameRoot game;
 
         #endregion
+
+        public virtual void Initialize()
+        {
+
+        }
 
         public abstract void LoadContent();
         public abstract void Draw(GameTime gameTime, SpriteBatch spriteBatch);
