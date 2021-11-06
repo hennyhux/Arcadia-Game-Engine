@@ -13,6 +13,7 @@ namespace GameSpace.Machines
         public static long seconds;
         public static long ticksMax = 4000000000;
         public static long convertToSeconds = 10000000;
+        public static int bonusPoints;
 
         private static readonly HUDHandler instance = new HUDHandler();
         public static HUDHandler GetInstance()
@@ -40,6 +41,11 @@ namespace GameSpace.Machines
             {
                 ResetTimer();
             }
+            else
+            {
+                bonusPoints = (int) seconds;
+                //Add bonusPoints to Point Tracking System
+            }
         }
         #endregion
 
@@ -61,7 +67,7 @@ namespace GameSpace.Machines
         public void Draw(SpriteBatch spritebatch)
         {
             spritebatch.DrawString(HeadsUpDisplay, "Score\n    " + mario.score.ToString(), HudPosition, Color.Black);
-            spritebatch.DrawString(HeadsUpDisplay, "Time\n   " + seconds, new Vector2(HudPosition.X + 160, HudPosition.Y), Color.Black);
+            spritebatch.DrawString(HeadsUpDisplay, "Time\n " + seconds, new Vector2(HudPosition.X + 160, HudPosition.Y), Color.Black);
             spritebatch.DrawString(HeadsUpDisplay, "World\n  1-1", new Vector2(HudPosition.X + 320, HudPosition.Y), Color.Black);
             spritebatch.DrawString(HeadsUpDisplay, "Coins\n    " + 0, new Vector2(HudPosition.X + 480, HudPosition.Y), Color.Black); //Update to display coins
             spritebatch.DrawString(HeadsUpDisplay, "Lives\n   " + marioLives.ToString(), new Vector2(HudPosition.X +  640, HudPosition.Y), Color.Black);
