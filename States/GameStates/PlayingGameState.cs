@@ -19,7 +19,7 @@ using System.Text;
 
 namespace GameSpace.States.GameStates
 {
-    public class GameState : State
+    public class PlayingGameState : State
     {
         private protected readonly GraphicsDeviceManager graphics;
         private protected SpriteBatch spriteBatch;
@@ -55,7 +55,7 @@ namespace GameSpace.States.GameStates
         private readonly string xmlFileName = "../../../TileMapDefinition/Level1.xml"; // ONLY to run on our machines
         //private readonly string xmlFileName = "../../../TileMapDefinition/CalebTesting.xml";
 
-        public GameState(GameRoot game, GraphicsDevice graphicsDevice ,ContentManager content) : base(game, graphicsDevice, content)
+        public PlayingGameState(GameRoot game, GraphicsDevice graphicsDevice ,ContentManager content) : base(game, graphicsDevice, content)
         {
             levelRestart = new LevelRestart(game, 0);
         }
@@ -105,7 +105,7 @@ namespace GameSpace.States.GameStates
             //EntityManager.LoadList(objects);
             //MusicHandler.GetInstance().LoadMusicIntoList(soundEffects);
             HUDHandler.GetInstance().LoadContent(content);
-            TheaterHandler.GetInstance().LoadData(objects);
+            TheaterHandler.GetInstance().LoadData(objects, game);
             #endregion
 
             #region Loading Controllers
@@ -158,14 +158,12 @@ namespace GameSpace.States.GameStates
 
             #region Loading Lists
             objects = Loader.Load(game, xmlFileName, new Vector2(0, 0), false);
-            //soundEffects = AudioFactory.GetInstance().loadList();
             #endregion
 
             #region Loading Handlers
             //EntityManager.LoadList(objects);
-            //MusicHandler.GetInstance().LoadMusicIntoList(soundEffects);
             HUDHandler.GetInstance().LoadContent(content);
-            TheaterHandler.GetInstance().LoadData(objects);
+            TheaterHandler.GetInstance().LoadData(objects, game);
             #endregion
 
             #region Loading Controllers

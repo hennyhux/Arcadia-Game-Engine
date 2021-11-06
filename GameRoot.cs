@@ -24,11 +24,13 @@ namespace GameSpace
         public List<SoundEffect> soundEffects;
 
 
-        //HERE ARE THE VERY IMPORTANT CHANGES: ADDED NEW GAME STATES 
+        //HERE ARE THE VERY IMPORTANT CHANGES: ADDED NEW GAME STAE
         private State currentState;
         private State nextState;
 
         public GraphicsDeviceManager Graphics => graphicsDevice;
+        public Mario GetMario => (Mario)FinderHandler.GetInstance().FindItem((int)AvatarID.MARIO);
+
 
         public GameRoot()
         {
@@ -49,7 +51,7 @@ namespace GameSpace
         protected override void LoadContent()
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            currentState = new GameState(this, GraphicsDevice, Content);
+            currentState = new PlayingGameState(this, GraphicsDevice, Content);
             currentState.LoadContent();
         }
 
@@ -60,6 +62,13 @@ namespace GameSpace
 
         protected override void Update(GameTime gameTime)
         {
+            if (nextState != null)
+            {
+                currentState = nextState;
+                currentState.LoadContent();
+                nextState = null;
+            }
+
             currentState.Update(gameTime);
             base.Update(gameTime);
         }
@@ -69,6 +78,11 @@ namespace GameSpace
             GraphicsDevice.Clear(Color.CornflowerBlue);
             currentState.Draw(gameTime, spriteBatch);
             base.Draw(gameTime);
+        }
+
+        public void ChangeState(State state)
+        {
+            nextState = state;
         }
     }
 }

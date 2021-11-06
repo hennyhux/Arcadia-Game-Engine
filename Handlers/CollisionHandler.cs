@@ -357,8 +357,6 @@ namespace GameSpace.EntityManaging
             // MarioHandler.GetInstance().EnterVictoryPanel();
         }
 
-
-
         #endregion
 
         #region Block Collision

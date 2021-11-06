@@ -68,6 +68,11 @@ namespace GameSpace.Machines
             UpdateHudPosition();
         }
 
+        public void DrawVictoryPanel(SpriteBatch spritebatch)
+        {
+
+        }
+
         private void UpdateHudPosition()
         {
             if (cameraCopy.Position.X > HudPosition.X)
