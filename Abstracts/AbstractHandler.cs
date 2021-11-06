@@ -18,9 +18,12 @@ namespace GameSpace.Abstracts
         private protected static GameTime internalGametime = new GameTime();
         private protected static GameRoot gameRootCopy = new GameRoot();
         private protected static Mario mario;
+        private protected static GameRoot game;
         private protected static Vector2 marioCurrentLocation;
         private protected static Camera cameraCopy;
         private protected static int currentWarpLocation = 0;
         private protected static int marioScores = 0;
+        private protected static int marioLives = 3;
+        public static long timer;
     }
 }
