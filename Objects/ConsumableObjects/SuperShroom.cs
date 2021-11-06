@@ -13,8 +13,6 @@ namespace GameSpace.GameObjects.ItemObjects
 {
     public class SuperShroom : AbstractItem
     {
-        private IItemStates state;
-
         public SuperShroom(Vector2 initialPosition)
         {
             ObjectID = (int)ItemID.SUPERSHROOM;
@@ -22,10 +20,8 @@ namespace GameSpace.GameObjects.ItemObjects
             Position = initialPosition;
             CollisionBox = new Rectangle((int)Position.X, (int)Position.Y, Sprite.Texture.Width * 2, Sprite.Texture.Height * 2);
             ExpandedCollisionBox = new Rectangle((int)Position.X, (int)Position.Y, Sprite.Texture.Width * 2, Sprite.Texture.Height * 3);
-
             drawBox = false;
             hasCollided = false;
-            state = new StateSuperShroomHidden(this);
             //play sound effect for powerUpAppear
             //MusicHandler.GetInstance().PlaySoundEffect(4);
         }

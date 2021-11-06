@@ -21,7 +21,7 @@ namespace GameSpace
     {
         private protected readonly GraphicsDeviceManager graphicsDevice;
         private protected SpriteBatch spriteBatch;
-        public List<SoundEffect> soundEffects;
+
         private bool startOfGame = true;
         private int marioLives = 3;
 
@@ -45,19 +45,6 @@ namespace GameSpace
         {
             base.Initialize();
             LoadContent();
-        }
-        public void ResetCurrentState()
-        {
-            startOfGame = true;
-            marioLives = 3;
-            currentState.Initialize();
-        }
-
-        public void RestartCurrentState(Vector2 location)
-        {
-            startOfGame = false;
-            marioLives--;
-            currentState.Restart(location);
         }
 
         protected override void LoadContent()
@@ -90,6 +77,19 @@ namespace GameSpace
         public void ChangeToPlayState()
         {
             nextState = new PlayingGameState(this, GraphicsDevice, Content);
+        }
+        public void ResetCurrentState()
+        {
+            startOfGame = true;
+            marioLives = 3;
+            currentState.Initialize();
+        }
+
+        public void RestartCurrentState(Vector2 location)
+        {
+            startOfGame = false;
+            marioLives--;
+            currentState.Restart(location);
         }
     }
 }

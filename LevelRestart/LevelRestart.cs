@@ -7,16 +7,40 @@ namespace GameSpace.Level
     {
         private protected GameRoot MyGame;
         public int lastCheckPoint;
+        // public Vector2 positionBeforeDead;
         public LevelRestart(GameRoot game, int checkPoint)
         {
             MyGame = game;
             lastCheckPoint = 0;
+            // positionBeforeDead = new Vector2(64, 402);
         }
 
-        public void FindCheckPoint()
+        public int GetCheckPoint()
         {
-
-            if (MyGame.GetMario.Position.X >= 5120 || lastCheckPoint == 2) //Checkpoint 2 - Randomly assigned
+            return lastCheckPoint;
+        }
+        public Vector2 GetPosition()
+        {
+            Vector2 positionBeforeDead = new Vector2(64, 402);
+            if (lastCheckPoint == 2)
+            {
+                positionBeforeDead = new Vector2(5120, 402); //Checkpoint 2 - Randomly assigned
+            }
+            else if (lastCheckPoint == 1) //Checkpoint 1 - Randomly assigned
+            {
+                positionBeforeDead = new Vector2(2336, 402);
+            }
+            else //Starting position
+            {
+                positionBeforeDead = new Vector2(64, 402);
+            }
+            return positionBeforeDead;
+        }
+        public void Restart(bool stillHasLives)
+        {
+            IMarioActionStates currentState = MyGame.GetMario.marioActionState;
+            Vector2 positionBeforeDead = new Vector2(64, 402);
+            if (MyGame.GetMario.Position.X >= 5120 || lastCheckPoint == 2)
             {
                 lastCheckPoint = 2;
             }
@@ -49,8 +73,9 @@ namespace GameSpace.Level
             }
             else
             {
-                MyGame.Restart();
+                //Call method for GameOver
             }
         }
+
     }
 }
