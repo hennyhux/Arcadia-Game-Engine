@@ -20,6 +20,7 @@ namespace GameSpace.States.GameStates
 
         public StartGameState(GameRoot game, GraphicsDevice graphicsDevice, ContentManager content) : base(game, graphicsDevice, content)
         {
+
         }
 
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
@@ -39,7 +40,7 @@ namespace GameSpace.States.GameStates
             };
         }
 
-        public override void Restart(Vector2 position)
+        public override void Restart(Vector2 location)
         {
 
         }

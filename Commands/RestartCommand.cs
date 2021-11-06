@@ -16,7 +16,7 @@ namespace GameSpace
 
         public void Execute()
         {
-            MyGame.Restart();
+            MyGame.ResetCurrentState();
         }
 
         public void Unexecute()

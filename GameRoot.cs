@@ -38,6 +38,7 @@ namespace GameSpace
         {
             graphicsDevice = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+            TheaterHandler.GetInstance().CopyGameRoot(this);
         }
 
         protected override void Initialize()
@@ -45,24 +46,24 @@ namespace GameSpace
             base.Initialize();
             LoadContent();
         }
-        public void Reset()
+        public void ResetCurrentState()
         {
             startOfGame = true;
             marioLives = 3;
-            Initialize();
+            currentState.Initialize();
         }
 
-        public void Restart()
+        public void RestartCurrentState(Vector2 location)
         {
             startOfGame = false;
             marioLives--;
-            Initialize();
+            currentState.Restart(location);
         }
 
         protected override void LoadContent()
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            currentState = new PlayingGameState(this, GraphicsDevice, Content, marioLives, startOfGame);
+            currentState = new StartGameState(this, GraphicsDevice, Content);
             currentState.LoadContent();
         }
 
@@ -86,9 +87,9 @@ namespace GameSpace
             base.Draw(gameTime);
         }
 
-        public void ChangeState(State state)
+        public void ChangeToPlayState()
         {
-            nextState = state;
+            nextState = new PlayingGameState(this, GraphicsDevice, Content);
         }
     }
 }

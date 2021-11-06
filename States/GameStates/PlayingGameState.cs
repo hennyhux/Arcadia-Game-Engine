@@ -22,6 +22,7 @@ namespace GameSpace.States.GameStates
         private protected readonly GraphicsDeviceManager graphics;
         private protected SpriteBatch spriteBatch;
         private readonly LevelRestart levelRestart;
+        private static bool startOfGame;
         private SpriteFont fontFile;
         // DeathTimer timer;
         public Color FontColor { get; set; } = Color.DarkBlue;
@@ -65,8 +66,22 @@ namespace GameSpace.States.GameStates
         {
             graphicsDevice.Clear(Color.CornflowerBlue);
 
-        public override void LoadContent()
+            //Background/Scrolling Stuff
+            foreach (Layer layer in layers)
+            {
+                layer.Draw(spriteBatch, camera.Position);
+            }
+            //Normal Sprites
+            spriteBatch.Begin(SpriteSortMode.Deferred, null, null, null, null, null, camera.GetViewMatrix(parallax));
+            TheaterHandler.GetInstance().Draw(spriteBatch);
+            HUDHandler.GetInstance().Draw(spriteBatch);
+            spriteBatch.End();
+        }
+
+        public override void Restart(Vector2 location)
         {
+            startOfGame = false;
+            Initialize();
             spriteBatch = new SpriteBatch(graphicsDevice);
 
             #region Loading Factories
@@ -83,7 +98,7 @@ namespace GameSpace.States.GameStates
             MusicHandler.GetInstance().LoadMusicIntoList(AudioFactory.GetInstance().loadList());
 
             #region Loading Lists
-            objects = Loader.Load(game, xmlFileName, position, true);
+            objects = Loader.Load(game, xmlFileName, location, true);
             //soundEffects = AudioFactory.GetInstance().loadList();
             #endregion
 
@@ -97,9 +112,18 @@ namespace GameSpace.States.GameStates
             #region Loading Controllers
             controllers = new List<IController>()
             {
-                objects = Loader.Load(game, xmlFileName, new Vector2(0, 0), true);
-            }
-            else
+                new KeyboardInput(game), new ControllerInput(game)
+            };
+            #endregion
+            fontFile = content.Load<SpriteFont>("font");
+            //Camera Stuff
+            camera = new Camera(graphicsDevice.Viewport) { Limits = new Rectangle(0, 0, Loader.boundaryX, 2000) };//Should be set to level's max X and Y
+
+            EntityManager.AddCamera(camera);
+            CameraHandler.GetInstance().LoadCamera(camera);
+
+            //Scrolling Background, Manually Setting
+            layers = new List<Layer>
             {
                 new Layer(camera, BackgroundFactory.GetInstance().CreateCloudsSprite(), new Vector2(2.0f, 1.0f)),
                 new Layer(camera, BackgroundFactory.GetInstance().CreateBGMountainSprite(), new Vector2(1.5f, 1.0f)),
@@ -178,34 +202,20 @@ namespace GameSpace.States.GameStates
 
         public override void Update(GameTime gameTime)
         {
-            this.start = false;
-            HUDHandler.GetInstance().LoadGameTime(gameTime);
-            HUDHandler.GetInstance().UpdateTimer();
             foreach (IController controller in controllers)
             {
                 controller.Update();
             }
+
             TheaterHandler.GetInstance().Update(gameTime);
             //Camera Stuff- Centered Mario
             camera.LookAt(new Vector2(GetMario.Position.X + GetMario.CollisionBox.Width / 2, graphicsDevice.Viewport.Height / 2));
             CameraHandler.GetInstance().DebugCameraFindLimits();
-            levelRestart.Restart();
+            levelRestart.Restart(true);
+            //timer = new DeathTimer(gameTime, fontFile);
+            //timer.helper();
         }
 
-        public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
-        {
-            graphicsDevice.Clear(Color.CornflowerBlue);
-            //Background/Scrolling Stuff
-            foreach (Layer layer in layers)
-            {
-                layer.Draw(spriteBatch, camera.Position);
-            }
-            //Normal Sprites
-            spriteBatch.Begin(SpriteSortMode.Deferred, null, null, null, null, null, camera.GetViewMatrix(parallax));
-            TheaterHandler.GetInstance().Draw(spriteBatch);
-            HUDHandler.GetInstance().Draw(spriteBatch);
-            spriteBatch.End();
-        }
     }
 
 
@@ -220,10 +230,6 @@ namespace GameSpace.States.GameStates
 
         protected GameRoot game;
 
-        protected int lives;
-
-        protected bool start;
-
         #endregion
 
         public virtual void Initialize()
@@ -234,20 +240,16 @@ namespace GameSpace.States.GameStates
         public abstract void LoadContent();
         public abstract void Draw(GameTime gameTime, SpriteBatch spriteBatch);
 
-        public State(GameRoot game, GraphicsDevice graphicsDevice, ContentManager content, int marioLives, bool startOfGame)
+        public State(GameRoot game, GraphicsDevice graphicsDevice, ContentManager content)
         {
             this.game = game;
 
             this.graphicsDevice = graphicsDevice;
 
             this.content = content;
-
-            this.lives = marioLives;
-
-            this.start = startOfGame;
         }
 
         public abstract void Update(GameTime gameTime);
-        public abstract void Restart(Vector2 position);
+        public abstract void Restart(Vector2 location);
     }
 }
