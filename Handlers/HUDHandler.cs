@@ -38,6 +38,7 @@ namespace GameSpace.Machines
     public class HUDHandler : AbstractHandler
     {
         private SpriteFont HeadsUpDisplay;
+        private Texture2D chungus;
         private Vector2 HudPosition;
 
         private static readonly HUDHandler instance = new HUDHandler();
@@ -54,6 +55,7 @@ namespace GameSpace.Machines
         public void LoadContent(ContentManager content)
         {
             HeadsUpDisplay = content.Load<SpriteFont>("font");
+            chungus = content.Load<Texture2D>("Background/Untitled");
             HudPosition.X = 10;
             HudPosition.Y = 10;
 
@@ -68,9 +70,12 @@ namespace GameSpace.Machines
             UpdateHudPosition();
         }
 
-        public void DrawVictoryPanel(SpriteBatch spritebatch)
+        public void DrawStartingPanel(SpriteBatch spritebatch)
         {
-
+            spritebatch.DrawString(HeadsUpDisplay, "PRESS N FOR NEW GAME", HudPosition, Color.Black);
+            spritebatch.DrawString(HeadsUpDisplay, "PRESS L TO LOAD GAME (FUTURE FEATURE)", new Vector2(HudPosition.X, HudPosition.Y + 40), Color.Black);
+            spritebatch.Draw(chungus, new Vector2(HudPosition.X, HudPosition.Y + 200), Color.White);
+            
         }
 
         private void UpdateHudPosition()
@@ -85,5 +90,7 @@ namespace GameSpace.Machines
         {
             cameraCopy.LookAt(new Vector2(100, 2000));
         }
+
+
     }
 }

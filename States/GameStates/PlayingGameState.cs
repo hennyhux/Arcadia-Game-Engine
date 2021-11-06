@@ -105,7 +105,7 @@ namespace GameSpace.States.GameStates
             //EntityManager.LoadList(objects);
             //MusicHandler.GetInstance().LoadMusicIntoList(soundEffects);
             HUDHandler.GetInstance().LoadContent(content);
-            TheaterHandler.GetInstance().LoadData(objects, game);
+            TheaterHandler.GetInstance().LoadData(objects);
             #endregion
 
             #region Loading Controllers
@@ -140,10 +140,7 @@ namespace GameSpace.States.GameStates
         public override void LoadContent()
         {
             spriteBatch = new SpriteBatch(graphicsDevice);
-
             HUDHandler.GetInstance().LoadContent(content);
-
-            #region Loading Factories
             SpriteBlockFactory.GetInstance().LoadContent(content);
             MarioFactory.GetInstance(game).LoadContent(content);
             SpriteEnemyFactory.GetInstance().LoadContent(content);
@@ -152,7 +149,6 @@ namespace GameSpace.States.GameStates
             SpriteItemFactory.GetInstance().LoadContent(content);
             BackgroundFactory.GetInstance().LoadContent(content);
             AudioFactory.GetInstance().LoadContent(content);
-            #endregion
 
             MusicHandler.GetInstance().LoadMusicIntoList(AudioFactory.GetInstance().loadList());
 
@@ -163,7 +159,7 @@ namespace GameSpace.States.GameStates
             #region Loading Handlers
             //EntityManager.LoadList(objects);
             HUDHandler.GetInstance().LoadContent(content);
-            TheaterHandler.GetInstance().LoadData(objects, game);
+            TheaterHandler.GetInstance().LoadData(objects);
             #endregion
 
             #region Loading Controllers
@@ -234,9 +230,7 @@ namespace GameSpace.States.GameStates
 
         #endregion
 
-        #region Methods
         public abstract void LoadContent();
-
         public abstract void Draw(GameTime gameTime, SpriteBatch spriteBatch);
 
         public State(GameRoot game, GraphicsDevice graphicsDevice, ContentManager content)
@@ -249,9 +243,6 @@ namespace GameSpace.States.GameStates
         }
 
         public abstract void Update(GameTime gameTime);
-
         public abstract void Restart(Vector2 position);
-
-        #endregion
     }
 }

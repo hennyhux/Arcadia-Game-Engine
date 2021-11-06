@@ -24,7 +24,7 @@ namespace GameSpace.EntityManaging
             addItem = null;
         }
 
-        public void LoadData(List<IGameObjects> objectList, GameRoot copy)
+        public void LoadData(List<IGameObjects> objectList)
         {
             gameEntityList = objectList;
 
@@ -35,8 +35,13 @@ namespace GameSpace.EntityManaging
                     listOfWarpPipes.Add(entity);
                 }
             }
-            gameRootCopy = copy;
+            
             mario = (Mario)FinderHandler.GetInstance().FindItem((int)AvatarID.MARIO);
+        }
+
+        public void CopyGameRoot(GameRoot copy)
+        {
+            gameRootCopy = copy;
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -97,9 +102,9 @@ namespace GameSpace.EntityManaging
             addItem = item;
         }
 
-        public void ChangeGameState(State state)
+        public void ChangeStageToPlaying()
         {
-            gameRootCopy.ChangeState(state);
+            gameRootCopy.ChangeToPlayState();
         }
 
     }
