@@ -26,7 +26,10 @@ namespace GameSpace.Objects.EnemyObjects
                 UpdatePosition(Position, gametime);
             }
 
-
+            else if (state is StatePlantDead || state is StatePlantHidden)
+            {
+                DeleteCollisionBox();
+            }
         }
 
         public override void Draw(SpriteBatch spritebatch)
@@ -49,10 +52,12 @@ namespace GameSpace.Objects.EnemyObjects
         public void Hide()
         {
             state = new StatePlantHidden();
+            DeleteCollisionBox();
         }
 
         public void Show()
         {
+            UpdateCollisionBox(Position);
             state = new StatePlantIdle();
         }
 

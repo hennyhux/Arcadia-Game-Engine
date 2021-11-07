@@ -124,6 +124,7 @@ namespace GameSpace.EntityManaging
             {
                 if (item.ExpandedCollisionBox.Intersects(entity.CollisionBox) &&
                     !(entity is AbstractItem) &&
+                    !(entity is AbstractEnemy) &&
                     entity.ObjectID != (int)AvatarID.MARIO)
                 {
                     gonnaFall = false;
@@ -160,7 +161,7 @@ namespace GameSpace.EntityManaging
                     break;
             }
         }
-        public void ItemToMarioCollison(WarpPipeHeadWithMob pipe)
+        public void ItemToMarioCollison(WarpPipeHeadMob pipe)
         {
 
             switch (DetectCollisionDirection(mario, pipe))
@@ -178,7 +179,28 @@ namespace GameSpace.EntityManaging
             switch (DetectCollisionDirection(mario, pipe))
             {
                 case (int)CollisionDirection.DOWN:
-                    MarioHandler.GetInstance().WarpMarioToHiddenRoom();
+                    pipe.TimesCollided++;
+                    MarioHandler.GetInstance().BounceMario();
+                    if (pipe.TimesCollided == 2)
+                    {
+                        MarioHandler.GetInstance().WarpMarioToHiddenRoom();
+                    }
+                    break;
+
+            }
+        }
+
+        public void ItemToMarioCollison(WarpPipeHeadBack pipe)
+        {
+            switch (DetectCollisionDirection(mario, pipe))
+            {
+                case (int)CollisionDirection.DOWN:
+                    pipe.TimesCollided++;
+                    MarioHandler.GetInstance().BounceMario();
+                    if (pipe.TimesCollided == 3)
+                    {
+                        MarioHandler.GetInstance().WarpMarioBackToStart();
+                    }
                     break;
             }
         }
@@ -299,10 +321,7 @@ namespace GameSpace.EntityManaging
                     break;
             }
 
-            if (block.ObjectID == (int)ItemID.BIGPIPE)
-            {
-                mario.WarpMario();
-            }
+
         }
 
         public void MarioToHiddenBlockCollision(IGameObjects block)

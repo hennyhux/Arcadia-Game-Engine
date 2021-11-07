@@ -5,6 +5,7 @@ using GameSpace.Enums;
 using GameSpace.Factories;
 using GameSpace.GameObjects.BlockObjects;
 using GameSpace.Interfaces;
+using GameSpace.Machines;
 using GameSpace.States;
 using GameSpace.States.BlockStates;
 using Microsoft.Xna.Framework;
@@ -14,6 +15,15 @@ using GameSpace.Machines;
 
 namespace GameSpace.Objects.BlockObjects
 {
+
+    public class StateExplodingBrickBlock : AbstractBlockStates
+    {
+        public StateExplodingBrickBlock()
+        {
+            sprite = SpriteBlockFactory.GetInstance().ReturnShatterBlock();
+        }
+    }
+
     public class BrickBlock : AbstractBlock
     {
         public BrickBlock(Vector2 initLocation)
@@ -33,13 +43,18 @@ namespace GameSpace.Objects.BlockObjects
 
         public override void Trigger()
         {
-            if (!hasCollided)
+
+            if (state is StateBlockIdle && !hasCollided && MarioHandler.GetInstance().IsCurrentlyBigMario())
+            {
+                state = new StateExplodingBrickBlock();
+            }
+
+            else if (state is StateBrickBlockIdle && !hasCollided)
             {
                 state = new StateBlockBumped(this);
                 MusicHandler.GetInstance().PlaySoundEffect(8);
             }
 
-            hasCollided = true;
         }
 
         public override void HandleCollision(IGameObjects entity)

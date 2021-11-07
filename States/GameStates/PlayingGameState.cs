@@ -1,5 +1,4 @@
 ﻿using GameSpace.Camera2D;
-using GameSpace.EntitiesManager;
 using GameSpace.EntityManaging;
 using GameSpace.Enums;
 using GameSpace.Factories;
@@ -51,7 +50,7 @@ namespace GameSpace.States.GameStates
         public GraphicsDeviceManager Graphics => graphics;
 
         //private readonly string xmlFileName = "./Level1.xml"; // Turn in with this line of code!
-        private readonly string xmlFileName = "../../../TileMapDefinition/Level1.xml"; // ONLY to run on our machines
+        private readonly string xmlFileName = "../../../TileMapDefinition/HenryTesting.xml"; // ONLY to run on our machines
         //private readonly string xmlFileName = "../../../TileMapDefinition/CalebTesting.xml";
 
         public Mario GetMario => (Mario)FinderHandler.GetInstance().FindItem((int)AvatarID.MARIO);
@@ -68,12 +67,14 @@ namespace GameSpace.States.GameStates
         }
         public override void Reset()
         {
+            TheaterHandler.GetInstance().ResetStaticMembers();
             startOfGame = true;
             marioLives = 3;
             Initialize();
         }
         public override void Restart()
         {
+            TheaterHandler.GetInstance().ResetStaticMembers();
             startOfGame = false;
             marioLives--;
             Initialize();
@@ -190,7 +191,7 @@ namespace GameSpace.States.GameStates
 
             this.content = content;
 
-            this.marioLives = lives;
+            marioLives = lives;
         }
 
         public virtual void Initialize()

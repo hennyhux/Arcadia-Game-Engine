@@ -39,8 +39,8 @@
         HIDDENLEVELHORIZONTALPIPE = 200,
         HIDDENLEVELVERTICALPIPE = 2000,
         WARPPIPEROOM = 24,
-        WARPPIPEREDKOOPA = 25,
-        WARPPIPENEWENEMY = 26, //For Sprint 5, we can implement another enemy
+        WARPPIPEBODY = 25,
+        WARPPIPEBACK = 26, //For Sprint 5, we can implement another enemy
         FLAGPOLE = 27,
         CASTLE = 28,
         BLACKWINDOW = 999

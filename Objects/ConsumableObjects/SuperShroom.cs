@@ -1,13 +1,7 @@
 ﻿using GameSpace.Abstracts;
-using GameSpace.EntitiesManager;
 using GameSpace.Enums;
 using GameSpace.Factories;
-using GameSpace.Interfaces;
-using GameSpace.Machines;
-using GameSpace.States.ItemStates;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using System;
 
 namespace GameSpace.GameObjects.ItemObjects
 {

@@ -11,14 +11,6 @@
 		<facing>RIGHT</facing>
 	</Objects>
 	
-	
-		
-	<Objects>
-		<x>32</x>
-		<y>150</y>
-		<item>HIDDENLEVELCOIN</item>
-	</Objects>
-
 	<Objects>
 		<x>100</x>
 		<y>100</y>
@@ -31,6 +23,7 @@
 		<block>FLOORBLOCK</block>
 		<blockRow>69</blockRow>
 	</Objects>
+	
 	<Objects>
 		<x>0</x>
 		<y>434</y>
@@ -82,16 +75,22 @@
 	<Objects>
 		<x>400</x>
 		<y>400</y>
-		<item>WARPPIPEHEADWITHMOB</item>
+		<item>WARPPIPEROOM</item>
 	</Objects>
 	
 	
 	<Objects>
 		<x>100</x>
-		<y>400</y>
+		<y>308</y>
 		<item>WARPPIPEHEAD</item>
 	</Objects>
 	
+	
+	<Objects>
+		<x>100</x>
+		<y>340</y>
+		<item>WARPPIPEBODY</item>
+	</Objects>
 	
 	<Objects>
 		<x>896</x>
@@ -138,15 +137,18 @@
 	<Description>					CHECKPOINT 1					</Description>
 	
 	
-		
 	<Objects>
-		<x>2272</x>
-		<y>300</y>
+		<x>2000</x>
+		<y>308</y>
 		<item>WARPPIPEHEAD</item>
 	</Objects>
 	
-	
-	
+	<Objects>
+		<x>2000</x>
+		<y>340</y>
+		<item>WARPPIPEBODY</item>
+	</Objects>
+
 	<Objects>
 		<x>2272</x>
 		<y>466</y>
@@ -637,6 +639,18 @@
 		<x>7008</x>
 		<y>0</y>
 	</Objects>
+	
+	<Objects>
+		<x>7050</x>
+		<y>400</y>
+		<item>WARPPIPEROOM</item>
+	</Objects>
+	
+	<Objects>
+		<x>7300</x>
+		<y>300</y>
+		<item>HIDDENLEVELVERTICALPIPE</item>
+	</Objects>
 
 	<Objects>
 		<x>7008</x>
@@ -864,7 +878,24 @@
 		<y>178</y>
 		<item>HIDDENLEVELCOIN</item>
 	</Objects>
-
+	
+	<Objects>
+		<x>7400</x>
+		<y>240</y>
+		<item>WARPPIPEBACK</item>
+	</Objects>
+	
+	<Objects>
+		<x>7400</x>
+		<y>270</y>
+		<item>WARPPIPEBODY</item>
+	</Objects>
+	
+	<Objects>
+		<x>7400</x>
+		<y>340</y>
+		<item>WARPPIPEBODY</item>
+	</Objects>
 
 
 	<Description>					HIDDEN LEVEL ENDS					</Description>
