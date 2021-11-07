@@ -19,9 +19,17 @@ namespace GameSpace.GameObjects.ItemObjects
             Sprite = SpriteItemFactory.GetInstance().CreateSuperShroom();
             Position = initialPosition;
             drawBox = false;
+            CollisionBox = new Rectangle((int)Position.X, (int)Position.Y, Sprite.Texture.Width * 2 / 4, Sprite.Texture.Height * 2);
             hasCollided = false;
         }
 
+        public override void Trigger()
+        {
+            base.Trigger();
+            MusicHandler.GetInstance().PlaySoundEffect(5);
+        }
+
+        
         public override void UpdateCollisionBox()
         {
             CollisionBox = new Rectangle((int)Position.X, (int)Position.Y,
@@ -30,5 +38,15 @@ namespace GameSpace.GameObjects.ItemObjects
             ExpandedCollisionBox = new Rectangle((int)Position.X, (int)Position.Y,
                 Sprite.Texture.Width * 2, (Sprite.Texture.Height * 2) + 4);
         }
+        public override void AdjustLocationComingOutOfBlock()
+        {
+            Position = new Vector2(Position.X - 4, Position.Y - Sprite.Texture.Height * 2);
+            CollisionBox = new Rectangle((int)Position.X, (int)Position.Y, Sprite.Texture.Width * 2 / 4, Sprite.Texture.Height * 2);
+
+            //play sound effect for powerUpAppear
+            MusicHandler.GetInstance().PlaySoundEffect(4);
+
+        }
+        
     }
 }

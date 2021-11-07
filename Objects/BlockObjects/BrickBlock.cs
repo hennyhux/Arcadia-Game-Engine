@@ -9,6 +9,8 @@ using GameSpace.States;
 using GameSpace.States.BlockStates;
 using Microsoft.Xna.Framework;
 using System.Diagnostics;
+using GameSpace.Machines;
+
 
 namespace GameSpace.Objects.BlockObjects
 {
@@ -34,6 +36,7 @@ namespace GameSpace.Objects.BlockObjects
             if (!hasCollided)
             {
                 state = new StateBlockBumped(this);
+                MusicHandler.GetInstance().PlaySoundEffect(8);
             }
 
             hasCollided = true;
@@ -51,6 +54,7 @@ namespace GameSpace.Objects.BlockObjects
                     {
                         Debug.WriteLine("SHATTER BLOCK, mario PowerUp {0}", mario.marioPowerUpState);
                         //state = new StateExplodingBlock(this);
+                        MusicHandler.GetInstance().PlaySoundEffect(9);
                     }
                     else
                     {

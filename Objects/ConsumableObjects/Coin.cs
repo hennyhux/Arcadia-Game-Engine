@@ -2,6 +2,7 @@
 using GameSpace.Enums;
 using GameSpace.Factories;
 using Microsoft.Xna.Framework;
+using GameSpace.Machines;
 
 namespace GameSpace.GameObjects.ItemObjects
 {
@@ -30,8 +31,7 @@ namespace GameSpace.GameObjects.ItemObjects
         public override void Trigger()
         {
             base.Trigger();
-            //play sound effect for coinCollect
-            //MusicHandler.GetInstance().PlaySoundEffect(7);
+            MusicHandler.GetInstance().PlaySoundEffect(7);
         }
     }
 

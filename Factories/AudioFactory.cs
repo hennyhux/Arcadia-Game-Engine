@@ -8,7 +8,7 @@ namespace GameSpace.Factories
 {
     public class AudioFactory
     {
-        #region mp3s
+        #region sounds
         private Song song;
         private SoundEffect smallJump;
         private SoundEffect superJump;
@@ -17,7 +17,12 @@ namespace GameSpace.Factories
         private SoundEffect powerUpAppear;
         private SoundEffect powerUpCollect;
         private SoundEffect oneUpCollect;
-        private readonly SoundEffect coinCollect;
+        private SoundEffect coinCollect;
+        private SoundEffect bump;
+        private SoundEffect breakBlock;
+        private SoundEffect pipeWarp; 
+
+
 
         #endregion
         private static readonly AudioFactory instance = new AudioFactory();
@@ -38,10 +43,13 @@ namespace GameSpace.Factories
             superJump = content.Load<SoundEffect>("Audio/superJump");
             stomp = content.Load<SoundEffect>("Audio/stomp");
             death = content.Load<SoundEffect>("Audio/death");
-            powerUpAppear = content.Load<SoundEffect>("Audio/powerUpAppear");
-            powerUpCollect = content.Load<SoundEffect>("Audio/powerUpCollect");
-            oneUpCollect = content.Load<SoundEffect>("Audio/oneUpCollect");
-            // coinCollect = content.Load<SoundEffect>("Audio/coinCollect");
+            powerUpAppear = content.Load<SoundEffect>("Audio/powerUpAppear"); 
+            powerUpCollect = content.Load<SoundEffect>("Audio/powerUpCollect"); 
+            oneUpCollect = content.Load<SoundEffect>("Audio/oneUpCollect"); //haven't tested
+            coinCollect = content.Load<SoundEffect>("Audio/coinCollect");
+            bump = content.Load<SoundEffect>("Audio/bump");
+            breakBlock = content.Load<SoundEffect>("Audio/breakBlock");
+            pipeWarp = content.Load<SoundEffect>("Audio/pipeWarp");
         }
 
         public Song CreateSong()
@@ -60,7 +68,10 @@ namespace GameSpace.Factories
                 powerUpAppear,
                 powerUpCollect, //5
                 oneUpCollect,
-                coinCollect
+                coinCollect,
+                bump,
+                breakBlock,
+                pipeWarp       //10
             };
             return list;
         }

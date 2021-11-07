@@ -39,7 +39,6 @@ namespace GameSpace.Sprites.ExtraItems
             drawBox = false;
             TimesCollided = 0;
             state = new StateWarpPipeIdle();
-
         }
 
         public override void HandleCollision(IGameObjects entity)

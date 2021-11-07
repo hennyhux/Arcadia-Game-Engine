@@ -16,8 +16,6 @@ namespace GameSpace.GameObjects.ItemObjects
             Position = initialPosition;
             CollisionBox = new Rectangle((int)Position.X, (int)Position.Y, Sprite.Texture.Width * 2 / 4, Sprite.Texture.Height * 2);
             drawBox = false;
-            //play sound effect for powerUpAppear
-            //MusicHandler.GetInstance().PlaySoundEffect(4);
         }
 
         public override void Trigger()
@@ -30,6 +28,10 @@ namespace GameSpace.GameObjects.ItemObjects
         {
             Position = new Vector2(Position.X - 4, Position.Y - Sprite.Texture.Height * 2);
             CollisionBox = new Rectangle((int)Position.X, (int)Position.Y, Sprite.Texture.Width * 2 / 4, Sprite.Texture.Height * 2);
+
+            //play sound effect for powerUpAppear
+            MusicHandler.GetInstance().PlaySoundEffect(4);
+
         }
     }
 }
