@@ -1,4 +1,6 @@
 ﻿using Microsoft.Xna.Framework.Media;
+using GameSpace.Machines;
+
 
 
 namespace GameSpace
@@ -13,7 +15,8 @@ namespace GameSpace
         }
         public void Execute()
         {
-            MediaPlayer.IsMuted = !MediaPlayer.IsMuted;
+            MusicHandler.GetInstance().MuteSong();
+            MusicHandler.GetInstance().MuteSoundEffects();
         }
 
         public void Unexecute()
