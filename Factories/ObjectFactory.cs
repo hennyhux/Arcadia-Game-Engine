@@ -94,7 +94,7 @@ namespace GameSpace.Factories
 
         public IGameObjects CreateQuestionBlockStar(Vector2 location)
         {
-            return new QuestionBlock(location , (AbstractItem)CreateStarObject(location));
+            return new QuestionBlock(location, (AbstractItem)CreateStarObject(location));
         }
 
         #endregion
@@ -108,7 +108,7 @@ namespace GameSpace.Factories
         {
             return new UsedBlock(location);
         }
-   
+
 
         #region Enemies 
         public IGameObjects CreateGoombaObject(Vector2 location)
@@ -201,7 +201,7 @@ namespace GameSpace.Factories
 
         public IGameObjects CreateWarpPipeHeadWithMob(Vector2 location)
         {
-            return new WarpPipeHeadWithMob(location);
+            return new WarpPipeHeadMob(location);
         }
 
         public IGameObjects CreateHiddenLevelHorizontalPipe(Vector2 location)
@@ -222,6 +222,16 @@ namespace GameSpace.Factories
         public IGameObjects CreateWarpPipeHeadRoom(Vector2 location)
         {
             return new WarpPipeHeadRoom(location);
+        }
+
+        public IGameObjects CreateWarpPipeBody(Vector2 location)
+        {
+            return new WarpPipeBody(location);
+        }
+
+        public IGameObjects CreateWarpPipeHeadBack(Vector2 location)
+        {
+            return new WarpPipeHeadBack(location);
         }
 
         #endregion

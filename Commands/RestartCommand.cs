@@ -1,5 +1,4 @@
 ﻿using GameSpace.Level;
-using Microsoft.Xna.Framework;
 
 namespace GameSpace
 {

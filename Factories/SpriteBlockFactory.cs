@@ -18,6 +18,7 @@ namespace GameSpace.Factories
         private Texture2D StairBlock;
         private Texture2D HiddenBlock;
         private Texture2D WhiteRectangle;
+        private Texture2D WarpPipeBody;
         #endregion
 
 
@@ -48,6 +49,8 @@ namespace GameSpace.Factories
             StairBlock = content.Load<Texture2D>("Blocks/StairBlock");
             HiddenBlock = content.Load<Texture2D>("Blocks/UsedBlock");
             WhiteRectangle = content.Load<Texture2D>("WhiteTexture");
+            WarpPipeBody = content.Load<Texture2D>("Items/WarpPipeBody");
+
         }
         public ISprite ReturnQuestionBlock()
         {
@@ -98,5 +101,12 @@ namespace GameSpace.Factories
         {
             return WhiteRectangle;
         }
+
+        public ISprite CreateWarpPipeBody()
+        {
+            return new HiddenLevelVerticalPipeSprite(WarpPipeBody, 1, 1, 1);
+        }
+
+
     }
 }

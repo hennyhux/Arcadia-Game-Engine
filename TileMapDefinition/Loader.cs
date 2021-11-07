@@ -6,7 +6,6 @@ using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using System.Xml;
 using System.Xml.Serialization;
-using static GameSpace.TileMapDefinition.LevelDefinition;
 
 namespace GameSpace.TileMapDefinition
 {
@@ -196,11 +195,11 @@ namespace GameSpace.TileMapDefinition
                 case ItemID.WARPPIPEROOM:
                     objects.Add(objectFactory.CreateWarpPipeHeadRoom(location));
                     break;
-                case ItemID.WARPPIPEREDKOOPA:
-                    //objects.Add(objectFactory.CreateWarpPipeRedKoopaObject(location));
+                case ItemID.WARPPIPEBODY:
+                    objects.Add(objectFactory.CreateWarpPipeBody(location));
                     break;
-                case ItemID.WARPPIPENEWENEMY:
-                    //objects.Add(objectFactory.CreateWarpPipeNewEnemyObject(location));
+                case ItemID.WARPPIPEBACK:
+                    objects.Add(objectFactory.CreateWarpPipeHeadBack(location));
                     break;
                 case ItemID.FLAGPOLE:
                     objects.Add(objectFactory.CreateFlagPoleObject(location));

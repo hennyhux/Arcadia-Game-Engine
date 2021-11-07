@@ -1,19 +1,9 @@
-﻿using GameSpace.Camera2D;
-using GameSpace.EntitiesManager;
-using GameSpace.EntityManaging;
+﻿using GameSpace.EntityManaging;
 using GameSpace.Enums;
-using GameSpace.Factories;
 using GameSpace.GameObjects.BlockObjects;
-using GameSpace.Interfaces;
-using GameSpace.Level;
-using GameSpace.Machines;
 using GameSpace.States.GameStates;
-using GameSpace.TileMapDefinition;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Media;
-using System.Collections.Generic;
 
 namespace GameSpace
 {
@@ -34,7 +24,7 @@ namespace GameSpace
         {
             graphicsDevice = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
-            TheaterHandler.GetInstance().CopyGameRoot(this);
+            TheaterHandler.GetInstance().InitializeGameroot(this);
         }
 
         protected override void Initialize()
@@ -84,6 +74,11 @@ namespace GameSpace
         public void ChangeToPlayState()
         {
             nextState = new PlayingGameState(this, GraphicsDevice, Content, marioLives);
+        }
+
+        public void ChangeToVictoryState()
+        {
+
         }
     }
 }

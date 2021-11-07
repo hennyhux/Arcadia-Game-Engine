@@ -25,6 +25,23 @@ namespace GameSpace.Sprites.ExtraItems
             sprite = SpriteItemFactory.GetInstance().CreateWarpPipe();
         }
     }
+
+    public class StateWarpPipeBodyIdle : AbstractBlockStates
+    {
+        public StateWarpPipeBodyIdle()
+        {
+            sprite = SpriteBlockFactory.GetInstance().CreateWarpPipeBody();
+        }
+    }
+
+    public class StateWarpPipeDeactiveated : AbstractBlockStates
+    {
+        public StateWarpPipeDeactiveated()
+        {
+            sprite = SpriteItemFactory.GetInstance().CreateWarpPipe();
+        }
+    }
+
     public class WarpPipeHead : AbstractBlock
     {
         private readonly bool hasCollided;
@@ -44,6 +61,8 @@ namespace GameSpace.Sprites.ExtraItems
 
         public override void HandleCollision(IGameObjects entity)
         {
+
+            state = new StateWarpPipeDeactiveated();
             CollisionHandler.GetInstance().ItemToMarioCollison(this);
         }
 
@@ -53,28 +72,26 @@ namespace GameSpace.Sprites.ExtraItems
         }
     }
 
-    public class WarpPipeHeadWithMob : AbstractBlock
+    public class WarpPipeHeadMob : AbstractBlock
     {
-        private readonly IGameObjects mob;
-        private readonly bool itemRevealed;
+        private IGameObjects mob;
+        private bool itemRevealed;
         public Rectangle ExpandedCollisionBox;
         public Rectangle InRangeCollisionBox;
-        public WarpPipeHeadWithMob(Vector2 location)
+        public WarpPipeHeadMob(Vector2 location)
         {
             ObjectID = (int)ItemID.WARPPIPEHEADWITHMOB;
             Sprite = SpriteItemFactory.GetInstance().CreateWarpPipe();
             Position = location;
             CollisionBox = new Rectangle((int)Position.X, (int)Position.Y, Sprite.Texture.Width * 2, Sprite.Texture.Height * 2);
-            ExpandedCollisionBox = new Rectangle((int)Position.X - Sprite.Texture.Width * 6, (int)Position.Y, Sprite.Texture.Width * 5, Sprite.Texture.Height * 2);
-            InRangeCollisionBox = new Rectangle((int)Position.X - Sprite.Texture.Width * 2, (int)Position.Y, Sprite.Texture.Width * 5, Sprite.Texture.Height * 2);
+            ExpandedCollisionBox = new Rectangle((int)Position.X - Sprite.Texture.Width * 3, (int)Position.Y, Sprite.Texture.Width * 8, Sprite.Texture.Height * 2);
+            InRangeCollisionBox = new Rectangle((int)Position.X, (int)Position.Y, Sprite.Texture.Width * 2, Sprite.Texture.Height * 2);
             drawBox = false;
             state = new StateWarpPipeIdle();
             hasCollided = false;
             itemRevealed = false;
             mob = ObjectFactory.GetInstance().CreatePlantObject(new Vector2(Position.X - 10, Position.Y - Sprite.Texture.Height * 3 + 2));
             TheaterHandler.GetInstance().QueueItemAddToStage(mob);
-            HideItem();
-
         }
 
         public override void Draw(SpriteBatch spritebatch)
@@ -84,14 +101,15 @@ namespace GameSpace.Sprites.ExtraItems
             {
                 Sprite.DrawBoundary(spritebatch, CollisionBox);
                 Sprite.DrawBoundary(spritebatch, ExpandedCollisionBox);
-                // Sprite.DrawBoundary(spritebatch, InRangeCollisionBox);
+                Sprite.DrawBoundary(spritebatch, InRangeCollisionBox);
             }
         }
 
         public override void Update(GameTime gametime)
         {
             base.Update(gametime);
-            if (FinderHandler.GetInstance().FindMarioPosition().X >= ExpandedCollisionBox.X)
+            if (FinderHandler.GetInstance().FindMarioPosition().X <= ExpandedCollisionBox.X ||
+                FinderHandler.GetInstance().FindMarioPosition().X >= ExpandedCollisionBox.X + ExpandedCollisionBox.Width)
             {
                 if (state is StateWarpPipeIdle)
                 {
@@ -118,7 +136,6 @@ namespace GameSpace.Sprites.ExtraItems
         public void HideItem()
         {
             Plant castedMob = (Plant)mob;
-            RevealItem();
             castedMob.Hide();
             state = new StateWarpPipeIdle();
         }
@@ -139,11 +156,13 @@ namespace GameSpace.Sprites.ExtraItems
                     break;
             }
         }
-
     }
+
 
     public class WarpPipeHeadRoom : AbstractBlock
     {
+        public int TimesCollided { get; set; }
+
         public WarpPipeHeadRoom(Vector2 location)
         {
             ObjectID = (int)ItemID.WARPPIPEROOM;
@@ -169,4 +188,63 @@ namespace GameSpace.Sprites.ExtraItems
             }
         }
     }
+
+    public class WarpPipeBody : AbstractBlock
+    {
+        public int TimesCollided { get; set; }
+
+        public WarpPipeBody(Vector2 location)
+        {
+            ObjectID = (int)ItemID.WARPPIPEBODY;
+            Sprite = SpriteBlockFactory.GetInstance().CreateWarpPipeBody();
+            Position = location;
+            CollisionBox = new Rectangle((int)Position.X, (int)Position.Y, Sprite.Texture.Width * 2, Sprite.Texture.Height * 2);
+            drawBox = false;
+            state = new StateWarpPipeBodyIdle();
+        }
+
+        public override bool RevealItem()
+        {
+            return false;
+        }
+
+        public override void HandleCollision(IGameObjects entity)
+        {
+            switch (entity.ObjectID)
+            {
+                case (int)AvatarID.MARIO:
+                    CollisionHandler.GetInstance().BlockToMarioCollision(this);
+                    break;
+            }
+        }
+    }
+
+    public class WarpPipeHeadBack : AbstractBlock
+    {
+        private readonly bool hasCollided;
+        public int TimesCollided { get; set; }
+        public WarpPipeHeadBack(Vector2 location)
+        {
+            ObjectID = (int)ItemID.WARPPIPEBACK;
+            Sprite = SpriteItemFactory.GetInstance().CreateWarpPipe();
+            Position = location;
+            CollisionBox = new Rectangle((int)Position.X, (int)Position.Y, Sprite.Texture.Width * 2, Sprite.Texture.Height * 2);
+            hasCollided = false;
+            drawBox = false;
+            TimesCollided = 0;
+            state = new StateWarpPipeIdle();
+
+        }
+
+        public override void HandleCollision(IGameObjects entity)
+        {
+            CollisionHandler.GetInstance().ItemToMarioCollison(this);
+        }
+
+        public override bool RevealItem()
+        {
+            return false;
+        }
+    }
+
 }

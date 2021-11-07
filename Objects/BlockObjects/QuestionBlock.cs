@@ -1,9 +1,7 @@
 ﻿using GameSpace.Abstracts;
-using GameSpace.Animations;
 using GameSpace.EntityManaging;
 using GameSpace.Enums;
 using GameSpace.Factories;
-using GameSpace.Interfaces;
 using GameSpace.States.BlockStates;
 using Microsoft.Xna.Framework;
 

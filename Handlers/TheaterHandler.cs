@@ -3,6 +3,7 @@ using GameSpace.Enums;
 using GameSpace.GameObjects.BlockObjects;
 using GameSpace.Interfaces;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
 
@@ -25,6 +26,7 @@ namespace GameSpace.EntityManaging
 
         public void LoadData(List<IGameObjects> objectList)
         {
+            //ResetStaticMembers();
             gameEntityList = objectList;
 
             foreach (IGameObjects entity in gameEntityList)
@@ -33,12 +35,34 @@ namespace GameSpace.EntityManaging
                 {
                     listOfWarpPipes.Add(entity);
                 }
+
+                if (entity.ObjectID == (int)ItemID.WARPPIPEROOM)
+                {
+                    listOfWarpRoomPipes.Add(entity);
+                }
             }
 
             mario = (Mario)FinderHandler.GetInstance().FindItem((int)AvatarID.MARIO);
         }
 
-        public void CopyGameRoot(GameRoot copy)
+        public void ResetStaticMembers()
+        {
+            gameEntityList = new List<IGameObjects>();
+            prunedList = new List<IGameObjects>();
+            copyPrunedList = new List<IGameObjects>();
+            animationList = new List<IObjectAnimation>();
+            listOfWarpPipes = new List<IGameObjects>();
+            listOfWarpRoomPipes = new List<IGameObjects>();
+            musicList = new List<SoundEffect>();
+            GameTime internalGametime = new GameTime();
+            GameRoot gameRootCopy = new GameRoot();
+
+            currentWarpLocation = 0;
+            marioScores = 0;
+            marioLives = 3;
+        }
+
+        public void InitializeGameroot(GameRoot copy)
         {
             gameRootCopy = copy;
         }

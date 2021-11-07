@@ -85,5 +85,10 @@ namespace GameSpace.Factories
         {
             return new BigPipeSprite(WarpPipeHead, 1, 1, 1);
         }
+
+        public ISprite CreateWarpPipeHeadBack()
+        {
+            return new HiddenLevelVerticalPipeSprite(WarpPipeHead, 1, 1, 1);
+        }
     }
 }

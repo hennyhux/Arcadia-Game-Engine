@@ -1,10 +1,7 @@
 ﻿using GameSpace.Abstracts;
-using GameSpace.EntityManaging;
 using GameSpace.Enums;
 using GameSpace.Factories;
-using GameSpace.Interfaces;
 using Microsoft.Xna.Framework;
-using System.Diagnostics;
 
 namespace GameSpace.GameObjects.ExtraItemsObjects
 {

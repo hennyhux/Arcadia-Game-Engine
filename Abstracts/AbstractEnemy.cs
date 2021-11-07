@@ -121,6 +121,10 @@ namespace GameSpace.Abstracts
                 case (int)ItemID.BIGPIPE:
                 case (int)ItemID.MEDIUMPIPE:
                 case (int)ItemID.SMALLPIPE:
+                case (int)ItemID.WARPPIPEBODY:
+                case (int)ItemID.WARPPIPEHEAD:
+                case (int)ItemID.WARPPIPEHEADWITHMOB:
+                case (int)ItemID.WARPPIPEROOM:
                     CollisionHandler.GetInstance().EnemyToBlockCollision(this, entity);
                     break;
 
