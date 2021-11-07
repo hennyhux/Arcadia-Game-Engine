@@ -1,6 +1,7 @@
 ﻿using GameSpace.Abstracts;
 using GameSpace.Enums;
 using GameSpace.Factories;
+using GameSpace.Machines;
 using Microsoft.Xna.Framework;
 
 namespace GameSpace.GameObjects.ItemObjects

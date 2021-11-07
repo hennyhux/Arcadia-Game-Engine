@@ -67,6 +67,10 @@ namespace GameSpace.GameObjects.EnemyObjects
                 case (int)ItemID.FIREBALL:
                     Trigger();
                     break;
+
+                case (int)EnemyID.GOOMBA:
+                    CollisionHandler.GetInstance().EnemyToEnemyCollision(this, (Goomba)entity);
+                    break;
             }
         }
 

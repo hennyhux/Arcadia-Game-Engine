@@ -273,6 +273,14 @@ namespace GameSpace.EntityManaging
                 }
             }
         }
+
+        public void EnemyToEnemyCollision(GreenKoopa enemy, Goomba enemyB)
+        {
+            if (enemy.state is StateGreenKoopaDeadMoving)
+            {
+                enemyB.Trigger();
+            }
+        }
         #endregion
 
         #region Mario Collision
