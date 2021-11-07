@@ -1,25 +1,25 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Level>
-	<Obstacles>
+	<Objects>
 		<x>350</x>
 		<y>200</y>
 		<avatar>MARIO</avatar>
 		<facing>LEFT</facing>
-	</Obstacles>
+	</Objects>
 
-	<Obstacles>
+	<Objects>
 		<x>448</x>
 		<y>386</y>
 		<enemy>GOOMBA</enemy>
-	</Obstacles>
-	<Obstacles>
+	</Objects>
+	<Objects>
 		<x>32</x>
 		<y>372</y>
 		<enemy>GREENKOOPA</enemy>
-	</Obstacles>
-	<Obstacles>
+	</Objects>
+	<Objects>
 		<x>288</x>
 		<y>372</y>
 		<enemy>REDKOOPA</enemy>
-	</Obstacles>
+	</Objects>
 </Level>

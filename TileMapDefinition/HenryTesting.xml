@@ -1,108 +1,108 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 
 <Level>
-	<Obstacles>
+	<Objects>
 		<x>64</x>
 		<y>402</y>
 		<avatar>MARIO</avatar>
 		<facing>RIGHT</facing>
-	</Obstacles>
+	</Objects>
 
-	<Obstacles>
+	<Objects>
 		<x>100</x>
 		<y>100</y>
 		<block>COINBRICKBLOCK</block>
-	</Obstacles>
+	</Objects>
 
-	<Obstacles>
+	<Objects>
 		<x>150</x>
 		<y>100</y>
 		<block>FIREBRICKBLOCK</block>
-	</Obstacles>
+	</Objects>
 	
-	<Obstacles>
+	<Objects>
 		<x>250</x>
 		<y>100</y>
 		<block>ONEUPSHROOMBRICKBLOCK</block>
-	</Obstacles>
+	</Objects>
 
-	<Obstacles>
+	<Objects>
 		<x>200</x>
 		<y>100</y>
 		<block>SUPERSHROOMBRICKBLOCK</block>
 		<blockRow>1</blockRow>
-	</Obstacles>
+	</Objects>
 	
-	<Obstacles>
+	<Objects>
 		<x>300</x>
 		<y>100</y>
 		<block>STARBRICKBLOCK</block>
 		<blockRow>1</blockRow>
-	</Obstacles>
+	</Objects>
 	
 	
-		<Obstacles>
+		<Objects>
 		<x>100</x>
 		<y>200</y>
 		<block>QUESTIONBLOCK</block>
 		<blockRow>1</blockRow>
-	</Obstacles>
+	</Objects>
 	
-		<Obstacles>
+		<Objects>
 		<x>150</x>
 		<y>200</y>
 		<block>COINQUESTIONBLOCK</block>
-	</Obstacles>
+	</Objects>
 	
-	<Obstacles>
+	<Objects>
 		<x>200</x>
 		<y>200</y>
 		<block>ONEUPSHROOMQUESTIONBLOCK</block>
-	</Obstacles>
+	</Objects>
 	
-	<Obstacles>
+	<Objects>
 		<x>250</x>
 		<y>200</y>
 		<block>SUPERSHROOMQUESTIONBLOCK</block>
-	</Obstacles>
+	</Objects>
 	
-		<Obstacles>
+		<Objects>
 		<x>400</x>
 		<y>275</y>
 		<item>CASTLE</item>
-	</Obstacles>
+	</Objects>
 	
-	<Obstacles>
+	<Objects>
 		<x>200</x>
 		<y>275</y>
 		<item>COIN</item>
-	</Obstacles>
+	</Objects>
 	
-	<Obstacles>
+	<Objects>
 		<x>320</x>
 		<y>250</y>
 		<item>WARPPIPEHEADWITHMOB</item>
-	</Obstacles>
+	</Objects>
 	
-	<Obstacles>
+	<Objects>
 		<x>4000</x>
 		<y>100</y>
 		<item>WARPPIPEHEAD</item>
-	</Obstacles>
+	</Objects>
 	
 
 
-	<Obstacles>
+	<Objects>
 		<x>100</x>
 		<y>400</y>
 		<block>BRICKBLOCK</block>
 		<blockRow>15</blockRow>
-	</Obstacles>
+	</Objects>
 
-	<Obstacles>
+	<Objects>
 		<x>164</x>
 		<y>368</y>
 		<block>BRICKBLOCK</block>
 		<blockRow>1</blockRow>
-	</Obstacles>	
+	</Objects>	
 </Level>

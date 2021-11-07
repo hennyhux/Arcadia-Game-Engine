@@ -1,58 +1,58 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Level>
-	<Obstacles>
+	<Objects>
 		<x>350</x>
 		<y>200</y>
 		<avatar>MARIO</avatar>
 		<facing>LEFT</facing>
-	</Obstacles>
+	</Objects>
 
 
-	<Obstacles>
+	<Objects>
 		<x>400</x>
 		<y>140</y>
 		<block>COINBRICKBLOCK</block>
-	</Obstacles>
+	</Objects>
 
-	<Obstacles>
+	<Objects>
 		<x>450</x>
 		<y>140</y>
 		<block>STARBRICKBLOCK</block>
-	</Obstacles>
+	</Objects>
 
-	<Obstacles>
+	<Objects>
 		<x>600</x>
 		<y>140</y>
 		<block>QUESTIONBLOCK</block>
-	</Obstacles>
+	</Objects>
 
-	<Obstacles>
+	<Objects>
 		<x>0</x>
 		<y>0</y>
 		<block>QUESTIONBLOCK</block>
-	</Obstacles>
+	</Objects>
 
-	<Obstacles>
+	<Objects>
 		<x>800</x>
 		<y>480</y>
 		<block>QUESTIONBLOCK</block>
-	</Obstacles>
+	</Objects>
 
-	<Obstacles>
+	<Objects>
 		<x>650</x>
 		<y>140</y>
 		<block>STARQUESTIONBLOCK</block>
-	</Obstacles>
+	</Objects>
 
-	<Obstacles>
+	<Objects>
 		<x>700</x>
 		<y>140</y>
 		<block>ONEUPSHROOMQUESTIONBLOCK</block>
-	</Obstacles>
+	</Objects>
 
-	<Obstacles>
+	<Objects>
 		<x>750</x>
 		<y>140</y>
 		<block>QUESTIONBLOCK</block>
-	</Obstacles>
+	</Objects>
 </Level>

@@ -22,9 +22,6 @@ namespace GameSpace
         private protected readonly GraphicsDeviceManager graphicsDevice;
         private protected SpriteBatch spriteBatch;
 
-        private bool startOfGame = true;
-        private int marioLives = 3;
-
 
         //HERE ARE THE VERY IMPORTANT CHANGES: ADDED NEW GAME STAE
         private State currentState;
@@ -32,8 +29,7 @@ namespace GameSpace
 
         public GraphicsDeviceManager Graphics => graphicsDevice;
         public Mario GetMario => (Mario)FinderHandler.GetInstance().FindItem((int)AvatarID.MARIO);
-
-
+        public int marioLives = 3;
         public GameRoot()
         {
             graphicsDevice = new GraphicsDeviceManager(this);
@@ -47,10 +43,21 @@ namespace GameSpace
             LoadContent();
         }
 
+        public void RestartCurrentState()
+        {
+            currentState.Restart();
+        }
+
+        public void ResetCurrentState()
+        {
+            marioLives = 3;
+            currentState.Reset();
+        }
+
         protected override void LoadContent()
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            currentState = new StartGameState(this, GraphicsDevice, Content);
+            currentState = new StartGameState(this, GraphicsDevice, Content, marioLives);
             currentState.LoadContent();
         }
 
@@ -76,20 +83,7 @@ namespace GameSpace
 
         public void ChangeToPlayState()
         {
-            nextState = new PlayingGameState(this, GraphicsDevice, Content);
-        }
-        public void ResetCurrentState()
-        {
-            startOfGame = true;
-            marioLives = 3;
-            currentState.Initialize();
-        }
-
-        public void RestartCurrentState(Vector2 location)
-        {
-            startOfGame = false;
-            marioLives--;
-            currentState.Restart(location);
+            nextState = new PlayingGameState(this, GraphicsDevice, Content, marioLives);
         }
     }
 }

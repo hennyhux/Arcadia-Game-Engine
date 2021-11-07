@@ -10,6 +10,7 @@ namespace GameSpace.Factories
         private Texture2D RegularBackground;
         private Texture2D Mountain;
         private Texture2D Clouds;
+        private Texture2D BlackWindow;
 
 
         private static readonly BackgroundFactory instance = new BackgroundFactory();
@@ -29,11 +30,17 @@ namespace GameSpace.Factories
             RegularBackground = content.Load<Texture2D>("Background/small_BG");
             Mountain = content.Load<Texture2D>("Background/mountain");
             Clouds = content.Load<Texture2D>("Background/cloudsmall");
+            BlackWindow = content.Load<Texture2D>("BlackWindow");
         }
 
         public BackgroundSprite CreateRegularBackground()//mario.SmallMarioJumpingSprite
         {
             return new BackgroundSprite(RegularBackground, new Vector2(0, 334));
+        }
+
+        public BackgroundSprite CreateBlackWindow()//mario.SmallMarioJumpingSprite
+        {
+            return new BackgroundSprite(BlackWindow, new Vector2(7008, 50));
         }
 
         public BackgroundSprite CreateBGMountainSprite()//mario.SmallMarioJumpingSprite
