@@ -635,12 +635,6 @@
 
 	<Obstacles>
 		<x>7008</x>
-		<y>0</y>
-		<item>BLACKWINDOW</item>
-	</Obstacles>
-
-	<Obstacles>
-		<x>7008</x>
 		<y>82</y>
 		<block>HIDDENLEVELBRICKBLOCK</block>
 		<blockRow>1</blockRow>

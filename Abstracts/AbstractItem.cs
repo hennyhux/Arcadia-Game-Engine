@@ -73,10 +73,10 @@ namespace GameSpace.Abstracts
         public virtual void UpdateCollisionBox()
         {
             CollisionBox = new Rectangle((int)Position.X, (int)Position.Y,
-              Sprite.Texture.Width, Sprite.Texture.Height * 2);
+              Sprite.Texture.Width /2 , Sprite.Texture.Height * 2);
 
             ExpandedCollisionBox = new Rectangle((int)Position.X, (int)Position.Y,
-                Sprite.Texture.Width, (Sprite.Texture.Height * 2) + 4);
+                Sprite.Texture.Width / 2, (Sprite.Texture.Height * 2) + 4);
         }
         internal virtual void UpdateSpeed()
         {

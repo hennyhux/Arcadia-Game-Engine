@@ -1,4 +1,5 @@
 ﻿using GameSpace.Interfaces;
+using GameSpace.Machines;
 
 namespace GameSpace
 {
@@ -13,7 +14,7 @@ namespace GameSpace
         }
         public void Execute()
         {
-            reciever.Trigger();
+            MarioHandler.GetInstance().WarpMarioToHiddenRoom();
         }
 
         public void Unexecute()

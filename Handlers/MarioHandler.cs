@@ -39,7 +39,7 @@ namespace GameSpace.Machines
 
         public void WarpMarioToHiddenRoom()
         {
-            mario.Position = new Vector2(0, 750);
+            mario.Position = new Vector2(7143, 242);
         }
 
         internal void EnterVictoryPanel(GameRoot game)

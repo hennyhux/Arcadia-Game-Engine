@@ -33,7 +33,6 @@ namespace GameSpace.GameObjects.ItemObjects
             //play sound effect for coinCollect
             //MusicHandler.GetInstance().PlaySoundEffect(7);
         }
-
     }
 
     public class HiddenLevelCoin : Coin

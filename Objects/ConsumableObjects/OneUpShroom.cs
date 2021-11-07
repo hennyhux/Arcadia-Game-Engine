@@ -13,11 +13,8 @@ namespace GameSpace.GameObjects.ItemObjects
             ObjectID = (int)ItemID.ONEUPSHROOM;
             Sprite = SpriteItemFactory.GetInstance().CreateOneUpShroom();
             Position = initialPosition;
-            CollisionBox = new Rectangle((int)Position.X, (int)Position.Y, Sprite.Texture.Width * 2, Sprite.Texture.Height * 2);
             drawBox = false;
             hasCollided = false;
-            ExpandedCollisionBox = new Rectangle((int)Position.X, (int)Position.Y, Sprite.Texture.Width * 2, Sprite.Texture.Height * 3);
-            Velocity = new Vector2(100, 0);
         }
 
         public override void Trigger()
@@ -25,6 +22,15 @@ namespace GameSpace.GameObjects.ItemObjects
             base.Trigger();
             MusicHandler.GetInstance().PlaySoundEffect(6);
             MarioHandler.GetInstance().IncrementMarioLives();
+        }
+
+        public override void UpdateCollisionBox()
+        {
+            CollisionBox = new Rectangle((int)Position.X, (int)Position.Y,
+              Sprite.Texture.Width * 2, Sprite.Texture.Height * 2);
+
+            ExpandedCollisionBox = new Rectangle((int)Position.X, (int)Position.Y,
+                Sprite.Texture.Width * 2, (Sprite.Texture.Height * 2) + 4);
         }
     }
 }

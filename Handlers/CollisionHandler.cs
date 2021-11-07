@@ -123,7 +123,7 @@ namespace GameSpace.EntityManaging
             foreach (IGameObjects entity in copyPrunedList)
             {
                 if (item.ExpandedCollisionBox.Intersects(entity.CollisionBox) &&
-                    entity.ObjectID != item.ObjectID &&
+                    !(entity is AbstractItem) &&
                     entity.ObjectID != (int)AvatarID.MARIO)
                 {
                     gonnaFall = false;
@@ -132,6 +132,11 @@ namespace GameSpace.EntityManaging
             }
             return gonnaFall;
         }
+        public void ItemToBlockCollision(AbstractBlock block)
+        {
+
+        }
+
         public void ItemToMarioCollison(BigPipe pipe)
         {
             switch (DetectCollisionDirection(mario, pipe))
@@ -177,6 +182,7 @@ namespace GameSpace.EntityManaging
                     break;
             }
         }
+
         #endregion
 
         #region Enemy Collision
