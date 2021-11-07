@@ -20,10 +20,9 @@ namespace GameSpace.Factories
         private SoundEffect coinCollect;
         private SoundEffect bump;
         private SoundEffect breakBlock;
-        private SoundEffect pipeWarp; 
-
-
-
+        private SoundEffect pipeWarp;
+        private SoundEffect warning;
+        private SoundEffect gameover;
         #endregion
         private static readonly AudioFactory instance = new AudioFactory();
         public static AudioFactory GetInstance()
@@ -50,6 +49,8 @@ namespace GameSpace.Factories
             bump = content.Load<SoundEffect>("Audio/bump");
             breakBlock = content.Load<SoundEffect>("Audio/breakBlock");
             pipeWarp = content.Load<SoundEffect>("Audio/pipeWarp");
+            warning = content.Load<SoundEffect>("Audio/warning");
+            gameover = content.Load<SoundEffect>("Audio/pipeWarp");
         }
 
         public Song CreateSong()
@@ -71,7 +72,9 @@ namespace GameSpace.Factories
                 coinCollect,
                 bump,
                 breakBlock,
-                pipeWarp       //10
+                pipeWarp,      //10
+                warning,
+                gameover
             };
             return list;
         }

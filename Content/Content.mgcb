@@ -43,6 +43,12 @@
 /processorParam:Quality=Best
 /build:Audio/death.wav
 
+#begin Audio/gameover.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Audio/gameover.wav
+
 #begin Audio/oneUpCollect.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor
@@ -84,6 +90,12 @@
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
 /build:Audio/superJump.wav
+
+#begin Audio/warning.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Audio/warning.wav
 
 #begin AvatarSprite/MarioStandingLeft.png
 /importer:TextureImporter
