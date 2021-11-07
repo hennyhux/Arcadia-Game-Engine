@@ -2,12 +2,15 @@
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Media;
 using System.Collections.Generic;
+using System;
 
 namespace GameSpace.Machines
 {
     public class MusicHandler : AbstractHandler
     {
         private static readonly MusicHandler instance = new MusicHandler();
+        private bool mute = false; 
+
         public static MusicHandler GetInstance()
         {
             return instance;
@@ -30,9 +33,20 @@ namespace GameSpace.Machines
             MediaPlayer.Volume = MediaPlayer.Volume / 2;
         }
 
+        public void MuteSong()
+        {
+            MediaPlayer.IsMuted = !MediaPlayer.IsMuted;
+        }
+
         public void PlaySoundEffect(int soundEffect)
         {
-            musicList[soundEffect].CreateInstance().Play(); 
+            if (!mute) musicList[soundEffect].CreateInstance().Play();
+
         }
+        public void MuteSoundEffects()
+        {
+            mute = !mute; 
+        }
+
     }
 }

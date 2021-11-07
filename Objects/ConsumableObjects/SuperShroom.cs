@@ -3,6 +3,7 @@ using GameSpace.Enums;
 using GameSpace.Factories;
 using GameSpace.Machines;
 using Microsoft.Xna.Framework;
+using GameSpace.Machines;
 
 namespace GameSpace.GameObjects.ItemObjects
 {
