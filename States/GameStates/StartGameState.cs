@@ -18,7 +18,9 @@ namespace GameSpace.States.GameStates
         private readonly Texture2D menuBackGroundTexture;
         private List<IController> controllers;
 
-        public StartGameState(GameRoot game, GraphicsDevice graphicsDevice, ContentManager content) : base(game, graphicsDevice, content)
+
+
+        public StartGameState(GameRoot game, GraphicsDevice graphicsDevice, ContentManager content, int lives) : base(game, graphicsDevice, content, lives)
         {
 
         }
@@ -33,14 +35,18 @@ namespace GameSpace.States.GameStates
 
         public override void LoadContent()
         {
-            HUDHandler.GetInstance().LoadContent(content);
+            HUDHandler.GetInstance().LoadContent(content, marioLives, game);
             controllers = new List<IController>()
             {
                 new KeyboardInput(game), new ControllerInput(game)
             };
         }
 
-        public override void Restart(Vector2 location)
+        public override void Restart()
+        {
+
+        }
+        public override void Reset()
         {
 
         }
