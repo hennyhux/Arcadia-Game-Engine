@@ -1,59 +1,59 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Level>
 
-	<Obstacles>
+	<Objects>
 		<x>350</x>
 		<y>200</y>
 		<avatar>MARIO</avatar>
 		<facing>LEFT</facing>
-	</Obstacles>
+	</Objects>
 	
-	<Obstacles>
+	<Objects>
 		<x>450</x>
 		<y>100</y>
 		<enemy>GREENKOOPA</enemy>
-	</Obstacles>
+	</Objects>
 
-	<Obstacles>
+	<Objects>
 		<x>100</x>
 		<y>100</y>
 		<item>COIN</item>
-	</Obstacles>
+	</Objects>
 
-	<Obstacles>
+	<Objects>
 		<x>400</x>
 		<y>140</y>
 		<block>BRICKBLOCK</block>
 		<blockRow>1</blockRow>
-	</Obstacles>
+	</Objects>
 
-	<Obstacles>
+	<Objects>
 		<x>400</x>
 		<y>204</y>
 		<block>BRICKBLOCK</block>
 		<blockRow>1</blockRow>
-	</Obstacles>
+	</Objects>
 
-	<Obstacles>
+	<Objects>
 		<x>592</x>
 		<y>140</y>
 		<block>BRICKBLOCK</block>
 		<blockRow>1</blockRow>
-	</Obstacles>
+	</Objects>
 
 
-	<Obstacles>
+	<Objects>
 		<x>432</x>
 		<y>172</y>
 		<block>BRICKBLOCK</block>
 		<blockRow>7</blockRow>
-	</Obstacles>
+	</Objects>
 
 
-	<Obstacles>
+	<Objects>
 		<x>400</x>
 		<y>400</y>
 		<block>BRICKBLOCK</block>
 		<blockRow>9</blockRow>
-	</Obstacles>
+	</Objects>
 </Level>

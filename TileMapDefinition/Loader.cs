@@ -18,13 +18,13 @@ namespace GameSpace.TileMapDefinition
         public static List<IGameObjects> Load(GameRoot game, string xmlFile, Vector2 checkPoint, bool levelRestart)
         {
             List<IGameObjects> objects = new List<IGameObjects>();
-            List<Obstacles> fullList = new List<Obstacles>();
-            XmlSerializer serializer = new XmlSerializer(typeof(List<Obstacles>), new XmlRootAttribute("Level"));
+            List<LevelDefinition.Objects> fullList = new List<LevelDefinition.Objects>();
+            XmlSerializer serializer = new XmlSerializer(typeof(List<LevelDefinition.Objects>), new XmlRootAttribute("Level"));
             using (XmlReader reader = XmlReader.Create(xmlFile))
             {
-                fullList = (List<Obstacles>)serializer.Deserialize(reader);
+                fullList = (List<LevelDefinition.Objects>)serializer.Deserialize(reader);
             }
-            foreach (Obstacles obstacles in fullList)
+            foreach (LevelDefinition.Objects obstacles in fullList)
             {
                 Vector2 location = new Vector2(obstacles.x, obstacles.y);
                 if (boundaryX < obstacles.x)
@@ -47,13 +47,13 @@ namespace GameSpace.TileMapDefinition
             return objects;
         }
 
-        public static void LoadBackground(List<IGameObjects> objects, Obstacles obstacles, Vector2 location)
+        public static void LoadBackground(List<IGameObjects> objects, LevelDefinition.Objects obstacles, Vector2 location)
         {
             /*Camera camera = new Camera(GraphicsDevice.Viewport) { Limits = new Rectangle(0, 0, Loader.boundaryX, 480) };//Should be set to level's max X and Y
             EntityManager.AddCamera(camera);
             Layer layer = new Layer(camera, BackgroundFactory.GetInstance().CreateRegularBackground(), new Vector2(1.0f, 1.0f));*/
         }
-        public static void LoadBlocks(List<IGameObjects> objects, Obstacles obstacles, Vector2 location)
+        public static void LoadBlocks(List<IGameObjects> objects, LevelDefinition.Objects obstacles, Vector2 location)
         {
             switch (obstacles.block)
             {
@@ -145,7 +145,7 @@ namespace GameSpace.TileMapDefinition
                     #endregion
             }
         }
-        public static void LoadItems(List<IGameObjects> objects, Obstacles obstacles, Vector2 location)
+        public static void LoadItems(List<IGameObjects> objects, LevelDefinition.Objects obstacles, Vector2 location)
         {
             switch (obstacles.item)
             {
@@ -214,7 +214,7 @@ namespace GameSpace.TileMapDefinition
             }
         }
 
-        public static void LoadEnemies(List<IGameObjects> objects, Obstacles obstacles, Vector2 location)
+        public static void LoadEnemies(List<IGameObjects> objects, LevelDefinition.Objects obstacles, Vector2 location)
         {
             switch (obstacles.enemy)
             {
@@ -233,7 +233,7 @@ namespace GameSpace.TileMapDefinition
             }
         }
 
-        public static void LoadAvatar(GameRoot game, List<IGameObjects> objects, Obstacles obstacles, Vector2 location)
+        public static void LoadAvatar(GameRoot game, List<IGameObjects> objects, LevelDefinition.Objects obstacles, Vector2 location)
         {
             MarioFactory marioFactory = MarioFactory.GetInstance();
             Mario avatar;

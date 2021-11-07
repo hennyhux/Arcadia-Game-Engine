@@ -5,7 +5,7 @@ namespace GameSpace.TileMapDefinition
     public class LevelDefinition
     {
 
-        public class Obstacles
+        public class Objects
         {
             public int x;
             public int y;

@@ -1,143 +1,143 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Level>
 
-	<Obstacles>
+	<Objects>
 		<x>64</x>
 		<y>402</y>
 		<avatar>MARIO</avatar>
 		<facing>RIGHT</facing>
-	</Obstacles>
+	</Objects>
 	
-	<Obstacles>
+	<Objects>
 		<x>0</x>
 		<y>466</y>
 		<block>FLOORBLOCK</block>
 		<blockRow>64</blockRow>
-	</Obstacles>
-	<Obstacles>
+	</Objects>
+	<Objects>
 		<x>0</x>
 		<y>434</y>
 		<block>FLOORBLOCK</block>
 		<blockRow>64</blockRow>
-	</Obstacles>
+	</Objects>
 
 
-	<Obstacles>
+	<Objects>
 		<x>384</x>
 		<y>290</y>
 		<block>QUESTIONBLOCK</block>
-	</Obstacles>
-	<Obstacles>
+	</Objects>
+	<Objects>
 		<x>512</x>
 		<y>290</y>
 		<block>BRICKBLOCK</block>
 		<blockRow>1</blockRow>
-	</Obstacles>
-	<Obstacles>
+	</Objects>
+	<Objects>
 		<x>544</x>
 		<y>290</y>
 		<block>QUESTIONBLOCK</block>
-	</Obstacles>
-	<Obstacles>
+	</Objects>
+	<Objects>
 		<x>576</x>
 		<y>290</y>
 		<block>BRICKBLOCK</block>
 		<blockRow>1</blockRow>
-	</Obstacles>
-	<Obstacles>
+	</Objects>
+	<Objects>
 		<x>608</x>
 		<y>290</y>
 		<block>QUESTIONBLOCK</block>
-	</Obstacles>
-	<Obstacles>
+	</Objects>
+	<Objects>
 		<x>640</x>
 		<y>290</y>
 		<block>BRICKBLOCK</block>
 		<blockRow>1</blockRow>
-	</Obstacles>
+	</Objects>
 
-	<Obstacles>
+	<Objects>
 		<x>576</x>
 		<y>162</y>
 		<block>QUESTIONBLOCK</block>
-	</Obstacles>
+	</Objects>
 
-	<Obstacles>
+	<Objects>
 		<x>32</x>
 		<y>162</y>
 		<block>QUESTIONBLOCK</block>
-	</Obstacles>
+	</Objects>
 
 
-	<Obstacles>
+	<Objects>
 		<x>672</x>
 		<y>386</y>
 		<block>STAIRBLOCK</block>
 		<blockRow>4</blockRow>
-	</Obstacles>
+	</Objects>
 
-	<Obstacles>
+	<Objects>
 		<x>704</x>
 		<y>354</y>
 		<block>STAIRBLOCK</block>
 		<blockRow>3</blockRow>
-	</Obstacles>
+	</Objects>
 
-	<Obstacles>
+	<Objects>
 		<x>768</x>
 		<y>322</y>
 		<block>STAIRBLOCK</block>
 		<blockRow>2</blockRow>
-	</Obstacles>
-	<Obstacles>
+	</Objects>
+	<Objects>
 		<x>768</x>
 		<y>290</y>
 		<block>STAIRBLOCK</block>
 		<blockRow>1</blockRow>
-	</Obstacles>
+	</Objects>
 
-	<Obstacles>
+	<Objects>
 		<x>160</x>
 		<y>290</y>
 		<block>USEDBLOCK</block>
-	</Obstacles>
-	<Obstacles>
+	</Objects>
+	<Objects>
 		<x>224</x>
 		<y>290</y>
 		<block>HIDDENBLOCK</block>
-	</Obstacles>
+	</Objects>
 
 
 
-	<Obstacles>
+	<Objects>
 		<x>448</x>
 		<y>386</y>
 		<enemy>GOOMBA</enemy>
-	</Obstacles>
-	<Obstacles>
+	</Objects>
+	<Objects>
 		<x>32</x>
 		<y>372</y>
 		<enemy>GREENKOOPA</enemy>
-	</Obstacles>
-	<Obstacles>
+	</Objects>
+	<Objects>
 		<x>288</x>
 		<y>372</y>
 		<enemy>REDKOOPA</enemy>
-	</Obstacles>
+	</Objects>
 
 
 
 
-	<Obstacles>
+	<Objects>
 		<x>604</x>
 		<y>254</y>
 		<item>FIREFLOWER</item>
-	</Obstacles>
+	</Objects>
 
-	<Obstacles>
+	<Objects>
 		<x>582</x>
 		<y>133</y>
 		<item>COIN</item>
-	</Obstacles>
+	</Objects>
 
 </Level>

@@ -11,8 +11,11 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Remove="Content\NewFolder\**" />
     <Compile Remove="Objects\TestingObjects\**" />
+    <EmbeddedResource Remove="Content\NewFolder\**" />
     <EmbeddedResource Remove="Objects\TestingObjects\**" />
+    <None Remove="Content\NewFolder\**" />
     <None Remove="Objects\TestingObjects\**" />
   </ItemGroup>
   <ItemGroup>
@@ -29,7 +32,6 @@
     <MonoGameContentReference Include="Content\Content.mgcb" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Content\NewFolder\" />
     <Folder Include="Objects\TestingObjects\" />
   </ItemGroup>
 </Project>
