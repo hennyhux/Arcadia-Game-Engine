@@ -248,8 +248,10 @@ namespace GameSpace.EntityManaging
 
         public void EnemyToMarioCollision(AbstractEnemy enemy, IGameObjects mario)
         {
+            Mario thisMario = (Mario)mario;
             if (DetectCollisionDirection(enemy, mario) == (int)CollisionDirection.UP)
             {
+                thisMario.score += 100;
                 enemy.Trigger();
                 //enemy.CollisionBox = new Rectangle(1, 1, 0, 0);
             }

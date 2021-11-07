@@ -91,11 +91,11 @@
 /processorParam:Quality=Best
 /build:Audio/superJump.wav
 
-#begin Audio/warning.wav
+#begin Audio/timeWarning.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
-/build:Audio/warning.wav
+/build:Audio/timeWarning.wav
 
 #begin AvatarSprite/MarioStandingLeft.png
 /importer:TextureImporter

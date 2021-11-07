@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 
+
 namespace GameSpace.Machines
 {
     public class HUDHandler : AbstractHandler
@@ -38,6 +39,8 @@ namespace GameSpace.Machines
             timer += internalGametime.ElapsedGameTime.Ticks;
             ticks = ticksMax - timer;
             seconds = ticks / convertToSeconds;
+            if (seconds == 50) MusicHandler.GetInstance().PlaySoundEffect(11);
+
             if (seconds == 0 || game.GetMario.marioActionState is GameSpace.States.MarioStates.DeadMarioState)
             {
                 ResetTimer();

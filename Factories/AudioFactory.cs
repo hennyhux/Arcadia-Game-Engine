@@ -49,7 +49,7 @@ namespace GameSpace.Factories
             bump = content.Load<SoundEffect>("Audio/bump");
             breakBlock = content.Load<SoundEffect>("Audio/breakBlock");
             pipeWarp = content.Load<SoundEffect>("Audio/pipeWarp");
-            warning = content.Load<SoundEffect>("Audio/warning");
+            warning = content.Load<SoundEffect>("Audio/timeWarning");
             gameover = content.Load<SoundEffect>("Audio/pipeWarp");
         }
 
