@@ -34,6 +34,7 @@ namespace GameSpace.Machines
 
         public void SetMarioStateToWarp()
         {
+            MusicHandler.GetInstance().PlaySoundEffect(10);
             if (currentWarpLocation < listOfWarpPipes.Count - 2)
             {
                 currentWarpLocation++;
@@ -49,6 +50,7 @@ namespace GameSpace.Machines
 
         public void WarpMario(Vector2 location)
         {
+            MusicHandler.GetInstance().PlaySoundEffect(10);
             mario.Position = location;
         }
 

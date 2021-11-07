@@ -246,6 +246,23 @@ namespace GameSpace.EntityManaging
             }
         }
 
+        public void ShellToBlockCollision(GreenKoopa enemy, IGameObjects block)
+        {
+
+            if (DetectCollisionDirection(enemy, block) == (int)CollisionDirection.LEFT)
+            {
+                enemy.Direction = (int)eFacing.LEFT;
+                enemy.RemoveFromStage();
+             
+            }
+
+            else if (DetectCollisionDirection(enemy, block) == (int)CollisionDirection.RIGHT)
+            {
+                enemy.Direction = (int)eFacing.RIGHT;
+                enemy.RemoveFromStage();
+            }
+        }
+
         public void EnemyToMarioCollision(AbstractEnemy enemy, IGameObjects mario)
         {
             Mario thisMario = (Mario)mario;
@@ -273,6 +290,14 @@ namespace GameSpace.EntityManaging
                         enemy.Trigger();
                     }
                 }
+            }
+        }
+
+        public void EnemyToEnemyCollision(GreenKoopa enemy, Goomba enemyB)
+        {
+            if (enemy.state is StateGreenKoopaDeadMoving)
+            {
+                enemyB.Trigger();
             }
         }
         #endregion

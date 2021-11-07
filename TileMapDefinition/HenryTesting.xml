@@ -2,30 +2,25 @@
 
 <Level>
 	<Objects>
-		<x>64</x>
-		<y>402</y>
+		<x>120</x>
+		<y>300</y>
 		<avatar>MARIO</avatar>
 		<facing>RIGHT</facing>
 	</Objects>
 	
-		<Objects>
-		<x>400</x>
-		<y>275</y>
-		<item>CASTLE</item>
-	</Objects>
+
 	
-	<Objects>
-		<x>320</x>
-		<y>250</y>
-		<item>WARPPIPEHEADWITHMOB</item>
+<Objects>
+		<x>200</x>
+		<y>0</y>
+		<enemy>GREENKOOPA</enemy>
 	</Objects>
-	
-	<Objects>
-		<x>4000</x>
-		<y>100</y>
-		<item>WARPPIPEHEAD</item>
+
+<Objects>
+		<x>300</x>
+		<y>150</y>
+		<enemy>GOOMBA</enemy>
 	</Objects>
-	
 
 
 	<Objects>
@@ -40,5 +35,13 @@
 		<y>368</y>
 		<block>BRICKBLOCK</block>
 		<blockRow>1</blockRow>
+	</Objects>
+		
+	<Objects>
+		<x>400</x>
+		<y>368</y>
+		<block>BRICKBLOCK</block>
+		<blockRow>1</blockRow>
+		
 	</Objects>	
 </Level>

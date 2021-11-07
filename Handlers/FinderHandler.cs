@@ -58,5 +58,10 @@ namespace GameSpace.EntityManaging
             return mario.Position;
         }
 
+        public GameRoot FindGameRoot()
+        {
+            return gameRootCopy;
+        }
+
     }
 }

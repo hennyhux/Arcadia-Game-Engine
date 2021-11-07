@@ -14,7 +14,7 @@ namespace GameSpace
 
 
         //HERE ARE THE VERY IMPORTANT CHANGES: ADDED NEW GAME STAE
-        private State currentState;
+        public State CurrentState { get; private set; }
         private State nextState;
 
         public GraphicsDeviceManager Graphics => graphicsDevice;
@@ -35,39 +35,39 @@ namespace GameSpace
 
         public void RestartCurrentState()
         {
-            currentState.Restart();
+            CurrentState.Restart();
         }
 
         public void ResetCurrentState()
         {
             marioLives = 3;
-            currentState.Reset();
+            CurrentState.Reset();
         }
 
         protected override void LoadContent()
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            currentState = new StartGameState(this, GraphicsDevice, Content, marioLives);
-            currentState.LoadContent();
+            CurrentState = new StartGameState(this, GraphicsDevice, Content, marioLives);
+            CurrentState.LoadContent();
         }
 
         protected override void Update(GameTime gameTime)
         {
             if (nextState != null)
             {
-                currentState = nextState;
-                currentState.LoadContent();
+                CurrentState = nextState;
+                CurrentState.LoadContent();
                 nextState = null;
             }
 
-            currentState.Update(gameTime);
+            CurrentState.Update(gameTime);
             base.Update(gameTime);
         }
 
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
-            currentState.Draw(gameTime, spriteBatch);
+            CurrentState.Draw(gameTime, spriteBatch);
             base.Draw(gameTime);
         }
 
