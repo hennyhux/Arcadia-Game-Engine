@@ -4,6 +4,7 @@ using GameSpace.Enums;
 using GameSpace.Factories;
 using GameSpace.Interfaces;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace GameSpace.GameObjects.EnemyObjects
 {
@@ -23,25 +24,39 @@ namespace GameSpace.GameObjects.EnemyObjects
 
         public override void Update(GameTime gametime)
         {
-            base.Update(gametime);
 
-            if (hasCollidedOnTop)
+            if (!(state is StateGreenKoopaRemoved))
+                
             {
-                countdown++;
-            }
+                base.Update(gametime);
 
-            if (countdown == 250)
+                if (hasCollidedOnTop)
+                {
+                    countdown++;
+                }
+
+                if (countdown == 250)
+                {
+                    state = new StateGreenKoopaShellAndLegs();
+                }
+
+                if (countdown == 500)
+                {
+                    state = new StateGreenKoopaAliveFaceLeft();
+                    countdown = 0;
+                    hasCollidedOnTop = false;
+                }
+            }
+        }
+
+        public override void Draw(SpriteBatch spritebatch)
+        {
+            if (!(state is StateGreenKoopaRemoved)) base.Draw(spritebatch);
+
+            else
             {
-                state = new StateGreenKoopaShellAndLegs();
+                DeleteCollisionBox();
             }
-
-            if (countdown == 500)
-            {
-                state = new StateGreenKoopaAliveFaceLeft();
-                countdown = 0;
-                hasCollidedOnTop = false;
-            }
-
         }
 
         public override void HandleCollision(IGameObjects entity)
@@ -61,7 +76,12 @@ namespace GameSpace.GameObjects.EnemyObjects
                 case (int)ItemID.BIGPIPE:
                 case (int)ItemID.MEDIUMPIPE:
                 case (int)ItemID.SMALLPIPE:
-                    CollisionHandler.GetInstance().EnemyToBlockCollision(this, entity);
+                    if (!(state is StateGreenKoopaDeadMoving))CollisionHandler.GetInstance().EnemyToBlockCollision(this, entity);
+
+                    else
+                    {
+                        CollisionHandler.GetInstance().ShellToBlockCollision(this, entity);
+                    }
                     break;
 
                 case (int)ItemID.FIREBALL:
@@ -89,6 +109,11 @@ namespace GameSpace.GameObjects.EnemyObjects
                 Position += Velocity * (float)gameTime.ElapsedGameTime.TotalSeconds;
             }
 
+        }
+
+        public void RemoveFromStage()
+        {
+            state = new StateGreenKoopaRemoved();
         }
 
         public override void Trigger()
@@ -143,6 +168,15 @@ namespace GameSpace.GameObjects.EnemyObjects
             public StateGreenKoopaShelled()
             {
                 StateSprite = SpriteEnemyFactory.GetInstance().CreateGreenKoopaShellSprite();
+            }
+        }
+
+        public class StateGreenKoopaRemoved : AbstractEnemyState
+        {
+            public StateGreenKoopaRemoved()
+            {
+                StateSprite = SpriteEnemyFactory.GetInstance().CreateGreenKoopaLeftSprite();
+                StateSprite.SetVisible();
             }
         }
     }

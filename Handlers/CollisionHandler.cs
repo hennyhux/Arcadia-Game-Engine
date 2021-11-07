@@ -246,6 +246,23 @@ namespace GameSpace.EntityManaging
             }
         }
 
+        public void ShellToBlockCollision(GreenKoopa enemy, IGameObjects block)
+        {
+
+            if (DetectCollisionDirection(enemy, block) == (int)CollisionDirection.LEFT)
+            {
+                enemy.Direction = (int)eFacing.LEFT;
+                enemy.RemoveFromStage();
+             
+            }
+
+            else if (DetectCollisionDirection(enemy, block) == (int)CollisionDirection.RIGHT)
+            {
+                enemy.Direction = (int)eFacing.RIGHT;
+                enemy.RemoveFromStage();
+            }
+        }
+
         public void EnemyToMarioCollision(AbstractEnemy enemy, IGameObjects mario)
         {
             if (DetectCollisionDirection(enemy, mario) == (int)CollisionDirection.UP)
