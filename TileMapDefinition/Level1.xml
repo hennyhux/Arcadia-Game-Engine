@@ -94,9 +94,16 @@
 	
 	<Objects>
 		<x>896</x>
-		<y>370</y>
-		<item>SMALLPIPE</item>
+		<y>310</y>
+		<item>WARPPIPEHEADWITHMOB</item>
 	</Objects>
+	
+	<Objects>
+		<x>896</x>
+		<y>339</y>
+		<item>WARPPIPEBODY</item>
+	</Objects>
+	
 	<Objects>
 		<x>1216</x>
 		<y>338</y>

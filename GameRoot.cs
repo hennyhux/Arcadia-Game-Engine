@@ -9,11 +9,9 @@ namespace GameSpace
 {
     public class GameRoot : Game
     {
-        private protected readonly GraphicsDeviceManager graphicsDevice;
+        private protected GraphicsDeviceManager graphicsDevice;
         private protected SpriteBatch spriteBatch;
 
-
-        //HERE ARE THE VERY IMPORTANT CHANGES: ADDED NEW GAME STAE
         public State CurrentState { get; private set; }
         private State nextState;
 
