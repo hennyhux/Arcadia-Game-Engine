@@ -134,9 +134,9 @@ namespace GameSpace.States.GameStates
                 //new Layer(camera, BackgroundFactory.GetInstance().CreateBlackWindow(), new Vector2(7000.0f, 0.0f)),
             };
 
-            //Audio Stuff
-            song = AudioFactory.GetInstance().CreateSong();
-            MusicHandler.GetInstance().PlaySong(song);
+            //Play Song
+            MusicHandler.GetInstance().LoadSong(AudioFactory.GetInstance().CreateSong());
+            MusicHandler.GetInstance().PlaySong();
         }
 
         public override void Update(GameTime gameTime)
