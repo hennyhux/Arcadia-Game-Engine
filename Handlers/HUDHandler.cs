@@ -96,9 +96,8 @@ namespace GameSpace.Machines
 
         internal void EnterVictoryMode(GameRoot game)
         {
-            cameraCopy.LookAt(new Vector2(100, 2000));
+            
         }
-
 
     }
 }
