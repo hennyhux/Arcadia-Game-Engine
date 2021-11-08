@@ -17,7 +17,6 @@ namespace GameSpace
 
         public GraphicsDeviceManager Graphics => graphicsDevice;
         public Mario GetMario => (Mario)FinderHandler.GetInstance().FindItem((int)AvatarID.MARIO);
-        public int marioLives = 3;
         public GameRoot()
         {
             graphicsDevice = new GraphicsDeviceManager(this);
@@ -38,14 +37,13 @@ namespace GameSpace
 
         public void ResetCurrentState()
         {
-            marioLives = 3;
             CurrentState.Reset();
         }
 
         protected override void LoadContent()
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            CurrentState = new StartGameState(this, GraphicsDevice, Content, marioLives);
+            CurrentState = new StartGameState(this, GraphicsDevice, Content);
             CurrentState.LoadContent();
         }
 
@@ -71,12 +69,12 @@ namespace GameSpace
 
         public void ChangeToPlayState()
         {
-            nextState = new PlayingGameState(this, GraphicsDevice, Content, marioLives);
+            nextState = new PlayingGameState(this, GraphicsDevice, Content);
         }
 
         public void ChangeToVictoryState()
         {
-            nextState = new VictoryGameState(this, GraphicsDevice, Content, marioLives);
+            nextState = new VictoryGameState(this, GraphicsDevice, Content);
         }
     }
 }

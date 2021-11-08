@@ -55,7 +55,7 @@ namespace GameSpace.States.GameStates
 
         public Mario GetMario => (Mario)FinderHandler.GetInstance().FindItem((int)AvatarID.MARIO);
 
-        public PlayingGameState(GameRoot game, GraphicsDevice graphicsDevice, ContentManager content, int lives) : base(game, graphicsDevice, content, lives)
+        public PlayingGameState(GameRoot game, GraphicsDevice graphicsDevice, ContentManager content) : base(game, graphicsDevice, content)
         {
             levelRestart = new LevelRestart(game, 0);
         }
@@ -187,15 +187,13 @@ namespace GameSpace.States.GameStates
         protected int marioLives;
 
         #endregion
-        public State(GameRoot game, GraphicsDevice graphicsDevice, ContentManager content, int lives)
+        public State(GameRoot game, GraphicsDevice graphicsDevice, ContentManager content)
         {
             this.game = game;
 
             this.graphicsDevice = graphicsDevice;
 
             this.content = content;
-
-            marioLives = lives;
         }
 
         public virtual void Initialize()
