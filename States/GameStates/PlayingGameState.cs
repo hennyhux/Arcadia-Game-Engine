@@ -50,7 +50,7 @@ namespace GameSpace.States.GameStates
         public GraphicsDeviceManager Graphics => graphics;
 
         //private readonly string xmlFileName = "./Level1.xml"; // Turn in with this line of code!
-        private readonly string xmlFileName = "../../../TileMapDefinition/Level1.xml"; // ONLY to run on our machines
+        private readonly string xmlFileName = "../../../TileMapDefinition/HenryTesting.xml"; // ONLY to run on our machines
         //private readonly string xmlFileName = "../../../TileMapDefinition/CalebTesting.xml";
 
         public Mario GetMario => (Mario)FinderHandler.GetInstance().FindItem((int)AvatarID.MARIO);
@@ -118,7 +118,7 @@ namespace GameSpace.States.GameStates
             };
             #endregion
 
-            
+
             fontFile = content.Load<SpriteFont>("font");
             //Camera Stuff
             camera = new Camera(graphicsDevice.Viewport) { Limits = new Rectangle(0, 0, Loader.boundaryX, 480) };//Should be set to level's max X and Y

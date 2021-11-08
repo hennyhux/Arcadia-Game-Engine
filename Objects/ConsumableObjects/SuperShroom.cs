@@ -24,7 +24,7 @@ namespace GameSpace.GameObjects.ItemObjects
             MusicHandler.GetInstance().PlaySoundEffect(5);
         }
 
-        
+
         public override void UpdateCollisionBox()
         {
             CollisionBox = new Rectangle((int)Position.X, (int)Position.Y,
@@ -42,6 +42,6 @@ namespace GameSpace.GameObjects.ItemObjects
             MusicHandler.GetInstance().PlaySoundEffect(4);
 
         }
-        
+
     }
 }

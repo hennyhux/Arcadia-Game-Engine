@@ -73,9 +73,9 @@ namespace GameSpace.Machines
             WarpMario(warpLocation);
         }
 
-        internal void EnterVictoryPanel(GameRoot game)
+        internal void EnterVictoryPanel()
         {
-            HUDHandler.GetInstance().EnterVictoryMode(game);
+            gameRootCopy.ChangeToVictoryState();
         }
 
         public void IncrementMarioPoints(int points)
@@ -87,6 +87,11 @@ namespace GameSpace.Machines
         {
             mario.marioLives++;
             mario.marioLives -= 1;
+        }
+
+        public int CalculateScore()
+        {
+            return 1;
         }
     }
 }

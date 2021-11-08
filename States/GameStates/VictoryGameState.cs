@@ -1,11 +1,30 @@
-﻿using GameSpace.Machines;
+﻿using GameSpace.Commands;
+using GameSpace.Machines;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 using System.Collections.Generic;
 
 namespace GameSpace.States.GameStates
 {
+    public class CommandListVictory
+    {
+        private readonly Dictionary<Keys, ICommand> keyboardCommands;
+        private readonly Dictionary<Buttons, ICommand> controllerCommands;
+
+        public CommandListVictory(GameRoot game)
+        {
+            keyboardCommands = new Dictionary<Keys, ICommand>()
+            {
+                {Keys.Q, new ExitCommand(game)},
+                {Keys.R, new StartNewGameCommand()},
+                //load game command
+            };
+        }
+        public Dictionary<Keys, ICommand> GetCommand => keyboardCommands;
+    }
+
     public class VictoryGameState : State
     {
         private List<IController> controllers;
@@ -16,9 +35,9 @@ namespace GameSpace.States.GameStates
 
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
-            graphicsDevice.Clear(Color.Green);
+            graphicsDevice.Clear(Color.BlueViolet);
             spriteBatch.Begin();
-            HUDHandler.GetInstance().DrawStartingPanel(spriteBatch);
+            HUDHandler.GetInstance().DrawEndingResetPanel(spriteBatch);
             spriteBatch.End();
         }
 
@@ -33,12 +52,12 @@ namespace GameSpace.States.GameStates
 
         public override void Reset()
         {
-            
+
         }
 
         public override void Restart()
         {
-            
+
         }
 
         public override void Update(GameTime gameTime)

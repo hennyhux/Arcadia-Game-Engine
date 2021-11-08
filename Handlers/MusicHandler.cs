@@ -8,7 +8,7 @@ namespace GameSpace.Machines
     public class MusicHandler : AbstractHandler
     {
         private static readonly MusicHandler instance = new MusicHandler();
-        private bool mute = false; 
+        private bool mute = false;
 
         public static MusicHandler GetInstance()
         {
@@ -44,7 +44,7 @@ namespace GameSpace.Machines
         }
         public void MuteSoundEffects()
         {
-            mute = !mute; 
+            mute = !mute;
         }
 
     }

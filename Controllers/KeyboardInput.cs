@@ -11,6 +11,7 @@ namespace GameSpace
         private KeyboardState previousState;
         private protected CommandList commands;
         private protected CommandListStart commandsStart;
+        private CommandListVictory commandsVictory;
         private readonly ICommand executeCommand;
         private readonly Dictionary<Keys, ICommand> command;
 
@@ -18,12 +19,13 @@ namespace GameSpace
         {
             previousState = new KeyboardState();
 
-                commands = new CommandList(game);
+            commands = new CommandList(game);
+
+            commandsVictory = new CommandListVictory(game);
+
+            commandsStart = new CommandListStart(game);
 
 
-  
-                commandsStart = new CommandListStart(game);
-            
         }
 
         // due to the lack of command design this is smelly... I smell the smelly smell 
@@ -43,7 +45,8 @@ namespace GameSpace
 
                         else if (game.CurrentState is StartGameState) commandsStart.GetCommand[key].Execute();
 
-                        
+                        else if (game.CurrentState is VictoryGameState) commandsVictory.GetCommand[key].Execute();
+
                     }
 
                     catch (KeyNotFoundException)

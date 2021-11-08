@@ -86,7 +86,14 @@ namespace GameSpace.Machines
             spritebatch.DrawString(HeadsUpDisplay, "PRESS Q TO QUIT GAME", new Vector2(HudPosition.X, HudPosition.Y + 80), Color.Black);
             spritebatch.DrawString(HeadsUpDisplay, "MAIN MENU WIP", new Vector2(HudPosition.X, HudPosition.Y + 120), Color.Black);
             spritebatch.Draw(chungus, new Vector2(HudPosition.X, HudPosition.Y + 200), Color.White);
+        }
 
+        public void DrawEndingResetPanel(SpriteBatch spritebatch)
+        {
+            int score = MarioHandler.GetInstance().CalculateScore();
+            Draw(spritebatch);
+            spritebatch.DrawString(HeadsUpDisplay, "PRESS R FOR NEW GAME", new Vector2(HudPosition.X, HudPosition.Y + 120), Color.Black);
+            spritebatch.DrawString(HeadsUpDisplay, "PRESS Q TO QUIT GAME", new Vector2(HudPosition.X, HudPosition.Y + 200), Color.Black);
         }
 
         private void UpdateHudPosition()
@@ -99,7 +106,7 @@ namespace GameSpace.Machines
 
         internal void EnterVictoryMode(GameRoot game)
         {
-            
+
         }
 
     }

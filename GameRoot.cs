@@ -76,7 +76,7 @@ namespace GameSpace
 
         public void ChangeToVictoryState()
         {
-
+            nextState = new VictoryGameState(this, GraphicsDevice, Content, marioLives);
         }
     }
 }

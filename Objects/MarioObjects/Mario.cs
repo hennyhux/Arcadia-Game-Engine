@@ -40,7 +40,7 @@ namespace GameSpace.GameObjects.BlockObjects
 
         public Mario(Vector2 initLocation)
         {
-           // Debug.WriteLine("Mario.cs(50) CREATED MARIO \n");
+            // Debug.WriteLine("Mario.cs(50) CREATED MARIO \n");
             ObjectID = (int)AvatarID.MARIO;
             drawBox = false;
             hasCollided = false;

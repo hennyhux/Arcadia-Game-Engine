@@ -26,7 +26,7 @@ namespace GameSpace.GameObjects.EnemyObjects
         {
 
             if (!(state is StateGreenKoopaRemoved))
-                
+
             {
                 base.Update(gametime);
 
@@ -76,7 +76,7 @@ namespace GameSpace.GameObjects.EnemyObjects
                 case (int)ItemID.BIGPIPE:
                 case (int)ItemID.MEDIUMPIPE:
                 case (int)ItemID.SMALLPIPE:
-                    if (!(state is StateGreenKoopaDeadMoving))CollisionHandler.GetInstance().EnemyToBlockCollision(this, entity);
+                    if (!(state is StateGreenKoopaDeadMoving)) CollisionHandler.GetInstance().EnemyToBlockCollision(this, entity);
 
                     else
                     {
