@@ -9,6 +9,7 @@ namespace GameSpace.Machines
     {
         private static readonly MusicHandler instance = new MusicHandler();
         private bool mute = false;
+        private Song backgroundSong; 
 
         public static MusicHandler GetInstance()
         {
@@ -25,11 +26,16 @@ namespace GameSpace.Machines
             musicList = loadedList;
         }
 
-        public void PlaySong(Song backgroundSong)
+        public void LoadSong(Song song)
         {
-            MediaPlayer.Play(backgroundSong);
+            this.backgroundSong = song;
+        }
+
+        public void PlaySong()
+        {
+            MediaPlayer.Play(this.backgroundSong);
             MediaPlayer.IsRepeating = true;
-            MediaPlayer.Volume = MediaPlayer.Volume / 2;
+            //MediaPlayer.Volume = MediaPlayer.Volume / 2;
         }
 
         public void MuteSong()
