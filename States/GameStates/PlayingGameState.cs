@@ -116,6 +116,8 @@ namespace GameSpace.States.GameStates
                 new KeyboardInput(game), new ControllerInput(game)
             };
             #endregion
+
+            
             fontFile = content.Load<SpriteFont>("font");
             //Camera Stuff
             camera = new Camera(graphicsDevice.Viewport) { Limits = new Rectangle(0, 0, Loader.boundaryX, 480) };//Should be set to level's max X and Y

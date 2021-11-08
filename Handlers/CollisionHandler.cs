@@ -50,6 +50,8 @@ namespace GameSpace.EntityManaging
                 }
             }
         }
+
+        //Still O(n^2) will change for sprint 5
         private protected void SweepAndPrune()
         {
             marioCurrentLocation = mario.Position;

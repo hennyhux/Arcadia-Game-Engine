@@ -28,7 +28,7 @@ namespace GameSpace
             }
         }
 
-        // due to the lack of command design this is kinda ugly..
+        // due to the lack of command design this is smelly... I smell the smelly smell 
         public void Update()
         {
             KeyboardState currentKeyboardState = Keyboard.GetState();
