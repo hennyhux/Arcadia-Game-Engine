@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using GameSpace.Machines;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -9,6 +10,7 @@ namespace GameSpace.States.GameStates
 {
     public class VictoryGameState : State
     {
+        private List<IController> controllers;
         public VictoryGameState(GameRoot game, GraphicsDevice graphicsDevice, ContentManager content, int lives) : base(game, graphicsDevice, content, lives)
         {
 
@@ -16,27 +18,37 @@ namespace GameSpace.States.GameStates
 
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
-            throw new NotImplementedException();
+            graphicsDevice.Clear(Color.Green);
+            spriteBatch.Begin();
+            HUDHandler.GetInstance().DrawStartingPanel(spriteBatch);
+            spriteBatch.End();
         }
 
         public override void LoadContent()
         {
-            throw new NotImplementedException();
+            HUDHandler.GetInstance().LoadContent(content, marioLives, game);
+            controllers = new List<IController>()
+            {
+                new KeyboardInput(game), new ControllerInput(game)
+            };
         }
 
         public override void Reset()
         {
-            throw new NotImplementedException();
+            
         }
 
         public override void Restart()
         {
-            throw new NotImplementedException();
+            
         }
 
         public override void Update(GameTime gameTime)
         {
-            throw new NotImplementedException();
+            foreach (IController controller in controllers)
+            {
+                controller.Update();
+            }
         }
     }
 }

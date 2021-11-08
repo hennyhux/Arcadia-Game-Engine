@@ -41,7 +41,9 @@ namespace GameSpace
                     {
                         if (game.CurrentState is PlayingGameState) commands.GetCommand[key].Execute();
 
-                        if (game.CurrentState is StartGameState) commandsStart.GetCommand[key].Execute();
+                        else if (game.CurrentState is StartGameState) commandsStart.GetCommand[key].Execute();
+
+                        
                     }
 
                     catch (KeyNotFoundException)
