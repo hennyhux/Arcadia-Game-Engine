@@ -7,21 +7,15 @@
 		<avatar>MARIO</avatar>
 		<facing>RIGHT</facing>
 	</Objects>
-	
 
-	
-<Objects>
-		<x>200</x>
-		<y>0</y>
-		<enemy>GREENKOOPA</enemy>
-	</Objects>
 
-<Objects>
+
+	<Objects>
 		<x>300</x>
 		<y>150</y>
-		<enemy>GOOMBA</enemy>
+		<item>CASTLE</item>
 	</Objects>
-
+	
 
 	<Objects>
 		<x>100</x>
@@ -30,18 +24,4 @@
 		<blockRow>15</blockRow>
 	</Objects>
 
-	<Objects>
-		<x>164</x>
-		<y>368</y>
-		<block>BRICKBLOCK</block>
-		<blockRow>1</blockRow>
-	</Objects>
-		
-	<Objects>
-		<x>400</x>
-		<y>368</y>
-		<block>BRICKBLOCK</block>
-		<blockRow>1</blockRow>
-		
-	</Objects>	
 </Level>

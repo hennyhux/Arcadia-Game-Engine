@@ -104,7 +104,7 @@ namespace GameSpace.EntityManaging
 
         private bool IntersectAABB(IGameObjects a, IGameObjects b)
         {
-            
+
             if (a.CollisionBox.X + a.CollisionBox.Width < b.CollisionBox.X || a.CollisionBox.X > b.CollisionBox.X + b.CollisionBox.Width)
             {
                 return false;
@@ -264,7 +264,7 @@ namespace GameSpace.EntityManaging
             {
                 enemy.Direction = (int)eFacing.LEFT;
                 enemy.RemoveFromStage();
-             
+
             }
 
             else if (DetectCollisionDirection(enemy, block) == (int)CollisionDirection.RIGHT)
@@ -429,7 +429,7 @@ namespace GameSpace.EntityManaging
         }
         public void MarioToItemCollision(Castle castle)
         {
-            // MarioHandler.GetInstance().EnterVictoryPanel();
+            MarioHandler.GetInstance().EnterVictoryPanel();
         }
 
         #endregion
@@ -492,7 +492,6 @@ namespace GameSpace.EntityManaging
             return false;
         }
         #endregion
-
     }
 }
 

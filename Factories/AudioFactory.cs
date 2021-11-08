@@ -42,8 +42,8 @@ namespace GameSpace.Factories
             superJump = content.Load<SoundEffect>("Audio/superJump");
             stomp = content.Load<SoundEffect>("Audio/stomp");
             death = content.Load<SoundEffect>("Audio/death");
-            powerUpAppear = content.Load<SoundEffect>("Audio/powerUpAppear"); 
-            powerUpCollect = content.Load<SoundEffect>("Audio/powerUpCollect"); 
+            powerUpAppear = content.Load<SoundEffect>("Audio/powerUpAppear");
+            powerUpCollect = content.Load<SoundEffect>("Audio/powerUpCollect");
             oneUpCollect = content.Load<SoundEffect>("Audio/oneUpCollect"); //haven't tested
             coinCollect = content.Load<SoundEffect>("Audio/coinCollect");
             bump = content.Load<SoundEffect>("Audio/bump");

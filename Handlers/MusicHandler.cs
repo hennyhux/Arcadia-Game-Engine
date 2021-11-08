@@ -50,7 +50,7 @@ namespace GameSpace.Machines
         }
         public void MuteSoundEffects()
         {
-            mute = !mute; 
+            mute = !mute;
         }
 
     }
