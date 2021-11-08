@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 
+
 namespace GameSpace.Machines
 {
     public class HUDHandler : AbstractHandler
@@ -38,6 +39,8 @@ namespace GameSpace.Machines
             timer += internalGametime.ElapsedGameTime.Ticks;
             ticks = ticksMax - timer;
             seconds = ticks / convertToSeconds;
+            if (seconds == 50) MusicHandler.GetInstance().PlaySoundEffect(11);
+
             if (seconds == 0 || game.GetMario.marioActionState is GameSpace.States.MarioStates.DeadMarioState)
             {
                 ResetTimer();
@@ -71,7 +74,7 @@ namespace GameSpace.Machines
             spritebatch.DrawString(HeadsUpDisplay, "Score\n    " + mario.score.ToString(), HudPosition, Color.Black);
             spritebatch.DrawString(HeadsUpDisplay, "Time\n " + seconds, new Vector2(HudPosition.X + 160, HudPosition.Y), Color.Black);
             spritebatch.DrawString(HeadsUpDisplay, "World\n  1-1", new Vector2(HudPosition.X + 320, HudPosition.Y), Color.Black);
-            spritebatch.DrawString(HeadsUpDisplay, "Coins\n    " + 0, new Vector2(HudPosition.X + 480, HudPosition.Y), Color.Black); //Update to display coins
+            spritebatch.DrawString(HeadsUpDisplay, "Coins\n    " + mario.numCoinsCollected, new Vector2(HudPosition.X + 480, HudPosition.Y), Color.Black); //Update to display coins
             spritebatch.DrawString(HeadsUpDisplay, "Lives\n   " + marioLives.ToString(), new Vector2(HudPosition.X + 640, HudPosition.Y), Color.Black);
             UpdateHudPosition();
         }
