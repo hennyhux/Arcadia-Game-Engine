@@ -18,7 +18,15 @@ namespace GameSpace.Abstracts
 
         internal bool hasCollided;
 
+        protected AbstractItem()
+        {
+            HasHalted = false;
+        }
+
         public virtual Rectangle ExpandedCollisionBox { get; set; }
+        public virtual bool HasHalted { get; set; }
+
+
 
         public virtual void Draw(SpriteBatch spritebatch)
         {
@@ -36,6 +44,11 @@ namespace GameSpace.Abstracts
                 case (int)AvatarID.MARIO:
                     Trigger();
                     break;
+            }
+
+            if (entity is AbstractBlock block)
+            {
+                CollisionHandler.GetInstance().ItemToBlockCollision(block, this);
             }
         }
         public virtual bool IsCurrentlyColliding()
@@ -56,7 +69,7 @@ namespace GameSpace.Abstracts
         public virtual void Update(GameTime gametime)
         {
             Sprite.Update(gametime);
-            if (!hasCollided)
+            if (!hasCollided && !HasHalted)
             {
                 UpdateSpeed();
                 UpdatePosition(Position, gametime);

@@ -1,5 +1,5 @@
 ﻿using GameSpace.Abstracts;
-using GameSpace.EntitiesManager;
+using GameSpace.EntityManaging;
 using GameSpace.Enums;
 using GameSpace.Factories;
 using GameSpace.Interfaces;
@@ -26,14 +26,14 @@ namespace GameSpace.GameObjects.EnemyObjects
 
         public override void UpdatePosition(Vector2 location, GameTime gameTime) //use velocity
         {
-            if (EntityManager.IsGoingToFall(this) && !(state is StateRedKoopaDead))
+            if (CollisionHandler.GetInstance().IsGoingToFall(this) && !(state is StateRedKoopaDead))
             {
 
                 Velocity = new Vector2(0, Velocity.Y);
                 Acceleration = new Vector2(0, 400);
             }
 
-            else if (!EntityManager.IsGoingToFall(this))
+            else
             {
                 Acceleration = new Vector2(0, 0);
                 if (Direction == (int)eFacing.RIGHT && !(state is StateRedKoopaDead))

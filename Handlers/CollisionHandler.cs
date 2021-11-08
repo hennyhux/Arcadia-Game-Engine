@@ -10,6 +10,7 @@ using GameSpace.Sprites.ExtraItems;
 using GameSpace.States.BlockStates;
 using GameSpace.States.MarioStates;
 using Microsoft.Xna.Framework;
+using System.Diagnostics;
 using System.Linq;
 using static GameSpace.GameObjects.EnemyObjects.GreenKoopa;
 
@@ -38,6 +39,7 @@ namespace GameSpace.EntityManaging
         #region Collision Algorithms
         private protected void HandleAllCollisions()
         {
+
             for (int i = 0; i < copyPrunedList.Count; i++)
             {
                 for (int j = i + 1; j < copyPrunedList.Count; j++)
@@ -57,7 +59,7 @@ namespace GameSpace.EntityManaging
             marioCurrentLocation = mario.Position;
             foreach (IGameObjects entity in gameEntityList)
             {
-                if (marioCurrentLocation.X + 800 >= entity.Position.X && entity.Position.X - 800 < marioCurrentLocation.X)
+                if (entity.Position.X + 800 >= marioCurrentLocation.X && entity.Position.X - 800 < marioCurrentLocation.X)
                 {
                     prunedList.Add(entity);
                 }
@@ -66,10 +68,10 @@ namespace GameSpace.EntityManaging
             //Debug.WriteLine("SIZE OF OG LIST " + gameEntityList.Count);
             copyPrunedList = prunedList.ToList();
             prunedList.Clear();
-            //Debug.WriteLine("SIZE OF PRUNED COPY LIST " + copyPrunedList.Count);
+            Debug.WriteLine("SIZE OF PRUNED COPY LIST " + copyPrunedList.Count);
         }
 
-        private int DetectCollisionDirection(IGameObjects a, IGameObjects b)
+        public int DetectCollisionDirection(IGameObjects a, IGameObjects b)
         {
             Rectangle overLappedRectangle = Rectangle.Intersect(a.CollisionBox, b.CollisionBox);
             int direction = 0;
@@ -99,9 +101,10 @@ namespace GameSpace.EntityManaging
 
             return direction;
         }
+
         private bool IntersectAABB(IGameObjects a, IGameObjects b)
         {
-
+            
             if (a.CollisionBox.X + a.CollisionBox.Width < b.CollisionBox.X || a.CollisionBox.X > b.CollisionBox.X + b.CollisionBox.Width)
             {
                 return false;
@@ -135,9 +138,15 @@ namespace GameSpace.EntityManaging
             }
             return gonnaFall;
         }
-        public void ItemToBlockCollision(AbstractBlock block)
+        public void ItemToBlockCollision(AbstractBlock block, AbstractItem item)
         {
-
+            switch (DetectCollisionDirection(item, block))
+            {
+                case (int)CollisionDirection.LEFT:
+                case (int)CollisionDirection.RIGHT:
+                    item.HasHalted = true;
+                    break;
+            }
         }
 
         public void ItemToMarioCollison(BigPipe pipe)
@@ -485,7 +494,6 @@ namespace GameSpace.EntityManaging
         #endregion
 
     }
-
 }
 
 

@@ -1,4 +1,4 @@
-﻿using GameSpace.EntitiesManager;
+﻿using GameSpace.EntityManaging;
 using GameSpace.Enums;
 using GameSpace.Interfaces;
 using Microsoft.Xna.Framework;
@@ -53,7 +53,7 @@ namespace GameSpace.Abstracts
 
         public virtual void CollisionWithMario(IGameObjects entity)
         {
-            if (EntityManager.DetectCollisionDirection(this, entity) == (int)CollisionDirection.DOWN)
+            if (CollisionHandler.GetInstance().DetectCollisionDirection(this, entity) == (int)CollisionDirection.DOWN)
             {
                 if (!revealedItem)
                 {

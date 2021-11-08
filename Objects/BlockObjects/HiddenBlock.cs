@@ -1,5 +1,5 @@
 ﻿using GameSpace.Abstracts;
-using GameSpace.EntitiesManager;
+using GameSpace.EntityManaging;
 using GameSpace.Enums;
 using GameSpace.Factories;
 using GameSpace.Interfaces;
@@ -26,7 +26,7 @@ namespace GameSpace.GameObjects.BlockObjects
 
         public override void HandleCollision(IGameObjects entity)
         {
-            if (EntityManager.DetectCollisionDirection(this, entity) == (int)CollisionDirection.DOWN && hasCollided == false && entity.Velocity.Y < 0)
+            if (CollisionHandler.GetInstance().DetectCollisionDirection(this, entity) == (int)CollisionDirection.DOWN && hasCollided == false && entity.Velocity.Y < 0)
             {
                 Trigger();
                 hasCollided = true;

@@ -1,5 +1,4 @@
 ﻿using GameSpace.Abstracts;
-using GameSpace.EntitiesManager;
 using GameSpace.EntityManaging;
 using GameSpace.Enums;
 using GameSpace.Factories;
@@ -10,7 +9,6 @@ using GameSpace.States;
 using GameSpace.States.BlockStates;
 using Microsoft.Xna.Framework;
 using System.Diagnostics;
-using GameSpace.Machines;
 
 
 namespace GameSpace.Objects.BlockObjects
@@ -60,7 +58,7 @@ namespace GameSpace.Objects.BlockObjects
         public override void HandleCollision(IGameObjects entity)
         {
 
-            if (EntityManager.DetectCollisionDirection(this, entity) == (int)CollisionDirection.DOWN)
+            if (CollisionHandler.GetInstance().DetectCollisionDirection(this, entity) == (int)CollisionDirection.DOWN)
             {
                 if (entity is Mario)
                 {

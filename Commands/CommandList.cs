@@ -1,6 +1,4 @@
 ﻿using GameSpace.Commands;
-using GameSpace.EntitiesManager;
-using GameSpace.Enums;
 using Microsoft.Xna.Framework.Input;
 using System.Collections.Generic;
 
@@ -28,21 +26,14 @@ namespace GameSpace
                 {Keys.Left, new MoveLeftCommand(game)},
                 {Keys.W, new MoveUpCommand(game)},
                 {Keys.Up, new MoveUpCommand(game)},
-                //{Keys.W, new MoveUpCommand(EntityManager.FindBlock((int)BLOCKID.BRICKBLOCK))},
-               // {Keys.S, new MoveDownCommand(game)},
                 {Keys.S, new MoveDownCommand(game)},
                 {Keys.Down, new MoveDownCommand(game)},
                 {Keys.Y, new StateStandardMarioCommand(game)},
                 {Keys.U, new StateSuperMarioCommand(game)},
                 {Keys.I, new StateFireMarioCommand(game)},
                 {Keys.O, new StateDeadMarioCommand(game)},
-                {Keys.B, new ChangeBlockCommand(EntityManager.FindItem((int)BlockID.BRICKBLOCK))},
-                {Keys.H, new ShowHiddenBlockCommand(EntityManager.FindItem((int)BlockID.HIDDENBLOCK))},
-                {Keys.OemQuestion, new ChangeQuestionBlockCommand(EntityManager.FindItem((int)BlockID.QUESTIONBLOCK))},
                 {Keys.C, new ToggleCollisionBoxes()},
                 {Keys.Space, new ThrowFireBallCommand(game)},
-
-                // Jump, crouch and dash
             };
 
             controllerCommands = new Dictionary<Buttons, ICommand>()

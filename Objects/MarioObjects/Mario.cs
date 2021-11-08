@@ -11,7 +11,6 @@ using GameSpace.States.BlockStates;
 using GameSpace.States.MarioStates;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System.Diagnostics;
 
 namespace GameSpace.GameObjects.BlockObjects
 {
@@ -41,7 +40,7 @@ namespace GameSpace.GameObjects.BlockObjects
 
         public Mario(Vector2 initLocation)
         {
-            Debug.WriteLine("Mario.cs(50) CREATED MARIO \n");
+           // Debug.WriteLine("Mario.cs(50) CREATED MARIO \n");
             ObjectID = (int)AvatarID.MARIO;
             drawBox = false;
             hasCollided = false;
