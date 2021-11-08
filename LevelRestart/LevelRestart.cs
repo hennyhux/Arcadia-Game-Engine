@@ -1,5 +1,7 @@
 ﻿using GameSpace.Interfaces;
 using Microsoft.Xna.Framework;
+using GameSpace.Machines;
+
 
 namespace GameSpace.Level
 {
@@ -16,11 +18,11 @@ namespace GameSpace.Level
         public void FindCheckPoint()
         {
 
-            if (MyGame.GetMario.Position.X >= 5120 || lastCheckPoint == 2) //Checkpoint 2 - Randomly assigned
+            if (MarioHandler.GetInstance().GetPosition().X >= 5120 || lastCheckPoint == 2) //Checkpoint 2 - Randomly assigned
             {
                 lastCheckPoint = 2;
             }
-            else if (MyGame.GetMario.Position.X >= 2336 || lastCheckPoint == 1) //Checkpoint 1 - Randomly assigned
+            else if (MarioHandler.GetInstance().GetPosition().X >= 2336 || lastCheckPoint == 1) //Checkpoint 1 - Randomly assigned
             {
                 lastCheckPoint = 1;
             }

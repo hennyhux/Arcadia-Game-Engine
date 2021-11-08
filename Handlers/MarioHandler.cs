@@ -88,5 +88,10 @@ namespace GameSpace.Machines
             mario.marioLives++;
             mario.marioLives -= 1;
         }
+
+        public Vector2 GetPosition()
+        {
+            return mario.Position;
+        }
     }
 }

@@ -16,14 +16,25 @@ namespace GameSpace.Objects.BlockObjects
 
     public class StateExplodingBrickBlock : AbstractBlockStates
     {
-        public StateExplodingBrickBlock()
+        public StateExplodingBrickBlock() 
         {
             sprite = SpriteBlockFactory.GetInstance().ReturnShatterBlock();
+
+        }
+    }
+
+    public class StateGoneBrickBlock : AbstractBlockStates
+    {
+        public StateGoneBrickBlock()
+        {
+            sprite = SpriteBlockFactory.GetInstance().ReturnShatterBlock();
+            sprite.SetVisible();
         }
     }
 
     public class BrickBlock : AbstractBlock
     {
+        private int counter = 0;
         public BrickBlock(Vector2 initLocation)
         {
             ObjectID = (int)BlockID.BRICKBLOCK;
@@ -37,17 +48,27 @@ namespace GameSpace.Objects.BlockObjects
         public override void Update(GameTime gametime)
         {
             state.Update(gametime);
+            if (state is StateExplodingBrickBlock) 
+            { 
+                ++this.counter;
+                if (this.counter >= 10)
+                {
+                    state = new StateGoneBrickBlock();
+                    CollisionBox = new Rectangle();
+                }
+            }
         }
 
         public override void Trigger()
         {
 
-            if (state is StateBlockIdle && !hasCollided && MarioHandler.GetInstance().IsCurrentlyBigMario())
+            if (!hasCollided && MarioHandler.GetInstance().IsCurrentlyBigMario())
             {
                 state = new StateExplodingBrickBlock();
+                MusicHandler.GetInstance().PlaySoundEffect(9);
             }
 
-            else if (state is StateBrickBlockIdle && !hasCollided)
+            else if (!hasCollided)
             {
                 state = new StateBlockBumped(this);
                 MusicHandler.GetInstance().PlaySoundEffect(8);
@@ -62,18 +83,8 @@ namespace GameSpace.Objects.BlockObjects
             {
                 if (entity is Mario)
                 {
-                    Mario mario = (Mario)entity;
-                    if (mario.marioPowerUpState is BigMarioState || mario.marioPowerUpState is FireMarioState)
-                    {
-                        Debug.WriteLine("SHATTER BLOCK, mario PowerUp {0}", mario.marioPowerUpState);
-                        //state = new StateExplodingBlock(this);
-                        MusicHandler.GetInstance().PlaySoundEffect(9);
-                    }
-                    else
-                    {
-                        RevealItem();
-                        Trigger();
-                    }
+                    RevealItem();
+                    Trigger();
                 }
             }
         }

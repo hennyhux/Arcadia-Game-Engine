@@ -21,5 +21,11 @@ namespace GameSpace.Abstracts
         {
             sprite.Update(gameTime);
         }
+
+        public virtual void stopDraw()
+        {
+            sprite.SetVisible();
+        }
+
     }
 }
