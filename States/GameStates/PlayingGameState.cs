@@ -68,6 +68,7 @@ namespace GameSpace.States.GameStates
         public override void Reset()
         {
             TheaterHandler.GetInstance().ResetStaticMembers();
+            TheaterHandler.GetInstance().InitializeGameroot(game);
             startOfGame = true;
             marioLives = 3;
             Initialize();

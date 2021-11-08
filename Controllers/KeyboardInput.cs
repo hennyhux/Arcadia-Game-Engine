@@ -17,15 +17,13 @@ namespace GameSpace
         public KeyboardInput(GameRoot game)
         {
             previousState = new KeyboardState();
-            if (game.CurrentState is PlayingGameState)
-            {
-                commands = new CommandList(game);
-            }
 
-            else if (game.CurrentState is StartGameState)
-            {
+                commands = new CommandList(game);
+
+
+  
                 commandsStart = new CommandListStart(game);
-            }
+            
         }
 
         // due to the lack of command design this is kinda ugly..
@@ -43,7 +41,7 @@ namespace GameSpace
                     {
                         if (game.CurrentState is PlayingGameState) commands.GetCommand[key].Execute();
 
-                        else if (game.CurrentState is StartGameState) commandsStart.GetCommand[key].Execute();
+                        if (game.CurrentState is StartGameState) commandsStart.GetCommand[key].Execute();
                     }
 
                     catch (KeyNotFoundException)
