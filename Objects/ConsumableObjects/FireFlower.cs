@@ -13,7 +13,7 @@ namespace GameSpace.GameObjects.ItemObjects
         {
             ObjectID = (int)ItemID.FIREFLOWER;
             Sprite = SpriteItemFactory.GetInstance().CreateFireFlower();
-            Position = initialPosition;
+            Position = new Vector2(initialPosition.X - 10, initialPosition.Y);
             CollisionBox = new Rectangle((int)Position.X, (int)Position.Y, Sprite.Texture.Width * 2 / 4, Sprite.Texture.Height * 2);
             drawBox = false;
         }
@@ -24,14 +24,14 @@ namespace GameSpace.GameObjects.ItemObjects
             MusicHandler.GetInstance().PlaySoundEffect(5);
         }
 
-        public override void AdjustLocationComingOutOfBlock()
+        public override void Update(GameTime gametime)
         {
-            Position = new Vector2(Position.X - 4, Position.Y - Sprite.Texture.Height * 2);
-            CollisionBox = new Rectangle((int)Position.X, (int)Position.Y, Sprite.Texture.Width * 2 / 4, Sprite.Texture.Height * 2);
-
-            //play sound effect for powerUpAppear
-            MusicHandler.GetInstance().PlaySoundEffect(4);
-
+            Sprite.Update(gametime);
+            if (!hasCollided)
+            {
+                UpdatePosition(Position, gametime);
+                UpdateCollisionBox();
+            }
         }
     }
 }
