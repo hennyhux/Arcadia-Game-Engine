@@ -26,6 +26,7 @@
     {
         COIN = 13,
         HIDDENLEVELCOIN = 130,
+        HUDCOIN = 131,
         STAR = 14,
         ONEUPSHROOM = 15,
         SUPERSHROOM = 16,
