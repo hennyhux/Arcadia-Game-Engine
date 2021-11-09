@@ -116,7 +116,7 @@ namespace GameSpace.States.MarioStates
 
         public override void UpTransition()
         {
-
+            JumpingTransition();
         }
         public override void DownTransition()
         {

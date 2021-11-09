@@ -2,24 +2,24 @@
 using Microsoft.Xna.Framework.Graphics;
 namespace GameSpace.Sprites.Background
 {
-    public class BackgroundSprite : AbstractSprite
+    public class HiddenBackgroundSprite : AbstractSprite
     {
         public Texture2D Texture;
 
         public Vector2 Position;
 
-        public BackgroundSprite(Texture2D texture)
+        public HiddenBackgroundSprite(Texture2D texture)
         {
             Texture = texture;
         }
 
-        public BackgroundSprite(Texture2D texture, Vector2 position)
+        public HiddenBackgroundSprite(Texture2D texture, Vector2 position)
         {
             Texture = texture;
             Position = position;
         }
 
-        public BackgroundSprite()
+        public HiddenBackgroundSprite()
         {
 
         }
@@ -34,16 +34,7 @@ namespace GameSpace.Sprites.Background
             //Debug.WriteLine("xPox {1}, camera Xpos: {0}", (int)cameraLocation.X * (int)parallax.X, ((int)cameraLocation.X * (int)parallax.X) % Texture.Width);
             //Debug.WriteLine("parallax {0}, camera abs X: {0}", (int)parallax.X, (int)cameraLocation.X);
             Rectangle sourceRectangle = new Rectangle((int)(cameraLocation.X * parallax.X) % Texture.Width, 0, 1200, Texture.Height);//1 repeating row of pictures
-            Rectangle destinationRectangle;
-            if ((int)Position.X > 0)
-            {
-                 destinationRectangle = new Rectangle((int)parallax.X * (int)Position.X, (int)cameraLocation.Y + (int)Position.Y, 1200, Texture.Height);
-            }
-            else
-            {
-                 destinationRectangle = new Rectangle((int)(cameraLocation.X * parallax.X) + (int)Position.X, (int)cameraLocation.Y + (int)Position.Y, 1200, Texture.Height);
-            }
-            //the 1200 could be a constant or some value based
+            Rectangle destinationRectangle = new Rectangle((int)(cameraLocation.X * parallax.X)+(int)Position.X, (int)cameraLocation.Y + (int)Position.Y, 1200, Texture.Height);//the 1200 could be a constant or some value based
             spriteBatch.Draw(Texture, destinationRectangle, sourceRectangle, Color.White);                                                      // on window size
         }
 
