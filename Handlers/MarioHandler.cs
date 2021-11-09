@@ -3,6 +3,8 @@ using GameSpace.Interfaces;
 using GameSpace.Sprites.ExtraItems;
 using GameSpace.States.MarioStates;
 using Microsoft.Xna.Framework;
+using System.Diagnostics;
+
 
 namespace GameSpace.Machines
 {
@@ -113,8 +115,38 @@ namespace GameSpace.Machines
 
         public void CalculateFinalScore(int marioY, int poleY)
         {
-            int multiplier = poleY - marioY;
-            mario.score = (int)(mario.score * (float)(multiplier * .042));
+            int flagPoints = 0;//Calculates the points from the flag
+            double pixelConversionMult = 2;//To make different heights of poles more accerate for points
+            if(poleY >= marioY + mario.sprite.Height/2){//If mario on top of flag pole 
+                //increment lives
+                flagPoints = 8000;
+                MarioHandler.GetInstance().IncrementMarioLives();
+            }
+            else if ((marioY - poleY < 25 * pixelConversionMult)){//If 
+                flagPoints = 4000;
+            }
+            else if ((marioY - poleY < 71 * pixelConversionMult))
+            {//If 
+                flagPoints = 2000;
+            }
+            else if ((marioY - poleY < 95 * pixelConversionMult))
+            {//If 
+                flagPoints = 800;
+            }
+            else if ((marioY - poleY < 135 * pixelConversionMult))
+            {//If 
+                flagPoints = 400;
+            }
+            else
+            {//If bottom of flag 
+                flagPoints = 100;
+            }
+            Debug.Print("FlagPoints : {0}", flagPoints);
+            
+            //int multiplier = poleY - marioY ;
+            double multiplier = 200;
+            mario.score += (int)(multiplier * HUDHandler.seconds);//Get points based off time
+            mario.score += flagPoints;// points based off flag
         }
     }
 }
