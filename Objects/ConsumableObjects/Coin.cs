@@ -3,6 +3,7 @@ using GameSpace.Enums;
 using GameSpace.Factories;
 using GameSpace.Machines;
 using Microsoft.Xna.Framework;
+using System.Diagnostics;
 
 namespace GameSpace.GameObjects.ItemObjects
 {
@@ -35,6 +36,7 @@ namespace GameSpace.GameObjects.ItemObjects
         }
     }
 
+
     public class HiddenLevelCoin : Coin
     {
         public HiddenLevelCoin(Vector2 initalPosition) : base(initalPosition)
@@ -50,6 +52,30 @@ namespace GameSpace.GameObjects.ItemObjects
         public override void Trigger()
         {
             base.Trigger();
+        }
+    }
+
+    public class HUDCoin : Coin
+    {
+        public HUDCoin(Vector2 pos) : base(Vector2.Zero)
+        {
+            Debug.Print("constructor");
+            ObjectID = (int)ItemID.HUDCOIN;
+            Sprite = SpriteItemFactory.GetInstance().CreateCoin();
+            Position = new Vector2(0, 0);
+            CollisionBox = new Rectangle(0, 0, 0, 0);
+            hasCollided = false;
+            drawBox = false;
+        }
+
+       /* public override void Update(GameTime gametime)
+        {
+            Sprite.Update(gametime);
+        }*/
+
+        public override void Trigger()
+        {
+            
         }
     }
 }

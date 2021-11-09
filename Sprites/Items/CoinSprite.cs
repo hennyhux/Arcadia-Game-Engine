@@ -26,6 +26,26 @@ namespace GameSpace.Sprites
             milliSecondsPerFrame = 275;
         }
 
+        public CoinSprite(Texture2D texture, int rows, int columns, int totalFrames, int startingPointX,
+            int startingPointY, bool HUDCOIN)
+        {
+            Texture = texture;
+            isVisible = true;
+            currentFrame = 1;
+            frameHeight = rows;
+            frameWidth = columns;
+            this.totalFrames = totalFrames;
+            this.startingPointX = startingPointX;
+            this.startingPointY = startingPointY;
+            offsetX = 0;
+            currentFramePoint = new Point(startingPointX, startingPointY);
+            frameOrigin = new Point(startingPointX, startingPointY);
+            atlasSize = new Point(columns, rows);
+            frameSize = new Point(Texture.Width / atlasSize.X, Texture.Height / atlasSize.Y);
+            timeSinceLastFrame = 0;
+            milliSecondsPerFrame = 275;
+        }
+
         public override void Draw(SpriteBatch spriteBatch, Vector2 location)
         {
             if (isVisible)

@@ -171,6 +171,9 @@ namespace GameSpace.TileMapDefinition
                 case ItemID.HIDDENLEVELCOIN: //Used on Hidden Level
                     objects.Add(objectFactory.CreateHiddenLevelCoinObject(location));
                     break;
+                case ItemID.HUDCOIN: //Used on for Animated Coin in HUD
+                    objects.Add(objectFactory.CreateHUDCoinObject(location));
+                    break;
                 case ItemID.SMALLPIPE:
                     objects.Add(objectFactory.CreateSmallPipeObject(location));
                     break;

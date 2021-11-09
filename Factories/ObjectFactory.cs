@@ -8,7 +8,7 @@ using GameSpace.Objects.BlockObjects;
 using GameSpace.Objects.EnemyObjects;
 using GameSpace.Sprites.ExtraItems;
 using Microsoft.Xna.Framework;
-
+using System.Diagnostics;
 namespace GameSpace.Factories
 {
     public class ObjectFactory
@@ -141,6 +141,12 @@ namespace GameSpace.Factories
         public IGameObjects CreateHiddenLevelCoinObject(Vector2 location)
         {
             return new HiddenLevelCoin(location);
+        }
+
+        public IGameObjects CreateHUDCoinObject(Vector2 location)
+        {
+            Debug.Print("HUDCOIN");
+            return new HUDCoin(location);
         }
         public IGameObjects CreateStarObject(Vector2 location)
         {

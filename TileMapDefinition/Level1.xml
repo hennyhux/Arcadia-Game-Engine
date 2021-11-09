@@ -857,6 +857,11 @@
 		<y>242</y>
 		<item>HIDDENLEVELCOIN</item>
 	</Objects>
+	<Objects>
+		<x>7000</x>
+		<y>0</y>
+		<item>HUDCOIN</item>
+	</Objects>
 
 
 
