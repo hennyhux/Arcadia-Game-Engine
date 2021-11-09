@@ -58,7 +58,14 @@ namespace GameSpace.GameObjects.ExtraItemsObjects
 
         public void HandleCollision(IGameObjects entity)
         {
-            hasCollided = true;
+            switch (entity.ObjectID)
+            {
+                case (int)AvatarID.MARIO:
+                    hasCollided = true;
+                    CollisionBox = new Rectangle(0, 0, 0, 0);
+                    break;
+            }
+
         }
 
         public void ToggleCollisionBoxes()

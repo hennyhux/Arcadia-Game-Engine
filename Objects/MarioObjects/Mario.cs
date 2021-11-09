@@ -239,6 +239,10 @@ namespace GameSpace.GameObjects.BlockObjects
                     CollisionHandler.GetInstance().MarioToItemCollision((Castle)entity);
                     break;
 
+                case (int)ItemID.FLAGPOLE:
+                    CollisionHandler.GetInstance().MarioToItemCollision((FlagPole)entity);
+                    break;
+
                 case (int)BlockID.QUESTIONBLOCK:
                 case (int)BlockID.BRICKBLOCK:
                 case (int)BlockID.FLOORBLOCK:
@@ -276,7 +280,7 @@ namespace GameSpace.GameObjects.BlockObjects
         public void WarpMario()
         {
             IGameObjects[] NextPipe = FinderHandler.GetInstance().FindWarpPipes();
-            Position = NextPipe[1].Position;
+            Position = NextPipe[1].Position; // remove hardcode 
         }
 
         public void ToggleCollisionBoxes()

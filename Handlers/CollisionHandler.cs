@@ -432,6 +432,13 @@ namespace GameSpace.EntityManaging
             MarioHandler.GetInstance().EnterVictoryPanel();
         }
 
+        public void MarioToItemCollision(FlagPole pole)
+        {
+            int marioY = (int)mario.Position.Y;
+            int poleY = (int)pole.Position.Y + pole.Sprite.Texture.Height * 2 - 34;
+
+            MarioHandler.GetInstance().CalculateFinalScore(marioY, poleY);
+        }
         #endregion
 
         #region Block Collision

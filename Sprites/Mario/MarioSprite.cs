@@ -63,25 +63,7 @@ namespace GameSpace.Sprites
 
             #region time
             timeSinceLastFrame = 0;
-            milliSecondsPerFrame = 275;
-            #endregion
-        }
-
-        public MarioSprite()
-        {
-            //Texture = texture;
-            IsVisible = true;
-            currentFrame = 0;
-            totalFrames = 0;
-            facingRight = 0;
-            marioPower = 1;
-            actionState = 1;
-            newState = true;
-            facing = SpriteEffects.None;
-
-            #region time
-            timeSinceLastFrame = 0;
-            milliSecondsPerFrame = 275;
+            milliSecondsPerFrame = 100;
             #endregion
         }
 

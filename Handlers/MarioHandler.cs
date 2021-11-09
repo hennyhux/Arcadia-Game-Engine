@@ -109,5 +109,11 @@ namespace GameSpace.Machines
         {
             return mario.Position;
         }
+
+        public void CalculateFinalScore(int marioY, int poleY)
+        {
+            int multiplier = poleY - marioY;
+            mario.score = (int)(mario.score * (float)(multiplier * .042));
+        }
     }
 }
