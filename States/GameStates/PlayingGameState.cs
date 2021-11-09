@@ -171,7 +171,6 @@ namespace GameSpace.States.GameStates
             HUDHandler.GetInstance().Draw(spriteBatch);
             spriteBatch.End();
         }
-
     }
 
     public abstract class State

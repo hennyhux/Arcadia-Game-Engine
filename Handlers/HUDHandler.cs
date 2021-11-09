@@ -86,27 +86,28 @@ namespace GameSpace.Machines
             spritebatch.DrawString(HeadsUpDisplay, "PRESS Q TO QUIT GAME", new Vector2(HudPosition.X, HudPosition.Y + 80), Color.Black);
             spritebatch.DrawString(HeadsUpDisplay, "MAIN MENU WIP", new Vector2(HudPosition.X, HudPosition.Y + 120), Color.Black);
             spritebatch.Draw(chungus, new Vector2(HudPosition.X, HudPosition.Y + 200), Color.White);
+            //UpdateHudPosition();
         }
 
         public void DrawEndingResetPanel(SpriteBatch spritebatch)
         {
             int score = MarioHandler.GetInstance().CalculateScore();
-            Draw(spritebatch);
-            spritebatch.DrawString(HeadsUpDisplay, "PRESS R FOR NEW GAME", new Vector2(HudPosition.X, HudPosition.Y + 120), Color.Black);
-            spritebatch.DrawString(HeadsUpDisplay, "PRESS Q TO QUIT GAME", new Vector2(HudPosition.X, HudPosition.Y + 200), Color.Black);
+               spritebatch.DrawString(HeadsUpDisplay, "Score\n    " + mario.score.ToString(), new Vector2(0, 0), Color.Black);
+            spritebatch.DrawString(HeadsUpDisplay, "Time\n " + seconds, new Vector2(160, 0), Color.Black);
+            spritebatch.DrawString(HeadsUpDisplay, "World\n  1-1", new Vector2(+ 320, 0), Color.Black);
+            spritebatch.DrawString(HeadsUpDisplay, "Coins\n    " + mario.numCoinsCollected, new Vector2(480,0), Color.Black); //Update to display coins
+            spritebatch.DrawString(HeadsUpDisplay, "Lives\n   " + marioLives.ToString(), new Vector2(640, 0), Color.Black);
+            spritebatch.DrawString(HeadsUpDisplay, "PRESS R FOR NEW GAME", new Vector2(0, 120), Color.Black);
+            spritebatch.DrawString(HeadsUpDisplay, "PRESS Q TO QUIT GAME", new Vector2(0, 200), Color.Black);
+            UpdateHudPosition();
         }
 
         private void UpdateHudPosition()
         {
-            if (cameraCopy.Position.X > HudPosition.X)
+            if (cameraCopy.Position.X + 10> HudPosition.X || HudPosition.X > cameraCopy.Position.X)
             {
-                HudPosition.X++;
+                HudPosition.X = cameraCopy.Position.X + 10;
             }
-        }
-
-        internal void EnterVictoryMode(GameRoot game)
-        {
-
         }
 
     }

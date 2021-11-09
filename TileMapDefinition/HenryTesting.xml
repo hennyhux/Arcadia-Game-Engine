@@ -12,11 +12,17 @@
 
 	<Objects>
 		<x>300</x>
-		<y>150</y>
-		<item>CASTLE</item>
+		<y>50</y>
+		<item>FLAGPOLE</item>
 	</Objects>
 	
 
+	<Objects>
+		<x>100</x>
+		<y>50</y>
+		<item>COIN</item>
+	</Objects>
+	
 	<Objects>
 		<x>100</x>
 		<y>400</y>
