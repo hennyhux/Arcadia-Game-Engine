@@ -28,7 +28,7 @@ namespace GameSpace.States.GameStates
     public class VictoryGameState : State
     {
         private List<IController> controllers;
-        public VictoryGameState(GameRoot game, GraphicsDevice graphicsDevice, ContentManager content, int lives) : base(game, graphicsDevice, content, lives)
+        public VictoryGameState(GameRoot game, GraphicsDevice graphicsDevice, ContentManager content) : base(game, graphicsDevice, content)
         {
 
         }

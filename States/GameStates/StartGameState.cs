@@ -33,7 +33,7 @@ namespace GameSpace.States.GameStates
         private readonly Texture2D menuBackGroundTexture;
         private List<IController> controllers;
 
-        public StartGameState(GameRoot game, GraphicsDevice graphicsDevice, ContentManager content, int lives) : base(game, graphicsDevice, content, lives)
+        public StartGameState(GameRoot game, GraphicsDevice graphicsDevice, ContentManager content) : base(game, graphicsDevice, content)
         {
 
         }
