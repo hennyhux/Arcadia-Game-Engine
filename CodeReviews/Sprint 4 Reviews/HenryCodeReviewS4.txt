@@ -1,0 +1,30 @@
+﻿Author of Review: Henry Zhang
+Date: 11/09/2021
+Sprint Number: 4
+Name of File: Loader.cs
+Author of File/Method: Beto C
+
+
+Comments:
+	An issue that I ran into with the loader class is what I like to call the explosion of new enums, for example, we have nearly six enums for different permutaions of brick blocks: BrickBlock, 
+	CoinBrickBlock, HiddenBrickBlock, FireBrickBlock, etc.. But we only have two brick classes (regular brick and brick blocks with item) These bricks blocks have very similar behaviors, they only differ by the contents! So it is redudant to load them with their seperate objectIDs, 
+	instead a tag inside of block should be added that determines if a brick block contains any item 
+	
+Hypothetical Change:
+	Modifiy the TileMapDefinition so that blocks has an attrubiute field like <item>Coin</item>
+	inside of the loader, checks if a brick has an item and load in the block with item , for example: 
+
+
+	switch (obstacles.block)
+	  case BlockID.BRICKBLOCK:
+	  if (obstacles.item == ItemID.Coin)
+	  {
+		//add brick coin
+	  }
+
+	  if (obstacles.item == ItemID.FireFlower){
+	  //add fire flower 
+	  }
+
+
+
