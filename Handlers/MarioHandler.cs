@@ -37,8 +37,8 @@ namespace GameSpace.Machines
 
         public void SetMarioStateToWarp()
         {
-            MusicHandler.GetInstance().PlaySoundEffect(10);
-            if (currentWarpLocation < listOfWarpPipes.Count - 2)
+
+            if (currentWarpLocation < listOfWarpPipes.Count - 1)
             {
                 currentWarpLocation++;
             }
@@ -47,6 +47,7 @@ namespace GameSpace.Machines
 
             if (!(nextPipeBlock.state is StateWarpPipeDeactiveated))
             {
+                MusicHandler.GetInstance().PlaySoundEffect(10);
                 mario.Position = new Vector2(nextPipeBlock.Position.X, nextPipeBlock.Position.Y - 20);
             }
         }
@@ -100,12 +101,6 @@ namespace GameSpace.Machines
         public void ResetMarioLives()
         {
             marioLives = 3;
-        }
-
-
-        public int CalculateScore()
-        {
-            return 1;
         }
 
         public Vector2 GetPosition()
