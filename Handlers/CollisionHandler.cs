@@ -413,7 +413,7 @@ namespace GameSpace.EntityManaging
         public void MarioToItemCollision(OneUpShroom item)
         {
             mario.marioPowerUpState.bigMarioTransformation();
-            ++mario.marioLives;
+            MarioHandler.GetInstance().IncrementMarioLives();
         }
 
         public void MarioToItemCollision(Coin coin)

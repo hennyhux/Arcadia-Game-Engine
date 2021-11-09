@@ -23,8 +23,8 @@ namespace GameSpace.States.MarioStates
         public override void Enter(IMarioActionStates previousActionState)
         {
 
-            Mario.marioLives -= 1;
-            Debug.WriteLine("Mario has lost a life, mario has {0} lives remaining \n", Mario.marioLives);
+            MarioHandler.GetInstance().DecrementMarioLives();
+            //Debug.WriteLine("Mario has lost a life, mario has {0} lives remaining \n", Mario.marioLives);
             Mario.marioActionState = this;
             Mario.CollisionBox = new Rectangle(0, 0, 0, 0);
             this.previousActionState = previousActionState;

@@ -48,7 +48,7 @@ namespace GameSpace.States.GameStates
 
         public override void LoadContent()
         {
-            HUDHandler.GetInstance().LoadContent(content, marioLives, game);
+            HUDHandler.GetInstance().LoadContent(content, game);
             controllers = new List<IController>()
             {
                 new KeyboardInput(game), new ControllerInput(game)

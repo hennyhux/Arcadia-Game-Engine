@@ -23,7 +23,7 @@ namespace GameSpace.States.GameStates
         private readonly LevelRestart levelRestart;
         private SpriteFont fontFile;
         private bool startOfGame = true;
-        private int marioLives = 3;
+        //private int marioLives = 3;
 
         // DeathTimer timer;
         public Color FontColor { get; set; } = Color.DarkBlue;
@@ -70,7 +70,7 @@ namespace GameSpace.States.GameStates
             TheaterHandler.GetInstance().ResetStaticMembers();
             TheaterHandler.GetInstance().InitializeGameroot(game);
             startOfGame = true;
-            marioLives = 3;
+            MarioHandler.GetInstance().ResetMarioLives(); //set lives to 3
             Initialize();
         }
         public override void Restart()
@@ -78,7 +78,7 @@ namespace GameSpace.States.GameStates
             TheaterHandler.GetInstance().ResetStaticMembers();
             TheaterHandler.GetInstance().InitializeGameroot(game);
             startOfGame = false;
-            marioLives--;
+            MarioHandler.GetInstance().DecrementMarioLives();
             Initialize();
         }
 
@@ -108,7 +108,7 @@ namespace GameSpace.States.GameStates
             #endregion
 
             #region Loading Handlers
-            HUDHandler.GetInstance().LoadContent(content, marioLives, game);
+            HUDHandler.GetInstance().LoadContent(content, game);
             TheaterHandler.GetInstance().LoadData(objects);
             #endregion
 
@@ -184,7 +184,7 @@ namespace GameSpace.States.GameStates
 
         protected GameRoot game;
 
-        protected int marioLives;
+        //protected int marioLives;
 
         #endregion
         public State(GameRoot game, GraphicsDevice graphicsDevice, ContentManager content)

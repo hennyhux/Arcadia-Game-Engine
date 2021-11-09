@@ -25,7 +25,7 @@ namespace GameSpace.Machines
 
         private HUDHandler()
         {
-
+           
         }
 
         #region Death Timer
@@ -53,13 +53,12 @@ namespace GameSpace.Machines
         }
         #endregion
 
-        public void LoadContent(ContentManager content, int lives, GameRoot gameRoot)
+        public void LoadContent(ContentManager content, GameRoot gameRoot)
         {
             HeadsUpDisplay = content.Load<SpriteFont>("font");
             chungus = content.Load<Texture2D>("Background/Untitled");
             HudPosition.X = 10;
             HudPosition.Y = 10;
-            marioLives = lives;
             game = gameRoot;
             ResetTimer();
         }

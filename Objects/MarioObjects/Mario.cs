@@ -34,7 +34,7 @@ namespace GameSpace.GameObjects.BlockObjects
         public int ObjectID { get; set; }
         public int numFireballs;
         public Rectangle ExpandedCollisionBox { get; set; }
-        public int marioLives { get; set; }
+        //public int marioLives { get; set; }
         public int numCoinsCollected { get; set; }
         public int score { get; set; }
 
@@ -47,7 +47,7 @@ namespace GameSpace.GameObjects.BlockObjects
             Position = new Vector2((int)initLocation.X, (int)initLocation.Y);
             CollisionBox = new Rectangle((int)initLocation.X - 3, (int)initLocation.Y, 32, 32);
             numFireballs = 30;
-            marioLives = 3;
+            //marioLives = 3;
             Acceleration = new Vector2(0, 100);//NEW
             ExpandedCollisionBox = new Rectangle((int)initLocation.X - 3, (int)initLocation.Y, 33, 33);
 
@@ -190,10 +190,10 @@ namespace GameSpace.GameObjects.BlockObjects
         {
             CollisionBox = new Rectangle(0, 0, 0, 0);
             marioPowerUpState.DeadTransition();
-            marioLives--;
-            if (marioLives == 0)
-            {
-            }
+            MarioHandler.GetInstance().DecrementMarioLives();
+            //if (marioLives == 0)
+            
+            
             //levelRestart.Restart(stillHasLives);
         }
 

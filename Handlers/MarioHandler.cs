@@ -85,9 +85,20 @@ namespace GameSpace.Machines
 
         public void IncrementMarioLives()
         {
-            mario.marioLives++;
-            mario.marioLives -= 1;
+            ++marioLives;
+            //mario.marioLives -= 1;
         }
+
+        public void DecrementMarioLives()
+        {
+            marioLives -= 1;
+        }
+
+        public void ResetMarioLives()
+        {
+            marioLives = 3;
+        }
+
 
         public int CalculateScore()
         {
