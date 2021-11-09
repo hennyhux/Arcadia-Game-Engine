@@ -48,6 +48,7 @@ namespace GameSpace.GameObjects.EnemyObjects
 
             else
             {
+                DeleteCollisionBox();
                 if (countDown == 90)
                 {
                     state.StateSprite.SetVisible();
@@ -56,10 +57,14 @@ namespace GameSpace.GameObjects.EnemyObjects
         }
         public override void Trigger()
         {
-            state = new StateGoombaDead();
-            hasCollidedOnTop = true;
-            countDown = 0;
-            MusicHandler.GetInstance().PlaySoundEffect(2);
+            if (!hasCollidedOnTop)
+            {
+                state = new StateGoombaDead();
+                hasCollidedOnTop = true;
+                countDown = 0;
+                MusicHandler.GetInstance().PlaySoundEffect(2);
+            }
+   
         }
     }
 
