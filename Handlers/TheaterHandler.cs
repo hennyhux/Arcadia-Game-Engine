@@ -10,6 +10,7 @@ using GameSpace.Abstracts;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using GameSpace.Machines;
+using GameSpace.Sprites.ExtraItems;
 
 namespace GameSpace.EntityManaging
 {
@@ -33,9 +34,9 @@ namespace GameSpace.EntityManaging
             //ResetStaticMembers();
             gameEntityList = objectList;
 
-            foreach (IGameObjects entity in gameEntityList)
+            foreach (IGameObjects entity in objectList)
             {
-                if (entity.ObjectID == (int)ItemID.WARPPIPEHEAD)
+                if (entity is WarpPipeHead)
                 {
                     listOfWarpPipes.Add(entity);
                 }

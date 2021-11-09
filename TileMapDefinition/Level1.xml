@@ -5,8 +5,8 @@
 	<Description>					LEVEL 1 BEGINS					</Description>
 	
 	<Objects>
-		<x>6000</x>
-		<y>100</y>
+		<x>100</x>
+		<y>300</y>
 		<avatar>MARIO</avatar>
 		<facing>RIGHT</facing>
 	</Objects>
