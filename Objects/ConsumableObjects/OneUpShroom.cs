@@ -21,7 +21,7 @@ namespace GameSpace.GameObjects.ItemObjects
         {
             base.Trigger();
             MusicHandler.GetInstance().PlaySoundEffect(6);
-            MarioHandler.GetInstance().IncrementMarioLives();
+            //MarioHandler.GetInstance().IncrementMarioLives();//already increment lives in mario collision
         }
 
         public override void UpdateCollisionBox()

@@ -68,7 +68,7 @@ namespace GameSpace.EntityManaging
             //Debug.WriteLine("SIZE OF OG LIST " + gameEntityList.Count);
             copyPrunedList = prunedList.ToList();
             prunedList.Clear();
-            Debug.WriteLine("SIZE OF PRUNED COPY LIST " + copyPrunedList.Count);
+            //Debug.WriteLine("SIZE OF PRUNED COPY LIST " + copyPrunedList.Count);
         }
 
         public int DetectCollisionDirection(IGameObjects a, IGameObjects b)

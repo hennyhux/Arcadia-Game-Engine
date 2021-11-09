@@ -70,7 +70,7 @@ namespace GameSpace.States.GameStates
             TheaterHandler.GetInstance().ResetStaticMembers();
             TheaterHandler.GetInstance().InitializeGameroot(game);
             startOfGame = true;
-            MarioHandler.GetInstance().ResetMarioLives(); //set lives to 3
+           // MarioHandler.GetInstance().ResetMarioLives(); //set lives to 3
             Initialize();
         }
         public override void Restart()
@@ -78,7 +78,7 @@ namespace GameSpace.States.GameStates
             TheaterHandler.GetInstance().ResetStaticMembers();
             TheaterHandler.GetInstance().InitializeGameroot(game);
             startOfGame = false;
-            MarioHandler.GetInstance().DecrementMarioLives();
+            //MarioHandler.GetInstance().DecrementMarioLives(); UNCOMMENT
             Initialize();
         }
 

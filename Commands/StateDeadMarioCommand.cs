@@ -11,7 +11,8 @@
         public void Execute()
         {
             //game.GetMario.Dead();
-            game.GetMario.DeadTransition();
+            //game.GetMario.DeadTransition();
+            game.GetMario.DamageTransition();
         }
 
         public void Unexecute()

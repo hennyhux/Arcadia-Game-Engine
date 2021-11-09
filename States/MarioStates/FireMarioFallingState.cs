@@ -24,7 +24,7 @@ namespace GameSpace.States.MarioStates
             //Mario.marioPowerUpState = new FireMarioState(Mario);
             Debug.WriteLine("MarioStandState(25) Enter, {0}", Mario.marioActionState);
             Debug.WriteLine("MarioWalkingState(25) facing:, {0}", Mario.Facing);
-
+            Mario.Velocity = new Vector2(Mario.Velocity.X, 100);
             //AABB aabb = Mario.AABB;
             //eFacing Facing = MarioStandingState.Facing;
             eFacing Facing = Mario.Facing;

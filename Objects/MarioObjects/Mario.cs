@@ -190,16 +190,28 @@ namespace GameSpace.GameObjects.BlockObjects
         {
             CollisionBox = new Rectangle(0, 0, 0, 0);
             marioPowerUpState.DeadTransition();
-            MarioHandler.GetInstance().DecrementMarioLives();
+            //MarioHandler.GetInstance().DecrementMarioLives();
             //if (marioLives == 0)
             
             
             //levelRestart.Restart(stillHasLives);
         }
 
+        public void DamageTransition()
+        {
+            //CollisionBox = new Rectangle(0, 0, 0, 0);
+            marioPowerUpState.DamageTransition();
+            //MarioHandler.GetInstance().DecrementMarioLives();
+            //if (marioLives == 0)
+
+
+            //levelRestart.Restart(stillHasLives);
+        }
+
         public void Trigger()
         {
-            DeadTransition();
+           // DeadTransition();
+            DamageTransition();
         }
 
         #endregion

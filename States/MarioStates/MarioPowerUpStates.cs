@@ -2,7 +2,11 @@
 using GameSpace.Interfaces;
 using GameSpace.States.MarioStates;
 using Microsoft.Xna.Framework;
-
+using GameSpace.Abstracts;
+using GameSpace.Enums;
+using GameSpace.Factories;
+using GameSpace.Machines;
+using System.Diagnostics;
 namespace GameSpace.States.BlockStates
 {
     public abstract class MarioPowerUpStates : IMarioPowerUpStates
@@ -38,6 +42,7 @@ namespace GameSpace.States.BlockStates
 
         public abstract void fireMarioTransformation();
 
+        public abstract void DamageTransition();
         public abstract void DeadTransition();
 
         public abstract void Update(GameTime gametime);
@@ -78,11 +83,18 @@ namespace GameSpace.States.BlockStates
             Mario.marioActionState.FirePowerUp();
         }
 
+        public override void DamageTransition()
+        {
+            Mario.marioPowerUpState = new DeadMarioState(Mario);
+            Mario.marioActionState.DeadPowerUp();
+            Mario.marioPowerUpState.Enter(this);
+
+        }
         public override void DeadTransition()
         {
             Mario.marioPowerUpState = new DeadMarioState(Mario);
             Mario.marioActionState.DeadPowerUp();
-
+            Mario.marioPowerUpState.Enter(this);
         }
 
         public override void Update(GameTime gametime) { }
@@ -120,6 +132,24 @@ namespace GameSpace.States.BlockStates
 
         public override void DeadTransition()
         {
+            //Temp
+            Mario.marioPowerUpState = new SmallMarioState(Mario);
+            Mario.Position = new Vector2((int)Mario.Position.X, (int)Mario.Position.Y + 32);
+            Mario.marioActionState.SmallPowerUp();
+
+            Mario.marioPowerUpState = new DeadMarioState(Mario);
+            Mario.marioActionState.DeadPowerUp();
+            Mario.marioPowerUpState.Enter(this);
+            //Mario.marioPowerUpState = new SmallMarioState(Mario);
+            //Mario.Position = new Vector2((int)Mario.Position.X, (int)Mario.Position.Y + 32);
+            //Mario.marioActionState.SmallPowerUp();
+
+        }
+        public override void DamageTransition()
+        {
+            //Mario.marioPowerUpState = new DeadMarioState(Mario);
+            //Mario.marioActionState.DeadPowerUp();
+
             Mario.marioPowerUpState = new SmallMarioState(Mario);
             Mario.Position = new Vector2((int)Mario.Position.X, (int)Mario.Position.Y + 32);
             Mario.marioActionState.SmallPowerUp();
@@ -158,14 +188,33 @@ namespace GameSpace.States.BlockStates
 
         public override void DeadTransition()
         {
+            //Temp
+            Mario.marioPowerUpState = new SmallMarioState(Mario);
+            Mario.Position = new Vector2((int)Mario.Position.X, (int)Mario.Position.Y + 32);
+            Mario.marioActionState.SmallPowerUp();
+
+            Mario.marioPowerUpState = new DeadMarioState(Mario);
+            Mario.marioActionState.DeadPowerUp();
+            Mario.marioPowerUpState.Enter(this);
             //Goes to Big
             //Mario.marioPowerUpState = new BigMarioState(Mario);
             //Mario.marioActionState.BigPowerUp();
 
             //Goes to Small
+            // Mario.marioPowerUpState = new SmallMarioState(Mario);
+            //Mario.Position = new Vector2((int)Mario.Position.X, (int)Mario.Position.Y + 32);
+            //Mario.marioActionState.SmallPowerUp();
+        }
+
+        public override void DamageTransition()
+        {
+            //Mario.marioPowerUpState = new DeadMarioState(Mario);
+            //Mario.marioActionState.DeadPowerUp();
+            Debug.Print("DamageT");
             Mario.marioPowerUpState = new SmallMarioState(Mario);
             Mario.Position = new Vector2((int)Mario.Position.X, (int)Mario.Position.Y + 32);
             Mario.marioActionState.SmallPowerUp();
+
         }
 
         public override void Update(GameTime gametime) { }
@@ -182,6 +231,8 @@ namespace GameSpace.States.BlockStates
         public override void Enter(IMarioPowerUpStates previousPowerUpState)
         {
             Mario.Velocity = new Vector2(0, 0);
+            MarioHandler.GetInstance().DecrementMarioLives();
+            Debug.Print("DeadMarioState: Lives: {0}", MarioHandler.marioLives);
         }
         public override void Exit() { }
 
@@ -210,6 +261,8 @@ namespace GameSpace.States.BlockStates
         }
 
         public override void DeadTransition() { }
+
+        public override void DamageTransition() { }
 
         public override void Update(GameTime gametime) { }
 

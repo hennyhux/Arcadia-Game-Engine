@@ -15,6 +15,7 @@ namespace GameSpace.Interfaces
         void smallMarioTransformation();
         void bigMarioTransformation();
         void fireMarioTransformation();
+        void DamageTransition();
         void DeadTransition();
 
         /*void StandingTransition();

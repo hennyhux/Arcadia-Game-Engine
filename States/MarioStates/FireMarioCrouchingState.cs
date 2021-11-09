@@ -25,7 +25,7 @@ namespace GameSpace.States.MarioStates
 
             //Mario.Position = new Vector2(Mario.Position.X, Mario.Position.Y + 20);
 
-
+            Mario.Velocity = new Vector2(Mario.Velocity.X, 100);//TEMP
             //AABB aabb = Mario.AABB;
             //eFacing Facing = MarioStandingState.Facing;
             eFacing Facing = Mario.Facing;

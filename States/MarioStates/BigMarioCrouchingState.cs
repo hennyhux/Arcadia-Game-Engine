@@ -25,7 +25,7 @@ namespace GameSpace.States.MarioStates
             //Mario.Position = new Vector2(Mario.Position.X, Mario.Position.Y + 20);
             Debug.WriteLine("Y before(25) facing:, {0}", Mario.Position.Y);
 
-
+            Mario.Velocity = new Vector2(Mario.Velocity.X, 100);//TEMP
 
 
             //AABB aabb = Mario.AABB;
