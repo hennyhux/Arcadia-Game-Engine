@@ -6,6 +6,10 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
+using GameSpace.Abstracts;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
+using GameSpace.Machines;
 
 namespace GameSpace.EntityManaging
 {
@@ -59,7 +63,26 @@ namespace GameSpace.EntityManaging
 
             currentWarpLocation = 0;
             marioScores = 0;
-            marioLives = 3;
+            //marioLives = 3;
+            MarioHandler.marioLives = 3;
+        }
+
+        public void RestartStaticMembers()
+        {
+            gameEntityList = new List<IGameObjects>();
+            prunedList = new List<IGameObjects>();
+            copyPrunedList = new List<IGameObjects>();
+            animationList = new List<IObjectAnimation>();
+            listOfWarpPipes = new List<IGameObjects>();
+            listOfWarpRoomPipes = new List<IGameObjects>();
+            musicList = new List<SoundEffect>();
+            GameTime internalGametime = new GameTime();
+            GameRoot gameRootCopy = new GameRoot();
+
+            currentWarpLocation = 0;
+            marioScores = 0;
+            //marioLives = 3;
+           // MarioHandler.marioLives = 3;
         }
 
         public void InitializeGameroot(GameRoot copy)

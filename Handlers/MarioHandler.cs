@@ -10,6 +10,7 @@ namespace GameSpace.Machines
     {
         private static readonly MarioHandler instance = new MarioHandler();
         private static readonly int warpRooomNum = 0;
+        public static int marioLives = 3;
         public static MarioHandler GetInstance()
         {
             return instance;

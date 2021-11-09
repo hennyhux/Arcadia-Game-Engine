@@ -13,6 +13,7 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Media;
 using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace GameSpace.States.GameStates
 {
@@ -70,15 +71,17 @@ namespace GameSpace.States.GameStates
             TheaterHandler.GetInstance().ResetStaticMembers();
             TheaterHandler.GetInstance().InitializeGameroot(game);
             startOfGame = true;
-           // MarioHandler.GetInstance().ResetMarioLives(); //set lives to 3
+            Debug.Print("Lives Reset in Reset()");
+            MarioHandler.GetInstance().ResetMarioLives(); //set lives to 3
             Initialize();
         }
         public override void Restart()
         {
-            TheaterHandler.GetInstance().ResetStaticMembers();
+            TheaterHandler.GetInstance().RestartStaticMembers();
             TheaterHandler.GetInstance().InitializeGameroot(game);
             startOfGame = false;
-            //MarioHandler.GetInstance().DecrementMarioLives(); UNCOMMENT
+            //Debug.Print("Lives Dec in Restart()");
+            //MarioHandler.GetInstance().DecrementMarioLives(); //UNCOMMENT
             Initialize();
         }
 

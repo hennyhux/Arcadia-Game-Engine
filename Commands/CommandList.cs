@@ -31,7 +31,7 @@ namespace GameSpace
                 {Keys.Y, new StateStandardMarioCommand(game)},
                 {Keys.U, new StateSuperMarioCommand(game)},
                 {Keys.I, new StateFireMarioCommand(game)},
-                {Keys.O, new StateDeadMarioCommand(game)},
+                {Keys.O, new StateDeadMarioCommand(game)},//DamageTransition
                 {Keys.C, new ToggleCollisionBoxes()},
                 {Keys.Space, new ThrowFireBallCommand(game)},
             };

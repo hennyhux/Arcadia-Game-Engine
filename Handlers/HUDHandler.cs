@@ -14,6 +14,7 @@ namespace GameSpace.Machines
         public static long ticks;
         public static long seconds;
         public static long ticksMax = 4010000000;
+        //public static long ticksMax = 40100000; Testing timer and lose of life from running out of time
         public static long convertToSeconds = 10000000;
         public static int bonusPoints;
 
@@ -43,6 +44,10 @@ namespace GameSpace.Machines
 
             if (seconds == 0 || game.GetMario.marioActionState is GameSpace.States.MarioStates.DeadMarioState)
             {
+                if(seconds <= 0 && game.CurrentState is GameSpace.States.GameStates.PlayingGameState)// AND YOU DIDNT COMPLETE OBJECTIVE
+                {
+                    mario.DeadTransition();//Lose a life if timer reaches 0
+                }
                 ResetTimer();
             }
             else
@@ -74,7 +79,8 @@ namespace GameSpace.Machines
             spritebatch.DrawString(HeadsUpDisplay, "Time\n " + seconds, new Vector2(HudPosition.X + 160, HudPosition.Y), Color.Black);
             spritebatch.DrawString(HeadsUpDisplay, "World\n  1-1", new Vector2(HudPosition.X + 320, HudPosition.Y), Color.Black);
             spritebatch.DrawString(HeadsUpDisplay, "Coins\n    " + mario.numCoinsCollected, new Vector2(HudPosition.X + 480, HudPosition.Y), Color.Black); //Update to display coins
-            spritebatch.DrawString(HeadsUpDisplay, "Lives\n   " + marioLives.ToString(), new Vector2(HudPosition.X + 640, HudPosition.Y), Color.Black);
+            //spritebatch.DrawString(HeadsUpDisplay, "Lives\n   " + marioLives.ToString(), new Vector2(HudPosition.X + 640, HudPosition.Y), Color.Black); MarioHandler.GetInstance().DecrementMarioLives();
+            spritebatch.DrawString(HeadsUpDisplay, "Lives\n   " + MarioHandler.marioLives, new Vector2(HudPosition.X + 640, HudPosition.Y), Color.Black);
             UpdateHudPosition();
         }
 
@@ -95,7 +101,8 @@ namespace GameSpace.Machines
             spritebatch.DrawString(HeadsUpDisplay, "Time\n " + seconds, new Vector2(160, 0), Color.Black);
             spritebatch.DrawString(HeadsUpDisplay, "World\n  1-1", new Vector2(+ 320, 0), Color.Black);
             spritebatch.DrawString(HeadsUpDisplay, "Coins\n    " + mario.numCoinsCollected, new Vector2(480,0), Color.Black); //Update to display coins
-            spritebatch.DrawString(HeadsUpDisplay, "Lives\n   " + marioLives.ToString(), new Vector2(640, 0), Color.Black);
+            //spritebatch.DrawString(HeadsUpDisplay, "Lives\n   " + marioLives.ToString(), new Vector2(640, 0), Color.Black);
+            spritebatch.DrawString(HeadsUpDisplay, "Lives\n   " + MarioHandler.marioLives.ToString(), new Vector2(640, 0), Color.Black);
             spritebatch.DrawString(HeadsUpDisplay, "PRESS R FOR NEW GAME", new Vector2(0, 120), Color.Black);
             spritebatch.DrawString(HeadsUpDisplay, "PRESS Q TO QUIT GAME", new Vector2(0, 200), Color.Black);
             UpdateHudPosition();
