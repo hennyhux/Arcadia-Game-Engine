@@ -5,10 +5,16 @@
 	<Description>					LEVEL 1 BEGINS					</Description>
 	
 	<Objects>
-		<x>100</x>
-		<y>300</y>
+		<x>64</x>
+		<y>370</y>
 		<avatar>MARIO</avatar>
 		<facing>RIGHT</facing>
+	</Objects>
+
+	<Objects>
+		<x>128</x>
+		<y>370</y>
+		<enemy>REDKOOPA</enemy>
 	</Objects>
 	
 	<Objects>
@@ -69,7 +75,7 @@
 	<Objects>
 		<x>704 </x>
 		<y>162</y>
-		<block>COINQUESTIONBLOCK</block>
+		<block>ONEUPSHROOMQUESTIONBLOCK</block>
 	</Objects>
 	
 	<Objects>
@@ -198,13 +204,20 @@
 		<x>2624</x>
 		<y>130</y>
 		<enemy>GOOMBA</enemy>
-	</Objects><Objects>
+	</Objects>
+	<Objects>
 		<x>2676</x>
 		<y>130</y>
 		<enemy>GOOMBA</enemy>
 	</Objects>
-	
 
+	<Objects>
+		<x>2676</x>
+		<y>370</y>
+		<enemy>GREENKOOPA</enemy>
+	</Objects>
+	
+	
 	<Objects>
 		<x>2848</x>
 		<y>466</y>
