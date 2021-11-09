@@ -76,5 +76,12 @@ namespace GameSpace
         {
             nextState = new VictoryGameState(this, GraphicsDevice, Content);
         }
+
+        public void GameOverState()
+        {
+            nextState = new GameOverState(this, GraphicsDevice, Content);
+        }
+
+
     }
 }

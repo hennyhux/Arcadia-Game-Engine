@@ -13,6 +13,7 @@ namespace GameSpace.Machines
     {
         private SpriteFont HeadsUpDisplay;
         private Texture2D chungus;
+        private Texture2D gameOver;
         private Vector2 HudPosition;
         public static long ticks;
         public static long seconds;
@@ -68,6 +69,7 @@ namespace GameSpace.Machines
         {
             HeadsUpDisplay = content.Load<SpriteFont>("font");
             chungus = content.Load<Texture2D>("Background/Untitled");
+            gameOver = content.Load<Texture2D>("Background/game-over-screen");
             HudPosition.X = 10;
             HudPosition.Y = 10;
             game = gameRoot;
@@ -133,9 +135,34 @@ namespace GameSpace.Machines
             spritebatch.DrawString(HeadsUpDisplay, "X  " + MarioHandler.marioLives, new Vector2(660, 20), Color.Black);//Lives
 
             spritebatch.DrawString(HeadsUpDisplay, "PRESS R FOR NEW GAME", new Vector2(0, 120), Color.Black);
-            spritebatch.DrawString(HeadsUpDisplay, "PRESS Q TO QUIT GAME", new Vector2(0, 200), Color.Black);
+            spritebatch.DrawString(HeadsUpDisplay, "PRESS Q TO QUIT GAME", new Vector2(400, 120), Color.Black);
             UpdateHudPosition();
         }
+
+        public void DrawGameOver(SpriteBatch spritebatch)
+        {
+            spritebatch.Draw(gameOver, new Vector2(0, 0), Color.White);
+            spritebatch.DrawString(HeadsUpDisplay, "[" + mario.Player + "]\n", new Vector2(0, 0), Color.White);
+            spritebatch.DrawString(HeadsUpDisplay, "Score: " + mario.score.ToString("D6"), new Vector2(0, 40), Color.White);
+            spritebatch.DrawString(HeadsUpDisplay, "Time\n" + seconds, new Vector2(200, 0), Color.White);
+            spritebatch.DrawString(HeadsUpDisplay, "World\n  1-1", new Vector2(320, 0), Color.White);
+
+
+            // ((CoinSprite)FinderHandler.GetInstance().FindItem((int)ItemID.HUDCOIN).Sprite).Draw(spritebatch, new Vector2(460, 20));//Draws Animated Coin
+            Coin HUDCoin = new Coin(new Vector2(0, 0));
+            HUDCoin.Sprite.Draw(spritebatch, new Vector2(460, 20));//Draws Unanimated Coin
+                                                                   //spritebatch.Draw(FinderHandler.GetInstance().FindItem((int)ItemID.HUDCOIN).Sprite.Texture, new Vector2(640, 25), 
+                                                                   // ((CoinSprite)FinderHandler.GetInstance().FindItem((int)ItemID.HUDCOIN).Sprite).getCurrentSpriteRect(), Color.White);
+            spritebatch.DrawString(HeadsUpDisplay, "X  " + mario.numCoinsCollected, new Vector2(480, 20), Color.White); //Update to display coins
+
+            spritebatch.Draw(MarioHandler.mario.sprite.Texture, new Vector2(640, 25), (Rectangle)MarioHandler.mario.sprite.getCurrentSpriteRect(), Color.White);
+            spritebatch.DrawString(HeadsUpDisplay, "X  " + MarioHandler.marioLives, new Vector2(660, 20), Color.White);//Lives
+
+            spritebatch.DrawString(HeadsUpDisplay, "PRESS R FOR NEW GAME", new Vector2(0, 120), Color.White);
+            spritebatch.DrawString(HeadsUpDisplay, "PRESS Q TO QUIT GAME", new Vector2(400, 120), Color.White);
+            UpdateHudPosition();
+        }
+
 
         private void UpdateHudPosition()
         {

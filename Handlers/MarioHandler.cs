@@ -82,6 +82,11 @@ namespace GameSpace.Machines
             gameRootCopy.ChangeToVictoryState();
         }
 
+        internal void GameOverPanel()
+        {
+            gameRootCopy.GameOverState();
+        }
+
         public void IncrementMarioPoints(int points)
         {
             mario.score += points;
@@ -96,7 +101,13 @@ namespace GameSpace.Machines
         public void DecrementMarioLives()
         {
             marioLives -= 1;
+            if (marioLives == 0)
+            {
+                GameOverPanel();
+            }
+
         }
+
 
         public void ResetMarioLives()
         {
@@ -106,6 +117,10 @@ namespace GameSpace.Machines
         public Vector2 GetPosition()
         {
             return mario.Position;
+        }
+        public static MarioHandler Instance()
+        {
+            return instance;
         }
 
         public void CalculateFinalScore(int marioY, int poleY)
@@ -144,4 +159,5 @@ namespace GameSpace.Machines
             mario.score += flagPoints;// points based off flag
         }
     }
+
 }
