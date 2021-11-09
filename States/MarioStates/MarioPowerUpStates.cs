@@ -232,6 +232,10 @@ namespace GameSpace.States.BlockStates
         {
             Mario.Velocity = new Vector2(0, 0);
             MarioHandler.GetInstance().DecrementMarioLives();
+            if(MarioHandler.marioLives == 0)
+            {
+                //restart game hrere
+            }
             Debug.Print("DeadMarioState: Lives: {0}", MarioHandler.marioLives);
             //MarioHandler.GetInstance()
             //Debug.Print("DeadMarioState: Lives: {0}", MarioHandler.marioLives);
