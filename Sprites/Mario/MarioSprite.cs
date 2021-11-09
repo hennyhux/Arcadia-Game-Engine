@@ -206,6 +206,12 @@ namespace GameSpace.Sprites
             spriteBatch.Draw(WhiteRect, destination, Color.Yellow * 0.4f);
 
         }
+
+        public Rectangle getCurrentSpriteRect()
+        {
+            return new Rectangle(XFrame[currentFrame], YFrame[currentFrame], XWidth[currentFrame], YHeight[currentFrame]);
+
+        }
         public bool GetVisibleStatus()
         {
             return IsVisible;

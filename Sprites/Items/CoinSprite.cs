@@ -42,6 +42,12 @@ namespace GameSpace.Sprites
             }
         }
 
+        public Rectangle getCurrentSpriteRect()
+        {
+            return new Rectangle(frameOrigin.X + currentFramePoint.X * frameSize.X, frameOrigin.Y + currentFramePoint.Y * frameSize.Y, Texture.Width / frameWidth, Texture.Height / frameHeight);
+
+        }
+
         public override void DrawBoundary(SpriteBatch spriteBatch, Rectangle destination)
         {
             spriteBatch.Draw(WhiteRect, destination, Color.Green * 0.4f);

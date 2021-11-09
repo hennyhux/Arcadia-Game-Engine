@@ -38,6 +38,8 @@ namespace GameSpace.GameObjects.BlockObjects
         public int numCoinsCollected { get; set; }
         public int score { get; set; }
 
+        public string Player { get; set; }//For PBI 32
+
         public Mario(Vector2 initLocation)
         {
             // Debug.WriteLine("Mario.cs(50) CREATED MARIO \n");
@@ -56,6 +58,7 @@ namespace GameSpace.GameObjects.BlockObjects
             marioActionState = new SmallMarioStandingState(this);
             numCoinsCollected = 0;
             score = 0;
+            Player = "Mario";
         }
 
         public void Draw(SpriteBatch spritebatch)
