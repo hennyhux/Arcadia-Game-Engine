@@ -133,8 +133,8 @@ namespace GameSpace.States.GameStates
             layers = new List<Layer>
             {
                 new Layer(camera, BackgroundFactory.GetInstance().CreateCloudsSprite(), new Vector2(2.0f, 1.0f)),
-                new Layer(camera, BackgroundFactory.GetInstance().CreateBGMountainSprite(), new Vector2(1.5f, 1.0f)),
-                new Layer(camera, BackgroundFactory.GetInstance().CreateRegularBackground(), new Vector2(1.0f, 1.0f)),
+                //new Layer(camera, BackgroundFactory.GetInstance().CreateBGMountainSprite(), new Vector2(1.5f, 1.0f)),
+                new Layer(camera, BackgroundFactory.GetInstance().CreateRegularBackground1(), new Vector2(1.4f, 1.0f)),
                 //new Layer(camera, BackgroundFactory.GetInstance().CreateBlackWindow(), new Vector2(7000.0f, 0.0f)),
             };
 
