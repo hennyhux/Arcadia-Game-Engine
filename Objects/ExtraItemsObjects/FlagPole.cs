@@ -5,6 +5,8 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Diagnostics;
+using GameSpace.Sprites;
+using GameSpace.Machines;
 
 namespace GameSpace.GameObjects.ExtraItemsObjects
 {
@@ -28,27 +30,47 @@ namespace GameSpace.GameObjects.ExtraItemsObjects
             Sprite = SpriteExtraItemsFactory.GetInstance().ReturnFlagPole();
             Position = initalPosition;
             CollisionBox = new Rectangle((int)Position.X, (int)Position.Y, Sprite.Texture.Width * 2 / 5, Sprite.Texture.Height * 2);
+            //Debug.WriteLine("FlagPoleX: {0}, Y:{1}", Sprite.Texture.Width * 2 / 5, Sprite.Texture.Height * 2);
             drawBox = false;
-            Debug.WriteLine("EXTRA ITEM AT " + "(" + Position.X + ", " + Position.Y + ")");
+            //Debug.WriteLine("EXTRA ITEM AT " + "(" + Position.X + ", " + Position.Y + ")");
+            hasCollided = false;
         }
 
         public void Draw(SpriteBatch spritebatch)
         {
-            Sprite.Draw(spritebatch, Position); //this shouldnt be hardcoded anymore 
+            if (hasCollided)//Drawing the flag getting take down
+            {
+                Sprite.Draw(spritebatch, Position); //this shouldnt be hardcoded anymore
+            }
+            else//Flag stays at top of the pole, not animated
+            {
+                ((FlagPoleSprite)Sprite).Draw(spritebatch, Position, false);
+            }
+             
             if (drawBox)
             {
                 Sprite.DrawBoundary(spritebatch, CollisionBox);
             }
-        }
+        } 
 
         public void Update(GameTime gametime)
         {
-            Sprite.Update(gametime);
+            if (hasCollided && Acceleration.X > 0) // Flag lowering once mario touches flag
+            {
+                ((FlagPoleSprite)Sprite).Update(gametime, hasCollided);
+                Acceleration -= new Vector2((float)1 * (float)gametime.ElapsedGameTime.TotalSeconds, 0);
+            }
+            else if (hasCollided)//The Flag Animation has played so, go to victory
+            {
+                MarioHandler.GetInstance().EnterVictoryPanel();
+            }
+
         }
 
         public void Trigger()
         {
-            //Pipe does nothing.
+            Acceleration = new Vector2((float)2.5, 0);
+            //Flag does nothing.
         }
 
         public void UpdatePosition(Vector2 location, GameTime gameTime)
@@ -63,6 +85,7 @@ namespace GameSpace.GameObjects.ExtraItemsObjects
                 case (int)AvatarID.MARIO:
                     hasCollided = true;
                     CollisionBox = new Rectangle(0, 0, 0, 0);
+                    Trigger();
                     break;
             }
 
@@ -82,5 +105,6 @@ namespace GameSpace.GameObjects.ExtraItemsObjects
         {
             throw new NotImplementedException();
         }
+
     }
 }

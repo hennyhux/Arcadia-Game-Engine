@@ -71,7 +71,7 @@ namespace GameSpace.Factories
 
         public ISprite ReturnFlagPole()
         {
-            return new FlagPoleSprite(FlagPole, 1, 5, 5, 0, 0);
+            return new FlagPoleSprite(FlagPole, 1, 5, 5, 4, 0);
         }
 
         public ISprite ReturnCastle()
