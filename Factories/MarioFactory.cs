@@ -89,8 +89,8 @@ namespace GameSpace.Factories
         //static public int MarioSpriteType(IMarioPowerUpStates currentActionState)//, IMarioPowerUpState currentPowerUpState)
         public static int MarioSpriteType(IMarioActionStates currentActionState, IMarioPowerUpStates currentPowerUpState)
         {
-            Debug.WriteLine("MSTypeFactory(90) currentActionState, {0}", currentActionState);
-            Debug.WriteLine("MSTypeFactory(90) currentPowerUpState, {0}", currentPowerUpState);
+            //Debug.WriteLine("MSTypeFactory(90) currentActionState, {0}", currentActionState);
+            //Debug.WriteLine("MSTypeFactory(90) currentPowerUpState, {0}", currentPowerUpState);
             int type = (int)eMarioSprite.SmallMarioStanding;
             if (currentActionState is GameSpace.States.MarioStates.DeadMarioState)
             {

@@ -20,8 +20,8 @@ namespace GameSpace.States.MarioStates
             Mario.marioActionState = this;
             this.previousActionState = previousActionState;
             //Mario.marioPowerUpState = new ();
-            Debug.WriteLine("MarioWalkingState(25) currentAState, {0}", Mario.marioActionState);
-            Debug.WriteLine("MarioWalkingState(25) facing:, {0}", Mario.Facing);
+           // Debug.WriteLine("MarioWalkingState(25) currentAState, {0}", Mario.marioActionState);
+           // Debug.WriteLine("MarioWalkingState(25) facing:, {0}", Mario.Facing);
 
             //AABB aabb = 
             //eFacing Facing = MarioStandingState.Facing;
@@ -57,7 +57,7 @@ namespace GameSpace.States.MarioStates
             /// Debug.WriteLine("Small Standtrans");
             Exit();
             Mario.marioActionState = new SmallMarioStandingState(Mario);
-            Debug.WriteLine("MarioStandState(39) currentAState, {0}", Mario.marioActionState);
+           // Debug.WriteLine("MarioStandState(39) currentAState, {0}", Mario.marioActionState);
             //Mario.sprite = MarioFactory.GetInstance().CreateSprite(2);
             Mario.marioActionState.Enter(this); // Changing states
 
@@ -159,7 +159,7 @@ namespace GameSpace.States.MarioStates
         {
             Exit();
             Mario.marioActionState = new SmallMarioStandingState(Mario);
-            Debug.WriteLine("MarioStandState(39) currentAState, {0}", Mario.marioActionState);
+           // Debug.WriteLine("MarioStandState(39) currentAState, {0}", Mario.marioActionState);
             //Mario.sprite = MarioFactory.GetInstance().CreateSprite(2);
             Mario.marioActionState.Enter(this); // Changing states
         }//decelerata and go to standing

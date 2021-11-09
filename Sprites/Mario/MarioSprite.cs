@@ -98,7 +98,7 @@ namespace GameSpace.Sprites
 
                 if (facingRight == 1)
                 {
-                    Debug.WriteLine("spriteActionState {1}, \nfacingRight: {0}", facingRight, actionState);
+                    //Debug.WriteLine("spriteActionState {1}, \nfacingRight: {0}", facingRight, actionState);
                 }
 
                 /*marioPower = [Small, Big, Fire, Star, Dead]1

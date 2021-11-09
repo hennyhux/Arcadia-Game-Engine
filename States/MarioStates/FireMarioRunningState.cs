@@ -20,8 +20,8 @@ namespace GameSpace.States.MarioStates
             Mario.marioActionState = this;
             this.previousActionState = previousActionState;
             //Mario.marioPowerUpState = new FireMarioState(Mario);
-            Debug.WriteLine("MarioStandState(25) Enter, {0}", Mario.marioActionState);
-            Debug.WriteLine("MarioWalkingState(25) facing:, {0}", Mario.Facing);
+            //Debug.WriteLine("MarioStandState(25) Enter, {0}", Mario.marioActionState);
+            //Debug.WriteLine("MarioWalkingState(25) facing:, {0}", Mario.Facing);
             if (Mario.Facing == eFacing.LEFT)//Set Proper velocity upon entering state
             {
                 Mario.Velocity = new Vector2(-100, 0);
@@ -49,7 +49,7 @@ namespace GameSpace.States.MarioStates
             /// Debug.WriteLine("Fire Standtrans");
 
             Mario.marioActionState = new FireMarioStandingState(Mario);
-            Debug.WriteLine("MarioStandState(39) currentAState, {0}", Mario.marioActionState);
+           // Debug.WriteLine("MarioStandState(39) currentAState, {0}", Mario.marioActionState);
             //Mario.sprite = MarioFactory.GetInstance().CreateSprite(2);
             Mario.marioActionState.Enter(this); // Changing states
 
@@ -90,7 +90,7 @@ namespace GameSpace.States.MarioStates
         {
             if (Mario.Facing == eFacing.LEFT)//running, want left, if we face left, increase velocity
             {//Increase Velocity
-                Debug.WriteLine("SmallRunning(107) Run/Face Left, Increase(-) Velocity");
+               // Debug.WriteLine("SmallRunning(107) Run/Face Left, Increase(-) Velocity");
             }
             else
             {
@@ -103,7 +103,7 @@ namespace GameSpace.States.MarioStates
 
             if (Mario.Facing == eFacing.RIGHT)
             {//incease Velocity
-                Debug.WriteLine("SmallRunning(107) Run/Face Right, Increase(+) Velocity");
+                //Debug.WriteLine("SmallRunning(107) Run/Face Right, Increase(+) Velocity");
             }
             //WalkingTransition();
 

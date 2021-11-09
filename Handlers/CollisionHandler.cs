@@ -434,11 +434,52 @@ namespace GameSpace.EntityManaging
 
         public void MarioToItemCollision(FlagPole pole)
         {
+            mario.Velocity = new Vector2(0, (500 - (mario.Position.Y + mario.CollisionBox.Height)) / (float)2.5);//Make Mario Start falling
             int marioY = (int)mario.Position.Y;
             //int poleY = (int)pole.Position.Y + pole.Sprite.Texture.Height * 2 - 34;
             int poleY = (int)pole.Position.Y;
+
             Debug.Print("poleY : {0}, deltaH {1}", poleY, poleY + pole.CollisionBox.Height);
             MarioHandler.GetInstance().CalculateFinalScore(marioY, poleY);
+        }
+
+        public bool IsGoingToFall()
+        {
+            bool gonnaFall = true;
+            foreach (IGameObjects entity in copyPrunedList)
+            {
+                if (mario.ExpandedCollisionBox.Intersects(entity.CollisionBox) &&
+                    !(entity is AbstractItem) &&
+                    !(entity is AbstractEnemy) &&
+                    entity.ObjectID != (int)AvatarID.MARIO)
+                //&&
+                // entity.ObjectID != (int)AvatarID.MARIO)
+                //entity.ObjectID != Mario.ObjectID)
+                {
+                    gonnaFall = false;
+                    break;
+                }
+            }
+            return gonnaFall;
+        }
+
+        public bool IsGoingToFal2l(AbstractItem item)
+        {
+            bool gonnaFall = true;
+            foreach (IGameObjects entity in copyPrunedList)
+            {
+                if (item.ExpandedCollisionBox.Intersects(entity.CollisionBox) &&
+                    !(entity is AbstractItem) &&
+                    !(entity is AbstractEnemy) &&
+                    entity.ObjectID != item.ObjectID &&
+                    entity.ObjectID != (int)AvatarID.MARIO &&
+                    entity.ObjectID != (int)AvatarID.MARIO)
+                {
+                    gonnaFall = false;
+                    break;
+                }
+            }
+            return gonnaFall;
         }
         #endregion
 

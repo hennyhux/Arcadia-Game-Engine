@@ -11,6 +11,7 @@ using GameSpace.States.BlockStates;
 using GameSpace.States.MarioStates;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System.Diagnostics;
 
 namespace GameSpace.GameObjects.BlockObjects
 {
@@ -51,7 +52,7 @@ namespace GameSpace.GameObjects.BlockObjects
             numFireballs = 30;
             //marioLives = 3;
             Acceleration = new Vector2(0, 100);//NEW
-            ExpandedCollisionBox = new Rectangle((int)initLocation.X - 3, (int)initLocation.Y, 33, 33);
+            ExpandedCollisionBox = new Rectangle((int)initLocation.X - 3, (int)initLocation.Y, 32, 42);
 
             sprite = MarioFactory.GetInstance().CreateSprite(1);
             marioPowerUpState = new SmallMarioState(this);
@@ -83,7 +84,11 @@ namespace GameSpace.GameObjects.BlockObjects
         }
         public void Update(GameTime gametime)
         {
-            //Debug.WriteLine("Mario velocity, {0}", Velocity.Y);
+            if (Velocity.Y == 0 && CollisionHandler.GetInstance().IsGoingToFall())
+            {
+                Debug.Print("IS GOing to FALL");
+                FallingTransition();
+            }
             //Velocity += Acceleration * (float)gametime.ElapsedGameTime.TotalSeconds;
             Vector2 newLocation = Velocity * (float)gametime.ElapsedGameTime.TotalSeconds;
             if (!CollisionHandler.GetInstance().IsGoingToBeOutOfBounds(this, newLocation))
@@ -107,6 +112,7 @@ namespace GameSpace.GameObjects.BlockObjects
                     CollisionBox = new Rectangle((int)Position.X, (int)Position.Y, 32, 64);
                 }
             }
+            ExpandedCollisionBox = new Rectangle((int)CollisionBox.X, (int)CollisionBox.Y, CollisionBox.Width, CollisionBox.Height + 5);
             //if mario collects 100 coins he gets an extra life
             if (numCoinsCollected % 100 == 0)
             {

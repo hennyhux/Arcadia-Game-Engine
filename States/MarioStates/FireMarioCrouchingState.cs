@@ -46,7 +46,7 @@ namespace GameSpace.States.MarioStates
             /// Debug.WriteLine("Fire Standtrans");
             Exit();
             Mario.marioActionState = new FireMarioStandingState(Mario);
-            Debug.WriteLine("MarioStandState(39) currentAState, {0}", Mario.marioActionState);
+           // Debug.WriteLine("MarioStandState(39) currentAState, {0}", Mario.marioActionState);
             //Mario.sprite = MarioFactory.GetInstance().CreateSprite(2);
             Mario.marioActionState.Enter(this); // Changing states
 

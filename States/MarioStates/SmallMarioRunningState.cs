@@ -19,15 +19,15 @@ namespace GameSpace.States.MarioStates
         {
             Mario.marioActionState = this;
             this.previousActionState = previousActionState;
-            Debug.WriteLine("MarioRunningState(25) Enter, {0}", Mario.marioActionState);
-            Debug.WriteLine("MarioWalkingState(25) facing:, {0}", Mario.Facing);
+           // Debug.WriteLine("MarioRunningState(25) Enter, {0}", Mario.marioActionState);
+           // Debug.WriteLine("MarioWalkingState(25) facing:, {0}", Mario.Facing);
             if (Mario.Facing == eFacing.LEFT)//Set Proper velocity upon entering state
             {
-                Mario.Velocity = new Vector2(-100, 0);
+                Mario.Velocity = new Vector2(-140, 0);
             }
             else if (Mario.Facing == eFacing.RIGHT)
             {
-                Mario.Velocity = new Vector2(100, 0);
+                Mario.Velocity = new Vector2(140, 0);
             }
 
             //AABB aabb = Mario.AABB;
@@ -64,7 +64,7 @@ namespace GameSpace.States.MarioStates
             /// Debug.WriteLine("Small Standtrans");
             Exit();
             Mario.marioActionState = new SmallMarioStandingState(Mario);
-            Debug.WriteLine("MarioStandState(39) currentAState, {0}", Mario.marioActionState);
+            //Debug.WriteLine("MarioStandState(39) currentAState, {0}", Mario.marioActionState);
             //Mario.sprite = MarioFactory.GetInstance().CreateSprite(2);
             Mario.marioActionState.Enter(this); // Changing states
 

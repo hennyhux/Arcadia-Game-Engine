@@ -20,8 +20,8 @@ namespace GameSpace.States.MarioStates
             Mario.marioActionState = this;
             this.previousActionState = previousActionState;
 
-            Debug.WriteLine("BigMarioStandState(25) Enter, {0}", Mario.marioActionState);
-            Debug.WriteLine("BigMarioStandState(25) facing:, {0}", Mario.marioPowerUpState);
+           // Debug.WriteLine("BigMarioStandState(25) Enter, {0}", Mario.marioActionState);
+           // Debug.WriteLine("BigMarioStandState(25) facing:, {0}", Mario.marioPowerUpState);
 
             //AABB aabb = Mario.AABB;
             //eFacing Facing = MarioStandingState.Facing;

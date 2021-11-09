@@ -46,6 +46,17 @@
         BLACKWINDOW = 999
     };
 
+    public enum PowerUpID : int
+    {
+        COIN = 13,
+        HIDDENLEVELCOIN = 130,
+        STAR = 14,
+        ONEUPSHROOM = 15,
+        SUPERSHROOM = 16,
+        FIREFLOWER = 17,
+        FIREBALL = 18,
+    };
+
     public enum EnemyID : int
     {
         GOOMBA = 29,

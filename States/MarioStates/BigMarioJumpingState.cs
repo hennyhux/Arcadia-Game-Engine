@@ -22,8 +22,8 @@ namespace GameSpace.States.MarioStates
             Mario.marioActionState = this;
             this.previousActionState = previousActionState;
             //Mario.marioPowerUpState = new BigMarioState(Mario);
-            Debug.WriteLine("MarioStandState(25) Enter, {0}", Mario.marioActionState);
-            Debug.WriteLine("MarioWalkingState(25) facing:, {0}", Mario.Facing);
+           // Debug.WriteLine("MarioStandState(25) Enter, {0}", Mario.marioActionState);
+           // Debug.WriteLine("MarioWalkingState(25) facing:, {0}", Mario.Facing);
 
             //Set Proper velocity upon entering state
             Mario.Velocity = new Vector2(Mario.Velocity.X, -200);//NEW
@@ -53,7 +53,7 @@ namespace GameSpace.States.MarioStates
             /// Debug.WriteLine("Big Standtrans");
 
             Mario.marioActionState = new BigMarioStandingState(Mario);
-            Debug.WriteLine("MarioStandState(39) currentAState, {0}", Mario.marioActionState);
+           // Debug.WriteLine("MarioStandState(39) currentAState, {0}", Mario.marioActionState);
             //Mario.sprite = MarioFactory.GetInstance().CreateSprite(2);
             Mario.marioActionState.Enter(this); // Changing states
 
