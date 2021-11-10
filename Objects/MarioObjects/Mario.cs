@@ -57,7 +57,7 @@ namespace GameSpace.GameObjects.BlockObjects
             sprite = MarioFactory.GetInstance().CreateSprite(1);
             marioPowerUpState = new SmallMarioState(this);
             marioActionState = new SmallMarioStandingState(this);
-            numCoinsCollected = 0;
+            numCoinsCollected = 99;
             score = 0;
             Player = "Mario";
         }
