@@ -13,6 +13,7 @@ namespace GameSpace
         private protected CommandListStart commandsStart;
         private CommandListVictory commandsVictory;
         private CommandListGameOver commandsGame;
+        private CommandListPause commandsPause;
         private readonly ICommand executeCommand;
         private readonly Dictionary<Keys, ICommand> command;
 
@@ -26,8 +27,9 @@ namespace GameSpace
 
             commandsStart = new CommandListStart(game);
 
-          commandsGame = new CommandListGameOver(game);
+            commandsGame = new CommandListGameOver(game);
 
+            commandsPause = new CommandListPause(game);
 
         }
 
@@ -51,6 +53,8 @@ namespace GameSpace
                         else if (game.CurrentState is VictoryGameState) commandsVictory.GetCommand[key].Execute();
 
                         else if (game.CurrentState is GameOverState) commandsGame.GetCommand[key].Execute();
+
+                        else if (game.CurrentState is PauseGameState) commandsGame.GetCommand[key].Execute();
 
                     }
 

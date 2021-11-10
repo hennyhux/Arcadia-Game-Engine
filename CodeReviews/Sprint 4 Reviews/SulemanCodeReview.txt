@@ -1,0 +1,13 @@
+﻿Author of Review: Suleman Mazzar
+Date: 11/09/2021
+Sprint Number: 4
+Name of File: PlayingGameState
+Author of File/Method: Henry Zhang
+Comments: 
+Henry's state design implementation has made it much easier to implement different states that honor different types of input, the pause and game over
+PBI's as an example honor only specific inputs and so making use of the gamestates design makes it easier to adapt to different "states" that we might want to add in 
+sprint 5 which might honor specific inputs.
+
+Hypothetical Change:
+ The reset and restart methods are kind of conflicting, from my observation of playing the game, the reset method would keep the scores and coin count
+ it can be adjusted so that the reset only resets the items that need to be reset while restart would load everything to its initial state.

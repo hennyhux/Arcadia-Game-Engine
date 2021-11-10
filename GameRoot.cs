@@ -14,6 +14,8 @@ namespace GameSpace
 
         public State CurrentState { get; private set; }
         private State nextState;
+        private bool paused = false;
+
 
         public GraphicsDeviceManager Graphics => graphicsDevice;
         public Mario GetMario => (Mario)FinderHandler.GetInstance().FindItem((int)AvatarID.MARIO);
