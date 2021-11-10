@@ -18,7 +18,7 @@ namespace GameSpace.States.GameStates
         {
             keyboardCommands = new Dictionary<Keys, ICommand>()
             {
-                {Keys.P, new PauseGameCommand(game, paused)},
+                {Keys.P, new PauseGameCommand(game)},
             };
         }
         public Dictionary<Keys, ICommand> GetCommand => keyboardCommands;
