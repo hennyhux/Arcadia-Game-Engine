@@ -53,7 +53,7 @@ namespace GameSpace.Factories
 
         public BackgroundSprite CreateBlackWindow2()//mario.SmallMarioJumpingSprite
         {
-            return new BackgroundSprite(BlackWindow, new Vector2(5500, 50));
+            return new BackgroundSprite(BlackWindow, new Vector2(6976, 0));
         }
 
         public BackgroundSprite CreateBGMountainSprite()//mario.SmallMarioJumpingSprite

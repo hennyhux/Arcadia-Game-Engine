@@ -627,13 +627,13 @@
 		<x>4960</x>
 		<y>466</y>
 		<block>FLOORBLOCK</block>
-		<blockRow>64</blockRow>
+		<blockRow>60</blockRow>
 	</Objects>
 	<Objects>
 		<x>4960</x>
 		<y>434</y>
 		<block>FLOORBLOCK</block>
-		<blockRow>64</blockRow>
+		<blockRow>60</blockRow>
 	</Objects>
 	<Objects>
 		<x>6712</x>
@@ -653,182 +653,328 @@
 
 
 	<Description>					HIDDEN LEVEL BEGINS					</Description>
-
-
-	<Objects>
-		<x>7008</x>
-		<y>0</y>
-	</Objects>
 	
 	<Objects>
-		<x>7050</x>
+		<x>7402</x>
 		<y>400</y>
 		<item>WARPPIPEROOM</item>
 	</Objects>
-	
 	<Objects>
-		<x>7300</x>
+		<x>7652</x>
 		<y>300</y>
 		<item>HIDDENLEVELVERTICALPIPE</item>
 	</Objects>
 
 	<Objects>
-		<x>7008</x>
+		<x>6976</x>
 		<y>82</y>
 		<block>HIDDENLEVELBRICKBLOCK</block>
-		<blockRow>1</blockRow>
+		<blockRow>12</blockRow>
+	</Objects>
+	
+	<Objects>
+		<x>6976</x>
+		<y>114</y>
+		<block>HIDDENLEVELBRICKBLOCK</block>
+		<blockRow>12</blockRow>
 	</Objects>
 	<Objects>
-		<x>7008</x>
+		<x>7072</x>
+		<y>114</y>
+		<block>HIDDENLEVELBRICKBLOCK</block>
+		<blockRow>7</blockRow>
+	</Objects>
+	<Objects>
+		<x>7328</x>
 		<y>114</y>
 		<block>HIDDENLEVELBRICKBLOCK</block>
 		<blockRow>1</blockRow>
 	</Objects>
+	
 	<Objects>
-		<x>7008</x>
+		<x>6976</x>
+		<y>146</y>
+		<block>HIDDENLEVELBRICKBLOCK</block>
+		<blockRow>2</blockRow>
+	</Objects>
+	<Objects>
+		<x>7104</x>
+		<y>146</y>
+		<block>HIDDENLEVELBRICKBLOCK</block>
+		<blockRow>5</blockRow>
+	</Objects>
+	<Objects>
+		<x>7328</x>
 		<y>146</y>
 		<block>HIDDENLEVELBRICKBLOCK</block>
 		<blockRow>1</blockRow>
 	</Objects>
+
 	<Objects>
-		<x>7008</x>
+		<x>6976</x>
+		<y>178</y>
+		<block>HIDDENLEVELBRICKBLOCK</block>
+		<blockRow>2</blockRow>
+	</Objects>
+	<Objects>
+		<x>7072</x>
 		<y>178</y>
 		<block>HIDDENLEVELBRICKBLOCK</block>
 		<blockRow>1</blockRow>
 	</Objects>
 	<Objects>
-		<x>7008</x>
+		<x>7136</x>
+		<y>178</y>
+		<block>HIDDENLEVELBRICKBLOCK</block>
+		<blockRow>3</blockRow>
+	</Objects>
+	<Objects>
+		<x>7264</x>
+		<y>178</y>
+		<block>HIDDENLEVELBRICKBLOCK</block>
+		<blockRow>1</blockRow>
+	</Objects>
+	<Objects>
+		<x>7328</x>
+		<y>178</y>
+		<block>HIDDENLEVELBRICKBLOCK</block>
+		<blockRow>1</blockRow>
+	</Objects>
+	
+	
+	
+
+	<Objects>
+		<x>6976</x>
+		<y>210</y>
+		<block>HIDDENLEVELBRICKBLOCK</block>
+		<blockRow>2</blockRow>
+	</Objects>
+	<Objects>
+		<x>7072</x>
+		<y>210</y>
+		<block>HIDDENLEVELBRICKBLOCK</block>
+		<blockRow>2</blockRow>
+	</Objects>
+	<Objects>
+		<x>7168</x>
 		<y>210</y>
 		<block>HIDDENLEVELBRICKBLOCK</block>
 		<blockRow>1</blockRow>
 	</Objects>
 	<Objects>
-		<x>7008</x>
+		<x>7232</x>
+		<y>210</y>
+		<block>HIDDENLEVELBRICKBLOCK</block>
+		<blockRow>2</blockRow>
+	</Objects>
+	<Objects>
+		<x>7328</x>
+		<y>210</y>
+		<block>HIDDENLEVELBRICKBLOCK</block>
+		<blockRow>1</blockRow>
+	</Objects>
+	
+	<Objects>
+		<x>6976</x>
+		<y>242</y>
+		<block>HIDDENLEVELBRICKBLOCK</block>
+		<blockRow>2</blockRow>
+	</Objects>
+	<Objects>
+		<x>7072</x>
+		<y>242</y>
+		<block>HIDDENLEVELBRICKBLOCK</block>
+		<blockRow>3</blockRow>
+	</Objects>
+	<Objects>
+		<x>7200</x>
+		<y>242</y>
+		<block>HIDDENLEVELBRICKBLOCK</block>
+		<blockRow>3</blockRow>
+	</Objects>
+	<Objects>
+		<x>7328</x>
 		<y>242</y>
 		<block>HIDDENLEVELBRICKBLOCK</block>
 		<blockRow>1</blockRow>
 	</Objects>
+	
 	<Objects>
-		<x>7008</x>
+		<x>6976</x>
+		<y>274</y>
+		<block>HIDDENLEVELBRICKBLOCK</block>
+		<blockRow>2</blockRow>
+	</Objects>
+	<Objects>
+		<x>7072</x>
+		<y>274</y>
+		<block>HIDDENLEVELBRICKBLOCK</block>
+		<blockRow>7</blockRow>
+	</Objects>
+	<Objects>
+		<x>7328</x>
 		<y>274</y>
 		<block>HIDDENLEVELBRICKBLOCK</block>
 		<blockRow>1</blockRow>
 	</Objects>
+	
 	<Objects>
-		<x>7008</x>
+		<x>6976</x>
+		<y>306</y>
+		<block>HIDDENLEVELBRICKBLOCK</block>
+		<blockRow>2</blockRow>
+	</Objects>
+	<Objects>
+		<x>7072</x>
+		<y>306</y>
+		<block>HIDDENLEVELBRICKBLOCK</block>
+		<blockRow>7</blockRow>
+	</Objects>
+	<Objects>
+		<x>7328</x>
 		<y>306</y>
 		<block>HIDDENLEVELBRICKBLOCK</block>
 		<blockRow>1</blockRow>
 	</Objects>
+	
 	<Objects>
-		<x>7008</x>
+		<x>6976</x>
+		<y>338</y>
+		<block>HIDDENLEVELBRICKBLOCK</block>
+		<blockRow>2</blockRow>
+	</Objects>
+	<Objects>
+		<x>7072</x>
+		<y>338</y>
+		<block>HIDDENLEVELBRICKBLOCK</block>
+		<blockRow>7</blockRow>
+	</Objects>
+	<Objects>
+		<x>7328</x>
 		<y>338</y>
 		<block>HIDDENLEVELBRICKBLOCK</block>
 		<blockRow>1</blockRow>
 	</Objects>
+	
 	<Objects>
-		<x>7008</x>
+		<x>6976</x>
+		<y>370</y>
+		<block>HIDDENLEVELBRICKBLOCK</block>
+		<blockRow>2</blockRow>
+	</Objects>
+	<Objects>
+		<x>7072</x>
+		<y>370</y>
+		<block>HIDDENLEVELBRICKBLOCK</block>
+		<blockRow>7</blockRow>
+	</Objects>
+	<Objects>
+		<x>7328</x>
 		<y>370</y>
 		<block>HIDDENLEVELBRICKBLOCK</block>
 		<blockRow>1</blockRow>
 	</Objects>
+	
 	<Objects>
-		<x>7008</x>
+		<x>6976</x>
 		<y>402</y>
 		<block>HIDDENLEVELBRICKBLOCK</block>
-		<blockRow>1</blockRow>
+		<blockRow>12</blockRow>
 	</Objects>
 
 
 
 	<Objects>
-		<x>7008</x>
+		<x>6976</x>
 		<y>466</y>
 		<block>HIDDENLEVELFLOORBLOCK</block>
-		<blockRow>17</blockRow>
+		<blockRow>28</blockRow>
 	</Objects>
 	<Objects>
-		<x>7008</x>
+		<x>6976</x>
 		<y>434</y>
 		<block>HIDDENLEVELFLOORBLOCK</block>
-		<blockRow>17</blockRow>
+		<blockRow>28</blockRow>
 	</Objects>
 
 
+
+
 	<Objects>
-		<x>7136</x>
+		<x>7488</x>
 		<y>82</y>
 		<block>HIDDENLEVELBRICKBLOCK</block>
 		<blockRow>7</blockRow>
 	</Objects>
 	<Objects>
-		<x>7136</x>
+		<x>7488</x>
 		<y>338</y>
 		<block>HIDDENLEVELBRICKBLOCK</block>
 		<blockRow>7</blockRow>
 	</Objects>
 	<Objects>
-		<x>7136</x>
+		<x>7488</x>
 		<y>370</y>
 		<block>HIDDENLEVELBRICKBLOCK</block>
 		<blockRow>7</blockRow>
 	</Objects>
 	<Objects>
-		<x>7136</x>
+		<x>7488</x>
 		<y>402</y>
 		<block>HIDDENLEVELBRICKBLOCK</block>
 		<blockRow>7</blockRow>
 	</Objects>
 
 	<Objects>
-		<x>7424</x>
+		<x>7776</x>
 		<y>370</y>
 		<item>HIDDENLEVELHORIZONTALPIPE</item>
 	</Objects>
 	<Objects>
-		<x>7492</x>
+		<x>7844</x>
 		<y>82</y>
 		<item>HIDDENLEVELVERTICALPIPE</item>
 	</Objects>
 	<Objects>
-		<x>7492</x>
+		<x>7844</x>
 		<y>178</y>
 		<item>HIDDENLEVELVERTICALPIPE</item>
 	</Objects>
 
 
 	<Objects>
-		<x>7143</x>
+		<x>7495</x>
 		<y>306</y>
 		<item>HIDDENLEVELCOIN</item>
 	</Objects>
 	<Objects>
-		<x>7175</x>
+		<x>7527</x>
 		<y>306</y>
 		<item>HIDDENLEVELCOIN</item>
 	</Objects>
 	<Objects>
-		<x>7207</x>
+		<x>7559</x>
 		<y>306</y>
 		<item>HIDDENLEVELCOIN</item>
 	</Objects>
 	<Objects>
-		<x>7239</x>
+		<x>7591</x>
 		<y>306</y>
 		<item>HIDDENLEVELCOIN</item>
 	</Objects>
 	<Objects>
-		<x>7271</x>
+		<x>7623</x>
 		<y>306</y>
 		<item>HIDDENLEVELCOIN</item>
 	</Objects>
 	<Objects>
-		<x>7303</x>
+		<x>7655</x>
 		<y>306</y>
 		<item>HIDDENLEVELCOIN</item>
 	</Objects>
 	<Objects>
-		<x>7335</x>
+		<x>7687</x>
 		<y>306</y>
 		<item>HIDDENLEVELCOIN</item>
 	</Objects>
@@ -836,42 +982,42 @@
 
 
 	<Objects>
-		<x>7143</x>
+		<x>7495</x>
 		<y>242</y>
 		<item>HIDDENLEVELCOIN</item>
 	</Objects>
 	<Objects>
-		<x>7175</x>
+		<x>7527</x>
 		<y>242</y>
 		<item>HIDDENLEVELCOIN</item>
 	</Objects>
 	<Objects>
-		<x>7207</x>
+		<x>7991</x>
 		<y>242</y>
 		<item>HIDDENLEVELCOIN</item>
 	</Objects>
 	<Objects>
-		<x>7239</x>
+		<x>7591</x>
 		<y>242</y>
 		<item>HIDDENLEVELCOIN</item>
 	</Objects>
 	<Objects>
-		<x>7271</x>
+		<x>7623</x>
 		<y>242</y>
 		<item>HIDDENLEVELCOIN</item>
 	</Objects>
 	<Objects>
-		<x>7303</x>
+		<x>7655</x>
 		<y>242</y>
 		<item>HIDDENLEVELCOIN</item>
 	</Objects>
 	<Objects>
-		<x>7335</x>
+		<x>7687</x>
 		<y>242</y>
 		<item>HIDDENLEVELCOIN</item>
 	</Objects>
 	<Objects>
-		<x>7000</x>
+		<x>7352</x>
 		<y>0</y>
 		<item>HUDCOIN</item>
 	</Objects>
@@ -879,45 +1025,45 @@
 
 
 	<Objects>
-		<x>7175</x>
+		<x>7527</x>
 		<y>178</y>
 		<item>HIDDENLEVELCOIN</item>
 	</Objects>
 	<Objects>
-		<x>7207</x>
+		<x>7559</x>
 		<y>178</y>
 		<item>HIDDENLEVELCOIN</item>
 	</Objects>
 	<Objects>
-		<x>7239</x>
+		<x>7591</x>
 		<y>178</y>
 		<item>HIDDENLEVELCOIN</item>
 	</Objects>
 	<Objects>
-		<x>7271</x>
+		<x>7623</x>
 		<y>178</y>
 		<item>HIDDENLEVELCOIN</item>
 	</Objects>
 	<Objects>
-		<x>7303</x>
+		<x>7655</x>
 		<y>178</y>
 		<item>HIDDENLEVELCOIN</item>
 	</Objects>
-	
+
 	<Objects>
-		<x>7400</x>
+		<x>7752</x>
 		<y>240</y>
 		<item>WARPPIPEBACK</item>
 	</Objects>
-	
+
 	<Objects>
-		<x>7400</x>
+		<x>7752</x>
 		<y>270</y>
 		<item>WARPPIPEBODY</item>
 	</Objects>
-	
+
 	<Objects>
-		<x>7400</x>
+		<x>7752</x>
 		<y>340</y>
 		<item>WARPPIPEBODY</item>
 	</Objects>

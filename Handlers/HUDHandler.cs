@@ -84,21 +84,21 @@ namespace GameSpace.Machines
 
         public void Draw(SpriteBatch spritebatch)
         {
-            spritebatch.DrawString(HeadsUpDisplay, "[" + mario.Player + "]\n", HudPosition, Color.Black);
-            spritebatch.DrawString(HeadsUpDisplay, "Score: " + mario.score.ToString("D6"), new Vector2(HudPosition.X, HudPosition.Y+40), Color.Black);
-            spritebatch.DrawString(HeadsUpDisplay, "Time\n" + seconds, new Vector2(HudPosition.X + 200, HudPosition.Y), Color.Black);
-            spritebatch.DrawString(HeadsUpDisplay, "World\n  1-1", new Vector2(HudPosition.X + 320, HudPosition.Y), Color.Black);
+            spritebatch.DrawString(HeadsUpDisplay, "[" + mario.Player + "]\n", HudPosition, Color.White);
+            spritebatch.DrawString(HeadsUpDisplay, "Score: " + mario.score.ToString("D6"), new Vector2(HudPosition.X, HudPosition.Y+40), Color.White);
+            spritebatch.DrawString(HeadsUpDisplay, "Time\n" + seconds, new Vector2(HudPosition.X + 200, HudPosition.Y), Color.White);
+            spritebatch.DrawString(HeadsUpDisplay, "World\n  1-1", new Vector2(HudPosition.X + 320, HudPosition.Y), Color.White);
 
             spritebatch.Draw(FinderHandler.GetInstance().FindItem((int)ItemID.HUDCOIN).Sprite.Texture, new Vector2((int)HudPosition.X + 440, (int)HudPosition.Y + 25),//Draws Animated Coin
                 ((CoinSprite)FinderHandler.GetInstance().FindItem((int)ItemID.HUDCOIN).Sprite).getCurrentSpriteRect(), Color.White);
           
-            spritebatch.DrawString(HeadsUpDisplay, "X  " + mario.numCoinsCollected, new Vector2(HudPosition.X + 460, HudPosition.Y + 20), Color.Black); //Update to display coins
+            spritebatch.DrawString(HeadsUpDisplay, "X  " + mario.numCoinsCollected, new Vector2(HudPosition.X + 460, HudPosition.Y + 20), Color.White); //Update to display coins
 
             SpriteEffects facing = SpriteEffects.None;
             if (MarioHandler.mario.Facing == eFacing.RIGHT) facing = SpriteEffects.FlipHorizontally; //float rotation, Vector2 origin, Vector2 scale, SpriteEffects effects, float layerDepth)
             spritebatch.Draw(MarioHandler.mario.sprite.Texture, new Vector2((int)HudPosition.X + 640, (int)HudPosition.Y + 25), (Rectangle)MarioHandler.mario.sprite.getCurrentSpriteRect(), Color.White, 
                 (float)0, new Vector2(1, 1),  new Vector2(1, 1), facing ,(float)1);
-            spritebatch.DrawString(HeadsUpDisplay, "X  " + MarioHandler.marioLives, new Vector2(HudPosition.X + 660, HudPosition.Y + 20), Color.Black);
+            spritebatch.DrawString(HeadsUpDisplay, "X  " + MarioHandler.marioLives, new Vector2(HudPosition.X + 660, HudPosition.Y + 20), Color.White);
 
             UpdateHudPosition();
         }
