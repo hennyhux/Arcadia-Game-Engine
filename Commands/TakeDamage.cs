@@ -13,7 +13,7 @@ namespace GameSpace
 
         public void Execute()
         {
-            MarioHandler.marioLives--;
+            MarioHandler.GetInstance().DecrementMarioLives();
         }
 
         public void Unexecute()
