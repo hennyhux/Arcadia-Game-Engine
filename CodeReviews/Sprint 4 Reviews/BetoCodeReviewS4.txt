@@ -1,0 +1,16 @@
+﻿Author of Review: Beto Cruz
+Date: 11/9/2021
+Sprint Number: 4
+Name of File: State class
+Author of File: Henry Zhang
+Comments:	I decided to do my code review on the State class inside PlayingGameState.cs since it made pretty big changes to the whole game
+			and coding experience. I think it makes it really easy to follow and change between different Game States. It makes the transitions
+			from Playing to GameOver or to Victory much better to follow. This abstract class is used by other classes separated instead of 
+			having GameRoot contain a bunch of different methods that would have to deal with all the state changes. 
+		
+Time Taken to Complete Code Review: 30 minutes
+Hypothetical Change: However, I do think that, because we are basically done with the game, our methods inside the PlayingGameState.cs class
+			are getting too long (i.e. LoadContent()), so we can add more methods that do some of the tasks of these long methods. This will
+			lead to cleaner and much easier to understand code. Also, to make the file smaller as well, we could implement State in a different 
+			file (not inside of PlayingGameState.cs).
+		

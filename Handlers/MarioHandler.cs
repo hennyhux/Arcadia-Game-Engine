@@ -156,6 +156,7 @@ namespace GameSpace.Machines
             //int multiplier = poleY - marioY ;
             double multiplier = 200;
             mario.score += (int)(multiplier * HUDHandler.seconds);//Get points based off time
+            //HUDHandler.GetInstance().UpdateSecondsAfterWinning();
             mario.score += flagPoints;// points based off flag
         }
     }

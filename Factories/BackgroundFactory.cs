@@ -70,7 +70,7 @@ namespace GameSpace.Factories
 
         public BackgroundSprite CreateCloudsSprite()//mario.SmallMarioJumpingSprite
         {
-            return new BackgroundSprite(Clouds, new Vector2(0, 0));
+            return new BackgroundSprite(Clouds, new Vector2(0, 80));
         }
 
         public BackgroundSprite CreateClouds1Sprite()//mario.SmallMarioJumpingSprite

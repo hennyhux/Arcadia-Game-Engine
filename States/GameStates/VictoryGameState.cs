@@ -37,6 +37,7 @@ namespace GameSpace.States.GameStates
         {
             graphicsDevice.Clear(Color.BlueViolet);
             spriteBatch.Begin();
+                
             HUDHandler.GetInstance().DrawEndingResetPanel(spriteBatch);
             spriteBatch.End();
         }

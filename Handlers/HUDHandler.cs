@@ -42,6 +42,12 @@ namespace GameSpace.Machines
             timer = 0;
         }
 
+        public void UpdateSecondsAfterWinning()
+        {
+            seconds = 0;
+        }
+
+
         public void UpdateTimer()
         {
             timer += internalGametime.ElapsedGameTime.Ticks;
@@ -120,7 +126,7 @@ namespace GameSpace.Machines
             
             spritebatch.DrawString(HeadsUpDisplay, "[" + mario.Player + "]\n", new Vector2(0, 0), Color.Black);
             spritebatch.DrawString(HeadsUpDisplay, "Score: " + mario.score.ToString("D6"), new Vector2(0, 40), Color.Black);
-            spritebatch.DrawString(HeadsUpDisplay, "Time\n" + seconds, new Vector2(200, 0), Color.Black);
+            spritebatch.DrawString(HeadsUpDisplay, "Time\n" + 0, new Vector2(200, 0), Color.Black); //Seconds is 0
             spritebatch.DrawString(HeadsUpDisplay, "World\n  1-1", new Vector2(320, 0), Color.Black);
 
             
