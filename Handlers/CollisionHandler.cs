@@ -419,12 +419,20 @@ namespace GameSpace.EntityManaging
         public void MarioToItemCollision(Coin coin)
         {
             ++mario.numCoinsCollected;
+            if (mario.numCoinsCollected == 100)
+            {
+                ++MarioHandler.marioLives;
+            }
             mario.score += 200;
         }
 
         public void MarioToItemCollision(HiddenLevelCoin coin)
         {
-            ++mario.numCoinsCollected;
+            mario.numCoinsCollected++;
+            if (mario.numCoinsCollected == 100)
+            {
+                ++MarioHandler.marioLives;
+            }
             mario.score += 200;
         }
         public void MarioToItemCollision(Castle castle)
