@@ -46,7 +46,7 @@ namespace GameSpace.Machines
         {
             timer += internalGametime.ElapsedGameTime.Ticks;
             ticks = ticksMax - timer;
-            seconds = ticks / convertToSeconds;
+            seconds = ticks / convertToSeconds - 300;
             if (seconds == 50) MusicHandler.GetInstance().PlaySoundEffect(11);
 
             if (seconds == 0 || game.GetMario.marioActionState is GameSpace.States.MarioStates.DeadMarioState)
@@ -161,6 +161,7 @@ namespace GameSpace.Machines
             spritebatch.DrawString(HeadsUpDisplay, "PRESS R FOR NEW GAME", new Vector2(0, 120), Color.White);
             spritebatch.DrawString(HeadsUpDisplay, "PRESS Q TO QUIT GAME", new Vector2(400, 120), Color.White);
             UpdateHudPosition();
+
         }
 
 

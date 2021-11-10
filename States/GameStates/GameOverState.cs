@@ -30,7 +30,7 @@ namespace GameSpace.States.GameStates
         private List<IController> controllers;
         public GameOverState(GameRoot game, GraphicsDevice graphicsDevice, ContentManager content) : base(game, graphicsDevice, content)
         {
-
+            MusicHandler.GetInstance().PlaySoundEffect(12);
         }
 
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
