@@ -135,7 +135,7 @@ namespace GameSpace.States.GameStates
                 new Layer(camera, BackgroundFactory.GetInstance().CreateCloudsSprite(), new Vector2(2.0f, 1.0f)),
                 //new Layer(camera, BackgroundFactory.GetInstance().CreateBGMountainSprite(), new Vector2(1.5f, 1.0f)),
                 new Layer(camera, BackgroundFactory.GetInstance().CreateRegularBackground1(), new Vector2(1.4f, 1.0f)),
-                new Layer(camera, BackgroundFactory.GetInstance().CreateBlackWindow2(), new Vector2(0.5f, 0.0f)),
+                new Layer(camera, BackgroundFactory.GetInstance().CreateBlackWindow2(), new Vector2(1.0f, 0.0f)),
             };
 
             //Play Song
