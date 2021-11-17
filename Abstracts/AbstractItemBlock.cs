@@ -72,7 +72,7 @@ namespace GameSpace.Abstracts
             //override... 
         }
 
-        public virtual void UpdatePosition(Vector2 location, GameTime gametime)
+        public virtual void UpdateCollisionBox(Vector2 location, GameTime gametime)
         {
             //block doesnt move; future use? 
         }

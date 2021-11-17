@@ -14,7 +14,7 @@ namespace GameSpace.TileMapDefinition
             public ItemID item;
             public EnemyID enemy;
             public AvatarID avatar;
-            public eFacing facing;
+            public MarioDirection facing;
         }
     }
 }

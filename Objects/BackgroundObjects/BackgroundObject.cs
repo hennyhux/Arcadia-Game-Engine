@@ -34,7 +34,7 @@ namespace GameSpace.Objects.BackgroundObjects
         public abstract void Trigger();
 
 
-        public abstract void UpdatePosition(Vector2 location, GameTime gameTime);
+        public abstract void UpdateCollisionBox(Vector2 location, GameTime gameTime);
 
 
         public abstract void HandleCollision(IGameObjects entity);

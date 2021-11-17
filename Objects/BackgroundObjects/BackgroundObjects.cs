@@ -43,7 +43,7 @@ namespace GameSpace.Objects.BackgroundObjects
 
         }
 
-        public override void UpdatePosition(Vector2 location, GameTime gameTime)
+        public override void UpdateCollisionBox(Vector2 location, GameTime gameTime)
         {
 
         }

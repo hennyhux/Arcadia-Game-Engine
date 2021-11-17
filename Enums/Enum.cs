@@ -75,7 +75,7 @@
         VELOCITYNEWENEMY = 37 //For Sprint 5, we can implement velocity for new enemy
     };
 
-    public enum eFacing
+    public enum MarioDirection
     {
         LEFT = 38,
         RIGHT = 39

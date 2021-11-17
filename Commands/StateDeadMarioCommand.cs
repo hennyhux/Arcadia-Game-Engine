@@ -1,6 +1,4 @@
-﻿using GameSpace.States.MarioStates;
-using GameSpace.States;
-namespace GameSpace.Commands
+﻿namespace GameSpace.Commands
 {
     public class StateDeadMarioCommand : ICommand
     {

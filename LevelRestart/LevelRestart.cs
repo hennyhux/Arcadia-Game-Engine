@@ -1,6 +1,6 @@
 ﻿using GameSpace.Interfaces;
-using Microsoft.Xna.Framework;
 using GameSpace.Machines;
+using Microsoft.Xna.Framework;
 
 
 namespace GameSpace.Level
@@ -52,7 +52,7 @@ namespace GameSpace.Level
 
         public void Restart()
         {
-            IMarioActionStates currentState = MyGame.GetMario.marioActionState;
+            IMarioActionStates currentState = MyGame.GetMario.MarioActionState;
             FindCheckPoint();
             if (currentState is GameSpace.States.MarioStates.DeadMarioState)
             {

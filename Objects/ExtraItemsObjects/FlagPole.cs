@@ -1,12 +1,11 @@
 ﻿using GameSpace.Enums;
 using GameSpace.Factories;
 using GameSpace.Interfaces;
+using GameSpace.Machines;
+using GameSpace.Sprites;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
-using System.Diagnostics;
-using GameSpace.Sprites;
-using GameSpace.Machines;
 
 namespace GameSpace.GameObjects.ExtraItemsObjects
 {
@@ -46,19 +45,19 @@ namespace GameSpace.GameObjects.ExtraItemsObjects
             {
                 ((FlagPoleSprite)Sprite).Draw(spritebatch, Position, false);
             }
-             
+
             if (drawBox)
             {
                 Sprite.DrawBoundary(spritebatch, CollisionBox);
             }
-        } 
+        }
 
         public void Update(GameTime gametime)
         {
             if (hasCollided && Acceleration.X > 0) // Flag lowering once mario touches flag
             {
                 ((FlagPoleSprite)Sprite).Update(gametime, hasCollided);
-                Acceleration -= new Vector2((float)1 * (float)gametime.ElapsedGameTime.TotalSeconds, 0);
+                Acceleration -= new Vector2(1 * (float)gametime.ElapsedGameTime.TotalSeconds, 0);
             }
             else if (hasCollided)//The Flag Animation has played so, go to victory
             {
@@ -73,7 +72,7 @@ namespace GameSpace.GameObjects.ExtraItemsObjects
             //Flag does nothing.
         }
 
-        public void UpdatePosition(Vector2 location, GameTime gameTime)
+        public void UpdateCollisionBox(Vector2 location, GameTime gameTime)
         {
             //Pipe doesn't move.
         }

@@ -46,7 +46,7 @@ namespace GameSpace.States.GameStates
         public List<SoundEffect> soundEffects;
         #endregion
 
-        private Song song;
+        private readonly Song song;
 
         public GraphicsDeviceManager Graphics => graphics;
 

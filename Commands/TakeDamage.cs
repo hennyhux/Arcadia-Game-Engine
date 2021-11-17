@@ -1,6 +1,6 @@
 ﻿
-using System;
 using GameSpace.Machines;
+using System;
 namespace GameSpace
 {
     public class TakeDamage : ICommand

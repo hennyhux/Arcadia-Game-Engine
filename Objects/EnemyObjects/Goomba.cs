@@ -14,7 +14,7 @@ namespace GameSpace.GameObjects.EnemyObjects
         public Goomba(Vector2 initalPosition)
         {
             ObjectID = (int)EnemyID.GOOMBA;
-            Direction = (int)eFacing.LEFT;
+            Direction = (int)MarioDirection.LEFT;
             Position = initalPosition;
             state = new StateGoombaAlive();
             UpdateCollisionBox(Position);
@@ -42,7 +42,7 @@ namespace GameSpace.GameObjects.EnemyObjects
             {
                 state.Update(gametime);
                 UpdateSpeed();
-                UpdatePosition(Position, gametime);
+                UpdateCollisionBox(Position, gametime);
                 UpdateCollisionBox(Position);
             }
 
@@ -64,7 +64,7 @@ namespace GameSpace.GameObjects.EnemyObjects
                 countDown = 0;
                 MusicHandler.GetInstance().PlaySoundEffect(2);
             }
-   
+
         }
     }
 

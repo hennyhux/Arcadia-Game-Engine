@@ -25,14 +25,14 @@ namespace GameSpace.Machines
 
         public bool IsCurrentlyBigMario()
         {
-            return (mario.marioActionState is BigMarioFallingState ||
-                   mario.marioActionState is BigMarioJumpingState ||
-                   mario.marioActionState is BigMarioRunningState ||
-                   mario.marioActionState is BigMarioStandingState ||
-                   mario.marioActionState is FireMarioFallingState ||
-                   mario.marioActionState is FireMarioJumpingState ||
-                   mario.marioActionState is FireMarioRunningState ||
-                   mario.marioActionState is FireMarioStandingState);
+            return (mario.MarioActionState is BigMarioFallingState ||
+                   mario.MarioActionState is BigMarioJumpingState ||
+                   mario.MarioActionState is BigMarioRunningState ||
+                   mario.MarioActionState is BigMarioStandingState ||
+                   mario.MarioActionState is FireMarioFallingState ||
+                   mario.MarioActionState is FireMarioJumpingState ||
+                   mario.MarioActionState is FireMarioRunningState ||
+                   mario.MarioActionState is FireMarioStandingState);
         }
 
         public void SetMarioStateToWarp()
@@ -108,7 +108,6 @@ namespace GameSpace.Machines
 
         }
 
-
         public void ResetMarioLives()
         {
             marioLives = 3;
@@ -118,21 +117,19 @@ namespace GameSpace.Machines
         {
             return mario.Position;
         }
-        public static MarioHandler Instance()
-        {
-            return instance;
-        }
 
         public void CalculateFinalScore(int marioY, int poleY)
         {
             int flagPoints = 0;//Calculates the points from the flag
             double pixelConversionMult = 2;//To make different heights of poles more accerate for points
-            if(poleY >= marioY + mario.sprite.Height/2){//If mario on top of flag pole 
+            if (poleY >= marioY + mario.sprite.Height / 2)
+            {//If mario on top of flag pole 
                 //increment lives
                 flagPoints = 8000;
                 MarioHandler.GetInstance().IncrementMarioLives();
             }
-            else if ((marioY - poleY < 25 * pixelConversionMult)){//If 
+            else if ((marioY - poleY < 25 * pixelConversionMult))
+            {//If 
                 flagPoints = 4000;
             }
             else if ((marioY - poleY < 71 * pixelConversionMult))
@@ -152,7 +149,7 @@ namespace GameSpace.Machines
                 flagPoints = 100;
             }
             Debug.Print("FlagPoints : {0}", flagPoints);
-            
+
             //int multiplier = poleY - marioY ;
             double multiplier = 200;
             mario.score += (int)(multiplier * HUDHandler.seconds);//Get points based off time

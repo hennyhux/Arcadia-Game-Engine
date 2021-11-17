@@ -2,7 +2,6 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
-using System.Diagnostics;
 
 namespace GameSpace.Sprites
 {
@@ -89,21 +88,9 @@ namespace GameSpace.Sprites
 
         public void Update(GameTime gametime)
         {
-            //Debug.WriteLine("marioPower: ", marioPower);
-            //Debug.WriteLine("actionState: ", actionState);
-
             if (IsVisible)
             {
                 int startingFrame = 0;
-
-                if (facingRight == 1)
-                {
-                    //Debug.WriteLine("spriteActionState {1}, \nfacingRight: {0}", facingRight, actionState);
-                }
-
-                /*marioPower = [Small, Big, Fire, Star, Dead]1
-                  actionState = [Idling, Crouching, Walking, Running, Jumping, Falling, Dying]*/
-
                 totalFrames = totalFramesAnimation[currentFrame]; // gets previous frame's total frames in animation
 
                 facing = SpriteEffects.None;
@@ -148,7 +135,6 @@ namespace GameSpace.Sprites
                     if (timeSinceLastFrame > milliSecondsPerFrame)
                     {
                         timeSinceLastFrame -= milliSecondsPerFrame;
-                        //Debug.WriteLine("milliSecondsPerFrame: " + milliSecondsPerFrame);
                         if (facingRight == 0)
                         {
                             currentFrame = currentFrame - 1;
@@ -161,9 +147,6 @@ namespace GameSpace.Sprites
 
                     if (Math.Abs(currentFrame - startingFrame) >= totalFramesAnimation[startingFrame])
                     {
-                        /* Debug.WriteLine("calculation: " + Math.Abs(currentFrame - startingFrame));
-                         Debug.WriteLine("answer: " + totalFramesAnimation[startingFrame]);
-                         Debug.WriteLine("currentFrame: " + currentFrame);*/
                         currentFrame = startingFrame;
 
                     }
@@ -179,9 +162,6 @@ namespace GameSpace.Sprites
 
         public void Draw(SpriteBatch spriteBatch, Vector2 location)
         {
-
-
-            //Debug.WriteLine("mario drawK \n");
             if (IsVisible)
             {
                 Width = XWidth[currentFrame];
@@ -204,7 +184,6 @@ namespace GameSpace.Sprites
         public void DrawBoundary(SpriteBatch spriteBatch, Rectangle destination)
         {
             spriteBatch.Draw(WhiteRect, destination, Color.Yellow * 0.4f);
-
         }
 
         public Rectangle getCurrentSpriteRect()

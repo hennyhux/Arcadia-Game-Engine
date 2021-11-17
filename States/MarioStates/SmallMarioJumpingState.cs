@@ -4,11 +4,10 @@ using GameSpace.GameObjects.BlockObjects;
 using GameSpace.Interfaces;
 using GameSpace.Machines;
 using Microsoft.Xna.Framework;
-using System.Diagnostics;
 
 namespace GameSpace.States.MarioStates
 {
-    internal class SmallMarioJumpingState : MarioActionStates//MarioPowerUpStates
+    internal class SmallMarioJumpingState : MarioActionStates
     {
         public SmallMarioJumpingState(Mario mario)
             : base(mario)
@@ -18,24 +17,16 @@ namespace GameSpace.States.MarioStates
 
         public override void Enter(IMarioActionStates previousActionState)
         {
-            Mario.marioActionState = this;
+            Mario.MarioActionState = this;
             this.previousActionState = previousActionState;
-            //Debug.WriteLine("MarioJumpingtate(25) Enter, {0}", Mario.marioActionState);
-           // Debug.WriteLine("MarioWalkingState(25) facing:, {0}", Mario.Facing);
+            Mario.Velocity = new Vector2(Mario.Velocity.X, -400);
+            Mario.Acceleration = new Vector2(0, 600);
 
-            //Set Proper velocity upon entering state
-            Mario.Velocity = new Vector2(Mario.Velocity.X, -200);//NEW
-
-
-            //AABB aabb = Mario.AABB;
-            //eFacing Facing = MarioStandingState.Facing;
-            eFacing Facing = Mario.Facing;
+            MarioDirection Facing = Mario.Facing;
             Mario.Facing = Facing;
-            //Mario.Sprite = MarioStandingState.SpriteFactory.CreateSprite(MarioSpriteFactory.MarioSpriteType(this, currentPowerUpState));
-            Mario.sprite = MarioFactory.GetInstance().CreateSprite(MarioFactory.MarioSpriteType(this, Mario.marioPowerUpState));
-            //Mario.sprite = MarioFactory.GetInstance().CreateSprite(5);
+    
+            Mario.sprite = MarioFactory.GetInstance().CreateSprite(MarioFactory.MarioSpriteType(this, Mario.MarioPowerUpState));
 
-            //play standard jumping sound effect
             MusicHandler.GetInstance().PlaySoundEffect(0);
         }
 
@@ -45,17 +36,14 @@ namespace GameSpace.States.MarioStates
         }
 
         public override void StandingTransition()
-        {//going to crouch for now(going to superstand
-         //currentActionState.Exit();
-            /// Debug.WriteLine("Small Standtrans");
+        {
             Exit();
-            Mario.marioActionState = new SmallMarioStandingState(Mario);
-           // Debug.WriteLine("MarioStandState(39) currentAState, {0}", Mario.marioActionState);
-            //Mario.sprite = MarioFactory.GetInstance().CreateSprite(2);
-            Mario.marioActionState.Enter(this); // Changing states
+            Mario.MarioActionState = new SmallMarioStandingState(Mario);
+       
+            Mario.MarioActionState.Enter(this); 
 
         }
-        public override void CrouchingTransition() { }//nothing
+        public override void CrouchingTransition() { }
         public override void WalkingTransition()
         {
 
@@ -63,11 +51,10 @@ namespace GameSpace.States.MarioStates
         public override void RunningTransition()
         {
             Exit();
-            Mario.marioActionState = new SmallMarioRunningState(Mario);
-            //Debug.WriteLine("MarioStandState(39) currentAState, {0}", Mario.marioActionState);
-            //Mario.sprite = MarioFactory.GetInstance().CreateSprite(4);
-            Mario.marioActionState.Enter(this); // Changing states
-        } //Longer you hold running you increase velocity and speed of animation
+            Mario.MarioActionState = new SmallMarioRunningState(Mario);
+            
+            Mario.MarioActionState.Enter(this); // Changing states
+        } 
         public override void JumpingTransition()
         {
 
@@ -75,32 +62,31 @@ namespace GameSpace.States.MarioStates
         public override void FallingTransition()
         {
             Exit();
-            Mario.marioActionState = new SmallMarioFallingState(Mario);
-            //Debug.WriteLine("MarioStandState(39) currentAState, {0}", Mario.marioActionState);
-            //Mario.sprite = MarioFactory.GetInstance().CreateSprite(6);
-            Mario.marioActionState.Enter(this); // Changing states
+            Mario.MarioActionState = new SmallMarioFallingState(Mario);
+            
+            Mario.MarioActionState.Enter(this); 
         }
 
         public override void FaceLeftTransition()
         {
-            if (Mario.Facing == eFacing.LEFT)
+            if (Mario.Facing == MarioDirection.LEFT)
             {
                 RunningTransition();
             }
             else
             {
-                Mario.Facing = eFacing.LEFT;
+                Mario.Facing = MarioDirection.LEFT;
             }
         }
         public override void FaceRightTransition()
         {
-            if (Mario.Facing == eFacing.RIGHT)
+            if (Mario.Facing == MarioDirection.RIGHT)
             {
                 RunningTransition();
             }
             else
             {
-                Mario.Facing = eFacing.RIGHT;
+                Mario.Facing = MarioDirection.RIGHT;
             }
         }
 
@@ -117,20 +103,20 @@ namespace GameSpace.States.MarioStates
         public override void BigPowerUp()
         {
             Exit();
-            Mario.marioActionState = new BigMarioJumpingState(Mario);
-            Mario.marioActionState.Enter(this);
+            Mario.MarioActionState = new BigMarioJumpingState(Mario);
+            Mario.MarioActionState.Enter(this);
         }
         public override void FirePowerUp()
         {
             Exit();
-            Mario.marioActionState = new FireMarioJumpingState(Mario);
-            Mario.marioActionState.Enter(this);
+            Mario.MarioActionState = new FireMarioJumpingState(Mario);
+            Mario.MarioActionState.Enter(this);
         }
         public override void DeadPowerUp()
         {
             Exit();
-            Mario.marioActionState = new DeadMarioState(Mario);
-            Mario.marioActionState.Enter(this);
+            Mario.MarioActionState = new DeadMarioState(Mario);
+            Mario.MarioActionState.Enter(this);
         }
 
         public override void CrouchingDiscontinueTransition() { }//when you exit crouch, release down key
@@ -157,10 +143,10 @@ namespace GameSpace.States.MarioStates
         public override void JumpingDiscontinueTransition()
         {
             Exit();
-            Mario.marioActionState = new SmallMarioFallingState(Mario);
+            Mario.MarioActionState = new SmallMarioFallingState(Mario);
             //Debug.WriteLine("MarioStandState(39) currentAState, {0}", Mario.marioActionState);
             //Mario.sprite = MarioFactory.GetInstance().CreateSprite(3);
-            Mario.marioActionState.Enter(this); // Changing states
+            Mario.MarioActionState.Enter(this); // Changing states
 
         }
         //abort jump or force jump to disc bc you reached apex of jump

@@ -12,9 +12,9 @@ namespace GameSpace.Interfaces
         void Enter(IMarioPowerUpStates previousPowerUpState);
         void Exit();
 
-        void smallMarioTransformation();
-        void bigMarioTransformation();
-        void fireMarioTransformation();
+        void SmallMarioTransformation();
+        void BigMarioTransformation();
+        void FireMarioTransformation();
         void DamageTransition();
         void DeadTransition();
 

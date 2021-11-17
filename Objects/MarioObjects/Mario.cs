@@ -11,22 +11,20 @@ using GameSpace.States.BlockStates;
 using GameSpace.States.MarioStates;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System.Diagnostics;
 
 namespace GameSpace.GameObjects.BlockObjects
 {
     public class Mario : IGameObjects
     {
 
-        private bool hasCollided;
         private bool drawBox;
 
         public LevelRestart levelRestart;
         public GameRoot hey;
         public MarioSprite sprite { get; set; }
-        public eFacing Facing { get; set; }
-        public IMarioPowerUpStates marioPowerUpState { get; set; }
-        public IMarioActionStates marioActionState { get; set; }
+        public MarioDirection Facing { get; set; }
+        public IMarioPowerUpStates MarioPowerUpState { get; set; }
+        public IMarioActionStates MarioActionState { get; set; }
         public ISprite Sprite { get; set; }
         public Vector2 Position { get; set; }
         public Vector2 Velocity { get; set; }
@@ -35,28 +33,22 @@ namespace GameSpace.GameObjects.BlockObjects
         public int ObjectID { get; set; }
         public int numFireballs;
         public Rectangle ExpandedCollisionBox { get; set; }
-        //public int marioLives { get; set; }
         public int numCoinsCollected { get; set; }
         public int score { get; set; }
 
-        public string Player { get; set; }//For PBI 32
+        public string Player { get; set; }
 
         public Mario(Vector2 initLocation)
         {
-            // Debug.WriteLine("Mario.cs(50) CREATED MARIO \n");
             ObjectID = (int)AvatarID.MARIO;
             drawBox = false;
-            hasCollided = false;
             Position = new Vector2((int)initLocation.X, (int)initLocation.Y);
-            CollisionBox = new Rectangle((int)initLocation.X - 3, (int)initLocation.Y, 32, 32);
             numFireballs = 30;
             //marioLives = 3;
-            Acceleration = new Vector2(0, 100);//NEW
-            ExpandedCollisionBox = new Rectangle((int)initLocation.X - 3, (int)initLocation.Y, 32, 42);
-
+            Acceleration = new Vector2(0, 150);//NEW
             sprite = MarioFactory.GetInstance().CreateSprite(1);
-            marioPowerUpState = new SmallMarioState(this);
-            marioActionState = new SmallMarioStandingState(this);
+            MarioPowerUpState = new SmallMarioState(this);
+            MarioActionState = new SmallMarioStandingState(this);
             numCoinsCollected = 0;
             score = 0;
             Player = "Mario";
@@ -64,64 +56,39 @@ namespace GameSpace.GameObjects.BlockObjects
 
         public void Draw(SpriteBatch spritebatch)
         {
+
+            switch (Facing)
+            {
+                case MarioDirection.LEFT:
+                    sprite.facing = SpriteEffects.None;
+                    break;
+                case MarioDirection.RIGHT:
+                    sprite.facing = SpriteEffects.FlipHorizontally;
+                    break;
+            }
+
+            sprite.Draw(spritebatch, Position);
             if (drawBox)
             {
                 sprite.DrawBoundary(spritebatch, CollisionBox);
             }
-
-            if (Facing == eFacing.LEFT)
-            {
-                //sprite.facingRight = 0;
-                sprite.facing = SpriteEffects.None;// swap if
-            }
-            else
-            {
-                //sprite.facingRight = 0;
-                sprite.facing = SpriteEffects.FlipHorizontally;// swap if base facing direction of sprite is right
-            }
-
-            sprite.Draw(spritebatch, Position);
         }
         public void Update(GameTime gametime)
         {
             if (Velocity.Y == 0 && CollisionHandler.GetInstance().IsGoingToFall())
             {
-                Debug.Print("IS GOing to FALL");
                 FallingTransition();
             }
-            //Velocity += Acceleration * (float)gametime.ElapsedGameTime.TotalSeconds;
+
             Vector2 newLocation = Velocity * (float)gametime.ElapsedGameTime.TotalSeconds;
             if (!CollisionHandler.GetInstance().IsGoingToBeOutOfBounds(this, newLocation))
             {
                 Position += newLocation;
             }
-            //this.CollisionBox = new Rectangle((int)Position.X, (int)Position.Y, CollisionBox.Width, CollisionBox.Height);
-            if (!(marioPowerUpState is GameSpace.States.BlockStates.DeadMarioState))
-            {
-                if (marioPowerUpState is SmallMarioState)
-                {
-                    CollisionBox = new Rectangle((int)Position.X, (int)Position.Y, 32, 32);
-                }
-                else if (marioActionState is FireMarioCrouchingState || marioActionState is BigMarioCrouchingState)
-                {
-                    CollisionBox = new Rectangle((int)Position.X, (int)Position.Y, 32, 44);
-                }
-                else
-                {
-                    //this.CollisionBox = new Rectangle((int)Position.X, (int)Position.Y, this.sprite.Width * 2, this.sprite.Height * 2);
-                    CollisionBox = new Rectangle((int)Position.X, (int)Position.Y, 32, 64);
-                }
-            }
-            ExpandedCollisionBox = new Rectangle((int)CollisionBox.X, (int)CollisionBox.Y, CollisionBox.Width, CollisionBox.Height + 5);
-            //if mario collects 100 coins he gets an extra life
-            if (numCoinsCollected % 100 == 0)
-            {
-                //w++marioLives;
-            }
 
-            //GetMario.sprite.Height
-            marioPowerUpState.Update(gametime);
-            marioActionState.Update(gametime);
+            UpdateCollisionBox(Position, gametime);
+            MarioPowerUpState.Update(gametime);
+            MarioActionState.Update(gametime);
             sprite.Update(gametime);
         }
 
@@ -130,108 +97,104 @@ namespace GameSpace.GameObjects.BlockObjects
 
         public void StandingTransition()
         {
-            //Debug.WriteLine("MARIO STAND");
-            // Debug.WriteLine("Super Stand Trans");
-            marioActionState.StandingTransition();
+            MarioActionState.StandingTransition();
         }
-        public void CrouchingTransition() { marioActionState.CrouchingTransition(); }
-        public void WalkingTransition() { marioActionState.WalkingTransition(); }
-        public void RunningTransition() { marioActionState.RunningTransition(); } //Longer you hold running you increase velocity and speed of animation
-        public void JumpingTransition() { marioActionState.JumpingTransition(); }
-        public void FallingTransition() { marioActionState.FallingTransition(); }
+        public void CrouchingTransition() { MarioActionState.CrouchingTransition(); }
+        public void WalkingTransition() { MarioActionState.WalkingTransition(); }
+        public void RunningTransition() { MarioActionState.RunningTransition(); } //Longer you hold running you increase velocity and speed of animation
+        public void JumpingTransition() { MarioActionState.JumpingTransition(); }
+        public void FallingTransition() { MarioActionState.FallingTransition(); }
 
         public void FaceLeftTransition()
         {
-            if (Facing == eFacing.RIGHT)
-            {
-                //this.Velocity = new Vector2((float)0, (float)0);//
-            }
-
-            marioActionState.FaceLeftTransition();
+            MarioActionState.FaceLeftTransition();
         }
         public void FaceRightTransition()
         {
-            if (Facing == eFacing.LEFT)
-            {
-                //this.Velocity = new Vector2((float)0, (float)0);//
-            }
-            marioActionState.FaceRightTransition();
+            MarioActionState.FaceRightTransition();
         }
 
         public void UpTransition()
         {
-            marioActionState.UpTransition();
+            MarioActionState.UpTransition();
         }
 
         public void DownTransition()
         {
-            marioActionState.DownTransition();
+            MarioActionState.DownTransition();
         }
 
-        public void CrouchingDiscontinueTransition() { marioActionState.CrouchingDiscontinueTransition(); }//when you exit crouch, release down key
-        public void FaceLeftDiscontinueTransition() { marioActionState.FaceLeftDiscontinueTransition(); }//generic entering walk and run, face left then start walking, then start running
-        public void FaceRightDiscontinueTransition() { marioActionState.FaceRightDiscontinueTransition(); }
-        public void WalkingDiscontinueTransition() { marioActionState.WalkingDiscontinueTransition(); }//decelerata and go to standing
-        public void RunningDiscontinueTransition() { marioActionState.RunningDiscontinueTransition(); }//decelerate and go to walking dis
-        public void JumpingDiscontinueTransition() { marioActionState.JumpingDiscontinueTransition(); }//abort jump or force jump to disc bc you reached apex of jump
+        public void CrouchingDiscontinueTransition() { MarioActionState.CrouchingDiscontinueTransition(); }//when you exit crouch, release down key
+        public void FaceLeftDiscontinueTransition() { MarioActionState.FaceLeftDiscontinueTransition(); }//generic entering walk and run, face left then start walking, then start running
+        public void FaceRightDiscontinueTransition() { MarioActionState.FaceRightDiscontinueTransition(); }
+        public void WalkingDiscontinueTransition() { MarioActionState.WalkingDiscontinueTransition(); }//decelerata and go to standing
+        public void RunningDiscontinueTransition() { MarioActionState.RunningDiscontinueTransition(); }//decelerate and go to walking dis
+        public void JumpingDiscontinueTransition() { MarioActionState.JumpingDiscontinueTransition(); }//abort jump or force jump to disc bc you reached apex of jump
 
         public void Enter(IMarioPowerUpStates previousPowerUpState) { }
 
-        public void smallMarioTransformation()
+        public void SmallMarioTransformation()
         {
-            marioPowerUpState.smallMarioTransformation();
-            CollisionBox = new Rectangle((int)(Position.X + sprite.Texture.Width / 16), (int)Position.Y, sprite.Texture.Width / 12, sprite.Texture.Height / 6);
+            MarioPowerUpState.SmallMarioTransformation();
         }
 
         public void BigMarioTransformation()
         {
-            CollisionBox = new Rectangle((int)Position.X, (int)Position.Y, 32, 64);
-            marioPowerUpState.bigMarioTransformation();
+            MarioPowerUpState.BigMarioTransformation();
         }
 
         public void FireMarioTransformation()
         {
-            marioPowerUpState.fireMarioTransformation();
-            CollisionBox = new Rectangle((int)Position.X, (int)Position.Y + 32, 32, 64);
+            MarioPowerUpState.FireMarioTransformation();
         }
 
         public void DeadTransition()
         {
-            CollisionBox = new Rectangle(0, 0, 0, 0);
-            marioPowerUpState.DeadTransition();
-            //MarioHandler.GetInstance().DecrementMarioLives();
-            //if (marioLives == 0)
-            
-            
-            //levelRestart.Restart(stillHasLives);
+            MarioPowerUpState.DeadTransition();
         }
 
         public void DamageTransition()
         {
-            //CollisionBox = new Rectangle(0, 0, 0, 0);
-            marioPowerUpState.DamageTransition();
-            //MarioHandler.GetInstance().DecrementMarioLives();
-            //if (marioLives == 0)
-
-
-            //levelRestart.Restart(stillHasLives);
+            MarioPowerUpState.DamageTransition();
         }
 
         public void Trigger()
         {
-           // DeadTransition();
             DamageTransition();
         }
 
         #endregion
-        public void UpdatePosition(Vector2 location, GameTime gameTime)
-        {
 
+        public void UpdateCollisionBox(Vector2 location, GameTime gameTime)
+        {
+            if (!(MarioPowerUpState is States.BlockStates.DeadMarioState))
+            {
+                if (MarioPowerUpState is SmallMarioState)
+                {
+                    CollisionBox = new Rectangle((int)Position.X, (int)Position.Y, 32, 32);
+                }
+                else if (MarioActionState is FireMarioCrouchingState || MarioActionState is BigMarioCrouchingState)
+                {
+                    CollisionBox = new Rectangle((int)Position.X, (int)Position.Y, 32, 44);
+                }
+                else
+                {
+                    CollisionBox = new Rectangle((int)Position.X, (int)Position.Y, 32, 64);
+                }
+
+                ExpandedCollisionBox = new Rectangle(CollisionBox.X, CollisionBox.Y, CollisionBox.Width, CollisionBox.Height + 5);
+            }
+
+            else
+            {
+                CollisionBox = new Rectangle(0, 0, 0, 0);
+                ExpandedCollisionBox = new Rectangle(0, 0, 0, 0);
+            }
         }
 
         public void HandleCollision(IGameObjects entity)
         {
-            hasCollided = true;
+
             switch (entity.ObjectID)
             {
                 case (int)ItemID.FIREFLOWER:
@@ -311,7 +274,7 @@ namespace GameSpace.GameObjects.BlockObjects
 
         public bool IsCurrentlyColliding()
         {
-            return hasCollided;
+            return false;
         }
 
         public bool RevealItem()

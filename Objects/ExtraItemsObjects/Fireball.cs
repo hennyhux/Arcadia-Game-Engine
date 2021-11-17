@@ -60,7 +60,7 @@ namespace GameSpace.GameObjects.ItemObjects
             {
                 state.Update(gametime);
 
-                UpdatePosition(Position, gametime);
+                UpdateCollisionBox(Position, gametime);
                 UpdateCollisionBox();
 
             }

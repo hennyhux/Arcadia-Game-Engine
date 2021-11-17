@@ -8,7 +8,6 @@ using GameSpace.Machines;
 using GameSpace.States;
 using GameSpace.States.BlockStates;
 using Microsoft.Xna.Framework;
-using System.Diagnostics;
 
 
 namespace GameSpace.Objects.BlockObjects
@@ -16,7 +15,7 @@ namespace GameSpace.Objects.BlockObjects
 
     public class StateExplodingBrickBlock : AbstractBlockStates
     {
-        public StateExplodingBrickBlock() 
+        public StateExplodingBrickBlock()
         {
             sprite = SpriteBlockFactory.GetInstance().ReturnShatterBlock();
 
@@ -48,10 +47,10 @@ namespace GameSpace.Objects.BlockObjects
         public override void Update(GameTime gametime)
         {
             state.Update(gametime);
-            if (state is StateExplodingBrickBlock) 
-            { 
-                ++this.counter;
-                if (this.counter >= 10)
+            if (state is StateExplodingBrickBlock)
+            {
+                ++counter;
+                if (counter >= 10)
                 {
                     state = new StateGoneBrickBlock();
                     CollisionBox = new Rectangle();

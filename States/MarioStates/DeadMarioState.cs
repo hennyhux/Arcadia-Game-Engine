@@ -4,7 +4,6 @@ using GameSpace.GameObjects.BlockObjects;
 using GameSpace.Interfaces;
 using GameSpace.Machines;
 using Microsoft.Xna.Framework;
-using System.Diagnostics;
 
 
 namespace GameSpace.States.MarioStates
@@ -25,16 +24,16 @@ namespace GameSpace.States.MarioStates
 
             //MarioHandler.GetInstance().DecrementMarioLives();
             //Debug.WriteLine("Mario has lost a life, mario has {0} lives remaining \n", Mario.marioLives);
-            Mario.marioActionState = this;
+            Mario.MarioActionState = this;
             Mario.CollisionBox = new Rectangle(0, 0, 0, 0);
             this.previousActionState = previousActionState;
             //MarioHandler.GetInstance().DecrementMarioLives();
 
             Mario.Velocity = new Vector2(0, 0);
-            eFacing Facing = Mario.Facing;
+            MarioDirection Facing = Mario.Facing;
             Mario.Facing = Facing;
             //Mario.Sprite = MarioStandingState.SpriteFactory.CreateSprite(MarioSpriteFactory.MarioSpriteType(this, currentPowerUpState));
-            Mario.sprite = MarioFactory.GetInstance().CreateSprite(MarioFactory.MarioSpriteType(this, Mario.marioPowerUpState));
+            Mario.sprite = MarioFactory.GetInstance().CreateSprite(MarioFactory.MarioSpriteType(this, Mario.MarioPowerUpState));
 
             //play dead sound effect
             MusicHandler.GetInstance().PlaySoundEffect(3);
@@ -80,27 +79,27 @@ namespace GameSpace.States.MarioStates
 
         public override void FaceLeftTransition()
         {
-            if (Mario.Facing == eFacing.LEFT)
+            if (Mario.Facing == MarioDirection.LEFT)
             {
                 RunningTransition();
             }
             // WalkingTransition(); bc no walking
             else
             {
-                Mario.Facing = eFacing.LEFT;
+                Mario.Facing = MarioDirection.LEFT;
             }
         }
         public override void FaceRightTransition()
         {
 
-            if (Mario.Facing == eFacing.RIGHT)
+            if (Mario.Facing == MarioDirection.RIGHT)
             {
                 RunningTransition();
             }
             // WalkingTransition();
             else
             {
-                Mario.Facing = eFacing.RIGHT;
+                Mario.Facing = MarioDirection.RIGHT;
             }
         }
 
@@ -116,16 +115,16 @@ namespace GameSpace.States.MarioStates
         public override void SmallPowerUp()
         {
             Exit();
-            Mario.marioActionState = new SmallMarioStandingState(Mario);
-            Mario.marioActionState.Enter(this);
+            Mario.MarioActionState = new SmallMarioStandingState(Mario);
+            Mario.MarioActionState.Enter(this);
         }
         public override void DeadPowerUp() { }
         public override void BigPowerUp() { }
         public override void FirePowerUp()
         {
             Exit();
-            Mario.marioActionState = new FireMarioCrouchingState(Mario);
-            Mario.marioActionState.Enter(this);
+            Mario.MarioActionState = new FireMarioCrouchingState(Mario);
+            Mario.MarioActionState.Enter(this);
         }
 
         public override void CrouchingDiscontinueTransition()

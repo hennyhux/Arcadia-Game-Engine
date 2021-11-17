@@ -242,11 +242,11 @@ namespace GameSpace.TileMapDefinition
             switch (obstacles.avatar)
             {
                 case AvatarID.MARIO:
-                    if (obstacles.facing == eFacing.LEFT)
+                    if (obstacles.facing == MarioDirection.LEFT)
                     {
                         objects.Add(marioFactory.ReturnMario(location));
                     }
-                    else if (obstacles.facing == eFacing.RIGHT)
+                    else if (obstacles.facing == MarioDirection.RIGHT)
                     {
                         avatar = marioFactory.ReturnMario(location);
                         avatar.FaceRightTransition();

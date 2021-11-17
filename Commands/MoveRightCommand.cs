@@ -43,7 +43,7 @@ namespace GameSpace
             //game.GetMario.FaceRightTransition();
             
             //game.GetMario.WalkingTransition();*/
-            Debug.WriteLine("RightCommand, facing {0}\n AState {1}\n", game.GetMario.Facing, game.GetMario.marioActionState);
+            Debug.WriteLine("RightCommand, facing {0}\n AState {1}\n", game.GetMario.Facing, game.GetMario.MarioActionState);
         }
 
         public void Unexecute()

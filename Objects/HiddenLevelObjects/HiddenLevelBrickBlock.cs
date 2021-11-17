@@ -46,9 +46,9 @@ namespace GameSpace.Objects.BlockObjects
                 if (entity is Mario)
                 {
                     Mario mario = (Mario)entity;
-                    if (mario.marioPowerUpState is BigMarioState || mario.marioPowerUpState is FireMarioState)
+                    if (mario.MarioPowerUpState is BigMarioState || mario.MarioPowerUpState is FireMarioState)
                     {
-                        Debug.WriteLine("SHATTER BLOCK, mario PowerUp {0}", mario.marioPowerUpState);
+                        Debug.WriteLine("SHATTER BLOCK, mario PowerUp {0}", mario.MarioPowerUpState);
                         //state = new StateExplodingBlock(this);
                     }
                     else

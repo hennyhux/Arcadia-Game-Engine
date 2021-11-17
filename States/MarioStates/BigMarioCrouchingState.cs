@@ -3,7 +3,6 @@ using GameSpace.Factories;
 using GameSpace.GameObjects.BlockObjects;
 using GameSpace.Interfaces;
 using Microsoft.Xna.Framework;
-using System.Diagnostics;
 
 namespace GameSpace.States.MarioStates
 {
@@ -17,23 +16,17 @@ namespace GameSpace.States.MarioStates
 
         public override void Enter(IMarioActionStates previousActionState)
         {
-            Mario.marioActionState = this;
+            Mario.MarioActionState = this;
             this.previousActionState = previousActionState;
-            //Mario.marioPowerUpState = new BigMarioState(Mario);
-           // Debug.WriteLine("MarioStandState(25) Enter, {0}", Mario.marioActionState);
-            //Debug.WriteLine("MarioWalkingState(25) facing:, {0}", Mario.Facing);
-            //Mario.Position = new Vector2(Mario.Position.X, Mario.Position.Y + 20);
-           // Debug.WriteLine("Y before(25) facing:, {0}", Mario.Position.Y);
 
             Mario.Velocity = new Vector2(Mario.Velocity.X, 100);//TEMP
 
-
             //AABB aabb = Mario.AABB;
             //eFacing Facing = MarioStandingState.Facing;
-            eFacing Facing = Mario.Facing;
+            MarioDirection Facing = Mario.Facing;
             Mario.Facing = Facing;
             //Mario.Sprite = MarioStandingState.SpriteFactory.CreateSprite(MarioSpriteFactory.MarioSpriteType(this, currentPowerUpState));
-            Mario.sprite = MarioFactory.GetInstance().CreateSprite(MarioFactory.MarioSpriteType(this, Mario.marioPowerUpState));
+            Mario.sprite = MarioFactory.GetInstance().CreateSprite(MarioFactory.MarioSpriteType(this, Mario.MarioPowerUpState));
             Mario.Position = new Vector2(Mario.Position.X, Mario.Position.Y + 20);
 
         }
@@ -47,10 +40,10 @@ namespace GameSpace.States.MarioStates
          //currentActionState.Exit();
             /// Debug.WriteLine("Big Standtrans");
             Exit();
-            Mario.marioActionState = new BigMarioStandingState(Mario);
-           // Debug.WriteLine("MarioStandState(39) currentAState, {0}", Mario.marioActionState);
+            Mario.MarioActionState = new BigMarioStandingState(Mario);
+            // Debug.WriteLine("MarioStandState(39) currentAState, {0}", Mario.marioActionState);
             //Mario.sprite = MarioFactory.GetInstance().CreateSprite(2);
-            Mario.marioActionState.Enter(this); // Changing states
+            Mario.MarioActionState.Enter(this); // Changing states
 
         }
         public override void CrouchingTransition()
@@ -88,27 +81,27 @@ namespace GameSpace.States.MarioStates
 
         public override void FaceLeftTransition()
         {
-            if (Mario.Facing == eFacing.LEFT)
+            if (Mario.Facing == MarioDirection.LEFT)
             {
                 RunningTransition();
             }
             // WalkingTransition(); bc no walking
             else
             {
-                Mario.Facing = eFacing.LEFT;
+                Mario.Facing = MarioDirection.LEFT;
             }
         }
         public override void FaceRightTransition()
         {
 
-            if (Mario.Facing == eFacing.RIGHT)
+            if (Mario.Facing == MarioDirection.RIGHT)
             {
                 RunningTransition();
             }
             // WalkingTransition();
             else
             {
-                Mario.Facing = eFacing.RIGHT;
+                Mario.Facing = MarioDirection.RIGHT;
             }
         }
 
@@ -124,15 +117,15 @@ namespace GameSpace.States.MarioStates
         public override void SmallPowerUp()
         {
             Exit();
-            Mario.marioActionState = new SmallMarioStandingState(Mario);
-            Mario.marioActionState.Enter(this);
+            Mario.MarioActionState = new SmallMarioStandingState(Mario);
+            Mario.MarioActionState.Enter(this);
         }
         public override void BigPowerUp() { }
         public override void FirePowerUp()
         {
             Exit();
-            Mario.marioActionState = new FireMarioCrouchingState(Mario);
-            Mario.marioActionState.Enter(this);
+            Mario.MarioActionState = new FireMarioCrouchingState(Mario);
+            Mario.MarioActionState.Enter(this);
         }
         public override void DeadPowerUp()
         {

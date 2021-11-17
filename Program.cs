@@ -7,7 +7,7 @@ namespace FirstGame
     {
         [STAThread]
         private static void Main()
-       {
+        {
             using (GameRoot game = new GameRoot())
             {
                 game.Run();

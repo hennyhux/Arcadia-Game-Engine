@@ -12,9 +12,9 @@
 	</Objects>
 
 	<Objects>
-		<x>128</x>
+		<x>200</x>
 		<y>370</y>
-		<enemy>REDKOOPA</enemy>
+		<enemy>GOOMBA</enemy>
 	</Objects>
 	
 	<Objects>
@@ -455,12 +455,6 @@
 		<block>STAIRBLOCK</block>
 		<blockRow>2</blockRow>
 	</Objects>
-	
-
-	
-		
-	
-	
 	
 	<Objects>
 		<x>4960</x>

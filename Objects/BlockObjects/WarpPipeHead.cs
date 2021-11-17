@@ -73,8 +73,8 @@ namespace GameSpace.Sprites.ExtraItems
 
     public class WarpPipeHeadMob : AbstractBlock
     {
-        private IGameObjects mob;
-        private bool itemRevealed;
+        private readonly IGameObjects mob;
+        private readonly bool itemRevealed;
         public Rectangle ExpandedCollisionBox;
         public Rectangle InRangeCollisionBox;
         public WarpPipeHeadMob(Vector2 location)

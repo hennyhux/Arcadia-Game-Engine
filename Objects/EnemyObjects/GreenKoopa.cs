@@ -14,7 +14,7 @@ namespace GameSpace.GameObjects.EnemyObjects
         public GreenKoopa(Vector2 initalPosition)
         {
             ObjectID = (int)EnemyID.GREENKOOPA;
-            Direction = (int)eFacing.LEFT;
+            Direction = (int)MarioDirection.LEFT;
             drawBox = false;
             Position = initalPosition;
             state = new StateGreenKoopaAliveFaceLeft();
@@ -51,8 +51,10 @@ namespace GameSpace.GameObjects.EnemyObjects
 
         public override void Draw(SpriteBatch spritebatch)
         {
-            if (!(state is StateGreenKoopaRemoved)) base.Draw(spritebatch);
-
+            if (!(state is StateGreenKoopaRemoved))
+            {
+                base.Draw(spritebatch);
+            }
             else
             {
                 DeleteCollisionBox();
@@ -61,6 +63,7 @@ namespace GameSpace.GameObjects.EnemyObjects
 
         public override void HandleCollision(IGameObjects entity)
         {
+            base.HandleCollision(entity);
             switch (entity.ObjectID)
             {
                 case (int)AvatarID.MARIO:
@@ -76,8 +79,10 @@ namespace GameSpace.GameObjects.EnemyObjects
                 case (int)ItemID.BIGPIPE:
                 case (int)ItemID.MEDIUMPIPE:
                 case (int)ItemID.SMALLPIPE:
-                    if (!(state is StateGreenKoopaDeadMoving)) CollisionHandler.GetInstance().EnemyToBlockCollision(this, entity);
-
+                    if (!(state is StateGreenKoopaDeadMoving))
+                    {
+                        CollisionHandler.GetInstance().EnemyToBlockCollision(this, entity);
+                    }
                     else
                     {
                         CollisionHandler.GetInstance().ShellToBlockCollision(this, entity);
@@ -94,7 +99,7 @@ namespace GameSpace.GameObjects.EnemyObjects
             }
         }
 
-        public override void UpdatePosition(Vector2 location, GameTime gameTime)
+        public override void UpdateCollisionBox(Vector2 location, GameTime gameTime)
         {
             if (state is StateGreenKoopaDeadMoving)
             {

@@ -27,10 +27,10 @@ namespace GameSpace.Commands
             mario = FinderHandler.GetInstance().FindMario();
             if (mario.numFireballs != 0)
             {
-                if (mario.marioActionState is FireMarioFallingState ||
-                    mario.marioActionState is FireMarioJumpingState ||
-                    mario.marioActionState is FireMarioRunningState ||
-                    mario.marioActionState is FireMarioStandingState)
+                if (mario.MarioActionState is FireMarioFallingState ||
+                    mario.MarioActionState is FireMarioJumpingState ||
+                    mario.MarioActionState is FireMarioRunningState ||
+                    mario.MarioActionState is FireMarioStandingState)
                 {
                     fireball = ObjectFactory.GetInstance().CreateFireBallObject(mario);
                     TheaterHandler.GetInstance().AddItemToStage(fireball);

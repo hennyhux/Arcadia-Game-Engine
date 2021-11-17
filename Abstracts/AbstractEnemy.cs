@@ -29,7 +29,6 @@ namespace GameSpace.Abstracts
 
         public Rectangle ExpandedCollisionBox { get; set; }
 
-
         public virtual void Draw(SpriteBatch spritebatch)
         {
             state.Draw(spritebatch, Position);
@@ -42,9 +41,8 @@ namespace GameSpace.Abstracts
         {
             state.Update(gametime);
             UpdateSpeed();
-            UpdatePosition(Position, gametime);
+            UpdateCollisionBox(Position, gametime);
             UpdateCollisionBox(Position);
-
         }
 
         public virtual void Trigger()
@@ -62,19 +60,19 @@ namespace GameSpace.Abstracts
             else
             {
                 Acceleration = new Vector2(0, 0);
-                if (Direction == (int)eFacing.RIGHT)
+                if (Direction == (int)MarioDirection.RIGHT)
                 {
                     Velocity = new Vector2(75, 0);
                 }
 
-                else if (Direction == (int)eFacing.LEFT)
+                else if (Direction == (int)MarioDirection.LEFT)
                 {
                     Velocity = new Vector2(-75, 0);
                 }
             }
         }
 
-        public virtual void UpdatePosition(Vector2 location, GameTime gameTime)
+        public virtual void UpdateCollisionBox(Vector2 location, GameTime gameTime)
         {
             Velocity += Acceleration * (float)gameTime.ElapsedGameTime.TotalSeconds;
             Position += Velocity * (float)gameTime.ElapsedGameTime.TotalSeconds;
@@ -132,12 +130,6 @@ namespace GameSpace.Abstracts
                     Trigger();
                     break;
             }
-        }
-
-        private protected void HaltAllMotion()
-        {
-            Velocity = new Vector2(0, 0);
-            Acceleration = new Vector2(0, 0);
         }
 
         public bool RevealItem()

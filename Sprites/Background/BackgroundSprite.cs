@@ -37,11 +37,11 @@ namespace GameSpace.Sprites.Background
             Rectangle destinationRectangle;
             if ((int)Position.X > 0)
             {
-                 destinationRectangle = new Rectangle((int)parallax.X * (int)Position.X, (int)cameraLocation.Y + (int)Position.Y, 1200, Texture.Height);
+                destinationRectangle = new Rectangle((int)parallax.X * (int)Position.X, (int)cameraLocation.Y + (int)Position.Y, 1200, Texture.Height);
             }
             else
             {
-                 destinationRectangle = new Rectangle((int)(cameraLocation.X * parallax.X) + (int)Position.X, (int)cameraLocation.Y + (int)Position.Y, 1200, Texture.Height);
+                destinationRectangle = new Rectangle((int)(cameraLocation.X * parallax.X) + (int)Position.X, (int)cameraLocation.Y + (int)Position.Y, 1200, Texture.Height);
             }
             //the 1200 could be a constant or some value based
             spriteBatch.Draw(Texture, destinationRectangle, sourceRectangle, Color.White);                                                      // on window size

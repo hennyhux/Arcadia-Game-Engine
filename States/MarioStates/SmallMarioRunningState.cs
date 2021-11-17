@@ -17,107 +17,89 @@ namespace GameSpace.States.MarioStates
 
         public override void Enter(IMarioActionStates previousActionState)
         {
-            Mario.marioActionState = this;
+            Mario.MarioActionState = this;
             this.previousActionState = previousActionState;
-           // Debug.WriteLine("MarioRunningState(25) Enter, {0}", Mario.marioActionState);
-           // Debug.WriteLine("MarioWalkingState(25) facing:, {0}", Mario.Facing);
-            if (Mario.Facing == eFacing.LEFT)//Set Proper velocity upon entering state
+
+            if (previousActionState is SmallMarioJumpingState)
             {
-                Mario.Velocity = new Vector2(-140, 0);
-            }
-            else if (Mario.Facing == eFacing.RIGHT)
-            {
-                Mario.Velocity = new Vector2(140, 0);
+                if (Mario.Facing == MarioDirection.LEFT)
+                {
+                    Mario.Velocity = new Vector2(-100, 0);
+                }
+                else if (Mario.Facing == MarioDirection.RIGHT)
+                {
+                    Mario.Velocity = new Vector2(100, 0);
+                }
             }
 
-            //AABB aabb = Mario.AABB;
-            //eFacing Facing = MarioStandingState.Facing;
-            eFacing Facing = Mario.Facing;
-            Mario.Facing = Facing;
-            //Mario.Sprite = MarioStandingState.SpriteFactory.CreateSprite(MarioSpriteFactory.MarioSpriteType(this, currentPowerUpState));
-            Mario.sprite = MarioFactory.GetInstance().CreateSprite(MarioFactory.MarioSpriteType(this, Mario.marioPowerUpState));
-            //Mario.sprite = MarioFactory.GetInstance().CreateSprite(4);
+            else if (!(previousActionState is SmallMarioRunningState))
+            {
+                if (Mario.Facing == MarioDirection.LEFT)
+                {
+                    Mario.Velocity = new Vector2(-140, 0);
+                }
+                else if (Mario.Facing == MarioDirection.RIGHT)
+                {
+                    Mario.Velocity = new Vector2(140, 0);
+                }
+            }
 
+            Mario.sprite = MarioFactory.GetInstance().CreateSprite(MarioFactory.MarioSpriteType(this, Mario.MarioPowerUpState));
         }
 
         public override void Exit()
         {
-            //Velocity == 0;
+            
         }
 
-        /*public override void smallMarioTransformation(){ }
-         public override void bigMarioTransformation() {
-
-         }
-         public override void fireMarioTransformation()
-         {
-             //Mario.marioPowerUpState = new FireMarioStandingState(Mario);//CREATE FIRE MARIO STATE
-         }
-         public override void DeadTransition()
-         {
-             //Mario.marioPowerUpState = new DeadMarioState(Mario);//CREATE DEADMARIOSTATE
-         }*/
-
+      
         public override void StandingTransition()
-        {//going to crouch for now(going to superstand
-         //currentActionState.Exit();
-            /// Debug.WriteLine("Small Standtrans");
+        {
             Exit();
-            Mario.marioActionState = new SmallMarioStandingState(Mario);
-            //Debug.WriteLine("MarioStandState(39) currentAState, {0}", Mario.marioActionState);
-            //Mario.sprite = MarioFactory.GetInstance().CreateSprite(2);
-            Mario.marioActionState.Enter(this); // Changing states
+            Mario.MarioActionState = new SmallMarioStandingState(Mario);
+            Mario.MarioActionState.Enter(this); 
 
         }
-        public override void CrouchingTransition() { }//nothing
+        public override void CrouchingTransition() { }
         public override void WalkingTransition()
         {
-            //Exit();
-            Mario.marioActionState = new SmallMarioWalkingState(Mario);
-            //Debug.WriteLine("MarioStandState(39) currentAState, {0}", Mario.marioActionState);
-            //Mario.sprite = MarioFactory.GetInstance().CreateSprite(3);
-            Mario.marioActionState.Enter(this); // Changing states
+            
+            Mario.MarioActionState = new SmallMarioWalkingState(Mario);
+           
+            Mario.MarioActionState.Enter(this); 
         }
         public override void RunningTransition()
         {
-            //Exit();
-            //Mario.marioActionState = new SmallMarioRunningState(Mario);
-            //Debug.WriteLine("MarioStandState(39) currentAState, {0}", Mario.marioActionState);
-            //Mario.sprite = MarioFactory.GetInstance().CreateSprite(4);
-            //Mario.marioActionState.Enter(this); // Changing states
-        } //Longer you hold running you increase velocity and speed of animation
+            
+        } 
         public override void JumpingTransition()
         {
             Exit();
-            Mario.marioActionState = new SmallMarioJumpingState(Mario);
-            //Debug.WriteLine("MarioStandState(39) currentAState, {0}", Mario.marioActionState);
-            //Mario.sprite = MarioFactory.GetInstance().CreateSprite(5);
-            Mario.marioActionState.Enter(this); // Changing states
+            Mario.MarioActionState = new SmallMarioJumpingState(Mario);
+            Mario.MarioActionState.Enter(this); 
         }
         public override void FallingTransition()
         {
             Exit();
-            Mario.marioActionState = new SmallMarioFallingState(Mario);
-            //Debug.WriteLine("MarioStandState(39) currentAState, {0}", Mario.marioActionState);
-            //Mario.sprite = MarioFactory.GetInstance().CreateSprite(6);
-            Mario.marioActionState.Enter(this); // Changing states
+            Mario.MarioActionState = new SmallMarioFallingState(Mario);
+            Mario.MarioActionState.Enter(this); 
         }
 
         public override void FaceLeftTransition()
         {
-            if (Mario.Facing == eFacing.LEFT)//running, want left, if we face left, increase velocity
-            {//Increase Velocity
+            if (Mario.Facing == MarioDirection.LEFT)
+            {
                 Debug.WriteLine("SmallRunning(107) Run/Face Left, Increase(-) Velocity");
             }
             else
             {
-                //WalkingTransition();//if face right, start walking(Or idle)
+  
                 StandingTransition();
             }
         }
         public override void FaceRightTransition()
         {
-            if (Mario.Facing == eFacing.RIGHT)
+            if (Mario.Facing == MarioDirection.RIGHT)
             {//incease Velocity
                 Debug.WriteLine("SmallRunning(107) Run/Face Right, Increase(+) Velocity");
             }
@@ -144,20 +126,20 @@ namespace GameSpace.States.MarioStates
         public override void BigPowerUp()
         {
             Exit();
-            Mario.marioActionState = new BigMarioRunningState(Mario);
-            Mario.marioActionState.Enter(this);
+            Mario.MarioActionState = new BigMarioRunningState(Mario);
+            Mario.MarioActionState.Enter(this);
         }
         public override void FirePowerUp()
         {
             Exit();
-            Mario.marioActionState = new FireMarioRunningState(Mario);
-            Mario.marioActionState.Enter(this);
+            Mario.MarioActionState = new FireMarioRunningState(Mario);
+            Mario.MarioActionState.Enter(this);
         }
         public override void DeadPowerUp()
         {
             Exit();
-            Mario.marioActionState = new DeadMarioState(Mario);
-            Mario.marioActionState.Enter(this);
+            Mario.MarioActionState = new DeadMarioState(Mario);
+            Mario.MarioActionState.Enter(this);
         }
 
         public override void CrouchingDiscontinueTransition() { }//when you exit crouch, release down key
@@ -170,10 +152,10 @@ namespace GameSpace.States.MarioStates
         public override void RunningDiscontinueTransition()
         {
             Exit();
-            Mario.marioActionState = new SmallMarioWalkingState(Mario);
+            Mario.MarioActionState = new SmallMarioWalkingState(Mario);
             //Debug.WriteLine("MarioStandState(39) currentAState, {0}", Mario.marioActionState);
             Mario.sprite = MarioFactory.GetInstance().CreateSprite(3);
-            Mario.marioActionState.Enter(this); // Changing states
+            Mario.MarioActionState.Enter(this); // Changing states
                                                 //Mario.marioActionState.SmallMarioWalkingState.Enter(this);
 
         }//decelerate and go to walking dis

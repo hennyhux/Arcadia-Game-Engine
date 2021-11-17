@@ -240,7 +240,7 @@ namespace GameSpace.EntityManaging
 
             if (DetectCollisionDirection(enemy, block) == (int)CollisionDirection.LEFT)
             {
-                enemy.Direction = (int)eFacing.LEFT;
+                enemy.Direction = (int)MarioDirection.LEFT;
                 if (enemy is GreenKoopa)
                 {
                     enemy.state = new StateGreenKoopaAliveFaceLeft();
@@ -249,7 +249,7 @@ namespace GameSpace.EntityManaging
 
             else if (DetectCollisionDirection(enemy, block) == (int)CollisionDirection.RIGHT)
             {
-                enemy.Direction = (int)eFacing.RIGHT;
+                enemy.Direction = (int)MarioDirection.RIGHT;
                 if (enemy is GreenKoopa)
                 {
                     enemy.state = new StateGreenKoopaAliveFaceRight();
@@ -262,14 +262,14 @@ namespace GameSpace.EntityManaging
 
             if (DetectCollisionDirection(enemy, block) == (int)CollisionDirection.LEFT)
             {
-                enemy.Direction = (int)eFacing.LEFT;
+                enemy.Direction = (int)MarioDirection.LEFT;
                 enemy.RemoveFromStage();
 
             }
 
             else if (DetectCollisionDirection(enemy, block) == (int)CollisionDirection.RIGHT)
             {
-                enemy.Direction = (int)eFacing.RIGHT;
+                enemy.Direction = (int)MarioDirection.RIGHT;
                 enemy.RemoveFromStage();
             }
         }
@@ -281,7 +281,6 @@ namespace GameSpace.EntityManaging
             {
                 thisMario.score += 100;
                 enemy.Trigger();
-                //enemy.CollisionBox = new Rectangle(1, 1, 0, 0);
             }
         }
 
@@ -328,9 +327,9 @@ namespace GameSpace.EntityManaging
                     break;
 
                 case (int)CollisionDirection.DOWN:
-                    if (mario.marioActionState is SmallMarioFallingState ||
-                        mario.marioActionState is BigMarioFallingState ||
-                        mario.marioActionState is FireMarioFallingState)
+                    if (mario.MarioActionState is SmallMarioFallingState ||
+                        mario.MarioActionState is BigMarioFallingState ||
+                        mario.MarioActionState is FireMarioFallingState)
                     {
                         mario.DownTransition();
                     }
@@ -381,19 +380,17 @@ namespace GameSpace.EntityManaging
 
         public void MarioToItemCollision(FireFlower item)
         {
-            if (mario.marioPowerUpState is SmallMarioState)
+            if (mario.MarioPowerUpState is SmallMarioState)
             {
                 mario.BigMarioTransformation();
             }
-            else if (mario.marioPowerUpState is BigMarioState)
+            else if (mario.MarioPowerUpState is BigMarioState)
             {
                 mario.FireMarioTransformation();
             }
 
             mario.score += 1000;
         }
-
-
 
         public void MarioToItemCollision(Star item)
         {
@@ -403,7 +400,7 @@ namespace GameSpace.EntityManaging
 
         public void MarioToItemCollision(SuperShroom item)
         {
-            if (!(mario.marioPowerUpState is FireMarioState))
+            if (!(mario.MarioPowerUpState is FireMarioState))
             {
                 mario.BigMarioTransformation();
             }
@@ -412,7 +409,7 @@ namespace GameSpace.EntityManaging
 
         public void MarioToItemCollision(OneUpShroom item)
         {
-            mario.marioPowerUpState.bigMarioTransformation();
+            mario.MarioPowerUpState.BigMarioTransformation();
             MarioHandler.GetInstance().IncrementMarioLives();
         }
 
@@ -460,28 +457,6 @@ namespace GameSpace.EntityManaging
                     !(entity is AbstractItem) &&
                     !(entity is AbstractEnemy) &&
                     entity.ObjectID != (int)AvatarID.MARIO)
-                //&&
-                // entity.ObjectID != (int)AvatarID.MARIO)
-                //entity.ObjectID != Mario.ObjectID)
-                {
-                    gonnaFall = false;
-                    break;
-                }
-            }
-            return gonnaFall;
-        }
-
-        public bool IsGoingToFal2l(AbstractItem item)
-        {
-            bool gonnaFall = true;
-            foreach (IGameObjects entity in copyPrunedList)
-            {
-                if (item.ExpandedCollisionBox.Intersects(entity.CollisionBox) &&
-                    !(entity is AbstractItem) &&
-                    !(entity is AbstractEnemy) &&
-                    entity.ObjectID != item.ObjectID &&
-                    entity.ObjectID != (int)AvatarID.MARIO &&
-                    entity.ObjectID != (int)AvatarID.MARIO)
                 {
                     gonnaFall = false;
                     break;
@@ -510,7 +485,7 @@ namespace GameSpace.EntityManaging
             {
                 if (entity is Mario)
                 {
-                    mario.marioActionState.StandingTransition();
+                    mario.MarioActionState.StandingTransition();
                 }
 
                 return true;
@@ -521,7 +496,7 @@ namespace GameSpace.EntityManaging
                 entity.Velocity = new Vector2(entity.Velocity.X, 50);
                 if (entity is Mario)
                 {
-                    mario.marioActionState.FallingTransition();
+                    mario.MarioActionState.FallingTransition();
                 }
 
                 return true;
@@ -531,7 +506,7 @@ namespace GameSpace.EntityManaging
             {
                 if (entity is Mario)
                 {
-                    mario.marioActionState.StandingTransition();
+                    mario.MarioActionState.StandingTransition();
                 }
 
                 return true;
@@ -541,7 +516,7 @@ namespace GameSpace.EntityManaging
             {
                 if (entity is Mario)
                 {
-                    mario.marioPowerUpState.DeadTransition();
+                    mario.MarioPowerUpState.DeadTransition();
                 }
 
                 return true;

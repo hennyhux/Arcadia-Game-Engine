@@ -24,7 +24,7 @@ namespace GameSpace.GameObjects.ItemObjects
             if (!hasCollided)
             {
                 //UpdateSpeed();
-                UpdatePosition(Position, gametime);
+                UpdateCollisionBox(Position, gametime);
                 UpdateCollisionBox();
             }
         }
@@ -68,14 +68,14 @@ namespace GameSpace.GameObjects.ItemObjects
             drawBox = false;
         }
 
-       /* public override void Update(GameTime gametime)
-        {
-            Sprite.Update(gametime);
-        }*/
+        /* public override void Update(GameTime gametime)
+         {
+             Sprite.Update(gametime);
+         }*/
 
         public override void Trigger()
         {
-            
+
         }
     }
 }

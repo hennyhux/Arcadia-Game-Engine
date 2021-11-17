@@ -1,11 +1,11 @@
 ﻿using GameSpace.Abstracts;
+using GameSpace.EntityManaging;
+using GameSpace.Enums;
+using GameSpace.GameObjects.ItemObjects;//TEMP
+using GameSpace.Sprites;//TEMP
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
-using GameSpace.GameObjects.ItemObjects;//TEMP
-using GameSpace.Sprites;//TEMP
-using GameSpace.EntityManaging;
-using GameSpace.Enums;
 
 namespace GameSpace.Machines
 {
@@ -21,7 +21,7 @@ namespace GameSpace.Machines
         //public static long ticksMax = 40100000; Testing timer and lose of life from running out of time
         public static long convertToSeconds = 10000000;
         public static int bonusPoints;
-        private Coin HUDCoin;// = new Coin(new Vector2(0, 0));
+        private readonly Coin HUDCoin;// = new Coin(new Vector2(0, 0));
         //private Coin testCoin = new Coin(new Vector2(0, 0)); 
         //Coin coin = new Coin(new Vector2(0, 0));//Get Coin to draw animated in HUD
 
@@ -33,7 +33,7 @@ namespace GameSpace.Machines
 
         private HUDHandler()
         {
-            
+
         }
 
         #region Death Timer
@@ -53,11 +53,14 @@ namespace GameSpace.Machines
             timer += internalGametime.ElapsedGameTime.Ticks;
             ticks = ticksMax - timer;
             seconds = ticks / convertToSeconds;
-            if (seconds == 50) MusicHandler.GetInstance().PlaySoundEffect(11);
-
-            if (seconds == 0 || game.GetMario.marioActionState is GameSpace.States.MarioStates.DeadMarioState)
+            if (seconds == 50)
             {
-                if(seconds <= 0 && game.CurrentState is GameSpace.States.GameStates.PlayingGameState)// AND YOU DIDNT COMPLETE OBJECTIVE
+                MusicHandler.GetInstance().PlaySoundEffect(11);
+            }
+
+            if (seconds == 0 || game.GetMario.MarioActionState is GameSpace.States.MarioStates.DeadMarioState)
+            {
+                if (seconds <= 0 && game.CurrentState is GameSpace.States.GameStates.PlayingGameState)// AND YOU DIDNT COMPLETE OBJECTIVE
                 {
                     mario.DeadTransition();//Lose a life if timer reaches 0
                 }
@@ -80,32 +83,33 @@ namespace GameSpace.Machines
             HudPosition.Y = 10;
             game = gameRoot;
             ResetTimer();
-            
-
         }
 
         public void LoadGameTime(GameTime gameTime)
         {
             internalGametime = gameTime;
-
         }
 
         public void Draw(SpriteBatch spritebatch)
         {
             spritebatch.DrawString(HeadsUpDisplay, "[" + mario.Player + "]\n", HudPosition, Color.White);
-            spritebatch.DrawString(HeadsUpDisplay, "Score: " + mario.score.ToString("D6"), new Vector2(HudPosition.X, HudPosition.Y+40), Color.White);
+            spritebatch.DrawString(HeadsUpDisplay, "Score: " + mario.score.ToString("D6"), new Vector2(HudPosition.X, HudPosition.Y + 40), Color.White);
             spritebatch.DrawString(HeadsUpDisplay, "Time\n" + seconds, new Vector2(HudPosition.X + 200, HudPosition.Y), Color.White);
             spritebatch.DrawString(HeadsUpDisplay, "World\n  1-1", new Vector2(HudPosition.X + 320, HudPosition.Y), Color.White);
 
             spritebatch.Draw(FinderHandler.GetInstance().FindItem((int)ItemID.HUDCOIN).Sprite.Texture, new Vector2((int)HudPosition.X + 440, (int)HudPosition.Y + 25),//Draws Animated Coin
                 ((CoinSprite)FinderHandler.GetInstance().FindItem((int)ItemID.HUDCOIN).Sprite).getCurrentSpriteRect(), Color.White);
-          
+
             spritebatch.DrawString(HeadsUpDisplay, "X  " + mario.numCoinsCollected, new Vector2(HudPosition.X + 460, HudPosition.Y + 20), Color.White); //Update to display coins
 
             SpriteEffects facing = SpriteEffects.None;
-            if (MarioHandler.mario.Facing == eFacing.RIGHT) facing = SpriteEffects.FlipHorizontally; //float rotation, Vector2 origin, Vector2 scale, SpriteEffects effects, float layerDepth)
-            spritebatch.Draw(MarioHandler.mario.sprite.Texture, new Vector2((int)HudPosition.X + 640, (int)HudPosition.Y + 25), (Rectangle)MarioHandler.mario.sprite.getCurrentSpriteRect(), Color.White, 
-                (float)0, new Vector2(1, 1),  new Vector2(1, 1), facing ,(float)1);
+            if (MarioHandler.mario.Facing == MarioDirection.RIGHT)
+            {
+                facing = SpriteEffects.FlipHorizontally; //float rotation, Vector2 origin, Vector2 scale, SpriteEffects effects, float layerDepth)
+            }
+
+            spritebatch.Draw(MarioHandler.mario.sprite.Texture, new Vector2((int)HudPosition.X + 640, (int)HudPosition.Y + 25), MarioHandler.mario.sprite.getCurrentSpriteRect(), Color.White,
+                0, new Vector2(1, 1), new Vector2(1, 1), facing, 1);
             spritebatch.DrawString(HeadsUpDisplay, "X  " + MarioHandler.marioLives, new Vector2(HudPosition.X + 660, HudPosition.Y + 20), Color.White);
 
             UpdateHudPosition();
@@ -123,21 +127,17 @@ namespace GameSpace.Machines
 
         public void DrawEndingResetPanel(SpriteBatch spritebatch)
         {
-            
+
             spritebatch.DrawString(HeadsUpDisplay, "[" + mario.Player + "]\n", new Vector2(0, 0), Color.Black);
             spritebatch.DrawString(HeadsUpDisplay, "Score: " + mario.score.ToString("D6"), new Vector2(0, 40), Color.Black);
             spritebatch.DrawString(HeadsUpDisplay, "Time\n" + 0, new Vector2(200, 0), Color.Black); //Seconds is 0
             spritebatch.DrawString(HeadsUpDisplay, "World\n  1-1", new Vector2(320, 0), Color.Black);
-
-            
-           // ((CoinSprite)FinderHandler.GetInstance().FindItem((int)ItemID.HUDCOIN).Sprite).Draw(spritebatch, new Vector2(460, 20));//Draws Animated Coin
             Coin HUDCoin = new Coin(new Vector2(0, 0));
             HUDCoin.Sprite.Draw(spritebatch, new Vector2(460, 20));//Draws Unanimated Coin
-            //spritebatch.Draw(FinderHandler.GetInstance().FindItem((int)ItemID.HUDCOIN).Sprite.Texture, new Vector2(640, 25), 
-               // ((CoinSprite)FinderHandler.GetInstance().FindItem((int)ItemID.HUDCOIN).Sprite).getCurrentSpriteRect(), Color.White);
+
             spritebatch.DrawString(HeadsUpDisplay, "X  " + mario.numCoinsCollected, new Vector2(480, 20), Color.Black); //Update to display coins
-                                                                                                                                                        
-            spritebatch.Draw(MarioHandler.mario.sprite.Texture, new Vector2(640, 25), (Rectangle)MarioHandler.mario.sprite.getCurrentSpriteRect(), Color.White);
+
+            spritebatch.Draw(MarioHandler.mario.sprite.Texture, new Vector2(640, 25), MarioHandler.mario.sprite.getCurrentSpriteRect(), Color.White);
             spritebatch.DrawString(HeadsUpDisplay, "X  " + MarioHandler.marioLives, new Vector2(660, 20), Color.Black);//Lives
 
             spritebatch.DrawString(HeadsUpDisplay, "PRESS R FOR NEW GAME", new Vector2(0, 120), Color.Black);
@@ -153,15 +153,11 @@ namespace GameSpace.Machines
             spritebatch.DrawString(HeadsUpDisplay, "Time\n" + seconds, new Vector2(200, 0), Color.White);
             spritebatch.DrawString(HeadsUpDisplay, "World\n  1-1", new Vector2(320, 0), Color.White);
 
-
-            // ((CoinSprite)FinderHandler.GetInstance().FindItem((int)ItemID.HUDCOIN).Sprite).Draw(spritebatch, new Vector2(460, 20));//Draws Animated Coin
             Coin HUDCoin = new Coin(new Vector2(0, 0));
-            HUDCoin.Sprite.Draw(spritebatch, new Vector2(460, 20));//Draws Unanimated Coin
-                                                                   //spritebatch.Draw(FinderHandler.GetInstance().FindItem((int)ItemID.HUDCOIN).Sprite.Texture, new Vector2(640, 25), 
-                                                                   // ((CoinSprite)FinderHandler.GetInstance().FindItem((int)ItemID.HUDCOIN).Sprite).getCurrentSpriteRect(), Color.White);
+            HUDCoin.Sprite.Draw(spritebatch, new Vector2(460, 20));
             spritebatch.DrawString(HeadsUpDisplay, "X  " + mario.numCoinsCollected, new Vector2(480, 20), Color.White); //Update to display coins
 
-            spritebatch.Draw(MarioHandler.mario.sprite.Texture, new Vector2(640, 25), (Rectangle)MarioHandler.mario.sprite.getCurrentSpriteRect(), Color.White);
+            spritebatch.Draw(MarioHandler.mario.sprite.Texture, new Vector2(640, 25), MarioHandler.mario.sprite.getCurrentSpriteRect(), Color.White);
             spritebatch.DrawString(HeadsUpDisplay, "X  " + MarioHandler.marioLives, new Vector2(660, 20), Color.White);//Lives
 
             spritebatch.DrawString(HeadsUpDisplay, "PRESS R FOR NEW GAME", new Vector2(0, 120), Color.White);
@@ -173,7 +169,7 @@ namespace GameSpace.Machines
 
         private void UpdateHudPosition()
         {
-            if (cameraCopy.Position.X + 10> HudPosition.X || HudPosition.X > cameraCopy.Position.X)
+            if (cameraCopy.Position.X + 10 > HudPosition.X || HudPosition.X > cameraCopy.Position.X)
             {
                 HudPosition.X = cameraCopy.Position.X + 10;
             }

@@ -72,11 +72,11 @@ namespace GameSpace.Abstracts
             if (!hasCollided && !HasHalted)
             {
                 UpdateSpeed();
-                UpdatePosition(Position, gametime);
+                UpdateCollisionBox(Position, gametime);
                 UpdateCollisionBox();
             }
         }
-        public virtual void UpdatePosition(Vector2 location, GameTime gametime)
+        public virtual void UpdateCollisionBox(Vector2 location, GameTime gametime)
         {
             Velocity += Acceleration * (float)gametime.ElapsedGameTime.TotalSeconds;
             Position += Velocity * (float)gametime.ElapsedGameTime.TotalSeconds;
@@ -100,12 +100,12 @@ namespace GameSpace.Abstracts
             else
             {
                 Acceleration = new Vector2(0, 0);
-                if (FinderHandler.GetInstance().FindMario().Facing == eFacing.RIGHT)
+                if (FinderHandler.GetInstance().FindMario().Facing == MarioDirection.RIGHT)
                 {
                     Velocity = new Vector2(75, 0);
                 }
 
-                else if (FinderHandler.GetInstance().FindMario().Facing == eFacing.LEFT)
+                else if (FinderHandler.GetInstance().FindMario().Facing == MarioDirection.LEFT)
                 {
                     Velocity = new Vector2(-75, 0);
                 }

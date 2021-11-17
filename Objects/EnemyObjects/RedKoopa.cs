@@ -15,7 +15,7 @@ namespace GameSpace.GameObjects.EnemyObjects
         public RedKoopa(Vector2 initalPosition)
         {
             ObjectID = (int)EnemyID.REDKOOPA;
-            Direction = (int)eFacing.LEFT;
+            Direction = (int)MarioDirection.LEFT;
             drawBox = false;
             Position = initalPosition;
             state = new StateRedKoopaAliveLeft(this);
@@ -24,7 +24,7 @@ namespace GameSpace.GameObjects.EnemyObjects
             UpdateCollisionBox(Position);
         }
 
-        public override void UpdatePosition(Vector2 location, GameTime gameTime) //use velocity
+        public override void UpdateCollisionBox(Vector2 location, GameTime gameTime) //use velocity
         {
             if (CollisionHandler.GetInstance().IsGoingToFall(this) && !(state is StateRedKoopaDead))
             {
@@ -36,12 +36,12 @@ namespace GameSpace.GameObjects.EnemyObjects
             else
             {
                 Acceleration = new Vector2(0, 0);
-                if (Direction == (int)eFacing.RIGHT && !(state is StateRedKoopaDead))
+                if (Direction == (int)MarioDirection.RIGHT && !(state is StateRedKoopaDead))
                 {
                     Velocity = new Vector2(85, 0);
                 }
 
-                if (Direction == (int)eFacing.LEFT && !(state is StateRedKoopaDead))
+                if (Direction == (int)MarioDirection.LEFT && !(state is StateRedKoopaDead))
                 {
                     Velocity = new Vector2(-85, 0);
                 }

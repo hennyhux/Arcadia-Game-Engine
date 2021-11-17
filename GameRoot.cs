@@ -14,7 +14,7 @@ namespace GameSpace
 
         public State CurrentState { get; private set; }
         private State nextState;
-        private bool paused = false;
+        private readonly bool paused = false;
 
 
         public GraphicsDeviceManager Graphics => graphicsDevice;
@@ -83,7 +83,5 @@ namespace GameSpace
         {
             nextState = new GameOverState(this, GraphicsDevice, Content);
         }
-
-
     }
 }

@@ -6,27 +6,14 @@ namespace GameSpace.States.MarioStates
 {
     public abstract class MarioActionStates : IMarioActionStates
     {
-        //protected MarioActionStateMachine marioActionStateMachine; dont use
-        //protected IMarioActionState currentActionState;
-        // protected IMarioActionState previousActionState;
-        //protected Kinematics previousKinematics;
-
         public Mario Mario { get; }
-
-        //public IMarioActionStates CurrentActionState { get { return currentActionState; } }
         public IMarioActionStates previousActionState { get; set; }
 
-        /*public Kinematics PreviousKinematics
-        {a
-            get { return previousKinematics; }
-            set { previousKinematics = value; }
-        }*/
         protected MarioActionStates(Mario mario)
         {
 
             Mario = mario;
         }
-        // protected IMarioPowerUpState CurrentPowerUpState {  get { return Mario.CurrentPowerUpState; } }
 
         public abstract void Enter(IMarioActionStates previousActionState);
         public abstract void Exit();

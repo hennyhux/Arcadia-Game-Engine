@@ -1,5 +1,4 @@
-﻿using GameSpace.Commands;
-using GameSpace.Machines;
+﻿using GameSpace.Machines;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
@@ -12,7 +11,7 @@ namespace GameSpace.States.GameStates
     {
         private readonly Dictionary<Keys, ICommand> keyboardCommands;
         private readonly Dictionary<Buttons, ICommand> controllerCommands;
-        private bool paused = false;
+        private readonly bool paused = false;
 
         public CommandListPause(GameRoot game)
         {

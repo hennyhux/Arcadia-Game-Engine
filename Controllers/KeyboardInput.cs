@@ -11,9 +11,9 @@ namespace GameSpace
         private KeyboardState previousState;
         private protected CommandList commands;
         private protected CommandListStart commandsStart;
-        private CommandListVictory commandsVictory;
-        private CommandListGameOver commandsGame;
-        private CommandListPause commandsPause;
+        private readonly CommandListVictory commandsVictory;
+        private readonly CommandListGameOver commandsGame;
+        private readonly CommandListPause commandsPause;
         private readonly ICommand executeCommand;
         private readonly Dictionary<Keys, ICommand> command;
 
@@ -46,16 +46,26 @@ namespace GameSpace
                 {
                     try
                     {
-                        if (game.CurrentState is PlayingGameState) commands.GetCommand[key].Execute();
-
-                        else if (game.CurrentState is StartGameState) commandsStart.GetCommand[key].Execute();
-
-                        else if (game.CurrentState is VictoryGameState) commandsVictory.GetCommand[key].Execute();
-
-                        else if (game.CurrentState is GameOverState) commandsGame.GetCommand[key].Execute();
-
-                        else if (game.CurrentState is PauseGameState) commandsGame.GetCommand[key].Execute();
-
+                        if (game.CurrentState is PlayingGameState)
+                        {
+                            commands.GetCommand[key].Execute();
+                        }
+                        else if (game.CurrentState is StartGameState)
+                        {
+                            commandsStart.GetCommand[key].Execute();
+                        }
+                        else if (game.CurrentState is VictoryGameState)
+                        {
+                            commandsVictory.GetCommand[key].Execute();
+                        }
+                        else if (game.CurrentState is GameOverState)
+                        {
+                            commandsGame.GetCommand[key].Execute();
+                        }
+                        else if (game.CurrentState is PauseGameState)
+                        {
+                            commandsGame.GetCommand[key].Execute();
+                        }
                     }
 
                     catch (KeyNotFoundException)

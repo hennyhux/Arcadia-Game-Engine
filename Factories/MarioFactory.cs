@@ -397,7 +397,7 @@ namespace GameSpace.Factories
 
         public MarioSprite SmallMarioStandingSprite()
         {
-           // Debug.WriteLine("SmallMarioStandingSprite\n");
+            // Debug.WriteLine("SmallMarioStandingSprite\n");
             return new MarioSprite(normalMarioSprite, 999, 999, 0, 0, 0);
         }
 

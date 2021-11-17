@@ -31,18 +31,18 @@ namespace GameSpace.Sprites
 
         public override void Draw(SpriteBatch spriteBatch, Vector2 location)
         {
-            
+
             if (isVisible)
             {
                 int width = Texture.Width / frameWidth;
                 int height = Texture.Height / frameHeight;
-                
+
                 Rectangle sourceRectangle = new Rectangle(frameOrigin.X + currentFramePoint.X * frameSize.X,
                     frameOrigin.Y + currentFramePoint.Y * frameSize.Y,
                     frameSize.X,
                     frameSize.Y);
                 Rectangle destinationRectangle = new Rectangle((int)location.X, (int)location.Y, width * 2, height * 2);
-                
+
                 spriteBatch.Draw(Texture, destinationRectangle, sourceRectangle, Color.White);
             }
         }
