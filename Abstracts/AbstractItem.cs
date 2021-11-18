@@ -72,11 +72,11 @@ namespace GameSpace.Abstracts
             if (!hasCollided && !HasHalted)
             {
                 UpdateSpeed();
-                UpdateCollisionBox(Position, gametime);
+                UpdatePosition(Position, gametime);
                 UpdateCollisionBox();
             }
         }
-        public virtual void UpdateCollisionBox(Vector2 location, GameTime gametime)
+        public virtual void UpdatePosition(Vector2 location, GameTime gametime)
         {
             Velocity += Acceleration * (float)gametime.ElapsedGameTime.TotalSeconds;
             Position += Velocity * (float)gametime.ElapsedGameTime.TotalSeconds;

@@ -29,7 +29,7 @@ namespace GameSpace.GameObjects.ItemObjects
             Sprite.Update(gametime);
             if (!hasCollided)
             {
-                UpdateCollisionBox(Position, gametime);
+                UpdatePosition(Position, gametime);
                 UpdateCollisionBox();
             }
         }

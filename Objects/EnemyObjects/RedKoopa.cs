@@ -24,7 +24,7 @@ namespace GameSpace.GameObjects.EnemyObjects
             UpdateCollisionBox(Position);
         }
 
-        public override void UpdateCollisionBox(Vector2 location, GameTime gameTime) //use velocity
+        public override void UpdatePosition(Vector2 location, GameTime gameTime) //use velocity
         {
             if (CollisionHandler.GetInstance().IsGoingToFall(this) && !(state is StateRedKoopaDead))
             {

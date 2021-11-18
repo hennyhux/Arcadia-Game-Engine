@@ -33,7 +33,7 @@ namespace GameSpace.Animations
 
         public void Update(GameTime gametime)
         {
-            coin.UpdateCollisionBox(new Vector2(initialLocation.X + 6, (initialLocation.Y - coin.Sprite.Texture.Height) - offset), gametime);
+            coin.UpdatePosition(new Vector2(initialLocation.X + 6, (initialLocation.Y - coin.Sprite.Texture.Height) - offset), gametime);
             if (offset < celling)
             {
                 offset += 4;

@@ -243,7 +243,8 @@ namespace GameSpace.EntityManaging
                 enemy.Direction = (int)MarioDirection.LEFT;
                 if (enemy is GreenKoopa)
                 {
-                    enemy.state = new StateGreenKoopaAliveFaceLeft();
+                    GreenKoopa copy = (GreenKoopa)enemy;
+                    copy.FlipSprite();
                 }
             }
 
@@ -252,10 +253,12 @@ namespace GameSpace.EntityManaging
                 enemy.Direction = (int)MarioDirection.RIGHT;
                 if (enemy is GreenKoopa)
                 {
-                    enemy.state = new StateGreenKoopaAliveFaceRight();
+                    GreenKoopa copy = (GreenKoopa)enemy;
+                    copy.FlipSprite();
                 }
             }
         }
+
 
         public void ShellToBlockCollision(GreenKoopa enemy, IGameObjects block)
         {
@@ -274,34 +277,16 @@ namespace GameSpace.EntityManaging
             }
         }
 
-        public void EnemyToMarioCollision(AbstractEnemy enemy, IGameObjects mario)
+        public void EnemyToMarioCollision(AbstractEnemy enemy)
         {
-            Mario thisMario = (Mario)mario;
             if (DetectCollisionDirection(enemy, mario) == (int)CollisionDirection.UP)
             {
-                thisMario.score += 100;
+                mario.score += 100;
                 enemy.Trigger();
+                mario.LeapTransition();
             }
         }
 
-        public void EnemyToMarioCollision(GreenKoopa enemy, IGameObjects mario)
-        {
-            if (DetectCollisionDirection(enemy, mario) == (int)CollisionDirection.UP)
-            {
-                if (enemy.state is StateGreenKoopaShelled)
-                {
-                    enemy.state = new StateGreenKoopaDeadMoving();
-                }
-
-                else
-                {
-                    if (!(enemy.state is StateGreenKoopaDeadMoving))
-                    {
-                        enemy.Trigger();
-                    }
-                }
-            }
-        }
 
         public void EnemyToEnemyCollision(GreenKoopa enemy, Goomba enemyB)
         {
@@ -354,11 +339,12 @@ namespace GameSpace.EntityManaging
                     break;
 
                 case (int)CollisionDirection.DOWN:
-                    mario.Position = new Vector2(mario.Position.X, (int)block.Position.Y - mario.CollisionBox.Height);
+      
+                    
+                        mario.Position = new Vector2(mario.Position.X, (int)block.Position.Y - mario.CollisionBox.Height);
+                 
                     break;
             }
-
-
         }
 
         public void MarioToHiddenBlockCollision(IGameObjects block)
@@ -439,9 +425,8 @@ namespace GameSpace.EntityManaging
 
         public void MarioToItemCollision(FlagPole pole)
         {
-            mario.Velocity = new Vector2(0, (500 - (mario.Position.Y + mario.CollisionBox.Height)) / (float)2.5);//Make Mario Start falling
+            mario.Velocity = new Vector2(0, (500 - (mario.Position.Y + mario.CollisionBox.Height)) / (float)2.5);
             int marioY = (int)mario.Position.Y;
-            //int poleY = (int)pole.Position.Y + pole.Sprite.Texture.Height * 2 - 34;
             int poleY = (int)pole.Position.Y;
 
             Debug.Print("poleY : {0}, deltaH {1}", poleY, poleY + pole.CollisionBox.Height);

@@ -11,7 +11,6 @@ namespace GameSpace.States.MarioStates
 
         protected MarioActionStates(Mario mario)
         {
-
             Mario = mario;
         }
 
@@ -29,6 +28,10 @@ namespace GameSpace.States.MarioStates
         public abstract void RunningTransition();//Longer you hold running you increase velocity and speed of animation
         public abstract void JumpingTransition();
         public abstract void FallingTransition();
+        public virtual void LeapTransition()
+        {
+
+        }
 
         public abstract void FaceLeftTransition();
         public abstract void FaceRightTransition();

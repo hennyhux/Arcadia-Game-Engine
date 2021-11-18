@@ -7,9 +7,9 @@ using Microsoft.Xna.Framework;
 
 namespace GameSpace.States.MarioStates
 {
-    internal class SmallMarioJumpingState : MarioActionStates
+    internal class SmallMarioLeapingState : MarioActionStates
     {
-        public SmallMarioJumpingState(Mario mario)
+        public SmallMarioLeapingState(Mario mario)
             : base(mario)
         {
 
@@ -20,14 +20,9 @@ namespace GameSpace.States.MarioStates
             Mario.MarioActionState = this;
             this.previousActionState = previousActionState;
 
-            Mario.Velocity = new Vector2(Mario.Velocity.X, -400);
+            Mario.Velocity = new Vector2(Mario.Velocity.X, -250);
             Mario.Acceleration = new Vector2(0, 600);
-
-            MarioDirection Facing = Mario.Facing;
-            Mario.Facing = Facing;
-    
             Mario.sprite = MarioFactory.GetInstance().CreateSprite(MarioFactory.MarioSpriteType(this, Mario.MarioPowerUpState));
-
             MusicHandler.GetInstance().PlaySoundEffect(0);
         }
 
@@ -35,6 +30,8 @@ namespace GameSpace.States.MarioStates
         {
             Mario.Velocity = new Vector2(Mario.Velocity.X, -15);
         }
+
+
 
         public override void StandingTransition()
         {
@@ -89,6 +86,13 @@ namespace GameSpace.States.MarioStates
             {
                 Mario.Facing = MarioDirection.RIGHT;
             }
+        }
+
+        public override void LeapTransition()
+        {
+            Exit();
+            Mario.MarioActionState = new SmallMarioLeapingState(Mario);
+            Mario.MarioActionState.Enter(this);
         }
 
         public override void UpTransition()

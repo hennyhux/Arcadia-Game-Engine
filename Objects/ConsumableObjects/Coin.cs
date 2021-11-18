@@ -24,7 +24,7 @@ namespace GameSpace.GameObjects.ItemObjects
             if (!hasCollided)
             {
                 //UpdateSpeed();
-                UpdateCollisionBox(Position, gametime);
+                UpdatePosition(Position, gametime);
                 UpdateCollisionBox();
             }
         }

@@ -23,7 +23,7 @@ namespace GameSpace.Objects.EnemyObjects
             if (!(state is StatePlantDead))
             {
                 state.Update(gametime);
-                UpdateCollisionBox(Position, gametime);
+                UpdatePosition(Position, gametime);
             }
 
             else if (state is StatePlantDead || state is StatePlantHidden)

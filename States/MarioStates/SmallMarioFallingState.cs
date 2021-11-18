@@ -34,6 +34,7 @@ namespace GameSpace.States.MarioStates
             Mario.sprite = MarioFactory.GetInstance().CreateSprite(MarioFactory.MarioSpriteType(this, Mario.MarioPowerUpState));
         }
 
+
         public override void Exit()
         {
             //Velocity == 0;

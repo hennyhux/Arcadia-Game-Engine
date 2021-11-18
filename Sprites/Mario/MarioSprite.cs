@@ -25,7 +25,7 @@ namespace GameSpace.Sprites
         private int actionState; //[Idling, Crouching, Walking, Running, Jumping, Falling, Dying]
         private int marioPower;// [Small, Big, Fire, Star, Dead]
         public int facingRight { get; set; }// left = 0, right = 1
-        public SpriteEffects facing { get; set; }
+        public SpriteEffects Facing { get; set; }
         private bool newState;
 
         /* Array Format is
@@ -58,7 +58,7 @@ namespace GameSpace.Sprites
             marioPower = powerup;
             actionState = action;
             newState = true;
-            facing = SpriteEffects.None;
+            Facing = SpriteEffects.None;
 
             #region time
             timeSinceLastFrame = 0;
@@ -93,7 +93,7 @@ namespace GameSpace.Sprites
                 int startingFrame = 0;
                 totalFrames = totalFramesAnimation[currentFrame]; // gets previous frame's total frames in animation
 
-                facing = SpriteEffects.None;
+                Facing = SpriteEffects.None;
                 if (marioPower == 4)//Mario is dead
                 {
                     startingFrame = (0 + 17 * (facingRight));
@@ -121,7 +121,7 @@ namespace GameSpace.Sprites
                 else if (actionState == 5)//Falling
                 {
                     startingFrame = (2 + 13 * (facingRight) + (34 * (marioPower)));
-                    facing = SpriteEffects.FlipVertically;
+                    Facing = SpriteEffects.FlipVertically;
                 }
                 else if (actionState == 6)//Dying
                 {
@@ -170,7 +170,7 @@ namespace GameSpace.Sprites
                 Rectangle sourceRectangle = new Rectangle(XFrame[currentFrame], YFrame[currentFrame], Width, Height);
                 Rectangle destinationRectangle = new Rectangle((int)location.X, (int)location.Y, Width * 2, Height * 2);
 
-                spriteBatch.Draw(Texture, destinationRectangle, sourceRectangle, Color.White, 0, new Vector2(0, 0), facing, 0);
+                spriteBatch.Draw(Texture, destinationRectangle, sourceRectangle, Color.White, 0, new Vector2(0, 0), Facing, 0);
 
             }
 
@@ -194,6 +194,16 @@ namespace GameSpace.Sprites
         public bool GetVisibleStatus()
         {
             return IsVisible;
+        }
+
+        public void FlipSprite()
+        {
+            
+        }
+
+        public void RevertSprite()
+        {
+
         }
     }
 }

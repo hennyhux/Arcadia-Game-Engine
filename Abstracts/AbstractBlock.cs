@@ -42,7 +42,7 @@ namespace GameSpace.Abstracts
             state.Update(gametime);
         }
 
-        public virtual void UpdateCollisionBox(Vector2 location, GameTime gametime)
+        public virtual void UpdatePosition(Vector2 location, GameTime gametime)
         {
             //Block does not move
         }

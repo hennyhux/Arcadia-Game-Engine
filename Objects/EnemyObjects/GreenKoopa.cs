@@ -8,66 +8,167 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace GameSpace.GameObjects.EnemyObjects
 {
+    public interface IKoopaState
+    {
+        public void Draw(SpriteBatch spritebatch, Vector2 location);
+        public void Update(GameTime gametime);
+        public void Trigger();
+        public void UpdateCollisionBox(Vector2 location);
+        public void UpdateSpeed();
+        public void UpdatePosition(Vector2 location, GameTime gameTime);
+        public void FlipSprite();
+    }
+
+    public abstract class StateGreenKoopa : IKoopaState
+    {
+        private protected GreenKoopa koopa;
+        private protected ISprite StateSprite;
+
+        public virtual void Draw(SpriteBatch spritebatch, Vector2 location)
+        {
+            StateSprite.Draw(spritebatch, location);
+            if (koopa.drawBox)
+            {
+                StateSprite.DrawBoundary(spritebatch, koopa.CollisionBox);
+            }
+        }
+
+        public virtual void Trigger()
+        {
+
+        }
+
+        public virtual void Update(GameTime gametime)
+        {
+            StateSprite.Update(gametime);
+            UpdateSpeed();
+            UpdateCollisionBox(koopa.Position);
+            UpdatePosition(koopa.Position, gametime);
+        }
+
+        public virtual void UpdateCollisionBox(Vector2 location)
+        {
+            koopa.CollisionBox = new Rectangle((int)location.X + 15, (int)location.Y,
+              StateSprite.Texture.Width / 2, StateSprite.Texture.Height * 2);
+
+            koopa.ExpandedCollisionBox = new Rectangle((int)location.X + 15, (int)location.Y,
+                StateSprite.Texture.Width / 2, (StateSprite.Texture.Height * 2) + 4);
+        }
+
+        public virtual void UpdatePosition(Vector2 location, GameTime gameTime)
+        {
+            koopa.UpdatePosition(location, gameTime);
+        }
+
+        public virtual void UpdateSpeed()
+        {
+            koopa.UpdateSpeed();
+        }
+
+        public virtual void FlipSprite()
+        {
+            StateSprite.Facing = SpriteEffects.FlipHorizontally;
+        }
+    }
+
+    public class GreenKoopaAliveState : StateGreenKoopa
+    {
+        
+        public GreenKoopaAliveState(GreenKoopa koopa)
+        {
+            this.koopa = koopa;
+            StateSprite = SpriteEnemyFactory.GetInstance().CreateGreenKoopaLeftSprite();
+        }
+ 
+    }
+
+    public class GreenKoopaShellState : StateGreenKoopa
+    {
+        public GreenKoopaShellState(GreenKoopa koopa)
+        {
+            this.koopa = koopa;
+            StateSprite = SpriteEnemyFactory.GetInstance().CreateGreenKoopaShellSprite();
+        }
+
+        public override void Update(GameTime gametime)
+        {
+            StateSprite.Update(gametime);
+        }
+    }
+
+    public class GreenKoopaShellMovingState : StateGreenKoopa
+    {
+        public GreenKoopaShellMovingState(GreenKoopa koopa)
+        {
+            this.koopa = koopa;
+            StateSprite = SpriteEnemyFactory.GetInstance().CreateGreenKoopaShellSprite();
+        }
+
+        public override void UpdateSpeed()
+        {
+            if (CollisionHandler.GetInstance().IsGoingToFall(koopa))
+            {
+                koopa.Acceleration = new Vector2(0, 400);
+            }
+
+            else
+            {
+                koopa.Acceleration = new Vector2(0, 0);
+                if (koopa.Direction == (int)MarioDirection.RIGHT)
+                {
+                    koopa.Velocity = new Vector2(200, 0);
+                }
+
+                else if (koopa.Direction == (int)MarioDirection.LEFT)
+                {
+                    koopa.Velocity = new Vector2(-200, 0);
+                }
+            }
+        }
+    }
+
     public class GreenKoopa : AbstractEnemy
     {
-        private int countdown;
+        public IKoopaState State { get; private set; }
         public GreenKoopa(Vector2 initalPosition)
         {
             ObjectID = (int)EnemyID.GREENKOOPA;
             Direction = (int)MarioDirection.LEFT;
             drawBox = false;
             Position = initalPosition;
-            state = new StateGreenKoopaAliveFaceLeft();
-            UpdateCollisionBox(Position);
-            countdown = 0;
+            State = new GreenKoopaAliveState(this);
         }
 
         public override void Update(GameTime gametime)
         {
-
-            if (!(state is StateGreenKoopaRemoved))
-
-            {
-                base.Update(gametime);
-
-                if (hasCollidedOnTop)
-                {
-                    countdown++;
-                }
-
-                if (countdown == 250)
-                {
-                    state = new StateGreenKoopaShellAndLegs();
-                }
-
-                if (countdown == 500)
-                {
-                    state = new StateGreenKoopaAliveFaceLeft();
-                    countdown = 0;
-                    hasCollidedOnTop = false;
-                }
-            }
+            State.Update(gametime);
         }
 
         public override void Draw(SpriteBatch spritebatch)
         {
-            if (!(state is StateGreenKoopaRemoved))
-            {
-                base.Draw(spritebatch);
-            }
-            else
-            {
-                DeleteCollisionBox();
-            }
+            State.Draw(spritebatch, Position);
+        }
+        public void RemoveFromStage()
+        {
+            state = new StateGreenKoopaRemoved();
         }
 
+        public override void Trigger()
+        {
+            State = new GreenKoopaShellState(this);
+            hasCollidedOnTop = true;
+        }
+
+        public void FlipSprite()
+        {
+            State.FlipSprite();
+        }
         public override void HandleCollision(IGameObjects entity)
         {
-            base.HandleCollision(entity);
             switch (entity.ObjectID)
             {
                 case (int)AvatarID.MARIO:
-                    CollisionHandler.GetInstance().EnemyToMarioCollision(this, entity);
+                    CollisionHandler.GetInstance().EnemyToMarioCollision(this);
                     break;
 
                 case (int)BlockID.USEDBLOCK:
@@ -76,17 +177,13 @@ namespace GameSpace.GameObjects.EnemyObjects
                 case (int)BlockID.STAIRBLOCK:
                 case (int)BlockID.COINBRICKBLOCK:
                 case (int)BlockID.BRICKBLOCK:
-                case (int)ItemID.BIGPIPE:
                 case (int)ItemID.MEDIUMPIPE:
                 case (int)ItemID.SMALLPIPE:
-                    if (!(state is StateGreenKoopaDeadMoving))
-                    {
-                        CollisionHandler.GetInstance().EnemyToBlockCollision(this, entity);
-                    }
-                    else
-                    {
-                        CollisionHandler.GetInstance().ShellToBlockCollision(this, entity);
-                    }
+                case (int)ItemID.WARPPIPEBODY:
+                case (int)ItemID.WARPPIPEHEAD:
+                case (int)ItemID.WARPPIPEHEADWITHMOB:
+                case (int)ItemID.WARPPIPEROOM:
+                    CollisionHandler.GetInstance().EnemyToBlockCollision(this, entity);
                     break;
 
                 case (int)ItemID.FIREBALL:
@@ -99,42 +196,7 @@ namespace GameSpace.GameObjects.EnemyObjects
             }
         }
 
-        public override void UpdateCollisionBox(Vector2 location, GameTime gameTime)
-        {
-            if (state is StateGreenKoopaDeadMoving)
-            {
-                Position += new Vector2(300, 0) * (float)gameTime.ElapsedGameTime.TotalSeconds;
-            }
-
-            else if (!(state is StateGreenKoopaShelled) &&
-                !(state is StateGreenKoopaShellAndLegs) &&
-                !(state is StateGreenKoopaDeadMoving))
-            {
-                Velocity += Acceleration * (float)gameTime.ElapsedGameTime.TotalSeconds;
-                Position += Velocity * (float)gameTime.ElapsedGameTime.TotalSeconds;
-            }
-
-        }
-
-        public void RemoveFromStage()
-        {
-            state = new StateGreenKoopaRemoved();
-        }
-
-        public override void Trigger()
-        {
-            state = new StateGreenKoopaShelled();
-            hasCollidedOnTop = true;
-        }
-
-        public override void UpdateCollisionBox(Vector2 location)
-        {
-
-            base.UpdateCollisionBox(location);
-
-            CollisionBox = new Rectangle((int)location.X + 20, (int)location.Y,
-              state.StateSprite.Texture.Width / 2, state.StateSprite.Texture.Height * 2);
-        }
+   
 
         public class StateGreenKoopaAliveFaceRight : AbstractEnemyState
         {

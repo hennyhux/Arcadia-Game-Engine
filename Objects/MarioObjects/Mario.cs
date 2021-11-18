@@ -60,10 +60,10 @@ namespace GameSpace.GameObjects.BlockObjects
             switch (Facing)
             {
                 case MarioDirection.LEFT:
-                    sprite.facing = SpriteEffects.None;
+                    sprite.Facing = SpriteEffects.None;
                     break;
                 case MarioDirection.RIGHT:
-                    sprite.facing = SpriteEffects.FlipHorizontally;
+                    sprite.Facing = SpriteEffects.FlipHorizontally;
                     break;
             }
 
@@ -86,7 +86,7 @@ namespace GameSpace.GameObjects.BlockObjects
                 Position += newLocation;
             }
 
-            UpdateCollisionBox(Position, gametime);
+            UpdatePosition(Position, gametime);
             MarioPowerUpState.Update(gametime);
             MarioActionState.Update(gametime);
             sprite.Update(gametime);
@@ -117,6 +117,11 @@ namespace GameSpace.GameObjects.BlockObjects
         public void UpTransition()
         {
             MarioActionState.UpTransition();
+        }
+
+        public void LeapTransition()
+        {
+            MarioActionState.LeapTransition();
         }
 
         public void DownTransition()
@@ -165,7 +170,7 @@ namespace GameSpace.GameObjects.BlockObjects
 
         #endregion
 
-        public void UpdateCollisionBox(Vector2 location, GameTime gameTime)
+        public void UpdatePosition(Vector2 location, GameTime gameTime)
         {
             if (!(MarioPowerUpState is States.BlockStates.DeadMarioState))
             {
@@ -259,6 +264,12 @@ namespace GameSpace.GameObjects.BlockObjects
                     CollisionHandler.GetInstance().MarioToEnemyCollision(entity);
                     break;
             }
+        }
+
+        public void StopAllMotion()
+        {
+            Velocity = new Vector2(0, 0);
+            Acceleration = new Vector2(0, 0);
         }
 
         public void WarpMario()

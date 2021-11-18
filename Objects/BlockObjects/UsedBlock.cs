@@ -51,7 +51,7 @@ namespace GameSpace.GameObjects.BlockObjects
 
         }
 
-        public void UpdateCollisionBox(Vector2 location, GameTime gameTime)
+        public void UpdatePosition(Vector2 location, GameTime gameTime)
         {
             throw new NotImplementedException();
         }

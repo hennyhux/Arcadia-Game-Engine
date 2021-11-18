@@ -72,7 +72,7 @@ namespace GameSpace.GameObjects.ExtraItemsObjects
             //Flag does nothing.
         }
 
-        public void UpdateCollisionBox(Vector2 location, GameTime gameTime)
+        public void UpdatePosition(Vector2 location, GameTime gameTime)
         {
             //Pipe doesn't move.
         }

@@ -117,6 +117,13 @@ namespace GameSpace.States.MarioStates
         {
             JumpingTransition();
         }
+
+        public override void LeapTransition()
+        {
+            Exit();
+            Mario.MarioActionState = new SmallMarioLeapingState(Mario);
+            Mario.MarioActionState.Enter(this);
+        }
         public override void DownTransition()
         {
 

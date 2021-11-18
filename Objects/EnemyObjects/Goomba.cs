@@ -42,7 +42,7 @@ namespace GameSpace.GameObjects.EnemyObjects
             {
                 state.Update(gametime);
                 UpdateSpeed();
-                UpdateCollisionBox(Position, gametime);
+                UpdatePosition(Position, gametime);
                 UpdateCollisionBox(Position);
             }
 

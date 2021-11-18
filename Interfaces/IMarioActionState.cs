@@ -18,6 +18,7 @@ namespace GameSpace.Interfaces
         void RunningTransition();//Longer you hold running you increase velocity and speed of animation
         void JumpingTransition();
         void FallingTransition();
+        void LeapTransition();
 
         void FaceLeftTransition();
         void FaceRightTransition();

@@ -14,7 +14,7 @@
 	<Objects>
 		<x>200</x>
 		<y>370</y>
-		<enemy>GOOMBA</enemy>
+		<enemy>GREENKOOPA</enemy>
 	</Objects>
 	
 	<Objects>
@@ -80,8 +80,8 @@
 	
 	<Objects>
 		<x>400</x>
-		<y>400</y>
-		<item>WARPPIPEROOM</item>
+		<y>320</y>
+		<item>WARPPIPEBODY</item>
 	</Objects>
 	
 	

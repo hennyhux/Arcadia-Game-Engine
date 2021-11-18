@@ -41,8 +41,8 @@ namespace GameSpace.Abstracts
         {
             state.Update(gametime);
             UpdateSpeed();
-            UpdateCollisionBox(Position, gametime);
             UpdateCollisionBox(Position);
+            UpdatePosition(Position, gametime);
         }
 
         public virtual void Trigger()
@@ -50,7 +50,7 @@ namespace GameSpace.Abstracts
             hasCollidedOnTop = true;
         }
 
-        internal virtual void UpdateSpeed()
+        public virtual void UpdateSpeed()
         {
             if (CollisionHandler.GetInstance().IsGoingToFall(this))
             {
@@ -72,7 +72,7 @@ namespace GameSpace.Abstracts
             }
         }
 
-        public virtual void UpdateCollisionBox(Vector2 location, GameTime gameTime)
+        public virtual void UpdatePosition(Vector2 location, GameTime gameTime)
         {
             Velocity += Acceleration * (float)gameTime.ElapsedGameTime.TotalSeconds;
             Position += Velocity * (float)gameTime.ElapsedGameTime.TotalSeconds;
@@ -107,7 +107,7 @@ namespace GameSpace.Abstracts
             switch (entity.ObjectID)
             {
                 case (int)AvatarID.MARIO:
-                    CollisionHandler.GetInstance().EnemyToMarioCollision(this, entity);
+                    CollisionHandler.GetInstance().EnemyToMarioCollision(this);
                     break;
 
                 case (int)BlockID.USEDBLOCK:
