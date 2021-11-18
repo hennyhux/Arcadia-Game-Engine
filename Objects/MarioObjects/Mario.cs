@@ -1,6 +1,7 @@
 ﻿using GameSpace.EntityManaging;
 using GameSpace.Enums;
 using GameSpace.Factories;
+using GameSpace.GameObjects.EnemyObjects;
 using GameSpace.GameObjects.ExtraItemsObjects;
 using GameSpace.GameObjects.ItemObjects;
 using GameSpace.Interfaces;
@@ -257,10 +258,15 @@ namespace GameSpace.GameObjects.BlockObjects
                     break;
 
                 case (int)EnemyID.GOOMBA:
+                    CollisionHandler.GetInstance().ChangeMarioStatesUponCollision(entity);
+                    CollisionHandler.GetInstance().MarioToEnemyCollision(entity);
+                    break;
                 case (int)EnemyID.GREENKOOPA:
+                    CollisionHandler.GetInstance().ChangeMarioStatesUponCollision(entity);
+                    CollisionHandler.GetInstance().MarioToEnemyCollision((GreenKoopa)entity);
+                    break;
                 case (int)EnemyID.REDKOOPA:
                     CollisionHandler.GetInstance().ChangeMarioStatesUponCollision(entity);
-                    MarioHandler.GetInstance().BounceMario();
                     CollisionHandler.GetInstance().MarioToEnemyCollision(entity);
                     break;
             }

@@ -266,14 +266,12 @@ namespace GameSpace.EntityManaging
             if (DetectCollisionDirection(enemy, block) == (int)CollisionDirection.LEFT)
             {
                 enemy.Direction = (int)MarioDirection.LEFT;
-                enemy.RemoveFromStage();
 
             }
 
             else if (DetectCollisionDirection(enemy, block) == (int)CollisionDirection.RIGHT)
             {
                 enemy.Direction = (int)MarioDirection.RIGHT;
-                enemy.RemoveFromStage();
             }
         }
 
@@ -283,7 +281,24 @@ namespace GameSpace.EntityManaging
             {
                 mario.score += 100;
                 enemy.Trigger();
-                mario.LeapTransition();
+            }
+        }
+
+        public void EnemyToMarioCollision(GreenKoopa enemy)
+        {
+            if (DetectCollisionDirection(enemy, mario) == (int)CollisionDirection.UP)
+            {
+                mario.score += 100;
+                enemy.Trigger();
+            }
+
+            else
+            {
+                if (enemy.State is GreenKoopaShellState ||
+                    enemy.State is GreenKoopaShellAndLegsState)
+                {
+                    enemy.Trigger();
+                }
             }
         }
 
@@ -339,8 +354,6 @@ namespace GameSpace.EntityManaging
                     break;
 
                 case (int)CollisionDirection.DOWN:
-      
-                    
                         mario.Position = new Vector2(mario.Position.X, (int)block.Position.Y - mario.CollisionBox.Height);
                  
                     break;
@@ -362,6 +375,24 @@ namespace GameSpace.EntityManaging
             {
                 mario.Trigger();
             }
+
+            else
+            {
+                mario.LeapTransition();
+            }
+        }
+
+        public void MarioToEnemyCollision(GreenKoopa koopa)
+        {
+            if (DetectCollisionDirection(mario, koopa) != (int)CollisionDirection.DOWN)
+            {
+                if (!(koopa.State is GreenKoopaShellState))mario.Trigger();
+            }
+
+            
+            
+                mario.LeapTransition();
+            
         }
 
         public void MarioToItemCollision(FireFlower item)
