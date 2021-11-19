@@ -1,6 +1,8 @@
 ﻿using GameSpace.Abstracts;
+using GameSpace.Camera2D;
 using GameSpace.EntityManaging;
 using GameSpace.Enums;
+using GameSpace.GameObjects.BlockObjects;
 using GameSpace.GameObjects.ItemObjects;//TEMP
 using GameSpace.Sprites;//TEMP
 using Microsoft.Xna.Framework;
@@ -15,15 +17,14 @@ namespace GameSpace.Machines
         private Texture2D chungus;
         private Texture2D gameOver;
         private Vector2 HudPosition;
+        private Vector2 HealthBarPosition;
         public static long ticks;
         public static long seconds;
         public static long ticksMax = 4010000000;
-        //public static long ticksMax = 40100000; Testing timer and lose of life from running out of time
         public static long convertToSeconds = 10000000;
         public static int bonusPoints;
-        private readonly Coin HUDCoin;// = new Coin(new Vector2(0, 0));
-        //private Coin testCoin = new Coin(new Vector2(0, 0)); 
-        //Coin coin = new Coin(new Vector2(0, 0));//Get Coin to draw animated in HUD
+
+        private HealthBar healthBar;
 
         private static readonly HUDHandler instance = new HUDHandler();
         public static HUDHandler GetInstance()
@@ -81,6 +82,8 @@ namespace GameSpace.Machines
             gameOver = content.Load<Texture2D>("Background/game-over-screen");
             HudPosition.X = 10;
             HudPosition.Y = 10;
+            HealthBarPosition = new Vector2(25, 90);
+            healthBar = new HealthBar(content, HealthBarPosition);
             game = gameRoot;
             ResetTimer();
         }
@@ -111,7 +114,7 @@ namespace GameSpace.Machines
             spritebatch.Draw(MarioHandler.mario.sprite.Texture, new Vector2((int)HudPosition.X + 640, (int)HudPosition.Y + 25), MarioHandler.mario.sprite.getCurrentSpriteRect(), Color.White,
                 0, new Vector2(1, 1), new Vector2(1, 1), facing, 1);
             spritebatch.DrawString(HeadsUpDisplay, "X  " + MarioHandler.marioLives, new Vector2(HudPosition.X + 660, HudPosition.Y + 20), Color.White);
-
+            healthBar.DrawHealthBar(spritebatch);
             UpdateHudPosition();
         }
 
@@ -166,14 +169,52 @@ namespace GameSpace.Machines
 
         }
 
-
         private void UpdateHudPosition()
         {
             if (cameraCopy.Position.X + 10 > HudPosition.X || HudPosition.X > cameraCopy.Position.X)
             {
                 HudPosition.X = cameraCopy.Position.X + 10;
+                healthBar.UpdateHealthBarLocation(cameraCopy);
             }
         }
 
+        public void UpdateHealth()
+        {
+            healthBar.DecrementHealth(mario);
+        }
+
+    }
+
+    public class HealthBar 
+    {
+        Texture2D texture;
+        Vector2 position;
+        Rectangle rectangle;
+
+        public HealthBar(ContentManager content, Vector2 position)
+        {
+            texture = content.Load<Texture2D>("HealthBar");
+            this.position = position;
+            rectangle = new Rectangle(0, 0, texture.Width, texture.Height);
+        }
+
+        public void DrawHealthBar(SpriteBatch spritebatch)
+        {
+            spritebatch.Draw(texture, position, rectangle, Color.White);
+        }
+
+        public void UpdateHealthBarLocation(Camera camera)
+        {
+            position.X = camera.Position.X + 10;
+        }
+
+        public void DecrementHealth(Mario mario)
+        {
+            rectangle.Width -= 32;
+            if (rectangle.Width <= 0)
+            {
+                mario.IsDead = true;
+            }
+        }
     }
 }

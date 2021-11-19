@@ -46,8 +46,8 @@ namespace GameSpace.GameObjects.EnemyObjects
 
         public virtual void UpdateCollisionBox(Vector2 location)
         {
-            koopa.CollisionBox = new Rectangle((int)location.X + 15, (int)location.Y - 8,
-              StateSprite.Texture.Width / 2 + 10 , StateSprite.Texture.Height * 2 );
+            koopa.CollisionBox = new Rectangle((int)location.X + 15, (int)location.Y,
+              StateSprite.Texture.Width / 2 , StateSprite.Texture.Height * 2 );
 
             koopa.ExpandedCollisionBox = new Rectangle((int)location.X + 15, (int)location.Y,
                 StateSprite.Texture.Width / 2, (StateSprite.Texture.Height * 2) + 4);
@@ -174,6 +174,9 @@ namespace GameSpace.GameObjects.EnemyObjects
         public override void Update(GameTime gametime)
         {
             StateSprite.Update(gametime);
+            UpdateSpeed();
+            UpdateCollisionBox(koopa.Position);
+            UpdatePosition(koopa.Position, gametime);
             countDown++;
 
             if (countDown == 250)

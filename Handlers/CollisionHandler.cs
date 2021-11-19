@@ -288,7 +288,6 @@ namespace GameSpace.EntityManaging
         {
             if (DetectCollisionDirection(enemy, mario) == (int)CollisionDirection.UP)
             {
-                mario.score += 100;
                 enemy.Trigger();
             }
 
@@ -384,14 +383,16 @@ namespace GameSpace.EntityManaging
 
         public void MarioToEnemyCollision(GreenKoopa koopa)
         {
-            if (DetectCollisionDirection(mario, koopa) != (int)CollisionDirection.DOWN)
+            if (DetectCollisionDirection(mario, koopa) != (int)CollisionDirection.DOWN &&
+                DetectCollisionDirection(mario, koopa) != 0)
             {
-                if (!(koopa.State is GreenKoopaShellState))mario.Trigger();
+                if (koopa.State is GreenKoopaAliveState)mario.Trigger();
             }
 
-            
-            
+            else
+            {
                 mario.LeapTransition();
+            }
             
         }
 
@@ -411,7 +412,6 @@ namespace GameSpace.EntityManaging
 
         public void MarioToItemCollision(Star item)
         {
-            //Don't have to implement star powerUp but should still receive points
             mario.score += 1000;
         }
 
@@ -540,6 +540,21 @@ namespace GameSpace.EntityManaging
             return false;
         }
         #endregion
+    }
+
+    public class MarioCollisionHandler : AbstractHandler
+    {
+        private static readonly MarioCollisionHandler instance = new MarioCollisionHandler();
+
+        public static MarioCollisionHandler GetInstance()
+        {
+            return instance;
+        }
+
+        private MarioCollisionHandler()
+        {
+
+        }
     }
 }
 

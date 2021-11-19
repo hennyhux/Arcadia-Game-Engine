@@ -37,6 +37,8 @@ namespace GameSpace.GameObjects.BlockObjects
         public int numCoinsCollected { get; set; }
         public int score { get; set; }
 
+        public bool IsDead { get; set; }
+
         public string Player { get; set; }
 
         public Mario(Vector2 initLocation)
@@ -53,6 +55,7 @@ namespace GameSpace.GameObjects.BlockObjects
             numCoinsCollected = 0;
             score = 0;
             Player = "Mario";
+            IsDead = false;
         }
 
         public void Draw(SpriteBatch spritebatch)
@@ -166,7 +169,15 @@ namespace GameSpace.GameObjects.BlockObjects
 
         public void Trigger()
         {
-            DamageTransition();
+            if (!IsDead)
+            {
+                MarioPowerUpState.DamageTransition();
+
+            }
+            else
+            {
+                MarioPowerUpState.DeadTransition();
+            }
         }
 
         #endregion
@@ -183,6 +194,7 @@ namespace GameSpace.GameObjects.BlockObjects
                 {
                     CollisionBox = new Rectangle((int)Position.X, (int)Position.Y, 32, 44);
                 }
+
                 else
                 {
                     CollisionBox = new Rectangle((int)Position.X, (int)Position.Y, 32, 64);
