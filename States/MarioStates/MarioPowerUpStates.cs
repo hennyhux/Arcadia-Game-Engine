@@ -29,55 +29,7 @@ namespace GameSpace.States.BlockStates
         }
     }
 
-    public class InvincibleMarioState : MarioPowerUpStates
-    {
-        private int countDown = 0;
-        public InvincibleMarioState(Mario mario)
-            : base(mario)
-        {
-            
-        }
-        public override void Enter(IMarioPowerUpStates previousPowerUpState)
-        {
-            
-        }
 
-        public override void Exit() 
-        {
-            Mario.MarioPowerUpState = new SmallMarioState(Mario);
-        }
-
-        public override void SmallMarioTransformation()
-        {
-        }
-
-        public override void BigMarioTransformation()
-        {
-
-        }
-
-        public override void FireMarioTransformation()
-        {
-
-        }
-
-        public override void DeadTransition() { }
-
-        public override void DamageTransition()
-        {
-            HUDHandler.GetInstance().UpdateHealth();
-        }
-
-        public override void Update(GameTime gametime)
-        {
-            countDown++;
-            if (countDown == 250)
-            {
-                Exit();
-            }
-        }
-
-    }
 
     public class SmallMarioState : MarioPowerUpStates
     {
@@ -110,8 +62,7 @@ namespace GameSpace.States.BlockStates
 
         public override void DamageTransition()
         {
-            Mario.MarioPowerUpState = new InvincibleMarioState(Mario);
-            //HUDHandler.GetInstance().UpdateHealth();
+            HUDHandler.GetInstance().UpdateHealth();
             Mario.MarioActionState.SmallPowerUp();
         }
         public override void DeadTransition()

@@ -63,6 +63,7 @@ namespace GameSpace.GameObjects.EnemyObjects
                 hasCollidedOnTop = true;
                 countDown = 0;
                 MusicHandler.GetInstance().PlaySoundEffect(2);
+                HUDHandler.GetInstance().UpdateExp(10);
             }
 
         }

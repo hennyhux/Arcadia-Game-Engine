@@ -33,8 +33,8 @@ namespace GameSpace.Machines
 
         public void PlaySong()
         {
-            MediaPlayer.Play(backgroundSong);
-            MediaPlayer.IsRepeating = true;
+            //MediaPlayer.Play(backgroundSong);
+            //MediaPlayer.IsRepeating = true;
             //MediaPlayer.Volume = MediaPlayer.Volume / 2;
         }
 

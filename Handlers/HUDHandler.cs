@@ -18,6 +18,7 @@ namespace GameSpace.Machines
         private Texture2D gameOver;
         private Vector2 HudPosition;
         private Vector2 HealthBarPosition;
+        private Vector2 ExpBarPosition;
         public static long ticks;
         public static long seconds;
         public static long ticksMax = 4010000000;
@@ -25,6 +26,7 @@ namespace GameSpace.Machines
         public static int bonusPoints;
 
         private HealthBar healthBar;
+        private ExpBar expBar;
 
         private static readonly HUDHandler instance = new HUDHandler();
         public static HUDHandler GetInstance()
@@ -83,7 +85,9 @@ namespace GameSpace.Machines
             HudPosition.X = 10;
             HudPosition.Y = 10;
             HealthBarPosition = new Vector2(25, 90);
+            ExpBarPosition = new Vector2(10, 120);
             healthBar = new HealthBar(content, HealthBarPosition);
+            expBar = new ExpBar(content, ExpBarPosition);
             game = gameRoot;
             ResetTimer();
         }
@@ -115,6 +119,7 @@ namespace GameSpace.Machines
                 0, new Vector2(1, 1), new Vector2(1, 1), facing, 1);
             spritebatch.DrawString(HeadsUpDisplay, "X  " + MarioHandler.marioLives, new Vector2(HudPosition.X + 660, HudPosition.Y + 20), Color.White);
             healthBar.DrawHealthBar(spritebatch);
+            expBar.DrawExpBar(spritebatch);
             UpdateHudPosition();
         }
 
@@ -175,12 +180,18 @@ namespace GameSpace.Machines
             {
                 HudPosition.X = cameraCopy.Position.X + 10;
                 healthBar.UpdateHealthBarLocation(cameraCopy);
+                expBar.UpdateExpBarLocation(cameraCopy);
             }
         }
 
         public void UpdateHealth()
         {
             healthBar.DecrementHealth(mario);
+        }
+
+        public void UpdateExp(int exp)
+        {
+            expBar.IncrementExp(exp);
         }
 
     }
@@ -217,4 +228,34 @@ namespace GameSpace.Machines
             }
         }
     }
+
+    public class ExpBar
+    {
+        Texture2D texture;
+        Vector2 position;
+        Rectangle rectangle;
+
+        public ExpBar(ContentManager content, Vector2 position)
+        {
+            texture = content.Load<Texture2D>("ExpBar");
+            this.position = position;
+            rectangle = new Rectangle(0, 0, 0, texture.Height);
+        }
+
+        public void DrawExpBar(SpriteBatch spritebatch)
+        {
+            spritebatch.Draw(texture, position, rectangle, Color.White);
+        }
+
+        public void UpdateExpBarLocation(Camera camera)
+        {
+            position.X = camera.Position.X + 10;
+        }
+
+        public void IncrementExp(int exp)
+        {
+            rectangle.Width += exp;
+        }
+    }
+
 }

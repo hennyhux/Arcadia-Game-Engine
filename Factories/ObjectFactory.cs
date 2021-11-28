@@ -116,6 +116,10 @@ namespace GameSpace.Factories
             return new Goomba(location);
         }
 
+        public IGameObjects CreateUberGoombaObject(Vector2 location)
+        {
+            return new UberGoomba(location);
+        }
         public IGameObjects CreateGreenKoopaObject(Vector2 location)
         {
             return new GreenKoopa(location);

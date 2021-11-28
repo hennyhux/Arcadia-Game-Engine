@@ -11,11 +11,12 @@
 		<facing>RIGHT</facing>
 	</Objects>
 
-	<Objects>
-		<x>200</x>
-		<y>370</y>
-		<enemy>GREENKOOPA</enemy>
+		<Objects>
+		<x>250</x>
+		<y>356</y>
+		<enemy>UBERGOOMBA</enemy>
 	</Objects>
+	
 	
 	<Objects>
 		<x>100</x>
@@ -132,7 +133,9 @@
 		<x>1568</x>
 		<y>402</y>
 		<enemy>GOOMBA</enemy>
-	</Objects><Objects>
+	</Objects>
+	
+	<Objects>
 		<x>1600</x>
 		<y>402</y>
 		<enemy>GOOMBA</enemy>

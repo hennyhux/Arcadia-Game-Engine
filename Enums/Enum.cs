@@ -61,6 +61,7 @@
     public enum EnemyID : int
     {
         GOOMBA = 29,
+        UBERGOOMBA = 290,
         GREENKOOPA = 30,
         REDKOOPA = 31,
         PLANT = 32

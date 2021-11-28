@@ -11,12 +11,9 @@ namespace GameSpace
     {
         private protected GraphicsDeviceManager graphicsDevice;
         private protected SpriteBatch spriteBatch;
-
         public State CurrentState { get; private set; }
         private State nextState;
         private readonly bool paused = false;
-
-
         public GraphicsDeviceManager Graphics => graphicsDevice;
         public Mario GetMario => (Mario)FinderHandler.GetInstance().FindItem((int)AvatarID.MARIO);
         public GameRoot()
@@ -41,6 +38,7 @@ namespace GameSpace
             CurrentState.Reset();
         }
 
+
         protected override void LoadContent()
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
@@ -48,6 +46,7 @@ namespace GameSpace
             CurrentState.LoadContent();
         }
 
+        
         protected override void Update(GameTime gameTime)
         {
             if (nextState != null)
@@ -60,7 +59,7 @@ namespace GameSpace
             CurrentState.Update(gameTime);
             base.Update(gameTime);
         }
-
+        
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);

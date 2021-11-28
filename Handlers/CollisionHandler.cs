@@ -6,6 +6,7 @@ using GameSpace.GameObjects.ExtraItemsObjects;
 using GameSpace.GameObjects.ItemObjects;
 using GameSpace.Interfaces;
 using GameSpace.Machines;
+using GameSpace.Objects.EnemyObjects;
 using GameSpace.Sprites.ExtraItems;
 using GameSpace.States.BlockStates;
 using GameSpace.States.MarioStates;
@@ -554,6 +555,63 @@ namespace GameSpace.EntityManaging
         private MarioCollisionHandler()
         {
 
+        }
+    }
+
+    public class EnemyCollisionHandler : AbstractHandler
+    {
+        private static EnemyCollisionHandler instance = new EnemyCollisionHandler();
+
+        public static EnemyCollisionHandler GetInstance()
+        {
+            return instance;
+        }
+
+        private EnemyCollisionHandler()
+        {
+
+        }
+
+        public bool IsGoingToFall(Enemy enemy)
+        {
+            bool gonnaFall = true;
+            foreach (IGameObjects entity in copyPrunedList)
+            {
+                if (enemy.ExpandedCollisionBox.Intersects(entity.CollisionBox) &&
+                    !(entity is AbstractItem) &&
+                    !(entity is AbstractEnemy) &&
+                    !(entity is Enemy) &&
+                    entity.ObjectID != (int)AvatarID.MARIO)
+                {
+                    gonnaFall = false;
+                    break;
+                }
+            }
+            return gonnaFall;
+        }
+
+        public void HandleBlockCollision(Enemy enemy, IGameObjects block)
+        {
+            if (CollisionHandler.GetInstance().DetectCollisionDirection(enemy, block) == (int)CollisionDirection.LEFT)
+            {
+                enemy.Direction = (int)MarioDirection.LEFT;
+
+            }
+
+            else if (CollisionHandler.GetInstance().DetectCollisionDirection(enemy, block) == (int)CollisionDirection.RIGHT)
+            {
+                enemy.Direction = (int)MarioDirection.RIGHT;
+
+            }
+        }
+
+        public void HandleMarioCollision(Enemy enemy)
+        {
+            if (CollisionHandler.GetInstance().DetectCollisionDirection(enemy, mario) == (int)CollisionDirection.UP)
+            {
+                mario.score += 100;
+                enemy.Trigger();
+            }
         }
     }
 }

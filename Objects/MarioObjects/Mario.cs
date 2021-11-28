@@ -6,7 +6,6 @@ using GameSpace.GameObjects.ExtraItemsObjects;
 using GameSpace.GameObjects.ItemObjects;
 using GameSpace.Interfaces;
 using GameSpace.Level;
-using GameSpace.Machines;
 using GameSpace.Sprites;
 using GameSpace.States.BlockStates;
 using GameSpace.States.MarioStates;
@@ -17,9 +16,7 @@ namespace GameSpace.GameObjects.BlockObjects
 {
     public class Mario : IGameObjects
     {
-
         private bool drawBox;
-
         public LevelRestart levelRestart;
         public GameRoot hey;
         public MarioSprite sprite { get; set; }
@@ -281,19 +278,12 @@ namespace GameSpace.GameObjects.BlockObjects
                     CollisionHandler.GetInstance().ChangeMarioStatesUponCollision(entity);
                     CollisionHandler.GetInstance().MarioToEnemyCollision(entity);
                     break;
+
+                case (int)EnemyID.UBERGOOMBA:
+                    CollisionHandler.GetInstance().ChangeMarioStatesUponCollision(entity);
+                    CollisionHandler.GetInstance().MarioToEnemyCollision(entity);
+                    break;
             }
-        }
-
-        public void StopAllMotion()
-        {
-            Velocity = new Vector2(0, 0);
-            Acceleration = new Vector2(0, 0);
-        }
-
-        public void WarpMario()
-        {
-            IGameObjects[] NextPipe = FinderHandler.GetInstance().FindWarpPipes();
-            Position = NextPipe[1].Position; // remove hardcode 
         }
 
         public void ToggleCollisionBoxes()
@@ -301,14 +291,9 @@ namespace GameSpace.GameObjects.BlockObjects
             drawBox = !drawBox;
         }
 
-        public bool IsCurrentlyColliding()
-        {
-            return false;
-        }
-
         public bool RevealItem()
         {
-            throw new System.NotImplementedException();
+            return false;
         }
     }
 }
