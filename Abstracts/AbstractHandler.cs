@@ -16,6 +16,7 @@ namespace GameSpace.Abstracts
         private protected static List<IGameObjects> listOfWarpPipes = new List<IGameObjects>();
         private protected static List<IGameObjects> listOfWarpRoomPipes = new List<IGameObjects>();
         private protected static List<SoundEffect> musicList = new List<SoundEffect>();
+        private protected static Dictionary<int, SoundEffect> soundEffectsList = new Dictionary<int, SoundEffect>();
         private protected static GameTime internalGametime = new GameTime();
         private protected static GameRoot gameRootCopy = new GameRoot();
         private protected static Mario mario;

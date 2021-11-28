@@ -59,22 +59,22 @@ namespace GameSpace.Objects.EnemyObjects
             UpdateSpeed();
         }
 
-        internal protected virtual void UpdatePosition(Vector2 location, GameTime gametime)
+        internal virtual void UpdatePosition(Vector2 location, GameTime gametime)
         {
             enemy.Velocity += enemy.Acceleration * (float)gametime.ElapsedGameTime.TotalSeconds;
             enemy.Position += enemy.Velocity * (float)gametime.ElapsedGameTime.TotalSeconds;
         }
 
-        internal protected virtual void UpdateCollisionBox(Vector2 location)
+        internal virtual void UpdateCollisionBox(Vector2 location)
         {
             enemy.CollisionBox = new Rectangle((int)location.X, (int)location.Y,
                 StateSprite.Texture.Width + 10, StateSprite.Texture.Height * 3);
 
             enemy.ExpandedCollisionBox = new Rectangle((int)location.X, (int)location.Y,
-                StateSprite.Texture.Width + 10, (StateSprite.Texture.Height * 3) + 6);
+                StateSprite.Texture.Width + 10, (StateSprite.Texture.Height * 3) + 4);
         }
 
-        internal protected virtual void UpdateSpeed()
+        internal virtual void UpdateSpeed()
         {
             if (EnemyCollisionHandler.GetInstance().IsGoingToFall(enemy))
             {
@@ -86,14 +86,27 @@ namespace GameSpace.Objects.EnemyObjects
                 enemy.Acceleration = new Vector2(0, 0);
                 if (enemy.Direction == (int)MarioDirection.RIGHT)
                 {
-                    enemy.Velocity = new Vector2(75, 0);
+                    enemy.Velocity = new Vector2(45, 0);
                 }
 
                 else if (enemy.Direction == (int)MarioDirection.LEFT)
                 {
-                    enemy.Velocity = new Vector2(-75, 0);
+                    enemy.Velocity = new Vector2(-45, 0);
                 }
             }
+        }
+
+        internal protected void DestoryCollisionBox()
+        {
+            enemy.CollisionBox = new Rectangle(0, 0, 0, 0);
+
+            enemy.ExpandedCollisionBox = new Rectangle(0, 0, 0, 0);
+        }
+
+        internal protected void HaltAllMotion()
+        {
+            enemy.Velocity = new Vector2(0, 0);
+            enemy.Acceleration = new Vector2(0, 0);
         }
 
     }
@@ -107,6 +120,7 @@ namespace GameSpace.Objects.EnemyObjects
         public override void Trigger()
         {
             enemy.state = new StateUberGoombaBersek(enemy);
+            MusicHandler.GetInstance().PlaySoundEffect(13);
         }
 
     }
@@ -115,15 +129,15 @@ namespace GameSpace.Objects.EnemyObjects
     {
         public StateUberGoombaBersek(UberGoomba uberGoomba) : base(uberGoomba)
         {
-            StateSprite = SpriteEnemyFactory.GetInstance().CreateUberGoombaSprite();
+            StateSprite = SpriteEnemyFactory.GetInstance().CreateUberGoombaBerserkSprite();
         }
 
         public override void Trigger()
         {
-            
+            enemy.state = new StateUberGoombaDead(enemy);
         }
 
-        internal protected override void UpdateSpeed()
+        internal override void UpdateSpeed()
         {
             if (EnemyCollisionHandler.GetInstance().IsGoingToFall(enemy))
             {
@@ -143,6 +157,39 @@ namespace GameSpace.Objects.EnemyObjects
                     enemy.Velocity = new Vector2(-175, 0);
                 }
             }
+        }
+    }
+
+    public class StateUberGoombaDead : StateUberGoomba
+    {
+
+        private Vector2 initialPosition;
+        private Vector2 goalPosition;
+        public StateUberGoombaDead(UberGoomba uberGoomba) : base(uberGoomba)
+        {
+            StateSprite = SpriteEnemyFactory.GetInstance().CreateUberGoombaDeadSprite();
+            StateSprite.Facing = SpriteEffects.FlipHorizontally;
+            initialPosition = uberGoomba.Position;
+            DestoryCollisionBox();
+            HaltAllMotion();
+            enemy.Acceleration = new Vector2(0, -145);
+        }
+
+        public override void Trigger()
+        {
+            
+        }
+
+        public override void Update(GameTime gametime)
+        {
+            StateSprite.Update(gametime);
+            UpdatePosition(enemy.Position, gametime);
+        }
+
+        internal override void UpdatePosition(Vector2 location, GameTime gametime)
+        {
+            enemy.Velocity += enemy.Acceleration * (float)gametime.ElapsedGameTime.TotalSeconds;
+            enemy.Position += enemy.Velocity * (float)gametime.ElapsedGameTime.TotalSeconds;
         }
     }
 
@@ -202,6 +249,14 @@ namespace GameSpace.Objects.EnemyObjects
 
                 case (int)ItemID.FIREBALL:
                     Trigger();
+                    break;
+
+                case (int)EnemyID.GOOMBA:
+                    if (state is StateUberGoombaBersek)
+                    {
+                        entity.Trigger();
+                        MarioHandler.GetInstance().IncrementMarioPoints(100);
+                    }
                     break;
             }
         }

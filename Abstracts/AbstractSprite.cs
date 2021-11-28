@@ -100,7 +100,7 @@ namespace GameSpace.Sprites
 
         public virtual void FlipSprite()
         {
-            Facing = SpriteEffects.FlipHorizontally;
+            Facing = SpriteEffects.FlipVertically;
         }
 
         public void RevertSprite()

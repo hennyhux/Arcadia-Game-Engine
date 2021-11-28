@@ -108,7 +108,17 @@ namespace GameSpace.Factories
 
         public ISprite CreateUberGoombaSprite()
         {
+            return new UberGoombaSprite(Goomba, 1, 2, 2, 0, 0);
+        }
+
+        public ISprite CreateUberGoombaBerserkSprite()
+        {
             return new UberGoombaSprite(UberGoomba, 1, 2, 2, 0, 0);
+        }
+
+        public ISprite CreateUberGoombaDeadSprite()
+        {
+            return new UberGoombaDeadSprite(DeadGoomba, 1, 1, 1);
         }
     }
 }

@@ -62,7 +62,7 @@ namespace GameSpace.Sprites.ExtraItems
         {
 
             state = new StateWarpPipeDeactiveated();
-            CollisionHandler.GetInstance().ItemToMarioCollison(this);
+            //CollisionHandler.GetInstance().ItemToMarioCollison(this);
         }
 
         public override bool RevealItem()

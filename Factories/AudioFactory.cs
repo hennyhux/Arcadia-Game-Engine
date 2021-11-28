@@ -23,6 +23,7 @@ namespace GameSpace.Factories
         private SoundEffect pipeWarp;
         private SoundEffect warning;
         private SoundEffect gameover;
+        private SoundEffect smashing;
         #endregion
         private static readonly AudioFactory instance = new AudioFactory();
         public static AudioFactory GetInstance()
@@ -51,6 +52,7 @@ namespace GameSpace.Factories
             pipeWarp = content.Load<SoundEffect>("Audio/pipeWarp");
             warning = content.Load<SoundEffect>("Audio/timeWarning");
             gameover = content.Load<SoundEffect>("Audio/gameover");
+            smashing = content.Load<SoundEffect>("Audio/hammer");
         }
 
         public Song CreateSong()
@@ -74,7 +76,8 @@ namespace GameSpace.Factories
                 breakBlock,
                 pipeWarp,      //10
                 warning,
-                gameover
+                gameover,
+                smashing        //13
             };
             return list;
         }
