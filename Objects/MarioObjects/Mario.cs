@@ -11,6 +11,7 @@ using GameSpace.States.BlockStates;
 using GameSpace.States.MarioStates;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System.Diagnostics;
 
 namespace GameSpace.GameObjects.BlockObjects
 {
@@ -36,6 +37,10 @@ namespace GameSpace.GameObjects.BlockObjects
 
         public bool IsDead { get; set; }
 
+        public bool IsInvincible { get; set; }
+
+        public double invincibleTimer { get; set; }
+
         public string Player { get; set; }
 
         public Mario(Vector2 initLocation)
@@ -51,6 +56,8 @@ namespace GameSpace.GameObjects.BlockObjects
             MarioActionState = new SmallMarioStandingState(this);
             numCoinsCollected = 0;
             score = 0;
+            invincibleTimer = 0;
+            IsInvincible = false;
             Player = "Mario";
             IsDead = false;
         }
@@ -80,17 +87,32 @@ namespace GameSpace.GameObjects.BlockObjects
             {
                 FallingTransition();
             }
-
+            
             Vector2 newLocation = Velocity * (float)gametime.ElapsedGameTime.TotalSeconds;
             if (!CollisionHandler.GetInstance().IsGoingToBeOutOfBounds(this, newLocation))
             {
                 Position += newLocation;
             }
+            
+
 
             UpdatePosition(Position, gametime);
             MarioPowerUpState.Update(gametime);
             MarioActionState.Update(gametime);
             sprite.Update(gametime);
+
+            if (invincibleTimer > 0)
+            {
+                IsInvincible = true;
+                invincibleTimer = invincibleTimer - gametime.ElapsedGameTime.TotalSeconds;
+            }
+            else
+            {
+
+                IsInvincible = false;
+                Debug.WriteLine("NOT invincibleTimer, {0}", invincibleTimer);
+                Debug.WriteLine("NOT IsInvincible, {0}", IsInvincible);
+            }
         }
 
         #region Mario States 
@@ -166,12 +188,15 @@ namespace GameSpace.GameObjects.BlockObjects
 
         public void Trigger()
         {
-            if (!IsDead)
+            Debug.WriteLine("invincibleTimer, {0}", invincibleTimer);
+            Debug.WriteLine("IsInvincible, {0}", IsInvincible);
+            if (!IsDead && !(IsInvincible))
             {
                 MarioPowerUpState.DamageTransition();
+                invincibleTimer = 3;
 
             }
-            else
+            else if(IsDead)
             {
                 MarioPowerUpState.DeadTransition();
             }
