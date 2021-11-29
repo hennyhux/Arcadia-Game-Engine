@@ -75,7 +75,7 @@ namespace GameSpace.GameObjects.BlockObjects
                     break;
             }
 
-            sprite.Draw(spritebatch, Position);
+            sprite.Draw(spritebatch, Position, IsInvincible);
             if (drawBox)
             {
                 sprite.DrawBoundary(spritebatch, CollisionBox);
