@@ -255,6 +255,13 @@ namespace GameSpace.Machines
         public void IncrementExp(int exp)
         {
             rectangle.Width += exp;
+
+            if (rectangle.Width > 96)
+            {
+                MusicHandler.GetInstance().PlaySoundEffect(14);
+                MarioHandler.GetInstance().LevelMarioUp();
+                rectangle.Width = 0;
+            }
         }
     }
 

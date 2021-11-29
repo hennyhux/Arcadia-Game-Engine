@@ -34,6 +34,12 @@ namespace GameSpace
                 {Keys.O, new TakeDamage(game)},//DamageTransition
                 {Keys.C, new ToggleCollisionBoxes()},
                 {Keys.Space, new ThrowFireBallCommand(game)},
+                {Keys.G, new SpawnOneUpShroomCommand(game)},
+                {Keys.H, new SpawnFireFlowerCommand(game)},
+                {Keys.J, new SpawnSuperShroomCommand(game)},
+                {Keys.K, new SpawnGoombaCommand(game)},
+                {Keys.L, new SpawnKoopaCommand(game)},
+                {Keys.B, new SpawnCoinCommand(game)},
             };
 
             controllerCommands = new Dictionary<Buttons, ICommand>()

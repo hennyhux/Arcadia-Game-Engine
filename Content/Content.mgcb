@@ -55,6 +55,12 @@
 /processorParam:Quality=Best
 /build:Audio/hammer.wav
 
+#begin Audio/levelUp.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Audio/levelUp.wav
+
 #begin Audio/oneUpCollect.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor
@@ -510,6 +516,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Enemies/UberGoombas.cs.png
+
+#begin Enemies/UberKoopa.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Enemies/UberKoopa.png
 
 #begin ExpBar.png
 /importer:TextureImporter

@@ -236,6 +236,9 @@ namespace GameSpace.TileMapDefinition
                 case EnemyID.UBERGOOMBA:
                     objects.Add(objectFactory.CreateUberGoombaObject(location));
                     break;
+                case EnemyID.UBERKOOPA:
+                    objects.Add(objectFactory.CreateUberKoopaObject(location));
+                    break;
             }
         }
 

@@ -37,6 +37,18 @@
 		<enemy>GOOMBA</enemy>
 	</Objects>
 	
+		<Objects>
+		<x>230</x>
+		<y>356</y>
+		<enemy>GOOMBA</enemy>
+	</Objects>
+	
+		<Objects>
+		<x>214</x>
+		<y>356</y>
+		<enemy>GOOMBA</enemy>
+	</Objects>
+	
 	
 	<Objects>
 		<x>100</x>
@@ -123,6 +135,12 @@
 		<x>896</x>
 		<y>310</y>
 		<item>WARPPIPEHEADWITHMOB</item>
+	</Objects>
+	
+	<Objects>
+		<x>200</x>
+		<y>210</y>
+		<enemy>UBERKOOPA</enemy>
 	</Objects>
 	
 	<Objects>
