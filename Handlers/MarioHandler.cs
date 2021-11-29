@@ -118,6 +118,11 @@ namespace GameSpace.Machines
             return mario.Position;
         }
 
+        public void LevelMarioUp()
+        {
+
+        }
+
         public void CalculateFinalScore(int marioY, int poleY)
         {
             int flagPoints = 0;//Calculates the points from the flag

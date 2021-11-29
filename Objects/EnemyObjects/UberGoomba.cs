@@ -16,9 +16,6 @@ namespace GameSpace.Objects.EnemyObjects
 
     public class UberGoomba : Enemy
     {
-        //state AliveState
-        //state BerserkState
-        //state DeadState
         public UberGoomba(Vector2 location)
         {
             state = new StateUberGoombaAlive(this);
@@ -135,6 +132,7 @@ namespace GameSpace.Objects.EnemyObjects
         public override void Trigger()
         {
             enemy.state = new StateUberGoombaDead(enemy);
+            HUDHandler.GetInstance().UpdateExp(20);
         }
 
         internal override void UpdateSpeed()
@@ -168,11 +166,16 @@ namespace GameSpace.Objects.EnemyObjects
         public StateUberGoombaDead(UberGoomba uberGoomba) : base(uberGoomba)
         {
             StateSprite = SpriteEnemyFactory.GetInstance().CreateUberGoombaDeadSprite();
-            StateSprite.Facing = SpriteEffects.FlipHorizontally;
             initialPosition = uberGoomba.Position;
             DestoryCollisionBox();
             HaltAllMotion();
-            enemy.Acceleration = new Vector2(0, -145);
+            CalcGoalPos();
+            enemy.Acceleration = new Vector2(0, -445);
+        }
+
+        private void CalcGoalPos()
+        {
+            goalPosition = new Vector2(initialPosition.X, initialPosition.Y - 45f);
         }
 
         public override void Trigger()
@@ -190,6 +193,11 @@ namespace GameSpace.Objects.EnemyObjects
         {
             enemy.Velocity += enemy.Acceleration * (float)gametime.ElapsedGameTime.TotalSeconds;
             enemy.Position += enemy.Velocity * (float)gametime.ElapsedGameTime.TotalSeconds;
+
+            if (enemy.Position.Y <= goalPosition.Y)
+            {
+                enemy.Acceleration = new Vector2(0, 445);
+            }
         }
     }
 

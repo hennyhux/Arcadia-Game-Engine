@@ -6,6 +6,7 @@ using GameSpace.GameObjects.BlockObjects;
 using GameSpace.Interfaces;
 using GameSpace.Level;
 using GameSpace.Machines;
+using GameSpace.Menus;
 using GameSpace.TileMapDefinition;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
@@ -47,6 +48,8 @@ namespace GameSpace.States.GameStates
         #endregion
 
         private readonly Song song;
+
+        private List<Component> gameComponents;
 
         public GraphicsDeviceManager Graphics => graphics;
 
@@ -141,6 +144,11 @@ namespace GameSpace.States.GameStates
             //Play Song
             MusicHandler.GetInstance().LoadSong(AudioFactory.GetInstance().CreateSong());
             MusicHandler.GetInstance().PlaySong();
+
+            gameComponents = new List<Component>()
+            {
+
+            };
         }
 
         public override void Update(GameTime gameTime)
@@ -174,6 +182,11 @@ namespace GameSpace.States.GameStates
             HUDHandler.GetInstance().Draw(spriteBatch);
             spriteBatch.End();
         }
+
+        private void BuildButtons()
+        {
+
+        }
     }
 
     public abstract class State
@@ -186,7 +199,6 @@ namespace GameSpace.States.GameStates
 
         protected GameRoot game;
 
-        //protected int marioLives;
 
         #endregion
         public State(GameRoot game, GraphicsDevice graphicsDevice, ContentManager content)

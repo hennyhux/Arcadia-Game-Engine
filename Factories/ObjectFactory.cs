@@ -130,6 +130,10 @@ namespace GameSpace.Factories
             return new RedKoopa(location);
         }
 
+        public IGameObjects CreateUberKoopaObject(Vector2 location)
+        {
+            return new UberKoopa(location);
+        }
         public IGameObjects CreatePlantObject(Vector2 location)
         {
             return new Plant(location);

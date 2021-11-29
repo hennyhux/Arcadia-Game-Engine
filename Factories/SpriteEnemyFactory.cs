@@ -20,6 +20,7 @@ namespace GameSpace.Factories
         private Texture2D RedKoopaShelled;
         private Texture2D Plant;
         private Texture2D UberGoomba;
+        private Texture2D UberKoopa;
         #endregion
 
         private static SpriteEnemyFactory instance;
@@ -50,6 +51,8 @@ namespace GameSpace.Factories
             RedKoopaRight = content.Load<Texture2D>("Enemies/RedKoopaRight");
             Plant = content.Load<Texture2D>("Enemies/Plant");
             UberGoomba = content.Load<Texture2D>("Enemies/UberGoombas.cs");
+
+            UberKoopa = content.Load<Texture2D>("Enemies/UberKoopa");
         }
 
         public ISprite CreateGoombaSprite()
@@ -106,6 +109,10 @@ namespace GameSpace.Factories
             return new KoopaSprite(Plant, 1, 2, 2, 0, 0);
         }
 
+        public ISprite CreateUberKoopaSprite()
+        {
+            return new UberKoopaSprite(UberKoopa, 1, 2, 2, 0, 0);
+        }
         public ISprite CreateUberGoombaSprite()
         {
             return new UberGoombaSprite(Goomba, 1, 2, 2, 0, 0);

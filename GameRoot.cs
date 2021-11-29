@@ -1,9 +1,11 @@
 ﻿using GameSpace.EntityManaging;
 using GameSpace.Enums;
 using GameSpace.GameObjects.BlockObjects;
+using GameSpace.Menus;
 using GameSpace.States.GameStates;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System.Collections.Generic;
 
 namespace GameSpace
 {
@@ -25,6 +27,7 @@ namespace GameSpace
 
         protected override void Initialize()
         {
+            this.IsMouseVisible = true;
             base.Initialize();
         }
 
@@ -46,7 +49,6 @@ namespace GameSpace
             CurrentState.LoadContent();
         }
 
-        
         protected override void Update(GameTime gameTime)
         {
             if (nextState != null)
@@ -55,7 +57,6 @@ namespace GameSpace
                 CurrentState.LoadContent();
                 nextState = null;
             }
-
             CurrentState.Update(gameTime);
             base.Update(gameTime);
         }

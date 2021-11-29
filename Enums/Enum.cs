@@ -63,6 +63,7 @@
         GOOMBA = 29,
         UBERGOOMBA = 290,
         GREENKOOPA = 30,
+        UBERKOOPA = 300,
         REDKOOPA = 31,
         PLANT = 32
     };
