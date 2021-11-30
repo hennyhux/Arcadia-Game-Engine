@@ -19,13 +19,43 @@ namespace GameSpace.GameObjects.EnemyObjects
         public SpinyRefactored(Vector2 initalPosition)
         {
             state = new StateSpinyAliveLeft(this);
+            searchState = 1;
             Position = initalPosition;
             drawBox = false;
-            ObjectID = (int)EnemyID.UBERGOOMBA;
+            ObjectID = (int)EnemyID.SPINY;
             Direction = (int)MarioDirection.LEFT;
         }
-    }
 
+        public override void HandleCollision(IGameObjects entity)
+        {
+            switch (entity.ObjectID)
+            {
+                case (int)AvatarID.MARIO:
+                    EnemyCollisionHandler.GetInstance().HandleMarioCollision(this);
+                    break;
+
+                case (int)BlockID.USEDBLOCK:
+                case (int)BlockID.QUESTIONBLOCK:
+                case (int)BlockID.FLOORBLOCK:
+                case (int)BlockID.STAIRBLOCK:
+                case (int)BlockID.COINBRICKBLOCK:
+                case (int)BlockID.BRICKBLOCK:
+                case (int)ItemID.BIGPIPE:
+                case (int)ItemID.MEDIUMPIPE:
+                case (int)ItemID.SMALLPIPE:
+                case (int)ItemID.WARPPIPEBODY:
+                case (int)ItemID.WARPPIPEHEAD:
+                case (int)ItemID.WARPPIPEHEADWITHMOB:
+                case (int)ItemID.WARPPIPEROOM:
+                    EnemyCollisionHandler.GetInstance().HandleBlockCollision(this, entity);
+                    break;
+
+                case (int)ItemID.FIREBALL:
+                    Trigger();
+                    break;
+            }
+        }
+    }
     public abstract class StateSpiny : IMobState
     {
         public ISprite StateSprite { get; set; }
@@ -64,10 +94,10 @@ namespace GameSpace.GameObjects.EnemyObjects
         internal virtual void UpdateCollisionBox(Vector2 location)
         {
             enemy.CollisionBox = new Rectangle((int)location.X, (int)location.Y,
-                StateSprite.Texture.Width / 7, StateSprite.Texture.Height /2 + 4);
+                StateSprite.Texture.Width / 8, StateSprite.Texture.Height /2 + 4);
 
             enemy.ExpandedCollisionBox = new Rectangle((int)location.X, (int)location.Y,
-                StateSprite.Texture.Width / 7, (StateSprite.Texture.Height /2 ) + 6);
+                StateSprite.Texture.Width / 8, (StateSprite.Texture.Height /2 ) + 6);
         }
 
         internal virtual void UpdateSpeed()
@@ -95,7 +125,6 @@ namespace GameSpace.GameObjects.EnemyObjects
         internal protected void DestoryCollisionBox()
         {
             enemy.CollisionBox = new Rectangle(0, 0, 0, 0);
-
             enemy.ExpandedCollisionBox = new Rectangle(0, 0, 0, 0);
         }
 
@@ -104,7 +133,6 @@ namespace GameSpace.GameObjects.EnemyObjects
             enemy.Velocity = new Vector2(0, 0);
             enemy.Acceleration = new Vector2(0, 0);
         }
-
     }
 
     public class StateSpinyAliveLeft : StateSpiny
@@ -119,15 +147,15 @@ namespace GameSpace.GameObjects.EnemyObjects
             //death when triggered, or whatever the behavior is 
             DestoryCollisionBox();
             HaltAllMotion();
+            enemy.state = new StateSpinyDeath(enemy);
         }
     }
 
     public class StateSpinyAliveRight : StateSpiny
     {
-        public StateSpinyAliveRight(SpinyRefactored enemy) : base(enemy)
+        public StateSpinyAliveRight(SpinyRefactored spiny) : base(spiny)
         {
-            StateSprite = SpriteEnemyFactory.GetInstance().CreateSpinySprite();
-            StateSprite.Facing = SpriteEffects.FlipHorizontally;
+            StateSprite = SpriteEnemyFactory.GetInstance().CreateSpinyRightSprite();
         }
 
         public override void Trigger()
@@ -135,6 +163,21 @@ namespace GameSpace.GameObjects.EnemyObjects
             //death when triggered, or whatever the behavior is 
             DestoryCollisionBox();
             HaltAllMotion();
+            enemy.state = new StateSpinyDeath(enemy);
+        }
+    }
+
+    public class StateSpinyDeath : StateSpiny
+    {
+        public StateSpinyDeath(SpinyRefactored enemy) : base(enemy)
+        {
+            StateSprite = SpriteEnemyFactory.GetInstance().CreateSpinyRightSprite();
+            StateSprite.SetVisible();
+        }
+
+        public override void Trigger()
+        {
+            // does nothing
         }
     }
 }
