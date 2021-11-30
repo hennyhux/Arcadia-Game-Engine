@@ -47,6 +47,7 @@ namespace GameSpace.States
         {
             if(marioInCloud == false)
             {
+                
                 Debug.Print("ENTER CLOUD");
                 marioInCloud = true;
                 MarioHandler.GetInstance().EnterCloudMario();
@@ -54,6 +55,7 @@ namespace GameSpace.States
                 Lakitu.CollisionBox = new Rectangle(0, 0, 0, 0);
                 Lakitu.ExpandedCollisionBox = Lakitu.CollisionBox;
                 Lakitu.state = new StateLakituDead(Lakitu);
+
             }
             else if (marioInCloud == true && MarioHandler.GetInstance().getCloudMario() == false)
             {

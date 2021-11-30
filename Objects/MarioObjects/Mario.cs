@@ -91,9 +91,15 @@ namespace GameSpace.GameObjects.BlockObjects
                 sprite.DrawBoundary(spritebatch, CollisionBox);
             }
         }
+
+        public void CloudMovement()
+        {
+            Debug.WriteLine("IN CLOUD MOVEMENT, {0}, VELO: {1}", onCloud, Velocity.Y);
+            Velocity = new Vector2(Velocity.X, -50);
+        }
         public void Update(GameTime gametime)
         {
-            if (Velocity.Y == 0 && CollisionHandler.GetInstance().IsGoingToFall())
+            if (Velocity.Y == 0 && CollisionHandler.GetInstance().IsGoingToFall() && onCloud == false)
             {
                 FallingTransition();
             }
@@ -103,12 +109,16 @@ namespace GameSpace.GameObjects.BlockObjects
             {
                 Position += newLocation;
             }
-            
 
 
+            if (onCloud) CloudMovement();
             UpdatePosition(Position, gametime);
-            MarioPowerUpState.Update(gametime);
-            MarioActionState.Update(gametime);
+            if (!onCloud)
+            {
+                MarioPowerUpState.Update(gametime);// these
+                MarioActionState.Update(gametime);// may be wrong for cloud mario
+            }
+            
             sprite.Update(gametime);
 
             if (invincibleTimer > 0)
@@ -149,7 +159,16 @@ namespace GameSpace.GameObjects.BlockObjects
 
         public void UpTransition()
         {
-            MarioActionState.UpTransition();
+            if (onCloud)
+            {
+                onCloud = false;
+                MarioActionState.UpTransition();
+            }
+            else
+            {
+                MarioActionState.UpTransition();
+            }
+            
         }
 
         public void LeapTransition()

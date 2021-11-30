@@ -66,7 +66,17 @@ namespace GameSpace.Machines
         public void EnterCloudMario()
         {
             mario.onCloud = true;
+            if(mario.Velocity.Y > 0)
+            {
+                mario.UpTransition();
+            }
+            else if(mario.Velocity.Y < 0)
+            {
+                mario.DownTransition();
+            }
         }
+
+
 
         public void LeaveCloudMario()
         {
