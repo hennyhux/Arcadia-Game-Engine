@@ -132,7 +132,17 @@ namespace GameSpace.Factories
 
         public ISprite CreateLakituSprite()
         {
-            return new LakituSprite(Lakitu, 1, 1, 1, 1, 1);
+            return new LakituSprite(Lakitu, 1, 1, 0, 1, 1, true);
+        }
+
+        public ISprite CreateLakituRightSprite()
+        {
+            return new LakituSprite(Lakitu, 1, 1, 1, 1, 1, true);
+        }
+
+        public ISprite CreateDeadLakituSprite()
+        {
+            return new LakituSprite(Lakitu, 1, 1, 1, 1, 1, false);
         }
     }
 }

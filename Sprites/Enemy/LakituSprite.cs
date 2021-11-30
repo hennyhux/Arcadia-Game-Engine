@@ -47,11 +47,12 @@ namespace GameSpace.Sprites
         public void SetVisible() { IsVisible = !IsVisible; }
         public int invisibleCount = 0;
 
-        public LakituSprite(Texture2D texture, int x, int y, int isFacingRight, int powerup, int action)
+        public LakituSprite(Texture2D texture, int x, int y, int isFacingRight, int powerup, int action, bool isVisible)
         {
             Debug.Print("LAKITU SPRITE CREATED()");
+            Debug.Print("isFacingRight: {0} ", isFacingRight);
             Texture = texture;
-            IsVisible = true;
+            IsVisible = isVisible;
             currentFrame = 0;
             totalFrames = 0;
             facingRight = isFacingRight;
@@ -66,12 +67,6 @@ namespace GameSpace.Sprites
         }
 
 
-        public void setDirection(int direction)
-        {
-            facingRight = direction;
-
-        }
-
 
         public void Update(GameTime gametime)
         {
@@ -79,17 +74,21 @@ namespace GameSpace.Sprites
             {
                 int startingFrame = 0;
                 totalFrames = totalFramesAnimation[currentFrame]; // gets previous frame's total frames in animation
-
+    
                 Facing = SpriteEffects.None;
                 startingFrame = (1 + 1 * (facingRight));
-                if(facingRight == 0)
-                {
-                    currentFrame = 2;
-                }
-                if (facingRight == 1)
+                //Debug.WriteLine("FACING RIGHT: {0},", facingRight);
+                if (facingRight == 0)
                 {
                     currentFrame = 0;
+                    //Debug.WriteLine("NOT FACING RIGHT," );
                 }
+                else if (facingRight == 1)
+                {
+                    currentFrame = 2;
+                    //Debug.WriteLine(" FACING RIGHT," );
+                }
+                //Debug.WriteLine(" currentFrame: {0},", currentFrame);
                 /*else if (actionState == 2)//Walking
                 {
                     startingFrame = (7 + 3 * (facingRight) + (34 * (marioPower)));
@@ -140,29 +139,14 @@ namespace GameSpace.Sprites
                 Width = XWidth[currentFrame];
                 Height = YHeight[currentFrame];
 
+                //Debug.WriteLine(" currentFrame {0},", currentFrame);
                 Rectangle sourceRectangle = new Rectangle(XFrame[currentFrame], YFrame[currentFrame], Width, Height);
                 Rectangle destinationRectangle = new Rectangle((int)location.X, (int)location.Y, Width * 1, Height * 1);
                 spriteBatch.Draw(Texture, destinationRectangle, sourceRectangle, Color.White, 0, new Vector2(0, 0), Facing, 0);
 
             }
         }
-        public void Draw(SpriteBatch spriteBatch, Vector2 location, bool IsInvincible)
-        {
-            invisibleCount = invisibleCount + 1;
 
-            if (IsVisible)
-            {
-                Width = XWidth[currentFrame];
-                Height = YHeight[currentFrame];
-
-                Rectangle sourceRectangle = new Rectangle(XFrame[currentFrame], YFrame[currentFrame], Width, Height);
-                Rectangle destinationRectangle = new Rectangle((int)location.X, (int)location.Y, Width * 2, Height * 2);
-                if (!(IsInvincible && invisibleCount % 2 == 0))
-                    spriteBatch.Draw(Texture, destinationRectangle, sourceRectangle, Color.White, 0, new Vector2(0, 0), Facing, 0);
-
-            }
-
-        }
 
         public void UpdateLocation(Vector2 location)
         {

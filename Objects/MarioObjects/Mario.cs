@@ -188,8 +188,8 @@ namespace GameSpace.GameObjects.BlockObjects
 
         public void Trigger()
         {
-            Debug.WriteLine("invincibleTimer, {0}", invincibleTimer);
-            Debug.WriteLine("IsInvincible, {0}", IsInvincible);
+            //Debug.WriteLine("invincibleTimer, {0}", invincibleTimer);
+            //Debug.WriteLine("IsInvincible, {0}", IsInvincible);
             if (!IsDead && !(IsInvincible))
             {
                 MarioPowerUpState.DamageTransition();
