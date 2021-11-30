@@ -11,19 +11,19 @@ using System.Diagnostics;
 using GameSpace.Machines;
 namespace GameSpace.GameObjects.EnemyObjects
 {
-    public class Lakitu : AbstractEnemy
+    public class Spiny : AbstractEnemy
     {
         private int searchState;//0 passed mario, now throw spiny, 1 going left towards mario, 2 going right towards mario
-        public Lakitu(Vector2 initalPosition)
+        public Spiny(Vector2 initalPosition)
         {
-            Debug.Print("LAKITU CREATED()");
-            ObjectID = (int)EnemyID.LAKITU;
+            Debug.Print("Spiny CREATED()");
+            ObjectID = (int)EnemyID.SPINY;
             searchState = 1;
             Direction = (int)MarioDirection.LEFT;
             drawBox = false;
             Position = initalPosition;
-            state = new StateLakituRight(this);
-            Sprite = SpriteEnemyFactory.GetInstance().CreateLakituRightSprite();
+            state = new StateSpinyRight(this);
+            Sprite = SpriteEnemyFactory.GetInstance().CreateSpinyRightSprite();
             Velocity = new Vector2(1, 0);
             //ExpandedCollisionBox = new Rectangle((int)(Position.X + Sprite.Texture.Width / 32), (int)Position.Y, Sprite.Texture.Width, Sprite.Texture.Height * 3);
             //UpdateCollisionBox(Position);
@@ -39,84 +39,38 @@ namespace GameSpace.GameObjects.EnemyObjects
             }
         }
 
-        public void trackMovement(GameTime gametime)
-        {
-            if (searchState == 0 && !(state is StateLakituThrowing))// Lakitu has alreay thrown a spiny, begin searching again
-            {
-                if (FinderHandler.GetInstance().FindItem((int)AvatarID.MARIO).Position.X < Position.X)
-                {
-                    searchState = 1;
-                }
-                else if (FinderHandler.GetInstance().FindItem((int)AvatarID.MARIO).Position.X > Position.X)
-                {
-                    searchState = 2;
-                }
-            }
-            if (searchState == 1)
-            {
-                if(FinderHandler.GetInstance().FindItem((int)AvatarID.MARIO).Position.X < Position.X)
-                {
-                    Velocity = new Vector2(-100, 0);
-                }
-                else if (FinderHandler.GetInstance().FindItem((int)AvatarID.MARIO).Position.X > Position.X + 200)//passed mario
-                {
-                    searchState = 0;
-                    //Enter Throw Animation
-                    state = new StateLakituThrowing(this);
-                }
-            }
-            if (searchState == 2)
-            {
-                if (FinderHandler.GetInstance().FindItem((int)AvatarID.MARIO).Position.X > Position.X)
-                {
-                    Velocity = new Vector2(100, 0);
-                }
-                else if (FinderHandler.GetInstance().FindItem((int)AvatarID.MARIO).Position.X < Position.X - 200)//passed mario
-                {
-                    searchState = 0;
-                    //Enter Throw Animation
-                    state = new StateLakituThrowing(this);
-                }
-            }
-            
-        }
         public override void Update(GameTime gametime)
         {
-            
+
             //UpdateSpeed();
             //UpdateCollisionBox(Position);
             UpdatePosition(Position, gametime);
-            //Velocity = new Vector2(-1, 0);
-            trackMovement(gametime);
+            Velocity = new Vector2(-1, 0);
             state.Update(gametime);
-            if (!(state is StateLakituDead))
+            if (!(state is StateSpinyDead))
             {
-                if (Velocity.X > 0 && !(state is StateLakituRight) && !(state is StateLakituThrowing))
+                if (Velocity.X > 0 && !(state is StateSpinyRight))
                 {
-                    state = new StateLakituRight(this);
+                    state = new StateSpinyRight(this);
 
                 }
-                else if (Velocity.X < 0 && !(state is StateLakituLeft) && !(state is StateLakituThrowing))
+                else if (Velocity.X < 0 && !(state is StateSpinyLeft))
                 {
-                    state = new StateLakituLeft(this);
+                    state = new StateSpinyLeft(this);
                 }
-                if (state is StateLakituDead)
-                {
-                    CollisionBox = new Rectangle(0, 0, 0, 0);
-                }
-                if (state is StateLakituDead)
+                if (state is StateSpinyDead)
                 {
                     CollisionBox = new Rectangle(0, 0, 0, 0);
                 }
                 else
                 {
-                    CollisionBox = new Rectangle((int)Position.X, (int)Position.Y, 47, 69);
+                    CollisionBox = new Rectangle((int)Position.X, (int)Position.Y, 32, 32);
                 }
                 //StateSprite.Facing
                 //state.StateSprite.Update(gametime);
                 Sprite.Update(gametime);
 
-                ExpandedCollisionBox = CollisionBox;
+                ExpandedCollisionBox = CollisionBox = new Rectangle((int)Position.X, (int)Position.Y, 32, 32 + 5); ;
             }
         }
         public override void UpdatePosition(Vector2 location, GameTime gameTime) //use velocity
@@ -132,7 +86,7 @@ namespace GameSpace.GameObjects.EnemyObjects
             {
                 //Velocity = new Vector2(-85, 0);
             }
-            
+
 
             Velocity += Acceleration * (float)gameTime.ElapsedGameTime.TotalSeconds;
             Position += Velocity * (float)gameTime.ElapsedGameTime.TotalSeconds;
@@ -147,8 +101,8 @@ namespace GameSpace.GameObjects.EnemyObjects
 
         public override void Trigger()
         {
-            Debug.Print("LAKITU KILLED");
-            state = new StateLakituDead(this);
+            Debug.Print("Spiny KILLED");
+            //state = new StateSpinyDead(this);
             //SpawnCloudObject();
             CollisionBox = new Rectangle(0, 0, 0, 0);
             ExpandedCollisionBox = CollisionBox;

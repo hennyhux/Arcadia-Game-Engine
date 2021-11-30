@@ -144,6 +144,11 @@ namespace GameSpace.Factories
             return new Lakitu(location);
         }
 
+        public IGameObjects CreateSpinyObject(Vector2 location)
+        {
+            return new Spiny(location);
+        }
+
         #endregion
 
         #region Items

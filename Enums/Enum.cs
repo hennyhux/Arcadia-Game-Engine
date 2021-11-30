@@ -66,7 +66,8 @@
         UBERKOOPA = 300,
         REDKOOPA = 31,
         PLANT = 32,
-        LAKITU = 45
+        LAKITU = 45,
+        SPINY = 46
     };
 
     public enum Velocity
