@@ -232,9 +232,7 @@ namespace GameSpace.TileMapDefinition
                 case EnemyID.PLANT:
                     objects.Add(objectFactory.CreatePlantObject(location));
                     break;
-                case EnemyID.LAKITU:
-                    objects.Add(objectFactory.CreateLakituObject(location));
-                    break;
+
                 case EnemyID.UBERGOOMBA:
                     objects.Add(objectFactory.CreateUberGoombaObject(location));
                     break;

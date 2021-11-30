@@ -19,7 +19,6 @@ namespace GameSpace.Factories
         private Texture2D RedKoopaRight;
         private Texture2D RedKoopaShelled;
         private Texture2D Plant;
-        private Texture2D Lakitu;
         private Texture2D UberGoomba;
         private Texture2D UberKoopa;
         #endregion
@@ -51,9 +50,8 @@ namespace GameSpace.Factories
             RedKoopaShelled = content.Load<Texture2D>("Enemies/RedKoopaShelled");
             RedKoopaRight = content.Load<Texture2D>("Enemies/RedKoopaRight");
             Plant = content.Load<Texture2D>("Enemies/Plant");
-            Lakitu = content.Load<Texture2D>("Enemies/Lakitu2");
             UberGoomba = content.Load<Texture2D>("Enemies/UberGoombas.cs");
-            
+
             UberKoopa = content.Load<Texture2D>("Enemies/UberKoopa");
         }
 
@@ -128,11 +126,6 @@ namespace GameSpace.Factories
         public ISprite CreateUberGoombaDeadSprite()
         {
             return new UberGoombaDeadSprite(DeadGoomba, 1, 1, 1);
-        }
-
-        public ISprite CreateLakituSprite()
-        {
-            return new LakituSprite(Lakitu, 1, 1, 1, 1, 1);
         }
     }
 }
