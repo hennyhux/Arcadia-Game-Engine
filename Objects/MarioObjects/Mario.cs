@@ -164,11 +164,11 @@ namespace GameSpace.GameObjects.BlockObjects
         {
             if (onCloud)
             {
-                MarioActionState.FaceRightTransition();//CHANGE
-                MarioActionState.FaceRightTransition();
-                MarioActionState.FaceRightTransition();
-                MarioActionState.FaceLeftTransition();
-                MarioActionState.FaceLeftTransition();
+                if (Facing == MarioDirection.RIGHT)
+                {
+                    MarioActionState.StandingTransition();
+                    MarioActionState.FaceLeftTransition();
+                }
                 Velocity = new Vector2(-100, Velocity.Y);
             }
             else
@@ -182,11 +182,11 @@ namespace GameSpace.GameObjects.BlockObjects
         {
             if (onCloud)
             {
-                MarioActionState.FaceLeftTransition();
-                MarioActionState.FaceLeftTransition();
-                MarioActionState.FaceLeftTransition();
-                MarioActionState.FaceRightTransition();
-                MarioActionState.FaceRightTransition();
+                if(Facing == MarioDirection.LEFT)
+                {
+                    MarioActionState.StandingTransition();
+                    MarioActionState.FaceRightTransition();
+                }
                 Velocity = new Vector2(100, Velocity.Y);
             }
             else
