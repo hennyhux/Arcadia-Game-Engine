@@ -83,7 +83,7 @@ namespace GameSpace.GameObjects.EnemyObjects
             if (CollisionHandler.GetInstance().IsGoingToFall(this))
             {
                 //Acceleration = new Vector2(0, 4000);
-                Velocity = new Vector2(Velocity.X, 300);
+                Velocity = new Vector2(Velocity.X, 200);
             }
 
             else
