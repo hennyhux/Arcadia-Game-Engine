@@ -253,6 +253,7 @@ namespace GameSpace.GameObjects.BlockObjects
                 case (int)ItemID.SMALLPIPE:
                 case (int)ItemID.WARPPIPEHEAD:
                 case (int)ItemID.WARPPIPEHEADWITHMOB:
+                case (int)ItemID.WARPVINEWITHBLOCK:
                 case (int)ItemID.WARPPIPEROOM:
                 case (int)ItemID.WARPPIPEBODY:
                 case (int)BlockID.HIDDENLEVELFLOORBLOCK:

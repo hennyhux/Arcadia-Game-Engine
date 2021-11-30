@@ -251,6 +251,7 @@ namespace GameSpace.Objects.EnemyObjects
                 case (int)ItemID.WARPPIPEBODY:
                 case (int)ItemID.WARPPIPEHEAD:
                 case (int)ItemID.WARPPIPEHEADWITHMOB:
+                case (int)ItemID.WARPVINEWITHBLOCK:
                 case (int)ItemID.WARPPIPEROOM:
                     EnemyCollisionHandler.GetInstance().HandleBlockCollision(this, entity);
                     break;
