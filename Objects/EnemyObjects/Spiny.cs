@@ -42,10 +42,6 @@ namespace GameSpace.GameObjects.EnemyObjects
         public override void Update(GameTime gametime)
         {
 
-            UpdateSpeed();
-            //UpdateCollisionBox(Position);
-            UpdatePosition(Position, gametime);
-           // Velocity = new Vector2(-1, 0);
             state.Update(gametime);
             if (!(state is StateSpinyDead))
             {
@@ -72,8 +68,14 @@ namespace GameSpace.GameObjects.EnemyObjects
                 //state.StateSprite.Update(gametime);
                 Sprite.Update(gametime);
 
-                ExpandedCollisionBox = CollisionBox = new Rectangle((int)Position.X, (int)Position.Y, 32+ 4, 32 + 4); ;
+                ExpandedCollisionBox = CollisionBox = new Rectangle((int)Position.X, (int)Position.Y, 32+ 4, 32 + 4); 
             }
+
+            UpdateSpeed();
+            //UpdateCollisionBox(Position);
+            UpdatePosition(Position, gametime);
+            // Velocity = new Vector2(-1, 0);
+            state.Update(gametime);
         }
         public override void UpdateSpeed()
         {
@@ -99,17 +101,6 @@ namespace GameSpace.GameObjects.EnemyObjects
         }
         public override void UpdatePosition(Vector2 location, GameTime gameTime) //use velocity
         {
-            //ExpandedCollisionBox = new Rectangle(CollisionBox.X, CollisionBox.Y, CollisionBox.Width, CollisionBox.Height);
-            //Acceleration = new Vector2(0, 0);
-            if (Direction == (int)MarioDirection.RIGHT)// && !(state is StateRedKoopaDead))
-            {
-                //Velocity = new Vector2(85, 0);
-            }
-
-            if (Direction == (int)MarioDirection.LEFT)// && !(state is StateRedKoopaDead))
-            {
-                //Velocity = new Vector2(-85, 0);
-            }
 
 
             Velocity += Acceleration * (float)gameTime.ElapsedGameTime.TotalSeconds;
