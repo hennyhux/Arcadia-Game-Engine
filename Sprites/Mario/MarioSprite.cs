@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
+using GameSpace.Machines;
 
 namespace GameSpace.Sprites
 {
@@ -47,6 +48,7 @@ namespace GameSpace.Sprites
 
 
         public void SetVisible() { IsVisible = !IsVisible; }
+        public int invisibleCount = 0;
 
         public MarioSprite(Texture2D texture, int x, int y, int isFacingRight, int powerup, int action)
         {
@@ -58,6 +60,7 @@ namespace GameSpace.Sprites
             marioPower = powerup;
             actionState = action;
             newState = true;
+            
             Facing = SpriteEffects.None;
 
             #region time
@@ -159,9 +162,11 @@ namespace GameSpace.Sprites
 
             }
         }
-
-        public void Draw(SpriteBatch spriteBatch, Vector2 location)
+        public void Draw(SpriteBatch spriteBatch, Vector2 location){ }
+        public void Draw(SpriteBatch spriteBatch, Vector2 location, bool IsInvincible)
         {
+            invisibleCount = invisibleCount + 1;
+            
             if (IsVisible)
             {
                 Width = XWidth[currentFrame];
@@ -169,8 +174,8 @@ namespace GameSpace.Sprites
 
                 Rectangle sourceRectangle = new Rectangle(XFrame[currentFrame], YFrame[currentFrame], Width, Height);
                 Rectangle destinationRectangle = new Rectangle((int)location.X, (int)location.Y, Width * 2, Height * 2);
-
-                spriteBatch.Draw(Texture, destinationRectangle, sourceRectangle, Color.White, 0, new Vector2(0, 0), Facing, 0);
+                if (!(IsInvincible && invisibleCount % 2 == 0))
+                    spriteBatch.Draw(Texture, destinationRectangle, sourceRectangle, Color.White, 0, new Vector2(0, 0), Facing, 0);
 
             }
 

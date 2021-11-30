@@ -67,7 +67,8 @@
         GREENKOOPA = 30,
         UBERKOOPA = 300,
         REDKOOPA = 31,
-        PLANT = 32
+        PLANT = 32,
+        LAKITU = 45
     };
 
     public enum Velocity
