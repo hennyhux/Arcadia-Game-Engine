@@ -22,8 +22,8 @@ namespace GameSpace.GameObjects.EnemyObjects
             Direction = (int)MarioDirection.LEFT;
             drawBox = false;
             Position = initalPosition;
-            state = new StateSpinyRight(this);
-            Sprite = SpriteEnemyFactory.GetInstance().CreateSpinyRightSprite();
+            state = new StateSpinyLeft(this);
+            Sprite = SpriteEnemyFactory.GetInstance().CreateSpinySprite();
             Velocity = new Vector2(1, 0);
             //ExpandedCollisionBox = new Rectangle((int)(Position.X + Sprite.Texture.Width / 32), (int)Position.Y, Sprite.Texture.Width, Sprite.Texture.Height * 3);
             //UpdateCollisionBox(Position);
@@ -52,11 +52,13 @@ namespace GameSpace.GameObjects.EnemyObjects
                 if (Velocity.X > 0 && !(state is StateSpinyRight))
                 {
                     state = new StateSpinyRight(this);
+                    Direction = (int)MarioDirection.RIGHT;
 
                 }
                 else if (Velocity.X < 0 && !(state is StateSpinyLeft))
                 {
                     state = new StateSpinyLeft(this);
+                    Direction = (int)MarioDirection.LEFT;
                 }
                 if (state is StateSpinyDead)
                 {
@@ -86,12 +88,12 @@ namespace GameSpace.GameObjects.EnemyObjects
                 Acceleration = new Vector2(0, 0);
                 if (Direction == (int)MarioDirection.RIGHT)
                 {
-                    Velocity = new Vector2(150, 0);
+                    Velocity = new Vector2(75, 0);
                 }
 
                 else if (Direction == (int)MarioDirection.LEFT)
                 {
-                    Velocity = new Vector2(-150, 0);
+                    Velocity = new Vector2(-75, 0);
                 }
             }
         }
@@ -137,7 +139,7 @@ namespace GameSpace.GameObjects.EnemyObjects
             return state;
         }
 
-        public override void HandleCollision(IGameObjects entity)
+       /* public override void HandleCollision(IGameObjects entity)
         {
             switch (entity.ObjectID)
             {
@@ -145,7 +147,7 @@ namespace GameSpace.GameObjects.EnemyObjects
                     CollisionHandler.GetInstance().EnemyToMarioCollision(this);
                     break;
             }
-        }
+        }*/
 
         #endregion
     }
