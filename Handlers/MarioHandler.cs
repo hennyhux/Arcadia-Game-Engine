@@ -66,15 +66,19 @@ namespace GameSpace.Machines
         public void EnterCloudMario()
         {
             mario.onCloud = true;
-            mario.Velocity = new Vector2(mario.Velocity.X, 0);
-            /*if(mario.Velocity.Y > 0)
+            //mario.Velocity = new Vector2(mario.Velocity.X, 0);
+            //if(mario.Velocity.Y > 0)
+            mario.Acceleration = Vector2.Zero;
+            if(mario.MarioActionState is BigMarioFallingState || mario.MarioActionState is FireMarioFallingState || mario.MarioActionState is SmallMarioFallingState || mario.Velocity.Y > 0)
             {
                 mario.UpTransition();
             }
-            else if(mario.Velocity.Y < 0)
+            //else if(mario.Velocity.Y < 0)
+            if (mario.MarioActionState is BigMarioJumpingState || mario.MarioActionState is FireMarioJumpingState || mario.MarioActionState is SmallMarioJumpingState || mario.Velocity.Y < 0)
             {
                 mario.DownTransition();
-            }*/
+            }
+            mario.StandingTransition();
         }
 
 

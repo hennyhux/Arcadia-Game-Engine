@@ -92,12 +92,23 @@ namespace GameSpace.GameObjects.BlockObjects
             }
         }
 
-        public void CloudMovement()
+        public void CloudMovement(GameTime gametime)
         {
             Debug.WriteLine("IN CLOUD MOVEMENT, {0}, VELO: {1}, ACCEL {2}", onCloud, Velocity.Y, Acceleration.Y);
             //Velocity = new Vector2(Velocity.X, -50);
             //Acceleration = new Vector2(Acceleration.X, -125);
+            Vector2 newLocation = new Vector2(0, -50) * (float)gametime.ElapsedGameTime.TotalSeconds;
+            if (!CollisionHandler.GetInstance().IsGoingToBeOutOfBounds(this, newLocation))
+            {
+                Position += newLocation;
+            }
+            else
+            {
+                ExitCloud();
+            }
         }
+
+        
         public void Update(GameTime gametime)
         {
             if (Velocity.Y == 0 && CollisionHandler.GetInstance().IsGoingToFall() && onCloud == false)
@@ -112,7 +123,7 @@ namespace GameSpace.GameObjects.BlockObjects
             }
 
 
-            if (onCloud) CloudMovement();
+            if (onCloud) CloudMovement(gametime);
             UpdatePosition(Position, gametime);
             if (!onCloud)
             {
@@ -151,11 +162,38 @@ namespace GameSpace.GameObjects.BlockObjects
 
         public void FaceLeftTransition()
         {
-            MarioActionState.FaceLeftTransition();
+            if (onCloud)
+            {
+                MarioActionState.FaceRightTransition();//CHANGE
+                MarioActionState.FaceRightTransition();
+                MarioActionState.FaceRightTransition();
+                MarioActionState.FaceLeftTransition();
+                MarioActionState.FaceLeftTransition();
+                Velocity = new Vector2(-100, Velocity.Y);
+            }
+            else
+            {
+                MarioActionState.FaceLeftTransition();
+            }
+
+                
         }
         public void FaceRightTransition()
         {
-            MarioActionState.FaceRightTransition();
+            if (onCloud)
+            {
+                MarioActionState.FaceLeftTransition();
+                MarioActionState.FaceLeftTransition();
+                MarioActionState.FaceLeftTransition();
+                MarioActionState.FaceRightTransition();
+                MarioActionState.FaceRightTransition();
+                Velocity = new Vector2(100, Velocity.Y);
+            }
+            else
+            {
+                MarioActionState.FaceRightTransition();
+            }
+               
         }
 
         public void UpTransition()
@@ -164,9 +202,7 @@ namespace GameSpace.GameObjects.BlockObjects
             { 
                 if(Velocity.Y < 0)
                 {
-                    onCloud = false;
-                    Acceleration = new Vector2(Acceleration.X, 0);
-                    MarioActionState.UpTransition();
+                    ExitCloud();
                 }
                 else
                 {
@@ -180,6 +216,14 @@ namespace GameSpace.GameObjects.BlockObjects
                 MarioActionState.UpTransition();
             }
             
+        }
+
+        public void ExitCloud()
+        {
+            onCloud = false;
+            Acceleration = new Vector2(Acceleration.X, 600);
+            MarioActionState.UpTransition();
+            //Velocity = new Vector2(Velocity.X, -1);
         }
 
         public void LeapTransition()

@@ -5,7 +5,7 @@
 	<Description>					LEVEL 1 BEGINS					</Description>
 	
 	<Objects>
-		<x>400</x>
+		<x>500</x>
 		<y>200</y>
 		<avatar>MARIO</avatar>
 		<facing>RIGHT</facing>
@@ -18,7 +18,7 @@
 	</Objects>
 
 	<Objects>
-		<x>700</x>
+		<x>500</x>
 		<y>250</y>
 		<enemy>LAKITU</enemy>
 	</Objects>
