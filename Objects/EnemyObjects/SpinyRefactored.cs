@@ -1,14 +1,9 @@
-﻿using GameSpace.Abstracts;
-using GameSpace.EntityManaging;
+﻿using GameSpace.EntityManaging;
 using GameSpace.Enums;
 using GameSpace.Factories;
 using GameSpace.Interfaces;
-using GameSpace.States;
-using GameSpace.States.EnemyStates;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System.Diagnostics;
-using GameSpace.Machines;
 using GameSpace.Objects.EnemyObjects;
 
 namespace GameSpace.GameObjects.EnemyObjects
