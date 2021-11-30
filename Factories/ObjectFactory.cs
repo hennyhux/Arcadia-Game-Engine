@@ -139,6 +139,11 @@ namespace GameSpace.Factories
             return new Plant(location);
         }
 
+        public IGameObjects CreateLakituObject(Vector2 location)
+        {
+            return new Lakitu(location);
+        }
+
         #endregion
 
         #region Items
