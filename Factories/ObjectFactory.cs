@@ -146,7 +146,7 @@ namespace GameSpace.Factories
 
         public IGameObjects CreateSpinyObject(Vector2 location)
         {
-            return new Spiny(location);
+            return new SpinyRefactored(location);
         }
 
         #endregion
