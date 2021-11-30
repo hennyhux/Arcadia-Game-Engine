@@ -21,7 +21,7 @@ namespace GameSpace.States.MarioStates
             this.previousActionState = previousActionState;
 
             Mario.Velocity = new Vector2(Mario.Velocity.X, -250);
-            Mario.Acceleration = new Vector2(0, 600);
+            //Mario.Acceleration = new Vector2(0, 600);
             Mario.sprite = MarioFactory.GetInstance().CreateSprite(MarioFactory.MarioSpriteType(this, Mario.MarioPowerUpState));
             MusicHandler.GetInstance().PlaySoundEffect(0);
         }

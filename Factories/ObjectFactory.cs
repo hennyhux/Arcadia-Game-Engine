@@ -149,6 +149,16 @@ namespace GameSpace.Factories
             return new HiddenBlockWithVine(location);
         }
 
+        public IGameObjects CreateSpinyObject(Vector2 location)
+        {
+            return new SpinyRefactored(location);
+        }
+
+        public IGameObjects CreateLakituObject(Vector2 location)
+        {
+            return new Lakitu(location);
+        }
+
         #endregion
 
         #region Items

@@ -43,6 +43,8 @@ namespace GameSpace.GameObjects.BlockObjects
 
         public string Player { get; set; }
 
+        public bool onCloud { get; set; }
+
         public Mario(Vector2 initLocation)
         {
             ObjectID = (int)AvatarID.MARIO;
@@ -50,7 +52,7 @@ namespace GameSpace.GameObjects.BlockObjects
             Position = new Vector2((int)initLocation.X, (int)initLocation.Y);
             numFireballs = 30;
             //marioLives = 3;
-            Acceleration = new Vector2(0, 150);//NEW
+            Acceleration = new Vector2(0, 0);//NEW
             sprite = MarioFactory.GetInstance().CreateSprite(1);
             MarioPowerUpState = new SmallMarioState(this);
             MarioActionState = new SmallMarioStandingState(this);
@@ -60,6 +62,8 @@ namespace GameSpace.GameObjects.BlockObjects
             IsInvincible = false;
             Player = "Mario";
             IsDead = false;
+            onCloud = false;
+
         }
 
         public void Draw(SpriteBatch spritebatch)
@@ -74,31 +78,62 @@ namespace GameSpace.GameObjects.BlockObjects
                     sprite.Facing = SpriteEffects.FlipHorizontally;
                     break;
             }
-
-            sprite.Draw(spritebatch, Position, IsInvincible);
+            if(onCloud == false)
+            {
+                sprite.Draw(spritebatch, Position, IsInvincible);
+            }
+            else
+            {
+                sprite.Draw(spritebatch, Position, IsInvincible, onCloud);
+            }
             if (drawBox)
             {
                 sprite.DrawBoundary(spritebatch, CollisionBox);
             }
         }
+
+        public void CloudMovement(GameTime gametime)
+        {
+            Debug.WriteLine("IN CLOUD MOVEMENT, {0}, VELO: {1}, ACCEL {2}", onCloud, Velocity.Y, Acceleration.Y);
+            //Velocity = new Vector2(Velocity.X, -50);
+            //Acceleration = new Vector2(Acceleration.X, -125);
+            Vector2 newLocation = new Vector2(0, -50) * (float)gametime.ElapsedGameTime.TotalSeconds;
+            if (!CollisionHandler.GetInstance().IsGoingToBeOutOfBounds(this, newLocation))
+            {
+                Position += newLocation;
+            }
+            else
+            {
+                ExitCloud();
+            }
+        }
+
+        
         public void Update(GameTime gametime)
         {
-            if (Velocity.Y == 0 && CollisionHandler.GetInstance().IsGoingToFall())
+            if (Velocity.Y == 0 && CollisionHandler.GetInstance().IsGoingToFall() && onCloud == false)
             {
                 FallingTransition();
             }
-            
+            //Velocity += Acceleration * (float)gametime.ElapsedGameTime.TotalSeconds;
             Vector2 newLocation = Velocity * (float)gametime.ElapsedGameTime.TotalSeconds;
             if (!CollisionHandler.GetInstance().IsGoingToBeOutOfBounds(this, newLocation))
             {
                 Position += newLocation;
             }
-            
 
+
+            if (onCloud) CloudMovement(gametime);
+            UpdatePosition(Position, gametime);
+            if (!onCloud)
+            {
+                MarioPowerUpState.Update(gametime);// these
+                MarioActionState.Update(gametime);// may be wrong for cloud mario
+            }
 
             UpdateCollisionBox(Position, gametime);
-            MarioPowerUpState.Update(gametime);
-            MarioActionState.Update(gametime);
+
+
             sprite.Update(gametime);
 
             if (invincibleTimer > 0)
@@ -130,15 +165,66 @@ namespace GameSpace.GameObjects.BlockObjects
 
         public void FaceLeftTransition()
         {
-            MarioActionState.FaceLeftTransition();
+            if (onCloud)
+            {
+                if (Facing == MarioDirection.RIGHT)
+                {
+                    MarioActionState.StandingTransition();
+                    MarioActionState.FaceLeftTransition();
+                }
+                Velocity = new Vector2(-100, Velocity.Y);
+            }
+            else
+            {
+                MarioActionState.FaceLeftTransition();
+            }
+
+                
         }
         public void FaceRightTransition()
         {
-            MarioActionState.FaceRightTransition();
+            if (onCloud)
+            {
+                if(Facing == MarioDirection.LEFT)
+                {
+                    MarioActionState.StandingTransition();
+                    MarioActionState.FaceRightTransition();
+                }
+                Velocity = new Vector2(100, Velocity.Y);
+            }
+            else
+            {
+                MarioActionState.FaceRightTransition();
+            }
+               
         }
 
         public void UpTransition()
         {
+            if (onCloud)
+            { 
+                if(Velocity.Y < 0)
+                {
+                    ExitCloud();
+                }
+                else
+                {
+                    Velocity = new Vector2(Velocity.X, Velocity.Y - 150);
+                }
+                
+                
+            }
+            else
+            {
+                MarioActionState.UpTransition();
+            }
+            
+        }
+
+        public void ExitCloud()
+        {
+            onCloud = false;
+            Acceleration = new Vector2(Acceleration.X, 600);
             MarioActionState.UpTransition();
         }
 
@@ -149,7 +235,16 @@ namespace GameSpace.GameObjects.BlockObjects
 
         public void DownTransition()
         {
-            MarioActionState.DownTransition();
+            if (onCloud)
+            {
+                Velocity = new Vector2(Velocity.X, Velocity.Y + 150);
+
+            }
+            else
+            {
+                MarioActionState.DownTransition();
+            }
+            
         }
 
         public void CrouchingDiscontinueTransition() { MarioActionState.CrouchingDiscontinueTransition(); }//when you exit crouch, release down key
@@ -188,8 +283,8 @@ namespace GameSpace.GameObjects.BlockObjects
 
         public void Trigger()
         {
-            Debug.WriteLine("invincibleTimer, {0}", invincibleTimer);
-            Debug.WriteLine("IsInvincible, {0}", IsInvincible);
+            //Debug.WriteLine("invincibleTimer, {0}", invincibleTimer);
+            //Debug.WriteLine("IsInvincible, {0}", IsInvincible);
             if (!IsDead && !(IsInvincible))
             {
                 MarioPowerUpState.DamageTransition();

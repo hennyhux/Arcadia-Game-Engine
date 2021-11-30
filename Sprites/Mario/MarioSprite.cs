@@ -17,6 +17,7 @@ namespace GameSpace.Sprites
         private bool IsVisible;
 
         public Texture2D Texture { get; set; }
+        public LakituSprite CloudSprite { get; set; }
         public int Height { get; set; }
         public int Width { get; set; }
         protected Texture2D WhiteRect = SpriteBlockFactory.GetInstance().CreateBoundingBoxTexture();
@@ -62,7 +63,7 @@ namespace GameSpace.Sprites
             newState = true;
             
             Facing = SpriteEffects.None;
-
+            CloudSprite = MarioFactory.GetInstance().MarioCloudSprite();
             #region time
             timeSinceLastFrame = 0;
             milliSecondsPerFrame = 100;
@@ -91,6 +92,7 @@ namespace GameSpace.Sprites
 
         public void Update(GameTime gametime)
         {
+            CloudSprite.Update(gametime);
             if (IsVisible)
             {
                 int startingFrame = 0;
@@ -174,9 +176,29 @@ namespace GameSpace.Sprites
 
                 Rectangle sourceRectangle = new Rectangle(XFrame[currentFrame], YFrame[currentFrame], Width, Height);
                 Rectangle destinationRectangle = new Rectangle((int)location.X, (int)location.Y, Width * 2, Height * 2);
+                
                 if (!(IsInvincible && invisibleCount % 2 == 0))
                     spriteBatch.Draw(Texture, destinationRectangle, sourceRectangle, Color.White, 0, new Vector2(0, 0), Facing, 0);
 
+            }
+
+        }
+
+        public void Draw(SpriteBatch spriteBatch, Vector2 location, bool IsInvincible, bool onCloud)
+        {
+            invisibleCount = invisibleCount + 1;
+            
+            if (IsVisible)
+            {
+                Width = XWidth[currentFrame];
+                Height = YHeight[currentFrame];
+
+                Rectangle sourceRectangle = new Rectangle(XFrame[currentFrame], YFrame[currentFrame], Width, Height);
+                Rectangle destinationRectangle = new Rectangle((int)location.X, (int)location.Y, Width * 2, Height * 2);
+                
+                    if (!(IsInvincible && invisibleCount % 2 == 0))
+                        spriteBatch.Draw(Texture, destinationRectangle, sourceRectangle, Color.White, 0, new Vector2(0, 0), Facing, 0);
+                CloudSprite.Draw(spriteBatch, new Vector2(location.X - 8, location.Y + Height));
             }
 
         }

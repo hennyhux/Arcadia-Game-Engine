@@ -24,7 +24,9 @@ namespace GameSpace.States.MarioStates
             Mario.sprite = MarioFactory.GetInstance().CreateSprite(MarioFactory.MarioSpriteType(this, Mario.MarioPowerUpState));
             MusicHandler.GetInstance().PlaySoundEffect(1);
         }
-        public override void Exit() { }
+        public override void Exit() {
+            //Mario.Acceleration = new Vector2(0, 0);
+        }
         public override void StandingTransition()
         {
 

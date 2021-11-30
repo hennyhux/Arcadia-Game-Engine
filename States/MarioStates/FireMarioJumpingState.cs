@@ -24,7 +24,7 @@ namespace GameSpace.States.MarioStates
             // Debug.WriteLine("MarioWalkingState(25) facing:, {0}", Mario.Facing);
 
             //Set Proper velocity upon entering state
-            Mario.Velocity = new Vector2(Mario.Velocity.X, -200);//NEW
+            Mario.Velocity = new Vector2(Mario.Velocity.X, -400);//NEW
 
             //AABB aabb = Mario.AABB;
             //eFacing Facing = MarioStandingState.Facing;
@@ -40,7 +40,9 @@ namespace GameSpace.States.MarioStates
 
         }
 
-        public override void Exit() { }
+        public override void Exit() {
+            //Mario.Acceleration = new Vector2(0, 0);
+        }
 
 
         public override void StandingTransition()

@@ -19,7 +19,7 @@ namespace GameSpace.States.MarioStates
             Mario.MarioActionState = this;
             this.previousActionState = previousActionState;
 
-            Mario.Velocity = new Vector2(Mario.Velocity.X, 100);//TEMP
+            //Mario.Velocity = new Vector2(Mario.Velocity.X, 100);//TEMP
 
             //AABB aabb = Mario.AABB;
             //eFacing Facing = MarioStandingState.Facing;
