@@ -51,12 +51,11 @@ namespace GameSpace.Objects.EnemyObjects
         public virtual void Update(GameTime gametime)
         {
             StateSprite.Update(gametime);
-            if (true)
-            {
+            
                 UpdatePosition(enemy.Position, gametime);
                 UpdateCollisionBox(enemy.Position);
                 UpdateSpeed();
-            }
+            
 
         }
 

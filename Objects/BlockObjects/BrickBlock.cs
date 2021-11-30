@@ -18,7 +18,6 @@ namespace GameSpace.Objects.BlockObjects
         public StateExplodingBrickBlock()
         {
             sprite = SpriteBlockFactory.GetInstance().ReturnShatterBlock();
-
         }
     }
 

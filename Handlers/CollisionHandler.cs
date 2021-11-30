@@ -365,10 +365,9 @@ namespace GameSpace.EntityManaging
         public void MarioToHiddenBlockCollision(IGameObjects block)
         {
             HiddenBlock hBlock = (HiddenBlock)block;
-            if (hBlock.hasCollided)
-            {
+
                 MarioToBlockCollision(block);
-            }
+            
         }
 
         public void MarioToEnemyCollision(IGameObjects enemy)

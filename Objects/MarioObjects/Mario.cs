@@ -281,6 +281,7 @@ namespace GameSpace.GameObjects.BlockObjects
                 case (int)ItemID.WARPVINEWITHBLOCK:
                 case (int)ItemID.WARPPIPEROOM:
                 case (int)ItemID.WARPPIPEBODY:
+                case (int)BlockID.VINEHIDDENBLOCK:
                 case (int)BlockID.HIDDENLEVELFLOORBLOCK:
                 case (int)BlockID.HIDDENLEVELBRICKBLOCK:
                     CollisionHandler.GetInstance().ChangeMarioStatesUponCollision(entity);

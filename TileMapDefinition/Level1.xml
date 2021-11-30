@@ -16,13 +16,25 @@
 		<y>356</y>
 		<enemy>UBERGOOMBA</enemy>
 	</Objects>
-	
-	
-	
+
+
 		<Objects>
 		<x>250</x>
 		<y>356</y>
 		<enemy>GOOMBA</enemy>
+	</Objects>
+	
+	<Objects>
+		<x>250</x>
+		<y>100</y>
+		<block>VINEHIDDENBLOCK</block>
+	</Objects>
+	
+	
+	<Objects>
+		<x>90</x>
+		<y>250</y>
+		<block>VINEHIDDENBLOCK</block>
 	</Objects>
 	
 		<Objects>
@@ -93,21 +105,6 @@
 		<block>BRICKBLOCK</block>
 		<blockRow>1</blockRow>
 	</Objects>
-
-	<Objects>
-		<x>300</x>
-		<y>100</y>
-		<block>HIDDENBLOCK</block>
-		<blockRow>1</blockRow>
-	</Objects>
-
-	<Objects>
-		<x>300</x>
-		<y>280</y>
-		<item>VINE</item>
-		<blockRow>1</blockRow>
-	</Objects>
-
 	<Objects>
 		<x>736</x>
 		<y>306</y>
