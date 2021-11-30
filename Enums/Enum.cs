@@ -5,6 +5,7 @@
         FLOORBLOCK = 0,
         HIDDENLEVELFLOORBLOCK = 6,
         HIDDENBLOCK = 1,
+        VINEHIDDENBLOCK = 222,
         USEDBLOCK = 2,
         STAIRBLOCK = 3,
         BRICKBLOCK = 4,
@@ -19,7 +20,7 @@
         STARQUESTIONBLOCK = 9,
         ONEUPSHROOMQUESTIONBLOCK = 10,
         SUPERSHROOMQUESTIONBLOCK = 11,
-        FIREFLOWERQUESTIONBLOCK = 12
+        FIREFLOWERQUESTIONBLOCK = 12,
     };
 
     public enum ItemID : int
@@ -46,7 +47,8 @@
         CASTLE = 28,
         VINE = 29,
         WARPVINEWITHBLOCK = 50,
-        BLACKWINDOW = 999
+        BLACKWINDOW = 999,
+        VINEHIDDENBLOCK = 222
     };
 
     public enum PowerUpID : int

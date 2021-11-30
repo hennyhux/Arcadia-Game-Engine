@@ -14,7 +14,7 @@ namespace GameSpace.Sprites.ExtraItems
     {
         public StateWarpVineIdle()
         {
-            sprite = SpriteItemFactory.GetInstance().CreateVine();
+       
         }
     }
 
@@ -22,7 +22,7 @@ namespace GameSpace.Sprites.ExtraItems
     {
         public StateWarpVineActivated()
         {
-            sprite = SpriteItemFactory.GetInstance().CreateWarpPipe();
+       
         }
     }
 
@@ -30,7 +30,7 @@ namespace GameSpace.Sprites.ExtraItems
     {
         public StateWarpVineBodyIdle()
         {
-            sprite = SpriteBlockFactory.GetInstance().CreateWarpPipeBody();
+        
         }
     }
 
@@ -38,7 +38,7 @@ namespace GameSpace.Sprites.ExtraItems
     {
         public StateWarpVineDeactiveated()
         {
-            sprite = SpriteItemFactory.GetInstance().CreateWarpPipe();
+        
         }
     }
 
@@ -80,7 +80,7 @@ namespace GameSpace.Sprites.ExtraItems
         public WarpVineBlock(Vector2 location)
         {
             ObjectID = (int)ItemID.VINE;
-            Sprite = SpriteItemFactory.GetInstance().CreateWarpPipe();
+            Sprite = SpriteItemFactory.GetInstance().CreateVine();
             Position = location;
             CollisionBox = new Rectangle((int)Position.X, (int)Position.Y, Sprite.Texture.Width * 2, Sprite.Texture.Height * 2);
             ExpandedCollisionBox = new Rectangle((int)Position.X - Sprite.Texture.Width * 3, (int)Position.Y, Sprite.Texture.Width * 8, Sprite.Texture.Height * 2);
@@ -89,7 +89,7 @@ namespace GameSpace.Sprites.ExtraItems
             state = new StateWarpVineIdle();
             hasCollided = false;
             itemRevealed = false;
-            mob = ObjectFactory.GetInstance().CreateWarpVineBlock(new Vector2(Position.X - 10, Position.Y - Sprite.Texture.Height * 3 + 2));
+            mob = ObjectFactory.GetInstance().CreateVineObject(new Vector2(Position.X - 10, Position.Y - Sprite.Texture.Height * 3 + 2));
             TheaterHandler.GetInstance().QueueItemAddToStage(mob);
         }
 
@@ -134,16 +134,12 @@ namespace GameSpace.Sprites.ExtraItems
 
         public void HideItem()
         {
-            Plant castedMob = (Plant)mob;
-            castedMob.Hide();
-            state = new StateWarpPipeIdle();
+          
         }
 
         public void ShowItem()
         {
-            Plant castedMob = (Plant)mob;
-            castedMob.Show();
-            state = new StateWarpPipeActivated();
+         
         }
 
        /* public override void HandleCollision(IGameObjects entity)
@@ -165,12 +161,7 @@ namespace GameSpace.Sprites.ExtraItems
 
         public WarpVineHeadRoom(Vector2 location)
         {
-            ObjectID = (int)ItemID.VINE;
-            Sprite = SpriteItemFactory.GetInstance().CreateVine();
-            Position = location;
-            CollisionBox = new Rectangle((int)Position.X, (int)Position.Y, Sprite.Texture.Width * 2, Sprite.Texture.Height * 2);
-            drawBox = false;
-            state = new StateWarpPipeIdle();
+       
         }
 
         public override bool RevealItem()
@@ -196,12 +187,7 @@ namespace GameSpace.Sprites.ExtraItems
 
         public WarpVineBody(Vector2 location)
         {
-            ObjectID = (int)ItemID.WARPPIPEBODY;
-            Sprite = SpriteBlockFactory.GetInstance().CreateWarpPipeBody();
-            Position = location;
-            CollisionBox = new Rectangle((int)Position.X, (int)Position.Y, Sprite.Texture.Width * 2, Sprite.Texture.Height * 2);
-            drawBox = false;
-            state = new StateWarpPipeBodyIdle();
+    
         }
 
         public override bool RevealItem()
@@ -213,9 +199,7 @@ namespace GameSpace.Sprites.ExtraItems
         {
             switch (entity.ObjectID)
             {
-                case (int)AvatarID.MARIO:
-                    CollisionHandler.GetInstance().BlockToMarioCollision(this);
-                    break;
+          
             }
         }
     }

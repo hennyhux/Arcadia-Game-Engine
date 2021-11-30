@@ -93,6 +93,21 @@
 		<block>BRICKBLOCK</block>
 		<blockRow>1</blockRow>
 	</Objects>
+
+	<Objects>
+		<x>300</x>
+		<y>100</y>
+		<block>HIDDENBLOCK</block>
+		<blockRow>1</blockRow>
+	</Objects>
+
+	<Objects>
+		<x>300</x>
+		<y>280</y>
+		<item>VINE</item>
+		<blockRow>1</blockRow>
+	</Objects>
+
 	<Objects>
 		<x>736</x>
 		<y>306</y>
