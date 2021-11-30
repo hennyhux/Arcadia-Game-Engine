@@ -25,6 +25,7 @@ namespace GameSpace.Sprites
 
         public int facingRight { get; set; }// left = 0, right = 1
         public SpriteEffects Facing { get; set; }
+
         private bool newState;
 
         /* Array Format is
@@ -94,6 +95,10 @@ namespace GameSpace.Sprites
                 {
                     currentFrame = 1;
                 }
+                if (IsThrowing == 2)
+                {
+                    currentFrame = 1;
+                }
                 //Debug.WriteLine(" currentFrame: {0},", currentFrame);
                 /*else if (actionState == 2)//Walking
                 {
@@ -147,6 +152,7 @@ namespace GameSpace.Sprites
 
                 //Debug.WriteLine(" currentFrame {0},", currentFrame);
                 Rectangle sourceRectangle = new Rectangle(XFrame[currentFrame], YFrame[currentFrame], Width, Height);
+                //Rectangle destinationRectangle = new Rectangle((int)location.X, (int)location.Y, Width * 1, Height * 1);
                 Rectangle destinationRectangle = new Rectangle((int)location.X, (int)location.Y, Width * 1, Height * 1);
                 spriteBatch.Draw(Texture, destinationRectangle, sourceRectangle, Color.White, 0, new Vector2(0, 0), Facing, 0);
 

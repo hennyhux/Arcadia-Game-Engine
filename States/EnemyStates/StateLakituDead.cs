@@ -16,6 +16,11 @@ namespace GameSpace.States
         public StateLakituDead(Lakitu lakitu)
         {
             lakitu.Sprite = SpriteEnemyFactory.GetInstance().CreateDeadLakituSprite();
+            Lakitu = lakitu;
+            Lakitu.state = this;
+            Lakitu.Velocity = lakitu.Velocity;
+            //Lakitu.Velocity = new Vector2(150, Lakitu.Velocity.Y);
+            //lakitu.Sprite = SpriteEnemyFactory.GetInstance().CreateLakituRightSprite();
         }
 
         public void Draw(SpriteBatch spritebatch, Vector2 location)

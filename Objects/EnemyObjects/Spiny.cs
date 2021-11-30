@@ -24,6 +24,7 @@ namespace GameSpace.GameObjects.EnemyObjects
             Position = initalPosition;
             state = new StateSpinyLeft(this);
             Sprite = SpriteEnemyFactory.GetInstance().CreateSpinySprite();
+            //UpdateCollisionBox(Position);
             Velocity = new Vector2(1, 0);
             //ExpandedCollisionBox = new Rectangle((int)(Position.X + Sprite.Texture.Width / 32), (int)Position.Y, Sprite.Texture.Width, Sprite.Texture.Height * 3);
             //UpdateCollisionBox(Position);

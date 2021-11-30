@@ -19,7 +19,7 @@
 
 	<Objects>
 		<x>20</x>
-		<y>50</y>
+		<y>300</y>
 		<enemy>LAKITU</enemy>
 	</Objects>
 	
