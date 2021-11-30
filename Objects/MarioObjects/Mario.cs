@@ -62,7 +62,7 @@ namespace GameSpace.GameObjects.BlockObjects
             IsInvincible = false;
             Player = "Mario";
             IsDead = false;
-            onCloud = true;
+            onCloud = false;
 
         }
 

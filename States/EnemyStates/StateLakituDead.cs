@@ -3,7 +3,7 @@ using GameSpace.GameObjects.EnemyObjects;
 using GameSpace.Interfaces;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-
+using System.Diagnostics;
 namespace GameSpace.States
 {
     public class StateLakituDead : IEnemyState
@@ -15,6 +15,7 @@ namespace GameSpace.States
 
         public StateLakituDead(Lakitu lakitu)
         {
+            Debug.WriteLine("DEAD SPRITE: ,");
             lakitu.Sprite = SpriteEnemyFactory.GetInstance().CreateDeadLakituSprite();
             Lakitu = lakitu;
             Lakitu.state = this;

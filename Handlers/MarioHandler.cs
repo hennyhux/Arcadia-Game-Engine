@@ -63,6 +63,20 @@ namespace GameSpace.Machines
             mario.Position = new Vector2(mario.Position.X, mario.Position.Y - 3);
         }
 
+        public void EnterCloudMario()
+        {
+            mario.onCloud = true;
+        }
+
+        public void LeaveCloudMario()
+        {
+            mario.onCloud = false;
+        }
+        public bool getCloudMario()
+        {
+            return mario.onCloud;
+        }
+
         public void WarpMarioToHiddenRoom()
         {
             IGameObjects warpPipe = listOfWarpRoomPipes.ToArray()[warpRooomNum + 1];

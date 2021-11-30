@@ -51,8 +51,8 @@ namespace GameSpace.Sprites
 
         public LakituSprite(Texture2D texture, int x, int y, int isFacingRight, int powerup, int action, bool isVisible)
         {
-            Debug.Print("LAKITU SPRITE CREATED()");
-            Debug.Print("isFacingRight: {0} ", isFacingRight);
+            //Debug.Print("LAKITU SPRITE CREATED()");
+            //Debug.Print("isFacingRight: {0} ", isFacingRight);
             Texture = texture;
             IsVisible = isVisible;
             currentFrame = 0;
@@ -188,7 +188,10 @@ namespace GameSpace.Sprites
         {
             return IsVisible;
         }
-
+        public void TurnInVisible()
+        {
+            IsVisible = false;
+        }
         public void FlipSprite()
         {
 

@@ -50,8 +50,8 @@ namespace GameSpace.Sprites
 
         public SpinySprite(Texture2D texture, int x, int y, int isFacingRight, int powerup, int action, bool isVisible)
         {
-            Debug.Print("Spiny SPRITE CREATED()");
-            Debug.Print("isFacingRight: {0} ", isFacingRight);
+            //Debug.Print("Spiny SPRITE CREATED()");
+            //Debug.Print("isFacingRight: {0} ", isFacingRight);
             Texture = texture;
             IsVisible = isVisible;
             currentFrame = 0;

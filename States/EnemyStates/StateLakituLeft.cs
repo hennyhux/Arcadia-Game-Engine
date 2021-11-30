@@ -3,6 +3,7 @@ using GameSpace.GameObjects.EnemyObjects;
 using GameSpace.Interfaces;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System.Diagnostics;
 
 namespace GameSpace.States
 {
@@ -15,6 +16,7 @@ namespace GameSpace.States
 
         public StateLakituLeft(Lakitu lakitu)
         {
+            Debug.WriteLine("CREATE LEFT SPRITE: ,");
             //StateSprite = SpriteEnemyFactory.GetInstance().CreateLakituSprite();
             CollidedWithMario = false;
             Lakitu = lakitu;

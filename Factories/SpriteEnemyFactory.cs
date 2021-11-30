@@ -148,6 +148,11 @@ namespace GameSpace.Factories
             return new LakituSprite(Lakitu, 1, 1, 1, 1, 0, false);
         }
 
+        public ISprite CreateLakituCloudSprite()
+        {
+            return new LakituSprite(Lakitu, 1, 1, 1, 1, 1, true);
+        }
+
         public ISprite CreateLakituThrowingSprite()
         {
             return new LakituSprite(Lakitu, 1, 1, 1, 1, 1, true);

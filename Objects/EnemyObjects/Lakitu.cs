@@ -87,8 +87,15 @@ namespace GameSpace.GameObjects.EnemyObjects
             //UpdateCollisionBox(Position);
 
             //Velocity = new Vector2(-1, 0);
-            
-            if (!(state is StateLakituDead))
+            if (state is StateLakituDead)
+            {
+                CollisionBox = new Rectangle(0, 0, 0, 0);
+            }
+            if (state is StateLakituCloud)
+            {
+                CollisionBox = new Rectangle((int)Position.X, (int)Position.Y, 48, 48);
+            }
+            if (!(state is StateLakituDead) && !(state is StateLakituCloud))
             {
                 trackMovement(gametime);
                 if (Velocity.X > 0 && !(state is StateLakituRight) && !(state is StateLakituThrowing) && !(state is StateLakituDead))
@@ -117,11 +124,12 @@ namespace GameSpace.GameObjects.EnemyObjects
                 }
                 //StateSprite.Facing
                 //state.StateSprite.Update(gametime);
-                Sprite.Update(gametime);
+                //Sprite.Update(gametime);
 
                 ExpandedCollisionBox = CollisionBox;
             }
             UpdatePosition(Position, gametime);
+            Sprite.Update(gametime);
             state.Update(gametime);
         }
         public override void UpdatePosition(Vector2 location, GameTime gameTime) //use velocity
@@ -152,14 +160,20 @@ namespace GameSpace.GameObjects.EnemyObjects
 
         public override void Trigger()
         {
-            if(!(state is StateLakituDead))
+            if(!(state is StateLakituDead) && !(state is StateLakituCloud))
             {
-                Debug.Print("LAKITU KILLED");
-                state = new StateLakituDead(this);
+                //Debug.Print("LAKIT");
+                //state = new StateLakituDead(this);
+                state = new StateLakituCloud(this);
                 //SpawnCloudObject();
-                //CollisionBox = new Rectangle((int)Position.X, (int)Position.Y, 48, 48);
-                CollisionBox = new Rectangle(0, 0, 0, 0);
+                CollisionBox = new Rectangle((int)Position.X, (int)Position.Y, 48, 48);
+                //CollisionBox = new Rectangle(0, 0, 0, 0);
                 //ExpandedCollisionBox = CollisionBox;
+            }
+            else if(state is StateLakituCloud && MarioHandler.GetInstance().getCloudMario() == false)
+            {
+                //Debug.Print("TRIGGER CLOUDSTATE");
+                state.Trigger();
             }
 
 

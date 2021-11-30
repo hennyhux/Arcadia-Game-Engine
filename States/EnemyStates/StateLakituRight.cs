@@ -15,7 +15,7 @@ namespace GameSpace.States
 
         public StateLakituRight(Lakitu lakitu)
         {
-            //Debug.WriteLine("CREATE RIGHT SPRITE: ," );
+            Debug.WriteLine("CREATE RIGHT SPRITE: ," );
             //StateSprite = SpriteEnemyFactory.GetInstance().CreateLakituRightSprite();
             CollidedWithMario = false;
             Lakitu = lakitu;
