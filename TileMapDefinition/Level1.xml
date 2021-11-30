@@ -19,12 +19,12 @@
 
 	<Objects>
 		<x>20</x>
-		<y>50</y>
+		<y>300</y>
 		<enemy>LAKITU</enemy>
 	</Objects>
 	
 	<Objects>
-		<x>200</x>
+		<x>500</x>
 		<y>50</y>
 		<enemy>SPINY</enemy>
 	</Objects>

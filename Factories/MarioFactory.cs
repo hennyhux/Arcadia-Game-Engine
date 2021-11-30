@@ -12,6 +12,7 @@ namespace GameSpace.Factories
     {
         private protected static GameRoot instanceGame;
         private Texture2D normalMarioSprite;
+        private Texture2D Cloud;
         private static MarioFactory instance = new MarioFactory();
         //private int currentState = SmallMarioStanding;
 
@@ -377,6 +378,7 @@ namespace GameSpace.Factories
         {
             //Debug.WriteLine("MFactory(86) load content");
             normalMarioSprite = content.Load<Texture2D>("AvatarSprite/OGMarioSheet");
+            Cloud = content.Load<Texture2D>("Enemies/lakitu2");
         }
 
         public Mario ReturnMario(Vector2 location)
@@ -484,5 +486,11 @@ namespace GameSpace.Factories
         {
             return new MarioSprite(normalMarioSprite, 350, 200, 0, 2, 5);
         }
+
+        public LakituSprite MarioCloudSprite()//mario.SmallMarioFallingSprite
+        {
+            return new LakituSprite(Cloud, 1, 1, 1, 1, 1, true);
+        }
+
     }
 }

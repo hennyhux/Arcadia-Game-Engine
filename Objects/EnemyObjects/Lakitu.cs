@@ -82,31 +82,34 @@ namespace GameSpace.GameObjects.EnemyObjects
         }
         public override void Update(GameTime gametime)
         {
-            
+
             //UpdateSpeed();
             //UpdateCollisionBox(Position);
-            UpdatePosition(Position, gametime);
+
             //Velocity = new Vector2(-1, 0);
-            trackMovement(gametime);
-            state.Update(gametime);
+            
             if (!(state is StateLakituDead))
             {
-                if (Velocity.X > 0 && !(state is StateLakituRight) && !(state is StateLakituThrowing))
+                trackMovement(gametime);
+                if (Velocity.X > 0 && !(state is StateLakituRight) && !(state is StateLakituThrowing) && !(state is StateLakituDead))
+                //if (Velocity.X > 0 && (state is StateLakituLeft) && !(state is StateLakituDead))
                 {
+
                     state = new StateLakituRight(this);
 
                 }
-                else if (Velocity.X < 0 && !(state is StateLakituLeft) && !(state is StateLakituThrowing))
+                else if (Velocity.X < 0 && !(state is StateLakituLeft) && !(state is StateLakituThrowing) && !(state is StateLakituDead))
+                //else if (Velocity.X > 0 && (state is StateLakituRight) && !(state is StateLakituDead))
                 {
                     state = new StateLakituLeft(this);
                 }
                 if (state is StateLakituDead)
                 {
-                    CollisionBox = new Rectangle(0, 0, 0, 0);
+                    CollisionBox = new Rectangle((int)Position.X, (int)Position.Y, 48, 48);
                 }
                 if (state is StateLakituDead)
                 {
-                    CollisionBox = new Rectangle(0, 0, 0, 0);
+                    CollisionBox = new Rectangle((int)Position.X, (int)Position.Y, 48, 48);
                 }
                 else
                 {
@@ -118,6 +121,8 @@ namespace GameSpace.GameObjects.EnemyObjects
 
                 ExpandedCollisionBox = CollisionBox;
             }
+            UpdatePosition(Position, gametime);
+            state.Update(gametime);
         }
         public override void UpdatePosition(Vector2 location, GameTime gameTime) //use velocity
         {
@@ -147,11 +152,16 @@ namespace GameSpace.GameObjects.EnemyObjects
 
         public override void Trigger()
         {
-            Debug.Print("LAKITU KILLED");
-            state = new StateLakituDead(this);
-            //SpawnCloudObject();
-            CollisionBox = new Rectangle(0, 0, 0, 0);
-            ExpandedCollisionBox = CollisionBox;
+            if(!(state is StateLakituDead))
+            {
+                Debug.Print("LAKITU KILLED");
+                state = new StateLakituDead(this);
+                //SpawnCloudObject();
+                //CollisionBox = new Rectangle((int)Position.X, (int)Position.Y, 48, 48);
+                CollisionBox = new Rectangle(0, 0, 0, 0);
+                //ExpandedCollisionBox = CollisionBox;
+            }
+
 
         }
 

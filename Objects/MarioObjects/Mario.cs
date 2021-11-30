@@ -43,6 +43,8 @@ namespace GameSpace.GameObjects.BlockObjects
 
         public string Player { get; set; }
 
+        public bool onCloud { get; set; }
+
         public Mario(Vector2 initLocation)
         {
             ObjectID = (int)AvatarID.MARIO;
@@ -60,6 +62,8 @@ namespace GameSpace.GameObjects.BlockObjects
             IsInvincible = false;
             Player = "Mario";
             IsDead = false;
+            onCloud = true;
+
         }
 
         public void Draw(SpriteBatch spritebatch)
@@ -74,8 +78,14 @@ namespace GameSpace.GameObjects.BlockObjects
                     sprite.Facing = SpriteEffects.FlipHorizontally;
                     break;
             }
-
-            sprite.Draw(spritebatch, Position, IsInvincible);
+            if(onCloud == false)
+            {
+                sprite.Draw(spritebatch, Position, IsInvincible);
+            }
+            else
+            {
+                sprite.Draw(spritebatch, Position, IsInvincible, onCloud);
+            }
             if (drawBox)
             {
                 sprite.DrawBoundary(spritebatch, CollisionBox);
