@@ -315,11 +315,22 @@ namespace GameSpace.EntityManaging
 
         public void EnemyToMarioCollision(AbstractEnemy enemy)
         {
+
             if (DetectCollisionDirection(enemy, mario) == (int)CollisionDirection.UP)
             {
                 mario.score += 100;
                 enemy.Trigger();
             }
+        }
+
+        public void EnemyToMarioCollision(SpinyRefactored enemy)
+        {
+
+        }
+
+        public void EnemyToMarioCollision(Spiny enemy)
+        {
+
         }
 
         public void EnemyToMarioCollision(GreenKoopa enemy)

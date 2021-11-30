@@ -117,11 +117,6 @@ namespace GameSpace.GameObjects.EnemyObjects
 
         public override void Trigger()
         {
-            //Debug.Print("Spiny KILLED");
-            //state = new StateSpinyDead(this);
-            //SpawnCloudObject();
-            //CollisionBox = new Rectangle(0, 0, 0, 0);
-            //ExpandedCollisionBox = CollisionBox;
 
         }
 
@@ -131,7 +126,7 @@ namespace GameSpace.GameObjects.EnemyObjects
             return state;
         }
 
-       /*public override void HandleCollision(IGameObjects entity)
+       public override void HandleCollision(IGameObjects entity)
         {
             switch (entity.ObjectID)
             {
@@ -139,7 +134,7 @@ namespace GameSpace.GameObjects.EnemyObjects
                     CollisionHandler.GetInstance().EnemyToMarioCollision(this);
                     break;
             }
-        }*/
+        }
 
         #endregion
     }

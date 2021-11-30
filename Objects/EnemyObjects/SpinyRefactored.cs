@@ -25,9 +25,9 @@ namespace GameSpace.GameObjects.EnemyObjects
         {
             switch (entity.ObjectID)
             {
-                case (int)AvatarID.MARIO:
-                    EnemyCollisionHandler.GetInstance().HandleMarioCollision(this);
-                    break;
+                //case (int)AvatarID.MARIO:
+                  //  EnemyCollisionHandler.GetInstance().HandleMarioCollision(this);
+                    //break;
 
                 case (int)BlockID.USEDBLOCK:
                 case (int)BlockID.QUESTIONBLOCK:

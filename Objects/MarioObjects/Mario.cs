@@ -393,6 +393,10 @@ namespace GameSpace.GameObjects.BlockObjects
                     CollisionHandler.GetInstance().ChangeMarioStatesUponCollision(entity);
                     CollisionHandler.GetInstance().MarioToEnemyCollision((GreenKoopa)entity);
                     break;
+                case (int)EnemyID.SPINY:
+                    CollisionHandler.GetInstance().ChangeMarioStatesUponCollision(entity);
+                    CollisionHandler.GetInstance().MarioToEnemyCollision((SpinyRefactored)entity);
+                    break;
                 case (int)EnemyID.REDKOOPA:
                     CollisionHandler.GetInstance().ChangeMarioStatesUponCollision(entity);
                     CollisionHandler.GetInstance().MarioToEnemyCollision(entity);
