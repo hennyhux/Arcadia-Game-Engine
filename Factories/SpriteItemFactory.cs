@@ -16,7 +16,7 @@ namespace GameSpace.Factories
         private Texture2D FireBall;
         private Texture2D HitFireball;
         private Texture2D WarpPipeHead;
-
+        private Texture2D Vine;
         #endregion
         private static readonly SpriteItemFactory instance = new SpriteItemFactory();
         public static SpriteItemFactory GetInstance()
@@ -40,6 +40,7 @@ namespace GameSpace.Factories
             FireBall = content.Load<Texture2D>("Items/FireBalls");
             WarpPipeHead = content.Load<Texture2D>("Items/WarpPipeHead");
             HitFireball = content.Load<Texture2D>("Items/HitFireballs");
+            Vine = content.Load<Texture2D>("Items/Vine");
         }
         public ISprite CreateStar()
         {
@@ -85,7 +86,10 @@ namespace GameSpace.Factories
         {
             return new BigPipeSprite(WarpPipeHead, 1, 1, 1);
         }
-
+        public ISprite CreateVine()
+        {
+            return new VineSprite(Vine, 1, 1, 1, 0, 0);
+        }
         public ISprite CreateWarpPipeHeadBack()
         {
             return new HiddenLevelVerticalPipeSprite(WarpPipeHead, 1, 1, 1);

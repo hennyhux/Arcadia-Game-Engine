@@ -139,6 +139,11 @@ namespace GameSpace.Factories
             return new Plant(location);
         }
 
+        public IGameObjects CreateVineObject(Vector2 location)
+        {
+            return new Vine(location);
+        }
+
         #endregion
 
         #region Items
@@ -237,6 +242,11 @@ namespace GameSpace.Factories
         {
             return new WarpPipeHeadRoom(location);
         }
+        public IGameObjects CreateWarpVineBlock(Vector2 location)
+        {
+            return new WarpVineBlock(location);
+        }
+
 
         public IGameObjects CreateWarpPipeBody(Vector2 location)
         {

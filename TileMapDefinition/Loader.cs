@@ -137,7 +137,6 @@ namespace GameSpace.TileMapDefinition
                 case BlockID.SUPERSHROOMQUESTIONBLOCK:
                     objects.Add(objectFactory.CreateQuestionBlockShroom(location));
                     break;
-
                 case BlockID.FIREFLOWERQUESTIONBLOCK:
                     objects.Add(objectFactory.CreateQuestionBlockFire(location));
                     break;
@@ -189,6 +188,9 @@ namespace GameSpace.TileMapDefinition
                 case ItemID.WARPPIPEHEADWITHMOB:
                     objects.Add(objectFactory.CreateWarpPipeHeadWithMob(location));
                     break;
+                case ItemID.WARPVINEWITHBLOCK:
+                    objects.Add(objectFactory.CreateVineObject(location));
+                    break;
                 case ItemID.HIDDENLEVELHORIZONTALPIPE:
                     objects.Add(objectFactory.CreateHiddenLevelHorizontalPipe(location));
                     break;
@@ -212,6 +214,9 @@ namespace GameSpace.TileMapDefinition
                     break;
                 case ItemID.BLACKWINDOW:
                     objects.Add(objectFactory.CreateBlackWindow(location));
+                    break;
+                case ItemID.VINE:
+                    objects.Add(objectFactory.CreateVineObject(location));
                     break;
             }
         }
