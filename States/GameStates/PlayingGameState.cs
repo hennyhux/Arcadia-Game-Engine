@@ -187,6 +187,11 @@ namespace GameSpace.States.GameStates
         {
 
         }
+
+        public void addObject(IGameObjects newObject)
+        {
+            objects.Add(newObject);
+        }
     }
 
     public abstract class State

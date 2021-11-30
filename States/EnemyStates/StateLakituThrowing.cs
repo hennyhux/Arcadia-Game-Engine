@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Diagnostics;
 
+using GameSpace.EntityManaging;
 namespace GameSpace.States
 {
     public class StateLakituThrowing : IEnemyState
@@ -68,6 +69,10 @@ namespace GameSpace.States
             else
             {
                 animationFinished = true;
+                //Throw Spiny
+                //objects.Add(objectFactory.CreateSpinyObject(location));
+                TheaterHandler.GetInstance().QueueItemAddToStage(ObjectFactory.GetInstance().CreateSpinyObject(Lakitu.Position));
+                
                 Lakitu.Position = new Vector2(Lakitu.Position.X, Lakitu.Position.Y - 21);
                 Lakitu.state = new StateLakituLeft(Lakitu);
 
