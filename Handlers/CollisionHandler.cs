@@ -598,12 +598,30 @@ namespace GameSpace.EntityManaging
             {
                 enemy.Direction = (int)MarioDirection.LEFT;
 
+
             }
 
             else if (CollisionHandler.GetInstance().DetectCollisionDirection(enemy, block) == (int)CollisionDirection.RIGHT)
             {
                 enemy.Direction = (int)MarioDirection.RIGHT;
 
+            }
+        }
+
+        public void HandleBlockCollision(SpinyRefactored enemy, IGameObjects block)
+        {
+            if (CollisionHandler.GetInstance().DetectCollisionDirection(enemy, block) == (int)CollisionDirection.LEFT)
+            {
+                enemy.Direction = (int)MarioDirection.LEFT;
+                enemy.state = new StateSpinyAliveLeft(enemy);
+
+
+            }
+
+            else if (CollisionHandler.GetInstance().DetectCollisionDirection(enemy, block) == (int)CollisionDirection.RIGHT)
+            {
+                enemy.Direction = (int)MarioDirection.RIGHT;
+                enemy.state = new StateSpinyAliveRight(enemy);
             }
         }
 
@@ -615,6 +633,7 @@ namespace GameSpace.EntityManaging
                 enemy.Trigger();
             }
         }
+
     }
 }
 

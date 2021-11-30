@@ -144,6 +144,11 @@ namespace GameSpace.Factories
             return new Vine(location);
         }
 
+        public IGameObjects CreateSpinyObject(Vector2 location)
+        {
+            return new SpinyRefactored(location);
+        }
+
         #endregion
 
         #region Items

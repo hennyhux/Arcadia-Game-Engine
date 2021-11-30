@@ -16,8 +16,12 @@
 		<y>356</y>
 		<enemy>UBERGOOMBA</enemy>
 	</Objects>
-	
-	
+
+	<Objects>
+		<x>500</x>
+		<y>250</y>
+		<enemy>LAKITU</enemy>
+	</Objects>
 	
 		<Objects>
 		<x>250</x>
