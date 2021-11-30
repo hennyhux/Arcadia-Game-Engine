@@ -21,6 +21,7 @@ namespace GameSpace.States
             Lakitu = lakitu;
             Lakitu.state = this;
             Lakitu.Velocity = lakitu.Velocity;
+            //Lakitu.Velocity = new Vector2(150, Lakitu.Velocity.Y);
             lakitu.Sprite = SpriteEnemyFactory.GetInstance().CreateLakituRightSprite();
 
         }

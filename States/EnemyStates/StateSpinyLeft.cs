@@ -20,6 +20,7 @@ namespace GameSpace.States
             Spiny = spiny;
             Spiny.state = this;
             Spiny.Velocity = Spiny.Velocity;
+            Spiny.Velocity = new Vector2(-150, Spiny.Velocity.Y);
             Spiny.Sprite = SpriteEnemyFactory.GetInstance().CreateSpinySprite();
         }
 
