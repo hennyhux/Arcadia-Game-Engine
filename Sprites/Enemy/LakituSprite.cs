@@ -17,6 +17,7 @@ namespace GameSpace.Sprites
 
         private bool IsVisible;
 
+        private int IsThrowing;
         public Texture2D Texture { get; set; }
         public int Height { get; set; }
         public int Width { get; set; }
@@ -57,6 +58,7 @@ namespace GameSpace.Sprites
             totalFrames = 0;
             facingRight = isFacingRight;
             newState = true;
+            IsThrowing = action;
 
             Facing = SpriteEffects.None;
 
@@ -87,6 +89,10 @@ namespace GameSpace.Sprites
                 {
                     currentFrame = 2;
                     //Debug.WriteLine(" FACING RIGHT," );
+                }
+                if(IsThrowing == 1)
+                {
+                    currentFrame = 1;
                 }
                 //Debug.WriteLine(" currentFrame: {0},", currentFrame);
                 /*else if (actionState == 2)//Walking
