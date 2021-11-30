@@ -613,6 +613,7 @@ namespace GameSpace.EntityManaging
                 enemy.Trigger();
             }
         }
+
     }
 }
 

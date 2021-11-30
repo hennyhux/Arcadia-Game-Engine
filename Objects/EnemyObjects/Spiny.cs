@@ -72,7 +72,7 @@ namespace GameSpace.GameObjects.EnemyObjects
                 //state.StateSprite.Update(gametime);
                 Sprite.Update(gametime);
 
-                ExpandedCollisionBox = CollisionBox = new Rectangle((int)Position.X, (int)Position.Y, 32, 32 + 5); ;
+                ExpandedCollisionBox = CollisionBox = new Rectangle((int)Position.X, (int)Position.Y, 32+ 4, 32 + 4); ;
             }
         }
         public override void UpdateSpeed()
@@ -125,11 +125,11 @@ namespace GameSpace.GameObjects.EnemyObjects
 
         public override void Trigger()
         {
-            Debug.Print("Spiny KILLED");
+            //Debug.Print("Spiny KILLED");
             //state = new StateSpinyDead(this);
             //SpawnCloudObject();
-            CollisionBox = new Rectangle(0, 0, 0, 0);
-            ExpandedCollisionBox = CollisionBox;
+            //CollisionBox = new Rectangle(0, 0, 0, 0);
+            //ExpandedCollisionBox = CollisionBox;
 
         }
 
@@ -139,7 +139,7 @@ namespace GameSpace.GameObjects.EnemyObjects
             return state;
         }
 
-       /* public override void HandleCollision(IGameObjects entity)
+       /*public override void HandleCollision(IGameObjects entity)
         {
             switch (entity.ObjectID)
             {
