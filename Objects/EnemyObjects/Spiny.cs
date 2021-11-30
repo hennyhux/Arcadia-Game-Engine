@@ -63,13 +63,13 @@ namespace GameSpace.GameObjects.EnemyObjects
                 }
                 else
                 {
-                    CollisionBox = new Rectangle((int)Position.X, (int)Position.Y, 32, 32);
+                    CollisionBox = new Rectangle((int)Position.X, (int)Position.Y, 30, 30);
                 }
                 //StateSprite.Facing
                 //state.StateSprite.Update(gametime);
                 Sprite.Update(gametime);
 
-                ExpandedCollisionBox = CollisionBox = new Rectangle((int)Position.X, (int)Position.Y, 32+ 4, 32 + 4); 
+                ExpandedCollisionBox = CollisionBox = new Rectangle((int)Position.X, (int)Position.Y, 32, 32 + 8); 
             }
 
             UpdateSpeed();

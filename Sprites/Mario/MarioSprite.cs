@@ -198,7 +198,7 @@ namespace GameSpace.Sprites
                 
                     if (!(IsInvincible && invisibleCount % 2 == 0))
                         spriteBatch.Draw(Texture, destinationRectangle, sourceRectangle, Color.White, 0, new Vector2(0, 0), Facing, 0);
-                CloudSprite.Draw(spriteBatch, new Vector2(location.X, location.Y + Height));
+                CloudSprite.Draw(spriteBatch, new Vector2(location.X - 8, location.Y + Height));
             }
 
         }

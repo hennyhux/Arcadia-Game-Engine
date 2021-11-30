@@ -77,7 +77,7 @@ namespace GameSpace.EntityManaging
             Rectangle overLappedRectangle = Rectangle.Intersect(a.CollisionBox, b.CollisionBox);
             int direction = 0;
 
-            if (!overLappedRectangle.IsEmpty)
+            /*if (!overLappedRectangle.IsEmpty)
             {
                 if (overLappedRectangle.Width > overLappedRectangle.Height && a.Position.Y < b.Position.Y)
                 {
@@ -98,10 +98,45 @@ namespace GameSpace.EntityManaging
                 {
                     direction = (int)CollisionDirection.LEFT;
                 }
+            }*/
+
+            
+
+            float player_bottom = a.Position.Y + a.CollisionBox.Height;
+            float tiles_bottom = b.Position.Y + b.CollisionBox.Height;
+            float player_right = a.Position.X + a.CollisionBox.Width;
+            float tiles_right = b.Position.X + b.CollisionBox.Width;
+
+            float b_collision = tiles_bottom - a.Position.Y;
+            float t_collision = player_bottom - b.Position.Y;
+            float l_collision = player_right - b.Position.X;
+            float r_collision = tiles_right - a.Position.X;
+
+            if (t_collision < b_collision && t_collision < l_collision && t_collision < r_collision)
+            {
+                //Top collision
+                direction = (int)CollisionDirection.DOWN;
+            }
+            if (b_collision < t_collision && b_collision < l_collision && b_collision < r_collision)
+            {
+                //bottom collision
+                direction = (int)CollisionDirection.UP;
+            }
+            if (l_collision < r_collision && l_collision < t_collision && l_collision < b_collision)
+            {
+                //Left collision
+                direction = (int)CollisionDirection.LEFT;
+            }
+            if (r_collision < l_collision && r_collision < t_collision && r_collision < b_collision)
+            {
+                //Right collision
+                direction = (int)CollisionDirection.RIGHT;
             }
 
             return direction;
         }
+
+
 
         private bool IntersectAABB(IGameObjects a, IGameObjects b)
         {
