@@ -4,6 +4,7 @@ using GameSpace.EntityManaging;
 using GameSpace.Enums;
 using GameSpace.GameObjects.BlockObjects;
 using GameSpace.GameObjects.ItemObjects;//TEMP
+using GameSpace.Level;
 using GameSpace.Sprites;//TEMP
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
@@ -196,11 +197,11 @@ namespace GameSpace.Machines
 
     }
 
-    public class HealthBar 
+    public class HealthBar : AbstractHandler
     {
         Texture2D texture;
         Vector2 position;
-        Rectangle rectangle;
+        private Rectangle rectangle; //Instead of some int value that denotes health we will use rectangles
 
         public HealthBar(ContentManager content, Vector2 position)
         {
@@ -222,9 +223,11 @@ namespace GameSpace.Machines
         public void DecrementHealth(Mario mario)
         {
             rectangle.Width -= 32;
-            if (rectangle.Width <= 0)
+            if (rectangle.Width <= 1)
             {
-                mario.IsDead = true;
+                mario.MarioPowerUpState.DeadTransition();
+                gameRootCopy.RestartCurrentState();
+                rectangle = new Rectangle(0, 0, texture.Width, texture.Height);
             }
         }
     }

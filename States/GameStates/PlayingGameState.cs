@@ -183,15 +183,6 @@ namespace GameSpace.States.GameStates
             spriteBatch.End();
         }
 
-        private void BuildButtons()
-        {
-
-        }
-
-        public void addObject(IGameObjects newObject)
-        {
-            objects.Add(newObject);
-        }
     }
 
     public abstract class State

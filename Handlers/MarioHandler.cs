@@ -137,6 +137,11 @@ namespace GameSpace.Machines
 
         }
 
+        public void MarioTakesDamage()
+        {
+            mario.MarioPowerUpState.DamageTransition();
+        }
+
         public void ResetMarioLives()
         {
             marioLives = 3;

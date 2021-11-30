@@ -89,7 +89,7 @@ namespace GameSpace.GameObjects.EnemyObjects
         internal virtual void UpdateCollisionBox(Vector2 location)
         {
             enemy.CollisionBox = new Rectangle((int)location.X, (int)location.Y,
-                StateSprite.Texture.Width / 8, StateSprite.Texture.Height /2 + 4);
+                StateSprite.Texture.Width / 8, StateSprite.Texture.Height /2 );
 
             enemy.ExpandedCollisionBox = new Rectangle((int)location.X, (int)location.Y,
                 StateSprite.Texture.Width / 8, (StateSprite.Texture.Height /2 ) + 6);
