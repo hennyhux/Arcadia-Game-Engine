@@ -96,7 +96,7 @@ namespace GameSpace.GameObjects.BlockObjects
             
 
 
-            UpdatePosition(Position, gametime);
+            UpdateCollisionBox(Position, gametime);
             MarioPowerUpState.Update(gametime);
             MarioActionState.Update(gametime);
             sprite.Update(gametime);
@@ -204,8 +204,10 @@ namespace GameSpace.GameObjects.BlockObjects
 
         #endregion
 
-        public void UpdatePosition(Vector2 location, GameTime gameTime)
+        public void UpdateCollisionBox(Vector2 location, GameTime gameTime)
         {
+
+
             if (!(MarioPowerUpState is States.BlockStates.DeadMarioState))
             {
                 if (MarioPowerUpState is SmallMarioState)
@@ -227,9 +229,13 @@ namespace GameSpace.GameObjects.BlockObjects
 
             else
             {
-                CollisionBox = new Rectangle(0, 0, 0, 0);
-                ExpandedCollisionBox = new Rectangle(0, 0, 0, 0);
+                KillCollision();
             }
+        }
+
+        private void KillCollision()
+        {
+            CollisionBox = new Rectangle(0, 0, 0, 0);
         }
 
         public void HandleCollision(IGameObjects entity)
@@ -295,20 +301,20 @@ namespace GameSpace.GameObjects.BlockObjects
 
                 case (int)EnemyID.GOOMBA:
                     CollisionHandler.GetInstance().ChangeMarioStatesUponCollision(entity);
-                    CollisionHandler.GetInstance().MarioToEnemyCollision(entity);
+                    if (!IsInvincible)CollisionHandler.GetInstance().MarioToEnemyCollision(entity);
                     break;
                 case (int)EnemyID.GREENKOOPA:
                     CollisionHandler.GetInstance().ChangeMarioStatesUponCollision(entity);
-                    CollisionHandler.GetInstance().MarioToEnemyCollision((GreenKoopa)entity);
+                    if (!IsInvincible) CollisionHandler.GetInstance().MarioToEnemyCollision((GreenKoopa)entity);
                     break;
                 case (int)EnemyID.REDKOOPA:
                     CollisionHandler.GetInstance().ChangeMarioStatesUponCollision(entity);
-                    CollisionHandler.GetInstance().MarioToEnemyCollision(entity);
+                    if (!IsInvincible) CollisionHandler.GetInstance().MarioToEnemyCollision(entity);
                     break;
 
                 case (int)EnemyID.UBERGOOMBA:
                     CollisionHandler.GetInstance().ChangeMarioStatesUponCollision(entity);
-                    CollisionHandler.GetInstance().MarioToEnemyCollision(entity);
+                    if (!IsInvincible) CollisionHandler.GetInstance().MarioToEnemyCollision(entity);
                     break;
             }
         }

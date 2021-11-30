@@ -183,10 +183,6 @@ namespace GameSpace.States.GameStates
             spriteBatch.End();
         }
 
-        private void BuildButtons()
-        {
-
-        }
     }
 
     public abstract class State

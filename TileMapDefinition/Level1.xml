@@ -24,19 +24,7 @@
 		<enemy>GOOMBA</enemy>
 	</Objects>
 	
-	<Objects>
-		<x>250</x>
-		<y>100</y>
-		<block>VINEHIDDENBLOCK</block>
-	</Objects>
-	
-	
-	<Objects>
-		<x>90</x>
-		<y>250</y>
-		<block>VINEHIDDENBLOCK</block>
-	</Objects>
-	
+
 		<Objects>
 		<x>220</x>
 		<y>356</y>
@@ -125,7 +113,7 @@
 	
 	<Objects>
 		<x>400</x>
-		<y>320</y>
+		<y>340</y>
 		<item>WARPPIPEBODY</item>
 	</Objects>
 	
