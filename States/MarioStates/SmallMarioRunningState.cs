@@ -3,7 +3,7 @@ using GameSpace.Factories;
 using GameSpace.GameObjects.BlockObjects;
 using GameSpace.Interfaces;
 using Microsoft.Xna.Framework;
-using System.Diagnostics;
+ 
 
 namespace GameSpace.States.MarioStates
 {
@@ -89,7 +89,7 @@ namespace GameSpace.States.MarioStates
         {
             if (Mario.Facing == MarioDirection.LEFT)
             {
-                Debug.WriteLine("SmallRunning(107) Run/Face Left, Increase(-) Velocity");
+                //Debug.WriteLine("SmallRunning(107) Run/Face Left, Increase(-) Velocity");
             }
             else
             {
@@ -101,7 +101,7 @@ namespace GameSpace.States.MarioStates
         {
             if (Mario.Facing == MarioDirection.RIGHT)
             {//incease Velocity
-                Debug.WriteLine("SmallRunning(107) Run/Face Right, Increase(+) Velocity");
+               // Debug.WriteLine("SmallRunning(107) Run/Face Right, Increase(+) Velocity");
             }
             //WalkingTransition();
 

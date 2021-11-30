@@ -223,7 +223,6 @@ namespace GameSpace.GameObjects.BlockObjects
             onCloud = false;
             Acceleration = new Vector2(Acceleration.X, 600);
             MarioActionState.UpTransition();
-            //Velocity = new Vector2(Velocity.X, -1);
         }
 
         public void LeapTransition()
@@ -236,8 +235,6 @@ namespace GameSpace.GameObjects.BlockObjects
             if (onCloud)
             {
                 Velocity = new Vector2(Velocity.X, Velocity.Y + 150);
-                //onCloud = false;
-                //MarioActionState.UpTransition();
 
             }
             else
