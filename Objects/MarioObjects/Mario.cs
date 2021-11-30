@@ -52,7 +52,7 @@ namespace GameSpace.GameObjects.BlockObjects
             Position = new Vector2((int)initLocation.X, (int)initLocation.Y);
             numFireballs = 30;
             //marioLives = 3;
-            Acceleration = new Vector2(0, 150);//NEW
+            Acceleration = new Vector2(0, 0);//NEW
             sprite = MarioFactory.GetInstance().CreateSprite(1);
             MarioPowerUpState = new SmallMarioState(this);
             MarioActionState = new SmallMarioStandingState(this);
@@ -94,8 +94,9 @@ namespace GameSpace.GameObjects.BlockObjects
 
         public void CloudMovement()
         {
-            Debug.WriteLine("IN CLOUD MOVEMENT, {0}, VELO: {1}", onCloud, Velocity.Y);
-            Velocity = new Vector2(Velocity.X, -50);
+            Debug.WriteLine("IN CLOUD MOVEMENT, {0}, VELO: {1}, ACCEL {2}", onCloud, Velocity.Y, Acceleration.Y);
+            //Velocity = new Vector2(Velocity.X, -50);
+            //Acceleration = new Vector2(Acceleration.X, -125);
         }
         public void Update(GameTime gametime)
         {
@@ -103,7 +104,7 @@ namespace GameSpace.GameObjects.BlockObjects
             {
                 FallingTransition();
             }
-            
+            //Velocity += Acceleration * (float)gametime.ElapsedGameTime.TotalSeconds;
             Vector2 newLocation = Velocity * (float)gametime.ElapsedGameTime.TotalSeconds;
             if (!CollisionHandler.GetInstance().IsGoingToBeOutOfBounds(this, newLocation))
             {
@@ -160,9 +161,19 @@ namespace GameSpace.GameObjects.BlockObjects
         public void UpTransition()
         {
             if (onCloud)
-            {
-                onCloud = false;
-                MarioActionState.UpTransition();
+            { 
+                if(Velocity.Y < 0)
+                {
+                    onCloud = false;
+                    Acceleration = new Vector2(Acceleration.X, 0);
+                    MarioActionState.UpTransition();
+                }
+                else
+                {
+                    Velocity = new Vector2(Velocity.X, Velocity.Y - 150);
+                }
+                
+                
             }
             else
             {
@@ -178,7 +189,18 @@ namespace GameSpace.GameObjects.BlockObjects
 
         public void DownTransition()
         {
-            MarioActionState.DownTransition();
+            if (onCloud)
+            {
+                Velocity = new Vector2(Velocity.X, Velocity.Y + 150);
+                //onCloud = false;
+                //MarioActionState.UpTransition();
+
+            }
+            else
+            {
+                MarioActionState.DownTransition();
+            }
+            
         }
 
         public void CrouchingDiscontinueTransition() { MarioActionState.CrouchingDiscontinueTransition(); }//when you exit crouch, release down key
