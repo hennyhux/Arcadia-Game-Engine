@@ -124,7 +124,12 @@ namespace GameSpace.Abstracts
         public virtual void AdjustLocationComingOutOfBlock()
         {
             Position = new Vector2(Position.X + 6, Position.Y - Sprite.Texture.Height * 2);
-            CollisionBox = new Rectangle((int)Position.X, (int)Position.Y, Sprite.Texture.Width * 2 / 4, Sprite.Texture.Height * 2);
+            UpdateCollisionBox();
+        }
+
+        public virtual void AdjustVineLocation(Vector2 blockLocation)
+        {
+            Position = new Vector2(blockLocation.X + 6, Position.Y);
         }
     }
 }

@@ -117,6 +117,10 @@ namespace GameSpace.TileMapDefinition
                     break;
                 #endregion
 
+                case BlockID.VINEHIDDENBLOCK:
+                    objects.Add(objectFactory.CreateVineHiddenBlockObject(location));
+                    break;
+
                 #region Question Blocks
                 case BlockID.QUESTIONBLOCK: //NOT USED IN LEVEL 1-1
                     objects.Add(objectFactory.CreateQuestionBlockObject(location));

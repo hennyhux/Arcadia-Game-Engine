@@ -144,6 +144,11 @@ namespace GameSpace.Factories
             return new Vine(location);
         }
 
+        public IGameObjects CreateVineHiddenBlockObject(Vector2 location)
+        {
+            return new HiddenBlockWithVine(location);
+        }
+
         public IGameObjects CreateSpinyObject(Vector2 location)
         {
             return new SpinyRefactored(location);

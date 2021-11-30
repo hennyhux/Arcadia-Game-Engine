@@ -3,39 +3,119 @@ using GameSpace.EntityManaging;
 using GameSpace.Enums;
 using GameSpace.Factories;
 using GameSpace.Interfaces;
+using GameSpace.States;
 using GameSpace.States.BlockStates;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace GameSpace.GameObjects.BlockObjects
 {
-    public class HiddenBlock : AbstractBlock
+    public class HiddenBlock : Block
     {
         public HiddenBlock(Vector2 initalPosition)
         {
             ObjectID = (int)BlockID.HIDDENBLOCK;
-            state = new StateHiddenBlockIdle();
-            Sprite = SpriteBlockFactory.GetInstance().ReturnHiddenBlock();
+            state = new StateHiddenBlockIdleRedux(this);
             Position = initalPosition;
-            CollisionBox = new Rectangle((int)Position.X, (int)Position.Y, Sprite.Texture.Width * 2, Sprite.Texture.Height * 2);
         }
 
         public override void Trigger()
         {
-            state = new StateHiddenBlockBump(this);
+            state.Trigger();
+        }
+    }
+
+    public class HiddenBlockWithVine : Block
+    {
+        private bool hasRevealedItem;
+        public HiddenBlockWithVine(Vector2 initalPosition)
+        {
+            ObjectID = (int)BlockID.VINEHIDDENBLOCK;
+            state = new HiddenVineBlockIdle(this);
+            Position = initalPosition;
+            hasRevealedItem = false;
+            item = (AbstractItem)ObjectFactory.GetInstance().CreateVineObject(new Vector2(Position.X, Position.Y - 64));
         }
 
-        public override void HandleCollision(IGameObjects entity)
+        public override void Trigger()
         {
-            if (CollisionHandler.GetInstance().DetectCollisionDirection(this, entity) == (int)CollisionDirection.DOWN && hasCollided == false && entity.Velocity.Y < 0)
-            {
-                Trigger();
-                hasCollided = true;
-            }
+            state.Trigger();
         }
 
         public override bool RevealItem()
         {
-            throw new System.NotImplementedException();
+            if (!hasRevealedItem)
+            {
+                TheaterHandler.GetInstance().AddItemToStage(item);
+                hasRevealedItem = true;
+            }
+            return hasRevealedItem;
+        }
+    }
+
+    public class HiddenVineBlockIdle : VineBlockStates
+    {
+        public HiddenVineBlockIdle(HiddenBlockWithVine block) : base(block)
+        {
+            StateSprite = SpriteBlockFactory.GetInstance().ReturnHiddenBlock();
+        }
+
+        public override void Trigger()
+        {
+            block.state = new HiddenVineBlockBumped(block);
+            block.RevealItem();
+        }
+    }
+
+    public class HiddenVineBlockBumped : VineBlockStates
+    {
+        public HiddenVineBlockBumped(HiddenBlockWithVine block) : base(block)
+        {
+            StateSprite = new BumpAnimation(SpriteBlockFactory.GetInstance().ReturnUsedBlock().Texture, (int)block.Position.X, (int)block.Position.Y, 24);
+        }
+
+        public override void Trigger()
+        {
+            
+        }
+    }
+
+    public abstract class VineBlockStates : IBlockState
+    {
+        public ISprite StateSprite { get; set; }
+        internal protected HiddenBlockWithVine block;
+
+        protected VineBlockStates(HiddenBlockWithVine block)
+        {
+            this.block = block;
+        }
+
+        public virtual void Draw(SpriteBatch spriteBatch, Vector2 location)
+        {
+            StateSprite.Draw(spriteBatch, location);
+        }
+
+        public virtual void DrawBounds(SpriteBatch spriteBatch, Rectangle CollisionBox)
+        {
+            StateSprite.DrawBoundary(spriteBatch, CollisionBox);
+        }
+
+        public virtual void Update(GameTime gameTime)
+        {
+            StateSprite.Update(gameTime);
+            UpdateCollisionBox();
+        }
+
+        public abstract void Trigger();
+        public virtual void RevealItem()
+        {
+
+        }
+
+        internal protected virtual void UpdateCollisionBox()
+        {
+            block.CollisionBox = new Rectangle((int)block.Position.X, (int)block.Position.Y,
+                StateSprite.Texture.Width *2, StateSprite.Texture.Height *2);
         }
     }
 }
