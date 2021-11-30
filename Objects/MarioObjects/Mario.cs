@@ -124,7 +124,6 @@ namespace GameSpace.GameObjects.BlockObjects
 
 
             if (onCloud) CloudMovement(gametime);
-            UpdatePosition(Position, gametime);
             if (!onCloud)
             {
                 MarioPowerUpState.Update(gametime);// these
@@ -301,7 +300,6 @@ namespace GameSpace.GameObjects.BlockObjects
 
         public void UpdateCollisionBox(Vector2 location, GameTime gameTime)
         {
-
 
             if (!(MarioPowerUpState is States.BlockStates.DeadMarioState))
             {
