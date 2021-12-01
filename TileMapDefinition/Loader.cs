@@ -68,6 +68,12 @@ namespace GameSpace.TileMapDefinition
                         objects.Add(objectFactory.CreateHiddenLevelFloorBlockObject(new Vector2(obstacles.x + (32 * i), obstacles.y)));
                     }
                     break;
+                case BlockID.VINEBLOCK:
+                    for (int i = 0; i < obstacles.blockRow; i++)
+                    {
+                        objects.Add(objectFactory.CreateVineBlockObject(new Vector2(obstacles.x + (32 * i), obstacles.y)));
+                    }
+                    break;
                 case BlockID.HIDDENBLOCK:
                     objects.Add(objectFactory.CreateHiddenBlockObject(location));
                     break;

@@ -60,6 +60,11 @@ namespace GameSpace.Factories
             return new FloorBlock(location);
         }
 
+        public IGameObjects CreateVineBlockObject(Vector2 location)
+        {
+            return new VineBlock(location);
+        }
+
         public IGameObjects CreateHiddenLevelFloorBlockObject(Vector2 location)
         {
             return new HiddenLevelFloorBlock(location);
