@@ -259,7 +259,7 @@ namespace GameSpace.Machines
         {
             rectangle.Width += (int)(experinceScale* exp);
 
-            if (rectangle.Width > 96)
+            if (rectangle.Width > 96 && currentMarioLevel < 3)
             {
                 MusicHandler.GetInstance().PlaySoundEffect(14);
                 MarioHandler.GetInstance().LevelMarioUp();

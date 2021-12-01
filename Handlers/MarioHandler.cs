@@ -154,7 +154,26 @@ namespace GameSpace.Machines
 
         public void LevelMarioUp()
         {
+            switch (currentMarioLevel)
+            {
+                case 0:
+                    currentMarioLevel = 1;
+                    damageTakenScale = 30;
+                    experinceScale = 0.9f;
+                    break;
 
+                case 1:
+                    currentMarioLevel = 2;
+                    damageTakenScale = 28;
+                    experinceScale = 0.9f;
+                    break;
+
+                case 2:
+                    currentMarioLevel = 3;
+                    damageTakenScale = 26;
+                    experinceScale = 0.8f;
+                    break;
+            }
         }
 
         public void CalculateFinalScore(int marioY, int poleY)

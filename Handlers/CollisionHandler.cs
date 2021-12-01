@@ -418,8 +418,6 @@ namespace GameSpace.EntityManaging
             
         }
 
-
-
         public void MarioToEnemyCollision(IGameObjects enemy)
         {
             if (DetectCollisionDirection(mario, enemy) != (int)CollisionDirection.DOWN)
@@ -467,8 +465,6 @@ namespace GameSpace.EntityManaging
             mario.StartClimbing();
 
         }
-
-        
 
         public void MarioToItemCollision(Star item)
         {

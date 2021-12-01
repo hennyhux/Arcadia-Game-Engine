@@ -11,13 +11,6 @@
 		<facing>RIGHT</facing>
 	</Objects>
 
-
-	<Objects>
-		<x>400</x>
-		<y>125</y>
-		<enemy>LAKITU</enemy>
-	</Objects>
-
 	<Objects>
 		<x>500</x>
 		<y>300</y>
@@ -172,12 +165,6 @@
 		<x>896</x>
 		<y>310</y>
 		<item>WARPPIPEHEADWITHMOB</item>
-	</Objects>
-	
-	<Objects>
-		<x>200</x>
-		<y>210</y>
-		<enemy>UBERKOOPA</enemy>
 	</Objects>
 	
 	<Objects>

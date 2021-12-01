@@ -135,7 +135,7 @@ namespace GameSpace.GameObjects.BlockObjects
         
         public void Update(GameTime gametime)
         {
-            if (Velocity.Y == 0 && CollisionHandler.GetInstance().IsGoingToFall() && onCloud == false)
+            if (Velocity.Y >= 0 && CollisionHandler.GetInstance().IsGoingToFall() && onCloud == false)
             {
                 FallingTransition();
             }
@@ -154,7 +154,6 @@ namespace GameSpace.GameObjects.BlockObjects
                 MarioActionState.Update(gametime);// may be wrong for cloud mario
             }
 
-            UpdateCollisionBox(Position, gametime);
 
 
             sprite.Update(gametime);
@@ -171,6 +170,9 @@ namespace GameSpace.GameObjects.BlockObjects
                 //Debug.WriteLine("NOT invincibleTimer, {0}", invincibleTimer);
                 //Debug.WriteLine("NOT IsInvincible, {0}", IsInvincible);
             }
+
+            UpdateCollisionBox(Position, gametime);
+
         }
 
         #region Mario States 
@@ -202,7 +204,7 @@ namespace GameSpace.GameObjects.BlockObjects
                 MarioActionState.FaceLeftTransition();
             }
 
-                
+         
         }
         public void FaceRightTransition()
         {
@@ -253,7 +255,7 @@ namespace GameSpace.GameObjects.BlockObjects
 
         public void LeapTransition()
         {
-            //MarioActionState.LeapTransition();
+            MarioActionState.JumpingTransition();
             Debug.Print("Leap Transition");
             Velocity = new Vector2(Velocity.X, -250);
         }
@@ -352,19 +354,16 @@ namespace GameSpace.GameObjects.BlockObjects
                     CollisionBox = new Rectangle((int)Position.X, (int)Position.Y, 32, 64);
                 }
 
-                ExpandedCollisionBox = new Rectangle(CollisionBox.X, CollisionBox.Y, CollisionBox.Width, CollisionBox.Height + 5);
+                ExpandedCollisionBox = new Rectangle(CollisionBox.X, CollisionBox.Y, CollisionBox.Width, CollisionBox.Height +5);
             }
 
             else
             {
-                //KillCollision();
+                CollisionBox = new Rectangle(0, 0, 0, 0);
+                ExpandedCollisionBox = new Rectangle(0, 0, 0, 0);
             }
         }
 
-        private void KillCollision()
-        {
-            CollisionBox = new Rectangle(0, 0, 0, 0);
-        }
 
         public void HandleCollision(IGameObjects entity)
         {

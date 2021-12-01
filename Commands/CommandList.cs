@@ -32,6 +32,7 @@ namespace GameSpace
                 {Keys.U, new StateSuperMarioCommand(game)},
                 {Keys.I, new StateFireMarioCommand(game)},
                 {Keys.O, new TakeDamage(game)},//DamageTransition
+                {Keys.F1, new IncreaseEXP()},
                 {Keys.C, new ToggleCollisionBoxes()},
                 {Keys.Space, new ThrowFireBallCommand(game)},
                 {Keys.G, new SpawnOneUpShroomCommand(game)},
