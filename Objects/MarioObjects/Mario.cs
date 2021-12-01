@@ -166,8 +166,8 @@ namespace GameSpace.GameObjects.BlockObjects
             {
 
                 IsInvincible = false;
-                Debug.WriteLine("NOT invincibleTimer, {0}", invincibleTimer);
-                Debug.WriteLine("NOT IsInvincible, {0}", IsInvincible);
+                //Debug.WriteLine("NOT invincibleTimer, {0}", invincibleTimer);
+                //Debug.WriteLine("NOT IsInvincible, {0}", IsInvincible);
             }
         }
 
