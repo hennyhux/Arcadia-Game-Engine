@@ -33,7 +33,7 @@ namespace GameSpace.States.MarioStates
 
         public override void Exit()
         {
-            Mario.Velocity = new Vector2(Mario.Velocity.X, -15);
+            //Mario.Velocity = new Vector2(Mario.Velocity.X, -15);
             //Mario.Acceleration = new Vector2(0, 0);
         }
 

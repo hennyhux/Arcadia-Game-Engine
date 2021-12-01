@@ -55,7 +55,7 @@ namespace GameSpace.GameObjects.BlockObjects
             Position = new Vector2((int)initLocation.X, (int)initLocation.Y);
             numFireballs = 30;
             //marioLives = 3;
-            Acceleration = new Vector2(0, 0);//NEW
+            Acceleration = new Vector2(0, 150);//NEW
             sprite = MarioFactory.GetInstance().CreateSprite(1);
             MarioPowerUpState = new SmallMarioState(this);
             MarioActionState = new SmallMarioStandingState(this);
@@ -135,7 +135,12 @@ namespace GameSpace.GameObjects.BlockObjects
         
         public void Update(GameTime gametime)
         {
-            if (Velocity.Y == 0 && CollisionHandler.GetInstance().IsGoingToFall() && onCloud == false)
+            Debug.WriteLine("collison, {0}, expand: {1}, positionX{2}", CollisionBox.Y, ExpandedCollisionBox.Y, Position.Y);
+            if (Velocity.Y >= 0 && CollisionHandler.GetInstance().IsGoingToFall() && onCloud == false)
+            {
+                FallingTransition();
+            }
+            if (Velocity.Y >= 0 && CollisionHandler.GetInstance().IsGoingToFall() && onCloud == false && MarioActionState is SmallMarioJumpingState)
             {
                 FallingTransition();
             }
@@ -361,10 +366,6 @@ namespace GameSpace.GameObjects.BlockObjects
             }
         }
 
-        private void KillCollision()
-        {
-            CollisionBox = new Rectangle(0, 0, 0, 0);
-        }
 
         public void HandleCollision(IGameObjects entity)
         {

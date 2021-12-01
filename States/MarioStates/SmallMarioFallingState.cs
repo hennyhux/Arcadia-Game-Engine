@@ -3,7 +3,7 @@ using GameSpace.Factories;
 using GameSpace.GameObjects.BlockObjects;
 using GameSpace.Interfaces;
 using Microsoft.Xna.Framework;
-
+using System.Diagnostics;
 namespace GameSpace.States.MarioStates
 {
     internal class SmallMarioFallingState : MarioActionStates//MarioPowerUpStates
@@ -16,6 +16,7 @@ namespace GameSpace.States.MarioStates
 
         public override void Enter(IMarioActionStates previousActionState)
         {
+            Debug.Print("FALLING");
             Mario.MarioActionState = this;
             this.previousActionState = previousActionState;
             // Debug.WriteLine("MarioFallingState(25) Enter, {0}", Mario.marioActionState);
@@ -99,7 +100,7 @@ namespace GameSpace.States.MarioStates
 
         public override void UpTransition()
         {
-            StandingTransition();
+            //StandingTransition();
         }
         public override void DownTransition()
         {
