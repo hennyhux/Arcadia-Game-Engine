@@ -45,6 +45,8 @@ namespace GameSpace.GameObjects.BlockObjects
 
         public bool onCloud { get; set; }
 
+        public bool isClimbing { get; set; }
+
         public Mario(Vector2 initLocation)
         {
             ObjectID = (int)AvatarID.MARIO;
@@ -108,6 +110,19 @@ namespace GameSpace.GameObjects.BlockObjects
             }
         }
 
+        public void StartClimbing()
+        {
+            sprite.EnterClimb();
+            Velocity = new Vector2(0, -100);
+        }
+
+        public void CheckVineTeleport()
+        {
+            if(Position.Y <= 50)
+            {
+
+            }
+        }
         
         public void Update(GameTime gametime)
         {
@@ -124,13 +139,15 @@ namespace GameSpace.GameObjects.BlockObjects
 
 
             if (onCloud) CloudMovement(gametime);
-            UpdatePosition(Position, gametime);
             if (!onCloud)
             {
                 MarioPowerUpState.Update(gametime);// these
                 MarioActionState.Update(gametime);// may be wrong for cloud mario
             }
-            
+
+            UpdateCollisionBox(Position, gametime);
+
+
             sprite.Update(gametime);
 
             if (invincibleTimer > 0)
@@ -296,8 +313,9 @@ namespace GameSpace.GameObjects.BlockObjects
 
         #endregion
 
-        public void UpdatePosition(Vector2 location, GameTime gameTime)
+        public void UpdateCollisionBox(Vector2 location, GameTime gameTime)
         {
+
             if (!(MarioPowerUpState is States.BlockStates.DeadMarioState))
             {
                 if (MarioPowerUpState is SmallMarioState)
@@ -319,9 +337,13 @@ namespace GameSpace.GameObjects.BlockObjects
 
             else
             {
-                CollisionBox = new Rectangle(0, 0, 0, 0);
-                ExpandedCollisionBox = new Rectangle(0, 0, 0, 0);
+                KillCollision();
             }
+        }
+
+        private void KillCollision()
+        {
+            CollisionBox = new Rectangle(0, 0, 0, 0);
         }
 
         public void HandleCollision(IGameObjects entity)
@@ -358,7 +380,10 @@ namespace GameSpace.GameObjects.BlockObjects
                 case (int)ItemID.FLAGPOLE:
                     CollisionHandler.GetInstance().MarioToItemCollision((FlagPole)entity);
                     break;
-
+                case (int)ItemID.VINE:
+                    CollisionHandler.GetInstance().ChangeMarioStatesUponCollision(entity);
+                    CollisionHandler.GetInstance().MarioToItemCollision((Vine)entity);
+                    break;
                 case (int)BlockID.QUESTIONBLOCK:
                 case (int)BlockID.BRICKBLOCK:
                 case (int)BlockID.FLOORBLOCK:
@@ -387,20 +412,24 @@ namespace GameSpace.GameObjects.BlockObjects
 
                 case (int)EnemyID.GOOMBA:
                     CollisionHandler.GetInstance().ChangeMarioStatesUponCollision(entity);
-                    CollisionHandler.GetInstance().MarioToEnemyCollision(entity);
+                    if (!IsInvincible)CollisionHandler.GetInstance().MarioToEnemyCollision(entity);
                     break;
                 case (int)EnemyID.GREENKOOPA:
                     CollisionHandler.GetInstance().ChangeMarioStatesUponCollision(entity);
-                    CollisionHandler.GetInstance().MarioToEnemyCollision((GreenKoopa)entity);
+                    if (!IsInvincible) CollisionHandler.GetInstance().MarioToEnemyCollision((GreenKoopa)entity);
+                    break;
+                case (int)EnemyID.SPINY:
+                    CollisionHandler.GetInstance().ChangeMarioStatesUponCollision(entity);
+                    CollisionHandler.GetInstance().MarioToEnemyCollision((SpinyRefactored)entity);
                     break;
                 case (int)EnemyID.REDKOOPA:
                     CollisionHandler.GetInstance().ChangeMarioStatesUponCollision(entity);
-                    CollisionHandler.GetInstance().MarioToEnemyCollision(entity);
+                    if (!IsInvincible) CollisionHandler.GetInstance().MarioToEnemyCollision(entity);
                     break;
 
                 case (int)EnemyID.UBERGOOMBA:
                     CollisionHandler.GetInstance().ChangeMarioStatesUponCollision(entity);
-                    CollisionHandler.GetInstance().MarioToEnemyCollision(entity);
+                    if (!IsInvincible) CollisionHandler.GetInstance().MarioToEnemyCollision(entity);
                     break;
             }
         }
@@ -408,6 +437,11 @@ namespace GameSpace.GameObjects.BlockObjects
         public void ToggleCollisionBoxes()
         {
             drawBox = !drawBox;
+        }
+
+        public bool ReturnDrawCollisionBoxes()
+        {
+            return drawBox;
         }
 
         public bool RevealItem()

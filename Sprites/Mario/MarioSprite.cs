@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using GameSpace.Machines;
+using System.Diagnostics;
 
 namespace GameSpace.Sprites
 {
@@ -34,7 +35,7 @@ namespace GameSpace.Sprites
          * First 34 is small, next 34 is big, next 34 is fire, then star, then dead
          * 0-8 and 18-25 is Left Actions and 9-17 and 26-34 is Right Actions
          * 0-8 [Death, Crouch, Jump, Turn Around/Skid, Fireball, Run/Walk x3, Idle] Flipped to Right Side [Idle, Run/Walk x3, Fireball, Turn Around/Skid, Jump, Crouch, Death] 9-12
-         * 18-25 [Climb x2, Swim x6] Then Flipped to Right Side [Swim x6, Climb x2] 26-34
+         * 19-25 [Climb x2, Swim x6] Then Flipped to Right Side [Swim x6, Climb x2] 26-34
          * 
          * Small Mario does not have textures for crouching, fireball and Swim 5/6
          * Big Mario does not have textures for dying and fireball
@@ -97,7 +98,7 @@ namespace GameSpace.Sprites
             {
                 int startingFrame = 0;
                 totalFrames = totalFramesAnimation[currentFrame]; // gets previous frame's total frames in animation
-
+                actionState = 7;
                 Facing = SpriteEffects.None;
                 if (marioPower == 4)//Mario is dead
                 {
@@ -132,6 +133,13 @@ namespace GameSpace.Sprites
                 {
                     startingFrame = (0 + 17 * (facingRight));
                 }
+                else if (actionState == 7)//Climbing
+                {
+                    startingFrame = (19 + 14 * (facingRight) + (34 * (marioPower)));
+                    //Debug.WriteLine("START FRAME: {0}", startingFrame);
+                    //Facing = SpriteEffects.FlipVertically;
+                }
+                //18-19, 33-34
 
 
                 if (newState == false)
@@ -198,11 +206,20 @@ namespace GameSpace.Sprites
                 
                     if (!(IsInvincible && invisibleCount % 2 == 0))
                         spriteBatch.Draw(Texture, destinationRectangle, sourceRectangle, Color.White, 0, new Vector2(0, 0), Facing, 0);
-                CloudSprite.Draw(spriteBatch, new Vector2(location.X, location.Y + Height));
+                CloudSprite.Draw(spriteBatch, new Vector2(location.X - 8, location.Y + Height));
             }
 
         }
 
+        public void EnterClimb()
+        {
+            actionState = 7;
+        }
+
+        public void ExitClimb()
+        {
+            actionState = 0;
+        }
         public void UpdateLocation(Vector2 location)
         {
             throw new NotImplementedException();

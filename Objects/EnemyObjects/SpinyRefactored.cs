@@ -5,7 +5,7 @@ using GameSpace.Interfaces;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using GameSpace.Objects.EnemyObjects;
-
+using GameSpace.GameObjects.BlockObjects;
 namespace GameSpace.GameObjects.EnemyObjects
 {
     public class SpinyRefactored : Enemy
@@ -16,7 +16,7 @@ namespace GameSpace.GameObjects.EnemyObjects
             state = new StateSpinyAliveLeft(this);
             searchState = 1;
             Position = initalPosition;
-            drawBox = false;
+            drawBox = ((Mario)FinderHandler.GetInstance().FindItem((int)AvatarID.MARIO)).ReturnDrawCollisionBoxes();
             ObjectID = (int)EnemyID.SPINY;
             Direction = (int)MarioDirection.LEFT;
         }
@@ -25,9 +25,9 @@ namespace GameSpace.GameObjects.EnemyObjects
         {
             switch (entity.ObjectID)
             {
-                case (int)AvatarID.MARIO:
-                    EnemyCollisionHandler.GetInstance().HandleMarioCollision(this);
-                    break;
+                //case (int)AvatarID.MARIO:
+                  //  EnemyCollisionHandler.GetInstance().HandleMarioCollision(this);
+                    //break;
 
                 case (int)BlockID.USEDBLOCK:
                 case (int)BlockID.QUESTIONBLOCK:
@@ -89,7 +89,7 @@ namespace GameSpace.GameObjects.EnemyObjects
         internal virtual void UpdateCollisionBox(Vector2 location)
         {
             enemy.CollisionBox = new Rectangle((int)location.X, (int)location.Y,
-                StateSprite.Texture.Width / 8, StateSprite.Texture.Height /2 + 4);
+                StateSprite.Texture.Width / 8, StateSprite.Texture.Height /2 );
 
             enemy.ExpandedCollisionBox = new Rectangle((int)location.X, (int)location.Y,
                 StateSprite.Texture.Width / 8, (StateSprite.Texture.Height /2 ) + 6);

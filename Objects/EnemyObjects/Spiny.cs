@@ -63,13 +63,13 @@ namespace GameSpace.GameObjects.EnemyObjects
                 }
                 else
                 {
-                    CollisionBox = new Rectangle((int)Position.X, (int)Position.Y, 32, 32);
+                    CollisionBox = new Rectangle((int)Position.X, (int)Position.Y, 30, 30);
                 }
                 //StateSprite.Facing
                 //state.StateSprite.Update(gametime);
                 Sprite.Update(gametime);
 
-                ExpandedCollisionBox = CollisionBox = new Rectangle((int)Position.X, (int)Position.Y, 32+ 4, 32 + 4); 
+                ExpandedCollisionBox = CollisionBox = new Rectangle((int)Position.X, (int)Position.Y, 32, 32 + 8); 
             }
 
             UpdateSpeed();
@@ -83,7 +83,7 @@ namespace GameSpace.GameObjects.EnemyObjects
             if (CollisionHandler.GetInstance().IsGoingToFall(this))
             {
                 //Acceleration = new Vector2(0, 4000);
-                Velocity = new Vector2(Velocity.X, 300);
+                Velocity = new Vector2(Velocity.X, 200);
             }
 
             else
@@ -117,11 +117,6 @@ namespace GameSpace.GameObjects.EnemyObjects
 
         public override void Trigger()
         {
-            //Debug.Print("Spiny KILLED");
-            //state = new StateSpinyDead(this);
-            //SpawnCloudObject();
-            //CollisionBox = new Rectangle(0, 0, 0, 0);
-            //ExpandedCollisionBox = CollisionBox;
 
         }
 
@@ -131,7 +126,7 @@ namespace GameSpace.GameObjects.EnemyObjects
             return state;
         }
 
-       /*public override void HandleCollision(IGameObjects entity)
+       public override void HandleCollision(IGameObjects entity)
         {
             switch (entity.ObjectID)
             {
@@ -139,7 +134,7 @@ namespace GameSpace.GameObjects.EnemyObjects
                     CollisionHandler.GetInstance().EnemyToMarioCollision(this);
                     break;
             }
-        }*/
+        }
 
         #endregion
     }
