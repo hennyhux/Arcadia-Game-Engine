@@ -416,6 +416,8 @@ namespace GameSpace.EntityManaging
             
         }
 
+
+
         public void MarioToEnemyCollision(IGameObjects enemy)
         {
             if (DetectCollisionDirection(mario, enemy) != (int)CollisionDirection.DOWN)

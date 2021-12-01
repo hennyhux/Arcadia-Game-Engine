@@ -112,6 +112,7 @@ namespace GameSpace.GameObjects.BlockObjects
 
         public void StartClimbing()
         {
+            if (onCloud) ExitCloud();
             sprite.EnterClimb();
             Velocity = new Vector2(0, -100);
         }
@@ -251,7 +252,9 @@ namespace GameSpace.GameObjects.BlockObjects
 
         public void LeapTransition()
         {
-            MarioActionState.LeapTransition();
+            //MarioActionState.LeapTransition();
+            Debug.Print("Leap Transition");
+            Velocity = new Vector2(Velocity.X, -250);
         }
 
         public void DownTransition()
