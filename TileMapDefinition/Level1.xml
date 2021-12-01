@@ -11,11 +11,6 @@
 		<facing>RIGHT</facing>
 	</Objects>
 
-		<Objects>
-		<x>250</x>
-		<y>356</y>
-		<enemy>UBERGOOMBA</enemy>
-	</Objects>
 
 	<Objects>
 		<x>400</x>
@@ -53,6 +48,12 @@
 		<item>VINE</item>
 	</Objects>
 
+	
+		<Objects>
+		<x>250</x>
+		<y>356</y>
+		<enemy>UBERGOOMBA</enemy>
+	</Objects>
 	
 	<Objects>
 		<x>250</x>

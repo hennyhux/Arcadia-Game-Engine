@@ -100,6 +100,10 @@ namespace GameSpace.GameObjects.ItemObjects
                 case (int)EnemyID.GOOMBA:
                 case (int)EnemyID.GREENKOOPA:
                 case (int)EnemyID.REDKOOPA:
+                case (int)EnemyID.LAKITU:
+                case (int)EnemyID.UBERGOOMBA:
+                case (int)EnemyID.UBERKOOPA:
+                case (int)ItemID.WARPPIPEBODY:
                     Trigger();
                     break;
 
@@ -109,6 +113,7 @@ namespace GameSpace.GameObjects.ItemObjects
                 case (int)BlockID.STAIRBLOCK:
                 case (int)BlockID.COINBRICKBLOCK:
                 case (int)BlockID.BRICKBLOCK:
+
                 case (int)EnemyID.PLANT:
                     Trigger();
                     break;

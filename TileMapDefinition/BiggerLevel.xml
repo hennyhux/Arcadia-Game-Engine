@@ -5,7 +5,7 @@
 	<Description>					LEVEL 1 BEGINS					</Description>
 	
 	<Objects>
-		<x>10050</x>
+		<x>10000</x>
 		<y>370</y>
 		<avatar>MARIO</avatar>
 		<facing>RIGHT</facing>
@@ -1182,113 +1182,31 @@
 		<blockRow>7</blockRow>
 	</Objects>
 
-	
-	
-	<Objects>
-		<x>8433</x>
-		<y>306</y>
-		<item>HIDDENLEVELCOIN</item>
-	</Objects>
-	<Objects>
-		<x>8465</x>
-		<y>306</y>
-		<item>HIDDENLEVELCOIN</item>
-	</Objects>
-	<Objects>
-		<x>8497</x>
-		<y>306</y>
-		<item>HIDDENLEVELCOIN</item>
-	</Objects>
-	<Objects>
-		<x>8529</x>
-		<y>306</y>
-		<item>HIDDENLEVELCOIN</item>
-	</Objects>
-	<Objects>
-		<x>8561</x>
-		<y>306</y>
-		<item>HIDDENLEVELCOIN</item>
-	</Objects>
-	<Objects>
-		<x>8593</x>
-		<y>306</y>
-		<item>HIDDENLEVELCOIN</item>
-	</Objects>
-	<Objects>
-		<x>8625</x>
-		<y>306</y>
-		<item>HIDDENLEVELCOIN</item>
-	</Objects>
-
-
-
-	<Objects>
-		<x>8433</x>
-		<y>242</y>
-		<item>HIDDENLEVELCOIN</item>
-	</Objects>
-	<Objects>
-		<x>8465</x>
-		<y>242</y>
-		<item>HIDDENLEVELCOIN</item>
-	</Objects>
-	<Objects>
-		<x>8929</x>
-		<y>242</y>
-		<item>HIDDENLEVELCOIN</item>
-	</Objects>
-	<Objects>
-		<x>8529</x>
-		<y>242</y>
-		<item>HIDDENLEVELCOIN</item>
-	</Objects>
-	<Objects>
-		<x>8561</x>
-		<y>242</y>
-		<item>HIDDENLEVELCOIN</item>
-	</Objects>
-	<Objects>
-		<x>8593</x>
-		<y>242</y>
-		<item>HIDDENLEVELCOIN</item>
-	</Objects>
-	<Objects>
-		<x>8625</x>
-		<y>242</y>
-		<item>HIDDENLEVELCOIN</item>
-	</Objects>
 	<Objects>
 		<x>0</x>
 		<y>0</y>
 		<item>HUDCOIN</item>
 	</Objects>
+	
+	<Objects>
+		<x>8433</x>
+		<y>306</y>
+		<item>HIDDENLEVELCOIN</item>
+		<itemRow>7</itemRow>
+	</Objects>
 
-
+	<Objects>
+		<x>8433</x>
+		<y>242</y>
+		<item>HIDDENLEVELCOIN</item>
+		<itemRow>7</itemRow>
+	</Objects>
 
 	<Objects>
 		<x>8465</x>
 		<y>178</y>
 		<item>HIDDENLEVELCOIN</item>
-	</Objects>
-	<Objects>
-		<x>8497</x>
-		<y>178</y>
-		<item>HIDDENLEVELCOIN</item>
-	</Objects>
-	<Objects>
-		<x>8529</x>
-		<y>178</y>
-		<item>HIDDENLEVELCOIN</item>
-	</Objects>
-	<Objects>
-		<x>8529</x>
-		<y>178</y>
-		<item>HIDDENLEVELCOIN</item>
-	</Objects>
-	<Objects>
-		<x>8593</x>
-		<y>178</y>
-		<item>HIDDENLEVELCOIN</item>
+		<itemRow>5</itemRow>
 	</Objects>
 
 	<Objects>
@@ -1317,7 +1235,49 @@
 		<x>10000</x>
 		<y>434</y>
 		<block>FLOORBLOCK</block>
-		<blockRow>15</blockRow>
+		<blockRow>100</blockRow>
+	</Objects>
+	<Objects>
+		<x>10192</x>
+		<y>274</y>
+		<item>HIDDENLEVELCOIN</item>
+		<itemRow>10</itemRow>
+	</Objects>
+	<Objects>
+		<x>10576</x>
+		<y>242</y>
+		<item>HIDDENLEVELCOIN</item>
+		<itemRow>5</itemRow>
+	</Objects>
+	<Objects>
+		<x>10800</x>
+		<y>274</y>
+		<item>HIDDENLEVELCOIN</item>
+		<itemRow>20</itemRow>
+	</Objects>
+	<Objects>
+		<x>11536</x>
+		<y>242</y>
+		<item>HIDDENLEVELCOIN</item>
+		<itemRow>8</itemRow>
+	</Objects>
+	<Objects>
+		<x>11888</x>
+		<y>274</y>
+		<item>HIDDENLEVELCOIN</item>
+		<itemRow>10</itemRow>
+	</Objects>
+
+	<Objects>
+		<x>12272</x>
+		<y>370</y>
+		<item>WARPVINEWITHBLOCK</item>
+	</Objects>
+	
+	<Objects>
+		<x>13000</x>
+		<y>178</y>
+		<block>HIDDENBLOCK</block>
 	</Objects>
 	<Objects>
 		<x>10100</x>
