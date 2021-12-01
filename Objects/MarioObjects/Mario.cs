@@ -46,6 +46,8 @@ namespace GameSpace.GameObjects.BlockObjects
 
         public bool onCloud { get; set; }
 
+        public bool isClimbing { get; set; }
+
         public Mario(Vector2 initLocation)
         {
             ObjectID = (int)AvatarID.MARIO;
@@ -109,6 +111,26 @@ namespace GameSpace.GameObjects.BlockObjects
             }
         }
 
+        public void StartClimbing()
+        {
+            sprite.EnterClimb();
+            Velocity = new Vector2(0, -100);
+        }
+
+        public void EndClimbing()
+        {
+            sprite.ExitClimb();
+            Velocity = new Vector2(0, 0);
+            StandingTransition();
+        }
+
+        public void CheckVineTeleport()
+        {
+            if(Position.Y <= 50)
+            {
+
+            }
+        }
         
         public void Update(GameTime gametime)
         {
@@ -145,8 +167,8 @@ namespace GameSpace.GameObjects.BlockObjects
             {
 
                 IsInvincible = false;
-                Debug.WriteLine("NOT invincibleTimer, {0}", invincibleTimer);
-                Debug.WriteLine("NOT IsInvincible, {0}", IsInvincible);
+                //Debug.WriteLine("NOT invincibleTimer, {0}", invincibleTimer);
+                //Debug.WriteLine("NOT IsInvincible, {0}", IsInvincible);
             }
         }
 
@@ -287,7 +309,16 @@ namespace GameSpace.GameObjects.BlockObjects
             //Debug.WriteLine("IsInvincible, {0}", IsInvincible);
             if (!IsDead && !(IsInvincible))
             {
-                MarioPowerUpState.DamageTransition();
+                if (onCloud)
+                {
+                    //onCloud = false;
+                    ExitCloud();
+                }
+                else
+                {
+                    MarioPowerUpState.DamageTransition();
+                }
+                
                 invincibleTimer = 3;
 
             }
@@ -366,7 +397,10 @@ namespace GameSpace.GameObjects.BlockObjects
                 case (int)ItemID.FLAGPOLE:
                     CollisionHandler.GetInstance().MarioToItemCollision((FlagPole)entity);
                     break;
-
+                case (int)ItemID.VINE:
+                    CollisionHandler.GetInstance().ChangeMarioStatesUponCollision(entity);
+                    CollisionHandler.GetInstance().MarioToItemCollision((Vine)entity);
+                    break;
                 case (int)BlockID.QUESTIONBLOCK:
                 case (int)BlockID.BRICKBLOCK:
                 case (int)BlockID.FLOORBLOCK:
@@ -401,6 +435,10 @@ namespace GameSpace.GameObjects.BlockObjects
                     CollisionHandler.GetInstance().ChangeMarioStatesUponCollision(entity);
                     if (!IsInvincible) CollisionHandler.GetInstance().MarioToEnemyCollision((GreenKoopa)entity);
                     break;
+                case (int)EnemyID.SPINY:
+                    CollisionHandler.GetInstance().ChangeMarioStatesUponCollision(entity);
+                    CollisionHandler.GetInstance().MarioToEnemyCollision((SpinyRefactored)entity);
+                    break;
                 case (int)EnemyID.REDKOOPA:
                     CollisionHandler.GetInstance().ChangeMarioStatesUponCollision(entity);
                     if (!IsInvincible) CollisionHandler.GetInstance().MarioToEnemyCollision(entity);
@@ -431,6 +469,11 @@ namespace GameSpace.GameObjects.BlockObjects
         public void ToggleCollisionBoxes()
         {
             drawBox = !drawBox;
+        }
+
+        public bool ReturnDrawCollisionBoxes()
+        {
+            return drawBox;
         }
 
         public bool RevealItem()

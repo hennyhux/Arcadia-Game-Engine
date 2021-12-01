@@ -3,6 +3,7 @@ using GameSpace.GameObjects.EnemyObjects;
 using GameSpace.Interfaces;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System.Diagnostics;
 
 namespace GameSpace.States
 {
@@ -15,6 +16,8 @@ namespace GameSpace.States
 
         public StateSpinyDead(Spiny spiny)
         {
+            Debug.Print("DEAD SPINY CREATED()");
+            CollidedWithMario = false;
             spiny.Sprite = SpriteEnemyFactory.GetInstance().CreateDeadSpinySprite();
         }
 

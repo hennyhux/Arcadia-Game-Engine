@@ -7,7 +7,7 @@ using GameSpace.States;
 using GameSpace.States.BlockStates;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-
+using System.Diagnostics;
 namespace GameSpace.GameObjects.BlockObjects
 {
     public class HiddenBlock : Block
@@ -46,8 +46,14 @@ namespace GameSpace.GameObjects.BlockObjects
         {
             if (!hasRevealedItem)
             {
-                TheaterHandler.GetInstance().AddItemToStage(item);
                 hasRevealedItem = true;
+                TheaterHandler.GetInstance().AddItemToStage(item);
+                int dist = (int)item.Position.Y;
+                for(int i = 0; i < dist+50; i = i + 50)
+                {
+                    //Debug.WriteLine("Y cord: {0}", item.Position.Y - i);
+                    TheaterHandler.GetInstance().AddItemToStage((AbstractItem)ObjectFactory.GetInstance().CreateVineObject(new Vector2(item.Position.X, item.Position.Y - i)));
+                }
             }
             return hasRevealedItem;
         }
