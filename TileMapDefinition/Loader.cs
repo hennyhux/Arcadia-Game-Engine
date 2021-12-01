@@ -172,7 +172,10 @@ namespace GameSpace.TileMapDefinition
                     break;
                 #endregion
                 case ItemID.HIDDENLEVELCOIN: //Used on Hidden Level
-                    objects.Add(objectFactory.CreateHiddenLevelCoinObject(location));
+                    for (int i = 0; i < obstacles.itemRow; i++)
+                    {
+                        objects.Add(objectFactory.CreateHiddenLevelCoinObject(new Vector2(obstacles.x + (32 * i), obstacles.y)));
+                    }
                     break;
                 case ItemID.HUDCOIN: //Used on for Animated Coin in HUD
                     objects.Add(objectFactory.CreateHUDCoinObject(location));

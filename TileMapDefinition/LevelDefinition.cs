@@ -12,6 +12,7 @@ namespace GameSpace.TileMapDefinition
             public BlockID block;
             public int blockRow;
             public ItemID item;
+            public int itemRow;
             public EnemyID enemy;
             public AvatarID avatar;
             public MarioDirection facing;
