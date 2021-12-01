@@ -25,32 +25,14 @@
 
 	<Objects>
 		<x>500</x>
-		<y>0</y>
+		<y>300</y>
 		<item>WARPVINEWITHBLOCK</item>
 	</Objects>
 
 	<Objects>
-		<x>350</x>
+		<x>600</x>
 		<y>300</y>
-		<item>VINE</item>
-	</Objects>
-
-	<Objects>
-		<x>350</x>
-		<y>250</y>
-		<item>VINE</item>
-	</Objects>
-
-	<Objects>
-		<x>350</x>
-		<y>200</y>
-		<item>VINE</item>
-	</Objects>
-
-	<Objects>
-		<x>350</x>
-		<y>150</y>
-		<item>VINE</item>
+		<block>VINEHIDDENBLOCK</block>
 	</Objects>
 
 	<Objects>

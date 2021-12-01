@@ -308,7 +308,16 @@ namespace GameSpace.GameObjects.BlockObjects
             //Debug.WriteLine("IsInvincible, {0}", IsInvincible);
             if (!IsDead && !(IsInvincible))
             {
-                MarioPowerUpState.DamageTransition();
+                if (onCloud)
+                {
+                    //onCloud = false;
+                    ExitCloud();
+                }
+                else
+                {
+                    MarioPowerUpState.DamageTransition();
+                }
+                
                 invincibleTimer = 3;
 
             }
