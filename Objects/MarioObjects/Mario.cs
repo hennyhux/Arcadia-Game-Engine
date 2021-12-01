@@ -135,7 +135,7 @@ namespace GameSpace.GameObjects.BlockObjects
         
         public void Update(GameTime gametime)
         {
-            Debug.WriteLine("collison, {0}, expand: {1}, positionX{2}", CollisionBox.Y, ExpandedCollisionBox.Y, Position.Y);
+            //Debug.WriteLine("collison, {0}, expand: {1}, positionX{2}", CollisionBox.Y, ExpandedCollisionBox.Y, Position.Y);
             if (Velocity.Y >= 0 && CollisionHandler.GetInstance().IsGoingToFall() && onCloud == false)
             {
                 FallingTransition();
@@ -260,7 +260,8 @@ namespace GameSpace.GameObjects.BlockObjects
         {
             //MarioActionState.LeapTransition();
             Debug.Print("Leap Transition");
-            Velocity = new Vector2(Velocity.X, -250);
+            // Velocity = new Vector2(Velocity.X, -250);
+            MarioActionState.JumpingTransition();
         }
 
         public void DownTransition()
