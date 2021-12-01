@@ -144,6 +144,12 @@ namespace GameSpace.Factories
             return new Vine(location);
         }
 
+        public IGameObjects CreateVineWarpObject(Vector2 location)
+        {
+            return new Vine(location, 0);
+        }
+
+
         public IGameObjects CreateVineHiddenBlockObject(Vector2 location)
         {
             return new HiddenBlockWithVine(location);
@@ -198,7 +204,7 @@ namespace GameSpace.Factories
 
         public IGameObjects CreateFireBallObject(Mario mario)
         {
-            return new Fireball();
+            return new Fireball(mario);
         }
         #endregion
 

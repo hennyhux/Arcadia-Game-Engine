@@ -35,14 +35,22 @@ namespace GameSpace.GameObjects.ItemObjects
         private bool hasCollided;
         public Mario mario;
 
-        public Fireball()
+        public Fireball(Mario mario)
         {
             ObjectID = (int)ItemID.FIREBALL;
             Sprite = SpriteItemFactory.GetInstance().CreateFireBall();
             mario = FinderHandler.GetInstance().FindMario();
             Position = mario.Position;
             CollisionBox = new Rectangle((int)Position.X + 5, (int)Position.Y, (Sprite.Texture.Width * 2 / 8) - 10, Sprite.Texture.Height * 2 + 5);
-            Velocity = new Vector2(200, 0);
+            if (mario.Facing == MarioDirection.RIGHT)
+            {
+                Velocity = new Vector2(200, 0);
+            }
+
+            else
+            {
+                Velocity = new Vector2(-200, 0);
+            }
             hasCollided = false;
             drawBox = false;
             ++mario.numFireballs;
@@ -92,6 +100,10 @@ namespace GameSpace.GameObjects.ItemObjects
                 case (int)EnemyID.GOOMBA:
                 case (int)EnemyID.GREENKOOPA:
                 case (int)EnemyID.REDKOOPA:
+                case (int)EnemyID.LAKITU:
+                case (int)EnemyID.UBERGOOMBA:
+                case (int)EnemyID.UBERKOOPA:
+                case (int)ItemID.WARPPIPEBODY:
                     Trigger();
                     break;
 
@@ -101,6 +113,7 @@ namespace GameSpace.GameObjects.ItemObjects
                 case (int)BlockID.STAIRBLOCK:
                 case (int)BlockID.COINBRICKBLOCK:
                 case (int)BlockID.BRICKBLOCK:
+
                 case (int)EnemyID.PLANT:
                     Trigger();
                     break;

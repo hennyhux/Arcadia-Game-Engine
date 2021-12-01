@@ -2,6 +2,7 @@
 using GameSpace.Enums;
 using GameSpace.Factories;
 using GameSpace.Interfaces;
+using GameSpace.Machines;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -30,7 +31,14 @@ namespace GameSpace.Objects.EnemyObjects
             StateSprite.DrawBoundary(spritebatch, collisionBox);
         }
 
-        public abstract void Trigger();
+        public virtual void Trigger()
+        {
+            ++enemy.TimesCollided;
+            if (enemy.TimesCollided == 3)
+            {
+                enemy.state = new StateUberKoopaDead(enemy);
+            }
+        }
 
         public virtual void Update(GameTime gametime)
         {
@@ -93,13 +101,15 @@ namespace GameSpace.Objects.EnemyObjects
     }
     public class UberKoopa : Enemy
     {
+        public int TimesCollided { get; set; }
         public UberKoopa(Vector2 location)
         {
-            state = new StateUberKoopaAlive(this);
+            state = new StateUberKoopaAliveLeft(this);
             Position = location;
             drawBox = false;
             ObjectID = (int)EnemyID.UBERKOOPA;
             Direction = (int)MarioDirection.LEFT;
+            TimesCollided = 0;
         }
         public override void HandleCollision(IGameObjects entity)
         {
@@ -136,16 +146,53 @@ namespace GameSpace.Objects.EnemyObjects
         }
     }
 
-    public class StateUberKoopaAlive : StateUberKoopa
+    public class StateUberKoopaAliveLeft : StateUberKoopa
     {
-        public StateUberKoopaAlive(UberKoopa enemy) : base(enemy)
+        public StateUberKoopaAliveLeft(UberKoopa enemy) : base(enemy)
         {
             StateSprite = SpriteEnemyFactory.GetInstance().CreateUberKoopaSprite();
+        }
+    }
+
+    public class StateUberKoopaAliveRight : StateUberKoopa
+    {
+
+        public StateUberKoopaAliveRight(UberKoopa enemy) : base(enemy)
+        {
+            StateSprite = SpriteEnemyFactory.GetInstance().CreateUberKoopaRightSprite();
+        }
+    }
+
+    public class StateUberKoopaDead : StateUberKoopa
+    {
+        private Vector2 initialPosition;
+        private Vector2 goalPosition;
+        public StateUberKoopaDead(UberKoopa enemy) : base(enemy)
+        {
+            StateSprite = SpriteEnemyFactory.GetInstance().CreateUberKoopaDeadSprite();
+            HUDHandler.GetInstance().UpdateExp(20);
+            MarioHandler.GetInstance().IncrementMarioPoints(1000);
+            initialPosition = enemy.Position;
+            HaltAllMotion();
+            DestoryCollisionBox();
+            CalcGoalPos();
+            enemy.Acceleration = new Vector2(0, -445);
+        }
+
+        private void CalcGoalPos()
+        {
+            goalPosition = new Vector2(initialPosition.X, initialPosition.Y - 45f);
         }
 
         public override void Trigger()
         {
-            
+            //do nothing, chilling 
+        }
+
+        public override void Update(GameTime gametime)
+        {
+            StateSprite.Update(gametime);
+            UpdatePosition(enemy.Position, gametime);
         }
     }
 

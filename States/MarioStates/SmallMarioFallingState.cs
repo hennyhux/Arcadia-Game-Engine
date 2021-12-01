@@ -135,6 +135,8 @@ namespace GameSpace.States.MarioStates
             Mario.MarioActionState.Enter(this);
         }
 
+
+
         public override void CrouchingDiscontinueTransition() { }//when you exit crouch, release down key
         public override void FaceLeftDiscontinueTransition() { }//generic entering walk and run, face left then start walking, then start running
         public override void FaceRightDiscontinueTransition() { }

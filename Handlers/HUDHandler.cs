@@ -222,7 +222,7 @@ namespace GameSpace.Machines
 
         public void DecrementHealth(Mario mario)
         {
-            rectangle.Width -= 32;
+            rectangle.Width -= damageTakenScale;
             if (rectangle.Width <= 1)
             {
                 mario.MarioPowerUpState.DeadTransition();
@@ -232,11 +232,11 @@ namespace GameSpace.Machines
         }
     }
 
-    public class ExpBar
+    public class ExpBar : AbstractHandler
     {
         Texture2D texture;
         Vector2 position;
-        Rectangle rectangle;
+        private Rectangle rectangle;
 
         public ExpBar(ContentManager content, Vector2 position)
         {
@@ -257,7 +257,7 @@ namespace GameSpace.Machines
 
         public void IncrementExp(int exp)
         {
-            rectangle.Width += exp;
+            rectangle.Width += (int)(experinceScale* exp);
 
             if (rectangle.Width > 96)
             {

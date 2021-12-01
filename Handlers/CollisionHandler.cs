@@ -264,7 +264,9 @@ namespace GameSpace.EntityManaging
             {
                 if (enemy.ExpandedCollisionBox.Intersects(entity.CollisionBox) &&
                     entity.ObjectID != enemy.ObjectID &&
-                    entity.ObjectID != (int)AvatarID.MARIO)
+                    entity.ObjectID != (int)AvatarID.MARIO &&
+                    !(entity is AbstractEnemy) &&
+                    !(entity is Enemy))
                 {
                     gonnaFall = false;
                     break;
@@ -415,6 +417,8 @@ namespace GameSpace.EntityManaging
                 MarioToBlockCollision(block);
             
         }
+
+
 
         public void MarioToEnemyCollision(IGameObjects enemy)
         {
@@ -600,7 +604,7 @@ namespace GameSpace.EntityManaging
 
     public class MarioCollisionHandler : AbstractHandler
     {
-        private static readonly MarioCollisionHandler instance = new MarioCollisionHandler();
+        private static MarioCollisionHandler instance = new MarioCollisionHandler();
 
         public static MarioCollisionHandler GetInstance()
         {
@@ -610,6 +614,37 @@ namespace GameSpace.EntityManaging
         private MarioCollisionHandler()
         {
 
+        }
+
+        public void HandleEnemyCollision(IGameObjects enemy)
+        {
+            if (CollisionHandler.GetInstance().DetectCollisionDirection(mario, enemy) != (int)CollisionDirection.DOWN)
+            {
+                mario.Trigger();
+            }
+
+            else
+            {
+                mario.LeapTransition();
+            }
+        }
+
+        public void HandleEnemyCollision(UberKoopa enemy)
+        {
+            if (CollisionHandler.GetInstance().DetectCollisionDirection(mario, enemy) != (int)CollisionDirection.DOWN)
+            {
+                mario.LeapTransition();
+            }
+            mario.Trigger();
+
+        }
+
+        public void HandleEnemyCollision(Lakitu enemy)
+        {
+            if (CollisionHandler.GetInstance().DetectCollisionDirection(mario, enemy) != (int)CollisionDirection.DOWN)
+            {
+                mario.Trigger();
+            }
         }
     }
 
@@ -650,14 +685,26 @@ namespace GameSpace.EntityManaging
             if (CollisionHandler.GetInstance().DetectCollisionDirection(enemy, block) == (int)CollisionDirection.LEFT)
             {
                 enemy.Direction = (int)MarioDirection.LEFT;
-
-
             }
 
             else if (CollisionHandler.GetInstance().DetectCollisionDirection(enemy, block) == (int)CollisionDirection.RIGHT)
             {
                 enemy.Direction = (int)MarioDirection.RIGHT;
+            }
+        }
 
+        public void HandleBlockCollision(UberKoopa enemy, IGameObjects block)
+        {
+            if (CollisionHandler.GetInstance().DetectCollisionDirection(enemy, block) == (int)CollisionDirection.LEFT)
+            {
+                enemy.Direction = (int)MarioDirection.LEFT;
+                enemy.state = new StateUberKoopaAliveLeft(enemy);
+            }
+
+            else if (CollisionHandler.GetInstance().DetectCollisionDirection(enemy, block) == (int)CollisionDirection.RIGHT)
+            {
+                enemy.Direction = (int)MarioDirection.RIGHT;
+                enemy.state = new StateUberKoopaAliveRight(enemy);
             }
         }
 
@@ -667,8 +714,6 @@ namespace GameSpace.EntityManaging
             {
                 enemy.Direction = (int)MarioDirection.LEFT;
                 enemy.state = new StateSpinyAliveLeft(enemy);
-
-
             }
 
             else if (CollisionHandler.GetInstance().DetectCollisionDirection(enemy, block) == (int)CollisionDirection.RIGHT)
@@ -685,6 +730,31 @@ namespace GameSpace.EntityManaging
                 mario.score += 100;
                 enemy.Trigger();
             }
+        }
+
+        public void HandleMarioCollision(UberKoopa enemy)
+        {
+     
+        }
+
+        public void HandleMarioCollision(Lakitu enemy)
+        {
+            if (CollisionHandler.GetInstance().DetectCollisionDirection(enemy, mario) == (int)CollisionDirection.UP)
+            {
+                mario.score += 100;
+                enemy.Trigger();
+            }
+        }
+
+        public void HandleFireBallCollision(AbstractEnemy enemy)
+        {
+            enemy.Trigger();
+            mario.score += 100;
+        }
+
+        public void HandleFireBallCollision(Enemy enemy) // for the refactored abstract class 
+        {
+            enemy.Trigger();
         }
 
     }

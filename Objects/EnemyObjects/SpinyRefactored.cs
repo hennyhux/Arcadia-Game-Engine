@@ -6,6 +6,8 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using GameSpace.Objects.EnemyObjects;
 using GameSpace.GameObjects.BlockObjects;
+using GameSpace.Machines;
+
 namespace GameSpace.GameObjects.EnemyObjects
 {
     public class SpinyRefactored : Enemy
@@ -61,19 +63,19 @@ namespace GameSpace.GameObjects.EnemyObjects
             this.enemy = enemy;
         }
 
-        public void Draw(SpriteBatch spritebatch, Vector2 position)
+        public virtual void Draw(SpriteBatch spritebatch, Vector2 position)
         {
             StateSprite.Draw(spritebatch, position);
         }
 
-        public void DrawBoundingBox(SpriteBatch spritebatch, Rectangle collisionBox)
+        public virtual void DrawBoundingBox(SpriteBatch spritebatch, Rectangle collisionBox)
         {
             StateSprite.DrawBoundary(spritebatch, collisionBox);
         }
 
         public abstract void Trigger();
 
-        public void Update(GameTime gametime)
+        public virtual void Update(GameTime gametime)
         {
             StateSprite.Update(gametime);
             UpdatePosition(enemy.Position, gametime);
@@ -168,6 +170,7 @@ namespace GameSpace.GameObjects.EnemyObjects
         {
             StateSprite = SpriteEnemyFactory.GetInstance().CreateSpinyRightSprite();
             StateSprite.SetVisible();
+            MarioHandler.GetInstance().IncrementMarioPoints(100);
         }
 
         public override void Trigger()

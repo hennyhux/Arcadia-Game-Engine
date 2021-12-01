@@ -6,6 +6,7 @@ using GameSpace.GameObjects.ExtraItemsObjects;
 using GameSpace.GameObjects.ItemObjects;
 using GameSpace.Interfaces;
 using GameSpace.Level;
+using GameSpace.Objects.EnemyObjects;
 using GameSpace.Sprites;
 using GameSpace.States.BlockStates;
 using GameSpace.States.MarioStates;
@@ -112,8 +113,16 @@ namespace GameSpace.GameObjects.BlockObjects
 
         public void StartClimbing()
         {
+            if (onCloud) ExitCloud();
             sprite.EnterClimb();
             Velocity = new Vector2(0, -100);
+        }
+
+        public void EndClimbing()
+        {
+            sprite.ExitClimb();
+            Velocity = new Vector2(0, 0);
+            StandingTransition();
         }
 
         public void CheckVineTeleport()
@@ -159,8 +168,8 @@ namespace GameSpace.GameObjects.BlockObjects
             {
 
                 IsInvincible = false;
-                Debug.WriteLine("NOT invincibleTimer, {0}", invincibleTimer);
-                Debug.WriteLine("NOT IsInvincible, {0}", IsInvincible);
+                //Debug.WriteLine("NOT invincibleTimer, {0}", invincibleTimer);
+                //Debug.WriteLine("NOT IsInvincible, {0}", IsInvincible);
             }
         }
 
@@ -244,7 +253,9 @@ namespace GameSpace.GameObjects.BlockObjects
 
         public void LeapTransition()
         {
-            MarioActionState.LeapTransition();
+            //MarioActionState.LeapTransition();
+            Debug.Print("Leap Transition");
+            Velocity = new Vector2(Velocity.X, -250);
         }
 
         public void DownTransition()
@@ -301,7 +312,16 @@ namespace GameSpace.GameObjects.BlockObjects
             //Debug.WriteLine("IsInvincible, {0}", IsInvincible);
             if (!IsDead && !(IsInvincible))
             {
-                MarioPowerUpState.DamageTransition();
+                if (onCloud)
+                {
+                    //onCloud = false;
+                    ExitCloud();
+                }
+                else
+                {
+                    MarioPowerUpState.DamageTransition();
+                }
+                
                 invincibleTimer = 3;
 
             }
@@ -337,7 +357,7 @@ namespace GameSpace.GameObjects.BlockObjects
 
             else
             {
-                KillCollision();
+                //KillCollision();
             }
         }
 
@@ -431,6 +451,17 @@ namespace GameSpace.GameObjects.BlockObjects
                     CollisionHandler.GetInstance().ChangeMarioStatesUponCollision(entity);
                     if (!IsInvincible) CollisionHandler.GetInstance().MarioToEnemyCollision(entity);
                     break;
+
+                case (int)EnemyID.UBERKOOPA:
+                    CollisionHandler.GetInstance().ChangeMarioStatesUponCollision(entity);
+                    if (!IsInvincible) MarioCollisionHandler.GetInstance().HandleEnemyCollision((UberKoopa)entity);
+                    break;
+
+                case (int)EnemyID.LAKITU:
+                    CollisionHandler.GetInstance().ChangeMarioStatesUponCollision(entity);
+                    if (!IsInvincible) MarioCollisionHandler.GetInstance().HandleEnemyCollision((Lakitu)entity);
+                    break;
+
             }
         }
 

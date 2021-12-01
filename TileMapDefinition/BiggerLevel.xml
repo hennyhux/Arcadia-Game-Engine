@@ -1279,5 +1279,29 @@
 		<y>178</y>
 		<block>HIDDENBLOCK</block>
 	</Objects>
+	<Objects>
+		<x>10100</x>
+		<y>434</y>
+		<block>FLOORBLOCK</block>
+		<blockRow>15</blockRow>
+	</Objects>
+	<Objects>
+		<x>10200</x>
+		<y>434</y>
+		<block>FLOORBLOCK</block>
+		<blockRow>15</blockRow>
+	</Objects>
+	<Objects>
+		<x>10000</x>
+		<y>434</y>
+		<block>FLOORBLOCK</block>
+		<blockRow>15</blockRow>
+	</Objects>
+	<Objects>
+		<x>10000</x>
+		<y>434</y>
+		<block>FLOORBLOCK</block>
+		<blockRow>15</blockRow>
+	</Objects>
 	<Description>					VINE LEVEL ENDS					</Description>
 </Level>

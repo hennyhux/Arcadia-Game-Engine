@@ -98,7 +98,7 @@ namespace GameSpace.Sprites
             {
                 int startingFrame = 0;
                 totalFrames = totalFramesAnimation[currentFrame]; // gets previous frame's total frames in animation
-                actionState = 7;
+                //actionState = 7;
                 Facing = SpriteEffects.None;
                 if (marioPower == 4)//Mario is dead
                 {
