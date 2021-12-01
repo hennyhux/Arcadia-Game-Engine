@@ -116,6 +116,13 @@ namespace GameSpace.GameObjects.BlockObjects
             Velocity = new Vector2(0, -100);
         }
 
+        public void EndClimbing()
+        {
+            sprite.ExitClimb();
+            Velocity = new Vector2(0, 0);
+            StandingTransition();
+        }
+
         public void CheckVineTeleport()
         {
             if(Position.Y <= 50)

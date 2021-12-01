@@ -190,10 +190,11 @@ namespace GameSpace.TileMapDefinition
                     objects.Add(objectFactory.CreateWarpPipeHead(location));
                     break;
                 case ItemID.WARPPIPEHEADWITHMOB:
-                    objects.Add(objectFactory.CreateWarpPipeHeadWithMob(location));
+                    objects.Add(objectFactory.CreateWarpPipeHeadWithMob(location)); 
                     break;
                 case ItemID.WARPVINEWITHBLOCK:
-                    objects.Add(objectFactory.CreateVineObject(location));
+                    objects.Add(objectFactory.CreateVineWarpObject(location));
+                    //objects.Add(objectFactory.CreateVineObject(location));
                     break;
                 case ItemID.HIDDENLEVELHORIZONTALPIPE:
                     objects.Add(objectFactory.CreateHiddenLevelHorizontalPipe(location));
