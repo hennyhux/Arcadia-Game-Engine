@@ -404,7 +404,7 @@ namespace GameSpace.EntityManaging
                     break;
 
                 case (int)CollisionDirection.DOWN:
-                        mario.Position = new Vector2(mario.Position.X, (int)block.Position.Y - mario.CollisionBox.Height);
+                    mario.Position = new Vector2(mario.Position.X, (int)block.Position.Y - mario.CollisionBox.Height - 5);
                     Debug.Print("marioY(math): {0}, block.Y: {1}", (int)block.Position.Y - mario.CollisionBox.Height, block.Position.Y);
                     break;
             }

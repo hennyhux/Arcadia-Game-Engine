@@ -55,7 +55,7 @@ namespace GameSpace.GameObjects.BlockObjects
             Position = new Vector2((int)initLocation.X, (int)initLocation.Y);
             numFireballs = 30;
             //marioLives = 3;
-            Acceleration = new Vector2(0, 0);//NEW
+            Acceleration = new Vector2(0, 150);//NEW
             sprite = MarioFactory.GetInstance().CreateSprite(1);
             MarioPowerUpState = new SmallMarioState(this);
             MarioActionState = new SmallMarioStandingState(this);
@@ -135,7 +135,12 @@ namespace GameSpace.GameObjects.BlockObjects
         
         public void Update(GameTime gametime)
         {
+            //Debug.WriteLine("collison, {0}, expand: {1}, positionX{2}", CollisionBox.Y, ExpandedCollisionBox.Y, Position.Y);
             if (Velocity.Y >= 0 && CollisionHandler.GetInstance().IsGoingToFall() && onCloud == false)
+            {
+                FallingTransition();
+            }
+            if (Velocity.Y >= 0 && CollisionHandler.GetInstance().IsGoingToFall() && onCloud == false && MarioActionState is SmallMarioJumpingState)
             {
                 FallingTransition();
             }
@@ -257,7 +262,8 @@ namespace GameSpace.GameObjects.BlockObjects
         {
             MarioActionState.JumpingTransition();
             Debug.Print("Leap Transition");
-            Velocity = new Vector2(Velocity.X, -250);
+            // Velocity = new Vector2(Velocity.X, -250);
+            MarioActionState.JumpingTransition();
         }
 
         public void DownTransition()
@@ -432,11 +438,11 @@ namespace GameSpace.GameObjects.BlockObjects
 
                 case (int)EnemyID.GOOMBA:
                     CollisionHandler.GetInstance().ChangeMarioStatesUponCollision(entity);
-                    if (!IsInvincible)CollisionHandler.GetInstance().MarioToEnemyCollision(entity);
+                    CollisionHandler.GetInstance().MarioToEnemyCollision(entity);
                     break;
                 case (int)EnemyID.GREENKOOPA:
                     CollisionHandler.GetInstance().ChangeMarioStatesUponCollision(entity);
-                    if (!IsInvincible) CollisionHandler.GetInstance().MarioToEnemyCollision((GreenKoopa)entity);
+                    CollisionHandler.GetInstance().MarioToEnemyCollision((GreenKoopa)entity);
                     break;
                 case (int)EnemyID.SPINY:
                     CollisionHandler.GetInstance().ChangeMarioStatesUponCollision(entity);
@@ -444,22 +450,22 @@ namespace GameSpace.GameObjects.BlockObjects
                     break;
                 case (int)EnemyID.REDKOOPA:
                     CollisionHandler.GetInstance().ChangeMarioStatesUponCollision(entity);
-                    if (!IsInvincible) CollisionHandler.GetInstance().MarioToEnemyCollision(entity);
+                    CollisionHandler.GetInstance().MarioToEnemyCollision(entity);
                     break;
 
                 case (int)EnemyID.UBERGOOMBA:
                     CollisionHandler.GetInstance().ChangeMarioStatesUponCollision(entity);
-                    if (!IsInvincible) CollisionHandler.GetInstance().MarioToEnemyCollision(entity);
+                    CollisionHandler.GetInstance().MarioToEnemyCollision(entity);
                     break;
 
                 case (int)EnemyID.UBERKOOPA:
                     CollisionHandler.GetInstance().ChangeMarioStatesUponCollision(entity);
-                    if (!IsInvincible) MarioCollisionHandler.GetInstance().HandleEnemyCollision((UberKoopa)entity);
+                    MarioCollisionHandler.GetInstance().HandleEnemyCollision((UberKoopa)entity);
                     break;
 
                 case (int)EnemyID.LAKITU:
                     CollisionHandler.GetInstance().ChangeMarioStatesUponCollision(entity);
-                    if (!IsInvincible) MarioCollisionHandler.GetInstance().HandleEnemyCollision((Lakitu)entity);
+                    MarioCollisionHandler.GetInstance().HandleEnemyCollision((Lakitu)entity);
                     break;
 
             }
