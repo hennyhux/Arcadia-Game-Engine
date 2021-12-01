@@ -45,7 +45,7 @@
         WARPPIPEBACK = 26, //For Sprint 5, we can implement another enemy
         FLAGPOLE = 27,
         CASTLE = 28,
-        VINE = 29,
+        VINE = 500,
         WARPVINEWITHBLOCK = 50,
         BLACKWINDOW = 999,
         VINEHIDDENBLOCK = 222

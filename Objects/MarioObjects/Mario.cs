@@ -45,6 +45,8 @@ namespace GameSpace.GameObjects.BlockObjects
 
         public bool onCloud { get; set; }
 
+        public bool isClimbing { get; set; }
+
         public Mario(Vector2 initLocation)
         {
             ObjectID = (int)AvatarID.MARIO;
@@ -108,6 +110,19 @@ namespace GameSpace.GameObjects.BlockObjects
             }
         }
 
+        public void StartClimbing()
+        {
+            sprite.EnterClimb();
+            Velocity = new Vector2(0, -100);
+        }
+
+        public void CheckVineTeleport()
+        {
+            if(Position.Y <= 50)
+            {
+
+            }
+        }
         
         public void Update(GameTime gametime)
         {
@@ -365,7 +380,10 @@ namespace GameSpace.GameObjects.BlockObjects
                 case (int)ItemID.FLAGPOLE:
                     CollisionHandler.GetInstance().MarioToItemCollision((FlagPole)entity);
                     break;
-
+                case (int)ItemID.VINE:
+                    CollisionHandler.GetInstance().ChangeMarioStatesUponCollision(entity);
+                    CollisionHandler.GetInstance().MarioToItemCollision((Vine)entity);
+                    break;
                 case (int)BlockID.QUESTIONBLOCK:
                 case (int)BlockID.BRICKBLOCK:
                 case (int)BlockID.FLOORBLOCK:

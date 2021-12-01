@@ -458,6 +458,14 @@ namespace GameSpace.EntityManaging
             mario.score += 1000;
         }
 
+        public void MarioToItemCollision(Vine item)
+        {
+            mario.StartClimbing();
+
+        }
+
+        
+
         public void MarioToItemCollision(Star item)
         {
             mario.score += 1000;
