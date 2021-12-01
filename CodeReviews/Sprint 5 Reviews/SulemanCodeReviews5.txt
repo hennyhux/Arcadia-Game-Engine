@@ -2,7 +2,7 @@
 Date: 11/30/2021
 Sprint Number: 5
 Name of File:  Spawn(items/enemy)Command.cs
-Author of File/Method: John 
+Author of File/Method: Caleb Hernandez
 
 Comments: These classes use command pattern to spawn enemies near mario's proximity. Each spawn command class 
 respectfully implements the methods from ICommand and the corresponding item/enemy is then spawned into the game.
