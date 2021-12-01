@@ -5,7 +5,7 @@
 	<Description>					LEVEL 1 BEGINS					</Description>
 	
 	<Objects>
-		<x>10000</x>
+		<x>64</x>
 		<y>370</y>
 		<avatar>MARIO</avatar>
 		<facing>RIGHT</facing>
@@ -49,7 +49,7 @@
 		<block>FLOORBLOCK</block>
 		<blockRow>69</blockRow>
 	</Objects>
-	
+
 	<Objects>
 		<x>0</x>
 		<y>434</y>
@@ -1231,12 +1231,26 @@
 
 	
 	<Description>					VINE LEVEL BEGINS					</Description>
+
 	<Objects>
 		<x>10000</x>
 		<y>434</y>
 		<block>FLOORBLOCK</block>
 		<blockRow>100</blockRow>
 	</Objects>
+	<Objects>
+		<x>10000</x>
+		<y>434</y>
+		<block>VINEBLOCK</block>
+		<blockRow>100</blockRow>
+	</Objects>
+
+	<Objects>
+		<x>11104</x>
+		<y>370</y>
+		<item>WARPVINEWITHBLOCK</item>
+	</Objects>
+	
 	<Objects>
 		<x>10192</x>
 		<y>274</y>
@@ -1269,39 +1283,10 @@
 	</Objects>
 
 	<Objects>
-		<x>12272</x>
-		<y>370</y>
-		<item>WARPVINEWITHBLOCK</item>
-	</Objects>
-	
-	<Objects>
 		<x>13000</x>
 		<y>178</y>
 		<block>HIDDENBLOCK</block>
 	</Objects>
-	<Objects>
-		<x>10100</x>
-		<y>434</y>
-		<block>FLOORBLOCK</block>
-		<blockRow>15</blockRow>
-	</Objects>
-	<Objects>
-		<x>10200</x>
-		<y>434</y>
-		<block>FLOORBLOCK</block>
-		<blockRow>15</blockRow>
-	</Objects>
-	<Objects>
-		<x>10000</x>
-		<y>434</y>
-		<block>FLOORBLOCK</block>
-		<blockRow>15</blockRow>
-	</Objects>
-	<Objects>
-		<x>10000</x>
-		<y>434</y>
-		<block>FLOORBLOCK</block>
-		<blockRow>15</blockRow>
-	</Objects>
+
 	<Description>					VINE LEVEL ENDS					</Description>
 </Level>
