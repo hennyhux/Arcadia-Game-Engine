@@ -1,0 +1,15 @@
+﻿Author of Review: Suleman Mazzar
+Date: 11/30/2021
+Sprint Number: 5
+Name of File:  Spawn(items/enemy)Command.cs
+Author of File/Method: Caleb Hernandez
+
+Comments: These classes use command pattern to spawn enemies near mario's proximity. Each spawn command class 
+respectfully implements the methods from ICommand and the corresponding item/enemy is then spawned into the game.
+It follows the command patterns we used for other aspects of the game and can easily be used to accomodate
+new items/enemies into the game
+
+	
+Hypothetical Change: Since these are supposed to be cheat codes, it would have been better to use a literal in place 
+of a keystroke to active the cheats. For example, a sequence of characters would activate a certain cheat code. Additionaly, 
+it would be better if some items (such as enemies) spawn in different places of the map making it more challenging.

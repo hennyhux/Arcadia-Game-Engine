@@ -1,0 +1,16 @@
+﻿Author of Review: Caleb Hernandez
+Date: 11/30/2021
+Sprint Number: 5
+Name of File:  Lakitu
+Author of File/Method: John 
+
+Comments: This class derived form the AbstractEnemy class as it should because, well it is an enemy.
+The class implements all of the necassary methods to correctly inherit from AbstractEnemy.
+The methods however seem to be very smelly. Lots of if statements and other code smells. This is due to 
+the state checking throughout the methods. 
+
+	
+Hypothetical Change: One hypothetical change would be to actually have the different states implement the 
+all of the logic in the update method. This would get rid of quite a few of the state checks and get rid 
+of a few code smells. 
+

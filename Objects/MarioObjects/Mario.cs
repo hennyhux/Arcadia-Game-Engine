@@ -405,6 +405,7 @@ namespace GameSpace.GameObjects.BlockObjects
                     CollisionHandler.GetInstance().ChangeMarioStatesUponCollision(entity);
                     CollisionHandler.GetInstance().MarioToItemCollision((Vine)entity);
                     break;
+
                 case (int)BlockID.QUESTIONBLOCK:
                 case (int)BlockID.BRICKBLOCK:
                 case (int)BlockID.FLOORBLOCK:
