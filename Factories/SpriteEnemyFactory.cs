@@ -118,6 +118,17 @@ namespace GameSpace.Factories
         {
             return new UberKoopaSprite(UberKoopa, 1, 2, 2, 0, 0);
         }
+
+        public ISprite CreateUberKoopaRightSprite()
+        {
+            return new UberKoopaSpriteRight(UberKoopa, 1, 2, 2, 0, 0);
+        }
+
+        public ISprite CreateUberKoopaDeadSprite()
+        {
+            return new UberKoopaSpriteDead(UberKoopa, 1, 2, 1);
+        }
+
         public ISprite CreateUberGoombaSprite()
         {
             return new UberGoombaSprite(Goomba, 1, 2, 2, 0, 0);

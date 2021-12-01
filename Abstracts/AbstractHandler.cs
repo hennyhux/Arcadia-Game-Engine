@@ -26,5 +26,8 @@ namespace GameSpace.Abstracts
         private protected static int currentWarpLocation = 0;
         private protected static int marioScores = 0;
         public static long timer;
+        private protected static int damageTakenScale = 32;
+        private protected static float experinceScale = 1f;
+        private protected static int currentMarioLevel = 0; //mario max level is 3
     }
 }

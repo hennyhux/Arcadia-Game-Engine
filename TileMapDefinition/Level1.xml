@@ -354,11 +354,6 @@
 		<enemy>GOOMBA</enemy>
 	</Objects>
 	
-	<Objects>
-		<x>322</x>
-		<y>100</y>
-		<enemy>GOOMBA</enemy>
-	</Objects>
 	
 	<Objects>
 		<x>3392</x>
