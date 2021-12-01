@@ -5,7 +5,7 @@ using GameSpace.Interfaces;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using GameSpace.Objects.EnemyObjects;
-
+using GameSpace.GameObjects.BlockObjects;
 namespace GameSpace.GameObjects.EnemyObjects
 {
     public class SpinyRefactored : Enemy
@@ -16,7 +16,7 @@ namespace GameSpace.GameObjects.EnemyObjects
             state = new StateSpinyAliveLeft(this);
             searchState = 1;
             Position = initalPosition;
-            drawBox = false;
+            drawBox = ((Mario)FinderHandler.GetInstance().FindItem((int)AvatarID.MARIO)).ReturnDrawCollisionBoxes();
             ObjectID = (int)EnemyID.SPINY;
             Direction = (int)MarioDirection.LEFT;
         }

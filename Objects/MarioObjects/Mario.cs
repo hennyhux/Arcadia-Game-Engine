@@ -421,6 +421,11 @@ namespace GameSpace.GameObjects.BlockObjects
             drawBox = !drawBox;
         }
 
+        public bool ReturnDrawCollisionBoxes()
+        {
+            return drawBox;
+        }
+
         public bool RevealItem()
         {
             return false;
