@@ -39,7 +39,7 @@ namespace GameSpace.GameObjects.EnemyObjects
             }
         }
 
-        public void trackMovement(GameTime gametime)
+        public void TrackMovement(GameTime gametime)
         {
             if (searchState == 0 && !(state is StateLakituThrowing))// Lakitu has alreay thrown a spiny, begin searching again
             {
@@ -82,56 +82,59 @@ namespace GameSpace.GameObjects.EnemyObjects
         }
         public override void Update(GameTime gametime)
         {
-
-            //UpdateSpeed();
-            //UpdateCollisionBox(Position);
-
-            //Velocity = new Vector2(-1, 0);
-            if (state is StateLakituDead)
+            if (IsInview())
             {
-                CollisionBox = new Rectangle(0, 0, 0, 0);
-            }
-            if (state is StateLakituCloud)
-            {
-                CollisionBox = new Rectangle((int)Position.X, (int)Position.Y, 48, 48);
-            }
-            if (!(state is StateLakituDead) && !(state is StateLakituCloud))
-            {
-                trackMovement(gametime);
-                if (Velocity.X > 0 && !(state is StateLakituRight) && !(state is StateLakituThrowing) && !(state is StateLakituDead))
-                //if (Velocity.X > 0 && (state is StateLakituLeft) && !(state is StateLakituDead))
-                {
+                //UpdateSpeed();
+                //UpdateCollisionBox(Position);
 
-                    state = new StateLakituRight(this);
-
-                }
-                else if (Velocity.X < 0 && !(state is StateLakituLeft) && !(state is StateLakituThrowing) && !(state is StateLakituDead))
-                //else if (Velocity.X > 0 && (state is StateLakituRight) && !(state is StateLakituDead))
-                {
-                    state = new StateLakituLeft(this);
-                }
+                //Velocity = new Vector2(-1, 0);
                 if (state is StateLakituDead)
+                {
+                    CollisionBox = new Rectangle(0, 0, 0, 0);
+                }
+                if (state is StateLakituCloud)
                 {
                     CollisionBox = new Rectangle((int)Position.X, (int)Position.Y, 48, 48);
                 }
-                if (state is StateLakituDead)
+                if (!(state is StateLakituDead) && !(state is StateLakituCloud))
                 {
-                    CollisionBox = new Rectangle((int)Position.X, (int)Position.Y, 48, 48);
-                }
-                else
-                {
-                    CollisionBox = new Rectangle((int)Position.X, (int)Position.Y, 47, 69);
-                }
-                //StateSprite.Facing
-                //state.StateSprite.Update(gametime);
-                //Sprite.Update(gametime);
+                    TrackMovement(gametime);
+                    if (Velocity.X > 0 && !(state is StateLakituRight) && !(state is StateLakituThrowing) && !(state is StateLakituDead))
+                    //if (Velocity.X > 0 && (state is StateLakituLeft) && !(state is StateLakituDead))
+                    {
 
-                ExpandedCollisionBox = CollisionBox;
+                        state = new StateLakituRight(this);
+
+                    }
+                    else if (Velocity.X < 0 && !(state is StateLakituLeft) && !(state is StateLakituThrowing) && !(state is StateLakituDead))
+                    //else if (Velocity.X > 0 && (state is StateLakituRight) && !(state is StateLakituDead))
+                    {
+                        state = new StateLakituLeft(this);
+                    }
+                    if (state is StateLakituDead)
+                    {
+                        CollisionBox = new Rectangle((int)Position.X, (int)Position.Y, 48, 48);
+                    }
+                    if (state is StateLakituDead)
+                    {
+                        CollisionBox = new Rectangle((int)Position.X, (int)Position.Y, 48, 48);
+                    }
+                    else
+                    {
+                        CollisionBox = new Rectangle((int)Position.X, (int)Position.Y, 47, 69);
+                    }
+                    //StateSprite.Facing
+                    //state.StateSprite.Update(gametime);
+                    //Sprite.Update(gametime);
+
+                    ExpandedCollisionBox = CollisionBox;
+                }
+                UpdatePosition(Position, gametime);
+                Sprite.Update(gametime);
+                state.Update(gametime);
             }
-            UpdatePosition(Position, gametime);
-            Sprite.Update(gametime);
-            state.Update(gametime);
         }
+
         public override void UpdatePosition(Vector2 location, GameTime gameTime) //use velocity
         {
             //ExpandedCollisionBox = new Rectangle(CollisionBox.X, CollisionBox.Y, CollisionBox.Width, CollisionBox.Height);
@@ -191,6 +194,10 @@ namespace GameSpace.GameObjects.EnemyObjects
             {
                 case (int)AvatarID.MARIO:
                     CollisionHandler.GetInstance().EnemyToMarioCollision(this);
+                    break;
+
+                case (int)ItemID.FIREBALL:
+                    EnemyCollisionHandler.GetInstance().HandleFireBallCollision(this);
                     break;
             }
         }

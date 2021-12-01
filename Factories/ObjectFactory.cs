@@ -198,7 +198,7 @@ namespace GameSpace.Factories
 
         public IGameObjects CreateFireBallObject(Mario mario)
         {
-            return new Fireball();
+            return new Fireball(mario);
         }
         #endregion
 

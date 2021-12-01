@@ -97,10 +97,6 @@ namespace GameSpace.Abstracts
             drawBox = !drawBox;
         }
 
-        public virtual bool IsCurrentlyColliding()
-        {
-            return false;
-        }
 
         public virtual void HandleCollision(IGameObjects entity)
         {

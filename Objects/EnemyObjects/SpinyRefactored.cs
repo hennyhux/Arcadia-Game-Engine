@@ -61,19 +61,19 @@ namespace GameSpace.GameObjects.EnemyObjects
             this.enemy = enemy;
         }
 
-        public void Draw(SpriteBatch spritebatch, Vector2 position)
+        public virtual void Draw(SpriteBatch spritebatch, Vector2 position)
         {
             StateSprite.Draw(spritebatch, position);
         }
 
-        public void DrawBoundingBox(SpriteBatch spritebatch, Rectangle collisionBox)
+        public virtual void DrawBoundingBox(SpriteBatch spritebatch, Rectangle collisionBox)
         {
             StateSprite.DrawBoundary(spritebatch, collisionBox);
         }
 
         public abstract void Trigger();
 
-        public void Update(GameTime gametime)
+        public virtual void Update(GameTime gametime)
         {
             StateSprite.Update(gametime);
             UpdatePosition(enemy.Position, gametime);

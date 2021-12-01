@@ -6,6 +6,7 @@ using GameSpace.GameObjects.ExtraItemsObjects;
 using GameSpace.GameObjects.ItemObjects;
 using GameSpace.Interfaces;
 using GameSpace.Level;
+using GameSpace.Objects.EnemyObjects;
 using GameSpace.Sprites;
 using GameSpace.States.BlockStates;
 using GameSpace.States.MarioStates;
@@ -408,6 +409,21 @@ namespace GameSpace.GameObjects.BlockObjects
                 case (int)EnemyID.UBERGOOMBA:
                     CollisionHandler.GetInstance().ChangeMarioStatesUponCollision(entity);
                     if (!IsInvincible) CollisionHandler.GetInstance().MarioToEnemyCollision(entity);
+                    break;
+
+                case (int)EnemyID.UBERKOOPA:
+                    CollisionHandler.GetInstance().ChangeMarioStatesUponCollision(entity);
+                    if (!IsInvincible) MarioCollisionHandler.GetInstance().HandleEnemyCollision((UberKoopa)entity);
+                    break;
+
+                case (int)EnemyID.LAKITU:
+                    CollisionHandler.GetInstance().ChangeMarioStatesUponCollision(entity);
+                    if (!IsInvincible) MarioCollisionHandler.GetInstance().HandleEnemyCollision((Lakitu)entity);
+                    break;
+
+                case (int)EnemyID.SPINY:
+                    CollisionHandler.GetInstance().ChangeMarioStatesUponCollision(entity);
+                    if (!IsInvincible) MarioCollisionHandler.GetInstance().HandleEnemyCollision(entity);
                     break;
             }
         }

@@ -28,7 +28,7 @@ namespace GameSpace.EntityManaging
 
         public void LoadData(List<IGameObjects> objectList)
         {
-            //ResetStaticMembers();
+
             gameEntityList = objectList;
 
             foreach (IGameObjects entity in objectList)
@@ -61,8 +61,10 @@ namespace GameSpace.EntityManaging
 
             currentWarpLocation = 0;
             marioScores = 0;
-            //marioLives = 3;
             MarioHandler.marioLives = 3;
+            damageTakenScale = 32;
+            experinceScale = 1f;
+            currentMarioLevel = 0;
         }
 
         public void RestartStaticMembers()
@@ -79,8 +81,6 @@ namespace GameSpace.EntityManaging
 
             currentWarpLocation = 0;
             marioScores = 0;
-            //marioLives = 3;
-            // MarioHandler.marioLives = 3;
         }
 
         public void InitializeGameroot(GameRoot copy)
@@ -100,7 +100,6 @@ namespace GameSpace.EntityManaging
                 animation.Draw(spriteBatch);
             }
 
-            //CollisionHandler.GetInstance().UpdateCollision();
         }
 
         public void Update(GameTime gametime)
@@ -124,8 +123,6 @@ namespace GameSpace.EntityManaging
             {
                 animation.Update(gametime);
             }
-
-            //CollisionHandler.GetInstance().UpdateCollision();
         }
 
         public void ToggleCollisionBox()
