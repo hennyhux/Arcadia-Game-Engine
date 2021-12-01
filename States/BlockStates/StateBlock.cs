@@ -60,6 +60,14 @@ namespace GameSpace.States.BlockStates
         }
     }
 
+    public class StateVineBlock : AbstractBlockStates
+    {
+        public StateVineBlock()
+        {
+            sprite = SpriteBlockFactory.GetInstance().ReturnVineBlock();
+        }
+    }
+
     public class StateHiddenLevelFloorBlock : AbstractBlockStates
     {
         public StateHiddenLevelFloorBlock()

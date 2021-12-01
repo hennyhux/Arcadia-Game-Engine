@@ -14,6 +14,7 @@ namespace GameSpace.Factories
         private Texture2D BrickBlock;
         private Texture2D HiddenLevelBrickBlock;
         private Texture2D FloorBlock;
+        private Texture2D VineBlock;
         private Texture2D HiddenLevelFloorBlock;
         private Texture2D StairBlock;
         private Texture2D HiddenBlock;
@@ -45,6 +46,7 @@ namespace GameSpace.Factories
             BrickBlock = content.Load<Texture2D>("Blocks/BrickBlock");
             HiddenLevelBrickBlock = content.Load<Texture2D>("Blocks/HiddenLevelBrickBlock");
             FloorBlock = content.Load<Texture2D>("Blocks/FloorBlock");
+            VineBlock = content.Load<Texture2D>("Blocks/VineBlock");
             HiddenLevelFloorBlock = content.Load<Texture2D>("Blocks/HiddenLevelFloorBlock");
             StairBlock = content.Load<Texture2D>("Blocks/StairBlock");
             HiddenBlock = content.Load<Texture2D>("Blocks/UsedBlock");
@@ -70,6 +72,11 @@ namespace GameSpace.Factories
         public ISprite ReturnFloorBlock()
         {
             return new FloorBlockSprite(FloorBlock, 1, 1, 1);
+        }
+
+        public ISprite ReturnVineBlock()
+        {
+            return new VineBlockSprite(VineBlock, 1, 1, 1);
         }
 
         public ISprite ReturnHiddenLevelFloorBlock()

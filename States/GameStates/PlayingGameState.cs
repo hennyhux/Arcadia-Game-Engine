@@ -55,6 +55,7 @@ namespace GameSpace.States.GameStates
 
         //private readonly string xmlFileName = "./Level1.xml"; // Turn in with this line of code!
         //private readonly string xmlFileName = "../../../TileMapDefinition/Level1.xml"; // ONLY to run on our machines
+        private readonly string xmlFileName = "../../../TileMapDefinition/BiggerLevel.xml";
         //private readonly string xmlFileName = "../../../TileMapDefinition/CalebTesting.xml";
 
         public Mario GetMario => (Mario)FinderHandler.GetInstance().FindItem((int)AvatarID.MARIO);
