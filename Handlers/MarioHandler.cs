@@ -165,13 +165,13 @@ namespace GameSpace.Machines
                 case 1:
                     currentMarioLevel = 2;
                     damageTakenScale = 28;
-                    experinceScale = 0.9f;
+                    experinceScale = 0.8f;
                     break;
 
                 case 2:
                     currentMarioLevel = 3;
                     damageTakenScale = 26;
-                    experinceScale = 0.8f;
+                    experinceScale = 0.7f;
                     break;
             }
         }
