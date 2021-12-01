@@ -2,6 +2,7 @@
 using GameSpace.Enums;
 using GameSpace.Factories;
 using GameSpace.Interfaces;
+using GameSpace.Machines;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -169,6 +170,8 @@ namespace GameSpace.Objects.EnemyObjects
         public StateUberKoopaDead(UberKoopa enemy) : base(enemy)
         {
             StateSprite = SpriteEnemyFactory.GetInstance().CreateUberKoopaDeadSprite();
+            HUDHandler.GetInstance().UpdateExp(20);
+            MarioHandler.GetInstance().IncrementMarioPoints(1000);
             initialPosition = enemy.Position;
             HaltAllMotion();
             DestoryCollisionBox();

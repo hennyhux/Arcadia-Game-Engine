@@ -354,7 +354,7 @@ namespace GameSpace.GameObjects.BlockObjects
 
             else
             {
-                KillCollision();
+                //KillCollision();
             }
         }
 
@@ -459,10 +459,6 @@ namespace GameSpace.GameObjects.BlockObjects
                     if (!IsInvincible) MarioCollisionHandler.GetInstance().HandleEnemyCollision((Lakitu)entity);
                     break;
 
-                case (int)EnemyID.SPINY:
-                    CollisionHandler.GetInstance().ChangeMarioStatesUponCollision(entity);
-                    if (!IsInvincible) MarioCollisionHandler.GetInstance().HandleEnemyCollision(entity);
-                    break;
             }
         }
 

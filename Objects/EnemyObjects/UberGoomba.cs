@@ -170,6 +170,7 @@ namespace GameSpace.Objects.EnemyObjects
         {
             StateSprite = SpriteEnemyFactory.GetInstance().CreateUberGoombaDeadSprite();
             initialPosition = uberGoomba.Position;
+            MarioHandler.GetInstance().IncrementMarioPoints(1000);
             DestoryCollisionBox();
             HaltAllMotion();
             CalcGoalPos();

@@ -69,9 +69,6 @@ namespace GameSpace.EntityManaging
 
         public void RestartStaticMembers()
         {
-            gameEntityList = new List<IGameObjects>();
-            prunedList = new List<IGameObjects>();
-            copyPrunedList = new List<IGameObjects>();
             animationList = new List<IObjectAnimation>();
             listOfWarpPipes = new List<IGameObjects>();
             listOfWarpRoomPipes = new List<IGameObjects>();
@@ -105,7 +102,6 @@ namespace GameSpace.EntityManaging
         public void Update(GameTime gametime)
         {
 
-            CollisionHandler.GetInstance().UpdateCollision();
             internalGametime = gametime;
 
             if (addItem != null)
@@ -123,6 +119,8 @@ namespace GameSpace.EntityManaging
             {
                 animation.Update(gametime);
             }
+
+            CollisionHandler.GetInstance().UpdateCollision();
         }
 
         public void ToggleCollisionBox()
