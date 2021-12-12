@@ -34,7 +34,6 @@ namespace GameSpace
         public void RestartCurrentState()
         {
             CurrentState.Restart();
-            //tyest
         }
 
         public void ResetCurrentState()
