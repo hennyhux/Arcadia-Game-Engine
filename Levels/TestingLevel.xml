@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<Level>
+
+	<Description>					TESTING LEVEL				</Description>
+
+	<Objects>
+		<x>400</x>
+		<y>50</y>
+		<avatar>MARIO</avatar>
+		<facing>RIGHT</facing>
+	</Objects>
+
+	<Objects>
+		<x>0</x>
+		<y>466</y>
+		<block>FLOORBLOCK</block>
+		<blockRow>30</blockRow>
+	</Objects>
+
+	<Objects>
+		<x>0</x>
+		<y>434</y>
+		<block>FLOORBLOCK</block>
+		<blockRow>30</blockRow>
+	</Objects>
+	
+	<Objects>
+		<x>0</x>
+		<y>0</y>
+		<item>HUDCOIN</item>
+	</Objects>
+	
+	
+	<Objects>
+		<x>200</x>
+		<y>310</y>
+		<item>WARPPIPEHEADWITHMOB</item>
+	</Objects>
+
+
+
+</Level>

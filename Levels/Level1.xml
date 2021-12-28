@@ -3,7 +3,7 @@
 <Level>
 
 	<Description>					LEVEL 1 BEGINS					</Description>
-	
+
 	<Objects>
 		<x>400</x>
 		<y>50</y>
@@ -41,65 +41,65 @@
 		<item>VINE</item>
 	</Objects>
 
-	
-		<Objects>
+
+	<Objects>
 		<x>250</x>
 		<y>356</y>
 		<enemy>UBERGOOMBA</enemy>
 	</Objects>
-	
+
 	<Objects>
 		<x>250</x>
 		<y>356</y>
 		<enemy>GOOMBA</enemy>
 	</Objects>
-	
 
-		<Objects>
+
+	<Objects>
 		<x>220</x>
 		<y>356</y>
 		<enemy>GOOMBA</enemy>
 	</Objects>
-	
+
 	<Objects>
 		<x>224</x>
 		<y>356</y>
 		<enemy>GOOMBA</enemy>
 	</Objects>
-	
-		<Objects>
+
+	<Objects>
 		<x>230</x>
 		<y>356</y>
 		<enemy>GOOMBA</enemy>
 	</Objects>
-	
-		<Objects>
+
+	<Objects>
 		<x>214</x>
 		<y>356</y>
 		<enemy>GOOMBA</enemy>
 	</Objects>
-	
-	
+
+
 	<Objects>
 		<x>100</x>
 		<y>100</y>
 		<block>FIREFLOWERQUESTIONBLOCK</block>
 	</Objects>
-	
+
 	<Objects>
 		<x>0</x>
 		<y>466</y>
 		<block>FLOORBLOCK</block>
 		<blockRow>69</blockRow>
 	</Objects>
-	
+
 	<Objects>
 		<x>0</x>
 		<y>434</y>
 		<block>FLOORBLOCK</block>
 		<blockRow>69</blockRow>
 	</Objects>
-	
+
 	<Objects>
 		<x>512</x>
 		<y>306</y>
@@ -140,69 +140,69 @@
 		<y>162</y>
 		<block>ONEUPSHROOMQUESTIONBLOCK</block>
 	</Objects>
-	
+
 	<Objects>
 		<x>400</x>
 		<y>340</y>
 		<item>WARPPIPEBODY</item>
 	</Objects>
-	
-	
+
+
 	<Objects>
 		<x>100</x>
 		<y>308</y>
 		<item>WARPPIPEHEAD</item>
 	</Objects>
-	
-	
+
+
 	<Objects>
 		<x>100</x>
 		<y>340</y>
 		<item>WARPPIPEBODY</item>
 	</Objects>
-	
+
 	<Objects>
 		<x>896</x>
 		<y>310</y>
 		<item>WARPPIPEHEADWITHMOB</item>
 	</Objects>
-	
+
 	<Objects>
 		<x>896</x>
 		<y>339</y>
 		<item>WARPPIPEBODY</item>
 	</Objects>
-	
+
 	<Objects>
 		<x>1216</x>
 		<y>338</y>
 		<item>MEDIUMPIPE</item>
 	</Objects>
-	
+
 	<Objects>
 		<x>1280</x>
 		<y>402</y>
 		<enemy>GOOMBA</enemy>
 	</Objects>
-	
+
 	<Objects>
 		<x>1472</x>
 		<y>306</y>
 		<item>BIGPIPE</item>
 	</Objects>
-	
+
 	<Objects>
 		<x>1568</x>
 		<y>402</y>
 		<enemy>GOOMBA</enemy>
 	</Objects>
-	
+
 	<Objects>
 		<x>1600</x>
 		<y>402</y>
 		<enemy>GOOMBA</enemy>
 	</Objects>
-		
+
 	<Objects>
 		<x>1824</x>
 		<y>306</y>
@@ -213,14 +213,14 @@
 
 
 	<Description>					CHECKPOINT 1					</Description>
-	
-	
+
+
 	<Objects>
 		<x>2000</x>
 		<y>308</y>
 		<item>WARPPIPEHEAD</item>
 	</Objects>
-	
+
 	<Objects>
 		<x>2000</x>
 		<y>340</y>
@@ -264,7 +264,7 @@
 		<block>BRICKBLOCK</block>
 		<blockRow>7</blockRow>
 	</Objects>
-	
+
 	<Objects>
 		<x>2624</x>
 		<y>130</y>
@@ -281,8 +281,8 @@
 		<y>370</y>
 		<enemy>GREENKOOPA</enemy>
 	</Objects>
-	
-	
+
+
 	<Objects>
 		<x>2848</x>
 		<y>466</y>
@@ -307,8 +307,8 @@
 		<y>162</y>
 		<block>COINQUESTIONBLOCK</block>
 	</Objects>
-	
-	
+
+
 	<Objects>
 		<x>2976</x>
 		<y>306</y>
@@ -330,7 +330,7 @@
 		<y>306</y>
 		<block>STARBRICKBLOCK</block>
 	</Objects>
-	
+
 	<Objects>
 		<x>2924</x>
 		<y>402</y>
@@ -341,8 +341,8 @@
 		<y>402</y>
 		<enemy>GOOMBA</enemy>
 	</Objects>
-	
-	
+
+
 	<Objects>
 		<x>3392</x>
 		<y>306</y>
@@ -358,7 +358,7 @@
 		<y>306</y>
 		<block>COINQUESTIONBLOCK</block>
 	</Objects>
-	
+
 	<Objects>
 		<x>3488</x>
 		<y>402</y>
@@ -369,27 +369,27 @@
 		<y>402</y>
 		<enemy>GOOMBA</enemy>
 	</Objects>
-		
+
 	<Objects>
 		<x>3488</x>
 		<y>162</y>
 		<block>SUPERSHROOMQUESTIONBLOCK</block>
 	</Objects>
-	
+
 	<Objects>
 		<x>3776</x>
 		<y>306</y>
 		<block>BRICKBLOCK</block>
 		<blockRow>1</blockRow>
 	</Objects>
-	
+
 	<Objects>
 		<x>3872</x>
 		<y>162</y>
 		<block>BRICKBLOCK</block>
 		<blockRow>3</blockRow>
 	</Objects>
-	
+
 	<Objects>
 		<x>3872</x>
 		<y>402</y>
@@ -410,8 +410,8 @@
 		<y>402</y>
 		<enemy>GOOMBA</enemy>
 	</Objects>
-	
-		
+
+
 	<Objects>
 		<x>4096</x>
 		<y>162</y>
@@ -440,7 +440,7 @@
 		<block>BRICKBLOCK</block>
 		<blockRow>2</blockRow>
 	</Objects>
-	
+
 	<Objects>
 		<x>4288</x>
 		<y>402</y>
@@ -465,7 +465,7 @@
 		<block>STAIRBLOCK</block>
 		<blockRow>1</blockRow>
 	</Objects>
-	
+
 	<Objects>
 		<x>4480</x>
 		<y>402</y>
@@ -490,7 +490,7 @@
 		<block>STAIRBLOCK</block>
 		<blockRow>1</blockRow>
 	</Objects>
-	
+
 	<Objects>
 		<x>4736</x>
 		<y>402</y>
@@ -515,7 +515,7 @@
 		<block>STAIRBLOCK</block>
 		<blockRow>2</blockRow>
 	</Objects>
-	
+
 	<Objects>
 		<x>4960</x>
 		<y>402</y>
@@ -544,13 +544,13 @@
 
 
 	<Description>					CHECKPOINT 2					</Description>
-	
+
 	<Objects>
 		<x>5216</x>
 		<y>370</y>
 		<item>SMALLPIPE</item>
 	</Objects>
-		
+
 	<Objects>
 		<x>5376</x>
 		<y>306</y>
@@ -568,7 +568,7 @@
 		<block>BRICKBLOCK</block>
 		<blockRow>1</blockRow>
 	</Objects>
-	
+
 	<Objects>
 		<x>5504</x>
 		<y>402</y>
@@ -579,13 +579,13 @@
 		<y>402</y>
 		<enemy>GOOMBA</enemy>
 	</Objects>
-	
+
 	<Objects>
 		<x>5728</x>
 		<y>370</y>
 		<item>SMALLPIPE</item>
 	</Objects>
-	
+
 	<Objects>
 		<x>5792</x>
 		<y>402</y>
@@ -634,8 +634,8 @@
 		<block>STAIRBLOCK</block>
 		<blockRow>2</blockRow>
 	</Objects>
-		
-		
+
+
 
 	<Objects>
 		<x>2464</x>
@@ -661,7 +661,7 @@
 		<block>BRICKBLOCK</block>
 		<blockRow>7</blockRow>
 	</Objects>
-	
+
 
 
 
@@ -707,7 +707,7 @@
 
 
 	<Description>					HIDDEN LEVEL BEGINS					</Description>
-	
+
 	<Objects>
 		<x>7402</x>
 		<y>400</y>
@@ -725,7 +725,7 @@
 		<block>HIDDENLEVELBRICKBLOCK</block>
 		<blockRow>12</blockRow>
 	</Objects>
-	
+
 	<Objects>
 		<x>6976</x>
 		<y>114</y>
@@ -744,7 +744,7 @@
 		<block>HIDDENLEVELBRICKBLOCK</block>
 		<blockRow>1</blockRow>
 	</Objects>
-	
+
 	<Objects>
 		<x>6976</x>
 		<y>146</y>
@@ -794,9 +794,9 @@
 		<block>HIDDENLEVELBRICKBLOCK</block>
 		<blockRow>1</blockRow>
 	</Objects>
-	
-	
-	
+
+
+
 
 	<Objects>
 		<x>6976</x>
@@ -828,7 +828,7 @@
 		<block>HIDDENLEVELBRICKBLOCK</block>
 		<blockRow>1</blockRow>
 	</Objects>
-	
+
 	<Objects>
 		<x>6976</x>
 		<y>242</y>
@@ -853,7 +853,7 @@
 		<block>HIDDENLEVELBRICKBLOCK</block>
 		<blockRow>1</blockRow>
 	</Objects>
-	
+
 	<Objects>
 		<x>6976</x>
 		<y>274</y>
@@ -872,7 +872,7 @@
 		<block>HIDDENLEVELBRICKBLOCK</block>
 		<blockRow>1</blockRow>
 	</Objects>
-	
+
 	<Objects>
 		<x>6976</x>
 		<y>306</y>
@@ -891,7 +891,7 @@
 		<block>HIDDENLEVELBRICKBLOCK</block>
 		<blockRow>1</blockRow>
 	</Objects>
-	
+
 	<Objects>
 		<x>6976</x>
 		<y>338</y>
@@ -910,7 +910,7 @@
 		<block>HIDDENLEVELBRICKBLOCK</block>
 		<blockRow>1</blockRow>
 	</Objects>
-	
+
 	<Objects>
 		<x>6976</x>
 		<y>370</y>
@@ -929,7 +929,7 @@
 		<block>HIDDENLEVELBRICKBLOCK</block>
 		<blockRow>1</blockRow>
 	</Objects>
-	
+
 	<Objects>
 		<x>6976</x>
 		<y>402</y>

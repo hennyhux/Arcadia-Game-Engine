@@ -100,13 +100,15 @@ namespace GameSpace.Machines
 
         public void Draw(SpriteBatch spritebatch)
         {
+            Coin HUDCoin = new Coin(new Vector2(0, 0));
             spritebatch.DrawString(HeadsUpDisplay, "[" + mario.Player + "]\n", HudPosition, Color.White);
             spritebatch.DrawString(HeadsUpDisplay, "Score: " + mario.score.ToString("D6"), new Vector2(HudPosition.X, HudPosition.Y + 40), Color.White);
             spritebatch.DrawString(HeadsUpDisplay, "Time\n" + seconds, new Vector2(HudPosition.X + 200, HudPosition.Y), Color.White);
             spritebatch.DrawString(HeadsUpDisplay, "World\n  1-1", new Vector2(HudPosition.X + 320, HudPosition.Y), Color.White);
 
             spritebatch.Draw(FinderHandler.GetInstance().FindItem((int)ItemID.HUDCOIN).Sprite.Texture, new Vector2((int)HudPosition.X + 440, (int)HudPosition.Y + 25),//Draws Animated Coin
-                ((CoinSprite)FinderHandler.GetInstance().FindItem((int)ItemID.HUDCOIN).Sprite).getCurrentSpriteRect(), Color.White);
+               ((CoinSprite)FinderHandler.GetInstance().FindItem((int)ItemID.HUDCOIN).Sprite).getCurrentSpriteRect(), Color.White);
+
 
             spritebatch.DrawString(HeadsUpDisplay, "X  " + mario.numCoinsCollected, new Vector2(HudPosition.X + 460, HudPosition.Y + 20), Color.White); //Update to display coins
 
@@ -131,7 +133,6 @@ namespace GameSpace.Machines
             spritebatch.DrawString(HeadsUpDisplay, "PRESS Q TO QUIT GAME", new Vector2(HudPosition.X, HudPosition.Y + 80), Color.Black);
             spritebatch.DrawString(HeadsUpDisplay, "MAIN MENU WIP", new Vector2(HudPosition.X, HudPosition.Y + 120), Color.Black);
             spritebatch.Draw(chungus, new Vector2(HudPosition.X, HudPosition.Y + 200), Color.White);
-            //UpdateHudPosition();
         }
 
         public void DrawEndingResetPanel(SpriteBatch spritebatch)

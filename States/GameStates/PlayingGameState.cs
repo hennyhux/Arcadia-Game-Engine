@@ -3,12 +3,11 @@ using GameSpace.EntityManaging;
 using GameSpace.Enums;
 using GameSpace.Factories;
 using GameSpace.GameObjects.BlockObjects;
-using GameSpace.Handlers;
 using GameSpace.Interfaces;
 using GameSpace.Level;
 using GameSpace.Machines;
 using GameSpace.Menus;
-using GameSpace.TileMapDefinition;
+using GameSpace.Abstracts;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
@@ -16,6 +15,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Media;
 using System.Collections.Generic;
 using System.Diagnostics;
+using GameSpace.TileMapDefinition;
 
 namespace GameSpace.States.GameStates
 {
@@ -26,12 +26,10 @@ namespace GameSpace.States.GameStates
         private readonly LevelRestart levelRestart;
         private SpriteFont fontFile;
         private bool startOfGame = true;
-        //private int marioLives = 3;
 
         // DeathTimer timer;
         public Color FontColor { get; set; } = Color.DarkBlue;
 
-        //private protected Camera camera;
 
         //Camera Stuff
         private Camera camera;
@@ -48,15 +46,11 @@ namespace GameSpace.States.GameStates
         public List<SoundEffect> soundEffects;
         #endregion
 
-        private readonly Song song;
-
-        private List<Component> gameComponents;
 
         public GraphicsDeviceManager Graphics => graphics;
 
-        //private readonly string xmlFileName = "./Level1.xml"; // Turn in with this line of code!
-        private readonly string xmlFileName = "../../../TileMapDefinition/Level1.xml"; // ONLY to run on our machines
-        //private readonly string xmlFileName = "../../../TileMapDefinition/CalebTesting.xml";
+        //private readonly string xmlFileName = "../../../Levels/Level1.xml";
+        private readonly string xmlFileName = "../../../Levels/TestingLevel.xml";
 
         public Mario GetMario => (Mario)FinderHandler.GetInstance().FindItem((int)AvatarID.MARIO);
 
@@ -143,11 +137,6 @@ namespace GameSpace.States.GameStates
             //Play Song
             MusicHandler.GetInstance().LoadSong(AudioFactory.GetInstance().CreateSong());
             MusicHandler.GetInstance().PlaySong();
-
-            gameComponents = new List<Component>()
-            {
-
-            };
         }
 
         public override void Update(GameTime gameTime)
@@ -184,38 +173,4 @@ namespace GameSpace.States.GameStates
 
     }
 
-    public abstract class GameState
-    {
-        #region Fields
-
-        protected ContentManager content;
-
-        protected GraphicsDevice graphicsDevice;
-
-        protected GameRoot game;
-
-        #endregion
-        public GameState(GameRoot game, GraphicsDevice graphicsDevice, ContentManager content)
-        {
-            this.game = game;
-
-            this.graphicsDevice = graphicsDevice;
-
-            this.content = content;
-        }
-
-        public virtual void Initialize()
-        {
-
-        }
-        public abstract void Reset();
-        public abstract void Restart();
-        public abstract void LoadContent();
-
-        public abstract void Update(GameTime gameTime);
-        public abstract void Draw(GameTime gameTime, SpriteBatch spriteBatch);
-
-        public virtual InputHandler Input { get; set; }
-
-    }
 }

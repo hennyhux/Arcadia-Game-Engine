@@ -1,4 +1,5 @@
-﻿using GameSpace.EntityManaging;
+﻿using GameSpace.Abstracts;
+using GameSpace.EntityManaging;
 using GameSpace.Enums;
 using GameSpace.GameObjects.BlockObjects;
 using GameSpace.States.GameStates;
@@ -37,7 +38,6 @@ namespace GameSpace
         {
             CurrentState.Reset();
         }
-
 
         protected override void LoadContent()
         {
