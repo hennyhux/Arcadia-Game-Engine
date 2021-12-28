@@ -7,7 +7,7 @@ using System.Collections.Generic;
 
 namespace GameSpace.Abstracts
 {
-    public abstract class AbstractHandler
+    public abstract class Handler
     {
         private protected static List<IGameObjects> gameEntityList = new List<IGameObjects>();
         private protected static List<IGameObjects> prunedList = new List<IGameObjects>();
@@ -18,7 +18,7 @@ namespace GameSpace.Abstracts
         private protected static List<SoundEffect> musicList = new List<SoundEffect>();
         private protected static Dictionary<int, SoundEffect> soundEffectsList = new Dictionary<int, SoundEffect>();
         private protected static GameTime internalGametime = new GameTime();
-        private protected static GameRoot gameRootCopy = new GameRoot();
+        private protected static GameRoot gameRoot = new GameRoot();
         private protected static Mario mario;
         private protected static GameRoot game;
         private protected static Vector2 marioCurrentLocation;

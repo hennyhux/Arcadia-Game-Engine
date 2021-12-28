@@ -3,6 +3,7 @@ using GameSpace.EntityManaging;
 using GameSpace.Enums;
 using GameSpace.Factories;
 using GameSpace.GameObjects.BlockObjects;
+using GameSpace.Handlers;
 using GameSpace.Interfaces;
 using GameSpace.Level;
 using GameSpace.Machines;
@@ -18,7 +19,7 @@ using System.Diagnostics;
 
 namespace GameSpace.States.GameStates
 {
-    public class PlayingGameState : State
+    public class PlayingGameState : GameState
     {
         private protected readonly GraphicsDeviceManager graphics;
         private protected SpriteBatch spriteBatch;
@@ -83,8 +84,6 @@ namespace GameSpace.States.GameStates
             TheaterHandler.GetInstance().RestartStaticMembers();
             TheaterHandler.GetInstance().InitializeGameroot(game);
             startOfGame = false;
-            //Debug.Print("Lives Dec in Restart()");
-            //MarioHandler.GetInstance().DecrementMarioLives(); //UNCOMMENT
             Initialize();
         }
 
@@ -185,7 +184,7 @@ namespace GameSpace.States.GameStates
 
     }
 
-    public abstract class State
+    public abstract class GameState
     {
         #region Fields
 
@@ -195,9 +194,8 @@ namespace GameSpace.States.GameStates
 
         protected GameRoot game;
 
-
         #endregion
-        public State(GameRoot game, GraphicsDevice graphicsDevice, ContentManager content)
+        public GameState(GameRoot game, GraphicsDevice graphicsDevice, ContentManager content)
         {
             this.game = game;
 
@@ -216,6 +214,8 @@ namespace GameSpace.States.GameStates
 
         public abstract void Update(GameTime gameTime);
         public abstract void Draw(GameTime gameTime, SpriteBatch spriteBatch);
+
+        public virtual InputHandler Input { get; set; }
 
     }
 }

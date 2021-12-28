@@ -23,7 +23,7 @@ namespace GameSpace.States.GameStates
         public Dictionary<Keys, ICommand> GetCommand => keyboardCommands;
     }
 
-    public class PauseGameState : State
+    public class PauseGameState : GameState
     {
         private List<IController> controllers;
         public PauseGameState(GameRoot game, GraphicsDevice graphicsDevice, ContentManager content) : base(game, graphicsDevice, content)

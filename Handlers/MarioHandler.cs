@@ -8,7 +8,7 @@ using System.Diagnostics;
 
 namespace GameSpace.Machines
 {
-    public class MarioHandler : AbstractHandler
+    public class MarioHandler : Handler
     {
         private static readonly MarioHandler instance = new MarioHandler();
         private static readonly int warpRooomNum = 0;
@@ -108,12 +108,12 @@ namespace GameSpace.Machines
 
         internal void EnterVictoryPanel()
         {
-            gameRootCopy.ChangeToVictoryState();
+            gameRoot.ChangeToVictoryState();
         }
 
         internal void GameOverPanel()
         {
-            gameRootCopy.GameOverState();
+            gameRoot.GameOverState();
         }
 
         public void IncrementMarioPoints(int points)

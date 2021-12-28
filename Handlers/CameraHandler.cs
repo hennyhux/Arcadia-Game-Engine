@@ -3,7 +3,7 @@ using GameSpace.Camera2D;
 
 namespace GameSpace.EntityManaging
 {
-    public class CameraHandler : AbstractHandler
+    public class CameraHandler : Handler
     {
         private static readonly CameraHandler instance = new CameraHandler();
 

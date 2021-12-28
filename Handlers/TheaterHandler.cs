@@ -11,7 +11,7 @@ using System.Collections.Generic;
 
 namespace GameSpace.EntityManaging
 {
-    public class TheaterHandler : AbstractHandler
+    public class TheaterHandler : Handler
     {
         private static readonly TheaterHandler instance = new TheaterHandler();
 
@@ -82,7 +82,7 @@ namespace GameSpace.EntityManaging
 
         public void InitializeGameroot(GameRoot copy)
         {
-            gameRootCopy = copy;
+            gameRoot = copy;
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -143,7 +143,7 @@ namespace GameSpace.EntityManaging
 
         public void ChangeStageToPlaying()
         {
-            gameRootCopy.ChangeToPlayState();
+            gameRoot.ChangeToPlayState();
         }
 
     }

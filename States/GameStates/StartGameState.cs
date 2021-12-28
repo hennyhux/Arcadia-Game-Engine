@@ -1,4 +1,5 @@
 ﻿using GameSpace.Commands;
+using GameSpace.Handlers;
 using GameSpace.Machines;
 using GameSpace.Menus;
 using Microsoft.Xna.Framework;
@@ -27,17 +28,20 @@ namespace GameSpace.States.GameStates
         public Dictionary<Keys, ICommand> GetCommand => keyboardCommands;
     }
 
-    public class StartGameState : State
+
+
+    public class StartGameState : GameState
     {
 
         private readonly Texture2D menuBackGroundTexture;
         private List<IController> controllers;
-
+        private ScriptHandler scriptHandler;
         private List<Component> componentsList;
 
         public StartGameState(GameRoot game, GraphicsDevice graphicsDevice, ContentManager content) : base(game, graphicsDevice, content)
         {
-
+            Input = new InputHandler();
+            scriptHandler = new ScriptHandler(this);
         }
 
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
@@ -53,10 +57,11 @@ namespace GameSpace.States.GameStates
         public override void LoadContent()
         {
             HUDHandler.GetInstance().LoadContent(content, game);
-            controllers = new List<IController>()
-            {
-                new KeyboardInput(game), new ControllerInput(game)
-            };
+            scriptHandler.Initialize();
+            //controllers = new List<IController>()
+            //{
+            //    new KeyboardInput(game), new ControllerInput(game)
+            //};
 
             var startButton = new Button(content.Load<Texture2D>("Button"), content.Load<SpriteFont>("font"))
             {
@@ -102,10 +107,10 @@ namespace GameSpace.States.GameStates
 
         public override void Update(GameTime gameTime)
         {
-            foreach (IController controller in controllers)
-            {
-                controller.Update();
-            }
+            //foreach (IController controller in controllers)
+            //{
+            //    controller.Update();
+            //}
 
             foreach (var component in componentsList)
                 component.Update(gameTime);

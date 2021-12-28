@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace GameSpace.Machines
 {
-    public class MusicHandler : AbstractHandler
+    public class MusicHandler : Handler
     {
         private static readonly MusicHandler instance = new MusicHandler();
         private bool mute = false;
@@ -18,7 +18,7 @@ namespace GameSpace.Machines
 
         private MusicHandler()
         {
-
+            
         }
 
         public void LoadMusicIntoList(List<SoundEffect> loadedList)

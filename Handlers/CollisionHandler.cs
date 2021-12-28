@@ -17,7 +17,7 @@ using static GameSpace.GameObjects.EnemyObjects.GreenKoopa;
 
 namespace GameSpace.EntityManaging
 {
-    public class CollisionHandler : AbstractHandler
+    public class CollisionHandler : Handler
     {
         private static readonly CollisionHandler instance = new CollisionHandler();
 
@@ -598,7 +598,7 @@ namespace GameSpace.EntityManaging
         #endregion
     }
 
-    public class MarioCollisionHandler : AbstractHandler
+    public class MarioCollisionHandler : Handler
     {
         private static MarioCollisionHandler instance = new MarioCollisionHandler();
 
@@ -644,7 +644,7 @@ namespace GameSpace.EntityManaging
         }
     }
 
-    public class EnemyCollisionHandler : AbstractHandler
+    public class EnemyCollisionHandler : Handler
     {
         private static EnemyCollisionHandler instance = new EnemyCollisionHandler();
 

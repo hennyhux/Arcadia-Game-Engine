@@ -3,7 +3,7 @@ using GameSpace.Interfaces;
 
 namespace GameSpace.EntityManaging
 {
-    public class AnimationHandler : AbstractHandler
+    public class AnimationHandler : Handler
     {
         private static readonly AnimationHandler instance = new AnimationHandler();
         public static AnimationHandler GetInstance()

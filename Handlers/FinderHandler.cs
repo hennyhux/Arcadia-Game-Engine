@@ -8,7 +8,7 @@ using System.Collections.Generic;
 
 namespace GameSpace.EntityManaging
 {
-    public class FinderHandler : AbstractHandler
+    public class FinderHandler : Handler
     {
         private static readonly FinderHandler instance = new FinderHandler();
         public static FinderHandler GetInstance()
@@ -60,7 +60,7 @@ namespace GameSpace.EntityManaging
 
         public GameRoot FindGameRoot()
         {
-            return gameRootCopy;
+            return gameRoot;
         }
 
     }

@@ -25,7 +25,7 @@ namespace GameSpace.States.GameStates
         public Dictionary<Keys, ICommand> GetCommand => keyboardCommands;
     }
 
-    public class GameOverState : State
+    public class GameOverState : GameState
     {
         private List<IController> controllers;
         public GameOverState(GameRoot game, GraphicsDevice graphicsDevice, ContentManager content) : base(game, graphicsDevice, content)

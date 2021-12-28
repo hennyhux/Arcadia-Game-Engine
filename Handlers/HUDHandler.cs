@@ -12,7 +12,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace GameSpace.Machines
 {
-    public class HUDHandler : AbstractHandler
+    public class HUDHandler : Handler
     {
         private SpriteFont HeadsUpDisplay;
         private Texture2D chungus;
@@ -197,7 +197,7 @@ namespace GameSpace.Machines
 
     }
 
-    public class HealthBar : AbstractHandler
+    public class HealthBar : Handler
     {
         Texture2D texture;
         Vector2 position;
@@ -226,13 +226,13 @@ namespace GameSpace.Machines
             if (rectangle.Width <= 1)
             {
                 mario.MarioPowerUpState.DeadTransition();
-                gameRootCopy.RestartCurrentState();
+                gameRoot.RestartCurrentState();
                 rectangle = new Rectangle(0, 0, texture.Width, texture.Height);
             }
         }
     }
 
-    public class ExpBar : AbstractHandler
+    public class ExpBar : Handler
     {
         Texture2D texture;
         Vector2 position;

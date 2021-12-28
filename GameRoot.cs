@@ -1,11 +1,9 @@
 ﻿using GameSpace.EntityManaging;
 using GameSpace.Enums;
 using GameSpace.GameObjects.BlockObjects;
-using GameSpace.Menus;
 using GameSpace.States.GameStates;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System.Collections.Generic;
 
 namespace GameSpace
 {
@@ -13,9 +11,8 @@ namespace GameSpace
     {
         private protected GraphicsDeviceManager graphicsDevice;
         private protected SpriteBatch spriteBatch;
-        public State CurrentState { get; private set; }
-        private State nextState;
-        private readonly bool paused = false;
+        public GameState CurrentState { get; private set; }
+        private GameState nextState;
         public GraphicsDeviceManager Graphics => graphicsDevice;
         public Mario GetMario => (Mario)FinderHandler.GetInstance().FindItem((int)AvatarID.MARIO);
         public GameRoot()
