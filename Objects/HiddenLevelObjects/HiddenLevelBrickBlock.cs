@@ -11,7 +11,7 @@ using System.Diagnostics;
 
 namespace GameSpace.Objects.BlockObjects
 {
-    public class HiddenLevelBrickBlock : AbstractBlock
+    public class HiddenLevelBrickBlock : Blocks
     {
         public HiddenLevelBrickBlock(Vector2 initLocation)
         {

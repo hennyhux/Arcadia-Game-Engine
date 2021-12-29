@@ -6,7 +6,7 @@ using Microsoft.Xna.Framework;
 
 namespace GameSpace.GameObjects.BlockObjects
 {
-    public class VineBlock : AbstractBlock
+    public class VineBlock : Blocks
     {
         public VineBlock(Vector2 initalPosition)
         {

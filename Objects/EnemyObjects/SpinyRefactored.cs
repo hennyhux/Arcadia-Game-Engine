@@ -7,6 +7,7 @@ using Microsoft.Xna.Framework.Graphics;
 using GameSpace.Objects.EnemyObjects;
 using GameSpace.GameObjects.BlockObjects;
 using GameSpace.Machines;
+using GameSpace.Abstracts;
 
 namespace GameSpace.GameObjects.EnemyObjects
 {

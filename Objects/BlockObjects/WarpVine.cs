@@ -42,7 +42,7 @@ namespace GameSpace.Sprites.ExtraItems
         }
     }
 
-    public class WarpVine : AbstractBlock
+    public class WarpVine : Blocks
     {
         private readonly bool hasCollided;
         public int TimesCollided { get; set; }
@@ -71,7 +71,7 @@ namespace GameSpace.Sprites.ExtraItems
         }
     }
 
-    public class WarpVineBlock : AbstractBlock
+    public class WarpVineBlock : Blocks
     {
         private readonly IGameObjects mob;
         private readonly bool itemRevealed;
@@ -155,7 +155,7 @@ namespace GameSpace.Sprites.ExtraItems
     }
 
 
-    public class WarpVineHeadRoom : AbstractBlock
+    public class WarpVineHeadRoom : Blocks
     {
         public int TimesCollided { get; set; }
 
@@ -181,7 +181,7 @@ namespace GameSpace.Sprites.ExtraItems
        */
     }
 
-    public class WarpVineBody : AbstractBlock
+    public class WarpVineBody : Blocks
     {
         public int TimesCollided { get; set; }
 
@@ -204,7 +204,7 @@ namespace GameSpace.Sprites.ExtraItems
         }
     }
 
-    public class WarpVineHeadBack : AbstractBlock
+    public class WarpVineHeadBack : Blocks
     {
         private readonly bool hasCollided;
         public int TimesCollided { get; set; }

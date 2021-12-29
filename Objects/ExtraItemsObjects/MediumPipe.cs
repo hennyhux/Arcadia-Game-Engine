@@ -5,7 +5,7 @@ using Microsoft.Xna.Framework;
 
 namespace GameSpace.GameObjects.ExtraItemsObjects
 {
-    public class MediumPipe : AbstractBlock
+    public class MediumPipe : Blocks
     {
 
         public MediumPipe(Vector2 initalPosition)

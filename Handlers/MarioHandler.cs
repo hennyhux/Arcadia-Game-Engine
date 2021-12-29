@@ -43,7 +43,7 @@ namespace GameSpace.Machines
                 currentWarpLocation++;
             }
 
-            AbstractBlock nextPipeBlock = (AbstractBlock)(listOfWarpPipes.ToArray()[currentWarpLocation]);
+            Blocks nextPipeBlock = (Blocks)(listOfWarpPipes.ToArray()[currentWarpLocation]);
 
             if (!(nextPipeBlock.state is StateWarpPipeDeactiveated))
             {

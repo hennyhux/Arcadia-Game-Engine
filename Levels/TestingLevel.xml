@@ -33,9 +33,9 @@
 	
 	
 	<Objects>
-		<x>200</x>
+		<x>450</x>
 		<y>310</y>
-		<item>WARPPIPEHEADWITHMOB</item>
+		<enemy>GOOMBA</enemy>
 	</Objects>
 
 

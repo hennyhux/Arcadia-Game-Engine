@@ -6,7 +6,7 @@ using Microsoft.Xna.Framework;
 
 namespace GameSpace.GameObjects.BlockObjects
 {
-    public class StairBlock : AbstractBlock
+    public class StairBlock : Blocks
     {
         public StairBlock(Vector2 initalPosition)
         {

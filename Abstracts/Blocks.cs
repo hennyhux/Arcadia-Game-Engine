@@ -6,7 +6,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace GameSpace.Abstracts
 {
-    public abstract class AbstractBlock : IGameObjects
+    public abstract class Blocks : IGameObjects
     {
         public ISprite Sprite { get; set; }
         public Vector2 Position { get; set; }
@@ -22,7 +22,7 @@ namespace GameSpace.Abstracts
         internal AbstractItem item;
         internal bool revealedItem;
 
-        public AbstractBlock()
+        public Blocks()
         {
             drawBox = false;
             revealedItem = false;
@@ -30,7 +30,7 @@ namespace GameSpace.Abstracts
 
         public virtual void Draw(SpriteBatch spritebatch)
         {
-            state.Draw(spritebatch, Position); //this shouldnt be hardcoded anymore 
+            state.Draw(spritebatch, Position); 
             if (drawBox)
             {
                 Sprite.DrawBoundary(spritebatch, CollisionBox);
@@ -40,15 +40,6 @@ namespace GameSpace.Abstracts
         public virtual void Update(GameTime gametime)
         {
             state.Update(gametime);
-        }
-
-        public virtual void UpdatePosition(Vector2 location, GameTime gametime)
-        {
-            //Block does not move
-        }
-        public virtual bool IsCurrentlyColliding()
-        {
-            return false;
         }
 
         public virtual void ToggleCollisionBoxes()

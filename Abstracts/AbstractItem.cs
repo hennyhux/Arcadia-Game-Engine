@@ -46,7 +46,7 @@ namespace GameSpace.Abstracts
                     break;
             }
 
-            if (entity is AbstractBlock block)
+            if (entity is Blocks block)
             {
                 CollisionHandler.GetInstance().ItemToBlockCollision(block, this);
             }

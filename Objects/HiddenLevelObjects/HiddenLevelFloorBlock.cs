@@ -6,7 +6,7 @@ using Microsoft.Xna.Framework;
 
 namespace GameSpace.GameObjects.BlockObjects
 {
-    public class HiddenLevelFloorBlock : AbstractBlock
+    public class HiddenLevelFloorBlock : Blocks
     {
         public HiddenLevelFloorBlock(Vector2 initalPosition)
         {

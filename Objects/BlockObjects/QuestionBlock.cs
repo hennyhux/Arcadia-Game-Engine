@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework;
 
 namespace GameSpace.GameObjects.BlockObjects
 {
-    public class QuestionBlock : AbstractBlock
+    public class QuestionBlock : Blocks
     {
         public QuestionBlock(Vector2 initalPosition, AbstractItem item)
         {

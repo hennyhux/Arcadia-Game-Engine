@@ -174,7 +174,7 @@ namespace GameSpace.EntityManaging
             }
             return gonnaFall;
         }
-        public void ItemToBlockCollision(AbstractBlock block, AbstractItem item)
+        public void ItemToBlockCollision(Blocks block, AbstractItem item)
         {
             switch (DetectCollisionDirection(item, block))
             {

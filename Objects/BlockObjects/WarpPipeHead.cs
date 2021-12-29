@@ -42,7 +42,7 @@ namespace GameSpace.Sprites.ExtraItems
         }
     }
 
-    public class WarpPipeHead : AbstractBlock
+    public class WarpPipeHead : Blocks
     {
         private readonly bool hasCollided;
         public int TimesCollided { get; set; }
@@ -71,7 +71,7 @@ namespace GameSpace.Sprites.ExtraItems
         }
     }
 
-    public class WarpPipeHeadMob : AbstractBlock
+    public class WarpPipeHeadMob : Blocks
     {
         private readonly IGameObjects mob;
         private readonly bool itemRevealed;
@@ -158,7 +158,7 @@ namespace GameSpace.Sprites.ExtraItems
     }
 
 
-    public class WarpPipeHeadRoom : AbstractBlock
+    public class WarpPipeHeadRoom : Blocks
     {
         public int TimesCollided { get; set; }
 
@@ -188,7 +188,7 @@ namespace GameSpace.Sprites.ExtraItems
         }
     }
 
-    public class WarpPipeBody : AbstractBlock
+    public class WarpPipeBody : Blocks
     {
         public int TimesCollided { get; set; }
 
@@ -218,7 +218,7 @@ namespace GameSpace.Sprites.ExtraItems
         }
     }
 
-    public class WarpPipeHeadBack : AbstractBlock
+    public class WarpPipeHeadBack : Blocks
     {
         private readonly bool hasCollided;
         public int TimesCollided { get; set; }

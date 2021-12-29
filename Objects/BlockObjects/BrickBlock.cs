@@ -30,7 +30,7 @@ namespace GameSpace.Objects.BlockObjects
         }
     }
 
-    public class BrickBlock : AbstractBlock
+    public class BrickBlock : Blocks
     {
         private int counter = 0;
         public BrickBlock(Vector2 initLocation)
