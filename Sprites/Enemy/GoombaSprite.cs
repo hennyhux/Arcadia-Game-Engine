@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace GameSpace.Sprites
 {
-    public class GoombaSprite : AbstractSprite
+    public class GoombaSprite : Sprite
     {
         public GoombaSprite(Texture2D texture, int rows, int columns, int totalFrames, int startingPointX,
             int startingPointY)
@@ -38,9 +38,9 @@ namespace GameSpace.Sprites
 
     }
 
-    public class UberGoombaSprite : AbstractSprite
+    public class UberGoombaSprite : Sprite
     {
-        
+
         public UberGoombaSprite(Texture2D texture, int rows, int columns, int totalFrames, int startingPointX,
            int startingPointY)
         {
@@ -83,7 +83,7 @@ namespace GameSpace.Sprites
         }
     }
 
-    public class UberGoombaDeadSprite : AbstractSprite
+    public class UberGoombaDeadSprite : Sprite
     {
         public UberGoombaDeadSprite(Texture2D texture, int rows, int columns, int totalFrames)
         {

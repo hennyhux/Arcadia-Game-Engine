@@ -32,7 +32,7 @@ namespace GameSpace.States
 
         public void Update(GameTime gametime)
         {
-           // StateSprite.Update(gametime);
+            // StateSprite.Update(gametime);
         }
 
         public void Trigger()

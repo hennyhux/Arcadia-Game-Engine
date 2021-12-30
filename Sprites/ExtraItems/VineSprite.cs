@@ -1,10 +1,9 @@
-﻿using System;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace GameSpace.Sprites
 {
-    public class VineSprite : AbstractSprite
+    public class VineSprite : Sprite
     {
         public VineSprite(Texture2D texture, int rows, int columns, int totalFrames, int startingPointX,
             int startingPointY)

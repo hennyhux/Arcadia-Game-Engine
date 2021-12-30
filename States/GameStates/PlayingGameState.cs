@@ -1,4 +1,5 @@
-﻿using GameSpace.Camera2D;
+﻿using GameSpace.Abstracts;
+using GameSpace.Camera2D;
 using GameSpace.EntityManaging;
 using GameSpace.Enums;
 using GameSpace.Factories;
@@ -6,16 +7,13 @@ using GameSpace.GameObjects.BlockObjects;
 using GameSpace.Interfaces;
 using GameSpace.Level;
 using GameSpace.Machines;
-using GameSpace.Menus;
-using GameSpace.Abstracts;
+using GameSpace.TileMapDefinition;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Media;
 using System.Collections.Generic;
 using System.Diagnostics;
-using GameSpace.TileMapDefinition;
 
 namespace GameSpace.States.GameStates
 {

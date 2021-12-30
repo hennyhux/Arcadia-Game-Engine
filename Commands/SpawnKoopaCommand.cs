@@ -1,9 +1,10 @@
-﻿using System;
+﻿using GameSpace.EntityManaging;
 using GameSpace.Factories;
-using GameSpace.EntityManaging;
-using GameSpace.GameObjects.EnemyObjects;
 using GameSpace.GameObjects.BlockObjects;
+using GameSpace.GameObjects.EnemyObjects;
+using GameSpace.Objects.EnemyObjects;
 using Microsoft.Xna.Framework;
+using System;
 
 namespace GameSpace.Commands
 {
@@ -31,7 +32,7 @@ namespace GameSpace.Commands
             {
                 loc = new Vector2(mario.Position.X - 75, mario.Position.Y - 15);
             }
-            GreenKoopa koopa = (GreenKoopa)ObjectFactory.GetInstance().CreateGreenKoopaObject(loc);
+            Koopa koopa = (Koopa)ObjectFactory.GetInstance().CreateGreenKoopaObject(loc);
             TheaterHandler.GetInstance().AddItemToStage(koopa);
         }
 

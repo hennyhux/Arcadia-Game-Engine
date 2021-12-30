@@ -1,4 +1,5 @@
-﻿using GameSpace.EntityManaging;
+﻿using GameSpace.Abstracts;
+using GameSpace.EntityManaging;
 using GameSpace.Enums;
 using GameSpace.Factories;
 using GameSpace.GameObjects.EnemyObjects;
@@ -81,7 +82,7 @@ namespace GameSpace.GameObjects.BlockObjects
                     sprite.Facing = SpriteEffects.FlipHorizontally;
                     break;
             }
-            if(onCloud == false)
+            if (onCloud == false)
             {
                 sprite.Draw(spritebatch, Position, IsInvincible);
             }
@@ -113,7 +114,11 @@ namespace GameSpace.GameObjects.BlockObjects
 
         public void StartClimbing()
         {
-            if (onCloud) ExitCloud();
+            if (onCloud)
+            {
+                ExitCloud();
+            }
+
             sprite.EnterClimb();
             Velocity = new Vector2(0, -100);
         }
@@ -127,12 +132,12 @@ namespace GameSpace.GameObjects.BlockObjects
 
         public void CheckVineTeleport()
         {
-            if(Position.Y <= 50)
+            if (Position.Y <= 50)
             {
 
             }
         }
-        
+
         public void Update(GameTime gametime)
         {
             //Debug.WriteLine("collison, {0}, expand: {1}, positionX{2}", CollisionBox.Y, ExpandedCollisionBox.Y, Position.Y);
@@ -152,7 +157,11 @@ namespace GameSpace.GameObjects.BlockObjects
             }
 
 
-            if (onCloud) CloudMovement(gametime);
+            if (onCloud)
+            {
+                CloudMovement(gametime);
+            }
+
             if (!onCloud)
             {
                 MarioPowerUpState.Update(gametime);// these
@@ -209,13 +218,13 @@ namespace GameSpace.GameObjects.BlockObjects
                 MarioActionState.FaceLeftTransition();
             }
 
-         
+
         }
         public void FaceRightTransition()
         {
             if (onCloud)
             {
-                if(Facing == MarioDirection.LEFT)
+                if (Facing == MarioDirection.LEFT)
                 {
                     MarioActionState.StandingTransition();
                     MarioActionState.FaceRightTransition();
@@ -226,14 +235,14 @@ namespace GameSpace.GameObjects.BlockObjects
             {
                 MarioActionState.FaceRightTransition();
             }
-               
+
         }
 
         public void UpTransition()
         {
             if (onCloud)
-            { 
-                if(Velocity.Y < 0)
+            {
+                if (Velocity.Y < 0)
                 {
                     ExitCloud();
                 }
@@ -241,14 +250,14 @@ namespace GameSpace.GameObjects.BlockObjects
                 {
                     Velocity = new Vector2(Velocity.X, Velocity.Y - 150);
                 }
-                
-                
+
+
             }
             else
             {
                 MarioActionState.UpTransition();
             }
-            
+
         }
 
         public void ExitCloud()
@@ -277,7 +286,7 @@ namespace GameSpace.GameObjects.BlockObjects
             {
                 MarioActionState.DownTransition();
             }
-            
+
         }
 
         public void CrouchingDiscontinueTransition() { MarioActionState.CrouchingDiscontinueTransition(); }//when you exit crouch, release down key
@@ -329,11 +338,11 @@ namespace GameSpace.GameObjects.BlockObjects
                 {
                     MarioPowerUpState.DamageTransition();
                 }
-                
+
                 invincibleTimer = 3;
 
             }
-            else if(IsDead)
+            else if (IsDead)
             {
                 MarioPowerUpState.DeadTransition();
             }
@@ -360,7 +369,7 @@ namespace GameSpace.GameObjects.BlockObjects
                     CollisionBox = new Rectangle((int)Position.X, (int)Position.Y, 32, 64);
                 }
 
-                ExpandedCollisionBox = new Rectangle(CollisionBox.X, CollisionBox.Y, CollisionBox.Width, CollisionBox.Height +5);
+                ExpandedCollisionBox = new Rectangle(CollisionBox.X, CollisionBox.Y, CollisionBox.Width, CollisionBox.Height + 5);
             }
 
             else
@@ -442,7 +451,7 @@ namespace GameSpace.GameObjects.BlockObjects
                     break;
                 case (int)EnemyID.GREENKOOPA:
                     CollisionHandler.GetInstance().ChangeMarioStatesUponCollision(entity);
-                    CollisionHandler.GetInstance().MarioToEnemyCollision((GreenKoopa)entity);
+                    CollisionHandler.GetInstance().MarioToEnemyCollision((Enemy)entity);
                     break;
                 case (int)EnemyID.SPINY:
                     CollisionHandler.GetInstance().ChangeMarioStatesUponCollision(entity);

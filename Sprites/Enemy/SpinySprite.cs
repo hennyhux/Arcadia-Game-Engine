@@ -2,8 +2,6 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
-using GameSpace.Machines;
-using System.Diagnostics;
 
 namespace GameSpace.Sprites
 {
@@ -17,7 +15,7 @@ namespace GameSpace.Sprites
 
         private bool IsVisible;
 
-        private int IsThrowing;
+        private readonly int IsThrowing;
         public Texture2D Texture { get; set; }
         public int Height { get; set; }
         public int Width { get; set; }
@@ -39,7 +37,7 @@ namespace GameSpace.Sprites
          *      Meaning the corresponding indexes will be 0's
          */
         private readonly int[] XFrame = new int[] { 0, 91, 180, 270 };
-        private readonly int[] YFrame = new int[] { 5, 5, 5 ,5};
+        private readonly int[] YFrame = new int[] { 5, 5, 5, 5 };
         private readonly int[] XWidth = new int[] { 50, 50, 50, 50 };
         private readonly int[] YHeight = new int[] { 50, 50, 50, 50 };
         private readonly int[] totalFramesAnimation = new int[] { 2, 2, 2, 2 };
@@ -79,7 +77,7 @@ namespace GameSpace.Sprites
 
                 Facing = SpriteEffects.None;
                 //startingFrame = (1 + 1 * (facingRight));
-                
+
                 //Debug.WriteLine("FACING RIGHT: {0},", facingRight);
                 if (facingRight == 0)
                 {
@@ -109,7 +107,7 @@ namespace GameSpace.Sprites
                 }*/
 
 
-                if(newState == false)
+                if (newState == false)
                 {
                     timeSinceLastFrame += gametime.ElapsedGameTime.Milliseconds;
                     if (timeSinceLastFrame > milliSecondsPerFrame)
@@ -192,6 +190,11 @@ namespace GameSpace.Sprites
         public void RevertSprite()
         {
 
+        }
+
+        public int GetTotalFrames()
+        {
+            throw new NotImplementedException();
         }
     }
 }

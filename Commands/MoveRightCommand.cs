@@ -1,6 +1,4 @@
-﻿using System.Diagnostics;
-
-namespace GameSpace
+﻿namespace GameSpace
 {
     public class MoveRightCommand : ICommand
     {

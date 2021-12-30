@@ -2,12 +2,9 @@
 using GameSpace.EntityManaging;
 using GameSpace.Enums;
 using GameSpace.Factories;
-using GameSpace.Interfaces;
 using GameSpace.States;
-using GameSpace.States.BlockStates;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System.Diagnostics;
 namespace GameSpace.GameObjects.BlockObjects
 {
     public class HiddenBlock : Block
@@ -49,7 +46,7 @@ namespace GameSpace.GameObjects.BlockObjects
                 hasRevealedItem = true;
                 TheaterHandler.GetInstance().AddItemToStage(item);
                 int dist = (int)item.Position.Y;
-                for(int i = 0; i < dist+50; i = i + 50)
+                for (int i = 0; i < dist + 50; i = i + 50)
                 {
                     //Debug.WriteLine("Y cord: {0}", item.Position.Y - i);
                     TheaterHandler.GetInstance().AddItemToStage((AbstractItem)ObjectFactory.GetInstance().CreateVineObject(new Vector2(item.Position.X, item.Position.Y - i)));
@@ -82,14 +79,14 @@ namespace GameSpace.GameObjects.BlockObjects
 
         public override void Trigger()
         {
-            
+
         }
     }
 
     public abstract class VineBlockStates : IBlockState
     {
         public ISprite StateSprite { get; set; }
-        internal protected HiddenBlockWithVine block;
+        protected internal HiddenBlockWithVine block;
 
         protected VineBlockStates(HiddenBlockWithVine block)
         {
@@ -118,10 +115,10 @@ namespace GameSpace.GameObjects.BlockObjects
 
         }
 
-        internal protected virtual void UpdateCollisionBox()
+        protected internal virtual void UpdateCollisionBox()
         {
             block.CollisionBox = new Rectangle((int)block.Position.X, (int)block.Position.Y,
-                StateSprite.Texture.Width *2, StateSprite.Texture.Height *2);
+                StateSprite.Texture.Width * 2, StateSprite.Texture.Height * 2);
         }
     }
 }

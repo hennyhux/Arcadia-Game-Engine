@@ -3,7 +3,7 @@ using GameSpace.Factories;
 using GameSpace.GameObjects.BlockObjects;
 using GameSpace.Interfaces;
 using Microsoft.Xna.Framework;
- 
+
 
 namespace GameSpace.States.MarioStates
 {
@@ -49,40 +49,40 @@ namespace GameSpace.States.MarioStates
 
         public override void Exit()
         {
-            
+
         }
 
-      
+
         public override void StandingTransition()
         {
             Exit();
             Mario.MarioActionState = new SmallMarioStandingState(Mario);
-            Mario.MarioActionState.Enter(this); 
+            Mario.MarioActionState.Enter(this);
 
         }
         public override void CrouchingTransition() { }
         public override void WalkingTransition()
         {
-            
+
             Mario.MarioActionState = new SmallMarioWalkingState(Mario);
-           
-            Mario.MarioActionState.Enter(this); 
+
+            Mario.MarioActionState.Enter(this);
         }
         public override void RunningTransition()
         {
-            
-        } 
+
+        }
         public override void JumpingTransition()
         {
             Exit();
             Mario.MarioActionState = new SmallMarioJumpingState(Mario);
-            Mario.MarioActionState.Enter(this); 
+            Mario.MarioActionState.Enter(this);
         }
         public override void FallingTransition()
         {
             Exit();
             Mario.MarioActionState = new SmallMarioFallingState(Mario);
-            Mario.MarioActionState.Enter(this); 
+            Mario.MarioActionState.Enter(this);
         }
 
         public override void FaceLeftTransition()
@@ -93,7 +93,7 @@ namespace GameSpace.States.MarioStates
             }
             else
             {
-  
+
                 StandingTransition();
             }
         }
@@ -101,7 +101,7 @@ namespace GameSpace.States.MarioStates
         {
             if (Mario.Facing == MarioDirection.RIGHT)
             {//incease Velocity
-               // Debug.WriteLine("SmallRunning(107) Run/Face Right, Increase(+) Velocity");
+             // Debug.WriteLine("SmallRunning(107) Run/Face Right, Increase(+) Velocity");
             }
             //WalkingTransition();
 

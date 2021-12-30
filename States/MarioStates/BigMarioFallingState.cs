@@ -30,12 +30,12 @@ namespace GameSpace.States.MarioStates
         {
             Exit();
             Mario.MarioActionState = new BigMarioStandingState(Mario);
-            Mario.MarioActionState.Enter(this); 
+            Mario.MarioActionState.Enter(this);
 
         }
         public override void CrouchingTransition()
         {
-            
+
         }
         public override void WalkingTransition()//Not Used Now, Used after Sprint2
         {
@@ -45,16 +45,16 @@ namespace GameSpace.States.MarioStates
         {
             Exit();
             Mario.MarioActionState = new BigMarioRunningState(Mario);
-            
+
             Mario.MarioActionState.Enter(this); // Changing states
-        } 
+        }
         public override void JumpingTransition()
         {
-          
+
         }
         public override void FallingTransition()
         {
-            
+
         }
 
         public override void FaceLeftTransition()
@@ -63,7 +63,7 @@ namespace GameSpace.States.MarioStates
             {
                 RunningTransition();
             }
-          
+
             else
             {
                 Mario.Facing = MarioDirection.LEFT;
@@ -76,7 +76,7 @@ namespace GameSpace.States.MarioStates
             {
                 RunningTransition();
             }
-           
+
             else
             {
                 Mario.Facing = MarioDirection.RIGHT;

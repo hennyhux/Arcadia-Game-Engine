@@ -1,13 +1,13 @@
 ﻿using GameSpace.Abstracts;
-using Microsoft.Xna.Framework;
 using GameSpace.Enums;
 using GameSpace.Objects.EnemyObjects;
+using Microsoft.Xna.Framework;
 
 namespace GameSpace.Objects.BlockObjects
 {
     public class WarpPipeWithPlant : Blocks
     {
-        private Plant plant;
+        private readonly Plant plant;
         public WarpPipeWithPlant(Vector2 location)
         {
             ObjectID = (int)ItemID.WARPPIPEHEADWITHMOB;

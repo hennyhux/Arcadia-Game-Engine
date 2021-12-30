@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace GameSpace.Sprites
 {
-    public class StarSprite : AbstractSprite
+    public class StarSprite : Sprite
     {
         public StarSprite(Texture2D texture, int rows, int columns, int totalFrames, int startingPointX,
             int startingPointY)

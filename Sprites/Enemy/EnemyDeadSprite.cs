@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace GameSpace.Sprites.Enemy
 {
-    public class EnemyDeadSprite : AbstractSprite
+    public class EnemyDeadSprite : Sprite
     {
         public EnemyDeadSprite(Texture2D texture, int rows, int columns, int totalFrames)
         {
@@ -29,7 +29,7 @@ namespace GameSpace.Sprites.Enemy
 
                 Rectangle sourceRectangle = new Rectangle(width * column, height * row, width, height);
                 Rectangle destinationRectangle = new Rectangle((int)location.X, (int)location.Y + 6, width * 2, height * 2);
-                spriteBatch.Draw(Texture, destinationRectangle, sourceRectangle, Color.White);
+                spriteBatch.Draw(Texture, destinationRectangle, sourceRectangle, Color.White, 0, new Vector2(0, 0), SpriteEffects.FlipVertically, 0);
             }
         }
 

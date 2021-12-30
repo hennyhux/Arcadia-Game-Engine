@@ -3,12 +3,11 @@ using GameSpace.EntityManaging;
 using GameSpace.Enums;
 using GameSpace.Factories;
 using GameSpace.Interfaces;
+using GameSpace.Machines;
 using GameSpace.States;
-using GameSpace.States.EnemyStates;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Diagnostics;
-using GameSpace.Machines;
 namespace GameSpace.GameObjects.EnemyObjects
 {
     public class Lakitu : AbstractEnemy
@@ -54,7 +53,7 @@ namespace GameSpace.GameObjects.EnemyObjects
             }
             if (searchState == 1)
             {
-                if(FinderHandler.GetInstance().FindItem((int)AvatarID.MARIO).Position.X < Position.X)
+                if (FinderHandler.GetInstance().FindItem((int)AvatarID.MARIO).Position.X < Position.X)
                 {
                     Velocity = new Vector2(-100, 0);
                 }
@@ -78,7 +77,7 @@ namespace GameSpace.GameObjects.EnemyObjects
                     state = new StateLakituThrowing(this);
                 }
             }
-            
+
         }
         public override void Update(GameTime gametime)
         {
@@ -148,7 +147,7 @@ namespace GameSpace.GameObjects.EnemyObjects
             {
                 //Velocity = new Vector2(-85, 0);
             }
-            
+
 
             Velocity += Acceleration * (float)gameTime.ElapsedGameTime.TotalSeconds;
             Position += Velocity * (float)gameTime.ElapsedGameTime.TotalSeconds;
@@ -163,7 +162,7 @@ namespace GameSpace.GameObjects.EnemyObjects
 
         public override void Trigger()
         {
-            if(!(state is StateLakituDead) && !(state is StateLakituCloud))
+            if (!(state is StateLakituDead) && !(state is StateLakituCloud))
             {
                 //Debug.Print("LAKIT");
                 //state = new StateLakituDead(this);
@@ -173,7 +172,7 @@ namespace GameSpace.GameObjects.EnemyObjects
                 //CollisionBox = new Rectangle(0, 0, 0, 0);
                 //ExpandedCollisionBox = CollisionBox;
             }
-            else if(state is StateLakituCloud && MarioHandler.GetInstance().getCloudMario() == false)
+            else if (state is StateLakituCloud && MarioHandler.GetInstance().getCloudMario() == false)
             {
                 //Debug.Print("TRIGGER CLOUDSTATE");
                 state.Trigger();

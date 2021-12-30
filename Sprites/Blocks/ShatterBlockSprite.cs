@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace GameSpace.Sprites
 {
-    public class ShatterBlockSprite : AbstractSprite
+    public class ShatterBlockSprite : Sprite
     {
         public override void SetVisible() { isVisible = !isVisible; }
         public ShatterBlockSprite(Texture2D texture, int rows, int columns, int totalFrames)

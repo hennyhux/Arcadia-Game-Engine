@@ -127,7 +127,7 @@ namespace GameSpace.Factories
         }
         public IGameObjects CreateGreenKoopaObject(Vector2 location)
         {
-            return new GreenKoopa(location);
+            return new Koopa(location);
         }
 
         public IGameObjects CreateRedKoopaObject(Vector2 location)

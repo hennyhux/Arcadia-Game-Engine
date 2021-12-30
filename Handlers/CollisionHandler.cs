@@ -13,7 +13,7 @@ using GameSpace.States.MarioStates;
 using Microsoft.Xna.Framework;
 using System.Diagnostics;
 using System.Linq;
-using static GameSpace.GameObjects.EnemyObjects.GreenKoopa;
+
 
 namespace GameSpace.EntityManaging
 {
@@ -100,7 +100,7 @@ namespace GameSpace.EntityManaging
                 }
             }*/
 
-            
+
 
             float player_bottom = a.Position.Y + a.CollisionBox.Height;
             float tiles_bottom = b.Position.Y + b.CollisionBox.Height;
@@ -281,26 +281,26 @@ namespace GameSpace.EntityManaging
             if (DetectCollisionDirection(enemy, block) == (int)CollisionDirection.LEFT)
             {
                 enemy.Direction = (int)MarioDirection.LEFT;
-                if (enemy is GreenKoopa)
+                if (enemy is Koopa)
                 {
-                    GreenKoopa copy = (GreenKoopa)enemy;
-                    copy.FlipSprite();
+                    
+
                 }
             }
 
             else if (DetectCollisionDirection(enemy, block) == (int)CollisionDirection.RIGHT)
             {
                 enemy.Direction = (int)MarioDirection.RIGHT;
-                if (enemy is GreenKoopa)
+                if (enemy is Koopa)
                 {
-                    GreenKoopa copy = (GreenKoopa)enemy;
-                    copy.FlipSprite();
+                  
+
                 }
             }
         }
 
 
-        public void ShellToBlockCollision(GreenKoopa enemy, IGameObjects block)
+        public void ShellToBlockCollision(Koopa enemy, IGameObjects block)
         {
 
             if (DetectCollisionDirection(enemy, block) == (int)CollisionDirection.LEFT)
@@ -333,32 +333,6 @@ namespace GameSpace.EntityManaging
         public void EnemyToMarioCollision(Spiny enemy)
         {
 
-        }
-
-        public void EnemyToMarioCollision(GreenKoopa enemy)
-        {
-            if (DetectCollisionDirection(enemy, mario) == (int)CollisionDirection.UP)
-            {
-                enemy.Trigger();
-            }
-
-            else
-            {
-                if (enemy.State is GreenKoopaShellState ||
-                    enemy.State is GreenKoopaShellAndLegsState)
-                {
-                    enemy.Trigger();
-                }
-            }
-        }
-
-
-        public void EnemyToEnemyCollision(GreenKoopa enemy, Goomba enemyB)
-        {
-            if (enemy.state is StateGreenKoopaDeadMoving)
-            {
-                enemyB.Trigger();
-            }
         }
         #endregion
 
@@ -414,8 +388,8 @@ namespace GameSpace.EntityManaging
         {
             HiddenBlock hBlock = (HiddenBlock)block;
 
-                MarioToBlockCollision(block);
-            
+            MarioToBlockCollision(block);
+
         }
 
         public void MarioToEnemyCollision(IGameObjects enemy)
@@ -431,20 +405,7 @@ namespace GameSpace.EntityManaging
             }
         }
 
-        public void MarioToEnemyCollision(GreenKoopa koopa)
-        {
-            if (DetectCollisionDirection(mario, koopa) != (int)CollisionDirection.DOWN &&
-                DetectCollisionDirection(mario, koopa) != 0)
-            {
-                if (koopa.State is GreenKoopaAliveState)mario.Trigger();
-            }
-
-            else
-            {
-                mario.LeapTransition();
-            }
-            
-        }
+      
 
         public void MarioToItemCollision(FireFlower item)
         {
@@ -600,7 +561,7 @@ namespace GameSpace.EntityManaging
 
     public class MarioCollisionHandler : Handler
     {
-        private static MarioCollisionHandler instance = new MarioCollisionHandler();
+        private static readonly MarioCollisionHandler instance = new MarioCollisionHandler();
 
         public static MarioCollisionHandler GetInstance()
         {
@@ -643,10 +604,9 @@ namespace GameSpace.EntityManaging
             }
         }
     }
-
     public class EnemyCollisionHandler : Handler
     {
-        private static EnemyCollisionHandler instance = new EnemyCollisionHandler();
+        private static readonly EnemyCollisionHandler instance = new EnemyCollisionHandler();
 
         public static EnemyCollisionHandler GetInstance()
         {
@@ -730,7 +690,7 @@ namespace GameSpace.EntityManaging
 
         public void HandleMarioCollision(UberKoopa enemy)
         {
-     
+
         }
 
         public void HandleMarioCollision(Lakitu enemy)
@@ -752,7 +712,6 @@ namespace GameSpace.EntityManaging
         {
             enemy.Trigger();
         }
-
     }
 }
 

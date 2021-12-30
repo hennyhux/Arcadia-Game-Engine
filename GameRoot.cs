@@ -25,7 +25,7 @@ namespace GameSpace
 
         protected override void Initialize()
         {
-            this.IsMouseVisible = true;
+            IsMouseVisible = true;
             base.Initialize();
         }
 
@@ -57,7 +57,7 @@ namespace GameSpace
             CurrentState.Update(gameTime);
             base.Update(gameTime);
         }
-        
+
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);

@@ -21,7 +21,7 @@ namespace GameSpace.Factories
         private Texture2D Plant;
         private Texture2D Lakitu;
         private Texture2D Spiny;
-        private Texture2D DeadSpiny;
+        private readonly Texture2D DeadSpiny;
         private Texture2D UberGoomba;
         private Texture2D UberKoopa;
         #endregion

@@ -1,9 +1,9 @@
-﻿using GameSpace.Machines;
+﻿using GameSpace.Abstracts;
+using GameSpace.Machines;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using GameSpace.Abstracts;
 using System.Collections.Generic;
 
 namespace GameSpace.States.GameStates

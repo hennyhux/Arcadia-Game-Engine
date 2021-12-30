@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace GameSpace.Sprites
 {
-    public class SuperShroomSprite : AbstractSprite
+    public class SuperShroomSprite : Sprite
     {
         public SuperShroomSprite(Texture2D texture, int rows, int columns, int totalFrames, int startingPointX,
             int startingPointY)

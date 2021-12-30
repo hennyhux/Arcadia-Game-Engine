@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace GameSpace.Abstracts
+﻿namespace GameSpace.Abstracts
 {
     public abstract class RootCommand : ICommand
     {

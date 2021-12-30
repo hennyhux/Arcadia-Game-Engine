@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace GameSpace.Sprites
 {
-    internal class QuestionBlockSprite : AbstractSprite
+    internal class QuestionBlockSprite : Sprite
     {
 
         public QuestionBlockSprite(Texture2D texture, int rows, int columns, int totalFrames, int startingPointX,

@@ -4,7 +4,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace GameSpace.Sprites
 {
-    public abstract class AbstractSprite : ISprite
+    public abstract class Sprite : ISprite
     {
 
         protected int currentFrame;
@@ -18,8 +18,6 @@ namespace GameSpace.Sprites
         protected int columns;
         protected Vector2 location;
 
-        private static int hey = 0;
-
         protected int timeSinceLastFrame;
         protected int milliSecondsPerFrame;
 
@@ -30,19 +28,17 @@ namespace GameSpace.Sprites
         protected Point atlasSize;
         protected Point currentFramePoint;
 
+        protected internal SpriteEffects Facing { get; set; }
+
         protected Texture2D WhiteRect = SpriteBlockFactory.GetInstance().CreateBoundingBoxTexture();
 
-        public AbstractSprite()
+        public Sprite()
         {
             Facing = SpriteEffects.None;
         }
 
         public virtual Texture2D Texture { get; set; }
         public virtual void SetVisible() { isVisible = !isVisible; }
-        public bool GetVisibleStatus() { return isVisible; }
-
-        public SpriteEffects Facing { get; set; }
-
 
         public virtual void Update(GameTime gametime)
         {
@@ -88,24 +84,11 @@ namespace GameSpace.Sprites
             }
         }
 
-        public virtual void UpdateLocation(Vector2 location)
-        {
-
-        }
-
         public virtual void DrawBoundary(SpriteBatch spriteBatch, Rectangle destination)
         {
             spriteBatch.Draw(WhiteRect, destination, Color.Blue * 0.4f);
         }
 
-        public virtual void FlipSprite()
-        {
-            Facing = SpriteEffects.FlipVertically;
-        }
-
-        public void RevertSprite()
-        {
-            Facing = SpriteEffects.None;
-        }
+        public virtual int GetTotalFrames() { return totalFrames; }
     }
 }

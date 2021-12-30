@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace GameSpace.Sprites
 {
-    public class RedKoopaSprite : AbstractSprite
+    public class RedKoopaSprite : Sprite
     {
         public RedKoopaSprite(Texture2D texture, int rows, int columns, int totalFrames, int startingPointX,
                 int startingPointY)

@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace GameSpace.Sprites
 {
-    public class OneUpShroomSprite : AbstractSprite
+    public class OneUpShroomSprite : Sprite
     {
         public OneUpShroomSprite(Texture2D texture, int rows, int columns, int totalFrames, int startingPointX,
             int startingPointY)

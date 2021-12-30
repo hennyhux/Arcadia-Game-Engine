@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace GameSpace.Sprites
 {
-    public class FireFlowerSprite : AbstractSprite
+    public class FireFlowerSprite : Sprite
     {
         public FireFlowerSprite(Texture2D texture, int rows, int columns, int totalFrames, int startingPointX,
             int startingPointY)

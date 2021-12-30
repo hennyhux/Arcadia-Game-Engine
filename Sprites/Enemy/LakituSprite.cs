@@ -2,8 +2,6 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
-using GameSpace.Machines;
-using System.Diagnostics;
 
 namespace GameSpace.Sprites
 {
@@ -17,7 +15,7 @@ namespace GameSpace.Sprites
 
         private bool IsVisible;
 
-        private int IsThrowing;
+        private readonly int IsThrowing;
         public Texture2D Texture { get; set; }
         public int Height { get; set; }
         public int Width { get; set; }
@@ -26,7 +24,7 @@ namespace GameSpace.Sprites
         public int facingRight { get; set; }// left = 0, right = 1
         public SpriteEffects Facing { get; set; }
 
-        private bool newState;
+        private readonly bool newState;
 
         /* Array Format is
          * First 34 is small, next 34 is big, next 34 is fire, then star, then dead
@@ -77,7 +75,7 @@ namespace GameSpace.Sprites
             {
                 int startingFrame = 0;
                 totalFrames = totalFramesAnimation[currentFrame]; // gets previous frame's total frames in animation
-    
+
                 Facing = SpriteEffects.None;
                 startingFrame = (1 + 1 * (facingRight));
                 //Debug.WriteLine("FACING RIGHT: {0},", facingRight);
@@ -91,7 +89,7 @@ namespace GameSpace.Sprites
                     currentFrame = 2;
                     //Debug.WriteLine(" FACING RIGHT," );
                 }
-                if(IsThrowing == 1)
+                if (IsThrowing == 1)
                 {
                     currentFrame = 1;
                 }
@@ -144,7 +142,8 @@ namespace GameSpace.Sprites
 
             }
         }
-        public void Draw(SpriteBatch spriteBatch, Vector2 location) {
+        public void Draw(SpriteBatch spriteBatch, Vector2 location)
+        {
             if (IsVisible)
             {
                 Width = XWidth[currentFrame];
@@ -200,6 +199,11 @@ namespace GameSpace.Sprites
         public void RevertSprite()
         {
 
+        }
+
+        public int GetTotalFrames()
+        {
+            throw new NotImplementedException();
         }
     }
 }

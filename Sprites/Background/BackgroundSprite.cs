@@ -2,7 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 namespace GameSpace.Sprites.Background
 {
-    public class BackgroundSprite : AbstractSprite
+    public class BackgroundSprite : Sprite
     {
         public Texture2D Texture;
 

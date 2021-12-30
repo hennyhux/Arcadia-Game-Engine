@@ -1,19 +1,18 @@
-﻿using GameSpace.EntityManaging;
+﻿using GameSpace.Abstracts;
+using GameSpace.EntityManaging;
 using GameSpace.Enums;
 using GameSpace.Factories;
+using GameSpace.GameObjects.BlockObjects;
 using GameSpace.Interfaces;
+using GameSpace.Machines;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using GameSpace.Objects.EnemyObjects;
-using GameSpace.GameObjects.BlockObjects;
-using GameSpace.Machines;
-using GameSpace.Abstracts;
 
 namespace GameSpace.GameObjects.EnemyObjects
 {
     public class SpinyRefactored : Enemy
     {
-        private int searchState;//0 passed mario, now throw spiny, 1 going left towards mario, 2 going right towards mario
+        private readonly int searchState;//0 passed mario, now throw spiny, 1 going left towards mario, 2 going right towards mario
         public SpinyRefactored(Vector2 initalPosition)
         {
             state = new StateSpinyAliveLeft(this);
@@ -29,8 +28,8 @@ namespace GameSpace.GameObjects.EnemyObjects
             switch (entity.ObjectID)
             {
                 //case (int)AvatarID.MARIO:
-                  //  EnemyCollisionHandler.GetInstance().HandleMarioCollision(this);
-                    //break;
+                //  EnemyCollisionHandler.GetInstance().HandleMarioCollision(this);
+                //break;
 
                 case (int)BlockID.USEDBLOCK:
                 case (int)BlockID.QUESTIONBLOCK:
@@ -57,7 +56,7 @@ namespace GameSpace.GameObjects.EnemyObjects
     public abstract class StateSpiny : IMobState
     {
         public ISprite StateSprite { get; set; }
-        internal protected SpinyRefactored enemy;
+        protected internal SpinyRefactored enemy;
 
         protected StateSpiny(SpinyRefactored enemy)
         {
@@ -92,10 +91,10 @@ namespace GameSpace.GameObjects.EnemyObjects
         internal virtual void UpdateCollisionBox(Vector2 location)
         {
             enemy.CollisionBox = new Rectangle((int)location.X, (int)location.Y,
-                StateSprite.Texture.Width / 8, StateSprite.Texture.Height /2 );
+                StateSprite.Texture.Width / 8, StateSprite.Texture.Height / 2);
 
             enemy.ExpandedCollisionBox = new Rectangle((int)location.X, (int)location.Y,
-                StateSprite.Texture.Width / 8, (StateSprite.Texture.Height /2 ) + 6);
+                StateSprite.Texture.Width / 8, (StateSprite.Texture.Height / 2) + 6);
         }
 
         internal virtual void UpdateSpeed()
@@ -120,13 +119,13 @@ namespace GameSpace.GameObjects.EnemyObjects
             }
         }
 
-        internal protected void DestoryCollisionBox()
+        protected internal void DestoryCollisionBox()
         {
             enemy.CollisionBox = new Rectangle(0, 0, 0, 0);
             enemy.ExpandedCollisionBox = new Rectangle(0, 0, 0, 0);
         }
 
-        internal protected void HaltAllMotion()
+        protected internal void HaltAllMotion()
         {
             enemy.Velocity = new Vector2(0, 0);
             enemy.Acceleration = new Vector2(0, 0);
@@ -135,7 +134,7 @@ namespace GameSpace.GameObjects.EnemyObjects
 
     public class StateSpinyAliveLeft : StateSpiny
     {
-        public StateSpinyAliveLeft(SpinyRefactored spiny) : base (spiny)
+        public StateSpinyAliveLeft(SpinyRefactored spiny) : base(spiny)
         {
             StateSprite = SpriteEnemyFactory.GetInstance().CreateSpinySprite();
         }

@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace GameSpace.Sprites
 {
-    public class VineBlockSprite : AbstractSprite
+    public class VineBlockSprite : Sprite
     {
 
         public VineBlockSprite(Texture2D texture, int rows, int columns, int totalFrames)

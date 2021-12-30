@@ -1,12 +1,9 @@
 ﻿using GameSpace.Abstracts;
-using GameSpace.Camera2D;
 using GameSpace.EntityManaging;
 using GameSpace.Enums;
 using GameSpace.Factories;
-using GameSpace.Interfaces;
 using GameSpace.Machines;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 
 namespace GameSpace.Objects.EnemyObjects
 {
@@ -22,90 +19,9 @@ namespace GameSpace.Objects.EnemyObjects
         }
     }
 
-    public abstract class StateUberGoomba : IMobState
+    public class StateUberGoombaAlive : EnemyStates
     {
-        public ISprite StateSprite { get; set; }
-        internal protected UberGoomba enemy;
-
-        protected StateUberGoomba(UberGoomba enemy)
-        {
-            this.enemy = enemy;
-        }
-
-        public virtual void Draw(SpriteBatch spritebatch, Vector2 position)
-        {
-            StateSprite.Draw(spritebatch, position);
-        }
-
-        public virtual void DrawBoundingBox(SpriteBatch spritebatch, Rectangle collisionBox)
-        {
-            StateSprite.DrawBoundary(spritebatch, collisionBox);
-        }
-
-        public abstract void Trigger();
-
-        public virtual void Update(GameTime gametime)
-        {
-            StateSprite.Update(gametime);
-            
-                UpdatePosition(enemy.Position, gametime);
-                UpdateCollisionBox(enemy.Position);
-                UpdateSpeed();
-        }
-
-        internal virtual void UpdatePosition(Vector2 location, GameTime gametime)
-        {
-            enemy.Velocity += enemy.Acceleration * (float)gametime.ElapsedGameTime.TotalSeconds;
-            enemy.Position += enemy.Velocity * (float)gametime.ElapsedGameTime.TotalSeconds;
-        }
-
-        internal virtual void UpdateCollisionBox(Vector2 location)
-        {
-            enemy.CollisionBox = new Rectangle((int)location.X, (int)location.Y,
-                StateSprite.Texture.Width + 10, StateSprite.Texture.Height * 3);
-
-            enemy.ExpandedCollisionBox = new Rectangle((int)location.X, (int)location.Y,
-                StateSprite.Texture.Width + 10, (StateSprite.Texture.Height * 3) + 4);
-        }
-
-        internal virtual void UpdateSpeed()
-        {
-            if (EnemyCollisionHandler.GetInstance().IsGoingToFall(enemy))
-            {
-                enemy.Acceleration = new Vector2(0, 400);
-            }
-
-            else
-            {
-                enemy.Acceleration = new Vector2(0, 0);
-                if (enemy.Direction == (int)MarioDirection.RIGHT)
-                {
-                    enemy.Velocity = new Vector2(45, 0);
-                }
-
-                else if (enemy.Direction == (int)MarioDirection.LEFT)
-                {
-                    enemy.Velocity = new Vector2(-45, 0);
-                }
-            }
-        }
-
-        internal protected void DestoryCollisionBox()
-        {
-            enemy.CollisionBox = new Rectangle(0, 0, 0, 0);
-            enemy.ExpandedCollisionBox = new Rectangle(0, 0, 0, 0);
-        }
-
-        internal protected void HaltAllMotion()
-        {
-            enemy.Velocity = new Vector2(0, 0);
-            enemy.Acceleration = new Vector2(0, 0);
-        }
-    }
-
-    public class StateUberGoombaAlive : StateUberGoomba
-    {
-        public StateUberGoombaAlive(UberGoomba uberGoomba) : base(uberGoomba)
+        public StateUberGoombaAlive(Enemy uberGoomba) : base(uberGoomba)
         {
             StateSprite = SpriteEnemyFactory.GetInstance().CreateUberGoombaSprite();
         }
@@ -117,9 +33,9 @@ namespace GameSpace.Objects.EnemyObjects
         }
     }
 
-    public class StateUberGoombaBersek : StateUberGoomba
+    public class StateUberGoombaBersek : EnemyStates
     {
-        public StateUberGoombaBersek(UberGoomba uberGoomba) : base(uberGoomba)
+        public StateUberGoombaBersek(Enemy uberGoomba) : base(uberGoomba)
         {
             StateSprite = SpriteEnemyFactory.GetInstance().CreateUberGoombaBerserkSprite();
         }
@@ -153,11 +69,11 @@ namespace GameSpace.Objects.EnemyObjects
         }
     }
 
-    public class StateUberGoombaDead : StateUberGoomba
+    public class StateUberGoombaDead : EnemyStates
     {
         private Vector2 initialPosition;
         private Vector2 goalPosition;
-        public StateUberGoombaDead(UberGoomba uberGoomba) : base(uberGoomba)
+        public StateUberGoombaDead(Enemy uberGoomba) : base(uberGoomba)
         {
             StateSprite = SpriteEnemyFactory.GetInstance().CreateUberGoombaDeadSprite();
             initialPosition = uberGoomba.Position;
@@ -175,7 +91,7 @@ namespace GameSpace.Objects.EnemyObjects
 
         public override void Trigger()
         {
-            
+
         }
 
         public override void Update(GameTime gametime)

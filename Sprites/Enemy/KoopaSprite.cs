@@ -4,7 +4,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace GameSpace.Sprites
 {
-    public class KoopaSprite : AbstractSprite
+    public class KoopaSprite : Sprite
     {
         public KoopaSprite(Texture2D texture, int rows, int columns, int totalFrames, int startingPointX,
                 int startingPointY)
@@ -39,7 +39,7 @@ namespace GameSpace.Sprites
         }
     }
 
-    public class UberKoopaSprite : AbstractSprite
+    public class UberKoopaSprite : Sprite
     {
         public UberKoopaSprite(Texture2D texture, int rows, int columns, int totalFrames, int startingPointX,
                 int startingPointY)
@@ -84,7 +84,7 @@ namespace GameSpace.Sprites
         }
     }
 
-    public class UberKoopaSpriteRight : AbstractSprite
+    public class UberKoopaSpriteRight : Sprite
     {
         public UberKoopaSpriteRight(Texture2D texture, int rows, int columns, int totalFrames, int startingPointX,
                 int startingPointY)
@@ -129,7 +129,7 @@ namespace GameSpace.Sprites
         }
     }
 
-    public class UberKoopaSpriteDead : AbstractSprite
+    public class UberKoopaSpriteDead : Sprite
     {
         public UberKoopaSpriteDead(Texture2D texture, int rows, int columns, int totalFrames)
         {

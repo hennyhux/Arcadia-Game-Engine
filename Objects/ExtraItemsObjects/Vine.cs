@@ -1,19 +1,18 @@
 ﻿using GameSpace.Abstracts;
+using GameSpace.EntityManaging;
 using GameSpace.Enums;
 using GameSpace.Factories;
-using GameSpace.Machines;
-using Microsoft.Xna.Framework;
-using GameSpace.Interfaces;
-using System.Diagnostics;
-using GameSpace.EntityManaging;
 using GameSpace.GameObjects.BlockObjects;
+using GameSpace.Interfaces;
+using Microsoft.Xna.Framework;
+using System.Diagnostics;
 namespace GameSpace.GameObjects.ItemObjects
 {
     public class Vine : AbstractItem
     {
         private Vector2 teleportDestination;
 
-        
+
         public Vine(Vector2 initialPosition)
         {
             ObjectID = (int)ItemID.VINE;
@@ -33,12 +32,12 @@ namespace GameSpace.GameObjects.ItemObjects
             Position = initialPosition;
             drawBox = false;
             hasCollided = false;
-            
+
         }
 
-        public  void Trigger(IGameObjects mario)
+        public void Trigger(IGameObjects mario)
         {
-            if(ObjectID == (int)ItemID.WARPVINEWITHBLOCK && teleportDestination != Vector2.Zero)
+            if (ObjectID == (int)ItemID.WARPVINEWITHBLOCK && teleportDestination != Vector2.Zero)
             {
                 mario.Position = teleportDestination;
             }
@@ -53,7 +52,7 @@ namespace GameSpace.GameObjects.ItemObjects
                 WarpVine.SetTeleportDest(new Vector2(Position.X + 50, Position.Y));
                 ((Mario)mario).EndClimbing();
             }
-            
+
         }
 
         public void SetTeleportDest(Vector2 destination)
@@ -78,11 +77,11 @@ namespace GameSpace.GameObjects.ItemObjects
 
         public void CheckTeleport(IGameObjects mario)
         {
-            if(mario.Position.Y <= 50 && ObjectID ==  (int)ItemID.VINE)
+            if (mario.Position.Y <= 50 && ObjectID == (int)ItemID.VINE)
             {
                 Trigger(mario);
             }
-            if(ObjectID == (int)ItemID.WARPVINEWITHBLOCK)
+            if (ObjectID == (int)ItemID.WARPVINEWITHBLOCK)
             {
                 Trigger(mario);
             }

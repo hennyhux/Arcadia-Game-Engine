@@ -10,12 +10,12 @@ namespace GameSpace.States
     {
         public ISprite StateSprite { get; set; }
         public bool CollidedWithMario { get; set; }
-        private Lakitu Lakitu;
+        private readonly Lakitu Lakitu;
 
 
         public StateLakituRight(Lakitu lakitu)
         {
-            Debug.WriteLine("CREATE RIGHT SPRITE: ," );
+            Debug.WriteLine("CREATE RIGHT SPRITE: ,");
             //StateSprite = SpriteEnemyFactory.GetInstance().CreateLakituRightSprite();
             CollidedWithMario = false;
             Lakitu = lakitu;
@@ -25,7 +25,7 @@ namespace GameSpace.States
             lakitu.Sprite = SpriteEnemyFactory.GetInstance().CreateLakituRightSprite();
 
         }
-        
+
         public void Draw(SpriteBatch spritebatch, Vector2 location)
         {
             //StateSprite.Draw(spritebatch, location);

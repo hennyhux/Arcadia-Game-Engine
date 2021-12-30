@@ -14,6 +14,8 @@ namespace GameSpace.TileMapDefinition
         public static int boundaryX = 0;
         private static readonly ObjectFactory objectFactory = ObjectFactory.GetInstance();
 
+        private static EnemyFactory enemyFactory = EnemyFactory.GetInstance();
+
         public static List<IGameObjects> Load(GameRoot game, string xmlFile, Vector2 checkPoint, bool levelRestart)
         {
             List<IGameObjects> objects = new List<IGameObjects>();
@@ -199,7 +201,7 @@ namespace GameSpace.TileMapDefinition
                     objects.Add(objectFactory.CreateWarpPipeHead(location));
                     break;
                 case ItemID.WARPPIPEHEADWITHMOB:
-                    objects.Add(objectFactory.CreateWarpPipeHeadWithMob(location)); 
+                    objects.Add(objectFactory.CreateWarpPipeHeadWithMob(location));
                     break;
                 case ItemID.WARPVINEWITHBLOCK:
                     objects.Add(objectFactory.CreateVineWarpObject(location));
@@ -243,7 +245,7 @@ namespace GameSpace.TileMapDefinition
                     objects.Add(objectFactory.CreateGoombaObject(location));
                     break;
                 case EnemyID.GREENKOOPA:
-                    objects.Add(objectFactory.CreateGreenKoopaObject(location));
+                    objects.Add(enemyFactory.CreateGreenKoopaObject(location));
                     break;
                 case EnemyID.REDKOOPA:
                     objects.Add(objectFactory.CreateRedKoopaObject(location));

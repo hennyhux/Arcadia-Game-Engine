@@ -25,7 +25,7 @@ namespace GameSpace.States.MarioStates
 
             MarioDirection Facing = Mario.Facing;
             Mario.Facing = Facing;
-    
+
             Mario.sprite = MarioFactory.GetInstance().CreateSprite(MarioFactory.MarioSpriteType(this, Mario.MarioPowerUpState));
 
             MusicHandler.GetInstance().PlaySoundEffect(0);
@@ -41,8 +41,8 @@ namespace GameSpace.States.MarioStates
         {
             Exit();
             Mario.MarioActionState = new SmallMarioStandingState(Mario);
-       
-            Mario.MarioActionState.Enter(this); 
+
+            Mario.MarioActionState.Enter(this);
 
         }
         public override void CrouchingTransition() { }
@@ -54,9 +54,9 @@ namespace GameSpace.States.MarioStates
         {
             Exit();
             Mario.MarioActionState = new SmallMarioRunningState(Mario);
-            
+
             Mario.MarioActionState.Enter(this); // Changing states
-        } 
+        }
         public override void JumpingTransition()
         {
 
@@ -65,8 +65,8 @@ namespace GameSpace.States.MarioStates
         {
             Exit();
             Mario.MarioActionState = new SmallMarioFallingState(Mario);
-            
-            Mario.MarioActionState.Enter(this); 
+
+            Mario.MarioActionState.Enter(this);
         }
 
         public override void FaceLeftTransition()

@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace GameSpace.Sprites
 {
-    public class HiddenLevelCoinSprite : AbstractSprite
+    public class HiddenLevelCoinSprite : Sprite
     {
 
         public HiddenLevelCoinSprite(Texture2D texture, int rows, int columns, int totalFrames, int startingPointX,

@@ -2,7 +2,7 @@
 
 namespace GameSpace.Sprites
 {
-    public class StairBlockSprite : AbstractSprite
+    public class StairBlockSprite : Sprite
     {
 
         public StairBlockSprite(Texture2D texture, int rows, int columns, int totalFrames)

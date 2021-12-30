@@ -1,8 +1,8 @@
-﻿using GameSpace.Commands;
+﻿using GameSpace.Abstracts;
+using GameSpace.Commands;
 using GameSpace.Handlers;
 using GameSpace.Machines;
 using GameSpace.Menus;
-using GameSpace.Abstracts;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
@@ -11,7 +11,7 @@ using System.Collections.Generic;
 
 namespace GameSpace.States.GameStates
 {
-   
+
     public class CommandListStart
     {
         private readonly Dictionary<Keys, ICommand> keyboardCommands;
@@ -36,7 +36,7 @@ namespace GameSpace.States.GameStates
 
         private readonly Texture2D menuBackGroundTexture;
         private List<IController> controllers;
-        private ScriptHandler scriptHandler;
+        private readonly ScriptHandler scriptHandler;
         private List<Component> componentsList;
 
         public StartGameState(GameRoot game, GraphicsDevice graphicsDevice, ContentManager content) : base(game, graphicsDevice, content)
@@ -49,8 +49,11 @@ namespace GameSpace.States.GameStates
         {
             graphicsDevice.Clear(Color.Green);
             spriteBatch.Begin();
-            foreach (var component in componentsList)
+            foreach (Component component in componentsList)
+            {
                 component.Draw(gameTime, spriteBatch);
+            }
+
             HUDHandler.GetInstance().DrawStartingPanel(spriteBatch);
             spriteBatch.End();
         }
@@ -64,13 +67,13 @@ namespace GameSpace.States.GameStates
                 new KeyboardInput(game), new ControllerInput(game)
             };
 
-            var startButton = new Button(content.Load<Texture2D>("Button"), content.Load<SpriteFont>("font"))
+            Button startButton = new Button(content.Load<Texture2D>("Button"), content.Load<SpriteFont>("font"))
             {
                 Position = new Vector2(350, 200),
                 Text = "Start"
             };
 
-            var quitButton = new Button(content.Load<Texture2D>("Button"), content.Load<SpriteFont>("font"))
+            Button quitButton = new Button(content.Load<Texture2D>("Button"), content.Load<SpriteFont>("font"))
             {
                 Position = new Vector2(350, 250),
                 Text = "Quit"
@@ -93,7 +96,7 @@ namespace GameSpace.States.GameStates
 
         private void StartButton_Click(object sender, System.EventArgs e)
         {
-            
+
         }
 
         public override void Restart()
@@ -113,8 +116,10 @@ namespace GameSpace.States.GameStates
                 controller.Update();
             }
 
-            foreach (var component in componentsList)
+            foreach (Component component in componentsList)
+            {
                 component.Update(gameTime);
+            }
         }
     }
 }

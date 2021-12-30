@@ -4,7 +4,7 @@ using System.Diagnostics;
 
 namespace GameSpace.Sprites
 {
-    public class FlagPoleSprite : AbstractSprite
+    public class FlagPoleSprite : Sprite
     {
 
         public FlagPoleSprite(Texture2D texture, int rows, int columns, int totalFrames, int startingPointX,

@@ -6,16 +6,13 @@ using GameSpace.Interfaces;
 using GameSpace.Machines;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace GameSpace.Objects.EnemyObjects
 {
     public abstract class StateUberKoopa : IMobState
     {
         public ISprite StateSprite { get; set; }
-        internal protected UberKoopa enemy;
+        protected internal UberKoopa enemy;
 
         protected StateUberKoopa(UberKoopa enemy)
         {
@@ -58,10 +55,10 @@ namespace GameSpace.Objects.EnemyObjects
         internal virtual void UpdateCollisionBox(Vector2 location)
         {
             enemy.CollisionBox = new Rectangle((int)location.X, (int)location.Y,
-                StateSprite.Texture.Width , StateSprite.Texture.Height * 2);
+                StateSprite.Texture.Width, StateSprite.Texture.Height * 2);
 
             enemy.ExpandedCollisionBox = new Rectangle((int)location.X, (int)location.Y,
-                StateSprite.Texture.Width , (StateSprite.Texture.Height * 2) + 4);
+                StateSprite.Texture.Width, (StateSprite.Texture.Height * 2) + 4);
         }
 
         internal virtual void UpdateSpeed()
@@ -86,14 +83,14 @@ namespace GameSpace.Objects.EnemyObjects
             }
         }
 
-        internal protected void DestoryCollisionBox()
+        protected internal void DestoryCollisionBox()
         {
             enemy.CollisionBox = new Rectangle(0, 0, 0, 0);
 
             enemy.ExpandedCollisionBox = new Rectangle(0, 0, 0, 0);
         }
 
-        internal protected void HaltAllMotion()
+        protected internal void HaltAllMotion()
         {
             enemy.Velocity = new Vector2(0, 0);
             enemy.Acceleration = new Vector2(0, 0);

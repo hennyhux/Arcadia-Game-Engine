@@ -1,18 +1,17 @@
-﻿using GameSpace.Factories;
+﻿using GameSpace.EntityManaging;
+using GameSpace.Factories;
 using GameSpace.GameObjects.EnemyObjects;
 using GameSpace.Interfaces;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Diagnostics;
-
-using GameSpace.EntityManaging;
 namespace GameSpace.States
 {
     public class StateLakituThrowing : IEnemyState
     {
         public ISprite StateSprite { get; set; }
         public bool CollidedWithMario { get; set; }
-        private  Lakitu Lakitu;
+        private readonly Lakitu Lakitu;
 
         private protected int maxOffset;
         private protected int currentOffset;
@@ -25,7 +24,7 @@ namespace GameSpace.States
             Debug.Print("LAKITU THROWING()");
             //StateSprite = SpriteEnemyFactory.GetInstance().CreateLakituSprite();
             CollidedWithMario = false;
-            
+
             Lakitu = lakitu;
             Lakitu.state = this;
             Lakitu.Velocity = lakitu.Velocity;
@@ -34,11 +33,11 @@ namespace GameSpace.States
             initLocation = lakitu.Position;
             maxOffset = 100;
             currentOffset = 0;
-            initLocation.X = lakitu.Position.X ;
+            initLocation.X = lakitu.Position.X;
             initLocation.Y = lakitu.Position.Y;
             animationFinished = false;
             direction = 1;
-            if(lakitu.Velocity.X > 0)
+            if (lakitu.Velocity.X > 0)
             {
                 direction = -1;
             }
@@ -72,13 +71,13 @@ namespace GameSpace.States
                 //Throw Spiny
                 //objects.Add(objectFactory.CreateSpinyObject(location));
                 TheaterHandler.GetInstance().QueueItemAddToStage(ObjectFactory.GetInstance().CreateSpinyObject(Lakitu.Position));
-                
+
                 Lakitu.Position = new Vector2(Lakitu.Position.X, Lakitu.Position.Y - 21);
                 Lakitu.state = new StateLakituLeft(Lakitu);
 
                 Debug.WriteLine("animationFinished {0}", animationFinished);
             }
-            
+
         }
 
         public void Trigger()

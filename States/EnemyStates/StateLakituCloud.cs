@@ -1,11 +1,11 @@
 ﻿using GameSpace.Factories;
 using GameSpace.GameObjects.EnemyObjects;
 using GameSpace.Interfaces;
+using GameSpace.Machines;
+using GameSpace.Sprites;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using GameSpace.Machines;
 using System.Diagnostics;
-using GameSpace.Sprites;
 namespace GameSpace.States
 {
     public class StateLakituCloud : IEnemyState
@@ -45,9 +45,9 @@ namespace GameSpace.States
 
         public void Trigger()
         {
-            if(marioInCloud == false)
+            if (marioInCloud == false)
             {
-                
+
                 Debug.Print("ENTER CLOUD");
                 marioInCloud = true;
                 MarioHandler.GetInstance().EnterCloudMario();

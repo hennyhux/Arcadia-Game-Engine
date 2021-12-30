@@ -3,14 +3,12 @@ using GameSpace.Objects.EnemyObjects;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace GameSpace.Animations
 {
     public class UberGoombaDead : IObjectAnimation
     {
-        private UberGoomba goomba;
+        private readonly UberGoomba goomba;
         public UberGoombaDead()
         {
         }

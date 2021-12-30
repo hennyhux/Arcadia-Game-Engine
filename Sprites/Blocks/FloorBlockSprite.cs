@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace GameSpace.Sprites
 {
-    public class FloorBlockSprite : AbstractSprite
+    public class FloorBlockSprite : Sprite
     {
 
         public FloorBlockSprite(Texture2D texture, int rows, int columns, int totalFrames)

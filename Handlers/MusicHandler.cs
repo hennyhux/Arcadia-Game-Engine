@@ -18,7 +18,7 @@ namespace GameSpace.Machines
 
         private MusicHandler()
         {
-            
+
         }
 
         public void LoadMusicIntoList(List<SoundEffect> loadedList)

@@ -3,7 +3,6 @@ using GameSpace.EntityManaging;
 using GameSpace.Enums;
 using GameSpace.Factories;
 using GameSpace.Interfaces;
-using GameSpace.Objects.EnemyObjects;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -14,7 +13,7 @@ namespace GameSpace.Sprites.ExtraItems
     {
         public StateWarpVineIdle()
         {
-       
+
         }
     }
 
@@ -22,7 +21,7 @@ namespace GameSpace.Sprites.ExtraItems
     {
         public StateWarpVineActivated()
         {
-       
+
         }
     }
 
@@ -30,7 +29,7 @@ namespace GameSpace.Sprites.ExtraItems
     {
         public StateWarpVineBodyIdle()
         {
-        
+
         }
     }
 
@@ -38,7 +37,7 @@ namespace GameSpace.Sprites.ExtraItems
     {
         public StateWarpVineDeactiveated()
         {
-        
+
         }
     }
 
@@ -134,24 +133,24 @@ namespace GameSpace.Sprites.ExtraItems
 
         public void HideItem()
         {
-          
+
         }
 
         public void ShowItem()
         {
-         
+
         }
 
-       /* public override void HandleCollision(IGameObjects entity)
-        {
-            switch (entity.ObjectID)
-            {
-                case (int)AvatarID.MARIO:
-                    CollisionHandler.GetInstance().ItemToMarioCollison(this);
-                    break;
-            }
-        }
-       */
+        /* public override void HandleCollision(IGameObjects entity)
+         {
+             switch (entity.ObjectID)
+             {
+                 case (int)AvatarID.MARIO:
+                     CollisionHandler.GetInstance().ItemToMarioCollison(this);
+                     break;
+             }
+         }
+        */
     }
 
 
@@ -161,7 +160,7 @@ namespace GameSpace.Sprites.ExtraItems
 
         public WarpVineHeadRoom(Vector2 location)
         {
-       
+
         }
 
         public override bool RevealItem()
@@ -169,16 +168,16 @@ namespace GameSpace.Sprites.ExtraItems
             return false;
         }
 
-       /* public override void HandleCollision(IGameObjects entity)
-        {
-            switch (entity.ObjectID)
-            {
-                case (int)AvatarID.MARIO:
-                    CollisionHandler.GetInstance().ItemToMarioCollison(this);
-                    break;
-            }
-        }
-       */
+        /* public override void HandleCollision(IGameObjects entity)
+         {
+             switch (entity.ObjectID)
+             {
+                 case (int)AvatarID.MARIO:
+                     CollisionHandler.GetInstance().ItemToMarioCollison(this);
+                     break;
+             }
+         }
+        */
     }
 
     public class WarpVineBody : Blocks
@@ -187,7 +186,7 @@ namespace GameSpace.Sprites.ExtraItems
 
         public WarpVineBody(Vector2 location)
         {
-    
+
         }
 
         public override bool RevealItem()
@@ -199,7 +198,7 @@ namespace GameSpace.Sprites.ExtraItems
         {
             switch (entity.ObjectID)
             {
-          
+
             }
         }
     }
@@ -221,10 +220,10 @@ namespace GameSpace.Sprites.ExtraItems
 
         }
 
-       /* public override void HandleCollision(IGameObjects entity)
-        {
-            CollisionHandler.GetInstance().ItemToMarioCollison(this);
-        } */
+        /* public override void HandleCollision(IGameObjects entity)
+         {
+             CollisionHandler.GetInstance().ItemToMarioCollison(this);
+         } */
 
         public override bool RevealItem()
         {

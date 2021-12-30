@@ -37,8 +37,8 @@ namespace GameSpace.States.MarioStates
         {
             Exit();
             Mario.MarioActionState = new SmallMarioStandingState(Mario);
-       
-            Mario.MarioActionState.Enter(this); 
+
+            Mario.MarioActionState.Enter(this);
 
         }
         public override void CrouchingTransition() { }
@@ -50,9 +50,9 @@ namespace GameSpace.States.MarioStates
         {
             Exit();
             Mario.MarioActionState = new SmallMarioRunningState(Mario);
-            
+
             Mario.MarioActionState.Enter(this); // Changing states
-        } 
+        }
         public override void JumpingTransition()
         {
 
@@ -61,8 +61,8 @@ namespace GameSpace.States.MarioStates
         {
             Exit();
             Mario.MarioActionState = new SmallMarioFallingState(Mario);
-            
-            Mario.MarioActionState.Enter(this); 
+
+            Mario.MarioActionState.Enter(this);
         }
 
         public override void FaceLeftTransition()
@@ -132,7 +132,7 @@ namespace GameSpace.States.MarioStates
         }
         public override void RunningDiscontinueTransition()
         {
-         
+
 
 
         }
@@ -140,9 +140,9 @@ namespace GameSpace.States.MarioStates
         {
             Exit();
             Mario.MarioActionState = new SmallMarioFallingState(Mario);
-            Mario.MarioActionState.Enter(this); 
+            Mario.MarioActionState.Enter(this);
         }
-       
+
         public override void Update(GameTime gametime)
         {
             Mario.Velocity += Mario.Acceleration * (float)gametime.ElapsedGameTime.TotalSeconds;
@@ -153,6 +153,6 @@ namespace GameSpace.States.MarioStates
         {
             return new Vector2(Mario.Velocity.X, Mario.Velocity.Y);//return the actualy velocity
         }
-        
+
     }
 }

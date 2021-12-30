@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace GameSpace.Sprites
 {
-    public class HiddenLevelVerticalPipeSprite : AbstractSprite
+    public class HiddenLevelVerticalPipeSprite : Sprite
     {
 
         public HiddenLevelVerticalPipeSprite(Texture2D texture, int rows, int columns, int totalFrames)

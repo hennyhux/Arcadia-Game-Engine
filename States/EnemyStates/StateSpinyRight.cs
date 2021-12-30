@@ -3,14 +3,13 @@ using GameSpace.GameObjects.EnemyObjects;
 using GameSpace.Interfaces;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System.Diagnostics;
 namespace GameSpace.States
 {
     public class StateSpinyRight : IEnemyState
     {
         public ISprite StateSprite { get; set; }
         public bool CollidedWithMario { get; set; }
-        private Spiny Spiny;
+        private readonly Spiny Spiny;
 
 
         public StateSpinyRight(Spiny spiny)
@@ -21,7 +20,7 @@ namespace GameSpace.States
             Spiny = spiny;
             Spiny.state = this;
             Spiny.Velocity = Spiny.Velocity;
-           // Spiny.Velocity = new Vector2(150, Spiny.Velocity.Y);
+            // Spiny.Velocity = new Vector2(150, Spiny.Velocity.Y);
             Spiny.Sprite = SpriteEnemyFactory.GetInstance().CreateSpinyRightSprite();
 
         }

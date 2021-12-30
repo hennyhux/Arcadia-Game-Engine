@@ -30,7 +30,7 @@ namespace GameSpace.Abstracts
 
         public virtual void Draw(SpriteBatch spritebatch)
         {
-            state.Draw(spritebatch, Position); 
+            state.Draw(spritebatch, Position);
             if (drawBox)
             {
                 Sprite.DrawBoundary(spritebatch, CollisionBox);

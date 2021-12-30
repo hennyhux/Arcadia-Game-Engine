@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace GameSpace.Sprites
 {
-    public class UsedBlockSprite : AbstractSprite
+    public class UsedBlockSprite : Sprite
     {
 
         private protected int maxOffset;

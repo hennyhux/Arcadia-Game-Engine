@@ -1,9 +1,9 @@
-﻿using System;
+﻿using GameSpace.EntityManaging;
 using GameSpace.Factories;
-using GameSpace.EntityManaging;
-using GameSpace.GameObjects.EnemyObjects;
 using GameSpace.GameObjects.BlockObjects;
+using GameSpace.GameObjects.EnemyObjects;
 using Microsoft.Xna.Framework;
+using System;
 
 namespace GameSpace.Commands
 {
@@ -22,10 +22,11 @@ namespace GameSpace.Commands
         {
             Vector2 loc;
             mario = FinderHandler.GetInstance().FindMario();
-            if(mario.Facing == Enums.MarioDirection.RIGHT)
+            if (mario.Facing == Enums.MarioDirection.RIGHT)
             {
                 loc = new Vector2(mario.Position.X + 75, mario.Position.Y - 15);
-            } else
+            }
+            else
             {
                 loc = new Vector2(mario.Position.X - 75, mario.Position.Y - 15);
             }

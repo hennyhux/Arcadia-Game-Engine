@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace GameSpace.Sprites
 {
-    public class BlackWindowSprite : AbstractSprite
+    public class BlackWindowSprite : Sprite
     {
 
         public BlackWindowSprite(Texture2D texture, int rows, int columns, int totalFrames)

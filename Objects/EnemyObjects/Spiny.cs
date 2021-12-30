@@ -4,16 +4,14 @@ using GameSpace.Enums;
 using GameSpace.Factories;
 using GameSpace.Interfaces;
 using GameSpace.States;
-using GameSpace.States.EnemyStates;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Diagnostics;
-using GameSpace.Machines;
 namespace GameSpace.GameObjects.EnemyObjects
 {
     public class Spiny : AbstractEnemy
     {
-        private int searchState;//0 passed mario, now throw spiny, 1 going left towards mario, 2 going right towards mario
+        private readonly int searchState;//0 passed mario, now throw spiny, 1 going left towards mario, 2 going right towards mario
         public Spiny(Vector2 initalPosition)
         {
             Debug.Print("Spiny CREATED()");
@@ -69,7 +67,7 @@ namespace GameSpace.GameObjects.EnemyObjects
                 //state.StateSprite.Update(gametime);
                 Sprite.Update(gametime);
 
-                ExpandedCollisionBox = CollisionBox = new Rectangle((int)Position.X, (int)Position.Y, 32, 32 + 8); 
+                ExpandedCollisionBox = CollisionBox = new Rectangle((int)Position.X, (int)Position.Y, 32, 32 + 8);
             }
 
             UpdateSpeed();
@@ -126,7 +124,7 @@ namespace GameSpace.GameObjects.EnemyObjects
             return state;
         }
 
-       public override void HandleCollision(IGameObjects entity)
+        public override void HandleCollision(IGameObjects entity)
         {
             switch (entity.ObjectID)
             {

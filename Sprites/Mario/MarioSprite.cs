@@ -2,8 +2,6 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
-using GameSpace.Machines;
-using System.Diagnostics;
 
 namespace GameSpace.Sprites
 {
@@ -62,7 +60,7 @@ namespace GameSpace.Sprites
             marioPower = powerup;
             actionState = action;
             newState = true;
-            
+
             Facing = SpriteEffects.None;
             CloudSprite = MarioFactory.GetInstance().MarioCloudSprite();
             #region time
@@ -172,11 +170,11 @@ namespace GameSpace.Sprites
 
             }
         }
-        public void Draw(SpriteBatch spriteBatch, Vector2 location){ }
+        public void Draw(SpriteBatch spriteBatch, Vector2 location) { }
         public void Draw(SpriteBatch spriteBatch, Vector2 location, bool IsInvincible)
         {
             invisibleCount = invisibleCount + 1;
-            
+
             if (IsVisible)
             {
                 Width = XWidth[currentFrame];
@@ -184,10 +182,11 @@ namespace GameSpace.Sprites
 
                 Rectangle sourceRectangle = new Rectangle(XFrame[currentFrame], YFrame[currentFrame], Width, Height);
                 Rectangle destinationRectangle = new Rectangle((int)location.X, (int)location.Y, Width * 2, Height * 2);
-                
-                if (!(IsInvincible && invisibleCount % 2 == 0))
-                    spriteBatch.Draw(Texture, destinationRectangle, sourceRectangle, Color.White, 0, new Vector2(0, 0), Facing, 0);
 
+                if (!(IsInvincible && invisibleCount % 2 == 0))
+                {
+                    spriteBatch.Draw(Texture, destinationRectangle, sourceRectangle, Color.White, 0, new Vector2(0, 0), Facing, 0);
+                }
             }
 
         }
@@ -195,7 +194,7 @@ namespace GameSpace.Sprites
         public void Draw(SpriteBatch spriteBatch, Vector2 location, bool IsInvincible, bool onCloud)
         {
             invisibleCount = invisibleCount + 1;
-            
+
             if (IsVisible)
             {
                 Width = XWidth[currentFrame];
@@ -203,9 +202,12 @@ namespace GameSpace.Sprites
 
                 Rectangle sourceRectangle = new Rectangle(XFrame[currentFrame], YFrame[currentFrame], Width, Height);
                 Rectangle destinationRectangle = new Rectangle((int)location.X, (int)location.Y, Width * 2, Height * 2);
-                
-                    if (!(IsInvincible && invisibleCount % 2 == 0))
-                        spriteBatch.Draw(Texture, destinationRectangle, sourceRectangle, Color.White, 0, new Vector2(0, 0), Facing, 0);
+
+                if (!(IsInvincible && invisibleCount % 2 == 0))
+                {
+                    spriteBatch.Draw(Texture, destinationRectangle, sourceRectangle, Color.White, 0, new Vector2(0, 0), Facing, 0);
+                }
+
                 CloudSprite.Draw(spriteBatch, new Vector2(location.X - 8, location.Y + Height));
             }
 
@@ -242,12 +244,17 @@ namespace GameSpace.Sprites
 
         public void FlipSprite()
         {
-            
+
         }
 
         public void RevertSprite()
         {
 
+        }
+
+        public int GetTotalFrames()
+        {
+            return ((ISprite)CloudSprite).GetTotalFrames();
         }
     }
 }

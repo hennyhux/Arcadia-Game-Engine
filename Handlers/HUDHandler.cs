@@ -4,7 +4,6 @@ using GameSpace.EntityManaging;
 using GameSpace.Enums;
 using GameSpace.GameObjects.BlockObjects;
 using GameSpace.GameObjects.ItemObjects;//TEMP
-using GameSpace.Level;
 using GameSpace.Sprites;//TEMP
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
@@ -200,8 +199,8 @@ namespace GameSpace.Machines
 
     public class HealthBar : Handler
     {
-        Texture2D texture;
-        Vector2 position;
+        private readonly Texture2D texture;
+        private Vector2 position;
         private Rectangle rectangle; //Instead of some int value that denotes health we will use rectangles
 
         public HealthBar(ContentManager content, Vector2 position)
@@ -235,8 +234,8 @@ namespace GameSpace.Machines
 
     public class ExpBar : Handler
     {
-        Texture2D texture;
-        Vector2 position;
+        private readonly Texture2D texture;
+        private Vector2 position;
         private Rectangle rectangle;
 
         public ExpBar(ContentManager content, Vector2 position)
@@ -258,7 +257,7 @@ namespace GameSpace.Machines
 
         public void IncrementExp(int exp)
         {
-            rectangle.Width += (int)(experinceScale* exp);
+            rectangle.Width += (int)(experinceScale * exp);
 
             if (rectangle.Width > 96 && currentMarioLevel < 3)
             {

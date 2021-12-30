@@ -69,7 +69,7 @@ namespace GameSpace.Machines
             //mario.Velocity = new Vector2(mario.Velocity.X, 0);
             //if(mario.Velocity.Y > 0)
             mario.Acceleration = Vector2.Zero;
-            if(mario.MarioActionState is BigMarioFallingState || mario.MarioActionState is FireMarioFallingState || mario.MarioActionState is SmallMarioFallingState || mario.Velocity.Y > 0)
+            if (mario.MarioActionState is BigMarioFallingState || mario.MarioActionState is FireMarioFallingState || mario.MarioActionState is SmallMarioFallingState || mario.Velocity.Y > 0)
             {
                 mario.UpTransition();
             }

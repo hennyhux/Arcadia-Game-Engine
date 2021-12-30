@@ -5,7 +5,7 @@ using Microsoft.Xna.Framework.Graphics;
 namespace GameSpace.States
 {
     //A reusable class that can show blocks being bumped 
-    public class BumpAnimation : AbstractSprite
+    public class BumpAnimation : Sprite
     {
         private readonly Texture2D sprite;
         private protected int maxOffset;

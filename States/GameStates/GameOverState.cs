@@ -1,6 +1,6 @@
-﻿using GameSpace.Commands;
+﻿using GameSpace.Abstracts;
+using GameSpace.Commands;
 using GameSpace.Machines;
-using GameSpace.Abstracts;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;

@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace GameSpace.Sprites
 {
-    public class FireballSprite : AbstractSprite
+    public class FireballSprite : Sprite
     {
 
         public FireballSprite(Texture2D texture, int rows, int columns, int totalFrames, int startingPointX,

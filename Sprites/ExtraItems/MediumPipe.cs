@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace GameSpace.Sprites
 {
-    public class MediumPipeSprite : AbstractSprite
+    public class MediumPipeSprite : Sprite
     {
 
         public MediumPipeSprite(Texture2D texture, int rows, int columns, int totalFrames)

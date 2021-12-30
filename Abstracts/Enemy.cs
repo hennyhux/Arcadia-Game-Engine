@@ -2,10 +2,10 @@
 using GameSpace.EntityManaging;
 using GameSpace.Enums;
 using GameSpace.Interfaces;
-using GameSpace.Machines;
-using GameSpace.Objects.EnemyObjects;
+using GameSpace.Handlers;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using GameSpace.Machines;
 
 namespace GameSpace.Abstracts
 {
@@ -26,8 +26,21 @@ namespace GameSpace.Abstracts
         public virtual void Draw(SpriteBatch spritebatch)
         {
             state.Draw(spritebatch, Position);
+            if (drawBox)
+            {
+                state.DrawBoundingBox(spritebatch, CollisionBox);
+            }
+        }
 
-            if (drawBox) state.DrawBoundingBox(spritebatch, CollisionBox);
+        public virtual void Trigger()
+        {
+            state.Trigger();
+            MusicHandler.GetInstance().PlaySoundEffect(2);
+        }
+
+        public virtual void Update(GameTime gametime)
+        {
+            state.Update(gametime);
         }
 
         public virtual void HandleCollision(IGameObjects entity)
@@ -35,7 +48,7 @@ namespace GameSpace.Abstracts
             switch (entity.ObjectID)
             {
                 case (int)AvatarID.MARIO:
-                    EnemyCollisionHandler.GetInstance().HandleMarioCollision(this);
+                    CollisionEnemyHandler.GetInstance().HandleMarioCollision(this);
                     break;
 
                 case (int)BlockID.USEDBLOCK:
@@ -52,42 +65,23 @@ namespace GameSpace.Abstracts
                 case (int)ItemID.WARPPIPEHEADWITHMOB:
                 case (int)ItemID.WARPVINEWITHBLOCK:
                 case (int)ItemID.WARPPIPEROOM:
-                    EnemyCollisionHandler.GetInstance().HandleBlockCollision(this, entity);
+                    CollisionEnemyHandler.GetInstance().HandleBlockCollision(this, entity);
                     break;
 
                 case (int)ItemID.FIREBALL:
                     Trigger();
-                    break;
-
-                case (int)EnemyID.GOOMBA:
-                    if (state is StateUberGoombaBersek)
-                    {
-                        entity.Trigger();
-                        MarioHandler.GetInstance().IncrementMarioPoints(100);
-                    }
                     break;
             }
         }
 
         public virtual bool RevealItem()
         {
-            return false; 
+            return false;
         }
 
         public virtual void ToggleCollisionBoxes()
         {
             drawBox = !drawBox;
-        }
-
-        public virtual void Trigger()
-        {
-            state.Trigger();
-            MusicHandler.GetInstance().PlaySoundEffect(2);
-        }
-
-        public virtual void Update(GameTime gametime)
-        {
-            state.Update(gametime);
         }
 
         private protected bool IsInview()

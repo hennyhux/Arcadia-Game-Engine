@@ -1,7 +1,6 @@
 ﻿using GameSpace.Factories;
 using GameSpace.GameObjects.EnemyObjects;
 using GameSpace.Interfaces;
-using GameSpace.Machines;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Diagnostics;

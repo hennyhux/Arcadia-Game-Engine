@@ -1,6 +1,4 @@
-﻿using System.Diagnostics;
-
-namespace GameSpace
+﻿namespace GameSpace
 {
     public class MoveLeftCommand : ICommand
     {
@@ -15,7 +13,7 @@ namespace GameSpace
         public void Execute()
         {
             game.GetMario.FaceLeftTransition();
-         
+
         }
 
         public void Unexecute()

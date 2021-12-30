@@ -39,7 +39,7 @@ namespace GameSpace.States.MarioStates
         {
             Exit();
             Mario.MarioActionState = new SmallMarioRunningState(Mario);
-            Mario.MarioActionState.Enter(this); 
+            Mario.MarioActionState.Enter(this);
         }
         public override void JumpingTransition()
         {

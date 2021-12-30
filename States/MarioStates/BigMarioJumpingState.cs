@@ -24,23 +24,24 @@ namespace GameSpace.States.MarioStates
             Mario.sprite = MarioFactory.GetInstance().CreateSprite(MarioFactory.MarioSpriteType(this, Mario.MarioPowerUpState));
             MusicHandler.GetInstance().PlaySoundEffect(1);
         }
-        public override void Exit() {
+        public override void Exit()
+        {
             //Mario.Acceleration = new Vector2(0, 0);
         }
         public override void StandingTransition()
         {
 
             Mario.MarioActionState = new BigMarioStandingState(Mario);
-        
-            Mario.MarioActionState.Enter(this); 
+
+            Mario.MarioActionState.Enter(this);
 
         }
         public override void CrouchingTransition()
         {
             Exit();
             Mario.MarioActionState = new BigMarioCrouchingState(Mario);
-            
-            Mario.MarioActionState.Enter(this); 
+
+            Mario.MarioActionState.Enter(this);
         }
         public override void WalkingTransition()
         {
@@ -50,17 +51,17 @@ namespace GameSpace.States.MarioStates
         {
             Exit();
             Mario.MarioActionState = new BigMarioRunningState(Mario);
-            Mario.MarioActionState.Enter(this); 
-        } 
+            Mario.MarioActionState.Enter(this);
+        }
         public override void JumpingTransition()
         {
-           
+
         }
         public override void FallingTransition()
         {
             Exit();
             Mario.MarioActionState = new BigMarioFallingState(Mario);
-            Mario.MarioActionState.Enter(this); 
+            Mario.MarioActionState.Enter(this);
         }
 
         public override void FaceLeftTransition()
@@ -69,7 +70,7 @@ namespace GameSpace.States.MarioStates
             {
                 RunningTransition();
             }
-            
+
             else
             {
                 Mario.Facing = MarioDirection.LEFT;
@@ -82,7 +83,7 @@ namespace GameSpace.States.MarioStates
             {
                 RunningTransition();
             }
-            
+
             else
             {
                 Mario.Facing = MarioDirection.RIGHT;
@@ -131,6 +132,6 @@ namespace GameSpace.States.MarioStates
         {
             return new Vector2(Mario.Velocity.X, Mario.Velocity.Y);//return the actualy velocity
         }
-      
+
     }
 }

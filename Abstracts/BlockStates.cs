@@ -6,9 +6,6 @@ using GameSpace.Interfaces;
 using GameSpace.States;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace GameSpace.Abstracts
 {
@@ -25,7 +22,7 @@ namespace GameSpace.Abstracts
     public abstract class BlockStates : IBlockState
     {
         public ISprite StateSprite { get; set; }
-        internal protected HiddenBlock block;
+        protected internal HiddenBlock block;
 
         protected BlockStates(HiddenBlock block)
         {
@@ -53,7 +50,7 @@ namespace GameSpace.Abstracts
         {
 
         }
-        internal protected virtual void UpdateCollisionBox()
+        protected internal virtual void UpdateCollisionBox()
         {
             block.CollisionBox = new Rectangle((int)block.Position.X, (int)block.Position.Y,
                 StateSprite.Texture.Width * 2, StateSprite.Texture.Height * 2);

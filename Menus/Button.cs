@@ -2,8 +2,6 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace GameSpace.Menus
 {
@@ -13,13 +11,13 @@ namespace GameSpace.Menus
 
         private MouseState _currentMouse;
 
-        private SpriteFont _font;
+        private readonly SpriteFont _font;
 
         private bool _isHovering;
 
         private MouseState _previousMouse;
 
-        private Texture2D _texture;
+        private readonly Texture2D _texture;
 
         #endregion
 
@@ -33,13 +31,7 @@ namespace GameSpace.Menus
 
         public Vector2 Position { get; set; }
 
-        public Rectangle Rectangle
-        {
-            get
-            {
-                return new Rectangle((int)Position.X, (int)Position.Y, _texture.Width, _texture.Height);
-            }
-        }
+        public Rectangle Rectangle => new Rectangle((int)Position.X, (int)Position.Y, _texture.Width, _texture.Height);
 
         public string Text { get; set; }
 
@@ -58,17 +50,19 @@ namespace GameSpace.Menus
 
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
-            var colour = Color.White;
+            Color colour = Color.White;
 
             if (_isHovering)
+            {
                 colour = Color.Gray;
+            }
 
             spriteBatch.Draw(_texture, Rectangle, colour);
 
             if (!string.IsNullOrEmpty(Text))
             {
-                var x = (Rectangle.X + (Rectangle.Width / 2)) - (_font.MeasureString(Text).X / 2);
-                var y = (Rectangle.Y + (Rectangle.Height / 2)) - (_font.MeasureString(Text).Y / 2);
+                float x = (Rectangle.X + (Rectangle.Width / 2)) - (_font.MeasureString(Text).X / 2);
+                float y = (Rectangle.Y + (Rectangle.Height / 2)) - (_font.MeasureString(Text).Y / 2);
 
                 spriteBatch.DrawString(_font, Text, new Vector2(x, y), PenColour);
             }
@@ -79,7 +73,7 @@ namespace GameSpace.Menus
             _previousMouse = _currentMouse;
             _currentMouse = Mouse.GetState();
 
-            var mouseRectangle = new Rectangle(_currentMouse.X, _currentMouse.Y, 1, 1);
+            Rectangle mouseRectangle = new Rectangle(_currentMouse.X, _currentMouse.Y, 1, 1);
 
             _isHovering = false;
 
@@ -97,6 +91,6 @@ namespace GameSpace.Menus
         #endregion
     }
 }
-    
+
 
 

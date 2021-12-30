@@ -35,8 +35,16 @@
 	<Objects>
 		<x>450</x>
 		<y>310</y>
-		<enemy>GOOMBA</enemy>
+		<enemy>GREENKOOPA</enemy>
 	</Objects>
+	
+	
+	<Objects>
+		<x>100</x>
+		<y>400</y>
+		<item>WARPPIPEBODY</item>
+	</Objects>
+	
 
 
 

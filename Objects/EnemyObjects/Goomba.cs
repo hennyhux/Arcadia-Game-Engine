@@ -1,87 +1,70 @@
 ﻿using GameSpace.Abstracts;
 using GameSpace.Enums;
 using GameSpace.Factories;
-using GameSpace.Machines;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 
 
 
 namespace GameSpace.GameObjects.EnemyObjects
 {
-    public class Goomba : AbstractEnemy
+    public class Goomba : Enemy
     {
         public Goomba(Vector2 initalPosition)
         {
             ObjectID = (int)EnemyID.GOOMBA;
             Direction = (int)MarioDirection.LEFT;
             Position = initalPosition;
-            state = new StateGoombaAlive();
-            UpdateCollisionBox(Position);
+            state = new StateGoombaAlive(this);
             drawBox = false;
-            hasCollidedOnTop = false;
+        }
+    }
+
+    public class StateGoombaDead : EnemyStates
+    {
+        private Vector2 initialPosition;
+        private Vector2 goalPosition;
+        public StateGoombaDead(Enemy enemy) : base(enemy)
+        {
+            StateSprite = SpriteEnemyFactory.GetInstance().CreateDeadGoombaSprite();
+            initialPosition = enemy.Position;
+            DestoryCollisionBox();
+            HaltAllMotion();
+            CalcGoalPos();
+            enemy.Acceleration = new Vector2(0, -445);
         }
 
-        public override void Draw(SpriteBatch spritebatch)
+        private void CalcGoalPos()
         {
-            state.Draw(spritebatch, Position);
-            if (drawBox && !hasCollidedOnTop)
-            {
-                state.DrawBoundaries(spritebatch, CollisionBox);
-                state.DrawBoundaries(spritebatch, ExpandedCollisionBox);
-            }
-            if (hasCollidedOnTop)
-            {
-                countDown++;
-            }
+            goalPosition = new Vector2(initialPosition.X, initialPosition.Y - 45f);
         }
 
         public override void Update(GameTime gametime)
         {
-            if (state is StateGoombaAlive && IsInview())
-            {
-                state.Update(gametime);
-                UpdateSpeed();
-                UpdatePosition(Position, gametime);
-                UpdateCollisionBox(Position);
-            }
-
-            else
-            {
-                DeleteCollisionBox();
-                if (countDown == 90)
-                {
-                    state.StateSprite.SetVisible();
-                }
-            }
+            StateSprite.Update(gametime);
+            UpdatePosition(enemy.Position, gametime);
         }
-        public override void Trigger()
-        {
-            if (!hasCollidedOnTop)
-            {
-                state = new StateGoombaDead();
-                hasCollidedOnTop = true;
-                countDown = 0;
-                MusicHandler.GetInstance().PlaySoundEffect(2);
-                HUDHandler.GetInstance().UpdateExp(10);
-            }
 
+        internal override void UpdatePosition(Vector2 location, GameTime gametime)
+        {
+            base.UpdatePosition(location, gametime);
+
+            if (enemy.Position.Y <= goalPosition.Y)
+            {
+                enemy.Acceleration = new Vector2(0, 445);
+            }
         }
     }
 
-    public class StateGoombaDead : AbstractEnemyState
+    public class StateGoombaAlive : EnemyStates
     {
-        public StateGoombaDead()
-        {
-            StateSprite = SpriteEnemyFactory.GetInstance().CreateDeadGoombaSprite();
-        }
-    }
-
-    public class StateGoombaAlive : AbstractEnemyState
-    {
-        public StateGoombaAlive()
+        public StateGoombaAlive(Enemy enemy) : base(enemy)
         {
             StateSprite = SpriteEnemyFactory.GetInstance().CreateGoombaSprite();
+        }
+
+        public override void Trigger()
+        {
+            enemy.state = new StateGoombaDead(enemy);
         }
     }
 }

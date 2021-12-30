@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace GameSpace.Sprites
 {
-    public class CastleSprite : AbstractSprite
+    public class CastleSprite : Sprite
     {
 
         public CastleSprite(Texture2D texture, int rows, int columns, int totalFrames)
