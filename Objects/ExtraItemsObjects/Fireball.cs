@@ -28,7 +28,7 @@ namespace GameSpace.GameObjects.ItemObjects
     }
 
 
-    public class Fireball : AbstractItem
+    public class Fireball : Item
     {
 
         private IBlockStates state;

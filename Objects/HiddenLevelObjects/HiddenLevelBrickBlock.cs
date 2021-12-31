@@ -69,7 +69,7 @@ namespace GameSpace.Objects.BlockObjects
     public class HiddenLevelBrickBlockWithItem : HiddenLevelBrickBlock
     {
         private bool hasRevealedItem;
-        public HiddenLevelBrickBlockWithItem(Vector2 initLocation, AbstractItem item) : base(initLocation)
+        public HiddenLevelBrickBlockWithItem(Vector2 initLocation, Item item) : base(initLocation)
         {
             this.item = item;
             hasRevealedItem = false;

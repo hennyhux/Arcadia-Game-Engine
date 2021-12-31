@@ -5,7 +5,7 @@ using Microsoft.Xna.Framework;
 
 namespace GameSpace.GameObjects.ItemObjects
 {
-    public class Star : AbstractItem
+    public class Star : Item
     {
         public Star(Vector2 initialPosition)
         {

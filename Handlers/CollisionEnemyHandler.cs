@@ -30,8 +30,7 @@ namespace GameSpace.Handlers
             foreach (IGameObjects entity in copyPrunedList)
             {
                 if (enemy.ExpandedCollisionBox.Intersects(entity.CollisionBox) &&
-                    !(entity is AbstractItem) &&
-                    !(entity is AbstractEnemy) &&
+                    !(entity is Item) &&
                     !(entity is Enemy) &&
                     entity.ObjectID != (int)AvatarID.MARIO)
                 {
@@ -43,6 +42,19 @@ namespace GameSpace.Handlers
         }
 
         public void HandleBlockCollision(Enemy enemy, IGameObjects block)
+        {
+            if (CollisionHandler.GetInstance().DetectCollisionDirection(enemy, block) == (int)CollisionDirection.LEFT)
+            {
+                enemy.Direction = (int)MarioDirection.LEFT;
+            }
+
+            else if (CollisionHandler.GetInstance().DetectCollisionDirection(enemy, block) == (int)CollisionDirection.RIGHT)
+            {
+                enemy.Direction = (int)MarioDirection.RIGHT;
+            }
+        }
+
+        public void HandleBlockCollision(Koopa enemy, IGameObjects block)
         {
             if (CollisionHandler.GetInstance().DetectCollisionDirection(enemy, block) == (int)CollisionDirection.LEFT)
             {
@@ -96,11 +108,6 @@ namespace GameSpace.Handlers
             }
         }
 
-        public void HandleMarioCollision(UberKoopa enemy)
-        {
-
-        }
-
         public void HandleMarioCollision(Lakitu enemy)
         {
             if (CollisionHandler.GetInstance().DetectCollisionDirection(enemy, mario) == (int)CollisionDirection.UP)
@@ -110,15 +117,11 @@ namespace GameSpace.Handlers
             }
         }
 
-        public void HandleFireBallCollision(AbstractEnemy enemy)
+        public void HandleFireBallCollision(Enemy enemy)
         {
             enemy.Trigger();
             mario.score += 100;
         }
 
-        public void HandleFireBallCollision(Enemy enemy) // for the refactored abstract class 
-        {
-            enemy.Trigger();
-        }
     }
 }

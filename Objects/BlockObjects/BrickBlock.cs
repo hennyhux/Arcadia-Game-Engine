@@ -96,7 +96,7 @@ namespace GameSpace.Objects.BlockObjects
     public class BrickBlockWithItem : BrickBlock
     {
         private bool hasRevealedItem;
-        public BrickBlockWithItem(Vector2 initLocation, AbstractItem item) : base(initLocation)
+        public BrickBlockWithItem(Vector2 initLocation, Item item) : base(initLocation)
         {
             this.item = item;
             hasRevealedItem = false;

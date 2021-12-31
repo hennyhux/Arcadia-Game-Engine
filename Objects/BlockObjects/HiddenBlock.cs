@@ -31,7 +31,7 @@ namespace GameSpace.GameObjects.BlockObjects
             state = new HiddenVineBlockIdle(this);
             Position = initalPosition;
             hasRevealedItem = false;
-            item = (AbstractItem)ObjectFactory.GetInstance().CreateVineObject(new Vector2(Position.X, Position.Y - 64));
+            item = (Item)ObjectFactory.GetInstance().CreateVineObject(new Vector2(Position.X, Position.Y - 64));
         }
 
         public override void Trigger()
@@ -49,7 +49,7 @@ namespace GameSpace.GameObjects.BlockObjects
                 for (int i = 0; i < dist + 50; i = i + 50)
                 {
                     //Debug.WriteLine("Y cord: {0}", item.Position.Y - i);
-                    TheaterHandler.GetInstance().AddItemToStage((AbstractItem)ObjectFactory.GetInstance().CreateVineObject(new Vector2(item.Position.X, item.Position.Y - i)));
+                    TheaterHandler.GetInstance().AddItemToStage((Item)ObjectFactory.GetInstance().CreateVineObject(new Vector2(item.Position.X, item.Position.Y - i)));
                 }
             }
             return hasRevealedItem;

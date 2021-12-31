@@ -8,7 +8,7 @@ using Microsoft.Xna.Framework;
 using System.Diagnostics;
 namespace GameSpace.GameObjects.ItemObjects
 {
-    public class Vine : AbstractItem
+    public class Vine : Item
     {
         private Vector2 teleportDestination;
 

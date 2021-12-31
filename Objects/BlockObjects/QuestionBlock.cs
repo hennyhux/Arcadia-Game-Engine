@@ -9,7 +9,7 @@ namespace GameSpace.GameObjects.BlockObjects
 {
     public class QuestionBlock : Blocks
     {
-        public QuestionBlock(Vector2 initalPosition, AbstractItem item)
+        public QuestionBlock(Vector2 initalPosition, Item item)
         {
             ObjectID = (int)BlockID.QUESTIONBLOCK;
             state = new StateQuestionBlockIdle();

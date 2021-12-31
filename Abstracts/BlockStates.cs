@@ -67,7 +67,7 @@ namespace GameSpace.Abstracts
 
         public int ObjectID { get; set; }
         internal IBlockState state;
-        internal AbstractItem item;
+        internal Item item;
         private bool drawBox;
         public virtual void Draw(SpriteBatch spritebatch)
         {

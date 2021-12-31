@@ -6,7 +6,7 @@ using Microsoft.Xna.Framework;
 
 namespace GameSpace.GameObjects.ItemObjects
 {
-    public class OneUpShroom : AbstractItem
+    public class OneUpShroom : Item
     {
         public OneUpShroom(Vector2 initialPosition)
         {

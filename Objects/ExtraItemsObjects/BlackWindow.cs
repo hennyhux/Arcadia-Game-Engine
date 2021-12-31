@@ -7,7 +7,7 @@ using System.Diagnostics;
 
 namespace GameSpace.GameObjects.ExtraItemsObjects
 {
-    public class BlackWindow : AbstractItem
+    public class BlackWindow : Item
     {
 
         private bool hasCollided;

@@ -7,7 +7,7 @@ using System.Diagnostics;
 
 namespace GameSpace.GameObjects.ItemObjects
 {
-    public class Coin : AbstractItem
+    public class Coin : Item
     {
         public Coin(Vector2 initalPosition)
         {

@@ -46,7 +46,7 @@ namespace GameSpace.Factories
 
         public IGameObjects CreateBrickBlockWithItem(Vector2 location, IGameObjects item)
         {
-            return new BrickBlockWithItem(location, (AbstractItem)item);
+            return new BrickBlockWithItem(location, (Item)item);
         }
 
         #endregion
@@ -79,27 +79,27 @@ namespace GameSpace.Factories
 
         public IGameObjects CreateQuestionBlockCoin(Vector2 location)
         {
-            return new QuestionBlock(location, (AbstractItem)CreateCoinObject(location));
+            return new QuestionBlock(location, (Item)CreateCoinObject(location));
         }
 
         public IGameObjects CreateQuestionBlockOneUpShroom(Vector2 location)
         {
-            return new QuestionBlock(location, (AbstractItem)CreateOneUpShroomObject(location));
+            return new QuestionBlock(location, (Item)CreateOneUpShroomObject(location));
         }
 
         public IGameObjects CreateQuestionBlockShroom(Vector2 location)
         {
-            return new QuestionBlock(location, (AbstractItem)CreateSuperShroomObject(location));
+            return new QuestionBlock(location, (Item)CreateSuperShroomObject(location));
         }
 
         public IGameObjects CreateQuestionBlockFire(Vector2 location)
         {
-            return new QuestionBlock(location, (AbstractItem)CreateFireFlowerObject(location));
+            return new QuestionBlock(location, (Item)CreateFireFlowerObject(location));
         }
 
         public IGameObjects CreateQuestionBlockStar(Vector2 location)
         {
-            return new QuestionBlock(location, (AbstractItem)CreateStarObject(location));
+            return new QuestionBlock(location, (Item)CreateStarObject(location));
         }
 
         #endregion

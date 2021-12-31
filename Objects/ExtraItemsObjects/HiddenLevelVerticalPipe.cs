@@ -7,7 +7,7 @@ using System.Diagnostics;
 
 namespace GameSpace.GameObjects.ExtraItemsObjects
 {
-    public class HiddenLevelVerticalPipe : AbstractItem
+    public class HiddenLevelVerticalPipe : Item
     {
         public HiddenLevelVerticalPipe(Vector2 initalPosition)
         {

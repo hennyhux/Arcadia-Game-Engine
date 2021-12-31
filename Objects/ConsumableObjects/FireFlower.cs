@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework;
 
 namespace GameSpace.GameObjects.ItemObjects
 {
-    public class FireFlower : AbstractItem
+    public class FireFlower : Item
     {
         public FireFlower(Vector2 initialPosition)
         {

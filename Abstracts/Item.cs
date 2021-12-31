@@ -6,7 +6,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace GameSpace.Abstracts
 {
-    public abstract class AbstractItem : IGameObjects
+    public abstract class Item : IGameObjects
     {
         public virtual ISprite Sprite { get; set; }
         public virtual Vector2 Position { get; set; }
@@ -18,7 +18,7 @@ namespace GameSpace.Abstracts
 
         internal bool hasCollided;
 
-        protected AbstractItem()
+        protected Item()
         {
             HasHalted = false;
         }

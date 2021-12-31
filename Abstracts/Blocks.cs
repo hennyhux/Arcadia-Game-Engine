@@ -19,7 +19,7 @@ namespace GameSpace.Abstracts
         internal bool drawBox;
         internal bool hasCollided;
         internal IBlockStates state;
-        internal AbstractItem item;
+        internal Item item;
         internal bool revealedItem;
 
         public Blocks()

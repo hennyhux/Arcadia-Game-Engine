@@ -19,7 +19,24 @@ namespace GameSpace.Objects.EnemyObjects
         }
     }
 
-    public class StateUberGoombaAlive : EnemyStates
+    public abstract class StateUberGoomba : EnemyStates
+    {
+        protected StateUberGoomba(Enemy enemy) : base(enemy)
+        {
+
+        }
+
+        internal override void UpdateCollisionBox(Vector2 location)
+        {
+            enemy.CollisionBox = new Rectangle((int)location.X, (int)location.Y,
+                StateSprite.Texture.Width * 3 / StateSprite.GetTotalFrames(), StateSprite.Texture.Height * 3);
+
+            enemy.ExpandedCollisionBox = new Rectangle((int)location.X, (int)location.Y,
+                StateSprite.Texture.Width * 3 / StateSprite.GetTotalFrames(), (StateSprite.Texture.Height * 3) + 4);
+        }
+    }
+
+    public class StateUberGoombaAlive : StateUberGoomba
     {
         public StateUberGoombaAlive(Enemy uberGoomba) : base(uberGoomba)
         {
@@ -31,9 +48,10 @@ namespace GameSpace.Objects.EnemyObjects
             enemy.state = new StateUberGoombaBersek(enemy);
             MusicHandler.GetInstance().PlaySoundEffect(13);
         }
+
     }
 
-    public class StateUberGoombaBersek : EnemyStates
+    public class StateUberGoombaBersek : StateUberGoomba
     {
         public StateUberGoombaBersek(Enemy uberGoomba) : base(uberGoomba)
         {
@@ -69,7 +87,7 @@ namespace GameSpace.Objects.EnemyObjects
         }
     }
 
-    public class StateUberGoombaDead : EnemyStates
+    public class StateUberGoombaDead : StateUberGoomba
     {
         private Vector2 initialPosition;
         private Vector2 goalPosition;
@@ -87,11 +105,6 @@ namespace GameSpace.Objects.EnemyObjects
         private void CalcGoalPos()
         {
             goalPosition = new Vector2(initialPosition.X, initialPosition.Y - 45f);
-        }
-
-        public override void Trigger()
-        {
-
         }
 
         public override void Update(GameTime gametime)
