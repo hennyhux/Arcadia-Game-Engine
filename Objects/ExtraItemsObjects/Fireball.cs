@@ -11,19 +11,19 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace GameSpace.GameObjects.ItemObjects
 {
-    public class StateFireBallFlying : AbstractBlockStates
+    public class StateFireBallFlying : BlockState
     {
         public StateFireBallFlying()
         {
-            sprite = SpriteItemFactory.GetInstance().CreateFireBall();
+            StateSprite = SpriteItemFactory.GetInstance().CreateFireBall();
         }
     }
 
-    public class StateFireBallExploded : AbstractBlockStates
+    public class StateFireBallExploded : BlockState
     {
         public StateFireBallExploded()
         {
-            sprite = SpriteItemFactory.GetInstance().CreateHitFireBall();
+            StateSprite = SpriteItemFactory.GetInstance().CreateHitFireBall();
         }
     }
 

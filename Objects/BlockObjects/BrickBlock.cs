@@ -13,20 +13,21 @@ using Microsoft.Xna.Framework;
 namespace GameSpace.Objects.BlockObjects
 {
 
-    public class StateExplodingBrickBlock : AbstractBlockStates
+    public class StateExplodingBrickBlock : BlockState
     {
         public StateExplodingBrickBlock()
         {
-            sprite = SpriteBlockFactory.GetInstance().ReturnShatterBlock();
+            StateSprite = SpriteBlockFactory.GetInstance().ReturnShatterBlock();
         }
+
     }
 
-    public class StateGoneBrickBlock : AbstractBlockStates
+    public class StateGoneBrickBlock : BlockState
     {
         public StateGoneBrickBlock()
         {
-            sprite = SpriteBlockFactory.GetInstance().ReturnShatterBlock();
-            sprite.SetVisible();
+            StateSprite = SpriteBlockFactory.GetInstance().ReturnShatterBlock();
+            StateSprite.SetVisible();
         }
     }
 

@@ -23,6 +23,16 @@ namespace GameSpace.States.BlockStates
             sprite.DrawBoundary(spriteBatch, CollisionBox);
         }
 
+        public void RevealItem()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public void Trigger()
+        {
+            throw new System.NotImplementedException();
+        }
+
         public void Update(GameTime gameTime)
         {
             sprite.Update(gameTime);

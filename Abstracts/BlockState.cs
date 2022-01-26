@@ -4,24 +4,31 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace GameSpace.Abstracts
 {
-    public abstract class AbstractBlockStates : IBlockStates
+    public abstract class BlockState : IBlockStates
     {
-        internal ISprite sprite;
+        public ISprite StateSprite { get; set; }
         public virtual void Draw(SpriteBatch spriteBatch, Vector2 location)
         {
-            sprite.Draw(spriteBatch, location);
+            StateSprite.Draw(spriteBatch, location);
         }
 
         public virtual void DrawBounds(SpriteBatch spriteBatch, Rectangle CollisionBox)
         {
-            sprite.DrawBoundary(spriteBatch, CollisionBox);
+            StateSprite.DrawBoundary(spriteBatch, CollisionBox);
         }
 
         public virtual void Update(GameTime gameTime)
         {
-            sprite.Update(gameTime);
+            StateSprite.Update(gameTime);
         }
 
+        public virtual void Trigger()
+        {
 
+        }
+        public virtual void RevealItem()
+        {
+
+        }
     }
 }

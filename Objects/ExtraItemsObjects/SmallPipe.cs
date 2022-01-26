@@ -24,11 +24,11 @@ namespace GameSpace.GameObjects.ExtraItemsObjects
         }
     }
 
-    public class StateSmallPipeIdle : AbstractBlockStates
+    public class StateSmallPipeIdle : BlockState
     {
         public StateSmallPipeIdle()
         {
-            sprite = SpriteExtraItemsFactory.GetInstance().ReturnSmallPipe();
+            StateSprite = SpriteExtraItemsFactory.GetInstance().ReturnSmallPipe();
         }
     }
 }

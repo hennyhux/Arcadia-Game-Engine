@@ -10,35 +10,35 @@ using Microsoft.Xna.Framework.Graphics;
 namespace GameSpace.Sprites.ExtraItems
 {
 
-    public class StateWarpPipeIdle : AbstractBlockStates
+    public class StateWarpPipeIdle : BlockState
     {
         public StateWarpPipeIdle()
         {
-            sprite = SpriteItemFactory.GetInstance().CreateWarpPipe();
+            StateSprite = SpriteItemFactory.GetInstance().CreateWarpPipe();
         }
     }
 
-    public class StateWarpPipeActivated : AbstractBlockStates
+    public class StateWarpPipeActivated : BlockState
     {
         public StateWarpPipeActivated()
         {
-            sprite = SpriteItemFactory.GetInstance().CreateWarpPipe();
+            StateSprite = SpriteItemFactory.GetInstance().CreateWarpPipe();
         }
     }
 
-    public class StateWarpPipeBodyIdle : AbstractBlockStates
+    public class StateWarpPipeBodyIdle : BlockState
     {
         public StateWarpPipeBodyIdle()
         {
-            sprite = SpriteBlockFactory.GetInstance().CreateWarpPipeBody();
+            StateSprite = SpriteBlockFactory.GetInstance().CreateWarpPipeBody();
         }
     }
 
-    public class StateWarpPipeDeactiveated : AbstractBlockStates
+    public class StateWarpPipeDeactiveated : BlockState
     {
         public StateWarpPipeDeactiveated()
         {
-            sprite = SpriteItemFactory.GetInstance().CreateWarpPipe();
+            StateSprite = SpriteItemFactory.GetInstance().CreateWarpPipe();
         }
     }
 

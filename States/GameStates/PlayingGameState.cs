@@ -22,7 +22,6 @@ namespace GameSpace.States.GameStates
         private protected readonly GraphicsDeviceManager graphics;
         private protected SpriteBatch spriteBatch;
         private readonly LevelRestart levelRestart;
-        private SpriteFont fontFile;
         private bool startOfGame = true;
 
         // DeathTimer timer;
@@ -43,9 +42,6 @@ namespace GameSpace.States.GameStates
         private List<IGameObjects> objects;
         public List<SoundEffect> soundEffects;
         #endregion
-
-
-        public GraphicsDeviceManager Graphics => graphics;
 
         private readonly string xmlFileName = "../../../Levels/Level1.xml";
         //private readonly string xmlFileName = "../../../Levels/TestingLevel.xml";
@@ -116,8 +112,6 @@ namespace GameSpace.States.GameStates
             };
             #endregion
 
-
-            fontFile = content.Load<SpriteFont>("font");
             //Camera Stuff
             camera = new Camera(graphicsDevice.Viewport) { Limits = new Rectangle(0, 0, Loader.boundaryX, 480) };//Should be set to level's max X and Y
 
