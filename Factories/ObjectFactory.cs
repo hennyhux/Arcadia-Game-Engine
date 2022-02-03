@@ -41,10 +41,6 @@ namespace GameSpace.Factories
             return new Goomba(location);
         }
 
-        public IGameObjects CreateUberGoombaObject(Vector2 location)
-        {
-            return new UberGoomba(location);
-        }
         public IGameObjects CreateGreenKoopaObject(Vector2 location)
         {
             return new Koopa(location);
@@ -55,10 +51,6 @@ namespace GameSpace.Factories
             return new RedKoopa(location);
         }
 
-        public IGameObjects CreateUberKoopaObject(Vector2 location)
-        {
-            return new UberKoopa(location);
-        }
         public IGameObjects CreatePlantObject(Vector2 location)
         {
             return new Plant(location);
@@ -78,16 +70,6 @@ namespace GameSpace.Factories
         public IGameObjects CreateVineHiddenBlockObject(Vector2 location)
         {
             return new HiddenBlockWithVine(location);
-        }
-
-        public IGameObjects CreateSpinyObject(Vector2 location)
-        {
-            return new SpinyRefactored(location);
-        }
-
-        public IGameObjects CreateLakituObject(Vector2 location)
-        {
-            return new LakituRefactored(location);
         }
 
         #endregion
@@ -187,10 +169,6 @@ namespace GameSpace.Factories
         public IGameObjects CreateWarpPipeHeadRoom(Vector2 location)
         {
             return new WarpPipeHeadRoom(location);
-        }
-        public IGameObjects CreateWarpVineBlock(Vector2 location)
-        {
-            return new WarpVineBlock(location);
         }
 
 

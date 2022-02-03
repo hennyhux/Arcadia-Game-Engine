@@ -16,7 +16,6 @@ namespace GameSpace.Sprites
         private bool IsVisible;
 
         public Texture2D Texture { get; set; }
-        public LakituSprite CloudSprite { get; set; }
         public int Height { get; set; }
         public int Width { get; set; }
         protected Texture2D WhiteRect = SpriteBlockFactory.GetInstance().CreateBoundingBoxTexture();
@@ -62,7 +61,7 @@ namespace GameSpace.Sprites
             newState = true;
 
             Facing = SpriteEffects.None;
-            CloudSprite = MarioFactory.GetInstance().MarioCloudSprite();
+            
             #region time
             timeSinceLastFrame = 0;
             milliSecondsPerFrame = 100;
@@ -91,7 +90,7 @@ namespace GameSpace.Sprites
 
         public void Update(GameTime gametime)
         {
-            CloudSprite.Update(gametime);
+           
             if (IsVisible)
             {
                 int startingFrame = 0;
@@ -208,7 +207,7 @@ namespace GameSpace.Sprites
                     spriteBatch.Draw(Texture, destinationRectangle, sourceRectangle, Color.White, 0, new Vector2(0, 0), Facing, 0);
                 }
 
-                CloudSprite.Draw(spriteBatch, new Vector2(location.X - 8, location.Y + Height));
+               
             }
 
         }
@@ -254,7 +253,7 @@ namespace GameSpace.Sprites
 
         public int GetTotalFrames()
         {
-            return ((ISprite)CloudSprite).GetTotalFrames();
+            throw new NotImplementedException();
         }
     }
 }

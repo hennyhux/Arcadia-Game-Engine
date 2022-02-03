@@ -487,10 +487,6 @@ namespace GameSpace.Factories
             return new MarioSprite(normalMarioSprite, 350, 200, 0, 2, 5);
         }
 
-        public LakituSprite MarioCloudSprite()//mario.SmallMarioFallingSprite
-        {
-            return new LakituSprite(Cloud, 1, 1, 1, 1, 1, true);
-        }
 
     }
 }

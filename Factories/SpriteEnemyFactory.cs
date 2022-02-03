@@ -143,41 +143,6 @@ namespace GameSpace.Factories
             return new UberGoombaDeadSprite(DeadGoomba, 1, 1, 1);
         }
 
-        public ISprite CreateLakituSprite()
-        {
-            return new LakituSprite(Lakitu, 1, 1, 0, 1, 0, true);
-        }
-
-        public ISprite CreateLakituRightSprite()
-        {
-            return new LakituSprite(Lakitu, 1, 1, 1, 1, 0, true);
-        }
-
-        public ISprite CreateDeadLakituSprite()
-        {
-            return new LakituSprite(Lakitu, 1, 1, 1, 1, 0, false);
-        }
-
-        public ISprite CreateLakituCloudSprite()
-        {
-            return new LakituSprite(Lakitu, 1, 1, 1, 1, 1, true);
-        }
-
-        public ISprite CreateLakituThrowingSprite()
-        {
-            return new LakituSprite(Lakitu, 1, 1, 1, 1, 1, true);
-        }
-
-        public ISprite CreateSpinySprite()
-        {
-            return new SpinySprite(Spiny, 1, 1, 0, 1, 0, true);
-        }
-
-        public ISprite CreateSpinyRightSprite()
-        {
-            return new SpinySprite(Spiny, 1, 1, 1, 1, 0, true);
-        }
-
         public ISprite CreateDeadSpinySprite()
         {
             return new EnemyDeadSprite(Spiny, 1, 1, 1);

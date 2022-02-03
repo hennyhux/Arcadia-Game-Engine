@@ -325,15 +325,6 @@ namespace GameSpace.EntityManaging
             }
         }
 
-        public void EnemyToMarioCollision(SpinyRefactored enemy)
-        {
-
-        }
-
-        public void EnemyToMarioCollision(Spiny enemy)
-        {
-
-        }
         #endregion
 
         #region Mario Collision
@@ -596,13 +587,7 @@ namespace GameSpace.EntityManaging
 
         }
 
-        public void HandleEnemyCollision(Lakitu enemy)
-        {
-            if (CollisionHandler.GetInstance().DetectCollisionDirection(mario, enemy) != (int)CollisionDirection.DOWN)
-            {
-                mario.Trigger();
-            }
-        }
+      
     }
     public class EnemyCollisionHandler : Handler
     {
@@ -664,21 +649,6 @@ namespace GameSpace.EntityManaging
             }
         }
 
-        public void HandleBlockCollision(SpinyRefactored enemy, IGameObjects block)
-        {
-            if (CollisionHandler.GetInstance().DetectCollisionDirection(enemy, block) == (int)CollisionDirection.LEFT)
-            {
-                enemy.Direction = (int)MarioDirection.LEFT;
-                enemy.state = new StateSpinyAliveLeft(enemy);
-            }
-
-            else if (CollisionHandler.GetInstance().DetectCollisionDirection(enemy, block) == (int)CollisionDirection.RIGHT)
-            {
-                enemy.Direction = (int)MarioDirection.RIGHT;
-                enemy.state = new StateSpinyAliveRight(enemy);
-            }
-        }
-
         public void HandleMarioCollision(Enemy enemy)
         {
             if (CollisionHandler.GetInstance().DetectCollisionDirection(enemy, mario) == (int)CollisionDirection.UP)
@@ -691,15 +661,6 @@ namespace GameSpace.EntityManaging
         public void HandleMarioCollision(UberKoopa enemy)
         {
 
-        }
-
-        public void HandleMarioCollision(Lakitu enemy)
-        {
-            if (CollisionHandler.GetInstance().DetectCollisionDirection(enemy, mario) == (int)CollisionDirection.UP)
-            {
-                mario.score += 100;
-                enemy.Trigger();
-            }
         }
 
         public void HandleFireBallCollision(AbstractEnemy enemy)
