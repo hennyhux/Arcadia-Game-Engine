@@ -64,7 +64,7 @@ namespace GameSpace.States.BlockStates
     {
         public StateVineBlock()
         {
-            StateSprite = SpriteBlockFactory.GetInstance().ReturnVineBlock();
+           // StateSprite = SpriteBlockFactory.GetInstance().ReturnVineBlock();
         }
     }
 

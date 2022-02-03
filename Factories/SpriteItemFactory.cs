@@ -44,55 +44,55 @@ namespace GameSpace.Factories
         }
         public ISprite CreateStar()
         {
-            return new StarSprite(Star, 1, 4, 4, 0, 0);
+            return new AnimatedSprite(Star, 1, 4, 4, 0, 0);
         }
 
         public ISprite CreateSuperShroom()
         {
-            return new SuperShroomSprite(SuperShroom, 1, 1, 1, 0, 0);
+            return new AnimatedSprite(SuperShroom, 1, 1, 1, 0, 0);
         }
 
         public ISprite CreateOneUpShroom()
         {
-            return new OneUpShroomSprite(OneUpShroom, 1, 1, 1, 0, 0);
+            return new AnimatedSprite(OneUpShroom, 1, 1, 1, 0, 0);
         }
 
         public ISprite CreateFireFlower()
         {
-            return new FireFlowerSprite(FireFlower, 1, 4, 4, 0, 0);
+            return new AnimatedSprite(FireFlower, 1, 4, 4, 0, 0);
         }
 
         public ISprite CreateCoin()
         {
-            return new CoinSprite(Coin, 1, 4, 4, 0, 0);
+            return new AnimatedSprite(Coin, 1, 4, 4, 0, 0);
         }
 
         public ISprite CreateHiddenLevelCoin()
         {
-            return new HiddenLevelCoinSprite(HiddenLevelCoin, 1, 3, 3, 0, 0);
+            return new AnimatedSprite(HiddenLevelCoin, 1, 3, 3, 0, 0);
         }
 
         public ISprite CreateFireBall()
         {
-            return new FireballSprite(FireBall, 1, 4, 4, 0, 0);
+            return new AnimatedSprite(FireBall, 1, 4, 4, 0, 0);
         }
 
         public ISprite CreateHitFireBall()
         {
-            return new OneUpShroomSprite(HitFireball, 1, 1, 1, 0, 0);
+            return new AnimatedSprite(HitFireball, 1, 1, 1, 0, 0);
         }
 
         public ISprite CreateWarpPipe()
         {
-            return new BigPipeSprite(WarpPipeHead, 1, 1, 1);
+            return new StaticSprite(WarpPipeHead, 1, 1, 1);
         }
         public ISprite CreateVine()
         {
-            return new VineSprite(Vine, 1, 1, 1, 0, 0);
+            return new AnimatedSprite(Vine, 1, 1, 1, 0, 0);
         }
         public ISprite CreateWarpPipeHeadBack()
         {
-            return new HiddenLevelVerticalPipeSprite(WarpPipeHead, 1, 1, 1);
+            return new StaticSprite(WarpPipeHead, 1, 1, 1);
         }
     }
 }

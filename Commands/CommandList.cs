@@ -15,7 +15,7 @@ namespace GameSpace
             keyboardCommands = new Dictionary<Keys, ICommand>()
             {
                 {Keys.Q, new ExitCommand(game)},
-                {Keys.P, new PauseGameCommand(game)},
+                //{Keys.P, new PauseGameCommand(game)},
                 {Keys.M, new MuteCommand(game)},
                 {Keys.R, new ResetCommand(game)},
                 {Keys.N, new StartNewGameCommand()},

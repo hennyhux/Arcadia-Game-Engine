@@ -3,9 +3,9 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace GameSpace.Sprites
 {
-    public class HiddenLevelBrickBlockSprite : Sprite
+    public class StaticSprite : Sprite
     {
-        public HiddenLevelBrickBlockSprite(Texture2D texture, int rows, int columns, int totalFrames)
+        public StaticSprite(Texture2D texture, int rows, int columns, int totalFrames)
         {
 
             Texture = texture;

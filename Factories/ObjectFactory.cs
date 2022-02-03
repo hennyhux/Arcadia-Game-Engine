@@ -33,86 +33,6 @@ namespace GameSpace.Factories
         }
 
 
-        #region BrickBlock
-        public IGameObjects CreateBrickBlockObject(Vector2 location)
-        {
-            return new BrickBlock(location);
-        }
-
-        public IGameObjects CreateHiddenLevelBrickBlockObject(Vector2 location)
-        {
-            return new HiddenLevelBrickBlock(location);
-        }
-
-        public IGameObjects CreateBrickBlockWithItem(Vector2 location, IGameObjects item)
-        {
-            return new BrickBlockWithItem(location, (Item)item);
-        }
-
-        #endregion
-        public IGameObjects CreateStairBlockObject(Vector2 location)
-        {
-            return new StairBlock(location);
-        }
-
-        public IGameObjects CreateFloorBlockObject(Vector2 location)
-        {
-            return new FloorBlock(location);
-        }
-
-        public IGameObjects CreateVineBlockObject(Vector2 location)
-        {
-            return new VineBlock(location);
-        }
-
-        public IGameObjects CreateHiddenLevelFloorBlockObject(Vector2 location)
-        {
-            return new HiddenLevelFloorBlock(location);
-        }
-
-        #region Question Block
-
-        public IGameObjects CreateQuestionBlockObject(Vector2 location)
-        {
-            return new QuestionBlock(location, null);
-        }
-
-        public IGameObjects CreateQuestionBlockCoin(Vector2 location)
-        {
-            return new QuestionBlock(location, (Item)CreateCoinObject(location));
-        }
-
-        public IGameObjects CreateQuestionBlockOneUpShroom(Vector2 location)
-        {
-            return new QuestionBlock(location, (Item)CreateOneUpShroomObject(location));
-        }
-
-        public IGameObjects CreateQuestionBlockShroom(Vector2 location)
-        {
-            return new QuestionBlock(location, (Item)CreateSuperShroomObject(location));
-        }
-
-        public IGameObjects CreateQuestionBlockFire(Vector2 location)
-        {
-            return new QuestionBlock(location, (Item)CreateFireFlowerObject(location));
-        }
-
-        public IGameObjects CreateQuestionBlockStar(Vector2 location)
-        {
-            return new QuestionBlock(location, (Item)CreateStarObject(location));
-        }
-
-        #endregion
-
-        public IGameObjects CreateHiddenBlockObject(Vector2 location)
-        {
-            return new HiddenBlock(location);
-        }
-
-        public IGameObjects CreateUsedBlockObject(Vector2 location)
-        {
-            return new UsedBlock(location);
-        }
 
 
         #region Enemies 
@@ -167,7 +87,7 @@ namespace GameSpace.Factories
 
         public IGameObjects CreateLakituObject(Vector2 location)
         {
-            return new Lakitu(location);
+            return new LakituRefactored(location);
         }
 
         #endregion

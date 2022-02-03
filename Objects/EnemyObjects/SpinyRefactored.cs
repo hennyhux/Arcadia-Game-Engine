@@ -12,7 +12,7 @@ namespace GameSpace.GameObjects.EnemyObjects
 {
     public class SpinyRefactored : Enemy
     {
-        private readonly int searchState;//0 passed mario, now throw spiny, 1 going left towards mario, 2 going right towards mario
+        private readonly int searchState;
         public SpinyRefactored(Vector2 initalPosition)
         {
             state = new StateSpinyAliveLeft(this);
@@ -27,9 +27,6 @@ namespace GameSpace.GameObjects.EnemyObjects
         {
             switch (entity.ObjectID)
             {
-                //case (int)AvatarID.MARIO:
-                //  EnemyCollisionHandler.GetInstance().HandleMarioCollision(this);
-                //break;
 
                 case (int)BlockID.USEDBLOCK:
                 case (int)BlockID.QUESTIONBLOCK:

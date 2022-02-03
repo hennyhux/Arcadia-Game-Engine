@@ -13,6 +13,7 @@ namespace GameSpace.TileMapDefinition
     {
         public static int boundaryX = 0;
         private static readonly ObjectFactory objectFactory = ObjectFactory.GetInstance();
+        private static BlockObjectsFactory blockObjectsFactory = BlockObjectsFactory.GetInstance();
 
         private static EnemyFactory enemyFactory = EnemyFactory.GetInstance();
 
@@ -61,33 +62,33 @@ namespace GameSpace.TileMapDefinition
                 case BlockID.FLOORBLOCK:
                     for (int i = 0; i < obstacles.blockRow; i++)
                     {
-                        objects.Add(objectFactory.CreateFloorBlockObject(new Vector2(obstacles.x + (32 * i), obstacles.y)));
+                        objects.Add(blockObjectsFactory.CreateFloorBlockObject(new Vector2(obstacles.x + (32 * i), obstacles.y)));
                     }
                     break;
                 case BlockID.HIDDENLEVELFLOORBLOCK:
                     for (int i = 0; i < obstacles.blockRow; i++)
                     {
-                        objects.Add(objectFactory.CreateHiddenLevelFloorBlockObject(new Vector2(obstacles.x + (32 * i), obstacles.y)));
+                        objects.Add(blockObjectsFactory.CreateHiddenLevelFloorBlockObject(new Vector2(obstacles.x + (32 * i), obstacles.y)));
                     }
                     break;
-                case BlockID.VINEBLOCK:
-                    for (int i = 0; i < obstacles.blockRow; i++)
-                    {
-                        objects.Add(objectFactory.CreateVineBlockObject(new Vector2(obstacles.x + (32 * i), obstacles.y)));
-                    }
-                    break;
+                //case BlockID.VINEBLOCK:
+                //    for (int i = 0; i < obstacles.blockRow; i++)
+                //    {
+                //        objects.Add(blockObjectsFactory.CreateVineBlockObject(new Vector2(obstacles.x + (32 * i), obstacles.y)));
+                //    }
+                //    break;
                 case BlockID.HIDDENBLOCK:
-                    objects.Add(objectFactory.CreateHiddenBlockObject(location));
+                    objects.Add(blockObjectsFactory.CreateHiddenBlockObject(location));
                     break;
 
                 case BlockID.USEDBLOCK: //NOT USED IN LEVEL 1-1
-                    objects.Add(objectFactory.CreateUsedBlockObject(location));
+                    objects.Add(blockObjectsFactory.CreateUsedBlockObject(location));
                     break;
 
                 case BlockID.STAIRBLOCK:
                     for (int i = 0; i < obstacles.blockRow; i++)
                     {
-                        objects.Add(objectFactory.CreateStairBlockObject(new Vector2(obstacles.x + (32 * i), obstacles.y)));
+                        objects.Add(blockObjectsFactory.CreateStairBlockObject(new Vector2(obstacles.x + (32 * i), obstacles.y)));
                     }
                     break;
 
@@ -95,33 +96,33 @@ namespace GameSpace.TileMapDefinition
                 case BlockID.BRICKBLOCK:
                     for (int i = 0; i < obstacles.blockRow; i++)
                     {
-                        objects.Add(objectFactory.CreateBrickBlockObject(new Vector2(obstacles.x + (32 * i), obstacles.y)));
+                        objects.Add(blockObjectsFactory.CreateBrickBlockObject(new Vector2(obstacles.x + (32 * i), obstacles.y)));
                     }
                     break;
                 case BlockID.HIDDENLEVELBRICKBLOCK:
                     for (int i = 0; i < obstacles.blockRow; i++)
                     {
-                        objects.Add(objectFactory.CreateHiddenLevelBrickBlockObject(new Vector2(obstacles.x + (32 * i), obstacles.y)));
+                        objects.Add(blockObjectsFactory.CreateHiddenLevelBrickBlockObject(new Vector2(obstacles.x + (32 * i), obstacles.y)));
                     }
                     break;
                 case BlockID.COINBRICKBLOCK:
-                    objects.Add(objectFactory.CreateBrickBlockWithItem(location, objectFactory.CreateCoinObject(location)));
+                    objects.Add(blockObjectsFactory.CreateBrickBlockWithItem(location, objectFactory.CreateCoinObject(location)));
                     break;
 
                 case BlockID.FIREBRICKBLOCK:
-                    objects.Add(objectFactory.CreateBrickBlockWithItem(location, objectFactory.CreateFireFlowerObject(location)));
+                    objects.Add(blockObjectsFactory.CreateBrickBlockWithItem(location, objectFactory.CreateFireFlowerObject(location)));
                     break;
 
                 case BlockID.ONEUPSHROOMBRICKBLOCK:
-                    objects.Add(objectFactory.CreateBrickBlockWithItem(location, objectFactory.CreateOneUpShroomObject(location)));
+                    objects.Add(blockObjectsFactory.CreateBrickBlockWithItem(location, objectFactory.CreateOneUpShroomObject(location)));
                     break;
 
                 case BlockID.SUPERSHROOMBRICKBLOCK:
-                    objects.Add(objectFactory.CreateBrickBlockWithItem(location, objectFactory.CreateSuperShroomObject(location)));
+                    objects.Add(blockObjectsFactory.CreateBrickBlockWithItem(location, objectFactory.CreateSuperShroomObject(location)));
                     break;
 
                 case BlockID.STARBRICKBLOCK:
-                    objects.Add(objectFactory.CreateBrickBlockWithItem(location, objectFactory.CreateStarObject(location)));
+                    objects.Add(blockObjectsFactory.CreateBrickBlockWithItem(location, objectFactory.CreateStarObject(location)));
                     break;
                 #endregion
 
@@ -130,27 +131,27 @@ namespace GameSpace.TileMapDefinition
                     break;
 
                 #region Question Blocks
-                case BlockID.QUESTIONBLOCK: //NOT USED IN LEVEL 1-1
-                    objects.Add(objectFactory.CreateQuestionBlockObject(location));
+                case BlockID.QUESTIONBLOCK: 
+                    objects.Add(blockObjectsFactory.CreateQuestionBlockObject(location));
                     break;
 
                 case BlockID.COINQUESTIONBLOCK:
-                    objects.Add(objectFactory.CreateQuestionBlockCoin(location));
+                    objects.Add(blockObjectsFactory.CreateQuestionBlockWithItem(location, objectFactory.CreateCoinObject(location)));
                     break;
 
                 case BlockID.STARQUESTIONBLOCK:
-                    objects.Add(objectFactory.CreateQuestionBlockStar(location));
+                    objects.Add(blockObjectsFactory.CreateQuestionBlockWithItem(location, objectFactory.CreateStarObject(location)));
                     break;
 
                 case BlockID.ONEUPSHROOMQUESTIONBLOCK:
-                    objects.Add(objectFactory.CreateQuestionBlockOneUpShroom(location));
+                    objects.Add(blockObjectsFactory.CreateQuestionBlockWithItem(location, objectFactory.CreateOneUpShroomObject(location)));
                     break;
 
                 case BlockID.SUPERSHROOMQUESTIONBLOCK:
-                    objects.Add(objectFactory.CreateQuestionBlockShroom(location));
+                    objects.Add(blockObjectsFactory.CreateQuestionBlockWithItem(location, objectFactory.CreateSuperShroomObject(location)));
                     break;
                 case BlockID.FIREFLOWERQUESTIONBLOCK:
-                    objects.Add(objectFactory.CreateQuestionBlockFire(location));
+                    objects.Add(blockObjectsFactory.CreateQuestionBlockWithItem(location, objectFactory.CreateFireFlowerObject(location)));
                     break;
                     #endregion
             }
