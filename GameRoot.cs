@@ -1,10 +1,12 @@
 ﻿using GameSpace.Abstracts;
+using GameSpace.Commands;
 using GameSpace.EntityManaging;
 using GameSpace.Enums;
 using GameSpace.GameObjects.BlockObjects;
 using GameSpace.States.GameStates;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using QuakeConsole;
 
 namespace GameSpace
 {
@@ -12,6 +14,7 @@ namespace GameSpace
     {
         private protected GraphicsDeviceManager graphicsDevice;
         private protected SpriteBatch spriteBatch;
+        public ConsoleComponent console;
         public GameState CurrentState { get; private set; }
         private GameState nextState;
         public GraphicsDeviceManager Graphics => graphicsDevice;
@@ -21,6 +24,11 @@ namespace GameSpace
             graphicsDevice = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             TheaterHandler.GetInstance().InitializeGameroot(this);
+            console = new ConsoleComponent(this);
+            var interpreter = new RoslynInterpreter();
+            console.Interpreter = interpreter;
+            interpreter.AddVariable("GameRoot", this);
+            Components.Add(console);
         }
 
         protected override void Initialize()

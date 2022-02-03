@@ -23,6 +23,7 @@ namespace GameSpace.States.GameStates
             {
                 {Keys.Q, new ExitCommand(game)},
                 {Keys.N, new StartNewGameCommand()},
+                {Keys.OemTilde, new BringUpConsoleCommand(game)}
                 //load game command
             };
         }

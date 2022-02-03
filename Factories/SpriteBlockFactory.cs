@@ -66,12 +66,12 @@ namespace GameSpace.Factories
 
         public ISprite ReturnHiddenLevelBrickBlock()
         {
-            return new HiddenLevelBrickBlockSprite(HiddenLevelBrickBlock, 1, 1, 1);
+            return new BrickBlockSprite(HiddenLevelBrickBlock, 1, 1, 1);
         }
 
         public ISprite ReturnFloorBlock()
         {
-            return new FloorBlockSprite(FloorBlock, 1, 1, 1);
+            return new BrickBlockSprite(FloorBlock, 1, 1, 1);
         }
 
         public ISprite ReturnVineBlock()

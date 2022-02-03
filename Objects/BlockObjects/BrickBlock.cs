@@ -46,46 +46,20 @@ namespace GameSpace.Objects.BlockObjects
 
         public override void Update(GameTime gametime)
         {
-            state.Update(gametime);
-            if (state is StateExplodingBrickBlock)
-            {
-                ++counter;
-                if (counter >= 10)
-                {
-                    state = new StateGoneBrickBlock();
-                    CollisionBox = new Rectangle();
-                }
-            }
+          
         }
 
         public override void Trigger()
         {
 
-            if (!hasCollided && MarioHandler.GetInstance().IsCurrentlyBigMario())
-            {
-                state = new StateExplodingBrickBlock();
-                MusicHandler.GetInstance().PlaySoundEffect(9);
-            }
-
-            else if (!hasCollided)
-            {
-                state = new StateBlockBumped(this);
-                MusicHandler.GetInstance().PlaySoundEffect(8);
-            }
+       
 
         }
 
         public override void HandleCollision(IGameObjects entity)
         {
 
-            if (CollisionHandler.GetInstance().DetectCollisionDirection(this, entity) == (int)CollisionDirection.DOWN)
-            {
-                if (entity is Mario)
-                {
-                    RevealItem();
-                    Trigger();
-                }
-            }
+            
         }
 
         public override bool RevealItem()
@@ -103,15 +77,6 @@ namespace GameSpace.Objects.BlockObjects
             hasRevealedItem = false;
         }
 
-        public override bool RevealItem()
-        {
-            if (!hasRevealedItem)
-            {
-                item.AdjustLocationComingOutOfBlock();
-                TheaterHandler.GetInstance().AddItemToStage(item);
-                hasRevealedItem = true;
-            }
-            return hasRevealedItem;
-        }
+     
     }
 }

@@ -22,7 +22,7 @@ namespace GameSpace.Abstracts
         internal Item item;
         internal bool revealedItem;
 
-        public Blocks()
+        protected Blocks()
         {
             drawBox = false;
             revealedItem = false;
