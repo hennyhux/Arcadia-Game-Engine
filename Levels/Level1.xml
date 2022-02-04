@@ -16,6 +16,13 @@
 		<y>356</y>
 		<enemy>GOOMBA</enemy>
 	</Objects>
+	<Objects>
+		<x>250</x>
+		<y>356</y>
+		<enemy>UBERGOOMBA</enemy>
+	</Objects>
+	
+	
 
 
 	<Objects>

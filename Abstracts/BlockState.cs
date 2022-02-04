@@ -7,6 +7,7 @@ namespace GameSpace.Abstracts
     public abstract class BlockState : IBlockStates
     {
         public ISprite StateSprite { get; set; }
+
         public virtual void Draw(SpriteBatch spriteBatch, Vector2 location)
         {
             StateSprite.Draw(spriteBatch, location);

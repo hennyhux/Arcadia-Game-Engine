@@ -71,6 +71,7 @@ namespace GameSpace.Abstracts
                 case (int)ItemID.FIREBALL:
                     Trigger();
                     break;
+
             }
         }
 

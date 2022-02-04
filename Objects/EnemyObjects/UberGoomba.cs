@@ -2,6 +2,8 @@
 using GameSpace.EntityManaging;
 using GameSpace.Enums;
 using GameSpace.Factories;
+using GameSpace.Handlers;
+using GameSpace.Interfaces;
 using GameSpace.Machines;
 using Microsoft.Xna.Framework;
 
@@ -16,6 +18,42 @@ namespace GameSpace.Objects.EnemyObjects
             drawBox = false;
             ObjectID = (int)EnemyID.UBERGOOMBA;
             Direction = (int)MarioDirection.LEFT;
+        }
+
+        
+        public override void HandleCollision(IGameObjects entity)
+        {
+            switch (entity.ObjectID)
+            {
+                case (int)AvatarID.MARIO:
+                    CollisionEnemyHandler.GetInstance().HandleMarioCollision(this);
+                    break;
+
+                case (int)BlockID.USEDBLOCK:
+                case (int)BlockID.QUESTIONBLOCK:
+                case (int)BlockID.FLOORBLOCK:
+                case (int)BlockID.STAIRBLOCK:
+                case (int)BlockID.COINBRICKBLOCK:
+                case (int)BlockID.BRICKBLOCK:
+                case (int)ItemID.BIGPIPE:
+                case (int)ItemID.MEDIUMPIPE:
+                case (int)ItemID.SMALLPIPE:
+                case (int)ItemID.WARPPIPEBODY:
+                case (int)ItemID.WARPPIPEHEAD:
+                case (int)ItemID.WARPPIPEHEADWITHMOB:
+                case (int)ItemID.WARPVINEWITHBLOCK:
+                case (int)ItemID.WARPPIPEROOM:
+                    CollisionEnemyHandler.GetInstance().HandleBlockCollision(this, entity);
+                    break;
+
+                case (int)ItemID.FIREBALL:
+                    Trigger();
+                    break;
+
+                case (int)EnemyID.GOOMBA:
+                    CollisionEnemyHandler.GetInstance().HandleEnemyCollision((UberGoomba)this, entity);
+                    break;
+            }
         }
     }
 

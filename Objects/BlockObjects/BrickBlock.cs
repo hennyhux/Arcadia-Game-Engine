@@ -12,7 +12,6 @@ using Microsoft.Xna.Framework;
 
 namespace GameSpace.Objects.BlockObjects
 {
-
     public class StateExplodingBrickBlock : BlockState
     {
         public StateExplodingBrickBlock()
@@ -20,6 +19,10 @@ namespace GameSpace.Objects.BlockObjects
             StateSprite = SpriteBlockFactory.GetInstance().ReturnShatterBlock();
         }
 
+        public override void Trigger()
+        {
+
+        }
     }
 
     public class StateGoneBrickBlock : BlockState
@@ -28,6 +31,11 @@ namespace GameSpace.Objects.BlockObjects
         {
             StateSprite = SpriteBlockFactory.GetInstance().ReturnShatterBlock();
             StateSprite.SetVisible();
+        }
+
+        public override void Trigger()
+        {
+            
         }
     }
 

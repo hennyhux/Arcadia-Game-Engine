@@ -84,6 +84,14 @@ namespace GameSpace.Handlers
             }
         }
 
+        internal void HandleEnemyCollision(UberGoomba enemy, IGameObjects entity)
+        {
+            if (enemy.state is StateUberGoombaBersek)
+            {
+                entity.Trigger();
+            }
+        }
+
         public void HandleBlockCollision(SpinyRefactored enemy, IGameObjects block)
         {
             if (CollisionHandler.GetInstance().DetectCollisionDirection(enemy, block) == (int)CollisionDirection.LEFT)
