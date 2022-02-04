@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using System.Xml;
 using System.Xml.Serialization;
+using GameSpace.Sprites.ExtraItems;
 
 namespace GameSpace.TileMapDefinition
 {
@@ -71,12 +72,6 @@ namespace GameSpace.TileMapDefinition
                         objects.Add(blockObjectsFactory.CreateHiddenLevelFloorBlockObject(new Vector2(obstacles.x + (32 * i), obstacles.y)));
                     }
                     break;
-                //case BlockID.VINEBLOCK:
-                //    for (int i = 0; i < obstacles.blockRow; i++)
-                //    {
-                //        objects.Add(blockObjectsFactory.CreateVineBlockObject(new Vector2(obstacles.x + (32 * i), obstacles.y)));
-                //    }
-                //    break;
                 case BlockID.HIDDENBLOCK:
                     objects.Add(blockObjectsFactory.CreateHiddenBlockObject(location));
                     break;
@@ -90,6 +85,12 @@ namespace GameSpace.TileMapDefinition
                     {
                         objects.Add(blockObjectsFactory.CreateStairBlockObject(new Vector2(obstacles.x + (32 * i), obstacles.y)));
                     }
+                    break;
+
+                case BlockID.WARPPIPEHEAD:
+                    Vector2 endLocation = new Vector2(obstacles.warpPipeExitX, obstacles.warpPipeExitY);
+                    objects.Add(blockObjectsFactory.CreateWarpPipeHead(location, endLocation));
+                    objects.Add(blockObjectsFactory.createWarpPipeHeadEnd(endLocation));
                     break;
 
                 #region Brick Blocks
@@ -198,9 +199,11 @@ namespace GameSpace.TileMapDefinition
                 case ItemID.BIGPIPE:
                     objects.Add(objectFactory.CreateBigPipeObject(location));
                     break;
+                //DEPRECIATE BELOW
                 case ItemID.WARPPIPEHEAD:
                     objects.Add(objectFactory.CreateWarpPipeHead(location));
                     break;
+                //
                 case ItemID.WARPPIPEHEADWITHMOB:
                     objects.Add(objectFactory.CreateWarpPipeHeadWithMob(location));
                     break;
@@ -254,18 +257,6 @@ namespace GameSpace.TileMapDefinition
                 case EnemyID.PLANT:
                     objects.Add(objectFactory.CreatePlantObject(location));
                     break;
-                //case EnemyID.LAKITU:
-                //    objects.Add(objectFactory.CreateLakituObject(location));
-                //    break;
-                //case EnemyID.SPINY:
-                //    objects.Add(objectFactory.CreateSpinyObject(location));
-                //    break;
-                //case EnemyID.UBERGOOMBA:
-                //    objects.Add(objectFactory.CreateUberGoombaObject(location));
-                //    break;
-                //case EnemyID.UBERKOOPA:
-                //    objects.Add(objectFactory.CreateUberKoopaObject(location));
-                //    break;
             }
         }
 

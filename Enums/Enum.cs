@@ -22,6 +22,7 @@
         ONEUPSHROOMQUESTIONBLOCK = 10,
         SUPERSHROOMQUESTIONBLOCK = 11,
         FIREFLOWERQUESTIONBLOCK = 12,
+        WARPPIPEHEAD = 22,
     };
 
     public enum ItemID : int
@@ -49,7 +50,6 @@
         VINE = 500,
         WARPVINEWITHBLOCK = 50,
         BLACKWINDOW = 999,
-        VINEHIDDENBLOCK = 222
     };
 
     public enum PowerUpID : int

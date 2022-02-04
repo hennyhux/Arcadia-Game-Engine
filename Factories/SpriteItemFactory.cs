@@ -82,7 +82,7 @@ namespace GameSpace.Factories
             return new AnimatedSprite(HitFireball, 1, 1, 1, 0, 0);
         }
 
-        public ISprite CreateWarpPipe()
+        public ISprite CreateWarpPipeHead()
         {
             return new StaticSprite(WarpPipeHead, 1, 1, 1);
         }

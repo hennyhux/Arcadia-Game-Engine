@@ -12,6 +12,7 @@ using GameSpace.States.BlockStates;
 using GameSpace.States.MarioStates;
 using Microsoft.Xna.Framework;
 using System.Diagnostics;
+using System.Drawing.Text;
 using System.Linq;
 
 
@@ -194,20 +195,7 @@ namespace GameSpace.EntityManaging
                     break;
             }
         }
-        public void ItemToMarioCollison(WarpPipeHead pipe)
-        {
-            switch (DetectCollisionDirection(mario, pipe))
-            {
-                case (int)CollisionDirection.DOWN:
-                    pipe.TimesCollided++;
-                    MarioHandler.GetInstance().BounceMario();
-                    if (pipe.TimesCollided == 2)
-                    {
-                        MarioHandler.GetInstance().SetMarioStateToWarp();
-                    }
-                    break;
-            }
-        }
+       
 
 
         public void ItemToMarioCollison(WarpPipeHeadMob pipe)
@@ -500,6 +488,18 @@ namespace GameSpace.EntityManaging
                     break;
             }
         }
+
+        public void PipeToMarioCollision(WarpPipeHead block)
+        {
+            switch (DetectCollisionDirection(mario, block))
+            {
+                case (int)CollisionDirection.DOWN:
+                    block.TimesCollided++;
+                    if (block.TimesCollided > 1) block.Trigger();
+                    break;
+            }
+        }
+
         #endregion
 
         #region Misc Collision

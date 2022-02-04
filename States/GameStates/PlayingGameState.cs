@@ -43,8 +43,8 @@ namespace GameSpace.States.GameStates
         public List<SoundEffect> soundEffects;
         #endregion
 
-        private readonly string xmlFileName = "../../../Levels/Level1.xml";
-        //private readonly string xmlFileName = "../../../Levels/TestingLevel.xml";
+        //private readonly string xmlFileName = "../../../Levels/Level1.xml";
+        private readonly string xmlFileName = "../../../Levels/TestingLevel.xml";
 
         public Mario GetMario => (Mario)FinderHandler.GetInstance().FindItem((int)AvatarID.MARIO);
 

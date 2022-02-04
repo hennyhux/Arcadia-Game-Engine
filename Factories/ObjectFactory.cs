@@ -143,7 +143,7 @@ namespace GameSpace.Factories
 
         public IGameObjects CreateWarpPipeHead(Vector2 location)
         {
-            return new WarpPipeHead(location);
+            return new WarpPipeHead(location, location);
         }
 
         public IGameObjects CreateWarpPipeHeadWithMob(Vector2 location)

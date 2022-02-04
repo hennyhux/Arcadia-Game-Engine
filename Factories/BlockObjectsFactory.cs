@@ -2,6 +2,7 @@
 using GameSpace.GameObjects.BlockObjects;
 using GameSpace.Interfaces;
 using GameSpace.Objects.BlockObjects;
+using GameSpace.Sprites.ExtraItems;
 using Microsoft.Xna.Framework;
 
 namespace GameSpace.Factories
@@ -72,6 +73,16 @@ namespace GameSpace.Factories
         public IGameObjects CreateHiddenLevelFloorBlockObject(Vector2 location)
         {
             return new HiddenLevelFloorBlock(location);
+        }
+
+        public IGameObjects CreateWarpPipeHead(Vector2 location, Vector2 endLocation)
+        {
+            return new WarpPipeHead(location, endLocation);
+        }
+
+        public IGameObjects createWarpPipeHeadEnd(Vector2 location)
+        {
+            return new WarpPipeHeadEnd(location);
         }
 
 

@@ -210,7 +210,7 @@ namespace GameSpace.Sprites.ExtraItems
         public WarpVineHeadBack(Vector2 location)
         {
             ObjectID = (int)ItemID.WARPPIPEBACK;
-            Sprite = SpriteItemFactory.GetInstance().CreateWarpPipe();
+            Sprite = SpriteItemFactory.GetInstance().CreateWarpPipeHead();
             Position = location;
             CollisionBox = new Rectangle((int)Position.X, (int)Position.Y, Sprite.Texture.Width * 2, Sprite.Texture.Height * 2);
             hasCollided = false;
