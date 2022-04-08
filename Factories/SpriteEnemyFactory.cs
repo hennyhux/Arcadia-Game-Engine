@@ -21,7 +21,7 @@ namespace GameSpace.Factories
         private Texture2D Plant;
         private Texture2D Lakitu;
         private Texture2D Spiny;
-        private readonly Texture2D DeadSpiny;
+        private Texture2D DeadSpiny;
         private Texture2D UberGoomba;
         private Texture2D UberKoopa;
         #endregion
@@ -56,13 +56,12 @@ namespace GameSpace.Factories
             Lakitu = content.Load<Texture2D>("Enemies/Lakitu2");
             Spiny = content.Load<Texture2D>("Enemies/Spiny2");
             UberGoomba = content.Load<Texture2D>("Enemies/UberGoombas.cs");
-
             UberKoopa = content.Load<Texture2D>("Enemies/UberKoopa");
         }
 
         public ISprite CreateGoombaSprite()
         {
-            return new GoombaSprite(Goomba, 1, 2, 2, 0, 0);
+            return new AnimatedSprite(Goomba, 1, 2, 2, 0, 0);
         }
 
         public ISprite CreateDeadGoombaSprite()
@@ -72,27 +71,27 @@ namespace GameSpace.Factories
 
         public ISprite CreateRedKoopaSprite()
         {
-            return new KoopaSprite(RedKoopa, 1, 2, 2, 0, 0);
+            return new AnimatedSprite(RedKoopa, 1, 2, 2, 0, 0);
         }
 
         public ISprite CreateGreenKoopaLeftSprite()
         {
-            return new KoopaSprite(GreenKoopa, 1, 2, 2, 0, 0);
+            return new AnimatedSprite(GreenKoopa, 1, 2, 2, 0, 0);
         }
 
         public ISprite CreateRedKoopaRightSprite()
         {
-            return new KoopaSprite(RedKoopaRight, 1, 2, 2, 0, 0);
+            return new AnimatedSprite(RedKoopaRight, 1, 2, 2, 0, 0);
         }
 
         public ISprite CreateGreenKoopaRightSprite()
         {
-            return new KoopaSprite(GreenKoopaRight, 1, 2, 2, 0, 0);
+            return new AnimatedSprite(GreenKoopaRight, 1, 2, 2, 0, 0);
         }
 
         public ISprite CreateGreenKoopaShellSprite()
         {
-            return new KoopaSprite(GreenKoopaShelled, 1, 2, 1, 1, 0);
+            return new AnimatedSprite(GreenKoopaShelled, 1, 2, 1, 1, 0);
         }
         public ISprite CreateRedKoopaShellSprite()
         {
@@ -142,41 +141,6 @@ namespace GameSpace.Factories
         public ISprite CreateUberGoombaDeadSprite()
         {
             return new UberGoombaDeadSprite(DeadGoomba, 1, 1, 1);
-        }
-
-        public ISprite CreateLakituSprite()
-        {
-            return new LakituSprite(Lakitu, 1, 1, 0, 1, 0, true);
-        }
-
-        public ISprite CreateLakituRightSprite()
-        {
-            return new LakituSprite(Lakitu, 1, 1, 1, 1, 0, true);
-        }
-
-        public ISprite CreateDeadLakituSprite()
-        {
-            return new LakituSprite(Lakitu, 1, 1, 1, 1, 0, false);
-        }
-
-        public ISprite CreateLakituCloudSprite()
-        {
-            return new LakituSprite(Lakitu, 1, 1, 1, 1, 1, true);
-        }
-
-        public ISprite CreateLakituThrowingSprite()
-        {
-            return new LakituSprite(Lakitu, 1, 1, 1, 1, 1, true);
-        }
-
-        public ISprite CreateSpinySprite()
-        {
-            return new SpinySprite(Spiny, 1, 1, 0, 1, 0, true);
-        }
-
-        public ISprite CreateSpinyRightSprite()
-        {
-            return new SpinySprite(Spiny, 1, 1, 1, 1, 0, true);
         }
 
         public ISprite CreateDeadSpinySprite()

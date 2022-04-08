@@ -22,9 +22,9 @@ namespace GameSpace.Abstracts
     public abstract class BlockStates : IBlockState
     {
         public ISprite StateSprite { get; set; }
-        protected internal HiddenBlock block;
+        internal protected Block block;
 
-        protected BlockStates(HiddenBlock block)
+        protected BlockStates(Block block)
         {
             this.block = block;
         }
@@ -111,7 +111,7 @@ namespace GameSpace.Abstracts
 
     public class StateHiddenBlockBumpedRedux : BlockStates
     {
-        public StateHiddenBlockBumpedRedux(HiddenBlock block) : base(block)
+        public StateHiddenBlockBumpedRedux(Block block) : base(block)
         {
             StateSprite = new BumpAnimation(SpriteBlockFactory.GetInstance().ReturnUsedBlock().Texture, (int)block.Position.X, (int)block.Position.Y, 24);
         }
@@ -124,7 +124,7 @@ namespace GameSpace.Abstracts
 
     public class StateHiddenBlockIdleRedux : BlockStates
     {
-        public StateHiddenBlockIdleRedux(HiddenBlock block) : base(block)
+        public StateHiddenBlockIdleRedux(Block block) : base(block)
         {
             StateSprite = SpriteBlockFactory.GetInstance().ReturnHiddenBlock();
         }

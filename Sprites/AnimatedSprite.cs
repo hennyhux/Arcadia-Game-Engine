@@ -3,9 +3,10 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace GameSpace.Sprites
 {
-    public class SuperShroomSprite : Sprite
+    internal class AnimatedSprite : Sprite
     {
-        public SuperShroomSprite(Texture2D texture, int rows, int columns, int totalFrames, int startingPointX,
+
+        public AnimatedSprite(Texture2D texture, int rows, int columns, int totalFrames, int startingPointX,
             int startingPointY)
         {
             Texture = texture;
@@ -17,12 +18,18 @@ namespace GameSpace.Sprites
             this.startingPointX = startingPointX;
             this.startingPointY = startingPointY;
             offsetX = 0;
+
+            #region points
             currentFramePoint = new Point(startingPointX, startingPointY);
             frameOrigin = new Point(startingPointX, startingPointY);
             atlasSize = new Point(columns, rows);
             frameSize = new Point(Texture.Width / atlasSize.X, Texture.Height / atlasSize.Y);
+            #endregion
+
+            #region time
             timeSinceLastFrame = 0;
             milliSecondsPerFrame = 275;
+            #endregion
         }
 
         public override void Draw(SpriteBatch spriteBatch, Vector2 location)
@@ -40,9 +47,34 @@ namespace GameSpace.Sprites
                 spriteBatch.Draw(Texture, destinationRectangle, sourceRectangle, Color.White);
             }
         }
-        public override void DrawBoundary(SpriteBatch spriteBatch, Rectangle destination)
+
+        public override void Update(GameTime gameTime)
         {
-            spriteBatch.Draw(WhiteRect, destination, Color.Green * 0.4f);
+            if (isVisible && totalFrames > 1)
+            {
+                timeSinceLastFrame += gameTime.ElapsedGameTime.Milliseconds;
+                if (timeSinceLastFrame > milliSecondsPerFrame)
+                {
+                    timeSinceLastFrame -= milliSecondsPerFrame;
+
+                    currentFrame += 1;
+
+                    if (currentFrame >= totalFrames)
+                    {
+                        currentFrame = 0;
+                    }
+
+                    if (currentFramePoint.X < totalFrames)
+                    {
+                        currentFramePoint.X++;
+                    }
+
+                    if (currentFramePoint.X >= totalFrames)
+                    {
+                        currentFramePoint.X = startingPointX;
+                    }
+                }
+            }
         }
     }
 }

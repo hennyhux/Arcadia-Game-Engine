@@ -12,9 +12,8 @@ namespace GameSpace.GameObjects.BlockObjects
         {
             ObjectID = (int)BlockID.VINEBLOCK;
             Position = initalPosition;
-            Sprite = SpriteBlockFactory.GetInstance().ReturnVineBlock();
+         
             CollisionBox = new Rectangle((int)Position.X, (int)Position.Y, Sprite.Texture.Width * 2, Sprite.Texture.Height * 2);
-            state = new StateVineBlock();
         }
 
         public override bool RevealItem()

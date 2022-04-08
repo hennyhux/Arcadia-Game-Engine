@@ -33,86 +33,6 @@ namespace GameSpace.Factories
         }
 
 
-        #region BrickBlock
-        public IGameObjects CreateBrickBlockObject(Vector2 location)
-        {
-            return new BrickBlock(location);
-        }
-
-        public IGameObjects CreateHiddenLevelBrickBlockObject(Vector2 location)
-        {
-            return new HiddenLevelBrickBlock(location);
-        }
-
-        public IGameObjects CreateBrickBlockWithItem(Vector2 location, IGameObjects item)
-        {
-            return new BrickBlockWithItem(location, (Item)item);
-        }
-
-        #endregion
-        public IGameObjects CreateStairBlockObject(Vector2 location)
-        {
-            return new StairBlock(location);
-        }
-
-        public IGameObjects CreateFloorBlockObject(Vector2 location)
-        {
-            return new FloorBlock(location);
-        }
-
-        public IGameObjects CreateVineBlockObject(Vector2 location)
-        {
-            return new VineBlock(location);
-        }
-
-        public IGameObjects CreateHiddenLevelFloorBlockObject(Vector2 location)
-        {
-            return new HiddenLevelFloorBlock(location);
-        }
-
-        #region Question Block
-
-        public IGameObjects CreateQuestionBlockObject(Vector2 location)
-        {
-            return new QuestionBlock(location, null);
-        }
-
-        public IGameObjects CreateQuestionBlockCoin(Vector2 location)
-        {
-            return new QuestionBlock(location, (Item)CreateCoinObject(location));
-        }
-
-        public IGameObjects CreateQuestionBlockOneUpShroom(Vector2 location)
-        {
-            return new QuestionBlock(location, (Item)CreateOneUpShroomObject(location));
-        }
-
-        public IGameObjects CreateQuestionBlockShroom(Vector2 location)
-        {
-            return new QuestionBlock(location, (Item)CreateSuperShroomObject(location));
-        }
-
-        public IGameObjects CreateQuestionBlockFire(Vector2 location)
-        {
-            return new QuestionBlock(location, (Item)CreateFireFlowerObject(location));
-        }
-
-        public IGameObjects CreateQuestionBlockStar(Vector2 location)
-        {
-            return new QuestionBlock(location, (Item)CreateStarObject(location));
-        }
-
-        #endregion
-
-        public IGameObjects CreateHiddenBlockObject(Vector2 location)
-        {
-            return new HiddenBlock(location);
-        }
-
-        public IGameObjects CreateUsedBlockObject(Vector2 location)
-        {
-            return new UsedBlock(location);
-        }
 
 
         #region Enemies 
@@ -121,10 +41,6 @@ namespace GameSpace.Factories
             return new Goomba(location);
         }
 
-        public IGameObjects CreateUberGoombaObject(Vector2 location)
-        {
-            return new UberGoomba(location);
-        }
         public IGameObjects CreateGreenKoopaObject(Vector2 location)
         {
             return new Koopa(location);
@@ -135,10 +51,6 @@ namespace GameSpace.Factories
             return new RedKoopa(location);
         }
 
-        public IGameObjects CreateUberKoopaObject(Vector2 location)
-        {
-            return new UberKoopa(location);
-        }
         public IGameObjects CreatePlantObject(Vector2 location)
         {
             return new Plant(location);
@@ -158,16 +70,6 @@ namespace GameSpace.Factories
         public IGameObjects CreateVineHiddenBlockObject(Vector2 location)
         {
             return new HiddenBlockWithVine(location);
-        }
-
-        public IGameObjects CreateSpinyObject(Vector2 location)
-        {
-            return new SpinyRefactored(location);
-        }
-
-        public IGameObjects CreateLakituObject(Vector2 location)
-        {
-            return new Lakitu(location);
         }
 
         #endregion
@@ -241,7 +143,7 @@ namespace GameSpace.Factories
 
         public IGameObjects CreateWarpPipeHead(Vector2 location)
         {
-            return new WarpPipeHead(location);
+            return new WarpPipeHead(location, location);
         }
 
         public IGameObjects CreateWarpPipeHeadWithMob(Vector2 location)
@@ -267,10 +169,6 @@ namespace GameSpace.Factories
         public IGameObjects CreateWarpPipeHeadRoom(Vector2 location)
         {
             return new WarpPipeHeadRoom(location);
-        }
-        public IGameObjects CreateWarpVineBlock(Vector2 location)
-        {
-            return new WarpVineBlock(location);
         }
 
 

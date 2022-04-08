@@ -22,7 +22,7 @@ namespace GameSpace.Abstracts
         internal Item item;
         internal bool revealedItem;
 
-        public Blocks()
+        protected Blocks()
         {
             drawBox = false;
             revealedItem = false;
@@ -49,7 +49,7 @@ namespace GameSpace.Abstracts
 
         public virtual void Trigger()
         {
-            //bump and reveal the item when triggered
+            state.Trigger();
         }
 
         public virtual void HandleCollision(IGameObjects entity)
@@ -64,5 +64,10 @@ namespace GameSpace.Abstracts
         }
 
         public abstract bool RevealItem();
+
+        internal protected void DeleteCollisionBox()
+        {
+            CollisionBox = new Rectangle();
+        }
     }
 }

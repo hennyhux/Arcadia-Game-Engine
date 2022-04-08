@@ -14,7 +14,6 @@ namespace GameSpace.Factories
         private Texture2D BrickBlock;
         private Texture2D HiddenLevelBrickBlock;
         private Texture2D FloorBlock;
-        private Texture2D VineBlock;
         private Texture2D HiddenLevelFloorBlock;
         private Texture2D StairBlock;
         private Texture2D HiddenBlock;
@@ -46,7 +45,6 @@ namespace GameSpace.Factories
             BrickBlock = content.Load<Texture2D>("Blocks/BrickBlock");
             HiddenLevelBrickBlock = content.Load<Texture2D>("Blocks/HiddenLevelBrickBlock");
             FloorBlock = content.Load<Texture2D>("Blocks/FloorBlock");
-            VineBlock = content.Load<Texture2D>("Blocks/VineBlock");
             HiddenLevelFloorBlock = content.Load<Texture2D>("Blocks/HiddenLevelFloorBlock");
             StairBlock = content.Load<Texture2D>("Blocks/StairBlock");
             HiddenBlock = content.Load<Texture2D>("Blocks/UsedBlock");
@@ -56,52 +54,48 @@ namespace GameSpace.Factories
         }
         public ISprite ReturnQuestionBlock()
         {
-            return new QuestionBlockSprite(QuestionBlock, 1, 3, 3, 0, 0);
+            return new AnimatedSprite(QuestionBlock, 1, 3, 3, 0, 0);
         }
 
         public ISprite ReturnBrickBlock()
         {
-            return new BrickBlockSprite(BrickBlock, 1, 1, 1);
+            return new StaticSprite(BrickBlock, 1, 1, 1);
         }
 
         public ISprite ReturnHiddenLevelBrickBlock()
         {
-            return new HiddenLevelBrickBlockSprite(HiddenLevelBrickBlock, 1, 1, 1);
+            return new StaticSprite(HiddenLevelBrickBlock, 1, 1, 1);
         }
 
         public ISprite ReturnFloorBlock()
         {
-            return new FloorBlockSprite(FloorBlock, 1, 1, 1);
+            return new StaticSprite(FloorBlock, 1, 1, 1);
         }
 
-        public ISprite ReturnVineBlock()
-        {
-            return new VineBlockSprite(VineBlock, 1, 1, 1);
-        }
 
         public ISprite ReturnHiddenLevelFloorBlock()
         {
-            return new HiddenLevelFloorBlockSprite(HiddenLevelFloorBlock, 1, 1, 1);
+            return new StaticSprite(HiddenLevelFloorBlock, 1, 1, 1);
         }
 
         public ISprite ReturnStairBlock()
         {
-            return new StairBlockSprite(StairBlock, 1, 1, 1);
+            return new StaticSprite(StairBlock, 1, 1, 1);
         }
 
         public ISprite ReturnHiddenBlock()
         {
-            return new HiddenBlockSprite(HiddenBlock, 1, 1, 1);
+            return new StaticSprite(HiddenBlock, 1, 1, 1);
         }
 
         public ISprite ReturnShatterBlock()
         {
-            return new ShatterBlockSprite(ShatterBlock, 1, 1, 1);
+            return new StaticSprite(ShatterBlock, 1, 1, 1);
         }
 
         public ISprite ReturnUsedBlock()
         {
-            return new UsedBlockSprite(UsedBlock, 1, 1, 1);
+            return new StaticSprite(UsedBlock, 1, 1, 1);
         }
 
         public Texture2D CreateBoundingBoxTexture()
@@ -111,9 +105,7 @@ namespace GameSpace.Factories
 
         public ISprite CreateWarpPipeBody()
         {
-            return new HiddenLevelVerticalPipeSprite(WarpPipeBody, 1, 1, 1);
+            return new StaticSprite(WarpPipeBody, 1, 1, 1);
         }
-
-
     }
 }

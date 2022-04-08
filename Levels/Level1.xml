@@ -17,14 +17,6 @@
 		<enemy>GOOMBA</enemy>
 	</Objects>
 
-	<Objects>
-		<x>400</x>
-		<y>320</y>
-		<block>VINEHIDDENBLOCK</block>
-	</Objects>
-
-	
-
 
 	<Objects>
 		<x>220</x>

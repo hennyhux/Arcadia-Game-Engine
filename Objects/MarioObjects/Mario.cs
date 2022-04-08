@@ -453,10 +453,7 @@ namespace GameSpace.GameObjects.BlockObjects
                     CollisionHandler.GetInstance().ChangeMarioStatesUponCollision(entity);
                     CollisionHandler.GetInstance().MarioToEnemyCollision((Enemy)entity);
                     break;
-                case (int)EnemyID.SPINY:
-                    CollisionHandler.GetInstance().ChangeMarioStatesUponCollision(entity);
-                    CollisionHandler.GetInstance().MarioToEnemyCollision((SpinyRefactored)entity);
-                    break;
+              
                 case (int)EnemyID.REDKOOPA:
                     CollisionHandler.GetInstance().ChangeMarioStatesUponCollision(entity);
                     CollisionHandler.GetInstance().MarioToEnemyCollision(entity);
@@ -472,10 +469,7 @@ namespace GameSpace.GameObjects.BlockObjects
                     MarioCollisionHandler.GetInstance().HandleEnemyCollision((UberKoopa)entity);
                     break;
 
-                case (int)EnemyID.LAKITU:
-                    CollisionHandler.GetInstance().ChangeMarioStatesUponCollision(entity);
-                    MarioCollisionHandler.GetInstance().HandleEnemyCollision((Lakitu)entity);
-                    break;
+               
 
             }
         }

@@ -3,71 +3,107 @@ using GameSpace.EntityManaging;
 using GameSpace.Enums;
 using GameSpace.Factories;
 using GameSpace.Interfaces;
+using GameSpace.Machines;
 using GameSpace.Objects.EnemyObjects;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Vector2 = Microsoft.Xna.Framework.Vector2;
 
 namespace GameSpace.Sprites.ExtraItems
 {
 
-    public class StateWarpPipeIdle : AbstractBlockStates
+    public class StateWarpPipeIdle : BlockState
     {
         public StateWarpPipeIdle()
         {
-            sprite = SpriteItemFactory.GetInstance().CreateWarpPipe();
+            StateSprite = SpriteItemFactory.GetInstance().CreateWarpPipeHead();
         }
     }
 
-    public class StateWarpPipeActivated : AbstractBlockStates
+    public class StateWarpPipeActivated : BlockState
     {
         public StateWarpPipeActivated()
         {
-            sprite = SpriteItemFactory.GetInstance().CreateWarpPipe();
+            StateSprite = SpriteItemFactory.GetInstance().CreateWarpPipeHead();
         }
     }
 
-    public class StateWarpPipeBodyIdle : AbstractBlockStates
+    public class StateWarpPipeBodyIdle : BlockState
     {
         public StateWarpPipeBodyIdle()
         {
-            sprite = SpriteBlockFactory.GetInstance().CreateWarpPipeBody();
+            StateSprite = SpriteBlockFactory.GetInstance().CreateWarpPipeBody();
         }
     }
 
-    public class StateWarpPipeDeactiveated : AbstractBlockStates
+    public class StateWarpPipeDeactiveated : BlockState
     {
         public StateWarpPipeDeactiveated()
         {
-            sprite = SpriteItemFactory.GetInstance().CreateWarpPipe();
+            StateSprite = SpriteItemFactory.GetInstance().CreateWarpPipeHead();
         }
     }
 
-    public class WarpPipeHead : Blocks
+    public class WarpPipeDeactiveState : BlockStates
     {
-        private readonly bool hasCollided;
+        public WarpPipeDeactiveState(Block block) : base(block)
+        {
+            StateSprite = SpriteItemFactory.GetInstance().CreateWarpPipeHead();
+        }
+
+        public override void Trigger()
+        {
+            //does nothing
+        }
+    }
+
+    public class WarpPipeActiveState : BlockStates
+    {
+        public WarpPipeActiveState(Block block) : base(block)
+        {
+            StateSprite = SpriteItemFactory.GetInstance().CreateWarpPipeHead();
+            this.block = block;
+        }
+
+        public override void Trigger()
+        {
+            MarioHandler.GetInstance().WarpMario(((WarpPipeHead)block).EndLocation);
+            block.state = new WarpPipeDeactiveState(block);
+        }
+    }
+
+
+    public class WarpPipeHead : Block
+    {
+        public Vector2 EndLocation { get; private set; }
         public int TimesCollided { get; set; }
-        public WarpPipeHead(Vector2 location)
+        public WarpPipeHead(Vector2 location, Vector2 endLocation)
         {
             ObjectID = (int)ItemID.WARPPIPEHEAD;
-            Sprite = SpriteItemFactory.GetInstance().CreateWarpPipe();
-            Position = location;
-            CollisionBox = new Rectangle((int)Position.X, (int)Position.Y, Sprite.Texture.Width * 2, Sprite.Texture.Height * 2);
-            hasCollided = false;
-            drawBox = false;
             TimesCollided = 0;
-            state = new StateWarpPipeIdle();
+            Position = location;
+            EndLocation = endLocation;
+            state = new WarpPipeActiveState(this);
         }
 
         public override void HandleCollision(IGameObjects entity)
         {
-
-            state = new StateWarpPipeDeactiveated();
-            //CollisionHandler.GetInstance().ItemToMarioCollison(this);
+            switch (entity.ObjectID)
+            {
+                case (int)AvatarID.MARIO:
+                    CollisionHandler.GetInstance().PipeToMarioCollision((WarpPipeHead)this);
+                    break;
+            }
         }
+    }
 
-        public override bool RevealItem()
+    public class WarpPipeHeadEnd : Block
+    {
+        public WarpPipeHeadEnd(Vector2 location)
         {
-            return false;
+            ObjectID = (int)ItemID.WARPPIPEHEAD;
+            Position = location;
+            state = new WarpPipeDeactiveState(this);
         }
     }
 
@@ -80,7 +116,7 @@ namespace GameSpace.Sprites.ExtraItems
         public WarpPipeHeadMob(Vector2 location)
         {
             ObjectID = (int)ItemID.WARPPIPEHEADWITHMOB;
-            Sprite = SpriteItemFactory.GetInstance().CreateWarpPipe();
+            Sprite = SpriteItemFactory.GetInstance().CreateWarpPipeHead();
             Position = location;
             CollisionBox = new Rectangle((int)Position.X, (int)Position.Y, Sprite.Texture.Width * 2, Sprite.Texture.Height * 2);
             ExpandedCollisionBox = new Rectangle((int)Position.X - Sprite.Texture.Width * 3, (int)Position.Y, Sprite.Texture.Width * 8, Sprite.Texture.Height * 2);
@@ -165,7 +201,7 @@ namespace GameSpace.Sprites.ExtraItems
         public WarpPipeHeadRoom(Vector2 location)
         {
             ObjectID = (int)ItemID.WARPPIPEROOM;
-            Sprite = SpriteItemFactory.GetInstance().CreateWarpPipe();
+            Sprite = SpriteItemFactory.GetInstance().CreateWarpPipeHead();
             Position = location;
             CollisionBox = new Rectangle((int)Position.X, (int)Position.Y, Sprite.Texture.Width * 2, Sprite.Texture.Height * 2);
             drawBox = false;
@@ -225,7 +261,7 @@ namespace GameSpace.Sprites.ExtraItems
         public WarpPipeHeadBack(Vector2 location)
         {
             ObjectID = (int)ItemID.WARPPIPEBACK;
-            Sprite = SpriteItemFactory.GetInstance().CreateWarpPipe();
+            Sprite = SpriteItemFactory.GetInstance().CreateWarpPipeHead();
             Position = location;
             CollisionBox = new Rectangle((int)Position.X, (int)Position.Y, Sprite.Texture.Width * 2, Sprite.Texture.Height * 2);
             hasCollided = false;

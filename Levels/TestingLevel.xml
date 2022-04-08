@@ -42,7 +42,9 @@
 	<Objects>
 		<x>100</x>
 		<y>400</y>
-		<item>WARPPIPEBODY</item>
+		<block>WARPPIPEHEAD</block>
+		<warpPipeExitX>300</warpPipeExitX>
+		<warpPipeExitY>400</warpPipeExitY>
 	</Objects>
 	
 

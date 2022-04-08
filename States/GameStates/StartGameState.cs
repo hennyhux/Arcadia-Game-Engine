@@ -23,6 +23,7 @@ namespace GameSpace.States.GameStates
             {
                 {Keys.Q, new ExitCommand(game)},
                 {Keys.N, new StartNewGameCommand()},
+                {Keys.OemTilde, new BringUpConsoleCommand(game)}
                 //load game command
             };
         }
@@ -34,10 +35,8 @@ namespace GameSpace.States.GameStates
     public class StartGameState : GameState
     {
 
-        private readonly Texture2D menuBackGroundTexture;
         private List<IController> controllers;
         private readonly ScriptHandler scriptHandler;
-        private List<Component> componentsList;
 
         public StartGameState(GameRoot game, GraphicsDevice graphicsDevice, ContentManager content) : base(game, graphicsDevice, content)
         {
@@ -49,11 +48,6 @@ namespace GameSpace.States.GameStates
         {
             graphicsDevice.Clear(Color.Green);
             spriteBatch.Begin();
-            foreach (Component component in componentsList)
-            {
-                component.Draw(gameTime, spriteBatch);
-            }
-
             HUDHandler.GetInstance().DrawStartingPanel(spriteBatch);
             spriteBatch.End();
         }
@@ -67,35 +61,6 @@ namespace GameSpace.States.GameStates
                 new KeyboardInput(game), new ControllerInput(game)
             };
 
-            Button startButton = new Button(content.Load<Texture2D>("Button"), content.Load<SpriteFont>("font"))
-            {
-                Position = new Vector2(350, 200),
-                Text = "Start"
-            };
-
-            Button quitButton = new Button(content.Load<Texture2D>("Button"), content.Load<SpriteFont>("font"))
-            {
-                Position = new Vector2(350, 250),
-                Text = "Quit"
-            };
-
-            startButton.Click += StartButton_Click;
-            quitButton.Click += QuitButton_Click;
-
-            componentsList = new List<Component>()
-            {
-                startButton,
-                quitButton,
-            };
-        }
-
-        private void QuitButton_Click(object sender, System.EventArgs e)
-        {
-            game.Exit();
-        }
-
-        private void StartButton_Click(object sender, System.EventArgs e)
-        {
 
         }
 
@@ -114,11 +79,6 @@ namespace GameSpace.States.GameStates
             foreach (IController controller in controllers)
             {
                 controller.Update();
-            }
-
-            foreach (Component component in componentsList)
-            {
-                component.Update(gameTime);
             }
         }
     }

@@ -84,21 +84,6 @@ namespace GameSpace.Handlers
             }
         }
 
-        public void HandleBlockCollision(SpinyRefactored enemy, IGameObjects block)
-        {
-            if (CollisionHandler.GetInstance().DetectCollisionDirection(enemy, block) == (int)CollisionDirection.LEFT)
-            {
-                enemy.Direction = (int)MarioDirection.LEFT;
-                enemy.state = new StateSpinyAliveLeft(enemy);
-            }
-
-            else if (CollisionHandler.GetInstance().DetectCollisionDirection(enemy, block) == (int)CollisionDirection.RIGHT)
-            {
-                enemy.Direction = (int)MarioDirection.RIGHT;
-                enemy.state = new StateSpinyAliveRight(enemy);
-            }
-        }
-
         public void HandleMarioCollision(Enemy enemy)
         {
             if (CollisionHandler.GetInstance().DetectCollisionDirection(enemy, mario) == (int)CollisionDirection.UP)
@@ -108,14 +93,6 @@ namespace GameSpace.Handlers
             }
         }
 
-        public void HandleMarioCollision(Lakitu enemy)
-        {
-            if (CollisionHandler.GetInstance().DetectCollisionDirection(enemy, mario) == (int)CollisionDirection.UP)
-            {
-                mario.score += 100;
-                enemy.Trigger();
-            }
-        }
 
         public void HandleFireBallCollision(Enemy enemy)
         {

@@ -4,83 +4,83 @@ using GameSpace.Interfaces;
 
 namespace GameSpace.States.BlockStates
 {
-    public class StateBrickBlockBump : AbstractBlockStates
+    public class StateBrickBlockBump : BlockState
     {
         public StateBrickBlockBump(IGameObjects block)
         {
-            sprite = new BumpAnimation(SpriteBlockFactory.GetInstance().ReturnUsedBlock().Texture, (int)block.Position.X, (int)block.Position.Y, 24);
+            StateSprite = new BumpAnimation(SpriteBlockFactory.GetInstance().ReturnUsedBlock().Texture, (int)block.Position.X, (int)block.Position.Y, 24);
         }
     }
 
-    public class StateHiddenLevelBrickBlockBump : AbstractBlockStates
+    public class StateHiddenLevelBrickBlockBump : BlockState
     {
         public StateHiddenLevelBrickBlockBump(IGameObjects block)
         {
-            sprite = new BumpAnimation(SpriteBlockFactory.GetInstance().ReturnUsedBlock().Texture, (int)block.Position.X, (int)block.Position.Y, 24);
+            StateSprite = new BumpAnimation(SpriteBlockFactory.GetInstance().ReturnUsedBlock().Texture, (int)block.Position.X, (int)block.Position.Y, 24);
         }
     }
 
-    public class StateBrickBlockIdle : AbstractBlockStates
+    public class StateBrickBlockIdle : BlockState
     {
         public StateBrickBlockIdle()
         {
-            sprite = SpriteBlockFactory.GetInstance().ReturnBrickBlock();
+            StateSprite = SpriteBlockFactory.GetInstance().ReturnBrickBlock();
         }
     }
 
-    public class StateHiddenLevelBrickBlockIdle : AbstractBlockStates
+    public class StateHiddenLevelBrickBlockIdle : BlockState
     {
         public StateHiddenLevelBrickBlockIdle()
         {
-            sprite = SpriteBlockFactory.GetInstance().ReturnHiddenLevelBrickBlock();
+            StateSprite = SpriteBlockFactory.GetInstance().ReturnHiddenLevelBrickBlock();
         }
     }
 
-    public class StateHiddenBlockBump : AbstractBlockStates
+    public class StateHiddenBlockBump : BlockState
     {
         public StateHiddenBlockBump(IGameObjects block)
         {
-            sprite = sprite = new BumpAnimation(SpriteBlockFactory.GetInstance().ReturnUsedBlock().Texture, (int)block.Position.X, (int)block.Position.Y, 24);
+            StateSprite = new BumpAnimation(SpriteBlockFactory.GetInstance().ReturnUsedBlock().Texture, (int)block.Position.X, (int)block.Position.Y, 24);
         }
     }
 
-    public class StateHiddenBlockIdle : AbstractBlockStates
+    public class StateHiddenBlockIdle : BlockState
     {
         public StateHiddenBlockIdle()
         {
-            sprite = SpriteBlockFactory.GetInstance().ReturnHiddenBlock();
+            StateSprite = SpriteBlockFactory.GetInstance().ReturnHiddenBlock();
         }
     }
 
-    public class StateFloorBlock : AbstractBlockStates
+    public class StateFloorBlock : BlockState
     {
         public StateFloorBlock()
         {
-            sprite = SpriteBlockFactory.GetInstance().ReturnFloorBlock();
+            StateSprite = SpriteBlockFactory.GetInstance().ReturnFloorBlock();
         }
     }
 
-    public class StateVineBlock : AbstractBlockStates
+    public class StateVineBlock : BlockState
     {
         public StateVineBlock()
         {
-            sprite = SpriteBlockFactory.GetInstance().ReturnVineBlock();
+           // StateSprite = SpriteBlockFactory.GetInstance().ReturnVineBlock();
         }
     }
 
-    public class StateHiddenLevelFloorBlock : AbstractBlockStates
+    public class StateHiddenLevelFloorBlock : BlockState
     {
         public StateHiddenLevelFloorBlock()
         {
-            sprite = SpriteBlockFactory.GetInstance().ReturnHiddenLevelFloorBlock();
+            StateSprite = SpriteBlockFactory.GetInstance().ReturnHiddenLevelFloorBlock();
         }
     }
 
-    public class StateStairBlock : AbstractBlockStates
+    public class StateStairBlock : BlockState
     {
         public StateStairBlock()
         {
-            sprite = SpriteBlockFactory.GetInstance().ReturnStairBlock();
+            StateSprite = SpriteBlockFactory.GetInstance().ReturnStairBlock();
         }
     }
 

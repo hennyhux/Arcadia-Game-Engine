@@ -9,7 +9,7 @@ using Microsoft.Xna.Framework.Graphics;
 namespace GameSpace.Sprites.ExtraItems
 {
 
-    public class StateWarpVineIdle : AbstractBlockStates
+    public class StateWarpVineIdle : BlockState
     {
         public StateWarpVineIdle()
         {
@@ -17,7 +17,7 @@ namespace GameSpace.Sprites.ExtraItems
         }
     }
 
-    public class StateWarpVineActivated : AbstractBlockStates
+    public class StateWarpVineActivated : BlockState
     {
         public StateWarpVineActivated()
         {
@@ -25,7 +25,7 @@ namespace GameSpace.Sprites.ExtraItems
         }
     }
 
-    public class StateWarpVineBodyIdle : AbstractBlockStates
+    public class StateWarpVineBodyIdle : BlockState
     {
         public StateWarpVineBodyIdle()
         {
@@ -33,7 +33,7 @@ namespace GameSpace.Sprites.ExtraItems
         }
     }
 
-    public class StateWarpVineDeactiveated : AbstractBlockStates
+    public class StateWarpVineDeactiveated : BlockState
     {
         public StateWarpVineDeactiveated()
         {
@@ -210,7 +210,7 @@ namespace GameSpace.Sprites.ExtraItems
         public WarpVineHeadBack(Vector2 location)
         {
             ObjectID = (int)ItemID.WARPPIPEBACK;
-            Sprite = SpriteItemFactory.GetInstance().CreateWarpPipe();
+            Sprite = SpriteItemFactory.GetInstance().CreateWarpPipeHead();
             Position = location;
             CollisionBox = new Rectangle((int)Position.X, (int)Position.Y, Sprite.Texture.Width * 2, Sprite.Texture.Height * 2);
             hasCollided = false;

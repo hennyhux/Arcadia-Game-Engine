@@ -16,6 +16,8 @@ namespace GameSpace.TileMapDefinition
             public EnemyID enemy;
             public AvatarID avatar;
             public MarioDirection facing;
+            public int warpPipeExitX;
+            public int warpPipeExitY;
         }
     }
 }

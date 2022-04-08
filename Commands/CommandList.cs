@@ -1,6 +1,7 @@
 ﻿using GameSpace.Commands;
 using Microsoft.Xna.Framework.Input;
 using System.Collections.Generic;
+using GameSpace.States.GameStates;
 
 namespace GameSpace
 {
@@ -14,7 +15,7 @@ namespace GameSpace
             keyboardCommands = new Dictionary<Keys, ICommand>()
             {
                 {Keys.Q, new ExitCommand(game)},
-                {Keys.P, new PauseGameCommand(game)},
+                //{Keys.P, new PauseGameCommand(game)},
                 {Keys.M, new MuteCommand(game)},
                 {Keys.R, new ResetCommand(game)},
                 {Keys.N, new StartNewGameCommand()},
@@ -41,6 +42,7 @@ namespace GameSpace
                 {Keys.K, new SpawnGoombaCommand(game)},
                 {Keys.L, new SpawnKoopaCommand(game)},
                 {Keys.B, new SpawnCoinCommand(game)},
+                {Keys.OemTilde, new BringUpConsoleCommand(game)}
             };
 
             controllerCommands = new Dictionary<Buttons, ICommand>()
