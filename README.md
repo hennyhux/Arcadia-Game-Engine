@@ -3,7 +3,7 @@ An open-source 2D side-scrolling game engine that is written using the MonoGame 
 In the current state, the entire level of Mario 1-1 is playable. 
 
 Features in the works:
-- Greater extendability of classes (i.e cleaning up dead code that breaks cohesion).
+- Greater extendability of classes (i.e cleaning up dead code that breaks cohesion) (CURRENT FOCUS - IN PROGRESS).
 - Improved collision detection algorithm using a sweep-prune approach.
 - Change XML parser to use CV instead for greater control in making levels. 
 - Improved physics, get rid of hardcoded variables in favor of runtime computations.
