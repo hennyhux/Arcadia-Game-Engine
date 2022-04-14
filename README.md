@@ -12,7 +12,7 @@ Features in the works:
 
 Future Plans:
 - Implement concurrency to utilize multiple threads for heavy computations (rendering, collision detection, physics calculations).
-- 
+- Design a font-loader to give the programmer greater liberty in creating and displaying custom fonts, rather than relying on default MonoGame fonts. 
 
 Completed features
 - Improve big-level performance by modifying collision detection to prune objects not in viewport from the collision list. 
